@@ -1,0 +1,11 @@
+name: cartografias-textil
+channels:
+  - conda-forge
+dependencies:
+  - python=3.12
+  - pandas>=2.0
+  - openpyxl>=3.1
+  - pip
+  - pip:
+      - rapidfuzz>=3.0
+      - unidecode>=1.3

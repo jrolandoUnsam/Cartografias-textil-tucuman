@@ -1,0 +1,982 @@
+objeto_id,fuente,concurso_id,nombre_raw,ciudad_raw,categoria_raw,orden,objeto
+1,1915 1er concurso EXPOS,1,Leticia Sorroza,MONTEROS,PAÑUELOS,1,"Encaje, creación de la autora"
+2,1915 1er concurso EXPOS,1,Marina Belmonte,SAN MIGUEL DE TUCUMÁN,PAÑUELOS,2,"Encaje, filet de seda"
+3,1915 1er concurso EXPOS,1,Isaura S. de Risso Patron,MONTEROS,PAÑUELOS,3,"Encaje, creación de la autora"
+4,1915 1er concurso EXPOS,1,Dalmira González Sorol,TAFÍ VIEJO,PAÑUELOS,4,"Encaje, creación de la autora"
+5,1915 1er concurso EXPOS,1,Dalmira González Sorol,TAFÍ VIEJO,PAÑUELOS,5,"Encaje, creación de la autora"
+6,1915 1er concurso EXPOS,1,Arminda de Colombres,VILLA ALBERDI,PAÑUELOS,6,Deshilado
+7,1915 1er concurso EXPOS,1,Rafaela Villoldo,SAN MIGUEL DE TUCUMÁN,PAÑUELOS,7,Tejido y bordado
+8,1915 1er concurso EXPOS,1,Rafaela Villoldo,SAN MIGUEL DE TUCUMÁN,PAÑUELOS,8,Tejido y bordado
+9,1915 1er concurso EXPOS,1,Ana del Rio,SAN MIGUEL DE TUCUMÁN,PAÑUELOS,9,Deshilado y bordado en limón
+10,1915 1er concurso EXPOS,1,Isabel del Rio,SAN MIGUEL DE TUCUMÁN,PAÑUELOS,10,Deshilado y bordado en limón
+11,1915 1er concurso EXPOS,1,Apolonia V. de Mayer,SAN MIGUEL DE TUCUMÁN,PAÑUELOS,11,"Encaje, hilo y seda, punto filet"
+12,1915 1er concurso EXPOS,1,Apolonia V. de Mayer,SAN MIGUEL DE TUCUMÁN,PAÑUELOS,12,"Encaje de seda, punto filet"
+13,1915 1er concurso EXPOS,1,Rosario Loto,SANTIAGO DEL ESTERO,PAÑUELOS,13,De Randa
+14,1915 1er concurso EXPOS,1,Lola M. de Sosa,SAN PABLO,PAÑUELOS,14,Bordado en tul
+15,1915 1er concurso EXPOS,1,Lola M. de Sosa,SAN PABLO,PAÑUELOS,15,Bordado en tul
+16,1915 1er concurso EXPOS,1,Lola M. de Sosa,SAN PABLO,PAÑUELOS,16,Bordado en tul
+17,1915 1er concurso EXPOS,1,Lastenia Barrera,SAN MIGUEL DE TUCUMÁN,PAÑUELOS,17,Encaje ñanduty
+18,1915 1er concurso EXPOS,1,Ignacia Puparelli,SAN MIGUEL DE TUCUMÁN,PAÑUELOS,18,Encaje filet
+19,1915 1er concurso EXPOS,1,Paula Olea,SIMOCA,RANDAS,1,"Puntilla de 4,25x0.15"
+20,1915 1er concurso EXPOS,1,Tomasa R. de Palacio,SAN MIGUEL DE TUCUMÁN,RANDAS,2,Tapete
+21,1915 1er concurso EXPOS,1,Tomasa R. de Palacio,SAN MIGUEL DE TUCUMÁN,RANDAS,3,Tapete
+22,1915 1er concurso EXPOS,1,Palmira Contrera,SANTIAGO DEL ESTERO,RANDAS,4,tres metros de puntilla
+23,1915 1er concurso EXPOS,1,Palmira Contrera,SANTIAGO DEL ESTERO,RANDAS,5,"tres metros de randa, hilo y seda"
+24,1915 1er concurso EXPOS,1,Haydée B. de Heredia,SAN MIGUEL DE TUCUMÁN,RANDAS,6,juego puntilla y entredós
+25,1915 1er concurso EXPOS,1,Ursula de Demonte,SAN MIGUEL DE TUCUMÁN,RANDAS,7,carpetita
+26,1915 1er concurso EXPOS,1,Ursula de Demonte,SAN MIGUEL DE TUCUMÁN,RANDAS,8,carpetita
+27,1915 1er concurso EXPOS,1,Ursula de Demonte,SAN MIGUEL DE TUCUMÁN,RANDAS,9,carpetita
+28,1915 1er concurso EXPOS,1,Mercedes del Moral,SAN MIGUEL DE TUCUMÁN,RANDAS,10,cuatro metros de puntilla
+29,1915 1er concurso EXPOS,1,Dolores Galvan,MONTEROS,RANDAS,11,dos puntillas (juego)
+30,1915 1er concurso EXPOS,1,Hortensia Haurigot,SAN MIGUEL DE TUCUMÁN,RANDAS,12,Puntilla
+31,1915 1er concurso EXPOS,1,Delina G. de Robles,MONTEROS,RANDAS,13,Puntilla
+32,1915 1er concurso EXPOS,1,Delina G. de Robles,MONTEROS,RANDAS,14,Puntilla
+33,1915 1er concurso EXPOS,1,Delina G. de Robles,MONTEROS,RANDAS,15,Tapete
+34,1915 1er concurso EXPOS,1,Delina G. de Robles,MONTEROS,RANDAS,16,Camino de mesa
+35,1915 1er concurso EXPOS,1,Rosa Alderete,MONTEROS,RANDAS,17,cuatro metros de puntilla
+36,1915 1er concurso EXPOS,1,Rosa Alderete,MONTEROS,RANDAS,18,camino de mesa
+37,1915 1er concurso EXPOS,1,Rosa Alderete,MONTEROS,RANDAS,19,camino de mesa
+38,1915 1er concurso EXPOS,1,Rosa Alderete,MONTEROS,RANDAS,20,tapete
+39,1915 1er concurso EXPOS,1,Rosa Alderete,MONTEROS,RANDAS,21,tapete
+40,1915 1er concurso EXPOS,1,Rosario Loto,SANTIAGO DEL ESTERO,RANDAS,22,entredós
+41,1915 1er concurso EXPOS,1,Rosario Loto,SANTIAGO DEL ESTERO,RANDAS,23,tapete
+42,1915 1er concurso EXPOS,1,Dominga Lescano,SANTIAGO DEL ESTERO,RANDAS,24,juego puntilla y entredós
+43,1915 1er concurso EXPOS,1,Dominga Lescano,SANTIAGO DEL ESTERO,RANDAS,25,colcha
+44,1915 1er concurso EXPOS,1,Concepción y Rosa Cuello,CATAMARCA,RANDAS,26,tapete
+45,1915 1er concurso EXPOS,1,Concepción y Rosa Cuello,CATAMARCA,RANDAS,27,tapete
+46,1915 1er concurso EXPOS,1,Concepción y Rosa Cuello,CATAMARCA,RANDAS,28,tapete
+47,1915 1er concurso EXPOS,1,Leticia Sorroza,MONTEROS,ENCAJES VARIOS,1,"cuello y puño encaje, creación de la autora"
+48,1915 1er concurso EXPOS,1,Consuelo Belmonte,SAN MIGUEL DE TUCUMÁN,ENCAJES VARIOS,2,"puntilla, de encaje de seda, al bolillo"
+49,1915 1er concurso EXPOS,1,Concepción Belmonte,SAN MIGUEL DE TUCUMÁN,ENCAJES VARIOS,3,tulipa encaje inglés con trensilla al bolillo
+50,1915 1er concurso EXPOS,1,Concepción Belmonte,SAN MIGUEL DE TUCUMÁN,ENCAJES VARIOS,4,"puntilla encaje al bolillo, de seda"
+51,1915 1er concurso EXPOS,1,Concepción Belmonte,SAN MIGUEL DE TUCUMÁN,ENCAJES VARIOS,5,carpeta encaje de filet de hilo
+52,1915 1er concurso EXPOS,1,Marina Belmonte,SAN MIGUEL DE TUCUMÁN,ENCAJES VARIOS,6,"puntilla hilo crudo, encaje al bolillo"
+53,1915 1er concurso EXPOS,1,Rosario v. d'Empaire,SAN MIGUEL DE TUCUMÁN,ENCAJES VARIOS,7,"almohadon, encaje filet de hilo"
+54,1915 1er concurso EXPOS,1,Rosario v. d'Empaire,SAN MIGUEL DE TUCUMÁN,ENCAJES VARIOS,8,"sobrecama, encaje filet de hilo"
+55,1915 1er concurso EXPOS,1,María Castillón,SAN MIGUEL DE TUCUMÁN,ENCAJES VARIOS,9,"abanico, encaje venecia y a la aguja"
+56,1915 1er concurso EXPOS,1,Elisa del Prado,CÓRDOBA,ENCAJES VARIOS,10,"cuello, encaje de venecia"
+57,1915 1er concurso EXPOS,1,Ana Tactagi,SAN MIGUEL DE TUCUMÁN,ENCAJES VARIOS,11,"tapete, encaje esmirna y randa"
+58,1915 1er concurso EXPOS,1,Ana del Río,SAN MIGUEL DE TUCUMÁN,ENCAJES VARIOS,12,"traje, encaje al bolillo"
+59,1915 1er concurso EXPOS,1,Argenia R. Lautafy,SALTA,ENCAJES VARIOS,13,"traje, punto de irlanda"
+60,1915 1er concurso EXPOS,1,Corina Aguirre,SAN MIGUEL DE TUCUMÁN,ENCAJES VARIOS,14,"blusa, punto de irlanda"
+61,1915 1er concurso EXPOS,1,María J. de Aguirre,SAN MIGUEL DE TUCUMÁN,ENCAJES VARIOS,15,"cuello, punto de irlanda"
+62,1915 1er concurso EXPOS,1,María J. de Aguirre,SAN MIGUEL DE TUCUMÁN,ENCAJES VARIOS,16,"cuello, punto de irlanda"
+63,1915 1er concurso EXPOS,1,Ignacia Puparelli,SAN MIGUEL DE TUCUMÁN,ENCAJES VARIOS,17,"colcha, punto filet"
+64,1915 1er concurso EXPOS,1,María R. Coletti,MONTEROS,ENCAJES VARIOS,18,"tapete, encaje ñanduty"
+65,1915 1er concurso EXPOS,1,Dalmira González Sorol,TAFÍ VIEJO,ENCAJES VARIOS,19,alba de encaje tucumano
+66,1915 1er concurso EXPOS,1,Dalmira González Sorol,TAFÍ VIEJO,ENCAJES VARIOS,20,"mantel de altar, encaje y deshilado"
+67,1915 1er concurso EXPOS,1,Dalmira González Sorol,TAFÍ VIEJO,ENCAJES VARIOS,21,trabajo de encaje filet y randa
+68,1915 1er concurso EXPOS,1,Hermanas de la inmaculada concepción,ASILO MATERNAL CIUDAD,ENCAJES VARIOS,22,dos pañuelos guipure al bolillo
+69,1915 1er concurso EXPOS,1,Hermanas de la inmaculada concepción,ASILO MATERNAL CIUDAD,ENCAJES VARIOS,23,"una carpeta, encaje al bolillo deshilado"
+70,1915 1er concurso EXPOS,1,Hermanas de la inmaculada concepción,ASILO MATERNAL CIUDAD,ENCAJES VARIOS,24,un encaje al bolillo en su almohadilla
+71,1915 1er concurso EXPOS,1,Isabel Ovejero,INGENIO CONCEPCION,DESHILADO,1,almohadón
+72,1915 1er concurso EXPOS,1,Isabel Ovejero,INGENIO CONCEPCION,DESHILADO,2,almohadón
+73,1915 1er concurso EXPOS,1,Isabel Ovejero,INGENIO CONCEPCION,DESHILADO,3,tapete
+74,1915 1er concurso EXPOS,1,Rosario Villoldo,INGENIO CONCEPCION,DESHILADO,4,"un par de fundas, deshilado y crochet"
+75,1915 1er concurso EXPOS,1,Rosario Villoldo,INGENIO CONCEPCION,DESHILADO,5,"un par de fundas, deshilado y crochet"
+76,1915 1er concurso EXPOS,1,Rosario Villoldo,INGENIO CONCEPCION,DESHILADO,6,un mantel y seis servilletas
+77,1915 1er concurso EXPOS,1,Rosario Villoldo,INGENIO CONCEPCION,DESHILADO,7,almohadón
+78,1915 1er concurso EXPOS,1,Rosario Villoldo,INGENIO CONCEPCION,DESHILADO,8,almohadón
+79,1915 1er concurso EXPOS,1,Enriqueta Fronzutti,SAN MIGUEL DE TUCUMÁN,DESHILADO,9,mantel deshilado y bordado
+80,1915 1er concurso EXPOS,1,Enriqueta Fronzutti,SAN MIGUEL DE TUCUMÁN,DESHILADO,10,una toalla
+81,1915 1er concurso EXPOS,1,Enriqueta Fronzutti,SAN MIGUEL DE TUCUMÁN,DESHILADO,11,un almohadón
+82,1915 1er concurso EXPOS,1,Enriqueta Fronzutti,SAN MIGUEL DE TUCUMÁN,DESHILADO,12,un almohadón
+83,1915 1er concurso EXPOS,1,Argentina J. Sal,SAN MIGUEL DE TUCUMÁN,DESHILADO,13,un mantel y seis servilletas
+84,1915 1er concurso EXPOS,1,Rosario Villoldo,INGENIO CONCEPCION,DESHILADO,14,"toalla, deshilado y macramé"
+85,1915 1er concurso EXPOS,1,Eloisa Aráoz,COLALAO DEL VALLE,DESHILADO,15,un par de fundas con dibujos regionales
+86,1915 1er concurso EXPOS,1,Eloisa Aráoz,COLALAO DEL VALLE,DESHILADO,16,un almohadón
+87,1915 1er concurso EXPOS,1,Eloisa Aráoz,COLALAO DEL VALLE,DESHILADO,17,un almohadón
+88,1915 1er concurso EXPOS,1,Eloisa Aráoz,COLALAO DEL VALLE,DESHILADO,18,carpeta encaje de filet de hilo
+89,1915 1er concurso EXPOS,1,Sara M. Sal,SAN MIGUEL DE TUCUMÁN,DESHILADO,19,"toalla, deshilado y macramé"
+90,1915 1er concurso EXPOS,1,Elvira Rodríguez They,S/D,DESHILADO,20,"toalla, deshilado"
+91,1915 1er concurso EXPOS,1,Máxima Belmonte,SAN MIGUEL DE TUCUMÁN,DESHILADO,21,"carpeta, deshilado en tela de hilo"
+92,1915 1er concurso EXPOS,1,Eloisa López,ESCUELA DE LA COCHA,DESHILADO,22,"toalla, deshilado y crochet"
+93,1915 1er concurso EXPOS,1,Facunda Cerone,ESCUELA DE LA COCHA,DESHILADO,23,Camino de mesa
+94,1915 1er concurso EXPOS,1,….. Sandés,SANTIAGO DEL ESTERO,DESHILADO,24,mantel y servilletas
+95,1915 1er concurso EXPOS,1,Carmela Bravo Bazán,SAN MIGUEL DE TUCUMÁN,DESHILADO,25,mantel de altar
+96,1915 1er concurso EXPOS,1,Asilo San Roque,SAN MIGUEL DE TUCUMÁN,PONCHOS,1,"poncho color granate con guarda, tejido en telar"
+97,1915 1er concurso EXPOS,1,Delicia Ruiz,ANTOFAGASTA SALTA,PONCHOS,2,poncho de vicuña
+98,1915 1er concurso EXPOS,1,Eloisa Aráoz,COLALAO DEL VALLE,PONCHOS,3,poncho de lana tejido en telar
+99,1915 1er concurso EXPOS,1,Edelmira C. de Roldán,SAN MIGUEL DE TUCUMÁN,PONCHOS,4,poncho de lana tejido en telar
+100,1915 1er concurso EXPOS,1,Mercedes Pacheco,SAN MIGUEL DE TUCUMÁN,PONCHOS,5,poncho de hilo blanco
+101,1915 1er concurso EXPOS,1,Irene de Aybar,SAN MIGUEL DE TUCUMÁN,COLCHAS Y FRAZADAS,1,"colcha tejida en telar, hilo mercerizado, hilos a bastones"
+102,1915 1er concurso EXPOS,1,Ana de Tactagi,SAN MIGUEL DE TUCUMÁN,COLCHAS Y FRAZADAS,2,"colcha de seda cruda, a telar"
+103,1915 1er concurso EXPOS,1,Rosa V. de Lezcano,SANTIAGO DEL ESTERO,COLCHAS Y FRAZADAS,3,"colcha de algodón, hilado por la autora y tejido en telar"
+104,1915 1er concurso EXPOS,1,Dominga Nieva,MONTEROS,COLCHAS Y FRAZADAS,4,colcha de algodón hilado y tejido
+105,1915 1er concurso EXPOS,1,Eloisa Aráoz,COLALAO DEL VALLE,COLCHAS Y FRAZADAS,5,colcha a lana tejida a mano
+106,1915 1er concurso EXPOS,1,Isabel B. de Acuña Zavalía,SAN MIGUEL DE TUCUMÁN,COLCHAS Y FRAZADAS,6,"colcha tejida a pala, bordada, teñida con los procedimientos criollos"
+107,1915 1er concurso EXPOS,1,Lorenza V. de Panci,SAN MIGUEL DE TUCUMÁN,COLCHAS Y FRAZADAS,7,"colcha tejida en telar, con relieves de flores"
+108,1915 1er concurso EXPOS,1,Angela S. de Diblasi,SAN MIGUEL DE TUCUMÁN,COLCHAS Y FRAZADAS,8,"frazada tejida en telar, dibujo en el tejido"
+109,1915 1er concurso EXPOS,1,Jesus Rueda,SAN MIGUEL DE TUCUMÁN,COLCHAS Y FRAZADAS,9,sobrecama tejida en telar y bordada a mano
+110,1915 1er concurso EXPOS,1,Catalina R. de Figueroa,LA COCHA,COLCHAS Y FRAZADAS,10,frazada tejida en telar
+111,1915 1er concurso EXPOS,1,Melchora Valenzuela,SIMOCA,COLCHAS Y FRAZADAS,11,frazada tejida en telar
+112,1915 1er concurso EXPOS,1,Delicia Ruiz,ANTOFAGASTA SALTA,COLCHAS Y FRAZADAS,12,frazada de lana tejida en telar y bordada a mano con flores en relieve
+113,1915 1er concurso EXPOS,1,Delicia Ruiz,ANTOFAGASTA SALTA,COLCHAS Y FRAZADAS,13,carpeta de vicuña bordada con seda
+114,1915 1er concurso EXPOS,1,Petrona Macías,CATAMARCA,COLCHAS Y FRAZADAS,14,frazada tejida a pala y bordada en relieve
+115,1915 1er concurso EXPOS,1,Petrona Macías,CATAMARCA,COLCHAS Y FRAZADAS,15,frazada tejida a pala y bordada en relieve
+116,1915 1er concurso EXPOS,1,Concepción y Rosa Cuello,CATAMARCA,COLCHAS Y FRAZADAS,16,frazada tejida a pala
+117,1915 1er concurso EXPOS,1,Maria Juarez,YACUCHIRI,COLCHAS Y FRAZADAS,17,frazada a pala con dibujo en el tejido
+118,1915 1er concurso EXPOS,1,Anacleta Herrera,LOS MENDOZA,COLCHAS Y FRAZADAS,18,frazada a pala con dibujo en el tejido
+119,1915 1er concurso EXPOS,1,Arsenia Medina,LA FLORIDA,COLCHAS Y FRAZADAS,19,frazada a pala con dibujo en el tejido
+120,1915 1er concurso EXPOS,1,Rosario Gramajo,MONTEAGUDO,COLCHAS Y FRAZADAS,20,frazada tejida a pala con bordado en relieve
+121,1915 1er concurso EXPOS,1,Vicenta V. de Medina,CHICLIGASTA,COLCHAS Y FRAZADAS,21,frazada tejida a pala con bordado en relieve
+122,1915 1er concurso EXPOS,1,Maria Cleofé de Bustamante,YACUCHIRI,COLCHAS Y FRAZADAS,22,frazada tejida a pala
+123,1915 1er concurso EXPOS,1,Cruz Gramajo,MONTEAGUDO,COLCHAS Y FRAZADAS,23,frazada tejida a pala
+124,1915 1er concurso EXPOS,1,Cruz Gramajo,MONTEAGUDO,COLCHAS Y FRAZADAS,24,frazada tejida a pala con dibujo en relieve
+125,1915 1er concurso EXPOS,1,Josefa M. de Lazarte,MONTEAGUDO,COLCHAS Y FRAZADAS,25,frazada tejida a pala con dibujo en relieve
+126,1915 1er concurso EXPOS,1,Concepción y Rosa Cuello,CATAMARCA,COLCHAS Y FRAZADAS,26,colcha de hilo tejida en telar y bordada a mano
+127,1915 1er concurso EXPOS,1,Concepción y Rosa Cuello,CATAMARCA,COLCHAS Y FRAZADAS,27,colcha de vicuña bordada
+128,1915 1er concurso EXPOS,1,Concepción y Rosa Cuello,CATAMARCA,COLCHAS Y FRAZADAS,28,colcha de vicuña bordada a bastones
+129,1915 1er concurso EXPOS,1,Concepción y Rosa Cuello,CATAMARCA,COLCHAS Y FRAZADAS,29,colcha de lana
+130,1915 1er concurso EXPOS,1,Concepción y Rosa Cuello,CATAMARCA,COLCHAS Y FRAZADAS,30,colcha de lana de vicuña
+131,1915 1er concurso EXPOS,1,Eleuterio Gramajo,MONTEAGUDO,PELLONES Y JERGONES,1,pellón de lana
+132,1915 1er concurso EXPOS,1,Rosario Lazarte,PALOMINOS,PELLONES Y JERGONES,2,pellón de lana
+133,1915 1er concurso EXPOS,1,Gregoria González,YACUCHIRI,PELLONES Y JERGONES,3,pellón de lana
+134,1915 1er concurso EXPOS,1,Arsenia F. Medina,LA FLORIDA,PELLONES Y JERGONES,4,pellón de lana
+135,1915 1er concurso EXPOS,1,Rosa V. de Valenzuela,SIMOCA,PELLONES Y JERGONES,5,sobrepelo tejido en telar
+136,1915 1er concurso EXPOS,1,Antonia de Soria,LEALES,PELLONES Y JERGONES,6,sobrepelo tejido en telar
+137,1915 1er concurso EXPOS,1,Antonia de Soria,LEALES,PELLONES Y JERGONES,7,sobrepelo tejido en telar
+138,1915 1er concurso EXPOS,1,Antonia de Soria,LEALES,PELLONES Y JERGONES,8,sobrepelo tejido en telar
+139,1915 1er concurso EXPOS,1,Isolina Bustos,ESCUELA DE LA COCHA,PELLONES Y JERGONES,9,sobrepelo tejido en telar
+140,1915 1er concurso EXPOS,1,S? de Plaza,CAFAYATE SALTA,ALFOMBRAS,1,alfombra hecha en telar con flores en el tejido
+141,1915 1er concurso EXPOS,1,S? de Plaza,CAFAYATE SALTA,ALFOMBRAS,2,alfombra hecha en telar con flores de relieve
+142,1915 1er concurso EXPOS,1,Mercedes Pacheco,ASILO CIUDAD,ALFOMBRAS,3,alfombra 3x4 tejida en telar con dibujos en relieve
+143,1915 1er concurso EXPOS,1,Mercedes Pacheco,ASILO CIUDAD,ALFOMBRAS,4,alfombra de hilo tejida en telar con dibujos en relieve
+144,1915 1er concurso EXPOS,1,Mercedes Pacheco,ASILO CIUDAD,ALFOMBRAS,5,alfombra de hilo con dibujos en relieve
+145,1915 1er concurso EXPOS,1,Isabel B. de Acuña Zavalía,SAN MIGUEL DE TUCUMÁN,ALFOMBRAS,6,"Alfombra esmirna, guarda y flores"
+146,1915 1er concurso EXPOS,1,Tomasa Frias,SANTIAGO DEL ESTERO,BORDADO EN BLANCO Y SEDA,1,mantel y servilleta richelieu
+147,1915 1er concurso EXPOS,1,Angeles Cuadrados,SAN MIGUEL DE TUCUMÁN,BORDADO EN BLANCO Y SEDA,2,"mantel y servilletas, bordados en relieve"
+148,1915 1er concurso EXPOS,1,Angeles Cuadrados,SAN MIGUEL DE TUCUMÁN,BORDADO EN BLANCO Y SEDA,3,dos toallas bordadas
+149,1915 1er concurso EXPOS,1,Hermanas dominicas- asilo,SAN MIGUEL DE TUCUMÁN,BORDADO EN BLANCO Y SEDA,4,traje bordado richelieu
+150,1915 1er concurso EXPOS,1,Hermanas dominicas- asilo,SAN MIGUEL DE TUCUMÁN,BORDADO EN BLANCO Y SEDA,5,traje bordado richelieu
+151,1915 1er concurso EXPOS,1,Rosa Baralo,SAN MIGUEL DE TUCUMÁN,BORDADO EN BLANCO Y SEDA,6,mantel y servilletas encaje richelieu
+152,1915 1er concurso EXPOS,1,Elisa Blanche,SAN MIGUEL DE TUCUMÁN,BORDADO EN BLANCO Y SEDA,7,tapete richelieu
+153,1915 1er concurso EXPOS,1,Juana Pérez,SAN MIGUEL DE TUCUMÁN,BORDADO EN BLANCO Y SEDA,8,almohadón bordado en blanco
+154,1915 1er concurso EXPOS,1,Apolonia V. de Mayer,SAN MIGUEL DE TUCUMÁN,BORDADO EN BLANCO Y SEDA,10,sábanas
+155,1915 1er concurso EXPOS,1,Apolonia V. de Mayer,SAN MIGUEL DE TUCUMÁN,BORDADO EN BLANCO Y SEDA,11,almohadón
+156,1915 1er concurso EXPOS,1,Isabel del Río,SAN MIGUEL DE TUCUMÁN,BORDADO EN BLANCO Y SEDA,12,frontal bordado en seda
+157,1915 1er concurso EXPOS,1,Corina Aguirre,SAN MIGUEL DE TUCUMÁN,BORDADO EN BLANCO Y SEDA,13,toalla bordada en seda
+158,1915 1er concurso EXPOS,1,Isabel Nuñez,MONTEROS,CROCHET,1,traje tejido
+159,1915 1er concurso EXPOS,1,Isabel Ovejero,INGENIO CONCEPCION,CROCHET,2,perezoso
+160,1915 1er concurso EXPOS,1,Isabel Ovejero,INGENIO CONCEPCION,CROCHET,3,relojera
+161,1915 1er concurso EXPOS,1,Rosario Villoldo,INGENIO CONCEPCION,CROCHET,4,dos pares cubre-floreros
+162,1915 1er concurso EXPOS,1,Eloisa Aráoz,COLALAO DEL VALLE,CROCHET,5,sombrero
+163,1915 1er concurso EXPOS,1,Eloisa Aráoz,COLALAO DEL VALLE,CROCHET,6,echarpe
+164,1915 1er concurso EXPOS,1,Isabel Ovejero,INGENIO CONCEPCION,CROCHET,7,juego de puntillas de crochet
+165,1915 1er concurso EXPOS,1,Isabel Ovejero,INGENIO CONCEPCION,CROCHET,8,tapete
+166,1915 1er concurso EXPOS,1,Isabel Ovejero,INGENIO CONCEPCION,CROCHET,9,dos corbatas
+167,1915 1er concurso EXPOS,1,Rosario Villoldo,INGENIO CONCEPCION,CROCHET,10,adorno madramé
+168,1915 1er concurso EXPOS,1,Benita P. de Novillo,SAN MIGUEL DE TUCUMÁN,CROCHET,11,colcha
+169,1915 1er concurso EXPOS,1,María J. de Aguirre,SAN MIGUEL DE TUCUMÁN,CROCHET,12,colcha
+170,1915 1er concurso EXPOS,1,Rosalía Gutierrez,SAN MIGUEL DE TUCUMÁN,CROCHET,13,colcha
+171,1915 1er concurso EXPOS,1,Consuelo Freixá,SAN MIGUEL DE TUCUMÁN,CROCHET,14,cubreteclado con flores crochet
+172,1915 1er concurso EXPOS,1,Carmen Pereira,SAN MIGUEL DE TUCUMÁN,CROCHET,15,encaje
+173,1915 1er concurso EXPOS,1,María Elvira Pereira,SAN MIGUEL DE TUCUMÁN,CROCHET,16,baton
+174,1915 1er concurso EXPOS,1,María M. Pereira,SAN MIGUEL DE TUCUMÁN,CROCHET,17,traje de punto de irlanda
+175,1915 1er concurso EXPOS,1,Carmen López,SAN MIGUEL DE TUCUMÁN,CROCHET,18,baton
+176,1915 1er concurso EXPOS,1,Felipz V. de Solazi,MONTEROS,CROCHET,19,colcha
+177,1915 1er concurso EXPOS,1,Dolores S. de Valdez,JUJUY,CROCHET,20,almohadón
+178,1915 1er concurso EXPOS,1,Dolores S. de Valdez,JUJUY,CROCHET,21,almohadón
+179,1915 1er concurso EXPOS,1,Isabel Maidana,JUJUY,CROCHET,22,dos trabajos en crochet
+180,1915 1er concurso EXPOS,1,María S. Amuchástegui,SAN MIGUEL DE TUCUMÁN,CROCHET,23,blusa
+181,1915 1er concurso EXPOS,1,Mercedes P. de Coste,LULES,CROCHET,24,almohadón
+182,1915 1er concurso EXPOS,1,Concepción y Rosa Cuello,CATAMARCA,TEJIDOS VARIOS,1,Mantel de algodón y tejido a mano
+183,1915 1er concurso EXPOS,1,Mercedes Pacheco,ASILO CIUDAD,TEJIDOS VARIOS,2,"Mantel y seis servilletas, tejidos en telar, de hilo, con encaje al bolillo"
+184,1915 1er concurso EXPOS,1,Mercedes Pacheco,ASILO CIUDAD,TEJIDOS VARIOS,3,"tejido de seda, de dos faces, hecho en telar"
+185,1915 1er concurso EXPOS,1,Irene de Aybar,SAN MIGUEL DE TUCUMÁN,TEJIDOS VARIOS,4,cinta de seda tejida a mano
+186,1915 1er concurso EXPOS,1,Edelmira C. de Roldán,SAN MIGUEL DE TUCUMÁN,TEJIDOS VARIOS,5,alforjas bordadas en relieve
+187,1915 1er concurso EXPOS,1,Concepción y Rosa Cuello,CATAMARCA,TEJIDOS VARIOS,6,chal de lana de vicuña
+188,1915 1er concurso EXPOS,1,Concepción y Rosa Cuello,CATAMARCA,TEJIDOS VARIOS,7,chal de lana de vicuña
+189,1915 1er concurso EXPOS,1,Concepción y Rosa Cuello,CATAMARCA,TEJIDOS VARIOS,8,chal de lana de vicuña
+190,1915 1er concurso EXPOS,1,Concepción y Rosa Cuello,CATAMARCA,TEJIDOS VARIOS,9,chal de lana de vicuña
+191,1915 1er concurso EXPOS,1,Antonia Soria,LEALES,TEJIDOS VARIOS,10,"alforja en telar, bordada"
+192,1915 1er concurso EXPOS,1,Escuela y Hogar de Obreras de la Soc. de Beneficencia,SAN MIGUEL DE TUCUMÁN,TEJIDOS VARIOS,11,camino tejido en telar
+193,1915 1er concurso EXPOS,1,Clemencia de Zelarayan,MONTEAGUDO,TEJIDOS VARIOS,12,alforjas de lana
+194,1915 1er concurso EXPOS,1,María Díaz y Victoria Bazan,SAN MIGUEL DE TUCUMÁN,TEJIDOS VARIOS,13,"tela para tapizar dos sillones, hecha en telar con flores en el tejido"
+195,1915 1er concurso EXPOS,1,Esequiela P. de Gutiérrez,SAN PEDRO DE COLALAO,TEJIDOS VARIOS,14,un cordoncillo hecho en telar
+196,1915 1er concurso EXPOS,1,Angeles Cuadrados,SAN MIGUEL DE TUCUMÁN,RAFFIA IMITACIÓN CON HOJAS DE CAÑA,1,"mesa hecha con hojas de caña de azúcar, creación de la autora"
+197,1915 1er concurso EXPOS,1,Alfonsa de Barceló,SAN MIGUEL DE TUCUMÁN,RAFFIA IMITACIÓN CON HOJAS DE CAÑA,2,"Centro de mesa, hecho con hojas de caña"
+198,1915 1er concurso EXPOS,1,Dominga Villoldo,SAN PABLO,RAFFIA IMITACIÓN CON HOJAS DE CAÑA,3,Centro de mesa con Raffia
+199,1915 1er concurso EXPOS,1,Ignacia Puparelli,SAN MIGUEL DE TUCUMÁN,RAFFIA IMITACIÓN CON HOJAS DE CAÑA,4,Canasta raffia
+200,1915 1er concurso EXPOS,1,Mamerta Monteros -Escuela Sarmiento,SAN MIGUEL DE TUCUMÁN,RAFFIA IMITACIÓN CON HOJAS DE CAÑA,5,"carpeta de mesa, con hojas de caña"
+201,1915 1er concurso EXPOS,1,Mercedes Pacheco,ASILO CIUDAD,RAFFIA IMITACIÓN CON HOJAS DE CAÑA,6,"canasta raffia, teñida de la misma paja"
+202,1915 1er concurso EXPOS,1,Rosa V. de Lezcano,SANTIAGO DEL ESTERO,VARIOS,1,colección de hilos de lana y tinturas
+203,1915 1er concurso EXPOS,1,María Luisa Villafuerte,SAN MIGUEL DE TUCUMÁN,VARIOS,2,trabajo manual
+204,1915 1er concurso EXPOS,1,Rosario B. D'Empaire,SAN MIGUEL DE TUCUMÁN,VARIOS,3,portarretrato con flores
+205,1915 1er concurso EXPOS,1,Rosa Baralo,SAN MIGUEL DE TUCUMÁN,VARIOS,4,estola y manchón tejidos
+206,1915 1er concurso EXPOS,1,Dalmira González Sorol,TAFÍ VIEJO,VARIOS,5,mantel y servilletas con bordado deshilado y encaje
+207,1916 Concurso Tejidos,2,SARVELIA LEDESMA,SANTIAGO DEL ESTERO,ALFOMBRAS,1,Alfombra con flores en relieve
+208,1916 Concurso Tejidos,2,ROMUALDA DE ORTEGA,CATAMARCA,ALFOMBRAS,2,Alfombra
+209,1916 Concurso Tejidos,2,NICASIA MEDINA,"MONTEAGUDO, TUCUMÁN",ALFOMBRAS,3,Alfombra
+210,1916 Concurso Tejidos,2,ROSA V. LESCANO,SANTIAGO DEL ESTERO,ALFOMBRAS,4,"Alfombra de escritorio, flores en relieve"
+211,1916 Concurso Tejidos,2,MARÍA AVILA,"TINOGASTA, CATAMARCA",ALFOMBRAS,5,Alfombra lana vicuña
+212,1916 Concurso Tejidos,2,CONCEPCIÓN Y ROSA CUELLO,"PIEDRA BLANCA, CATAMARCA",ALFOMBRAS,6,Alfombra redonda
+213,1916 Concurso Tejidos,2,MARÍA RETAMBAY,TUCUMÁN,ALFOMBRAS,7,Alfombra
+214,1916 Concurso Tejidos,2,ESC. Y HOGAR DE OBRERAS DE LA SOC. DE BENEFICENCIA,TUCUMÁN,ALFOMBRAS,8,Alfombra redonda
+215,1916 Concurso Tejidos,2,ESC. PROFESIONAL DE MUJERES,TUCUMÁN,ALFOMBRAS,9,Alfombra Smyrna
+216,1916 Concurso Tejidos,2,ISABEL B. DE ACUÑA ZAVALÍA,TUCUMÁN,ALFOMBRAS,10,Alfombra Smyrna
+217,1916 Concurso Tejidos,2,MANUELA DE LÓPEZ,"TULUMBA, CÓRDOBA",ALFOMBRAS,11,Alfombra
+218,1916 Concurso Tejidos,2,LASTENIA BARRERO,TUCUMÁN,ALFOMBRAS,12,Alfombra chica
+219,1916 Concurso Tejidos,2,TRÁNSITO SOAJE DE REE,CÓRDOBA,ALFOMBRAS,13,Alfombra
+220,1916 Concurso Tejidos,2,JESUS MEDINA RUIZ,TUCUMÁN,ALFOMBRAS,14,Un par alfombras chicas
+221,1916 Concurso Tejidos,2,ROSARIO GRAMAJO,"MONTEAGUDO, TUCUMÁN",ALFOMBRAS,15,Alfombra sendero
+222,1916 Concurso Tejidos,2,MANUELA GRAMAJO,"MONTEAGUDO, TUCUMÁN",ALFOMBRAS,16,Alfombra sendero
+223,1916 Concurso Tejidos,2,ADELA J. DE GRAMAJO,"MONTEAGUDO, TUCUMÁN",ALFOMBRAS,17,Alfombra sendero
+224,1916 Concurso Tejidos,2,CECILIA BUSTOS,SIMOCA,ALFOMBRAS,18,Alfombra chica
+225,1916 Concurso Tejidos,2,GREGORIA LUNA,CATAMARCA,ALFOMBRAS,19,Alfombra estilo mosaico
+226,1916 Concurso Tejidos,2,VITALINA ZELAYA,SAN MIGUEL DE TUCUMÁN,ALFOMBRAS,20,Alfombra
+227,1916 Concurso Tejidos,2,CONCEPCIÓN Y ROSA CUELLO,"PIEDRA BLANCA, CATAMARCA",ALFOMBRAS,21,Alfombra cudrada
+228,1916 Concurso Tejidos,2,GREGORIA LUNA,CATAMARCA,ALFOMBRAS,22,Alfombra sendero
+229,1916 Concurso Tejidos,2,ESC. Y HOGAR DE OBRERAS DE LA SOC. DE BENEFICENCIA,TUCUMÁN,TAPICES,1,Tapiz de colgar
+230,1916 Concurso Tejidos,2,CONCEPCIÓN Y ROSA CUELLO,"PIEDRA BLANCA, CATAMARCA",TAPICES,2,Juego de tapices para muebles
+231,1916 Concurso Tejidos,2,ROSARIO GRAMAJO,"MONTEAGUDO, TUCUMÁN",TAPICES,3,Par tapices para cojines
+232,1916 Concurso Tejidos,2,LIDIA FERNÁNDEZ,"ESCUELA ERNESTO E. PADILLA, CONCEPCION",TAPICES,4,Par tapices para cojines
+233,1916 Concurso Tejidos,2,ISABEL B. DE ACUÑA ZAVALÍA,TUCUMÁN,TAPICES,5,"Tapiz ""reliquia histórica"" puesto en el telar"
+234,1916 Concurso Tejidos,2,MARÍA DÍAZ,TUCUMÁN,TAPICES,6,"Tapiz ""La oración"" estilo gobelino de lana y seda"
+235,1916 Concurso Tejidos,2,ESC. PROFESIONAL DE MUJERES,TUCUMÁN,TAPICES,7,"Stor tejido Gobelino, de hilo y seda"
+236,1916 Concurso Tejidos,2,ESC. PROFESIONAL DE MUJERES,TUCUMÁN,TAPICES,8,"Gobelino ""ciervo"", tejido a peine con vicuña, lana y seda"
+237,1916 Concurso Tejidos,2,ESC. PROFESIONAL DE MUJERES,TUCUMÁN,TAPICES,9,"Edredón ""gatos"" tejido gobelino"
+238,1916 Concurso Tejidos,2,ESC. PROFESIONAL DE MUJERES,TUCUMÁN,TAPICES,10,"Tapiz para biombo, pintado"
+239,1916 Concurso Tejidos,2,ESC. PROFESIONAL DE MUJERES,TUCUMÁN,TAPICES,11,"Almohadón ""mariposas"", tela tejida a pala"
+240,1916 Concurso Tejidos,2,ESC. PROFESIONAL DE MUJERES,TUCUMÁN,TAPICES,12,"Almohadón ""clavelinas"" tela hecha a pala"
+241,1916 Concurso Tejidos,2,ESC. PROFESIONAL DE MUJERES,TUCUMÁN,TAPICES,13,Almohadón tela hecha a pala
+242,1916 Concurso Tejidos,2,ISABEL B. DE ACUÑA ZAVALÍA,TUCUMÁN,TAPICES,14,"Almohadón ""Lagartos"" tela hecha a pala"
+243,1916 Concurso Tejidos,2,ISABEL B. DE ACUÑA ZAVALÍA,TUCUMÁN,TAPICES,15,Colección lanas teñidas para fabricar alfombras y tapices
+244,1916 Concurso Tejidos,2,CLEMENTINA MARTÍNEZ,CATAMARCA,COLCHAS Y FRAZADAS,1,Frazada de lana en telar
+245,1916 Concurso Tejidos,2,PRESENTACIÓN J. DE QUIETA,VILLA BELGRANO,COLCHAS Y FRAZADAS,2,Frazada tejida en telar
+246,1916 Concurso Tejidos,2,PRESENTACIÓN J. DE QUIETA,VILLA BELGRANO,COLCHAS Y FRAZADAS,3,Frazada tejida en telar
+247,1916 Concurso Tejidos,2,PRESENTACIÓN J. DE QUIETA,VILLA BELGRANO,COLCHAS Y FRAZADAS,4,Frazada tejida en telar
+248,1916 Concurso Tejidos,2,PETRONA GONZALEZ,LAMADRID,COLCHAS Y FRAZADAS,5,Frazada de lana con flores
+249,1916 Concurso Tejidos,2,MARÍA CRISTINA BLAY,CATAMARCA,COLCHAS Y FRAZADAS,6,Cubre-cama de lana
+250,1916 Concurso Tejidos,2,NICOLASA R. DE ALBORNOZ,TACO RALO,COLCHAS Y FRAZADAS,7,Frazada de lana
+251,1916 Concurso Tejidos,2,ROSARIO AGUIRRE,RIO CHICO,COLCHAS Y FRAZADAS,8,Colcha
+252,1916 Concurso Tejidos,2,JULIA AGUIRRE,RIO CHICO,COLCHAS Y FRAZADAS,9,Frazadón
+253,1916 Concurso Tejidos,2,CARLOTA H. DE HOHL,INGENIO TRINIDAD,COLCHAS Y FRAZADAS,10,Frazada de lana en telar
+254,1916 Concurso Tejidos,2,CARLOTA H. DE HOHL,INGENIO TRINIDAD,COLCHAS Y FRAZADAS,11,Frazada de lana tejida en telar
+255,1916 Concurso Tejidos,2,CARLOTA H. DE HOHL,INGENIO TRINIDAD,COLCHAS Y FRAZADAS,12,Colcha de lana
+256,1916 Concurso Tejidos,2,CARLOTA H. DE HOHL,INGENIO TRINIDAD,COLCHAS Y FRAZADAS,13,Colcha de lana
+257,1916 Concurso Tejidos,2,FELISA CARRIZO,SAN MIGUEL DE TUCUMÁN,COLCHAS Y FRAZADAS,14,Colcha atada
+258,1916 Concurso Tejidos,2,EDELMIRA DE ROLDAN,SAN MIGUEL DE TUCUMÁN,COLCHAS Y FRAZADAS,15,Colcha atada
+259,1916 Concurso Tejidos,2,MARÍA RETAMBAY,SAN MIGUEL DE TUCUMÁN,COLCHAS Y FRAZADAS,16,Colcha bordada
+260,1916 Concurso Tejidos,2,FRANCISCA DE ACOSTA,SAN MIGUEL DE TUCUMÁN,COLCHAS Y FRAZADAS,17,Colcha atada
+261,1916 Concurso Tejidos,2,MARÍA CRUZ ACOSTA,SAN MIGUEL DE TUCUMÁN,COLCHAS Y FRAZADAS,18,Colcha atada de lana
+262,1916 Concurso Tejidos,2,ESTHER ACOSTA,SAN MIGUEL DE TUCUMÁN,COLCHAS Y FRAZADAS,19,Colcha atada y bordada
+263,1916 Concurso Tejidos,2,MERCEDES RUEDA,CATAMARCA,COLCHAS Y FRAZADAS,20,Frazada tejida a pala
+264,1916 Concurso Tejidos,2,SERVANDA PALACIOS,SAN MIGUEL DE TUCUMÁN,COLCHAS Y FRAZADAS,21,Cubrecama bordada
+265,1916 Concurso Tejidos,2,CARMEN BRAVO,SANTIAGO DEL ESTERO,COLCHAS Y FRAZADAS,22,Frazada de lana
+266,1916 Concurso Tejidos,2,EMILIA MONTENEGRO,LA COCHA,COLCHAS Y FRAZADAS,23,Frazada tejida
+267,1916 Concurso Tejidos,2,FILOMENA CAYATA,SAN PEDRO DE COLALAO,COLCHAS Y FRAZADAS,24,Frazada tejida en telar
+268,1916 Concurso Tejidos,2,MARIA SALINAS,SAN PEDRO DE COLALAO,COLCHAS Y FRAZADAS,25,Frazada de lana
+269,1916 Concurso Tejidos,2,MARIA SALINAS,SAN PEDRO DE COLALAO,COLCHAS Y FRAZADAS,26,colcha tejida
+270,1916 Concurso Tejidos,2,MARIA SALINAS,SAN PEDRO DE COLALAO,COLCHAS Y FRAZADAS,27,colcha tejida
+271,1916 Concurso Tejidos,2,MARÍA CARRIZO ABARZA,CATAMARCA,COLCHAS Y FRAZADAS,28,Frazada de lana tejida en telar
+272,1916 Concurso Tejidos,2,ROSAURA DE CONCHA,MONTEAGUDO,COLCHAS Y FRAZADAS,29,Frazada de lana tejida en telar
+273,1916 Concurso Tejidos,2,ROSAURA DE CONCHA,MONTEAGUDO,COLCHAS Y FRAZADAS,30,colcha de algodón hilado
+274,1916 Concurso Tejidos,2,LUISA PEREZ,SAN ANTONIO DE QUISCA,COLCHAS Y FRAZADAS,31,Frazada de lana
+275,1916 Concurso Tejidos,2,LUISA PEREZ,SAN ANTONIO DE QUISCA,COLCHAS Y FRAZADAS,32,Colcha de algodón hilado
+276,1916 Concurso Tejidos,2,MERCEDES R. DE ARZUAGA,SANTIAGO DEL ESTERO,COLCHAS Y FRAZADAS,33,Colcha de algodón
+277,1916 Concurso Tejidos,2,MARCELINA DE ORQUERA,CATAMARCA,COLCHAS Y FRAZADAS,34,Cubrecama de vicuña bordada
+278,1916 Concurso Tejidos,2,CONCEPCIÓN Y ROSA CUELLO,CATAMARCA,COLCHAS Y FRAZADAS,35,Frazadón algodón
+279,1916 Concurso Tejidos,2,CONCEPCIÓN Y ROSA CUELLO,CATAMARCA,COLCHAS Y FRAZADAS,36,Frazadón algodón
+280,1916 Concurso Tejidos,2,CONCEPCIÓN Y ROSA CUELLO,CATAMARCA,COLCHAS Y FRAZADAS,37,Frazada fina bordada con seda
+281,1916 Concurso Tejidos,2,CONCEPCIÓN Y ROSA CUELLO,CATAMARCA,COLCHAS Y FRAZADAS,38,sobrecama fina de lana bordada con seda
+282,1916 Concurso Tejidos,2,CONCEPCIÓN Y ROSA CUELLO,CATAMARCA,COLCHAS Y FRAZADAS,39,sobrecama bordada de vicuña
+283,1916 Concurso Tejidos,2,ELVIRA CUELLO,CATAMARCA,COLCHAS Y FRAZADAS,40,Sobrecama bordada de vicuña
+284,1916 Concurso Tejidos,2,ELVIRA CUELLO,CATAMARCA,COLCHAS Y FRAZADAS,41,sobrecama bordada de vicuña
+285,1916 Concurso Tejidos,2,ELVIRA CUELLO,CATAMARCA,COLCHAS Y FRAZADAS,42,frazadón de vicuña
+286,1916 Concurso Tejidos,2,ARSENIA M. DE FERNÁNDEZ,CHICLIGASTA,COLCHAS Y FRAZADAS,43,Frazada de lana fabricación criolla
+287,1916 Concurso Tejidos,2,ADELAIDA CABEZAS,CHICLIGASTA,COLCHAS Y FRAZADAS,44,Frazada fabricación criolla
+288,1916 Concurso Tejidos,2,MARÍA B. DE CARRIZO,CHICLIGASTA,COLCHAS Y FRAZADAS,45,Frazada tejida en telar
+289,1916 Concurso Tejidos,2,MARÍA C. DE ARRIETA,CHICLIGASTA,COLCHAS Y FRAZADAS,46,Frazada tejida en telar
+290,1916 Concurso Tejidos,2,MARÍA B. DE CARRIZO,CHICLIGASTA,COLCHAS Y FRAZADAS,47,Colcha
+291,1916 Concurso Tejidos,2,DOROTEA LAZARTE,CHICLIGASTA,COLCHAS Y FRAZADAS,48,Colcha
+292,1916 Concurso Tejidos,2,ROSARIO GRAMAJO,MONTEAGUDO,COLCHAS Y FRAZADAS,49,Frazadón de lana
+293,1916 Concurso Tejidos,2,ROSARIO GRAMAJO,MONTEAGUDO,COLCHAS Y FRAZADAS,50,Frazadón de lana tejido en telar
+294,1916 Concurso Tejidos,2,ELEODORA CORREA,SAN MIGUEL DE TUCUMÁN,COLCHAS Y FRAZADAS,51,Colcha bordada
+295,1916 Concurso Tejidos,2,DELINA J. DE ROMÁN,SAN MIGUEL DE TUCUMÁN,COLCHAS Y FRAZADAS,52,Colcha de vicuña
+296,1916 Concurso Tejidos,2,CARMEN DE MOYA,COLALAO DEL VALLE,COLCHAS Y FRAZADAS,53,Frazadón de lana
+297,1916 Concurso Tejidos,2,MANUELA GRAMAJO,NIOGASTA,COLCHAS Y FRAZADAS,54,Frazada tejida en telar
+298,1916 Concurso Tejidos,2,ELENA GRAMAJO,NIOGASTA,COLCHAS Y FRAZADAS,55,Frazada de lana tejida en telar
+299,1916 Concurso Tejidos,2,PAULINA M. DE ALARCÓN,ATAHONA,COLCHAS Y FRAZADAS,56,frazada bordada
+300,1916 Concurso Tejidos,2,LORENZA DE DIAZ,ATAHONA,COLCHAS Y FRAZADAS,57,frazada de lana
+301,1916 Concurso Tejidos,2,ROMELIA M. DE DIAZ,ATAHONA,COLCHAS Y FRAZADAS,58,frazada de lana
+302,1916 Concurso Tejidos,2,BRÍJIDA LOPEZ,ATAHONA,COLCHAS Y FRAZADAS,59,frazada bordada
+303,1916 Concurso Tejidos,2,ASUNCIÓN DIAZ,ATAHONA,COLCHAS Y FRAZADAS,60,frazada bordada
+304,1916 Concurso Tejidos,2,MARIA LOPEZ,ATAHONA,COLCHAS Y FRAZADAS,61,frazada de lana
+305,1916 Concurso Tejidos,2,OFELIA ZELAYA,NIOGASTA,COLCHAS Y FRAZADAS,62,frazada labor
+306,1916 Concurso Tejidos,2,ADELA G. DE GRAMAJO,MONTEAGUDO,COLCHAS Y FRAZADAS,63,frazada de lana
+307,1916 Concurso Tejidos,2,ADELA G. DE GRAMAJO,MONTEAGUDO,COLCHAS Y FRAZADAS,64,frazada de lana
+308,1916 Concurso Tejidos,2,ADELA G. DE GRAMAJO,MONTEAGUDO,COLCHAS Y FRAZADAS,65,frazada de lana
+309,1916 Concurso Tejidos,2,PETRONA MEDINA,ATAHONA,COLCHAS Y FRAZADAS,66,frazada bordada
+310,1916 Concurso Tejidos,2,FLORINDA R. LOPEZ,NIOGASTA,COLCHAS Y FRAZADAS,67,Frazada bordada
+311,1916 Concurso Tejidos,2,CELIA DE JESUS GARCÍA,SANDOVALES,COLCHAS Y FRAZADAS,68,Frazada bordada
+312,1916 Concurso Tejidos,2,MARÍA A DE LUBARY,NIOGASTA,COLCHAS Y FRAZADAS,69,Frazada labor
+313,1916 Concurso Tejidos,2,MARIA CRUZ DIAZ,LAS LECHUZAS,COLCHAS Y FRAZADAS,70,frazadón de lana
+314,1916 Concurso Tejidos,2,BARTOLINA AGUILAR,NIOGASTA,COLCHAS Y FRAZADAS,71,Frazada labor
+315,1916 Concurso Tejidos,2,CARMEN AGUILAR,NIOGASTA,COLCHAS Y FRAZADAS,72,Frazada labor
+316,1916 Concurso Tejidos,2,ALCIRA AGUILAR,NIOGASTA,COLCHAS Y FRAZADAS,73,Frazada labor
+317,1916 Concurso Tejidos,2,JUSTA E. DE AGUILAR,NIOGASTA,COLCHAS Y FRAZADAS,74,Frazada labor
+318,1916 Concurso Tejidos,2,JACOBA AGUILAR,NIOGASTA,COLCHAS Y FRAZADAS,75,Frazada labor
+319,1916 Concurso Tejidos,2,DELINA R. ESPINOSA,NIOGASTA,COLCHAS Y FRAZADAS,76,Frazada labor
+320,1916 Concurso Tejidos,2,DELIA ESPINOSA,NIOGASTA,COLCHAS Y FRAZADAS,77,Frazada labor
+321,1916 Concurso Tejidos,2,SIMONA ESPINOSA,NIOGASTA,COLCHAS Y FRAZADAS,78,Frazada labor
+322,1916 Concurso Tejidos,2,ATALIVA SALAZAR,MONTEAGUDO,COLCHAS Y FRAZADAS,79,Frazada labor
+323,1916 Concurso Tejidos,2,DONATILA SALAZAR,MONTEAGUDO,COLCHAS Y FRAZADAS,80,sobrecama
+324,1916 Concurso Tejidos,2,LUGARDA JUAREZ,LAS LECHUZAS,COLCHAS Y FRAZADAS,81,frazada de lana
+325,1916 Concurso Tejidos,2,ROSARIO MEDINA,LAS LECHUZAS,COLCHAS Y FRAZADAS,82,frazada de lana
+326,1916 Concurso Tejidos,2,TOMASA F. DE NELSON,CHICLIGASTA,COLCHAS Y FRAZADAS,83,frazada de lana
+327,1916 Concurso Tejidos,2,REMIGIA ZELARAYAN,ATAHONA,COLCHAS Y FRAZADAS,84,frazada de lana
+328,1916 Concurso Tejidos,2,MARÍA A. ARGAÑARAZ,PALOMINOS,COLCHAS Y FRAZADAS,85,frazada de lana
+329,1916 Concurso Tejidos,2,DELICIA JUAREZ,LAS LECHUZAS,COLCHAS Y FRAZADAS,86,frazada de lana
+330,1916 Concurso Tejidos,2,MERCEDES PEREZ,ENSENADA,COLCHAS Y FRAZADAS,87,frazada tejida de lana
+331,1916 Concurso Tejidos,2,RAMONA DE PÉREZ,ENSENADA,COLCHAS Y FRAZADAS,88,frazada de lana
+332,1916 Concurso Tejidos,2,DEIDAMIA DE FERNANDEZ,SANDOVALES,COLCHAS Y FRAZADAS,89,frazada de lana
+333,1916 Concurso Tejidos,2,CONCEPCIÓN DE PÉREZ,ATAHONA,COLCHAS Y FRAZADAS,90,frazada de lana
+334,1916 Concurso Tejidos,2,JOSEFA SAAVEDRA,ATAHONA,COLCHAS Y FRAZADAS,91,frazada de lana
+335,1916 Concurso Tejidos,2,MARÍA T. DE PEREZ,ATAHONA,COLCHAS Y FRAZADAS,92,frazada de lana
+336,1916 Concurso Tejidos,2,CARMEN PEREZ,ATAHONA,COLCHAS Y FRAZADAS,93,frazada de lana
+337,1916 Concurso Tejidos,2,VALENTINA PEREZ,ENSENADA,COLCHAS Y FRAZADAS,94,frazada de lana
+338,1916 Concurso Tejidos,2,CARMEN HERRERA,SANDOVALES,COLCHAS Y FRAZADAS,95,frazada de lana
+339,1916 Concurso Tejidos,2,ANGELA DE LESCANO,SANDOVALES,COLCHAS Y FRAZADAS,96,frazada de lana
+340,1916 Concurso Tejidos,2,CIPRIANA GONZALEZ,SANDOVALES,COLCHAS Y FRAZADAS,97,frazada de lana
+341,1916 Concurso Tejidos,2,JACINTA CABEZAS,AMPATA,COLCHAS Y FRAZADAS,98,frazada labor
+342,1916 Concurso Tejidos,2,MACLOVIA M. DE MENDOZA,MONTEAGUDO,COLCHAS Y FRAZADAS,99,frazada labor
+343,1916 Concurso Tejidos,2,FORTUNATA DIAZ,PALOMINOS,COLCHAS Y FRAZADAS,100,frazada de lana en telar
+344,1916 Concurso Tejidos,2,FORTUNATA DIAZ,PALOMINOS,COLCHAS Y FRAZADAS,101,frazada de lana en telar
+345,1916 Concurso Tejidos,2,SALOMÉ DE JUAREZ,GRANEROS,COLCHAS Y FRAZADAS,102,frazada tejida en telar
+346,1916 Concurso Tejidos,2,ADELA ALANÍS,CATAMARCA,COLCHAS Y FRAZADAS,103,sobrecama de vicuña
+347,1916 Concurso Tejidos,2,DELINA J. DE ROMAN,BELÉN,COLCHAS Y FRAZADAS,104,colcha tejida en telar
+348,1916 Concurso Tejidos,2,DELINA J. DE ROMAN,BELÉN,COLCHAS Y FRAZADAS,105,colcha de lana bordada
+349,1916 Concurso Tejidos,2,ELENA SEGURA,SAN MIGUEL DE TUCUMÁN,COLCHAS Y FRAZADAS,106,sobrecama bordada
+350,1916 Concurso Tejidos,2,ELENA SEGURA,SAN MIGUEL DE TUCUMÁN,COLCHAS Y FRAZADAS,107,sobrecama bordada
+351,1916 Concurso Tejidos,2,ELENA SEGURA,SAN MIGUEL DE TUCUMÁN,COLCHAS Y FRAZADAS,108,sobrecama bordada
+352,1916 Concurso Tejidos,2,ELENA SEGURA,SAN MIGUEL DE TUCUMÁN,COLCHAS Y FRAZADAS,108,sobrecama bordada
+353,1916 Concurso Tejidos,2,AUDELIA DE GUERRA,SAN MIGUEL DE TUCUMÁN,COLCHAS Y FRAZADAS,110,frazada de lana en telar
+354,1916 Concurso Tejidos,2,AUDELIA DE GUERRA,SAN MIGUEL DE TUCUMÁN,COLCHAS Y FRAZADAS,111,frazada de lana en telar
+355,1916 Concurso Tejidos,2,CRISPINA DE HERRERA,SANTIAGO,COLCHAS Y FRAZADAS,112,frazadón de lana
+356,1916 Concurso Tejidos,2,CRISPINA DE HERRERA,SANTIAGO,COLCHAS Y FRAZADAS,113,frazadón de lana
+357,1916 Concurso Tejidos,2,MARIA CLEOFÉ BUSTAMANTE,SIMOCA,COLCHAS Y FRAZADAS,114,frazada de lana
+358,1916 Concurso Tejidos,2,SIMONA PALACIOS DE CASTRO,COLALAO DEL VALLE,COLCHAS Y FRAZADAS,115,frazadón de lana
+359,1916 Concurso Tejidos,2,LIDIA MOYA ESCOBAR,COLALAO DEL VALLE,COLCHAS Y FRAZADAS,116,colcha de hilo de algodón
+360,1916 Concurso Tejidos,2,SALVADORA LUNA,CHICLIGASTA,COLCHAS Y FRAZADAS,117,frazada de lana
+361,1916 Concurso Tejidos,2,MANUELA MORENO ZELAYA,MONTEAGUDO,COLCHAS Y FRAZADAS,118,frazada de lana
+362,1916 Concurso Tejidos,2,MANUELA MORENO ZELAYA,MONTEAGUDO,COLCHAS Y FRAZADAS,119,frazada de lana
+363,1916 Concurso Tejidos,2,MANUELA MORENO ZELAYA,MONTEAGUDO,COLCHAS Y FRAZADAS,120,frazada de lana
+364,1916 Concurso Tejidos,2,VITALINA ZELAYA,MONTEAGUDO,COLCHAS Y FRAZADAS,121,frazadón lana tejido
+365,1916 Concurso Tejidos,2,VITALINA ZELAYA,MONTEAGUDO,COLCHAS Y FRAZADAS,122,frazadón lana tejido
+366,1916 Concurso Tejidos,2,VITALINA ZELAYA,MONTEAGUDO,COLCHAS Y FRAZADAS,123,frazadón lana tejido
+367,1916 Concurso Tejidos,2,AMALIA DE ASTORGA,SAN MIGUEL DE TUCUMÁN,COLCHAS Y FRAZADAS,124,frazada de lana tejida en telar
+368,1916 Concurso Tejidos,2,AMELIA N. DE PLAZA,CAFAYATE,COLCHAS Y FRAZADAS,125,frazada de lana hilada y teñida
+369,1916 Concurso Tejidos,2,DOROTEA C. DE LAZARTE,CHICLIGASTA,COLCHAS Y FRAZADAS,126,frazada labor
+370,1916 Concurso Tejidos,2,SEGUNDA GIMENEZ,SAN MIGUEL DE TUCUMÁN,COLCHAS Y FRAZADAS,127,colcha tejida en telar
+371,1916 Concurso Tejidos,2,MARIA AVILA,"TINOGASTA, CATAMARCA",COLCHAS Y FRAZADAS,128,sobrecama vicuña con el escudo bordado
+372,1916 Concurso Tejidos,2,MARIA AVILA,"TINOGASTA, CATAMARCA",COLCHAS Y FRAZADAS,129,sobrecama vicuña bordada seda blanca
+373,1916 Concurso Tejidos,2,MARIA AVILA,"TINOGASTA, CATAMARCA",COLCHAS Y FRAZADAS,130,sobrecama vicuña bordada café
+374,1916 Concurso Tejidos,2,MARIA AVILA,"TINOGASTA, CATAMARCA",COLCHAS Y FRAZADAS,131,sobrecama blanca vicuña bordada café
+375,1916 Concurso Tejidos,2,MARIA AVILA,"TINOGASTA, CATAMARCA",COLCHAS Y FRAZADAS,132,sobrecama blanca vicuña bordada café
+376,1916 Concurso Tejidos,2,MARIA AVILA,"TINOGASTA, CATAMARCA",COLCHAS Y FRAZADAS,133,colcha blanca
+377,1916 Concurso Tejidos,2,MARIA AVILA,"TINOGASTA, CATAMARCA",COLCHAS Y FRAZADAS,134,colcha café
+378,1916 Concurso Tejidos,2,MARIA AVILA,"TINOGASTA, CATAMARCA",COLCHAS Y FRAZADAS,135,colcha blanca con guarda
+379,1916 Concurso Tejidos,2,MARIA AVILA,"TINOGASTA, CATAMARCA",COLCHAS Y FRAZADAS,136,colcha lana blanca hilada por la autora y tejida a crochet
+380,1916 Concurso Tejidos,2,MARIA AVILA,"TINOGASTA, CATAMARCA",COLCHAS Y FRAZADAS,137,colcha lana hilada y teñida por la autora y tejida a crochet
+381,1916 Concurso Tejidos,2,ELISA B. DE GRAMAJO,LA MADRID,COLCHAS Y FRAZADAS,138,colcha tejida en telar
+382,1916 Concurso Tejidos,2,ROSA PEREZ,SAN MIGUEL DE TUCUMÁN,COLCHAS Y FRAZADAS,139,Frazada tejida en telar
+383,1916 Concurso Tejidos,2,GREGORIA M. DE PAZ,SAN MIGUEL DE TUCUMÁN,COLCHAS Y FRAZADAS,140,Frazada tejida en telar
+384,1916 Concurso Tejidos,2,LORENZA LESCANO,CHICLIGASTA,COLCHAS Y FRAZADAS,141,colcha
+385,1916 Concurso Tejidos,2,ROSARIO DEL CARMEN HERRERA,CHICLIGASTA,COLCHAS Y FRAZADAS,142,frazada tejida
+386,1916 Concurso Tejidos,2,CANDELARIA HERRERA,CHICLIGASTA,COLCHAS Y FRAZADAS,143,frazada
+387,1916 Concurso Tejidos,2,CARMEN G. DE QUIROGA,COLALAO DEL VALLE,COLCHAS Y FRAZADAS,144,frazada tejida
+388,1916 Concurso Tejidos,2,CARMEN G. DE QUIROGA,COLALAO DEL VALLE,COLCHAS Y FRAZADAS,145,frazada tejida
+389,1916 Concurso Tejidos,2,GREGORIA L. DE HERRERA,CHICLIGASTA,COLCHAS Y FRAZADAS,146,frazada tejida telar
+390,1916 Concurso Tejidos,2,RITA GONZÁLEZ,CHICLIGASTA,COLCHAS Y FRAZADAS,147,frazadón
+391,1916 Concurso Tejidos,2,LOLA GONZALEZ,CHICLIGASTA,COLCHAS Y FRAZADAS,148,frazadón
+392,1916 Concurso Tejidos,2,CENOBIA GONZALEZ,CHICLIGASTA,COLCHAS Y FRAZADAS,149,frazadón
+393,1916 Concurso Tejidos,2,SOFIA C. DE GONZÁLEZ,CHICLIGASTA,COLCHAS Y FRAZADAS,150,frazadón
+394,1916 Concurso Tejidos,2,ROSARIO N. DE BARRIONUEVO,CHICLIGASTA,COLCHAS Y FRAZADAS,151,frazada tejida
+395,1916 Concurso Tejidos,2,DANIELA N. DE BUSTAMANTE,CHICLIGASTA,COLCHAS Y FRAZADAS,152,colcha tejida en telar
+396,1916 Concurso Tejidos,2,ROSARIO LUNA,CHICLIGASTA,COLCHAS Y FRAZADAS,153,frazada lana
+397,1916 Concurso Tejidos,2,LOLA LESCANO,CHICLIGASTA,COLCHAS Y FRAZADAS,154,frazada lana
+398,1916 Concurso Tejidos,2,MERCEDES LESCANO,CHICLIGASTA,COLCHAS Y FRAZADAS,155,colcha
+399,1916 Concurso Tejidos,2,LAURENTINA LUNA,CHICLIGASTA,COLCHAS Y FRAZADAS,156,colcha
+400,1916 Concurso Tejidos,2,FIDELIA ZELAYA,CHICLIGASTA,COLCHAS Y FRAZADAS,157,colcha tejida
+401,1916 Concurso Tejidos,2,ELVIRA ORTIZ,CHICLIGASTA,COLCHAS Y FRAZADAS,158,colcha lana
+402,1916 Concurso Tejidos,2,MARIA C. GALLO,CHICLIGASTA,COLCHAS Y FRAZADAS,159,colcha tejida con flores de relieve
+403,1916 Concurso Tejidos,2,EDELMIRA A. DE MORENO,CATAMARCA,COLCHAS Y FRAZADAS,160,sobrecama blanca bordada con vicuña café
+404,1916 Concurso Tejidos,2,EDELMIRA A. DE MORENO,CATAMARCA,COLCHAS Y FRAZADAS,161,sobrecama blanca bordada con vicuña café
+405,1916 Concurso Tejidos,2,EDELMIRA A. DE MORENO,CATAMARCA,COLCHAS Y FRAZADAS,162,"colcha tejida en telar, a pala"
+406,1916 Concurso Tejidos,2,EDELMIRA A. DE MORENO,CATAMARCA,COLCHAS Y FRAZADAS,163,"colcha tejida en telar, a pala"
+407,1916 Concurso Tejidos,2,EDELMIRA A. DE MORENO,CATAMARCA,COLCHAS Y FRAZADAS,164,colcha tejida en telar bodada con hilo merino
+408,1916 Concurso Tejidos,2,EDELMIRA A. DE MORENO,CATAMARCA,COLCHAS Y FRAZADAS,165,frazada a bastones de colores criollos
+409,1916 Concurso Tejidos,2,VICTORIA NAVARRETE,SALTA,COLCHAS Y FRAZADAS,166,colcha tejida y bordada
+410,1916 Concurso Tejidos,2,INDAMIRA GONZALEZ,CHICLIGASTA,COLCHAS Y FRAZADAS,167,frazada de labor
+411,1916 Concurso Tejidos,2,DEMOFILA GONZÁLEZ,CHICLIGASTA,COLCHAS Y FRAZADAS,168,colcha tejida
+412,1916 Concurso Tejidos,2,ANSELMA ROMANO,CHICLIGASTA,COLCHAS Y FRAZADAS,169,sobrecama tejida
+413,1916 Concurso Tejidos,2,FLORINDA R. MEDINA,CHICLIGASTA,COLCHAS Y FRAZADAS,170,frazada
+414,1916 Concurso Tejidos,2,DELIA C. DE PONCE DE LEÓN,MONTEROS,COLCHAS Y FRAZADAS,171,frazada lana
+415,1916 Concurso Tejidos,2,CARMEN V DE RONCEDO,MONTEROS,COLCHAS Y FRAZADAS,172,colcha con flores de relieve
+416,1916 Concurso Tejidos,2,LORENZA V. DE PANEI,SAN MIGUEL DE TUCUMÁN,COLCHAS Y FRAZADAS,173,colcha con flores de relieve
+417,1916 Concurso Tejidos,2,GREGORIA LUNA,CATAMARCA,COLCHAS Y FRAZADAS,174,frazada atada
+418,1916 Concurso Tejidos,2,GREGORIA LUNA,CATAMARCA,COLCHAS Y FRAZADAS,175,colcha atada
+419,1916 Concurso Tejidos,2,GREGORIA LUNA,CATAMARCA,COLCHAS Y FRAZADAS,176,colcha atada
+420,1916 Concurso Tejidos,2,GREGORIA LUNA,CATAMARCA,COLCHAS Y FRAZADAS,177,frazada bordada con seda
+421,1916 Concurso Tejidos,2,INDIA DE LA MISIÓN FRANCISCANA DE NUEVA POMPEYA,CHACO,COLCHAS Y FRAZADAS,178,frazada de lana hilada y tejida
+422,1916 Concurso Tejidos,2,INDIA DE LA MISIÓN FRANCISCANA DE NUEVA POMPEYA,CHACO,COLCHAS Y FRAZADAS,179,frazada hilada y tejida
+423,1916 Concurso Tejidos,2,CECILIA BUSTOS,SIMOCA,COLCHAS Y FRAZADAS,180,frazada tejida en telar a pala
+424,1916 Concurso Tejidos,2,RAMONA S. DE VARELA,CATAMARCA,COLCHAS Y FRAZADAS,181,sobrecama
+425,1916 Concurso Tejidos,2,DELINA I. DE ROMAN,SAN MIGUEL DE TUCUMÁN,COLCHAS Y FRAZADAS,182,frazadón de vicuña
+426,1916 Concurso Tejidos,2,MARÍA SALINAS,SAN PEDRO DE COLALAO,COLCHAS Y FRAZADAS,183,colcha de lana hilada
+427,1916 Concurso Tejidos,2,NORBERTA C. ORTIZ,TACO RALO,COLCHAS Y FRAZADAS,184,sobrecama
+428,1916 Concurso Tejidos,2,NORBERTA C. ORTIZ,TACO RALO,COLCHAS Y FRAZADAS,185,colcha tejida en telar
+429,1916 Concurso Tejidos,2,NORBERTA C. ORTIZ,TACO RALO,COLCHAS Y FRAZADAS,186,colcha lana tejida en telar
+430,1916 Concurso Tejidos,2,CONCEPCIÓN Y ROSA CUELLO,CATAMARCA,COLCHAS Y FRAZADAS,187,cubrecama de vicuña con listas de color
+431,1916 Concurso Tejidos,2,CONCEPCIÓN Y ROSA CUELLO,CATAMARCA,COLCHAS Y FRAZADAS,188,"frazadon algodón de ""palo borracho"""
+432,1916 Concurso Tejidos,2,CONCEPCIÓN Y ROSA CUELLO,CATAMARCA,COLCHAS Y FRAZADAS,189,cubrecma de algodón bordada con seda
+433,1916 Concurso Tejidos,2,MARGARITA DIAZ,CATAMARCA,PONCHOS,1,poncho lana color blanco
+434,1916 Concurso Tejidos,2,SARVELIA LEDESMA,SANTIAGO,PONCHOS,2,poncho lana tejido en telar
+435,1916 Concurso Tejidos,2,FELIPA VARELA,CATAMARCA,PONCHOS,3,poncho lana tejido en telar
+436,1916 Concurso Tejidos,2,MARIA RUEDA,CATAMARCA,PONCHOS,4,poncho lana tejido en telar
+437,1916 Concurso Tejidos,2,MARIA RUEDA,CATAMARCA,PONCHOS,5,poncho en telar
+438,1916 Concurso Tejidos,2,EDELMIRA DE ROLDÁN,SAN MIGUEL DE TUCUMÁN,PONCHOS,6,poncho lana a bastones
+439,1916 Concurso Tejidos,2,MARCEDES CAYATA,SAN PEDRO DE COLALAO,PONCHOS,7,poncho lana en telar
+440,1916 Concurso Tejidos,2,MARCEDES CAYATA,SAN PEDRO DE COLALAO,PONCHOS,8,poncho de hilo
+441,1916 Concurso Tejidos,2,CONCEPCIÓN Y ROSA CUELLO,CATAMARCA,PONCHOS,9,poncho de vicuña
+442,1916 Concurso Tejidos,2,CONCEPCIÓN Y ROSA CUELLO,CATAMARCA,PONCHOS,10,poncho liso de vicuña
+443,1916 Concurso Tejidos,2,CONCEPCIÓN Y ROSA CUELLO,CATAMARCA,PONCHOS,11,poncho enguerichado
+444,1916 Concurso Tejidos,2,CONCEPCIÓN Y ROSA CUELLO,CATAMARCA,PONCHOS,12,poncho liso de vicuña
+445,1916 Concurso Tejidos,2,CARMEN DE MOYA,COLALAO DEL VALLE,PONCHOS,13,poncho tejido en telar
+446,1916 Concurso Tejidos,2,CARMEN DE MOYA,COLALAO DEL VALLE,PONCHOS,14,poncho tejido en telar
+447,1916 Concurso Tejidos,2,CARMEN DE MOYA,COLALAO DEL VALLE,PONCHOS,15,poncho tejido en telar
+448,1916 Concurso Tejidos,2,FRANCISCA Z. DE AGUIRRE,NIOGASTA,PONCHOS,16,poncho de lana
+449,1916 Concurso Tejidos,2,DELINA I. DE ROMÁN,CATAMARCA,PONCHOS,17,poncho de un solo color
+450,1916 Concurso Tejidos,2,CELINDA ALVAREZ,CATAMARCA,PONCHOS,18,poncho de vicuña con trama de ello mismo
+451,1916 Concurso Tejidos,2,SIMONA P. DE CASTRO,COLALAO DEL VALLE,PONCHOS,19,poncho tejido en telar
+452,1916 Concurso Tejidos,2,SIMONA P. DE CASTRO,COLALAO DEL VALLE,PONCHOS,20,poncho tejido en telar
+453,1916 Concurso Tejidos,2,ELEUTERIA ROSA MORALES,CATAMARCA,PONCHOS,21,poncho de vicuña pura
+454,1916 Concurso Tejidos,2,MARÍA AVILA,"TINOGASTA, CATAMARCA",PONCHOS,22,poncho blanco
+455,1916 Concurso Tejidos,2,MARÍA AVILA,"TINOGASTA, CATAMARCA",PONCHOS,23,poncho vicuña con guardas
+456,1916 Concurso Tejidos,2,MARÍA AVILA,"TINOGASTA, CATAMARCA",PONCHOS,24,poncho café de vicuña
+457,1916 Concurso Tejidos,2,MARÍA AVILA,"TINOGASTA, CATAMARCA",PONCHOS,25,poncho blanco
+458,1916 Concurso Tejidos,2,MARÍA AVILA,"TINOGASTA, CATAMARCA",PONCHOS,26,poncho a listas
+459,1916 Concurso Tejidos,2,SEGUNDA JIMENEZ,SAN MIGUEL DE TUCUMÁN,PONCHOS,27,poncho de vicuña
+460,1916 Concurso Tejidos,2,CARMEN G. DE QUIROGA,COLALAO DEL VALLE,PONCHOS,28,poncho
+461,1916 Concurso Tejidos,2,CARMEN G. DE QUIROGA,COLALAO DEL VALLE,PONCHOS,29,poncho
+462,1916 Concurso Tejidos,2,EDELMIRA A. DE MORENO,CATAMARCA,PONCHOS,30,poncho vicuña
+463,1916 Concurso Tejidos,2,GREGORIA LUNA,CATAMARCA,PONCHOS,31,poncho blanco de lana
+464,1916 Concurso Tejidos,2,MARIA AVILA,"TINOGASTA, CATAMARCA",PONCHOS,32,poncho de vicuña
+465,1916 Concurso Tejidos,2,FELISA R. DE SÁNCHEZ,SAN PABLO,PONCHOS,33,poncho lana de llama
+466,1916 Concurso Tejidos,2,FELISA R. DE SÁNCHEZ,SAN PABLO,PONCHOS,34,poncho de vicuña café
+467,1916 Concurso Tejidos,2,FELISA R. DE SÁNCHEZ,SAN PABLO,PONCHOS,35,poncho de lana oveja blanco
+468,1916 Concurso Tejidos,2,FELISA R. DE SÁNCHEZ,SAN PABLO,PONCHOS,36,poncho de lana oveja gris
+469,1916 Concurso Tejidos,2,RAMONA S. DE VARELA,CATAMARCA,PONCHOS,37,poncho de lana
+470,1916 Concurso Tejidos,2,ESCUELA PROFESIONAL DE MUJERES,TUCUMAN,PONCHOS,38,poncho hilo tejido a pala
+471,1916 Concurso Tejidos,2,AGUEDA DE VILDOZA,CATAMARCA,PONCHOS,39,poncho de vicuña
+472,1916 Concurso Tejidos,2,NICOLASA R. DE ALBORNOZ,TACO RALO,CHALES DE VICUÑA,1,chal de vicuña
+473,1916 Concurso Tejidos,2,NICOLASA R. DE ALBORNOZ,TACO RALO,CHALES DE VICUÑA,2,chal de vicuña
+474,1916 Concurso Tejidos,2,FELISA CARRIZO,SAN MIGUEL DE TUCUMÁN,CHALES DE VICUÑA,3,chalón de vicuña
+475,1916 Concurso Tejidos,2,FELISA CARRIZO,SAN MIGUEL DE TUCUMÁN,CHALES DE VICUÑA,4,chalón de vicuña
+476,1916 Concurso Tejidos,2,EDELMIRA C. DE ROLDÁN,SAN MIGUEL DE TUCUMÁN,CHALES DE VICUÑA,5,chalina de vicuña
+477,1916 Concurso Tejidos,2,EDELMIRA C. DE ROLDÁN,SAN MIGUEL DE TUCUMÁN,CHALES DE VICUÑA,6,chalina de vicuña
+478,1916 Concurso Tejidos,2,EDELMIRA C. DE ROLDÁN,SAN MIGUEL DE TUCUMÁN,CHALES DE VICUÑA,7,chaón de vicuña
+479,1916 Concurso Tejidos,2,EDELMIRA C. DE ROLDÁN,SAN MIGUEL DE TUCUMÁN,CHALES DE VICUÑA,8,chalina de vicuña
+480,1916 Concurso Tejidos,2,SERVANDA PALACIOS,SAN MIGUEL DE TUCUMÁN,CHALES DE VICUÑA,9,chalina de vicuña
+481,1916 Concurso Tejidos,2,SERVANDA PALACIOS,SAN MIGUEL DE TUCUMÁN,CHALES DE VICUÑA,10,chalina de vicuña
+482,1916 Concurso Tejidos,2,ROSA LOPEZ,SAN MIGUEL DE TUCUMÁN,CHALES DE VICUÑA,11,chalina de vicuña
+483,1916 Concurso Tejidos,2,ROSAURA ALVAREZ DE MORALES,SAN MIGUEL DE TUCUMÁN,CHALES DE VICUÑA,12,chalón de vicuña
+484,1916 Concurso Tejidos,2,CARMEN DE MOYA,COLALAO DEL VALLE,CHALES DE VICUÑA,13,manta de vicuña
+485,1916 Concurso Tejidos,2,CARMEN DE MOYA,COLALAO DEL VALLE,CHALES DE VICUÑA,14,chalina de vicuña
+486,1916 Concurso Tejidos,2,DELINA I. DE ROMÁN,CATAMARCA,CHALES DE VICUÑA,15,pañuelo para señora
+487,1916 Concurso Tejidos,2,CARMEN MORALES,CATAMARCA,CHALES DE VICUÑA,16,chalina de vicuña
+488,1916 Concurso Tejidos,2,MARIA P. DE ALVAREZ,CATAMARCA,CHALES DE VICUÑA,17,chalón de vicuña con fleco
+489,1916 Concurso Tejidos,2,DELINA I. DE ROMÁN,CATAMARCA,CHALES DE VICUÑA,18,chalón de vicuña
+490,1916 Concurso Tejidos,2,MARIA R. DE MORALES,CATAMARCA,CHALES DE VICUÑA,19,chalina de vicuña
+491,1916 Concurso Tejidos,2,IRENE DE AYBAR,SAN MIGUEL DE TUCUMÁN,CHALES DE VICUÑA,20,chalina de vicuña
+492,1916 Concurso Tejidos,2,SIMONA P. DE CASTRO,COLALAO DEL VALLE,CHALES DE VICUÑA,21,chal de vicuña
+493,1916 Concurso Tejidos,2,CONCEPCIÓN Y ROSA CUELLO,CATAMARCA,CHALES DE VICUÑA,22,chal de vicuña
+494,1916 Concurso Tejidos,2,MARIA AVILA,"TINOGASTA, CATAMARCA",CHALES Y ECHARPES,23,"chal de vicuña para señora, bordado celeste"
+495,1916 Concurso Tejidos,2,MARIA AVILA,"TINOGASTA, CATAMARCA",CHALES Y ECHARPES,24,echarpe vicuña bordado con seda
+496,1916 Concurso Tejidos,2,MARIA AVILA,"TINOGASTA, CATAMARCA",CHALES Y ECHARPES,25,echarpe bordado con vicuña
+497,1916 Concurso Tejidos,2,GREGORIA LUNA,CATAMARCA,CHALES Y ECHARPES,26,echarpe café de vicuña
+498,1916 Concurso Tejidos,2,GREGORIA LUNA,CATAMARCA,CHALES Y ECHARPES,27,echarpe café de vicuña
+499,1916 Concurso Tejidos,2,FELISA R. DE SANCHEZ,SAN PABLO,CHALES Y ECHARPES,28,echarpe café de vicuña con rayas blancas
+500,1916 Concurso Tejidos,2,FELISA R. DE SANCHEZ,SAN PABLO,CHALES Y ECHARPES,29,chalón de vicuña
+501,1916 Concurso Tejidos,2,FELISA R. DE SANCHEZ,SAN PABLO,CHALES Y ECHARPES,30,echarpe café de vicuña deshilado
+502,1916 Concurso Tejidos,2,FELISA R. DE SANCHEZ,SAN PABLO,CHALES Y ECHARPES,31,echarpe blanco de vicuña deshilado
+503,1916 Concurso Tejidos,2,EDELMIRA A. DE MORENO,CATAMARCA (tiene certificado),CHALES Y ECHARPES,32,echarpe algodón del país tejido en telar
+504,1916 Concurso Tejidos,2,EDELMIRA A. DE MORENO,CATAMARCA (tiene certificado),CHALES Y ECHARPES,33,echarpe algodón del país tejido en telar
+505,1916 Concurso Tejidos,2,ROSARIO JIMENEZ DE ACUÑA,TUCUMAN,CHALES Y ECHARPES,34,chal de vicuña bordado
+506,1916 Concurso Tejidos,2,ESCUELA PROFESIONAL,TUCUMAN,CHALES Y ECHARPES,35,echarpe tejido a pala
+507,1916 Concurso Tejidos,2,CONCEPCION Y ROSA CUELLO,CATAMARCA,CHALES Y ECHARPES,36,chal de vicuña
+508,1916 Concurso Tejidos,2,CONCEPCION Y ROSA CUELLO,CATAMARCA,CHALES Y ECHARPES,37,chalina de vicuña
+509,1916 Concurso Tejidos,2,CONCEPCION Y ROSA CUELLO,CATAMARCA,CHALES Y ECHARPES,38,chalina de vicuña
+510,1916 Concurso Tejidos,2,CONCEPCION Y ROSA CUELLO,CATAMARCA,CHALES Y ECHARPES,39,chalina de vicuña
+511,1916 Concurso Tejidos,2,DELIA ESPINOSA,TUCUMAN,CHALES Y ECHARPES,40,echarpe vicuña
+512,1916 Concurso Tejidos,2,DELIA ESPINOSA,TUCUMAN,CHALES Y ECHARPES,41,manta de vicuña
+513,1916 Concurso Tejidos,2,SARVELIA LEDESMA,SANTIAGO,TEIJDOS EN GENERAL,1,almohadón de lana
+514,1916 Concurso Tejidos,2,SARVELIA LEDESMA,SANTIAGO,TEIJDOS EN GENERAL,2,tarjetero de lana
+515,1916 Concurso Tejidos,2,SARVELIA LEDESMA,SANTIAGO,TEIJDOS EN GENERAL,3,canasta de flores de lana
+516,1916 Concurso Tejidos,2,MARÍA RUEDA,CATAMARCA,TEIJDOS EN GENERAL,4,corte de género hecho en telar
+517,1916 Concurso Tejidos,2,IRENE C. DE AYBAR,SAN MIGUEL DE TUCUMÁN,TEIJDOS EN GENERAL,5,corte de cordoncillo
+518,1916 Concurso Tejidos,2,CONCEPCION Y ROSA CUELLO,CATAMARCA,TEIJDOS EN GENERAL,6,un brin para traje
+519,1916 Concurso Tejidos,2,ELENA SEGURA,SAN MIGUEL DE TUCUMÁN,TEIJDOS EN GENERAL,7,tela de vicuña
+520,1916 Concurso Tejidos,2,ELENA SEGURA,SAN MIGUEL DE TUCUMÁN,TEIJDOS EN GENERAL,8,tela de vicuña
+521,1916 Concurso Tejidos,2,AMELIA DE PLAZA,CAFAYATE,TEIJDOS EN GENERAL,9,abrigo de lana hilado y teñido
+522,1916 Concurso Tejidos,2,AMELIA DE PLAZA,CAFAYATE,TEIJDOS EN GENERAL,10,abrigo de lana hilado y teñido
+523,1916 Concurso Tejidos,2,SUPERIORA COLEGIO SANTA ROSA DE VITERBO,SALTA,TEIJDOS EN GENERAL,11,jardinera en piolín tejida a crochet
+524,1916 Concurso Tejidos,2,ELVIRA CUELLO,CATAMARCA,TEIJDOS EN GENERAL,12,toalla de algodón del país
+525,1916 Concurso Tejidos,2,AMELIA ZUNUBATE,CHACO,JERGONES,26,jergón tejido
+526,1916 Concurso Tejidos,2,LUGARDA J. DE GONZÁLEZ,CHICLIGASTA,JERGONES,27,jergón
+527,1916 Concurso Tejidos,2,LORENZA LESCANO,CHICLIGASTA,JERGONES,28,jergón
+528,1916 Concurso Tejidos,2,SOFÍA C. GONZÁLEZ,CHICLIGASTA,JERGONES,29,jergón
+529,1916 Concurso Tejidos,2,CENOBIA GONZALEZ,CHICLIGASTA,JERGONES,30,jergón
+530,1916 Concurso Tejidos,2,RITA GONZALEZ,CHICLIGASTA,JERGONES,31,jergón
+531,1916 Concurso Tejidos,2,LOLA GONZALEZ,CHICLIGASTA,JERGONES,32,jergón
+532,1916 Concurso Tejidos,2,CENOBIA GONZALEZ,CHICLIGASTA,JERGONES,33,jergón
+533,1916 Concurso Tejidos,2,ROSARIO N. DE BARRIONUEVO,CHICLIGASTA,JERGONES,34,jergón
+534,1916 Concurso Tejidos,2,SALVADORA DE HERRERA,CHICLIGASTA,JERGONES,35,jergón
+535,1916 Concurso Tejidos,2,SALVADORA DE HERRERA,CHICLIGASTA,JERGONES,36,jergón
+536,1916 Concurso Tejidos,2,ANTONIA VALLADARES,ESCUELA DE LA COCHA,JERGONES Y SOBREPELOS,1,sobrepelo
+537,1916 Concurso Tejidos,2,VISITACIÓN DÍAZ,ESCUELA DE LA COCHA,JERGONES Y SOBREPELOS,2,sobrepelo
+538,1916 Concurso Tejidos,2,ROSAURA DE CONCHA,MONTEAGUDO,JERGONES Y SOBREPELOS,3,jergón de lana
+539,1916 Concurso Tejidos,2,HORTENSIA LUNA,SAN MIGUEL DE TUCUMÁN,JERGONES Y SOBREPELOS,4,jergón tejido en telar
+540,1916 Concurso Tejidos,2,MARÍA C. DE ARRIETA,CHICLIGASTA,JERGONES Y SOBREPELOS,5,jergón de lana
+541,1916 Concurso Tejidos,2,MARÍA LUNA,CHICLIGASTA,JERGONES Y SOBREPELOS,6,jergón de lana
+542,1916 Concurso Tejidos,2,CARMEN MOYA,COLALAO DEL VALLE,JERGONES Y SOBREPELOS,7,sobrepelo
+543,1916 Concurso Tejidos,2,CARMEN MOYA,COLALAO DEL VALLE,JERGONES Y SOBREPELOS,8,sobrepelo
+544,1916 Concurso Tejidos,2,CARMEN MOYA,COLALAO DEL VALLE,JERGONES Y SOBREPELOS,9,sobrepelo
+545,1916 Concurso Tejidos,2,LORENZA DE DÍAZ,ATAHONA,JERGONES Y SOBREPELOS,10,jergón de lana
+546,1916 Concurso Tejidos,2,BASILIA LEAL,ATAHONA,JERGONES Y SOBREPELOS,11,jergón de lana
+547,1916 Concurso Tejidos,2,GENUARIA ALARCÓN,ATAHONA,JERGONES Y SOBREPELOS,12,jergón
+548,1916 Concurso Tejidos,2,EUFROSINA ARGAÑARAZ,ATAHONA,JERGONES Y SOBREPELOS,13,jergón
+549,1916 Concurso Tejidos,2,LUGARDA JUÁREZ,LAS LECHUZAS,JERGONES Y SOBREPELOS,14,jergón
+550,1916 Concurso Tejidos,2,MARÍA A. DE ARGAÑARAZ,PALOMINOS,JERGONES Y SOBREPELOS,15,jergón
+551,1916 Concurso Tejidos,2,DELICIA JUAREZ,LAS LECHUZAS,JERGONES Y SOBREPELOS,16,jergón
+552,1916 Concurso Tejidos,2,MARÍA PEREZ,ENSENADA,JERGONES Y SOBREPELOS,17,jergón
+553,1916 Concurso Tejidos,2,DEIDAMIA DE FERNANDEZ,SANDOVALES,JERGONES Y SOBREPELOS,18,jergón
+554,1916 Concurso Tejidos,2,VALENTINA PEREZ,ENSENADA,JERGONES Y SOBREPELOS,19,jergón
+555,1916 Concurso Tejidos,2,ANGELA DE LESCANO,SANDOVALES,JERGONES Y SOBREPELOS,20,jergón
+556,1916 Concurso Tejidos,2,PABLA GONZALEZ,SANDOVALES,JERGONES Y SOBREPELOS,21,jergón
+557,1916 Concurso Tejidos,2,DOMINGA MEDINA,AMPATA,JERGONES Y SOBREPELOS,22,jergón
+558,1916 Concurso Tejidos,2,VICTORIA TOLEDO,EL TOBAR,JERGONES Y SOBREPELOS,23,jergón
+559,1916 Concurso Tejidos,2,EDUARDA GOMEZ IBAÑEZ,LOS TREJO,JERGONES Y SOBREPELOS,24,jergón
+560,1916 Concurso Tejidos,2,DOROTEA C. LAZARTE,CHICLIGASTA,JERGONES Y SOBREPELOS,25,jergón
+561,1916 Concurso Tejidos,2,MARIA RUEDA,CATAMARCA,ALFORJAS,1,par alforjas tejidas en telar
+562,1916 Concurso Tejidos,2,ROSA LOPEZ,SAN MIGUEL DE TUCUMÁN,ALFORJAS,2,alforjas con flores bordadas
+563,1916 Concurso Tejidos,2,HORTENSIA LUNA,SAN MIGUEL DE TUCUMÁN,ALFORJAS,3,alforjas con bordados
+564,1916 Concurso Tejidos,2,MARIA LUNA,CHICLIGASTA,ALFORJAS,4,alforjas de lana
+565,1916 Concurso Tejidos,2,CARMEN DE MOYA,COLALAO DEL VALLE,ALFORJAS,5,alforjas de lana en telar
+566,1916 Concurso Tejidos,2,FRANCISCA Z. DE AGUIRRE,NIOGASTA,ALFORJAS,6,par alforjas lana en telar
+567,1916 Concurso Tejidos,2,SALVADORA DE QUINTEROS,LOS PEREZ,ALFORJAS,7,par alforjas lana en telar
+568,1916 Concurso Tejidos,2,ROSARIO MEDINA,LAS LECHUZAS,ALFORJAS,8,par alforjas lana en telar
+569,1916 Concurso Tejidos,2,MAMERTA PEREZ,ENSENADA,ALFORJAS,9,par alforjas de lana
+570,1916 Concurso Tejidos,2,RAMONA DE PEREZ,ENSENADA,ALFORJAS,10,par alforjas de lana
+571,1916 Concurso Tejidos,2,CONCEPCION DE PEREZ,ATAHONA,ALFORJAS,11,par alforjas de lana
+572,1916 Concurso Tejidos,2,JOSEFA SAAVEDRA,ATAHONA,ALFORJAS,12,par alforjas en telar
+573,1916 Concurso Tejidos,2,PABLA GONZALEZ,SANDOVALES,ALFORJAS,13,par alforjas
+574,1916 Concurso Tejidos,2,ELENA SEGURA,SAN MIGUEL DE TUCUMÁN,ALFORJAS,14,par alforjas
+575,1916 Concurso Tejidos,2,ELENA SEGURA,SAN MIGUEL DE TUCUMÁN,ALFORJAS,15,par alforjas
+576,1916 Concurso Tejidos,2,RAMONA CARDENAS,INGENIO SAN JOSÉ,ALFORJAS,16,par alforjas atadas
+577,1916 Concurso Tejidos,2,SIMONA P. DE CASTRO,COLALAO DEL VALLE,ALFORJAS,17,alforjas de lana
+578,1916 Concurso Tejidos,2,ROSARIO HERRERA,CHICLIGASTA,ALFORJAS,18,par alforjas
+579,1916 Concurso Tejidos,2,LORENZA V. PANEI,SAN MIGUEL DE TUCUMÁN,ALFORJAS,19,alforjas con flores de relieve
+580,1916 Concurso Tejidos,2,EDELMIRA A. DE MORENO,CATAMARCA,ALFORJAS,20,alforjas bordadas
+581,1916 Concurso Tejidos,2,FELISA R. DE SÁNCHEZ,SAN PABLO,ALFORJAS,21,alforjas cordoncillo estilo criollo
+582,1916 Concurso Tejidos,2,JUSTO VILLARREAL,MONTEAGUDO,PELLONES,1,pellón
+583,1916 Concurso Tejidos,2,SEGUNDO E. GONZALEZ,LAS LECHUZAS,PELLONES,2,pellón
+584,1916 Concurso Tejidos,2,CONCEPCIÓN DE PEREZ,ATAHONA,PELLONES,3,pellón
+585,1916 Concurso Tejidos,2,JAVIER CÁRDENAS,CATAMARCA,PELLONES,4,pellón
+586,1916 Concurso Tejidos,2,JAVIER CÁRDENAS,CATAMARCA,PELLONES,5,pellón
+587,1916 Concurso Tejidos,2,GABRIEL GONZALEZ,CHICLIGASTA,PELLONES,6,pellón blanco
+588,1916 Concurso Tejidos,2,GABRIEL GONZALEZ,CHICLIGASTA,PELLONES,7,pellón blanco guarda negra
+589,1916 Concurso Tejidos,2,JOSÉ TOBÍAS GONZÁLEZ,CHICLIGASTA,PELLONES,8,pellón blanco guarda negra
+590,1916 Concurso Tejidos,2,MERCEDES RUIZ DE ARZUAGA,SANTIAGO,MANTELES DE TÉ,1,juego de mantel y 6 servilletas
+591,1916 Concurso Tejidos,2,CONCEPCION Y ROSA CUELLO,CATAMARCA,MANTELES DE TÉ,2,juego de mantel y servilleta de algodón
+592,1916 Concurso Tejidos,2,GREGORIA LUNA,CATAMARCA,MANTELES DE TÉ,3,mantel de algodón
+593,1916 Concurso Tejidos,2,RAMONA S. DE VARELA,CATAMARCA,MANTELES DE TÉ,4,mantel de algodón hilado y tejido
+594,1916 Concurso Tejidos,2,MARIA A. DE VAZQUEZ,BELLA VISTA,ENCAJES Y RANDAS,1,mantel con encaje al bolillo
+595,1916 Concurso Tejidos,2,MARIA FERNANDEZ,CONCEPCION,ENCAJES Y RANDAS,2,mantel y servilletas
+596,1916 Concurso Tejidos,2,ADELA MANZONE,SAN MIGUEL DE TUCUMÁN,ENCAJES Y RANDAS,3,"mantel de altar, creación de la autora"
+597,1916 Concurso Tejidos,2,LAURA BENZANO,SAN MIGUEL DE TUCUMÁN,ENCAJES Y RANDAS,4,mantel de té bordado y aplicaciones crochet venecia
+598,1916 Concurso Tejidos,2,ADELA CATALAN,SAN MIGUEL DE TUCUMÁN,ENCAJES Y RANDAS,5,mantel de altar
+599,1916 Concurso Tejidos,2,MARIA SLOPART DE LLAVI,SAN MIGUEL DE TUCUMÁN,ENCAJES Y RANDAS,6,camino al bolillo
+600,1916 Concurso Tejidos,2,TERESA COLOMER,ROSARIO,ENCAJES Y RANDAS,7,sobrecama al bolillo
+601,1916 Concurso Tejidos,2,APOLONIA DIAZ,CONCEPCION,ENCAJES Y RANDAS,8,sobrecama de ñanduty
+602,1916 Concurso Tejidos,2,MERCEDES AMAYA DE ROMERO,SAN MIGUEL DE TUCUMÁN,ENCAJES Y RANDAS,9,carpeta y caminos de mesa de malla
+603,1916 Concurso Tejidos,2,MARGARITA GARCÍA DE ESPARRÉ,SAN MIGUEL DE TUCUMÁN,ENCAJES Y RANDAS,10,blusa de irlanda
+604,1916 Concurso Tejidos,2,ARSENIA FERNANDEZ,CONCEPCION,ENCAJES Y RANDAS,11,juego de cama
+605,1916 Concurso Tejidos,2,ESCUELA PROFESIONAL DE MUJERES,SAN MIGUEL DE TUCUMÁN,ENCAJES Y RANDAS,12,juego de cama deshilado y aplicaciones de venecia
+606,1916 Concurso Tejidos,2,ESCUELA PROFESIONAL DE MUJERES,SAN MIGUEL DE TUCUMÁN,ENCAJES Y RANDAS,13,tapete para piano con encajes
+607,1916 Concurso Tejidos,2,CONCEPCION SALRICH CASTELLVICH,FAMAILLA,ENCAJES Y RANDAS,14,carpeta de seda y encaje
+608,1916 Concurso Tejidos,2,TARSILA SILVETTI DE OLIVERA,LA COCHA,ENCAJES Y RANDAS,15,vestido de irlanda
+609,1916 Concurso Tejidos,2,TARSILA SILVETTI DE OLIVERA,LA COCHA,ENCAJES Y RANDAS,16,cuello de encaje
+610,1916 Concurso Tejidos,2,TARSILA SILVETTI DE OLIVERA,LA COCHA,ENCAJES Y RANDAS,17,vestido de irlanda
+611,1916 Concurso Tejidos,2,TARSILA SILVETTI DE OLIVERA,LA COCHA,ENCAJES Y RANDAS,18,puntilla crochet
+612,1916 Concurso Tejidos,2,ERNESTINA SILVETTI,LA COCHA,ENCAJES Y RANDAS,19,cuello de encaje
+613,1916 Concurso Tejidos,2,MARIA LL. DE PUIG,SAN MIGUEL DE TUCUMÁN,ENCAJES Y RANDAS,20,pañuelo de encaje al bolillo
+614,1916 Concurso Tejidos,2,ERNESTINA SILVETTI,LA COCHA,ENCAJES Y RANDAS,21,pañuelo de frivolité
+615,1916 Concurso Tejidos,2,BALBINA COLLADO REMIS,SAN MIGUEL DE TUCUMÁN,ENCAJES Y RANDAS,22,vestido de malla
+616,1916 Concurso Tejidos,2,LASTENIA BARQUET,SAN MIGUEL DE TUCUMÁN,ENCAJES Y RANDAS,23,cuadrado de venecia
+617,1916 Concurso Tejidos,2,MARIA LUISA Y ANGELICA GRAMAJO,SAN MIGUEL DE TUCUMÁN,ENCAJES Y RANDAS,24,abanico de encaje de venecia y a la aguja
+618,1916 Concurso Tejidos,2,ARSENIA FERNANDEZ,CONCEPCION,ENCAJES Y RANDAS,25,blusa de encaje
+619,1916 Concurso Tejidos,2,ARSENIA FERNANDEZ,CONCEPCION,ENCAJES Y RANDAS,26,carpeta de encaje
+620,1916 Concurso Tejidos,2,ARSENIA FERNANDEZ,CONCEPCION,ENCAJES Y RANDAS,27,cuello deshilado con encajes
+621,1916 Concurso Tejidos,2,ARSENIA FERNANDEZ,CONCEPCION,ENCAJES Y RANDAS,28,vestido deshilado y encajes de venecia
+622,1916 Concurso Tejidos,2,ARSENIA FERNANDEZ,CONCEPCION,ENCAJES Y RANDAS,29,puntilla de irlanda
+623,1916 Concurso Tejidos,2,NATALIA PALACIO POSSE,SAN MIGUEL DE TUCUMÁN,ENCAJES Y RANDAS,30,tapete deshilado y encajes de irlanda
+624,1916 Concurso Tejidos,2,JOSEFINA CARRUGNO,SANTIAGO DEL ESTERO,ENCAJES Y RANDAS,31,pañuelo de encaje
+625,1916 Concurso Tejidos,2,JOSEFINA CARRUGNO,SANTIAGO DEL ESTERO,ENCAJES Y RANDAS,32,cuello de encaje
+626,1916 Concurso Tejidos,2,MARÍA LLAVÍ DE PUIG,SAN MIGUEL DE TUCUMÁN,ENCAJES Y RANDAS,33,pañuelo al bolillo
+627,1916 Concurso Tejidos,2,MARÍA SLOPART DE LLAVI,SAN MIGUEL DE TUCUMÁN,ENCAJES Y RANDAS,34,encaje al bolillo una echarpe
+628,1916 Concurso Tejidos,2,MANUELA B. DE GRAÑA,SAN MIGUEL DE TUCUMÁN,ENCAJES Y RANDAS,35,encaje de seda al bolillo
+629,1916 Concurso Tejidos,2,MANUELA B. DE GRAÑA,SAN MIGUEL DE TUCUMÁN,ENCAJES Y RANDAS,36,encaje chantilly
+630,1916 Concurso Tejidos,2,MANUELA B. DE GRAÑA,SAN MIGUEL DE TUCUMÁN,ENCAJES Y RANDAS,37,carpeta con encaje bolillo
+631,1916 Concurso Tejidos,2,ROSA SORAIRE,SAN MIGUEL DE TUCUMÁN,ENCAJES Y RANDAS,38,carpeta con irlanda y adorno de encaje
+632,1916 Concurso Tejidos,2,JULIA CHIROU,SAN MIGUEL DE TUCUMÁN,ENCAJES Y RANDAS,39,toalla con irlanda
+633,1916 Concurso Tejidos,2,MARIA CORONEL,SAN MIGUEL DE TUCUMÁN,ENCAJES Y RANDAS,40,aplicaciones de filet para mantel
+634,1916 Concurso Tejidos,2,MARIA LUISA COULOMB,SAN MIGUEL DE TUCUMÁN,ENCAJES Y RANDAS,41,miniaturas pintadas a la aguja
+635,1916 Concurso Tejidos,2,MARIA LUISA COULOMB,SAN MIGUEL DE TUCUMÁN,ENCAJES Y RANDAS,42,paisaje bordado
+636,1916 Concurso Tejidos,2,ELISA COULOMB,SAN MIGUEL DE TUCUMÁN,ENCAJES Y RANDAS,43,abanico de encaje a la aguja
+637,1916 Concurso Tejidos,2,ELISA COULOMB,SAN MIGUEL DE TUCUMÁN,ENCAJES Y RANDAS,44,abanico bordado en tul
+638,1916 Concurso Tejidos,2,DORA OLIVARES HIDALGO,SAN MIGUEL DE TUCUMÁN,ENCAJES Y RANDAS,45,vestido confección para niña
+639,1916 Concurso Tejidos,2,DORA OLIVARES HIDALGO,SAN MIGUEL DE TUCUMÁN,ENCAJES Y RANDAS,46,toalla con encaje
+640,1916 Concurso Tejidos,2,GUMERSINDA ORDOÑEZ,SAN MIGUEL DE TUCUMÁN,ENCAJES Y RANDAS,47,blusa de irlanda
+641,1916 Concurso Tejidos,2,MARGARITA G. DE ESPARRÉ,SAN MIGUEL DE TUCUMÁN,ENCAJES Y RANDAS,48,blusa de irlanda
+642,1916 Concurso Tejidos,2,MARGARITA G. DE ESPARRÉ,SAN MIGUEL DE TUCUMÁN,ENCAJES Y RANDAS,49,camino de mesa irlanda
+643,1916 Concurso Tejidos,2,ESCUELA PROFESIONAL DE MUJERES,SAN MIGUEL DE TUCUMÁN,ENCAJES Y RANDAS,50,encajes de venecia
+644,1916 Concurso Tejidos,2,CLOTILDE MILLAN,SAN MIGUEL DE TUCUMÁN,ENCAJES Y RANDAS,51,escote encaje antiguo
+645,1916 Concurso Tejidos,2,CLOTILDE MILLAN,SAN MIGUEL DE TUCUMÁN,ENCAJES Y RANDAS,52,escote encaje antiguo
+646,1916 Concurso Tejidos,2,TORIBIA ARIAS,SAN MIGUEL DE TUCUMÁN,ENCAJES Y RANDAS,53,carpeta de malla
+647,1916 Concurso Tejidos,2,MARIA T. MANZONE,SAN MIGUEL DE TUCUMÁN,ENCAJES Y RANDAS,54,"cuello encaje, creación de la autora"
+648,1916 Concurso Tejidos,2,RAMONA SALINA,SAN MIGUEL DE TUCUMÁN,ENCAJES Y RANDAS,55,vestido de encaje
+649,1916 Concurso Tejidos,2,SEÑORA DE PUIG,SAN MIGUEL DE TUCUMÁN,ENCAJES Y RANDAS,56,mantilla española
+650,1916 Concurso Tejidos,2,MARIA E. PEREYRA,SAN MIGUEL DE TUCUMÁN,ENCAJES Y RANDAS,57,deshabillé de irlanda
+651,1916 Concurso Tejidos,2,MARIA E. PEREYRA,SAN MIGUEL DE TUCUMÁN,ENCAJES Y RANDAS,28,cuello de irlanda
+652,1916 Concurso Tejidos,2,SOLANA CONSTANTINO,CATAMARCA,ENCAJES Y RANDAS,59,cuello crochet inglés
+653,1916 Concurso Tejidos,2,SOLANA CONSTANTINO,CATAMARCA,ENCAJES Y RANDAS,60,cuello filet y puños
+654,1916 Concurso Tejidos,2,SOLANA CONSTANTINO,CATAMARCA,ENCAJES Y RANDAS,61,pañuelos con encaje
+655,1916 Concurso Tejidos,2,MARIA M. TORRES,LULES,ENCAJES Y RANDAS,62,pañuelo de encaje
+656,1916 Concurso Tejidos,2,JUANA ROSA LANZA COLOMBRES,SAN MIGUEL DE TUCUMÁN,ENCAJES Y RANDAS,63,"almohadón tela tejida a mano, bordado y encaje Centenario"
+657,1916 Concurso Tejidos,2,JUANA ROSA LANZA COLOMBRES,SAN MIGUEL DE TUCUMÁN,ENCAJES Y RANDAS,64,almohadón de tela hecha a pala y aplicación Venecia al crochet
+658,1916 Concurso Tejidos,2,JUANA ROSA LANZA COLOMBRES,SAN MIGUEL DE TUCUMÁN,ENCAJES Y RANDAS,65,almohadón de tela hecha a mano y aplicación al filet crochet
+659,1916 Concurso Tejidos,2,ASILO DEL BUEN PASTOR,SAN MIGUEL DE TUCUMÁN,ENCAJES Y RANDAS,66,ornamento de iglesia con encaje filet de hilo y seda
+660,1916 Concurso Tejidos,2,ASILO DEL BUEN PASTOR,SAN MIGUEL DE TUCUMÁN,ENCAJES Y RANDAS,67,alba con malla de hilo y seda
+661,1916 Concurso Tejidos,2,ASILO DEL BUEN PASTOR,SAN MIGUEL DE TUCUMÁN,ENCAJES Y RANDAS,68,tapete con encaje al bolillo
+662,1916 Concurso Tejidos,2,MANUELA FERREIRA,SAN MIGUEL DE TUCUMÁN,ENCAJES Y RANDAS,69,carpeta de encaje a la aguja
+663,1916 Concurso Tejidos,2,MANUELA MONTEROS,SAN MIGUEL DE TUCUMÁN,ENCAJES Y RANDAS,70,sobrecama de irlanda
+664,1916 Concurso Tejidos,2,DELIA ZAMORANO,SAN MIGUEL DE TUCUMÁN,ENCAJES Y RANDAS,71,sobrecama de crochet
+665,1916 Concurso Tejidos,2,ROSARIO ESCOBAR,SAN MIGUEL DE TUCUMÁN,ENCAJES Y RANDAS,72,sobrecama de Irlanda
+666,1916 Concurso Tejidos,2,MARIA BRITO,SAN MIGUEL DE TUCUMÁN,ENCAJES Y RANDAS,73,sobrecama de crochet
+667,1916 Concurso Tejidos,2,ANGELA SOTILLO,SAN MIGUEL DE TUCUMÁN,ENCAJES Y RANDAS,74,sobrecama de varios encajes
+668,1916 Concurso Tejidos,2,CARMEN M. DE VILLA,SAN MIGUEL DE TUCUMÁN,ENCAJES Y RANDAS,75,sobrecama de crochet
+669,1916 Concurso Tejidos,2,MARIA AGÜERO,SAN MIGUEL DE TUCUMÁN,ENCAJES Y RANDAS,76,sobrecama  y almohadón de filet
+670,1916 Concurso Tejidos,2,DOMINGA VILLOLDO,SAN MIGUEL DE TUCUMÁN,ENCAJES Y RANDAS,77,sobrecama de malla
+671,1916 Concurso Tejidos,2,MARIA J. DE AGUIRRE,SAN MIGUEL DE TUCUMÁN,ENCAJES Y RANDAS,78,sobrecama de Irlanda
+672,1916 Concurso Tejidos,2,ANGÉLICA S. DE HEINECKE,SAN MIGUEL DE TUCUMÁN,ENCAJES Y RANDAS,79,sobrecama de malla
+673,1916 Concurso Tejidos,2,AMELIA P. DE SANGUIN,GUCHEA,ENCAJES Y RANDAS,80,sobrecama de malla
+674,1916 Concurso Tejidos,2,DALMIRA C. DE SAL,SAN MIGUEL DE TUCUMÁN,ENCAJES Y RANDAS,81,tapete de filet
+675,1916 Concurso Tejidos,2,JOSEFA LOPEZ RIVERO,SAN MIGUEL DE TUCUMÁN,ENCAJES Y RANDAS,82,tapete ñanduty
+676,1916 Concurso Tejidos,2,RUFINA DOUTEUR,SAN MIGUEL DE TUCUMÁN,ENCAJES Y RANDAS,83,carpeta de malla
+677,1916 Concurso Tejidos,2,ROSA ALDERETE,MONTEROS,ENCAJES Y RANDAS,84,tapete de malla
+678,1916 Concurso Tejidos,2,M. EUFEMIA ALBORNOZ,SAN MIGUEL DE TUCUMÁN,ENCAJES Y RANDAS,85,tapete de filet
+679,1916 Concurso Tejidos,2,ANA MASMELA,SAN MIGUEL DE TUCUMÁN,ENCAJES Y RANDAS,86,tapete de filet
+680,1916 Concurso Tejidos,2,DELIA ZAMORANO,SAN MIGUEL DE TUCUMÁN,ENCAJES Y RANDAS,87,carpeta de crochet
+681,1916 Concurso Tejidos,2,TRANSITO SOAJE DE REE,CORDOBA,ENCAJES Y RANDAS,88,mantel granité y encaje inglés
+682,1916 Concurso Tejidos,2,ROSARIO CORNEJO,SAN MIGUEL DE TUCUMÁN,ENCAJES Y RANDAS,89,mantel y 1 servilleta granité y encaje inglés
+683,1916 Concurso Tejidos,2,EMILIA LOPEZ BRAVO,SAN MIGUEL DE TUCUMÁN,ENCAJES Y RANDAS,90,mantel y 12 servilletas con crochet
+684,1916 Concurso Tejidos,2,ANGELICA AGUIRRE,SAN MIGUEL DE TUCUMÁN,ENCAJES Y RANDAS,91,juego de cama Irlanda y encaje inglés
+685,1916 Concurso Tejidos,2,LUISA ROBERTI,SANTIAGO,ENCAJES Y RANDAS,92,cofia tejida
+686,1916 Concurso Tejidos,2,STA. GUERINEAU,SAN MIGUEL DE TUCUMÁN,ENCAJES Y RANDAS,93,tapado tejido
+687,1916 Concurso Tejidos,2,JULIA DE MACEDO,SAN MIGUEL DE TUCUMÁN,ENCAJES Y RANDAS,94,tapado en crochet
+688,1916 Concurso Tejidos,2,SARA MORENO,CONCEPCION,ENCAJES Y RANDAS,95,blusa de irlanda
+689,1916 Concurso Tejidos,2,TRANSITO S. DE REE,CORDOBA,ENCAJES Y RANDAS,96,blusa de irlanda
+690,1916 Concurso Tejidos,2,AUDELINA Y ABIGAIL GOMEZ,GRANEROS,ENCAJES Y RANDAS,97,vestidito al bolillo
+691,1916 Concurso Tejidos,2,MARIA CALCAGNI,CONCEPCION,ENCAJES Y RANDAS,98,vestidito encaje Bruselas
+692,1916 Concurso Tejidos,2,MARIA MARIOTTI,RANCHILLOS,ENCAJES Y RANDAS,99,vestidito de Irlanda
+693,1916 Concurso Tejidos,2,MESINA A. DE VOIGT,INGENIO LUJAN,ENCAJES Y RANDAS,100,cuello encaje bolillo
+694,1916 Concurso Tejidos,2,CARMEN PEREZ,CERRILLOS,ENCAJES Y RANDAS,101,cuello bordado a tambor
+695,1916 Concurso Tejidos,2,SRA DE SERRANO,SAN MIGUEL DE TUCUMÁN,ENCAJES Y RANDAS,102,cuello de encaje
+696,1916 Concurso Tejidos,2,SRA DE SERRANO,SAN MIGUEL DE TUCUMÁN,ENCAJES Y RANDAS,103,cuello de bruselas
+697,1916 Concurso Tejidos,2,SRA DE SERRANO,SAN MIGUEL DE TUCUMÁN,ENCAJES Y RANDAS,104,cuello de venecia
+698,1916 Concurso Tejidos,2,CARMEN ALDERETE,LULES,ENCAJES Y RANDAS,105,cuello de irlanda
+699,1916 Concurso Tejidos,2,ALCIRA ARÉVALO,SAN MIGUEL DE TUCUMÁN,ENCAJES Y RANDAS,106,cuello de frivolité
+700,1916 Concurso Tejidos,2,HORTENSIA D. DE LOPEZ,SAN MIGUEL DE TUCUMÁN,ENCAJES Y RANDAS,107,cuello encaje bolillo
+701,1916 Concurso Tejidos,2,AUDELINA Y ABIGAIL GOMEZ,GRANEROS,ENCAJES Y RANDAS,108,cuello encaje a la aguja
+702,1916 Concurso Tejidos,2,HNAS DEL HUERTO,SAN MIGUEL DE TUCUMÁN,ENCAJES Y RANDAS,109,pañuelo ñanduty
+703,1916 Concurso Tejidos,2,CRISTINA E ISABEL BLAY,CATAMARCA,ENCAJES Y RANDAS,110,pañuelo ñanduty
+704,1916 Concurso Tejidos,2,M. LUISA ROBERTI,SANTIAGO,ENCAJES Y RANDAS,111,pañuelo de filet
+705,1916 Concurso Tejidos,2,ROSARIO BARRANCO,SAN MIGUEL DE TUCUMÁN,ENCAJES Y RANDAS,112,pañuelo de Venecia
+706,1916 Concurso Tejidos,2,ELVIRA DE MOTIRONI,SAN MIGUEL DE TUCUMÁN,ENCAJES Y RANDAS,113,Pañuelo de Irlanda
+707,1916 Concurso Tejidos,2,HORTENSIA D. DE LOPEZ,SAN MIGUEL DE TUCUMÁN,ENCAJES Y RANDAS,114,Abanico de encaje a bolillo
+708,1916 Concurso Tejidos,2,ELENA R. DE LEMIERE,SAN MIGUEL DE TUCUMÁN,ENCAJES Y RANDAS,115,Abanico de encaje a la aguja
+709,1916 Concurso Tejidos,2,CORINA AGUIRRE,SAN MIGUEL DE TUCUMÁN,ENCAJES Y RANDAS,116,Pañuelo de Bruselas
+710,1916 Concurso Tejidos,2,DALMIRA GONZALEZ S,SAN MIGUEL DE TUCUMÁN,ENCAJES Y RANDAS,117,Abanico encaje creación de la autora
+711,1916 Concurso Tejidos,2,MARIA DE ALBACA,SAN MIGUEL DE TUCUMÁN,ENCAJES Y RANDAS,118,una blusa de Irlanda
+712,1916 Concurso Tejidos,2,MARIA DE ALBACA,SAN MIGUEL DE TUCUMÁN,ENCAJES Y RANDAS,119,entredos cinco metros Irlanda
+713,1916 Concurso Tejidos,2,MARIA DE ALBACA,SAN MIGUEL DE TUCUMÁN,ENCAJES Y RANDAS,120,cuatro metros encaje a la aguja
+714,1916 Concurso Tejidos,2,MARIA DE ALBACA,SAN MIGUEL DE TUCUMÁN,ENCAJES Y RANDAS,121,una aplicación irlanda
+715,1916 Concurso Tejidos,2,MARIA DE ALBACA,SAN MIGUEL DE TUCUMÁN,ENCAJES Y RANDAS,122,una corbata de Irlanda
+716,1916 Concurso Tejidos,2,ARSENIA FERNANDEZ,MEDINAS,ENCAJES Y RANDAS,123,cuatro metros Irlanda
+717,1916 Concurso Tejidos,2,MERCEDES P. DE SANGUIN,GUCHEA,ENCAJES Y RANDAS,124,cuatro metros crochet
+718,1916 Concurso Tejidos,2,MARIA DE AGUIRRE,SAN MIGUEL DE TUCUMÁN,ENCAJES Y RANDAS,125,un tirador de Irlanda
+719,1916 Concurso Tejidos,2,ELENA R. DE LEMIERE,SAN MIGUEL DE TUCUMÁN,ENCAJES Y RANDAS,126,un tapete de filet
+720,1916 Concurso Tejidos,2,ELISA B. DE GRAMAJO,LAMADRID,ENCAJES Y RANDAS,127,cuello crochet imitación Irlanda
+721,1916 Concurso Tejidos,2,MARIA ABIGAIL GOMEZ,CONCEPCION,ENCAJES Y RANDAS,128,una blusa crochet
+722,1916 Concurso Tejidos,2,MARIA ABIGAIL GOMEZ,CONCEPCION,ENCAJES Y RANDAS,129,un tapete en malla
+723,1916 Concurso Tejidos,2,ARSENIA R. DE LONTAYF,SALTA,ENCAJES Y RANDAS,130,torera de Irlanda
+724,1916 Concurso Tejidos,2,MARIA LUISA COULOMB,SAN MIGUEL DE TUCUMÁN,ENCAJES Y RANDAS,131,mesita pintada a la aguja
+725,1916 Concurso Tejidos,2,AMINTA R. DE ROTTMAN,INGENIO LASTENIA,ENCAJES Y RANDAS,132,almohadón de Venecia
+726,1916 Concurso Tejidos,2,AMPARO RODRÍGUEZ ABERASTURI,SAN MIGUEL DE TUCUMÁN,ENCAJES Y RANDAS,133,Colcha crochet (fuera de concurso)
+727,1916 Concurso Tejidos,2,ENRIQUETA ALBACA,SAN MIGUEL DE TUCUMÁN,ENCAJES Y RANDAS,134,peinador de irlanda
+728,1916 Concurso Tejidos,2,ENRIQUETA ALBACA,SAN MIGUEL DE TUCUMÁN,ENCAJES Y RANDAS,135,guía de encaje a la aguja
+729,1916 Concurso Tejidos,2,ENRIQUETA ALBACA,SAN MIGUEL DE TUCUMÁN,ENCAJES Y RANDAS,136,una tira encaje Irlanda
+730,1916 Concurso Tejidos,2,TERESA COLOMER,ROSARIO,ENCAJES Y RANDAS,137,escudo al bolillo
+731,1916 Concurso Tejidos,2,TERESA COLOMER,ROSARIO,ENCAJES Y RANDAS,138,pañuelo al bolillo
+732,1916 Concurso Tejidos,2,TERESA COLOMER,ROSARIO,ENCAJES Y RANDAS,139,pañuelo al bolillo
+733,1916 Concurso Tejidos,2,TERESA COLOMER,ROSARIO,ENCAJES Y RANDAS,140,pañuelo al bolillo
+734,1916 Concurso Tejidos,2,ASILO DEL BUEN PASTOR,SAN MIGUEL DE TUCUMÁN,ENCAJES Y RANDAS,141,sobrecama de crochet (fuera de concurso)
+735,1916 Concurso Tejidos,2,MARIA CARMONA,LA RIOJA,ENCAJES Y RANDAS,142,encajes
+736,1916 Concurso Tejidos,2,BENJAMINA BELASCUAIN,SANTIAGO,ENCAJES Y RANDAS,143,vestido de encaje
+737,1916 Concurso Tejidos,2,GREGORIA ZANAGUA,SAN MIGUEL DE TUCUMÁN,ENCAJES Y RANDAS,144,pañuelo de frivolité
+738,1916 Concurso Tejidos,2,GREGORIA ZANAGUA,SAN MIGUEL DE TUCUMÁN,ENCAJES Y RANDAS,145,carpeta de frivolité
+739,1916 Concurso Tejidos,2,ANGELA SOTILLO,"ARCADIA, F.C.N.O.A.",ENCAJES Y RANDAS,146,un pañuelo al bolillo
+740,1916 Concurso Tejidos,2,ANGELA SOTILLO,"ARCADIA, F.C.N.O.A.",ENCAJES Y RANDAS,147,un cuello
+741,1916 Concurso Tejidos,2,ANGELA SOTILLO,"ARCADIA, F.C.N.O.A.",ENCAJES Y RANDAS,148,una sobrecama de encajes
+742,1916 Concurso Tejidos,2,TRANSITO GONZALEZ,SAN MIGUEL DE TUCUMÁN,RANDAS,1,carpeta de randa
+743,1916 Concurso Tejidos,2,PASTORA C. DE ROSSETTI,SAN MIGUEL DE TUCUMÁN,RANDAS,2,visillos de randa
+744,1916 Concurso Tejidos,2,PASTORA C. DE ROSSETTI,SAN MIGUEL DE TUCUMÁN,RANDAS,3,carpeta de randa
+745,1916 Concurso Tejidos,2,PASTORA C. DE ROSSETTI,SAN MIGUEL DE TUCUMÁN,RANDAS,4,centro de mesa randa
+746,1916 Concurso Tejidos,2,ROSARIO RODRIGUEZ,MONTEROS,RANDAS,5,carpeta de randa
+747,1916 Concurso Tejidos,2,ROSARIO RODRIGUEZ,MONTEROS,RANDAS,6,escote de randa
+748,1916 Concurso Tejidos,2,ROSARIO RODRIGUEZ,MONTEROS,RANDAS,7,puntilla de randa
+749,1916 Concurso Tejidos,2,CARMEN GORDILLO,SAN MIGUEL DE TUCUMÁN,RANDAS,8,randa para alba
+750,1916 Concurso Tejidos,2,ROSA ALDERETE,MONTEROS,RANDAS,9,puntilla 4mts randa
+751,1916 Concurso Tejidos,2,BARTOLINA ALDERETE,MONTEROS,RANDAS,10,caminos de mesa de randa
+752,1916 Concurso Tejidos,2,AURORA ALDERETE,MONTEROS,RANDAS,11,randas
+753,1916 Concurso Tejidos,2,TERESINA A. DE SOSA,MONTEROS,RANDAS,12,randas
+754,1916 Concurso Tejidos,2,ROSARIO MONTIEL,MONTEROS,RANDAS,13,randa
+755,1916 Concurso Tejidos,2,ISABEL DE TOLEDO,MONTEROS,RANDAS,14,cuadrado de randa
+756,1916 Concurso Tejidos,2,PALMIRA CONTRERAS,SANTIAGO,RANDAS,15,sobrecama de randa
+757,1916 Concurso Tejidos,2,CARMEN RODRIGUEZ,SANTIAGO,RANDAS,16,sobrecama de randa
+758,1916 Concurso Tejidos,2,ANGELA ROBLES,ORAN,RANDAS,17,randas para fundas
+759,1916 Concurso Tejidos,2,ANGELA ROBLES,ORAN,RANDAS,18,carpetas de randas
+760,1916 Concurso Tejidos,2,MARIA LUISA ROBLES,ORAN,RANDAS,19,cuatro metros puntilla randa
+761,1916 Concurso Tejidos,2,CORINA ROLDAN,ORAN,RANDAS,20,escote de randa
+762,1916 Concurso Tejidos,2,CORINA ROLDAN,ORAN,RANDAS,21,escote de randa
+763,1916 Concurso Tejidos,2,CORINA ROLDAN,ORAN,RANDAS,22,escote de randa
+764,1916 Concurso Tejidos,2,CANDELARIA ALINCASTRO,ORAN,RANDAS,23,puntilla de randa cuatro metros
+765,1916 Concurso Tejidos,2,CANDELARIA ALINCASTRO,ORAN,RANDAS,24,carpeta de randa
+766,1916 Concurso Tejidos,2,CANDELARIA ALINCASTRO,ORAN,RANDAS,25,carpeta de randa
+767,1916 Concurso Tejidos,2,CANDELARIA ALINCASTRO,ORAN,RANDAS,26,carpeta de randa
+768,1916 Concurso Tejidos,2,CANDELARIA ALINCASTRO,ORAN,RANDAS,27,puntilla de randa
+769,1916 Concurso Tejidos,2,AUDELINA A. DE QUINTEROS,ORAN,RANDAS,28,cuellos y puños randa
+770,1916 Concurso Tejidos,2,AUDELINA A. DE QUINTEROS,ORAN,RANDAS,29,carpeta de randa
+771,1916 Concurso Tejidos,2,AUDELINA A. DE QUINTEROS,ORAN,RANDAS,30,carpeta de randa
+772,1916 Concurso Tejidos,2,FLORINDA Q. DE ALINCASTRO,ORAN,RANDAS,31,cuellos y puños de randa
+773,1916 Concurso Tejidos,2,FLORINDA Q. DE ALINCASTRO,ORAN,RANDAS,32,carpetas de randas
+774,1916 Concurso Tejidos,2,ROSARIO QUINTEROS,ORAN,RANDAS,33,carpetas de randas
+775,1916 Concurso Tejidos,2,ROSARIO QUINTEROS,ORAN,RANDAS,34,carpetas de randas
+776,1916 Concurso Tejidos,2,ROSA ARIZA,MONTEROS,RANDAS,35,carpeta de randa
+777,1916 Concurso Tejidos,2,JOSEFA POSSE,SAN MIGUEL DE TUCUMÁN,RANDAS,36,pañuelo de randa
+778,1916 Concurso Tejidos,2,JOSEFA POSSE,SAN MIGUEL DE TUCUMÁN,RANDAS,37,escote de randa
+779,1916 Concurso Tejidos,2,EMPERATRIZ NUÑEZ,MONTEROS,RANDAS,38,batón de randa
+780,1916 Concurso Tejidos,2,DOLORES GALVAN,MONTEROS,RANDAS,39,juego de cuello y puños
+781,1916 Concurso Tejidos,2,MARQUESA DE ORTIZ,MONTEROS,RANDAS,40,randas
+782,1916 Concurso Tejidos,2,LIMBANIA DE PAEZ,MONTEROS,RANDAS,41,cuello y puños de randa
+783,1916 Concurso Tejidos,2,MARIA RISSO PATRON,LOS SOSA,RANDAS,42,"randa, carpeta creación de la autora"
+784,1916 Concurso Tejidos,2,MERCEDES G. DEL MORAL,MONTEROS,RANDAS,43,"randa, embutidos"
+785,1916 Concurso Tejidos,2,ESCUELA PROFESIONAL,SAN MIGUEL DE TUCUMÁN,RANDAS,44,carpeta randa tucumana
+786,1916 Concurso Tejidos,2,LETICIA SORROZA,MONTEROS,RANDAS,45,"pañuelo randa, creación de la autora"
+787,1916 Concurso Tejidos,2,ISAURA DE RISSO PATRON,MONTEROS,RANDAS,46,pañuelo randa
+788,1916 Concurso Tejidos,2,ISAURA DE RISSO PATRON,MONTEROS,RANDAS,47,"almohadón randa, creación de la autora"
+789,1916 Concurso Tejidos,2,ROSA ROBLES,SANTA ROSA,RANDAS,48,4 metros de randa
+790,1916 Concurso Tejidos,2,ROSA ROBLES,SANTA ROSA,RANDAS,49,almohadón randa
+791,1916 Concurso Tejidos,2,ELVIRA SAL,SAN MIGUEL DE TUCUMÁN,RANDAS,50,almohadilla de randa
+792,1916 Concurso Tejidos,2,PREDESLINDA DE LLOVERAS,CATAMARCA,RANDAS,51,randas
+793,1916 Concurso Tejidos,2,ENRIQUETA LESCANO,SANTIAGO,RANDAS,52,carpeta de randa
+794,1916 Concurso Tejidos,2,HORTENSIA HAURIGOT,SAN MIGUEL DE TUCUMÁN,RANDAS,53,tapete de randa y bordado
+795,1916 Concurso Tejidos,2,PATRICIA DE ROBLES,ORÁN,RANDAS,54,sobrecama de randa
+796,1916 Concurso Tejidos,2,LIBORIA ROBLES,ORAN,RANDAS,55,sobrecama de randa
+797,1916 Concurso Tejidos,2,M. AMELIA ROBLES,ORAN,RANDAS,56,visillos de randa
+798,1916 Concurso Tejidos,2,ESC. Y HOGAR DE OBRERAS SOC. DE BENEFICENCIA,SAN MIGUEL DE TUCUMÁN,RANDAS,57,carpeta de randa
+799,1916 Concurso Tejidos,2,AURELIA PAZ,ORAN,RANDAS,58,una carpeta y 12 carpetitas de randa
+800,1916 Concurso Tejidos,2,LUGARDA Z. DE REYES,SAN MIGUEL DE TUCUMÁN,RANDAS,59,un almohadón de randa
+801,1916 Concurso Tejidos,2,LUGARDA Z. DE REYES,SAN MIGUEL DE TUCUMÁN,RANDAS,60,un par de almohadones deshilados y randa
+802,1916 Concurso Tejidos,2,LUGARDA Z. DE REYES,SAN MIGUEL DE TUCUMÁN,RANDAS,61,puntilla randa
+803,1916 Concurso Tejidos,2,ROMUALDA DÍAZ,SAN MIGUEL DE TUCUMÁN,RANDAS,62,camino de mesa richelieu
+804,1916 Concurso Tejidos,2,ESC. Y HOGAR DE OBRERAS SOC. DE BENEFICENCIA,SAN MIGUEL DE TUCUMÁN,RANDAS,63,camino de mesa de randa
+805,1916 Concurso Tejidos,2,ESC. Y HOGAR DE OBRERAS SOC. DE BENEFICENCIA,SAN MIGUEL DE TUCUMÁN,RANDAS,64,entredós y puntilla de randa
+806,1916 Concurso Tejidos,2,JOSEFA ROBLES PAZ,ORAN,RANDAS,65,"puntilla, 4 metros randa"
+807,1916 Concurso Tejidos,2,ROSA PAZ,ORAN,RANDAS,66,entredós 4 metros randa
+808,1916 Concurso Tejidos,2,AUDELINA Y ABIGAIL GOMEZ,GRANEROS,RANDAS,67,"puntilla, 7 metros randa"
+809,1916 Concurso Tejidos,2,AURORA MACEDO,GRANEROS,RANDAS,68,"puntilla, 4 metros randa"
+810,1916 Concurso Tejidos,2,AURORA MACEDO,GRANEROS,RANDAS,69,"entredós, 2 metros randa"
+811,1916 Concurso Tejidos,2,AURORA MACEDO,GRANEROS,RANDAS,70,"puntilla, 2 metros randa"
+812,1916 Concurso Tejidos,2,MARÍA B. DE COSTILLA,SAN MIGUEL DE TUCUMÁN,RANDAS,71,randa
+813,1916 Concurso Tejidos,2,FRANCISCA VILLOLDO,SAN MIGUEL DE TUCUMÁN,RANDAS,72,"puntilla, 4 metros randa"
+814,1916 Concurso Tejidos,2,CARMEN BRAVO,SANTIAGO DEL ESTERO,RANDAS,73,"puntilla, 4 metros randa"
+815,1916 Concurso Tejidos,2,VIRJINIA CORREA GOMEZ MERINO,SAN MIGUEL DE TUCUMÁN,RANDAS,74,randa
+816,1916 Concurso Tejidos,2,M. ABIGAIL GOMEZ,CONCEPCION,RANDAS,75,un par randas para fundas
+817,1916 Concurso Tejidos,2,M. ABIGAIL GOMEZ,CONCEPCION,RANDAS,76,un par randas 3 1/2 metros
+818,1916 Concurso Tejidos,2,MARQUESA DE ORTIZ,MONTEROS,RANDAS,77,puntilla de randa
+819,1916 Concurso Tejidos,2,MERCEDES DEL MORAL,MONTEROS,RANDAS,78,escotes de randa
+820,1916 Concurso Tejidos,2,MERCEDES DEL MORAL,MONTEROS,RANDAS,79,cuello y puños de randa
+821,1916 Concurso Tejidos,2,ROSARIO RODRIGUEZ,MONTEROS,RANDAS,80,puntilla de randa
+822,1916 Concurso Tejidos,2,ANGELA ROBLES,MONTEROS,RANDAS,81,carpeta de randa
+823,1916 Concurso Tejidos,2,CARMEN RODRIGUEZ,SANTIAGO,RANDAS,82,sobrecama de randa
+824,1916 Concurso Tejidos,2,ENRIQUETA FRONZUTI,SAN MIGUEL DE TUCUMÁN,BORDADOS EN BLANCO Y DESHILADOS,1,sábana
+825,1916 Concurso Tejidos,2,ENRIQUETA FRONZUTI,SAN MIGUEL DE TUCUMÁN,BORDADOS EN BLANCO Y DESHILADOS,2,almohadón
+826,1916 Concurso Tejidos,2,ENRIQUETA FRONZUTI,SAN MIGUEL DE TUCUMÁN,BORDADOS EN BLANCO Y DESHILADOS,3,funda
+827,1916 Concurso Tejidos,2,LETICIA VALENTI,SAN MIGUEL DE TUCUMÁN,BORDADOS EN BLANCO Y DESHILADOS,4,sábana bordada y deshilada
+828,1916 Concurso Tejidos,2,JULIA TORRES,SAN MIGUEL DE TUCUMÁN,BORDADOS EN BLANCO Y DESHILADOS,5,sábana y funda bordado richelieu
+829,1916 Concurso Tejidos,2,JULIA TORRES,SAN MIGUEL DE TUCUMÁN,BORDADOS EN BLANCO Y DESHILADOS,6,sábana y funda deshilada y bordada
+830,1916 Concurso Tejidos,2,JULIA TORRES,SAN MIGUEL DE TUCUMÁN,BORDADOS EN BLANCO Y DESHILADOS,7,sábana y funda deshilada
+831,1916 Concurso Tejidos,2,JULIA TORRES,SAN MIGUEL DE TUCUMÁN,BORDADOS EN BLANCO Y DESHILADOS,8,sábana y funda bordada y deshilada
+832,1916 Concurso Tejidos,2,JULIA TORRES,SAN MIGUEL DE TUCUMÁN,BORDADOS EN BLANCO Y DESHILADOS,9,sábana y funda bordada y deshilada
+833,1916 Concurso Tejidos,2,JULIA TORRES,SAN MIGUEL DE TUCUMÁN,BORDADOS EN BLANCO Y DESHILADOS,10,sábana y funda deshilada
+834,1916 Concurso Tejidos,2,MARGARITA ALMOYNER,SAN MIGUEL DE TUCUMÁN,BORDADOS EN BLANCO Y DESHILADOS,11,sábana bordada
+835,1916 Concurso Tejidos,2,MARGARITA ALMOYNER,SAN MIGUEL DE TUCUMÁN,BORDADOS EN BLANCO Y DESHILADOS,12,fundas
+836,1916 Concurso Tejidos,2,MARGARITA ALMOYNER,SAN MIGUEL DE TUCUMÁN,BORDADOS EN BLANCO Y DESHILADOS,13,fundas
+837,1916 Concurso Tejidos,2,MARGARITA ALMOYNER,SAN MIGUEL DE TUCUMÁN,BORDADOS EN BLANCO Y DESHILADOS,14,toalla bordada
+838,1916 Concurso Tejidos,2,JUANA PEREZ,SAN MIGUEL DE TUCUMÁN,BORDADOS EN BLANCO Y DESHILADOS,15,sábana bordada
+839,1916 Concurso Tejidos,2,JULIA M. CHIROU,SAN MIGUEL DE TUCUMÁN,BORDADOS EN BLANCO Y DESHILADOS,16,sábana deshilada
+840,1916 Concurso Tejidos,2,JULIA M. CHIROU,SAN MIGUEL DE TUCUMÁN,BORDADOS EN BLANCO Y DESHILADOS,17,funda
+841,1916 Concurso Tejidos,2,GENOVEVA ESCOBAR,SAN MIGUEL DE TUCUMÁN,BORDADOS EN BLANCO Y DESHILADOS,18,sábana deshilada
+842,1916 Concurso Tejidos,2,GENOVEVA ESCOBAR,SAN MIGUEL DE TUCUMÁN,BORDADOS EN BLANCO Y DESHILADOS,19,fundas
+843,1916 Concurso Tejidos,2,PAULINA P DE CHIROU,SAN MIGUEL DE TUCUMÁN,BORDADOS EN BLANCO Y DESHILADOS,20,sábana deshilada bordado richelieu
+844,1916 Concurso Tejidos,2,PAULINA P DE CHIROU,SAN MIGUEL DE TUCUMÁN,BORDADOS EN BLANCO Y DESHILADOS,21,funda
+845,1916 Concurso Tejidos,2,ASUNCIÓN RODINI DE BATROSSE,SAN MIGUEL DE TUCUMÁN,BORDADOS EN BLANCO Y DESHILADOS,22,sábana deshilada
+846,1916 Concurso Tejidos,2,ASUNCIÓN RODINI DE BATROSSE,SAN MIGUEL DE TUCUMÁN,BORDADOS EN BLANCO Y DESHILADOS,23,almohadón
+847,1916 Concurso Tejidos,2,ASUNCIÓN RODINI DE BATROSSE,SAN MIGUEL DE TUCUMÁN,BORDADOS EN BLANCO Y DESHILADOS,24,fundas
+848,1916 Concurso Tejidos,2,ROSA BARALO,SAN MIGUEL DE TUCUMÁN,BORDADOS EN BLANCO Y DESHILADOS,25,sábana bordado richelieu
+849,1916 Concurso Tejidos,2,ROSA BARALO,SAN MIGUEL DE TUCUMÁN,BORDADOS EN BLANCO Y DESHILADOS,26,fundas
+850,1916 Concurso Tejidos,2,SOFIA C. GONZALEZ,CHICLIGASTA,BORDADOS EN BLANCO Y DESHILADOS,27,sábana deshilada
+851,1916 Concurso Tejidos,2,SOFIA C. GONZALEZ,CHICLIGASTA,BORDADOS EN BLANCO Y DESHILADOS,28,almohadón
+852,1916 Concurso Tejidos,2,SOFIA C. GONZALEZ,CHICLIGASTA,BORDADOS EN BLANCO Y DESHILADOS,29,fundas
+853,1916 Concurso Tejidos,2,VIRGINIA VIVOLO Y ANTONIA CERRASUOLO,SAN MIGUEL DE TUCUMÁN,BORDADOS EN BLANCO Y DESHILADOS,30,sábana deshilada
+854,1916 Concurso Tejidos,2,VIRGINIA VIVOLO Y ANTONIA CERRASUOLO,SAN MIGUEL DE TUCUMÁN,BORDADOS EN BLANCO Y DESHILADOS,31,almohadón
+855,1916 Concurso Tejidos,2,VIRGINIA VIVOLO Y ANTONIA CERRASUOLO,SAN MIGUEL DE TUCUMÁN,BORDADOS EN BLANCO Y DESHILADOS,32,funda
+856,1916 Concurso Tejidos,2,MANUELA BARTOLOMÉ DE GRAÑA,SAN MIGUEL DE TUCUMÁN,BORDADOS EN BLANCO Y DESHILADOS,33,sábana bordado richelieu
+857,1916 Concurso Tejidos,2,MANUELA BARTOLOMÉ DE GRAÑA,SAN MIGUEL DE TUCUMÁN,BORDADOS EN BLANCO Y DESHILADOS,34,fundas
+858,1916 Concurso Tejidos,2,MANUELA BARTOLOMÉ DE GRAÑA,SAN MIGUEL DE TUCUMÁN,BORDADOS EN BLANCO Y DESHILADOS,35,pañuelo
+859,1916 Concurso Tejidos,2,ALFONSA CUADRADO DE BARCELÓ,SAN MIGUEL DE TUCUMÁN,BORDADOS EN BLANCO Y DESHILADOS,36,sábana bordada
+860,1916 Concurso Tejidos,2,ALFONSA CUADRADO DE BARCELÓ,SAN MIGUEL DE TUCUMÁN,BORDADOS EN BLANCO Y DESHILADOS,37,almohadón
+861,1916 Concurso Tejidos,2,ALFONSA CUADRADO DE BARCELÓ,SAN MIGUEL DE TUCUMÁN,BORDADOS EN BLANCO Y DESHILADOS,38,almohadón
+862,1916 Concurso Tejidos,2,LASTENIA MOYA ESCOBAR,COLALAO DEL VALLE,BORDADOS EN BLANCO Y DESHILADOS,39,sábana deshilada
+863,1916 Concurso Tejidos,2,LASTENIA MOYA ESCOBAR,COLALAO DEL VALLE,BORDADOS EN BLANCO Y DESHILADOS,40,funda
+864,1916 Concurso Tejidos,2,EMILIA MONTENEGRO,LA COCHA,BORDADOS EN BLANCO Y DESHILADOS,41,sábana deshilada
+865,1916 Concurso Tejidos,2,EMILIA MONTENEGRO,LA COCHA,BORDADOS EN BLANCO Y DESHILADOS,42,funda
+866,1916 Concurso Tejidos,2,ANATOLIA CORREA,LA COCHA,BORDADOS EN BLANCO Y DESHILADOS,43,sábana deshilada
+867,1916 Concurso Tejidos,2,ANATOLIA CORREA,LA COCHA,BORDADOS EN BLANCO Y DESHILADOS,44,funda
+868,1916 Concurso Tejidos,2,FACUNDA CORONEL,LA COCHA,BORDADOS EN BLANCO Y DESHILADOS,45,sábana deshilada y bordada
+869,1916 Concurso Tejidos,2,FACUNDA CORONEL,LA COCHA,BORDADOS EN BLANCO Y DESHILADOS,46,fundas
+870,1916 Concurso Tejidos,2,SOFIA VILLA,SAN MIGUEL DE TUCUMÁN,BORDADOS EN BLANCO Y DESHILADOS,47,toalla deshilada
+871,1916 Concurso Tejidos,2,CARMEN SAL,SAN MIGUEL DE TUCUMÁN,BORDADOS EN BLANCO Y DESHILADOS,48,colcha bordada
+872,1916 Concurso Tejidos,2,CARMEN SAL,SAN MIGUEL DE TUCUMÁN,BORDADOS EN BLANCO Y DESHILADOS,49,almohadón
+873,1916 Concurso Tejidos,2,SARA SAL,SAN MIGUEL DE TUCUMÁN,BORDADOS EN BLANCO Y DESHILADOS,50,sábana deshilada
+874,1916 Concurso Tejidos,2,SARA SAL,SAN MIGUEL DE TUCUMÁN,BORDADOS EN BLANCO Y DESHILADOS,51,almohadón
+875,1916 Concurso Tejidos,2,SARA SAL,SAN MIGUEL DE TUCUMÁN,BORDADOS EN BLANCO Y DESHILADOS,52,almohadón
+876,1916 Concurso Tejidos,2,MARGARITA T. ROBLES,MONTEROS,BORDADOS EN BLANCO Y DESHILADOS,53,sábana
+877,1916 Concurso Tejidos,2,MARGARITA T. ROBLES,MONTEROS,BORDADOS EN BLANCO Y DESHILADOS,54,funda
+878,1916 Concurso Tejidos,2,ERCILIA VERA DE CÁCERES,MEDINAS,BORDADOS EN BLANCO Y DESHILADOS,55,sábana deshilada y bordada
+879,1916 Concurso Tejidos,2,ESCUELA Y HOGAR DE OBRERAS DE LA SOC. DE BENEFICENCIA,SAN MIGUEL DE TUCUMÁN,BORDADOS EN BLANCO Y DESHILADOS,56,sábana deshilada
+880,1916 Concurso Tejidos,2,ESCUELA Y HOGAR DE OBRERAS DE LA SOC. DE BENEFICENCIA,SAN MIGUEL DE TUCUMÁN,BORDADOS EN BLANCO Y DESHILADOS,57,fundas deshiladas
+881,1916 Concurso Tejidos,2,ESCUELA Y HOGAR DE OBRERAS DE LA SOC. DE BENEFICENCIA,SAN MIGUEL DE TUCUMÁN,BORDADOS EN BLANCO Y DESHILADOS,58,sábana deshilada
+882,1916 Concurso Tejidos,2,ESCUELA Y HOGAR DE OBRERAS DE LA SOC. DE BENEFICENCIA,SAN MIGUEL DE TUCUMÁN,BORDADOS EN BLANCO Y DESHILADOS,59,fundas deshiladas
+883,1916 Concurso Tejidos,2,ESCUELA Y HOGAR DE OBRERAS DE LA SOC. DE BENEFICENCIA,SAN MIGUEL DE TUCUMÁN,BORDADOS EN BLANCO Y DESHILADOS,60,camino de mesa deshilado
+884,1916 Concurso Tejidos,2,ESCUELA Y HOGAR DE OBRERAS DE LA SOC. DE BENEFICENCIA,SAN MIGUEL DE TUCUMÁN,BORDADOS EN BLANCO Y DESHILADOS,61,carpeta de mesa deshilada
+885,1916 Concurso Tejidos,2,ESCUELA Y HOGAR DE OBRERAS DE LA SOC. DE BENEFICENCIA,SAN MIGUEL DE TUCUMÁN,BORDADOS EN BLANCO Y DESHILADOS,62,carpeta de mesa deshilada
+886,1916 Concurso Tejidos,2,ESCUELA Y HOGAR DE OBRERAS DE LA SOC. DE BENEFICENCIA,SAN MIGUEL DE TUCUMÁN,BORDADOS EN BLANCO Y DESHILADOS,63,carpeta de mesa deshilada
+887,1916 Concurso Tejidos,2,ERCILIA GALLO MOLINA,SAN MIGUEL DE TUCUMÁN,BORDADOS EN BLANCO Y DESHILADOS,64,toalla deshilada
+888,1916 Concurso Tejidos,2,ROSARIO SEGURA,INGENIO CONCEPCION,BORDADOS EN BLANCO Y DESHILADOS,65,carpeta hecha con cerda
+889,1916 Concurso Tejidos,2,FELIPA L. DE SEGURA,INGENIO CONCEPCION,BORDADOS EN BLANCO Y DESHILADOS,66,centro de mesa deshilado con hoja de caña de azúcar
+890,1916 Concurso Tejidos,2,MAMERTA MONTEROS,SAN MIGUEL DE TUCUMÁN,BORDADOS EN BLANCO Y DESHILADOS,67,mantel y servilletas deshilado
+891,1916 Concurso Tejidos,2,MARIA FERNANDEZ,"MEDINAS, GUCHEAS",BORDADOS EN BLANCO Y DESHILADOS,68,mantel y servilletas deshilado
+892,1916 Concurso Tejidos,2,MARIA FERNANDEZ,"MEDINAS, GUCHEAS",BORDADOS EN BLANCO Y DESHILADOS,69,pañuelo deshilado
+893,1916 Concurso Tejidos,2,ARSENIA FERNANDEZ,"MEDINAS, GUCHEAS",BORDADOS EN BLANCO Y DESHILADOS,70,vestido deshilado y encaje venecia
+894,1916 Concurso Tejidos,2,ARSENIA FERNANDEZ,"MEDINAS, GUCHEAS",BORDADOS EN BLANCO Y DESHILADOS,71,sábana deshilada
+895,1916 Concurso Tejidos,2,ARSENIA FERNANDEZ,"MEDINAS, GUCHEAS",BORDADOS EN BLANCO Y DESHILADOS,72,funda deshilada
+896,1916 Concurso Tejidos,2,ARSENIA FERNANDEZ,"MEDINAS, GUCHEAS",BORDADOS EN BLANCO Y DESHILADOS,73,almohadón deshilado
+897,1916 Concurso Tejidos,2,ARSENIA FERNANDEZ,"MEDINAS, GUCHEAS",BORDADOS EN BLANCO Y DESHILADOS,74,cuello deshilado
+898,1916 Concurso Tejidos,2,CARMEN IBARRA,SAN PABLO,BORDADOS EN BLANCO Y DESHILADOS,75,almohadón hecho con hoja de caña de azúcar
+899,1916 Concurso Tejidos,2,ANGELICA SEGURA,INGENIO GUZMAN,BORDADOS EN BLANCO Y DESHILADOS,76,cubre bandeja hecho con la fibra del plátano
+900,1916 Concurso Tejidos,2,RAMONA CORDOBA,VILLA NUEVA,BORDADOS EN BLANCO Y DESHILADOS,77,toalla deshilada
+901,1916 Concurso Tejidos,2,RAMONA CORDOBA,VILLA NUEVA,BORDADOS EN BLANCO Y DESHILADOS,78,toalla deshilada
+902,1916 Concurso Tejidos,2,TIBURCIA RODRÍGUEZ,SIMOCA,BORDADOS EN BLANCO Y DESHILADOS,79,mantel y servilletas
+903,1916 Concurso Tejidos,2,SARA FRONZUTI,SAN MIGUEL DE TUCUMÁN,BORDADOS EN BLANCO Y DESHILADOS,80,mantel y servilletas deshilados
+904,1916 Concurso Tejidos,2,ARGELIA COLL,SAN MIGUEL DE TUCUMÁN,BORDADOS EN BLANCO Y DESHILADOS,81,mantel y servilletas
+905,1916 Concurso Tejidos,2,SUPERIORA DEL COLEGIO SANTA ROSA DE VITERBO,SALTA,BORDADOS EN BLANCO Y DESHILADOS,82,colcha bordada sobre tul
+906,1916 Concurso Tejidos,2,RITA CABRERA,ACHERAL,BORDADOS EN BLANCO Y DESHILADOS,83,mantel y servilletas deshilados
+907,1916 Concurso Tejidos,2,CARMEN B. DE SOTO,SAN MIGUEL DE TUCUMÁN,BORDADOS EN BLANCO Y DESHILADOS,84,funda bordada
+908,1916 Concurso Tejidos,2,LOLA CORNEJO,SAN MIGUEL DE TUCUMÁN,BORDADOS EN BLANCO Y DESHILADOS,85,mantel y servilletas
+909,1916 Concurso Tejidos,2,CARMEN BRAVO,SANTIAGO DEL ESTERO,BORDADOS EN BLANCO Y DESHILADOS,86,un deshilado
+910,1916 Concurso Tejidos,2,CARMEN BRAVO,SANTIAGO DEL ESTERO,BORDADOS EN BLANCO Y DESHILADOS,87,un deshilado
+911,1916 Concurso Tejidos,2,CARMEN BRAVO,SANTIAGO DEL ESTERO,BORDADOS EN BLANCO Y DESHILADOS,88,un deshilado
+912,1916 Concurso Tejidos,2,CARMEN BRAVO,SANTIAGO DEL ESTERO,BORDADOS EN BLANCO Y DESHILADOS,89,un deshilado
+913,1916 Concurso Tejidos,2,HIGINIA GUARDO BELTRAN,SANTIAGO DEL ESTERO,BORDADOS EN BLANCO Y DESHILADOS,90,pechera bordada
+914,1916 Concurso Tejidos,2,HIGINIA GUARDO BELTRAN,SANTIAGO DEL ESTERO,BORDADOS EN BLANCO Y DESHILADOS,91,pechera bordada
+915,1916 Concurso Tejidos,2,HIGINIA GUARDO BELTRAN,SANTIAGO DEL ESTERO,BORDADOS EN BLANCO Y DESHILADOS,92,barbero
+916,1916 Concurso Tejidos,2,HIGINIA GUARDO BELTRAN,SANTIAGO DEL ESTERO,BORDADOS EN BLANCO Y DESHILADOS,93,cuello
+917,1916 Concurso Tejidos,2,MARIA JESUS JIMENEZ,SANTIAGO DEL ESTERO,BORDADOS EN BLANCO Y DESHILADOS,94,mantel deshilado y bordado
+918,1916 Concurso Tejidos,2,MARIA JESUS JIMENEZ,SANTIAGO DEL ESTERO,BORDADOS EN BLANCO Y DESHILADOS,95,pañuelo bordado
+919,1916 Concurso Tejidos,2,MARIA JESUS JIMENEZ,SANTIAGO DEL ESTERO,BORDADOS EN BLANCO Y DESHILADOS,96,pañuelo bordado
+920,1916 Concurso Tejidos,2,MARIA JESUS JIMENEZ,SANTIAGO DEL ESTERO,BORDADOS EN BLANCO Y DESHILADOS,97,pañuelo bordado
+921,1916 Concurso Tejidos,2,MARIA JESUS JIMENEZ,SANTIAGO DEL ESTERO,BORDADOS EN BLANCO Y DESHILADOS,98,pañuelo bordado
+922,1916 Concurso Tejidos,2,MARIA JESUS JIMENEZ,SANTIAGO DEL ESTERO,BORDADOS EN BLANCO Y DESHILADOS,99,pañuelo bordado
+923,1916 Concurso Tejidos,2,MARIA JESUS JIMENEZ,SANTIAGO DEL ESTERO,BORDADOS EN BLANCO Y DESHILADOS,100,pañuelo bordado
+924,1916 Concurso Tejidos,2,MARIA HERNANDEZ PUERTA,FAMAILLA,BORDADOS EN BLANCO Y DESHILADOS,101,almohadón richelieu
+925,1916 Concurso Tejidos,2,JOSEFA LOPEZ RIVERO,CONCORDIA,BORDADOS EN BLANCO Y DESHILADOS,102,mantel deshilado y encaje
+926,1916 Concurso Tejidos,2,HERMANAS DOMINICAS,"ASILO, CIUDAD",BORDADOS EN BLANCO Y DESHILADOS,103,un par de estores
+927,1916 Concurso Tejidos,2,TOMASA R. IBAÑEZ,GUCHEAS,BORDADOS EN BLANCO Y DESHILADOS,104,un mantel y servilletas
+928,1916 Concurso Tejidos,2,MARTA A. BERETTA,SAN MIGUEL DE TUCUMÁN,BORDADOS EN BLANCO Y DESHILADOS,105,mantel de té y servilletas
+929,1916 Concurso Tejidos,2,ANGELA PEREIRA LIZONDO,SAN MIGUEL DE TUCUMÁN,BORDADOS EN BLANCO Y DESHILADOS,106,mantel y servilletas deshilados
+930,1916 Concurso Tejidos,2,BUENAVENTURA VILLOLDO,LA BANDA,BORDADOS EN BLANCO Y DESHILADOS,107,toalla deshilada
+931,1916 Concurso Tejidos,2,BUENAVENTURA VILLOLDO,LA BANDA,BORDADOS EN BLANCO Y DESHILADOS,108,toalla deshilada
+932,1916 Concurso Tejidos,2,BUENAVENTURA VILLOLDO,LA BANDA,BORDADOS EN BLANCO Y DESHILADOS,109,toalla deshilada
+933,1916 Concurso Tejidos,2,ELVIRA AVELLANEDA,SAN MIGUEL DE TUCUMÁN,BORDADOS EN BLANCO Y DESHILADOS,110,toalla bordada
+934,1916 Concurso Tejidos,2,TERESA DE J. ZARATE,CATAMARCA,BORDADOS EN BLANCO Y DESHILADOS,111,mantel y servilletas
+935,1916 Concurso Tejidos,2,ANA TACTAGI,SAN MIGUEL DE TUCUMÁN,BORDADOS EN BLANCO Y DESHILADOS,112,combinación bordada
+936,1916 Concurso Tejidos,2,RITA ARIZA,MONTEROS,BORDADOS EN BLANCO Y DESHILADOS,113,carpeta bordada
+937,1916 Concurso Tejidos,2,SERAFINA TOLEDO DE HERRERA,MONTEROS,BORDADOS EN BLANCO Y DESHILADOS,114,mantel y servilletas
+938,1916 Concurso Tejidos,2,TELMA JIMENEZ,LA COCHA,BORDADOS EN BLANCO Y DESHILADOS,115,toalla deshilada
+939,1916 Concurso Tejidos,2,DIONISIA LAZARTE,LA COCHA,BORDADOS EN BLANCO Y DESHILADOS,116,mantel y servilletas deshilados
+940,1916 Concurso Tejidos,2,JUANA BLANCHE,SAN MIGUEL DE TUCUMÁN,BORDADOS EN BLANCO Y DESHILADOS,117,vestido bordado sobre tul
+941,1916 Concurso Tejidos,2,ELISA BLANCHE,SAN MIGUEL DE TUCUMÁN,BORDADOS EN BLANCO Y DESHILADOS,118,juego de té Richelieu
+942,1916 Concurso Tejidos,2,ENCARNACION GUTIÉRREZ,GRANEROS,BORDADOS EN BLANCO Y DESHILADOS,119,camino de mesa deshilado
+943,1916 Concurso Tejidos,2,CATALINA GARCIA,GRANEROS,BORDADOS EN BLANCO Y DESHILADOS,120,juego bordado para bebé
+944,1916 Concurso Tejidos,2,JUANA SUAREZ,GRANEROS,BORDADOS EN BLANCO Y DESHILADOS,121,toalla deshilada
+945,1916 Concurso Tejidos,2,MARIA CALCAGNI,GRANEROS,BORDADOS EN BLANCO Y DESHILADOS,122,toalla deshilada
+946,1916 Concurso Tejidos,2,MARIA ABIGAIL GOMEZ,GRANEROS,BORDADOS EN BLANCO Y DESHILADOS,123,mantel y servilletas de té
+947,1916 Concurso Tejidos,2,ANGELES CUADRADO,SAN MIGUEL DE TUCUMÁN,BORDADOS EN BLANCO Y DESHILADOS,124,amito bordado
+948,1916 Concurso Tejidos,2,LUCIA DELISSI,SAN MIGUEL DE TUCUMÁN,BORDADOS EN BLANCO Y DESHILADOS,125,toalla deshilada
+949,1916 Concurso Tejidos,2,LUCIA DELISSI,SAN MIGUEL DE TUCUMÁN,BORDADOS EN BLANCO Y DESHILADOS,126,centro de bordado
+950,1916 Concurso Tejidos,2,PETRA DE HALKIER,SAN MIGUEL DE TUCUMÁN,BORDADOS EN BLANCO Y DESHILADOS,127,"centro de mesa bordado dinamarqués ""Hedebo"""
+951,1916 Concurso Tejidos,2,FELIPA LIZARRAGA,SAN MIGUEL DE TUCUMÁN,BORDADOS EN BLANCO Y DESHILADOS,128,sábana deshilada
+952,1916 Concurso Tejidos,2,MICAELA RODRIGUEZ,SAN MIGUEL DE TUCUMÁN,BORDADOS EN BLANCO Y DESHILADOS,129,mantel de té y servilletas
+953,1916 Concurso Tejidos,2,TOMASA OLMOS DE ZAVALIA,SAN MIGUEL DE TUCUMÁN,BORDADOS EN BLANCO Y DESHILADOS,130,vestido y gorra de tul bordado
+954,1916 Concurso Tejidos,2,TRANSITO SOAJE DE REE,CORDOBA,BORDADOS EN BLANCO Y DESHILADOS,131,mantel bordado
+955,1916 Concurso Tejidos,2,TRANSITO SOAJE DE REE,CORDOBA,BORDADOS EN BLANCO Y DESHILADOS,132,un par de visillos bordados
+956,1916 Concurso Tejidos,2,VIDAL VICTORIA,SAN MIGUEL DE TUCUMÁN,BORDADOS EN BLANCO Y DESHILADOS,133,blusa deshilada
+957,1916 Concurso Tejidos,2,ESCUELA PROFESIONAL DE MUJERES,SAN MIGUEL DE TUCUMÁN,BORDADOS EN BLANCO Y DESHILADOS,134,"juego de lencería bordado, compuesto de cuatro piezas"
+958,1916 Concurso Tejidos,2,ESCUELA PROFESIONAL DE MUJERES,SAN MIGUEL DE TUCUMÁN,BORDADOS EN BLANCO Y DESHILADOS,135,juego para niña
+959,1916 Concurso Tejidos,2,ESCUELA PROFESIONAL DE MUJERES,SAN MIGUEL DE TUCUMÁN,BORDADOS EN BLANCO Y DESHILADOS,136,babero bordado
+960,1916 Concurso Tejidos,2,ESCUELA PROFESIONAL DE MUJERES,SAN MIGUEL DE TUCUMÁN,BORDADOS EN BLANCO Y DESHILADOS,137,babero bordado
+961,1916 Concurso Tejidos,2,ESCUELA PROFESIONAL DE MUJERES,SAN MIGUEL DE TUCUMÁN,BORDADOS EN BLANCO Y DESHILADOS,138,babero bordado
+962,1916 Concurso Tejidos,2,ESCUELA PROFESIONAL DE MUJERES,SAN MIGUEL DE TUCUMÁN,BORDADOS EN BLANCO Y DESHILADOS,139,babero bordado
+963,1916 Concurso Tejidos,2,ESCUELA PROFESIONAL DE MUJERES,SAN MIGUEL DE TUCUMÁN,BORDADOS EN BLANCO Y DESHILADOS,140,un cubre corset bordado
+964,1916 Concurso Tejidos,2,ESCUELA PROFESIONAL DE MUJERES,SAN MIGUEL DE TUCUMÁN,BORDADOS EN BLANCO Y DESHILADOS,141,una combinación de niña
+965,1916 Concurso Tejidos,2,ESCUELA PROFESIONAL DE MUJERES,SAN MIGUEL DE TUCUMÁN,BORDADOS EN BLANCO Y DESHILADOS,142,camisa bebé bordada
+966,1916 Concurso Tejidos,2,ESCUELA PROFESIONAL DE MUJERES,SAN MIGUEL DE TUCUMÁN,BORDADOS EN BLANCO Y DESHILADOS,143,camisa bebé bordada
+967,1916 Concurso Tejidos,2,ESCUELA PROFESIONAL DE MUJERES,SAN MIGUEL DE TUCUMÁN,BORDADOS EN BLANCO Y DESHILADOS,144,vestido y gorrita bordados
+968,1916 Concurso Tejidos,2,ESCUELA PROFESIONAL DE MUJERES,SAN MIGUEL DE TUCUMÁN,BORDADOS EN BLANCO Y DESHILADOS,145,vestido y gorrita bordados
+969,1916 Concurso Tejidos,2,ASILO BUEN PASTOR,SAN MIGUEL DE TUCUMÁN,BORDADOS EN BLANCO Y DESHILADOS,146,amito bordado
+970,1916 Concurso Tejidos,2,ASILO BUEN PASTOR,SAN MIGUEL DE TUCUMÁN,BORDADOS EN BLANCO Y DESHILADOS,147,corporal bordado
+971,1916 Concurso Tejidos,2,LUISA FERNANDEZ,MONTEROS,BORDADOS EN BLANCO Y DESHILADOS,148,tapete bordado
+972,1916 Concurso Tejidos,2,FELISA L. DE VICTORIA,SAN MIGUEL DE TUCUMÁN,BORDADOS EN BLANCO Y DESHILADOS,149,sábana y funda deshilada
+973,1916 Concurso Tejidos,2,FELISA L. DE VICTORIA,SAN MIGUEL DE TUCUMÁN,BORDADOS EN BLANCO Y DESHILADOS,150,sábana deshilada
+974,1916 Concurso Tejidos,2,FELISA L. DE VICTORIA,SAN MIGUEL DE TUCUMÁN,BORDADOS EN BLANCO Y DESHILADOS,151,sábana deshilada
+975,1916 Concurso Tejidos,2,FELISA L. DE VICTORIA,SAN MIGUEL DE TUCUMÁN,BORDADOS EN BLANCO Y DESHILADOS,152,sábana deshilada
+976,1916 Concurso Tejidos,2,FELISA L. DE VICTORIA,SAN MIGUEL DE TUCUMÁN,BORDADOS EN BLANCO Y DESHILADOS,153,sábana deshilada
+977,1916 Concurso Tejidos,2,ANTONIA DIAZ BAZAN,SAN MIGUEL DE TUCUMÁN,BORDADOS EN BLANCO Y DESHILADOS,154,mantel y servilletas bordadas
+978,1916 Concurso Tejidos,2,SOFIA VILLA,SAN MIGUEL DE TUCUMÁN,BORDADOS EN BLANCO Y DESHILADOS,155,sábana
+979,1916 Concurso Tejidos,2,SOFIA VILLA,SAN MIGUEL DE TUCUMÁN,BORDADOS EN BLANCO Y DESHILADOS,156,funda
+980,1916 Concurso Tejidos,2,SOFIA VILLA,SAN MIGUEL DE TUCUMÁN,BORDADOS EN BLANCO Y DESHILADOS,157,almohadón
+981,1916 Concurso Tejidos,2,FELIPA LIZARRAGA,SAN MIGUEL DE TUCUMÁN,BORDADOS EN BLANCO Y DESHILADOS,158,toalla deshilada

@@ -1,0 +1,39 @@
+# ---- Python ----
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+.ipynb_checkpoints/
+.python-version
+
+# ---- Entorno / secretos ----
+.env
+*.local
+
+# ---- Sistema operativo / editores ----
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+
+# ---- Archivos temporales de Office ----
+~$*.xlsx
+~$*.docx
+*.tmp
+
+# ---- Documentos e imágenes: NO van al repo (pesados / con copyright / escaneos
+#      de archivo). Su procedencia y lugar de resguardo se documentan en
+#      docs/referencias/README.md y data/raw/images/README.md ----
+*.pdf
+*.jpg
+*.jpeg
+*.JPG
+*.JPEG
+Imágenes/
+
+# ---- Salidas generadas voluminosas (los .xlsx de data/ SÍ se versionan) ----
+outputs/**/*.mbtiles
+outputs/**/tiles/
