@@ -11,6 +11,7 @@ Reconstruye, en código, el camino desde el Excel crudo hasta las tablas normali
 | `04_normalizar` | pendiente | ensambla `tabla_normalizada.xlsx` (6 hojas) |
 | `05_vista_plana` | **funciona** | join de `tabla_normalizada.xlsx` → `data/processed/vista_plana_tabla_consolidada.xlsx` (981 filas; orden: concurso, categoría, expositora, y dentro del grupo el orden del catálogo) |
 | `06_verificar` | **funciona** | compara `data/processed/` y `revision_duplicados` contra `tests/golden/` |
+| `audit_comentarios` | **funciona** | audita fila por fila si cada comentario de `revision_duplicados` y de la hoja `Premios` se aplicó a `tabla_normalizada.xlsx` → `docs/auditoria_comentarios.md` |
 
 Correr todo: `python run_pipeline.py` (desde la raíz). Una etapa suelta:
 `python src/pipeline/01_ingesta.py`.
