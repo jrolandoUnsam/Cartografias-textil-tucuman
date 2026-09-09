@@ -22,7 +22,8 @@ Método (determinístico, sin ajustes ad-hoc):
      `score` = el mayor de los ratios (0-100).
 
 Se agregan columnas de ayuda (ciudades y concursos de cada lado, si comparten
-ciudad, nº de objetos) y dos columnas vacías `Hecho` y `Comentarios` para anotar.
+ciudad, nº de objetos y la lista de `objeto_id` de cada expositora) y dos columnas
+vacías `Hecho` y `Comentarios` para anotar.
 
 Entrada : data/processed/tabla_normalizada.xlsx   (Expositoras, Ciudades, Objetos)
 Salida  : data/interim/duplicados_expositoras_candidatos.xlsx
@@ -47,6 +48,7 @@ COLS = [
     "score", "tipo",
     "ciudades_A", "ciudades_B", "misma_ciudad",
     "concursos_A", "concursos_B", "n_obj_A", "n_obj_B",
+    "id_objetos_A", "id_objetos_B",
     "Hecho", "Comentarios",
 ]
 
@@ -109,6 +111,7 @@ def contexto(E: pd.DataFrame, C: pd.DataFrame, O: pd.DataFrame) -> dict[int, dic
                                           if pd.notna(ciu.get(c))})),
             "concursos": ", ".join(sorted({anio.get(c, str(c)) for c in sub["concurso_id"]})),
             "n_obj": len(sub),
+            "id_objetos": ", ".join(str(o) for o in sorted(sub["objeto_id"])),
         }
     return ctx
 
@@ -127,6 +130,7 @@ def main() -> None:
             "misma_ciudad": bool(ca.get("ciudades") and ca.get("ciudades") == cb.get("ciudades")),
             "concursos_A": ca.get("concursos", ""), "concursos_B": cb.get("concursos", ""),
             "n_obj_A": ca.get("n_obj"), "n_obj_B": cb.get("n_obj"),
+            "id_objetos_A": ca.get("id_objetos", ""), "id_objetos_B": cb.get("id_objetos", ""),
             "Hecho": "", "Comentarios": "",
         })
     df = pd.DataFrame(filas, columns=COLS)
