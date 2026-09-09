@@ -6,9 +6,9 @@ Reconstruye, en código, el camino desde el Excel crudo hasta las tablas normali
 |---|---|---|
 | `01_ingesta` | **funciona** | raw xlsx → `data/interim/objetos_crudos.csv` (981 objetos; separa filas explotadas de 1916) |
 | `02_entidades` | esqueleto | listados provisionales de personas y ciudades (id por aparición) |
-| `03_candidatos` | **funciona** | fuzzy matching → `data/interim/revision_duplicados.xlsx` (salida que se anota a mano; no pisa anotaciones previas). Ver `notebooks/03_revision_duplicados.ipynb` para revisar |
+| `03_candidatos` | **funciona** | **paso 1 dedup.** semilla = `revision_duplicados.xlsx` (anotado a mano) + detección fuzzy de pares nuevos → `data/interim/revision_duplicados_regenerado.xlsx` (archivo nuevo; la semilla no se toca). Imprime qué pares de la semilla ya no detecta y cuáles agrega |
 | `03b_premios` | **funciona** | agrega a una copia de la hoja `Premios` las columnas `persona_id` / `objeto_id` (misma cantidad de filas, mismo orden) → `data/interim/premios_vinculados.xlsx`. Correcciones a mano en `data/interim/decisiones/premios_manual.csv` |
-| `04_normalizar` | pendiente | ensambla `tabla_normalizada.xlsx` (6 hojas) |
+| `04_aplicar_dedup` | **pendiente** | **paso 3 dedup.** lee los `Comentarios` de `revision_duplicados_regenerado.xlsx` y ejecuta las fusiones (reapunta `expositora_id` en Objetos, elimina la fila perdedora, deja el mapeo) sobre una copia nueva de la tabla |
 | `05_vista_plana` | **funciona** | join de `tabla_normalizada.xlsx` → `data/processed/vista_plana_tabla_consolidada.xlsx` (981 filas; orden: concurso, categoría, expositora, y dentro del grupo el orden del catálogo) |
 | `06_verificar` | **funciona** | compara `data/processed/` y `revision_duplicados` contra `tests/golden/` |
 | `audit_comentarios` | **funciona** | audita fila por fila si cada comentario de `revision_duplicados` y de la hoja `Premios` se aplicó a `tabla_normalizada.xlsx` → `docs/auditoria_comentarios.md` |
