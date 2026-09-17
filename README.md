@@ -6,7 +6,10 @@ Bordados** (Tucumán, 1915) y el **Concurso Interprovincial de Tejidos y Bordado
 y premios.
 
 Optativa interdisciplinaria LCD – CIAI – STD – UNSAM (2026).
-Dirección: Larisa Mantovani (Escuela de Arte y Patrimonio / CIAP, CONICET‑UNSAM).
+
+- **Dirección:** Larisa Mantovani (Escuela de Arte y Patrimonio / CIAP, CONICET‑UNSAM).
+- **Estudiante (LCD):** Julián Dante Rolando.
+- **Tutoría:** Agustín Moro.
 
 ## Estado
 
@@ -33,29 +36,29 @@ tests/golden/   copias congeladas de las salidas, para verificación
 ```bash
 python -m venv .venv && .venv\Scripts\activate      # Windows
 pip install -r requirements.txt
-python run_pipeline.py                               # corre 01 → 06
+python run_pipeline.py                               # corre el pipeline completo
 ```
 
-Cada etapa se puede correr suelta: `python src/pipeline/01_ingesta.py`.
+Desde una etapa en adelante: `python run_pipeline.py 04`. Una etapa suelta:
+`python src/pipeline/01_ingesta.py`.
 
 ## Flujo de datos
 
-| Etapa | Entrada | Salida |
-|---|---|---|
-| `01_ingesta` | `data/raw/TUCUMÁN text 1915-16 DATOS.xlsx` | `data/interim/objetos_crudos.csv` |
-| `02_entidades` | objetos_crudos | tablas provisionales de personas y ciudades |
-| `03_candidatos` | tablas provisionales | `data/interim/revision_duplicados.xlsx` (se anota a mano) |
-| `04_normalizar` | objetos_crudos + `revision_duplicados` anotado + `data/interim/decisiones/` | `data/processed/tabla_normalizada.xlsx` |
-| `05_vista_plana` | tabla_normalizada | `data/processed/vista_plana_tabla_consolidada.xlsx` |
-| `06_verificar` | salidas + `tests/golden/` | reporte de diferencias |
+Qué hace cada etapa, con qué entra y qué produce: **[`src/pipeline/README.md`](src/pipeline/README.md)**.
 
-Los datos crudos no se modifican: toda transformación queda registrada en código.
-Ver `docs/bitacora.md` para el registro de decisiones y `docs/diccionario_datos.md`
-para la descripción de cada campo.
+Los datos crudos no se modifican: toda transformación queda registrada en código. Las
+decisiones que no se derivan del crudo (fusiones de expositoras, correcciones de texto,
+cruces de premios) viven como tablas en `data/interim/decisiones/`, no dentro de los
+scripts.
+
+- [`docs/bitacora.md`](docs/bitacora.md) — registro cronológico de decisiones.
+- [`docs/diccionario_datos.md`](docs/diccionario_datos.md) — descripción de cada campo.
+- [`docs/tareas_pendientes.md`](docs/tareas_pendientes.md) — qué falta.
+- [`docs/evaluacion_riesgos.md`](docs/evaluacion_riesgos.md) — sesgo y privacidad.
 
 ## Datos personales y ética
 
 El corpus proviene de fuentes históricas públicas (catálogos y fallos de jurado de
 1915–1916). Incluye nombres de personas —en su mayoría mujeres artesanas— fallecidas
 hace más de un siglo; no hay datos personales sensibles en el sentido de la Ley 25.326.
-Ver `docs/evaluacion_riesgos.md`.
+Ver [`docs/evaluacion_riesgos.md`](docs/evaluacion_riesgos.md).

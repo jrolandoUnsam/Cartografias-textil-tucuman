@@ -5,8 +5,8 @@ hoja `Objetos` a nombres y escribe
 `data/processed/vista_plana_tabla_consolidada.xlsx`
 (hoja 'Objetos - Concursos Tucumán').
 
-Columnas: Concurso, Año, Expositora/Expositor, Ciudad, Categoría, N.º de orden,
-Descripción del objeto.
+Columnas: Concurso, Año, Expositora/Expositor, Ciudad, lat, lon, Categoría,
+N.º de orden, Descripción del objeto, Imagen.
 Orden de filas: Concurso (1915 → 1916), Categoría (alfabético), Expositora
 (alfabético, sensible a mayúsculas), N.º de orden.
 
@@ -18,14 +18,14 @@ from __future__ import annotations
 
 import pandas as pd
 
-from _util import GOLDEN, PROCESSED
+from _util import PROCESSED
 
 FUENTE = PROCESSED / "tabla_normalizada.xlsx"
 SALIDA = PROCESSED / "vista_plana_tabla_consolidada.xlsx"
 HOJA = "Objetos - Concursos Tucumán"
 
-COLS = ["Concurso", "Año", "Expositora/Expositor", "Ciudad", "Categoría",
-        "N.º de orden", "Descripción del objeto"]
+COLS = ["Concurso", "Año", "Expositora/Expositor", "Ciudad", "lat", "lon",
+        "Categoría", "N.º de orden", "Descripción del objeto", "Imagen"]
 
 
 def _hoja(xl: pd.ExcelFile, prefijo: str) -> pd.DataFrame:
@@ -47,8 +47,9 @@ def construir(fuente=FUENTE) -> pd.DataFrame:
     df = df.merge(exp[["persona_id", exp_col]].rename(columns={"persona_id": "expositora_id"}),
                   on="expositora_id", how="left")
     df = df.merge(cat, on="categoria_id", how="left")
-    df = df.merge(ciu[["ciudad_id", "nombre_ciudad", "nombre_provincia"]],
-                  on="ciudad_id", how="left")
+    cols_ciu = ["ciudad_id", "nombre_ciudad", "nombre_provincia"]
+    cols_ciu += [c for c in ("lat", "lon") if c in ciu.columns]
+    df = df.merge(ciu[cols_ciu], on="ciudad_id", how="left")
     # ciudad desconocida (ids 5, 8, 9, 10): se muestra la provincia
     ciudad = df["nombre_ciudad"].where(
         df["nombre_ciudad"].notna() & (df["nombre_ciudad"].astype(str).str.strip() != ""),
@@ -59,9 +60,12 @@ def construir(fuente=FUENTE) -> pd.DataFrame:
         "Año": df["anio"],
         "Expositora/Expositor": df[exp_col],
         "Ciudad": ciudad,
+        "lat": df["lat"] if "lat" in df.columns else pd.NA,
+        "lon": df["lon"] if "lon" in df.columns else pd.NA,
         "Categoría": df["nombre_categoria"],
         "N.º de orden": df["ORDEN"],
         "Descripción del objeto": df["OBJETO"],
+        "Imagen": df["imagen"] if "imagen" in df.columns else pd.NA,
     })
 
     # Concurso, Categoría y Expositora (alfabético, sensible a mayúsculas).
@@ -80,17 +84,6 @@ def main() -> None:
     out = construir()
     out.to_excel(SALIDA, sheet_name=HOJA, index=False)
     print(f"{len(out)} filas -> {SALIDA}")
-
-    golden = GOLDEN / "vista_plana_tabla_consolidada.xlsx"
-    if golden.exists():
-        g = pd.read_excel(golden)
-        if g.shape == out.shape and (g.columns == out.columns).all():
-            g2 = g.fillna("").astype(str).reset_index(drop=True)
-            o2 = out.fillna("").astype(str).reset_index(drop=True)
-            difs = (g2 != o2).any(axis=1).sum()
-            print(f"vs golden: {difs} filas distintas de {len(g2)}")
-        else:
-            print(f"vs golden: forma distinta {out.shape} vs {g.shape}")
 
 
 if __name__ == "__main__":

@@ -27,11 +27,16 @@ import unicodedata
 
 import pandas as pd
 
-from _util import GOLDEN, INTERIM, PROCESSED, RAIZ
+from _util import INTERIM, PROCESSED, RAIZ
 
 FUENTE = PROCESSED / "tabla_normalizada.xlsx"
 REVISION = INTERIM / "revision_duplicados.xlsx"
 INFORME = RAIZ / "docs" / "auditoria_comentarios.md"
+
+# Línea de base: la tabla tal como la dejó la investigadora, ANTES de que el
+# pipeline aplicara ninguna decisión. No se usa tests/golden/ porque ese
+# snapshot se re-congela junto con las salidas y la comparación queda circular.
+BASE = INTERIM / "tabla_normalizada_manual.xlsx"
 
 SEP_KW = [
     "no lo unificar", "no la unir", "no las unir", "dejaría así", "separad",
@@ -72,7 +77,7 @@ def lado_a_conservar(com: str, na: str, nb: str) -> str | None:
 def audita_personas(md: list[str]) -> None:
     xl = pd.ExcelFile(FUENTE)
     E, O = xl.parse("Expositoras"), xl.parse("Objetos")
-    g = pd.ExcelFile(GOLDEN / "tabla_normalizada.xlsx")
+    g = pd.ExcelFile(BASE)
     Eg = g.parse("Expositoras")
     ids = set(E["persona_id"])
     nom = E.set_index("persona_id")["Nombre"].to_dict()
@@ -198,7 +203,7 @@ def audita_premios(md: list[str]) -> None:
     P = xl.parse("Premios")
     E = xl.parse("Expositoras")
     O = xl.parse("Objetos")
-    g = pd.ExcelFile(GOLDEN / "tabla_normalizada.xlsx")
+    g = pd.ExcelFile(BASE)
     Pg = g.parse("Premios")
     nom_exp = E.set_index("persona_id")["Nombre"].to_dict()
     exp_de_obj = O.set_index("objeto_id")["expositora_id"].to_dict()
@@ -251,15 +256,52 @@ def audita_premios(md: list[str]) -> None:
         )
 
 
+def hallazgo_global() -> str:
+    """Compara la tabla actual contra el golden y describe el estado real.
+
+    Esta frase se calcula, no se escribe a mano: el encabezado de este informe
+    llegó a afirmar lo contrario de lo que decían sus propias filas.
+    """
+    a = pd.ExcelFile(FUENTE)
+    b = pd.ExcelFile(BASE)
+    Ea, Eg = a.parse("Expositoras"), b.parse("Expositoras")
+    Oa, Og = a.parse("Objetos"), b.parse("Objetos")
+
+    reasignados = 0
+    if len(Oa) == len(Og):
+        por_id = Og.set_index("objeto_id")["expositora_id"].to_dict()
+        reasignados = sum(
+            1 for oid, eid in zip(Oa["objeto_id"], Oa["expositora_id"])
+            if oid in por_id and por_id[oid] != eid
+        )
+    borradas = len(set(Eg["persona_id"]) - set(Ea["persona_id"]))
+
+    nom_a = Ea.set_index("persona_id")["Nombre"].to_dict()
+    nom_g = Eg.set_index("persona_id")["Nombre"].to_dict()
+    renombradas = sum(1 for k, v in nom_a.items()
+                      if k in nom_g and str(nom_g[k]) != str(v))
+
+    if reasignados == 0 and borradas == 0:
+        estado = ("la hoja `Objetos` es **idéntica** a la tabla de partida "
+                  "(`tabla_normalizada_manual.xlsx`): ningún `expositora_id` se "
+                  "reasignó, así que "
+                  "**ninguna fusión de expositoras se aplicó a la tabla**")
+    else:
+        estado = (f"respecto de la tabla de partida "
+                  f"(`tabla_normalizada_manual.xlsx`) se reasignaron "
+                  f"**{reasignados} objetos** y desaparecieron **{borradas} filas** "
+                  f"de `Expositoras`: las fusiones **sí** están aplicadas")
+    return f"**Hallazgo global:** {estado}. Nombres normalizados: {renombradas}.\n"
+
+
 def main() -> None:
     md: list[str] = [
         "# Auditoría de comentarios — estado de aplicación\n",
         f"_Generado por `src/pipeline/audit_comentarios.py` — no editar a mano._\n",
         "Compara cada decisión anotada a mano contra el estado actual de "
-        "`data/processed/tabla_normalizada.xlsx`.\n",
-        "**Hallazgo global:** la hoja `Objetos` es **idéntica** a la copia congelada "
-        "(`tests/golden/`): ningún `expositora_id` se reasignó, así que **ninguna "
-        "fusión de expositoras se aplicó a la tabla**. Sí se normalizaron 437 nombres.\n",
+        "`data/processed/tabla_normalizada.xlsx`, tomando como línea de base "
+        "`data/interim/tabla_normalizada_manual.xlsx` (la tabla antes del pipeline).\n",
+        hallazgo_global(),
         "**Veredictos:**\n"
         "- `SIN HACER` — la fila sigue igual que en el golden.\n"
         "- `SOLO NOMBRE` — se corrigió/normalizó el nombre, pero las dos filas **siguen "

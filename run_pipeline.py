@@ -1,6 +1,8 @@
 """Corre el pipeline completo: 01 -> 06.
 
 Uso:  python run_pipeline.py [desde]     (ej. `python run_pipeline.py 04`)
+
+El detalle de qué hace cada etapa está en `src/pipeline/README.md`.
 """
 from __future__ import annotations
 
@@ -12,7 +14,11 @@ ETAPAS = [
     "01_ingesta",
     "02_entidades",
     "03_candidatos",
-    "04_normalizar",
+    "03b_premios",
+    "04_aplicar_dedup",
+    "04b_titulo_nombres",
+    "04c_vincular_imagenes",
+    "04d_coordenadas",
     "05_vista_plana",
     "06_verificar",
 ]

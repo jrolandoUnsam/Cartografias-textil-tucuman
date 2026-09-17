@@ -24,15 +24,22 @@ desktop.ini
 ~$*.docx
 *.tmp
 
-# ---- Documentos e imágenes: NO van al repo (pesados / con copyright / escaneos
-#      de archivo). Su procedencia y lugar de resguardo se documentan en
-#      docs/referencias/README.md y data/raw/images/README.md ----
-*.pdf
-*.jpg
-*.jpeg
-*.JPG
-*.JPEG
-Imágenes/
+# ---- Documentos de referencia sueltos en la raíz (pesados / con copyright).
+#      Su procedencia y lugar de resguardo se documentan en
+#      docs/referencias/README.md. NO afecta PDFs que se quieran versionar en
+#      docs/ (informe final, plan de trabajo, etc.) ----
+/*.pdf
+
+# ---- Escaneos de archivo (pesados). Su procedencia se documenta en
+#      data/raw/images/README.md. NO afecta imágenes que se quieran versionar
+#      en otras carpetas (ej. una figura exportada a docs/ u outputs/) ----
+data/raw/images/**/*.jpg
+data/raw/images/**/*.jpeg
+data/raw/images/**/*.JPG
+data/raw/images/**/*.JPEG
+
+# ---- Borradores de trabajo sueltos en la raíz ----
+/scratch_*
 
 # ---- Salidas generadas voluminosas (los .xlsx de data/ SÍ se versionan) ----
 outputs/**/*.mbtiles

@@ -35,11 +35,26 @@ El objeto (texto + orden) es correcto, pero apunta a otra persona:
 
 ## Personas (`Expositoras`)
 
-- [ ] Aplicar del todo las fusiones `Hecho=True` de `revision_duplicados.xlsx`:
-  hoy los objetos ya apuntan al id que sobrevive, pero quedan **33 filas muertas**
-  en `Expositoras` (el lado B de cada par). Borrarlas. *(31 de las 33 son el lado
-  perdedor de un par `Hecho=True`; las otras 2 se resuelven con la corrección de
-  `expositora_id` de arriba.)*
+- [ ] **Quedan 3 filas muertas en `Expositoras`** (sin ningún objeto asociado), las
+  tres el lado perdedor de un par `Hecho=True` con comentario "dejamos con tilde" que
+  nunca entró al CSV de fusiones. Se cierran agregando 3 filas a
+  `decisiones/fusiones_expositoras.csv`:
+
+  | mantener | descartar | nombre |
+  |--:|--:|---|
+  | 256 | 148 | María Salinas |
+  | 301 | 187 | Lugarda Juárez |
+  | 345 | 329 | María Slopart de Llavi |
+
+- [ ] **3 pares tienen `Hecho=True` pero un comentario que dice lo contrario.** El
+  estado actual de la tabla (separadas) coincide con el comentario, no con la casilla:
+  corregir la casilla, no los datos.
+
+  | par | comentario |
+  |---|---|
+  | 182 / 183 | "estas no son la misma, quizás familia" |
+  | 92 / 201 | "estos no son el mismo nombre" |
+  | 161 / 255 | "las dejaría separadas de momento" |
 - [ ] `Nombre`: hacer `strip()` a toda la columna (~10 nombres tienen espacio final).
 - [ ] Revisar los ~20 pares casi-iguales (solo difieren en tilde/punto): decidir
   cuáles son la misma persona y cuáles se dejan separados (`Hecho=False`).
@@ -78,5 +93,25 @@ El objeto (texto + orden) es correcto, pero apunta a otra persona:
 
 ## Imágenes
 
-- [ ] Unificar `Imágenes/` (raíz) con `data/raw/images/` y registrar la procedencia
-  de cada toma.
+- [x] Unificar `Imágenes/` (raíz) con `data/raw/images/`. *(movidos a
+  `data/raw/images/albumes/`; no había duplicados)*
+- [ ] Decidir cuál de las dos tomas del álbum de 1915 es la de referencia y registrar
+  de qué documento físico salió cada foto (hoja `Fuentes`).
+
+## Entregables de la optativa
+
+- [ ] **`docs/uso_de_ia.md`** — qué asistentes de IA se usaron, en qué etapas y cómo se
+  verificó su aporte. Lo piden las *Recomendaciones LCD‑CIAI* §6 y el art. 14 de los
+  *Lineamientos UNSAM*. Se escribe al cierre, con el proyecto terminado.
+- [ ] **Cerrar `docs/evaluacion_riesgos.md` en conjunto con la dirección** y sacarle la
+  leyenda "a completar": §10 pide que la evaluación se haga con investigadora y
+  estudiante juntos. El contenido y el Nivel 1 ya están.
+- [ ] **Acordar con la dirección hasta dónde se publican datos y código** (§7). Es una
+  conversación que se registra en el **Anexo V — Autorización de Divulgación** del
+  informe final. No requiere ningún archivo en el repositorio.
+- [ ] **`outputs/` está vacío.** Los objetivos específicos 2 y 3 del formulario son
+  visualizaciones/mapas interactivos y vinculación registros↔imágenes. El 3 ya está
+  encaminado (`04c` asigna imagen a 981/981 objetos); el 2 vive solo dentro de
+  `notebooks/04_eda.ipynb` y no exporta nada.
+- [ ] **`docs/Hoja de horas.xlsx`** llega hasta el 2026‑08‑17. Es la evidencia de las
+  96 horas del cuatrimestre.

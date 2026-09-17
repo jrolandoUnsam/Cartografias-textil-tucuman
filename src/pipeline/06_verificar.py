@@ -1,6 +1,6 @@
 """Etapa 06 — Verificación.
 
-Compara las salidas de `data/processed/` y `data/intermid/revision_duplicados.xlsx`
+Compara las salidas de `data/processed/` y `data/interim/revision_duplicados.xlsx`
 contra las copias congeladas de `tests/golden/`, hoja por hoja, y reporta diferencias.
 """
 from __future__ import annotations
@@ -9,7 +9,7 @@ import sys
 
 import pandas as pd
 
-from _util import GOLDEN, INTERIM, PROCESSED  # noqa: F401  (intermid -> interim, ya migrado)
+from _util import GOLDEN, INTERIM, PROCESSED
 
 PARES = [
     (PROCESSED / "tabla_normalizada.xlsx", GOLDEN / "tabla_normalizada.xlsx"),

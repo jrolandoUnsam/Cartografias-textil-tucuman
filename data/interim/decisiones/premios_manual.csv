@@ -2,6 +2,11 @@ premio_id,objeto_id,persona_id,nota
 # Correcciones manuales para 03b_premios.py. Una fila por premio a corregir.
 # - premio_id: número de fila (0-based) en la hoja Premios (col 'premio_id' de la salida).
 # - objeto_id: fuerza el vínculo a ese objeto (dejar vacío si no aplica).
+# - objeto_id = "ninguno": fuerza a que quede SIN objeto, sin correr el cruce
+#   automático (usar cuando el cruce por número+categoría había asignado el
+#   objeto de otra persona — ver docs/bitacora.md).
 # - persona_id: fuerza la expositora (dejar vacío si no aplica).
 # - Se puede completar solo objeto_id, solo persona_id, o ambos.
-# Ejemplo:  46,,12,"Lastenia Barrero: el NÚM 19 no existe en PAÑUELOS del catálogo"
+# Ejemplos:
+#   46,,12,"Lastenia Barrero: el NÚM 19 no existe en PAÑUELOS del catálogo"
+#   60,ninguno,,"Argenia R. de Lautafy: el cruce automático le puso el objeto de Rosalía Gutiérrez"

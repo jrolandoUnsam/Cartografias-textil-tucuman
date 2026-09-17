@@ -26,6 +26,84 @@ descartadas. Cada entrada: fecha, decisión, motivo.
 - Dudas de transcripción (`J` vs `I`, `Panci` vs `Panei`, `Barrera` vs `Barrero`):
   se dejan sin fusionar (`Hecho = False`) y se anota el motivo.
 
+## 2026-09-14 — Bug en el vínculo Premios ↔ Objetos (`03b_premios.py`)
+
+- **Etiqueta `objeto_match` engañosa.** Cuando el cruce por `NÚM` + categoría
+  encontraba un único objeto candidato, la etiqueta `"num+categoria+persona"` se
+  ponía con solo chequear que *alguna* persona con ese nombre existiera en el
+  catálogo (`per_id is not None`) — sin verificar que esa persona fuera la dueña
+  del objeto elegido. Resultado: quedaban premios vinculados al objeto de otra
+  persona, con una etiqueta que decía "confirmado por persona" sin haberlo estado.
+  Encontrados así: filas 60 (Argenia R. de Lautafy → objeto de Rosalía Gutiérrez),
+  61 (Corina Aguirre → objeto de Consuelo Freixá), 99 (Dominga Nieva → objeto de
+  Isabel Ovejero, "colcha" del fallo vs "dos corbatas" del objeto).
+  Corregido: la etiqueta ahora solo dice "+persona" si el filtro de persona
+  realmente se aplicó a algún número del premio.
+- **Casos parecidos pero no necesariamente errores:** filas 58 (Mamerta Monteros
+  / "Mamerta Monteros -Escuela Sarmiento") y 79 (hermanas dominicas / "Hermanas
+  dominicas- asilo") — probablemente la misma persona/institución con el nombre
+  completado en el catálogo; no fusionadas, no confirmado.
+  Fila 62 (Mercedes Pereyra / María M. Pereira) ya la había revisado Larisa en
+  su comentario ("Coment LM"): confirma que es la misma persona, falta unificar
+  el nombre.
+- **`premios_manual.csv` ahora acepta `objeto_id = "ninguno"`** para forzar que
+  un premio quede sin objeto (sin correr el cruce automático), en vez de solo
+  poder forzar un `objeto_id` puntual.
+
+## 2026-09-15 — Limpieza del repositorio y parámetros del pipeline
+
+- **Parámetro único del pipeline: `UMBRAL = 87`** en `03_candidatos.py` — el ratio
+  mínimo (0–100) de `rapidfuzz` por debajo del cual un par de nombres no se propone
+  como candidato a duplicado. Con 87 salen 77 pares. Bajarlo aumenta el trabajo de
+  revisión manual y los falsos positivos; subirlo deja pasar variantes con partícula
+  ("Rosa V. de Lezcano" / "Rosa V. Lescano"), que es justo el caso que más aparece.
+  No hay modelos entrenados ni semillas de aleatoriedad: queda registrado acá por el
+  art. 19 de los *Lineamientos UNSAM* ("registro de modelos, versiones y parámetros").
+- **Las 42 fusiones de expositoras salieron del código a una tabla de decisión**
+  (`data/interim/decisiones/fusiones_expositoras.csv`). Estaban hardcodeadas en tres
+  listas Python dentro de `04_aplicar_dedup.py`; ahora el script solo ejecuta y la
+  decisión es un dato revisable sin abrir código, igual que el resto de
+  `data/interim/decisiones/`. La columna `origen` conserva de dónde salió cada una.
+- **La línea de base de `audit_comentarios.py` pasó de `tests/golden/` a
+  `tabla_normalizada_manual.xlsx`.** El golden se re-congela junto con las salidas, así
+  que la auditoría se comparaba contra una foto de sí misma y daba siempre "idéntica".
+  La base correcta es la tabla tal como la dejó la investigadora, antes de que el
+  pipeline aplicara nada. Con el cambio, el informe reporta 83 objetos reasignados y
+  48 filas de `Expositoras` eliminadas.
+- **El encabezado del informe de auditoría ahora se calcula.** Estaba escrito a mano
+  dentro del generador y afirmaba que ninguna fusión se había aplicado, mientras las
+  filas del mismo informe listaban 45 `FUSIÓN OK`.
+- **`04_normalizar.py` se quitó del repo.** Nunca se implementó y su explicación estaba
+  repetida en cuatro lugares. Queda en `git log` (`975476e`) y resumida en
+  `src/pipeline/README.md`.
+- **`premios_vinculados_v2.xlsx` pasó a ser `premios_vinculados.xlsx`.** Versionar a
+  mano dentro de un repo git deja al que clona viendo la salida vieja.
+- **Los álbumes de `Imágenes/` (raíz) se movieron a `data/raw/images/albumes/`.** No
+  eran duplicados de los catálogos: son dos tomas fotográficas distintas y no comparten
+  ningún nombre de archivo.
+
+## 2026-09-15 — El pipeline vuelve a ser acíclico (y reproducible)
+
+- **`03_candidatos.py` leía la salida de dos etapas posteriores.** Leía
+  `data/processed/tabla_normalizada.xlsx`, que escriben `04b` y `04c`, así que en cada
+  corrida la etapa 03 partía de la salida de la corrida anterior. Consecuencia medida:
+  con la tabla sin deduplicar, 519 expositoras → **75 pares**; una vez aplicadas las
+  fusiones, 471 expositoras → **22 pares**. El 12 de septiembre el archivo anotable se
+  reescribió de 77 filas a 22. Los pares no estaban "mal": esas duplicadas ya no
+  existían. Pero el pipeline dejaba de ser reproducible desde el crudo.
+- **Arreglo:** `03_candidatos` lee ahora `data/interim/tabla_normalizada_manual.xlsx`,
+  la misma línea de base fija que usan `04_aplicar_dedup` y `audit_comentarios`.
+  Ninguna etapa lee la salida de una posterior. Verificado: tres corridas seguidas dan
+  un archivo idéntico.
+- **`03_candidatos` dejó de destruir anotaciones.** Relee su propia salida y conserva
+  `Hecho`/`Comentarios` por `(id_A, id_B)`; los pares ya listados se mantienen aunque
+  la detección no los proponga (columna `detectado`), y `ya_fusionada` marca los que el
+  CSV de fusiones ya resolvió. Esta era la regla declarada en esta misma bitácora el
+  2026-09 ("nunca se pisan anotaciones") y que el código no cumplía.
+- **Dos bugs encontrados al escribir la prueba:** las celdas vacías de Excel llegaban
+  como `NaN` y se escribían como el texto literal `"nan"`; y `main()` resolvía las rutas
+  al importar el módulo en vez de al correrlo.
+
 ## Fuentes del crudo que NO entran a la base
 
 Hojas `no PRENSA-EL ORDEN`, `no ARCHIVO PADILLA`, `no Prensa-Rakow lib`: material de

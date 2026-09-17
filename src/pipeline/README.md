@@ -1,34 +1,81 @@
 # Pipeline
 
 Reconstruye, en código, el camino desde el Excel crudo hasta las tablas normalizadas.
+**Esta es la descripción canónica del flujo**: el README de la raíz apunta acá en vez
+de repetirla.
 
-| etapa | estado | qué hace |
-|---|---|---|
-| `01_ingesta` | **funciona** | raw xlsx → `data/interim/objetos_crudos.csv` (981 objetos; separa filas explotadas de 1916) |
-| `02_entidades` | esqueleto | listados provisionales de personas y ciudades (id por aparición) |
-| `03_candidatos` | **funciona** | **paso 1 dedup.** detección fuzzy pura (sin insumo manual) de pares de nombres de **expositoras** que podrían ser la misma → `data/interim/duplicados_expositoras_candidatos.xlsx` (77 pares, columnas `Hecho`/`Comentarios` vacías para anotar) |
-| `03b_premios` | **funciona** | agrega a una copia de la hoja `Premios` las columnas `persona_id` / `objeto_id` (misma cantidad de filas, mismo orden) → `data/interim/premios_vinculados.xlsx`. Correcciones a mano en `data/interim/decisiones/premios_manual.csv` |
-| `04_aplicar_dedup` | **pendiente** | **paso 3 dedup.** lee los `Comentarios` de `revision_duplicados_regenerado.xlsx` y ejecuta las fusiones (reapunta `expositora_id` en Objetos, elimina la fila perdedora, deja el mapeo) sobre una copia nueva de la tabla |
-| `05_vista_plana` | **funciona** | join de `tabla_normalizada.xlsx` → `data/processed/vista_plana_tabla_consolidada.xlsx` (981 filas; orden: concurso, categoría, expositora, y dentro del grupo el orden del catálogo) |
-| `06_verificar` | **funciona** | compara `data/processed/` y `revision_duplicados` contra `tests/golden/` |
-| `audit_comentarios` | **funciona** | audita fila por fila si cada comentario de `revision_duplicados` y de la hoja `Premios` se aplicó a `tabla_normalizada.xlsx` → `docs/auditoria_comentarios.md` |
+Correr todo: `python run_pipeline.py` (desde la raíz). Desde una etapa en adelante:
+`python run_pipeline.py 04`. Una etapa suelta: `python src/pipeline/01_ingesta.py`.
 
-Correr todo: `python run_pipeline.py` (desde la raíz). Una etapa suelta:
-`python src/pipeline/01_ingesta.py`.
+| etapa | entrada | salida | estado |
+|---|---|---|---|
+| `01_ingesta` | `data/raw/TUCUMÁN text 1915-16 DATOS.xlsx` | `data/interim/objetos_crudos.csv` (981 objetos; separa las filas explotadas de 1916) | funciona |
+| `02_entidades` | objetos_crudos | `personas_prov.csv`, `ciudades_prov.csv` (id por orden de aparición) | esqueleto |
+| `03_candidatos` | `data/interim/tabla_normalizada_manual.xlsx` (Expositoras, Ciudades, Objetos) | `data/interim/duplicados_expositoras_candidatos.xlsx` — 75 pares detectados, con `Hecho`/`Comentarios` para anotar. Conserva las anotaciones y los pares que ya figuraban | funciona |
+| `03b_premios` | tabla_normalizada (Premios) | `data/interim/premios_vinculados.xlsx` — misma cantidad de filas y mismo orden, con `persona_id`/`objeto_id` agregados | funciona |
+| `04_aplicar_dedup` | `data/interim/tabla_normalizada_manual.xlsx` + `decisiones/fusiones_expositoras.csv` | `data/interim/tabla_normalizada_dedup.xlsx` (42 decisiones en el CSV, 41 aplicables: una apunta a un id que ya no existe y el script lo avisa) | funciona |
+| `04b_titulo_nombres` | tabla_normalizada_dedup | `data/processed/tabla_normalizada.xlsx` (nombres ALLCAPS → Título) | funciona |
+| `04c_vincular_imagenes` | tabla_normalizada + hoja `Paginas_Catalogo` | tabla_normalizada con la columna `Objetos.imagen` | funciona |
+| `04d_coordenadas` | tabla_normalizada + `decisiones/coordenadas_ciudades.csv` | tabla_normalizada con las columnas `Ciudades.lat`/`Ciudades.lon` | funciona |
+| `05_vista_plana` | tabla_normalizada | `data/processed/vista_plana_tabla_consolidada.xlsx` (981 filas, incluye `lat`/`lon`) | funciona |
+| `06_verificar` | salidas + `tests/golden/` | reporte de diferencias, hoja por hoja | funciona |
+| `audit_comentarios` | tabla_normalizada + `tabla_normalizada_manual.xlsx` | `docs/auditoria_comentarios.md` | funciona, fuera de la corrida |
 
-## Insumos que no salen del crudo (tablas de decisión, en `data/interim/decisiones/`)
+## Por qué el pipeline es acíclico
 
+`03_candidatos` leía `data/processed/tabla_normalizada.xlsx`, que es lo que escriben
+`04b` y `04c` — dos etapas **posteriores**. Eso cerraba un ciclo: la etapa 03 leía la
+salida de la corrida anterior, y el resultado encogía en cada pasada (519 expositoras →
+75 pares; después de las fusiones, 471 → 22), reescribiendo el archivo anotable con
+menos filas de las que tenía.
+
+Hoy las tres etapas que necesitan una línea de base leen **la misma y fija**,
+`data/interim/tabla_normalizada_manual.xlsx`: `03_candidatos`, `04_aplicar_dedup` y
+`audit_comentarios`. Ninguna etapa lee la salida de una posterior, así que correr el
+pipeline dos veces da exactamente lo mismo.
+
+Además, `03_candidatos` nunca destruye trabajo manual: relee su propia salida y
+conserva `Hecho`/`Comentarios` emparejados por `(id_A, id_B)`, y mantiene los pares ya
+listados aunque la detección de hoy no los proponga (columna `detectado`). Es la regla
+que `docs/bitacora.md` fijaba desde el principio y que el código no implementaba.
+
+## Dónde empieza el código
+
+`data/processed/tabla_normalizada.xlsx` **no se arma desde el crudo**. La investigadora
+la mantiene a mano en Excel (`data/interim/tabla_normalizada_manual.xlsx`) y el pipeline
+en código arranca ahí: `04_aplicar_dedup` → `04b_titulo_nombres` → `04c_vincular_imagenes`.
+
+Automatizar también ese primer armado (crudo + tablas de decisión → tabla normalizada)
+era la etapa `04_normalizar`, que no llegó a implementarse y se quitó del repo. Si
+alguna vez se retoma, faltaría: resolver `expositora_id`/`ciudad_id`/`categoria_id` de
+cada objeto, el `Género`, y `nombre_ciudad_hoy`/`nombre_provincia` desde las tablas de
+decisión. Está en `git log` (commit `975476e`).
+
+## Insumos que no salen del crudo (`data/interim/decisiones/`)
+
+- `fusiones_expositoras.csv` — las 42 fusiones de expositoras duplicadas
+  (`mantener`, `descartar`, `origen`, `nota`). Cada fila corresponde a una decisión
+  anotada en `duplicados_expositoras_candidatos.xlsx`. `origen` dice si el comentario
+  indicaba explícitamente qué lado conservar (`decidida`), si no lo indicaba y se
+  aplicó el criterio "conservar el lado con más objetos" (`sin_lado`), o si es un
+  grupo de 3+ ids resuelto en conjunto (`cluster`).
 - `objetos_texto_override.csv` — celdas de texto que la investigadora corrigió a mano
-  respecto del catálogo (erratas, singular/plural, mayúsculas). Ya poblada con las
-  detectadas al comparar contra el golden.
-- `ciudades.csv` *(pendiente)* — `nombre_ciudad_hoy` y `nombre_provincia` de cada
-  localidad histórica.
+  respecto del catálogo (erratas, singular/plural, mayúsculas).
+- `premios_manual.csv` — correcciones al cruce Premios ↔ Objetos. Acepta
+  `objeto_id = "ninguno"` para forzar que un premio quede sin objeto.
+- `coordenadas_ciudades.csv` — `lat`/`lon` de cada ciudad (`ciudad_id`), cargadas a
+  mano por la investigadora (Google Maps). 53/77 cargadas; el resto queda vacío
+  (nombre ambiguo o desconocido) hasta que se complete o se decida un criterio.
+- `ciudades.csv` *(pendiente)* — `nombre_ciudad_hoy` y `nombre_provincia`.
 - `categorias.csv` *(pendiente)* — unificaciones de categorías entre 1915 y 1916.
-- `premios.csv` *(pendiente)* — hoja Premios (casi textual del fallo del jurado).
 
-## Nota sobre el "golden"
+## Parámetros
 
-`tests/golden/` son copias congeladas del estado actual de las salidas. Es un
-snapshot a mitad de normalización (dedup parcial) y tiene algún dato a revisar
-—p. ej. los objetos de la sección TAPICES de 1916 figuran con la categoría RANDAS—.
-Ver `docs/bitacora.md`.
+El único parámetro del pipeline es `UMBRAL = 87` en `03_candidatos.py`: el ratio
+mínimo (0–100) de `rapidfuzz` para proponer un par de nombres como candidato a
+duplicado. No hay modelos entrenados ni semillas de aleatoriedad.
+
+## Sobre `tests/golden/`
+
+Ver `tests/golden/README.md`. Resumen: es un snapshot congelado, no un test. Vale como
+verificación **solo si no se re-congela en el mismo commit que cambia el pipeline**.

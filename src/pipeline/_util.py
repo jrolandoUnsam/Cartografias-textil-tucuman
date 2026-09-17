@@ -11,11 +11,6 @@ DECISIONES = INTERIM / "decisiones"
 PROCESSED = RAIZ / "data" / "processed"
 GOLDEN = RAIZ / "tests" / "golden"
 
-HOJAS_CONCURSO = {
-    "1915 1er concurso EXPOS": 1,
-    "1916 Concurso Tejidos": 2,
-}
-
 def separar_orden_objeto(orden_celda: str, objeto_celda: str) -> list[tuple[int | None, str]]:
     """Separa filas 'explotadas' del catálogo de 1916.
 
