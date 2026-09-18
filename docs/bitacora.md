@@ -73,14 +73,9 @@ descartadas. Cada entrada: fecha, decisión, motivo.
 - **El encabezado del informe de auditoría ahora se calcula.** Estaba escrito a mano
   dentro del generador y afirmaba que ninguna fusión se había aplicado, mientras las
   filas del mismo informe listaban 45 `FUSIÓN OK`.
-- **`04_normalizar.py` se quitó del repo.** Nunca se implementó y su explicación estaba
-  repetida en cuatro lugares. Queda en `git log` (`975476e`) y resumida en
-  `src/pipeline/README.md`.
 - **`premios_vinculados_v2.xlsx` pasó a ser `premios_vinculados.xlsx`.** Versionar a
   mano dentro de un repo git deja al que clona viendo la salida vieja.
-- **Los álbumes de `Imágenes/` (raíz) se movieron a `data/raw/images/albumes/`.** No
-  eran duplicados de los catálogos: son dos tomas fotográficas distintas y no comparten
-  ningún nombre de archivo.
+
 
 ## 2026-09-15 — El pipeline vuelve a ser acíclico (y reproducible)
 
