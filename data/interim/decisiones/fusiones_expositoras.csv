@@ -28,7 +28,7 @@ mantener,descartar,origen,nota
 70,213,sin_lado,"María Cleofé de Bustamante — regla DE, la tienen los dos lados"
 78,101,sin_lado,"Antonia de Soria — regla DE, la tienen los dos lados"
 86,465,sin_lado,Juana Pérez
-222,115,sin_lado,María Ávila
+115,222,sin_lado,María Ávila
 126,269,sin_lado,Gregoria Luna
 194,312,sin_lado,Ramona de Pérez
 223,408,sin_lado,Elisa B. de Gramajo
@@ -41,3 +41,6 @@ mantener,descartar,origen,nota
 220,159 308,cluster,Dorotea C. de Lazarte
 234,289 470,cluster,"Sofía C. (de) González — ojo, el nombre difiere en 'de'"
 252,59 316,cluster,Lorenza V. (de) Panei
+256,148,decidida,María Salinas con tilde
+301,187,decidida,Lugarda Juárez con tilde
+345,329,decidida,María Slopart de Llavi

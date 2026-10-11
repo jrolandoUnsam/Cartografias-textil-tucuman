@@ -4,10 +4,10 @@ _Generado por `src/pipeline/audit_comentarios.py` — no editar a mano._
 
 Compara cada decisión anotada a mano contra el estado actual de `data/processed/tabla_normalizada.xlsx`, tomando como línea de base `data/interim/tabla_normalizada_manual.xlsx` (la tabla antes del pipeline).
 
-**Hallazgo global:** respecto de la tabla de partida (`tabla_normalizada_manual.xlsx`) se reasignaron **83 objetos** y desaparecieron **48 filas** de `Expositoras`: las fusiones **sí** están aplicadas. Nombres normalizados: 0.
+**Hallazgo global:** respecto de la tabla de partida (`tabla_normalizada_manual.xlsx`) se reasignaron **63 objetos** y desaparecieron **51 filas** de `Expositoras`: las fusiones **sí** están aplicadas. Nombres normalizados: 0.
 
 **Veredictos:**
-- `SIN HACER` — la fila sigue igual que en el golden.
+- `SIN HACER` — la fila sigue igual que en la línea de base.
 - `SOLO NOMBRE` — se corrigió/normalizó el nombre, pero las dos filas **siguen sin fusionar** (los objetos no se movieron).
 - `SOLO NOMBRE · OBJETOS PARTIDOS` — ídem, y además hay objetos en la fila que el comentario manda descartar → fusionar no es solo borrar.
 - `FUSIÓN OK` — una fila desapareció y quedó la que pide el comentario.
@@ -17,7 +17,7 @@ Compara cada decisión anotada a mano contra el estado actual de `data/processed
 
 ## 1. `revision_duplicados.xlsx` — hoja *Personas - candidatos*
 
-_Conteo:_ CONTRA LO PEDIDO (se fusionó): 1 · FUSIÓN OK: 45 · FUSIÓN REVISAR (se pidió A, quedó B): 1 · OK SEPARAR: 7 · SIN HACER: 7 · ninguna existe: 8
+_Conteo:_ CONTRA LO PEDIDO (se fusionó): 1 · FUSIÓN OK: 49 · OK SEPARAR: 7 · SIN HACER: 4 · ninguna existe: 8
 
 | # | id A / nombre | id B / nombre | Hecho | Comentario | Decisión leída | Estado actual | Veredicto |
 |---|---|---|---|---|---|---|---|
@@ -36,7 +36,7 @@ _Conteo:_ CONTRA LO PEDIDO (se fusionó): 1 · FUSIÓN OK: 45 · FUSIÓN REVISAR
 | 13 | `270` Felisa R. de Sánchez | `278` — | True | dejamos con tilde | Unificar → conservar A (270) | 1 fila: 270 (Felisa R. de Sánchez) · 9 obj | **FUSIÓN OK** |
 | 14 | `286` — | `492` Superiora del Colegio Santa Rosa de Viterbo | True | dejamos b | Unificar → conservar B (492) | 1 fila: 492 (Superiora del Colegio Santa Rosa de Viterbo) · 2 obj | **FUSIÓN OK** |
 | 15 | `313` — | `319` — | True | dejamos con tilde | Unificar → conservar B (319) | ninguna de las dos existe | **⚠ ninguna existe** |
-| 16 | `329` María Slopart de Llavi | `345` María Slopart de Llavi | True | dejamos con tilde | Unificar → conservar B (345) | 2 filas · A:0 obj, B:2 obj | **SIN HACER** |
+| 16 | `329` — | `345` María Slopart de Llavi | True | dejamos con tilde | Unificar → conservar B (345) | 1 fila: 345 (María Slopart de Llavi) · 2 obj | **FUSIÓN OK** |
 | 17 | `3` Isaura Sorroza de Risso Patron | `442` — | True | dejamos A | Unificar → conservar A (3) | 1 fila: 3 (Isaura Sorroza de Risso Patron) · 3 obj | **FUSIÓN OK** |
 | 18 | `12` — | `120` Lastenia Barrero | False | Dejamos barrero, fue una figura importante | Unificar → conservar B (120) | 1 fila: 120 (Lastenia Barrero) · 2 obj | **FUSIÓN OK** |
 | 19 | `70` María Cleofé de Bustamante | `213` — | False | DE /en los casos en que es DE mantenerlo (aporta más info) | Unificar → conservar A (70) | 1 fila: 70 (María Cleofé de Bustamante) · 2 obj | **FUSIÓN OK** |
@@ -48,18 +48,18 @@ _Conteo:_ CONTRA LO PEDIDO (se fusionó): 1 · FUSIÓN OK: 45 · FUSIÓN REVISAR
 | 25 | `255` Delina I. de Román | `264` Delina I. de Román | False | J o I? Además, aparece en 3 ciudades distintas: Belén, Ciudad y Catamarca | Unificar (cualquiera de las dos) | 2 filas · A:1 obj, B:3 obj | **SIN HACER** |
 | 26 | `8` — | `87` Isabel del Río | True | dejamos con tilde | Unificar → conservar B (87) | 1 fila: 87 (Isabel del Río) · 2 obj | **FUSIÓN OK** |
 | 27 | `165` — | `297` Lorenza de Díaz | True | dejamos con tilde | Unificar → conservar B (297) | 1 fila: 297 (Lorenza de Díaz) · 2 obj | **FUSIÓN OK** |
-| 28 | `187` Lugarda Juárez | `301` Lugarda Juárez | True | dejamos con tilde | Unificar → conservar B (301) | 2 filas · A:0 obj, B:2 obj | **SIN HACER** |
+| 28 | `187` — | `301` Lugarda Juárez | True | dejamos con tilde | Unificar → conservar B (301) | 1 fila: 301 (Lugarda Juárez) · 2 obj | **FUSIÓN OK** |
 | 29 | `194` Ramona de Pérez | `312` — | True | dejamos con tilde | Unificar → conservar A (194) | 1 fila: 194 (Ramona de Pérez) · 2 obj | **FUSIÓN OK** |
 | 30 | `221` Segunda Giménez | `268` Segunda Jiménez | False | De momento no las uniría (la vicuña es una práctica tan específica que me da duda, no son dos vicuñas las que mandó) | Mantener SEPARADAS | 2 filas · A:1 obj, B:1 obj | **OK SEPARAR** |
 | 31 | `19` Mercedes del Moral | `441` Mercedes G. del Moral | False | Aparece como de San Miguel 1915 y de Monteros 1916 /lo mantendría como está | Mantener SEPARADAS | 2 filas · A:3 obj, B:1 obj | **OK SEPARAR** |
 | 32 | `52` Edelmira C. de Roldán | `261` — | True | dejamos el A | Unificar → conservar A (52) | 1 fila: 52 (Edelmira C. de Roldán) · 8 obj | **FUSIÓN OK** |
-| 33 | `148` María Salinas | `256` María Salinas | True | dejamos con tilde | Unificar → conservar B (256) | 2 filas · A:0 obj, B:4 obj | **SIN HACER** |
+| 33 | `148` — | `256` María Salinas | True | dejamos con tilde | Unificar → conservar B (256) | 1 fila: 256 (María Salinas) · 4 obj | **FUSIÓN OK** |
 | 34 | `191` — | `302` María A. de Argañaraz | False | DE /en los casos en que es DE mantenerlo (aporta más info) | Unificar → conservar B (302) | 1 fila: 302 (María A. de Argañaraz) · 2 obj | **FUSIÓN OK** |
 | 35 | `220` Dorotea C. de Lazarte | `308` — | False | DE /en los casos en que es DE mantenerlo (aporta más info) | Unificar → conservar A (220) | 1 fila: 220 (Dorotea C. de Lazarte) · 3 obj | **FUSIÓN OK** |
 | 36 | `231` Rita González | `290` — | True | dejamos con tilde | Unificar → conservar A (231) | 1 fila: 231 (Rita González) · 2 obj | **FUSIÓN OK** |
 | 37 | `7` — | `32` Ana del Río | True | dejamos con tilde | Unificar → conservar B (32) | 1 fila: 32 (Ana del Río) · 2 obj | **FUSIÓN OK** |
 | 38 | `86` Juana Pérez | `465` — | True | dejamos con tilde | Unificar → conservar A (86) | 1 fila: 86 (Juana Pérez) · 2 obj | **FUSIÓN OK** |
-| 39 | `115` — | `222` María Ávila | True | dejamos con tilde | Unificar → conservar A (115) | 1 fila: 222 (María Ávila) · 20 obj | **⚠ FUSIÓN REVISAR (se pidió A, quedó B)** |
+| 39 | `115` María Ávila | `222` — | True | dejamos con tilde | Unificar → conservar A (115) | 1 fila: 115 (María Ávila) · 20 obj | **FUSIÓN OK** |
 | 40 | `118` — | `271` — | True | dejamos b | Unificar → conservar B (271) | ninguna de las dos existe | **⚠ ninguna existe** |
 | 41 | `152` — | `323` Mercedes Ruiz de Arzuaga | True | dejamos el b | Unificar → conservar B (323) | 1 fila: 323 (Mercedes Ruiz de Arzuaga) · 2 obj | **FUSIÓN OK** |
 | 42 | `159` — | `308` — | True | ídem arriba | Unificar (cualquiera de las dos) | ninguna de las dos existe | **⚠ ninguna existe** |
