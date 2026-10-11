@@ -21,6 +21,9 @@ Veredictos:
   OK SEPARAR     se pidió NO unificar y siguen las dos filas
   CONTRA LO PEDIDO  se pidió separar y se fusionó (o al revés)
   OBJETOS PARTIDOS  además: hay objetos en la fila que el comentario descarta
+  FUSIÓN OK (en un tercer id)  las dos desaparecieron porque entraron en un grupo
+                 de 3+ y quedó otro id con los objetos de ambas
+  DUDA ABIERTA   el comentario sólo pregunta ("J o I?"): no hay decisión que verificar
 """
 from __future__ import annotations
 
@@ -39,12 +42,22 @@ INFORME = RAIZ / "docs" / "auditoria_comentarios.md"
 # pipeline aplicara ninguna decisión. No se usa tests/golden/ porque ese
 # snapshot se re-congela junto con las salidas y la comparación queda circular.
 BASE = INTERIM / "tabla_normalizada_manual.xlsx"
+FUSIONES = INTERIM / "decisiones" / "fusiones_expositoras.csv"
 
 SEP_KW = [
     "no lo unificar", "no la unir", "no las unir", "dejaría así", "separad",
-    "mantendría como está", "dejaría cada", "de momento no", "madre e hija",
+    "mantendría como está", "de momento no", "madre e hija",
     "no son la misma", "no son el mismo", "estas no son", "no queda claro",
 ]
+
+
+# "dejaría cada ciudad como está" (Dalmira González Sorol) habla de la ciudad de cada
+# envío, no de separar a la persona: la ciudad va en cada objeto y sobrevive a la
+# fusión. Antes "dejaría cada" estaba en SEP_KW y daba un falso "CONTRA LO PEDIDO".
+CIUDAD_KW = ["cada ciudad"]
+
+# Un comentario que sólo pregunta ("J o I? ...") no es una decisión de unificar.
+DECIDE_KW = ["unifi", "dejamos", "dejar", "vamos con", "mantenerlo", "con tilde"]
 
 
 def tildes(s: str) -> bool:
@@ -76,11 +89,24 @@ def lado_a_conservar(com: str, na: str, nb: str) -> str | None:
     return None
 
 
+def destino_fusion(pid: int, Og: pd.DataFrame, O: pd.DataFrame) -> set[int]:
+    """Ids que tienen hoy los objetos que `pid` tenía en la línea de base. Si no
+    tenía objetos, el id que lo absorbe según decisiones/fusiones_expositoras.csv."""
+    objs = Og.loc[Og["expositora_id"] == pid, "objeto_id"]
+    destinos = set(O.loc[O["objeto_id"].isin(objs), "expositora_id"])
+    if not destinos and FUSIONES.exists():
+        F = pd.read_csv(FUSIONES, dtype=str)
+        for mantener, descartar in zip(F["mantener"], F["descartar"]):
+            if str(pid) in str(descartar).split():
+                destinos.add(int(mantener))
+    return destinos
+
+
 def audita_personas(md: list[str]) -> None:
     xl = pd.ExcelFile(FUENTE)
     E, O = xl.parse("Expositoras"), xl.parse("Objetos")
     g = pd.ExcelFile(BASE)
-    Eg = g.parse("Expositoras")
+    Eg, Og = g.parse("Expositoras"), g.parse("Objetos")
     ids = set(E["persona_id"])
     nom = E.set_index("persona_id")["Nombre"].to_dict()
     nom_g = Eg.set_index("persona_id")["Nombre"].to_dict()
@@ -107,9 +133,14 @@ def audita_personas(md: list[str]) -> None:
         cl = com.lower()
 
         separar = any(k in cl for k in SEP_KW)
+        duda = "?" in cl and not separar and not any(k in cl for k in DECIDE_KW)
         lado = lado_a_conservar(com, str(r["nombre_A"]), str(r["nombre_B"]))
         if separar:
             decision = "Mantener SEPARADAS"
+        elif duda:
+            decision = "Duda (sin decisión)"
+        elif any(k in cl for k in CIUDAD_KW):
+            decision = "Unificar (la ciudad queda en cada objeto)"
         elif lado == "A":
             decision = f"Unificar → conservar A ({a})"
         elif lado == "B":
@@ -127,11 +158,20 @@ def audita_personas(md: list[str]) -> None:
             vive = a if ea else b
             estado = f"1 fila: {vive} ({nom.get(vive)}) · {n_obj.get(vive, 0)} obj"
         else:
-            estado = "ninguna de las dos existe"
+            # Las dos desaparecieron: casi siempre porque entraron en un grupo de 3+
+            # y quedó un tercer id (p. ej. 313 y 319 -> 196 Concepción de Pérez).
+            destinos = destino_fusion(a, Og, O) | destino_fusion(b, Og, O)
+            if len(destinos) == 1:
+                d = destinos.pop()
+                estado = f"las dos fusionadas en `{d}` ({nom.get(d)}) · {n_obj.get(d, 0)} obj"
+            else:
+                estado = "ninguna de las dos existe"
 
         # veredicto
         if separar:
             v = "OK SEPARAR" if (ea and eb) else "⚠ CONTRA LO PEDIDO (se fusionó)"
+        elif duda:
+            v = "DUDA ABIERTA" if (ea and eb) else "fusionada (el comentario era una duda)"
         elif ea and eb:
             v = "SOLO NOMBRE" if cambio_nombre else "SIN HACER"
             descartada = a if lado == "B" else (b if lado == "A" else None)
@@ -144,6 +184,8 @@ def audita_personas(md: list[str]) -> None:
                 v = "FUSIÓN OK"
             else:
                 v = f"⚠ FUSIÓN REVISAR (se pidió {lado}, quedó {quien})"
+        elif estado.startswith("las dos fusionadas"):
+            v = "FUSIÓN OK (en un tercer id)"
         else:
             v = "⚠ ninguna existe"
 
@@ -248,7 +290,9 @@ def audita_premios(md: list[str]) -> None:
         if not obj:
             estado = "decisión: sin objeto en el catálogo (queda como nota, sin lugar formal aún)"
         elif "ezequiela" in c and "esequiela" in c:
-            estado = "PENDIENTE: LM pide 'Ezequiela'; la expositora sigue como 'Esequiela'"
+            estado = ("resuelto: la expositora ya figura como 'Ezequiela'"
+                      if "ezequiela" in real.lower() else
+                      "PENDIENTE: LM pide 'Ezequiela'; la expositora sigue como 'Esequiela'")
         elif any(k in c for k in ["vs", "de +", "de zavalia", "segundo", "aparentemente", "encontramos", "r."]):
             estado = "observación de forma del nombre — comparar contra 'Nombre real' y decidir"
         else:
@@ -313,7 +357,10 @@ def main() -> None:
         "- `FUSIÓN OK` — una fila desapareció y quedó la que pide el comentario.\n"
         "- `FUSIÓN REVISAR` — una fila desapareció pero quedó la otra.\n"
         "- `OK SEPARAR` — se pidió **no** unificar y siguen las dos filas (correcto).\n"
-        "- `CONTRA LO PEDIDO` — se pidió separar y se fusionó, o al revés.\n",
+        "- `CONTRA LO PEDIDO` — se pidió separar y se fusionó, o al revés.\n"
+        "- `FUSIÓN OK (en un tercer id)` — las dos filas desaparecieron porque entraron "
+        "en un grupo de 3 o más; sus objetos están juntos en otro id.\n"
+        "- `DUDA ABIERTA` — el comentario sólo pregunta; no hay decisión que verificar.\n",
     ]
     audita_personas(md)
     audita_ciudades(md)

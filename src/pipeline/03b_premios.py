@@ -31,8 +31,10 @@ Columnas agregadas:
                                    premio abarca un rango ("17, 18, 19, 20 y 21")
     objeto_match                   cómo se resolvió, o el motivo si quedó vacío
     candidato_rechazado            objeto que se hubiera puesto sin el chequeo de
-                                   nombre, y de quién es en realidad (solo si se
-                                   rechazó algo)
+                                   nombre, y de quién es en realidad; los candidatos
+                                   cuando hay varios y nada permite elegir ("ambiguo:
+                                   ..."); la persona descartada por parecido bajo
+                                   UMBRAL_PERSONA_SOLA. Vacío si no pasó nada de eso
     revisar                        X si hay que mirarlo a mano
 
 Correcciones a mano: data/interim/decisiones/premios_manual.csv
@@ -54,6 +56,14 @@ FUENTE = PROCESSED / "tabla_normalizada.xlsx"
 SALIDA = INTERIM / "premios_vinculados.xlsx"
 MANUAL = DECISIONES / "premios_manual.csv"
 UMBRAL_NOMBRE = 60  # 0-100, mismo umbral que ya usaba el desempate por texto
+# Premio sin objeto: la persona sale sólo del parecido de nombre contra todo el
+# catálogo. Por debajo de esto se deja vacía en vez de adivinar (con 60-89 salían
+# "Alejandrina Peiró" -> Valentina Pérez, "Rosa Barceló" -> Rosa Baralo).
+UMBRAL_PERSONA_SOLA = 90
+# Varios objetos con el mismo número: se elige por la dueña sólo si el nombre se
+# parece de verdad. Con 60 "Marina Belmonte" se quedaba con el objeto de Isabel
+# Maidana (62); los casos buenos dan 89-100.
+UMBRAL_ELEGIR = 80
 
 # CATEGORÍA del fallo -> categoría(s) del catálogo 1915.
 CROSSWALK = {
@@ -65,8 +75,12 @@ CROSSWALK = {
     "RANDA": ["RANDAS"],
     "encaje": ["ENCAJES VARIOS"],
     "DESHILADO": ["DESHILADO"],
-    "BORDADO EN BLANCO Y SEDA": ["BORDADO EN BLANCO Y SEDA"],
-    "CROCHET E IRLANDA": ["CROCHET"],
+    # El fallo agrupa secciones que el catálogo separa: el punto de Irlanda de 1915
+    # está en ENCAJES VARIOS (Argenia R. de Lautafy n.º 13, Corina Aguirre n.º 14) y
+    # el fallo de bordados incluye deshilados (Sta Sandés n.º 24, "sección deshilados").
+    # Con dos categorías un mismo número puede dar dos objetos: desempata la dueña.
+    "BORDADO EN BLANCO Y SEDA": ["BORDADO EN BLANCO Y SEDA", "DESHILADO"],
+    "CROCHET E IRLANDA": ["CROCHET", "ENCAJES VARIOS"],
     "Raffia": ["RAFFIA IMITACIÓN CON HOJAS DE CAÑA"],
     "Jergón": ["PELLONES Y JERGONES"],
     "SENDERO": ["TEJIDOS VARIOS"],
@@ -87,13 +101,40 @@ def parse_num(v) -> list[int]:
     return [int(x) for x in re.findall(r"\d+", s)]
 
 
+def variantes(nombre) -> list[str]:
+    """Las lecturas posibles de un nombre con corchetes, ya normalizadas.
+
+    Los corchetes marcan la variante con que otra fuente nombra a la misma persona
+    (ver docs/bitacora.md): 'Delicia [Delia] Ruiz' es 'Delicia Ruiz' o 'Delia Ruiz';
+    'Rosa V. [de] Lescano' es 'Rosa V. Lescano' o 'Rosa V. de Lescano'. Comparar el
+    texto con los corchetes adentro hacía que el fallo no matcheara con su dueña.
+    """
+    s = str(nombre)
+    m = re.search(r"\[(.*?)\]", s)
+    if not m:
+        return [norm(s)]
+    antes, dentro, despues = s[:m.start()], m.group(1), s[m.end():]
+    palabras = antes.split()
+    reemplazo = " ".join(palabras[:-1] + [dentro]) if palabras else dentro
+    lecturas = {antes + despues,                 # sin la variante
+                antes + dentro + despues,        # la variante como palabra agregada
+                reemplazo + despues}             # la variante en lugar de la palabra anterior
+    return [v for v in {norm(x) for x in lecturas} if v]
+
+
+def _score(a, b, *scorers) -> float:
+    na = norm(a)
+    if not na:
+        return 0.0
+    return max((sc(na, v) for v in variantes(b) for sc in scorers), default=0.0)
+
+
 def match_persona(nombre, E) -> tuple[int | None, str, float]:
-    obj = norm(nombre)
-    if not obj:
+    if not norm(nombre):
         return None, "", 0.0
     best = (None, "", 0.0)
     for pid, nom in zip(E["persona_id"], E["Nombre"]):
-        sc = max(fuzz.token_sort_ratio(obj, norm(nom)), fuzz.ratio(obj, norm(nom)))
+        sc = _score(nombre, nom, fuzz.token_sort_ratio, fuzz.ratio)
         if sc > best[2]:
             best = (pid, nom, round(sc, 1))
     return best
@@ -103,10 +144,29 @@ def nombre_similar(a, b) -> float:
     """0-100: qué tan parecidos son dos nombres (mismo criterio que match_persona,
     pero con token_set_ratio también, para tolerar que uno tenga palabras de más,
     p. ej. 'Mamerta Monteros' vs 'Mamerta Monteros -Escuela Sarmiento')."""
-    na, nb = norm(a), norm(b)
-    if not na or not nb:
-        return 0.0
-    return max(fuzz.token_sort_ratio(na, nb), fuzz.ratio(na, nb), fuzz.token_set_ratio(na, nb))
+    return _score(a, b, fuzz.token_sort_ratio, fuzz.ratio, fuzz.token_set_ratio)
+
+
+def elegir(sub: pd.DataFrame, nombre_premio, obj_label: str,
+           nombre_por_objeto: dict) -> tuple[int | None, str]:
+    """Entre varios objetos candidatos, elige uno. Devuelve (objeto_id, nota).
+
+    1. el de la dueña cuyo nombre más se parece al del premio, si supera
+       UMBRAL_ELEGIR y no empata con otro;
+    2. si no, el de texto más parecido al OBJETO del fallo (criterio anterior);
+    3. si tampoco hay texto, ninguno: la nota lista los candidatos para decidir a mano.
+    """
+    sc = sub["objeto_id"].map(lambda o: nombre_similar(nombre_premio, nombre_por_objeto.get(o, "")))
+    top = sc.max()
+    if top >= UMBRAL_ELEGIR and (sc == top).sum() == 1:
+        return int(sub.loc[sc.idxmax(), "objeto_id"]), ""
+    if obj_label not in ("", "nan"):
+        s = sub.assign(_s=sub["OBJETO"].map(lambda t: fuzz.token_set_ratio(norm(obj_label), norm(t))))
+        return int(s.sort_values("_s").iloc[-1]["objeto_id"]), ""
+    nota = "ambiguo: " + " / ".join(
+        f"{int(o)} {c} ({nombre_por_objeto.get(o, '')})"
+        for o, c in zip(sub["objeto_id"], sub["nombre_categoria"]))
+    return None, nota
 
 
 def main() -> None:
@@ -123,6 +183,7 @@ def main() -> None:
     nombre_por_objeto = O.assign(
         _nombre=O["expositora_id"].map(nombre_por_persona)
     ).set_index("objeto_id")["_nombre"].to_dict()
+    dueno_por_objeto = O.set_index("objeto_id")["expositora_id"].to_dict()
 
     manual: dict[int, dict] = {}
     if MANUAL.exists():
@@ -137,6 +198,20 @@ def main() -> None:
                 d["objeto_id"] = int(m["objeto_id"])
             if pd.notna(m.get("persona_id")):
                 d["persona_id"] = int(m["persona_id"])
+
+    # Vínculos resueltos a mano dentro de la propia hoja Premios (objeto_match =
+    # "Revisado a mano"), anteriores a premios_manual.csv. Sin esto se perdían: el
+    # premio de Dominga Nieva cita el n.º 9 y su colcha es el n.º 4 del catálogo
+    # (objeto 104). Lo que diga premios_manual.csv tiene prioridad.
+    if "objeto_match" in P.columns:
+        for pid, r in P.iterrows():
+            if str(r["objeto_match"]).strip().lower() != "revisado a mano":
+                continue
+            d = manual.setdefault(pid, {})
+            if pd.notna(r.get("objeto_id")) and not d.get("sin_objeto"):
+                d.setdefault("objeto_id", int(float(str(r["objeto_id"]).split(";")[0])))
+            if pd.notna(r.get("persona_id")):
+                d.setdefault("persona_id", int(r["persona_id"]))
 
     cols = {"persona_id": [], "persona": [], "persona_score": [],
             "objeto_id": [], "objeto_match": [], "candidato_rechazado": [], "revisar": []}
@@ -166,6 +241,7 @@ def main() -> None:
 
         ids: list[int] = []
         metodo = ""
+        ambiguos: list[str] = []
         if pid in manual and manual[pid].get("sin_objeto"):
             metodo = "sin objeto (forzado a mano: el cruce automático asignaba otra persona)"
         elif pid in manual and "objeto_id" in manual[pid]:
@@ -180,10 +256,12 @@ def main() -> None:
                     persona_confirmo = True
                 if len(sub) == 1:
                     ids.append(int(sub.iloc[0]["objeto_id"]))
-                elif len(sub) > 1 and obj_label not in ("", "nan"):
-                    sub = sub.assign(_s=sub["OBJETO"].map(
-                        lambda t: fuzz.token_set_ratio(norm(obj_label), norm(t))))
-                    ids.append(int(sub.sort_values("_s").iloc[-1]["objeto_id"]))
+                elif len(sub) > 1:
+                    oid, nota = elegir(sub, r["NOMBRE"], obj_label, nombre_por_objeto)
+                    if oid is not None:
+                        ids.append(oid)
+                    else:
+                        ambiguos.append(f"n.º {n} {nota}")
             # antes: "+persona" se agregaba solo por haber encontrado una persona con
             # ese nombre en algún lado del catálogo (per_id is not None), sin chequear
             # si esa persona tuvo algo que ver con el objeto elegido. Eso etiquetaba
@@ -203,6 +281,9 @@ def main() -> None:
                 g = sub.sort_values("_s").iloc[-1]
                 if g["_s"] >= 60:
                     ids, metodo = [int(g["objeto_id"])], f"persona+texto({int(g._s)})"
+            elif len(sub) > 1:
+                ambiguos.append("ambiguo: " + " / ".join(
+                    f"{int(o)} {c}" for o, c in zip(sub["objeto_id"], sub["nombre_categoria"])))
 
         # --- chequeo final: el nombre del premio, ¿se parece al del dueño real? ---
         # No se aplica a "manual" (decisión explícita a mano, se respeta tal cual).
@@ -224,10 +305,33 @@ def main() -> None:
             if not ids and rechazos:
                 metodo = "rechazado por nombre: revisar a mano"
 
+        # --- persona = dueña del objeto confirmado ---
+        # La persona se eligió arriba sólo por parecido de nombre, contra todo el
+        # catálogo; si el objeto quedó confirmado (número + categoría + nombre), su
+        # dueña es mejor evidencia. Sin esto, "Mercedes Pereyra" quedaba con
+        # Mercedes Pérez aunque el objeto 174 fuera de María Mercedes Pereira.
+        duenas = {dueno_por_objeto.get(oid) for oid in ids}
+        manual_persona = pid in manual and "persona_id" in manual[pid]
+        if len(duenas) == 1 and None not in duenas and not manual_persona:
+            duena = duenas.pop()
+            if duena != per_id:
+                per_id = duena
+                per_nom = nombre_por_persona.get(duena, "")
+                per_sc = round(nombre_similar(r["NOMBRE"], per_nom), 1)
+
         fuera_cat = "fuera de cat" in str(r["OBSERVACIONES"]).lower()
         forzado_sin_objeto = pid in manual and manual[pid].get("sin_objeto")
         if not ids and not forzado_sin_objeto and not rechazado:
             metodo = "premio fuera de catálogo" if fuera_cat else "sin objeto: revisar a mano"
+            if ambiguos:
+                metodo = "varios candidatos: revisar a mano"
+                rechazado = "; ".join(ambiguos)
+
+        # Sin objeto que la respalde, la persona es sólo un parecido de nombre.
+        if not ids and not manual_persona and per_id is not None and per_sc < UMBRAL_PERSONA_SOLA:
+            rechazado = "; ".join(x for x in (rechazado,
+                f"persona descartada: {per_nom!r} (score {per_sc})") if x)
+            per_id, per_nom, per_sc = None, "", 0.0
         revisar = "X" if (not ids or per_sc < 90) else ""
 
         cols["persona_id"].append(per_id if per_id is not None else "")
@@ -237,6 +341,23 @@ def main() -> None:
         cols["objeto_match"].append(metodo)
         cols["candidato_rechazado"].append(rechazado)
         cols["revisar"].append(revisar)
+
+    # Un objeto premiado dos veces casi siempre es un vínculo de más (p. ej. un
+    # premio "s/d" que cae por persona+categoría sobre un objeto que ya tiene su
+    # premio). No se decide cuál sobra: se marcan los dos para revisar.
+    usos: dict[int, list[int]] = {}
+    for i, ids_txt in enumerate(cols["objeto_id"]):
+        for oid in filter(None, str(ids_txt).split(";")):
+            usos.setdefault(int(oid), []).append(i)
+    for oid, filas in usos.items():
+        if len(filas) < 2:
+            continue
+        for i in filas:
+            otras = ", ".join(str(j) for j in filas if j != i)
+            cols["candidato_rechazado"][i] = "; ".join(x for x in (
+                cols["candidato_rechazado"][i],
+                f"objeto {oid} también premiado en premio_id {otras}") if x)
+            cols["revisar"][i] = "X"
 
     salida = P.copy()
     for c, v in cols.items():

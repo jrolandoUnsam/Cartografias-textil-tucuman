@@ -9,7 +9,8 @@ PASO 3 del flujo de deduplicación:
 Cada decisión es una fila de `data/interim/decisiones/fusiones_expositoras.csv`:
 para cada id de `descartar`, mueve sus objetos (`Objetos.expositora_id`) al id
 `mantener` y borra esa fila de `Expositoras`. Queda una sola persona por decisión,
-con todos sus objetos juntos.
+con todos sus objetos juntos. Los premios de la hoja `Premios` que apuntaban a un id
+descartado pasan a apuntar al id que queda (`persona_id` y `persona`).
 
 La columna `origen` dice de dónde sale la decisión:
 
@@ -95,6 +96,21 @@ def main() -> None:
             validas.append(Fusion(f.mantener, vivos, f.origen, f.nota))
 
     E2, O2, log = aplicar(E, O, validas)
+
+    # La hoja Premios también apunta a expositoras: si no se reapunta, un premio
+    # queda colgado de un id que la fusión acaba de borrar.
+    if "Premios" in hojas and "persona_id" in hojas["Premios"].columns:
+        P = hojas["Premios"].copy()
+        destino = {d: f.mantener for f in validas for d in f.descartar}
+        nombre = E2.set_index("persona_id")["Nombre"]
+        afectadas = P["persona_id"].isin(list(destino))
+        for idx in P.index[afectadas]:
+            viejo = int(P.at[idx, "persona_id"])
+            P.at[idx, "persona_id"] = destino[viejo]
+            if "persona" in P.columns:
+                P.at[idx, "persona"] = nombre[destino[viejo]]
+            print(f"  Premios fila {idx}: persona_id {viejo} -> {destino[viejo]}")
+        hojas["Premios"] = P
 
     print(f"\n{len(log)} fusiones aplicadas · "
           f"{len(E) - len(E2)} filas de Expositoras eliminadas")

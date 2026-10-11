@@ -42,6 +42,15 @@ Método de detección (determinístico, sin ajustes ad-hoc):
      la fuente: "Rosa V. de Lezcano" vs "Rosa V. Lescano").
   3. Es candidato si `token_sort_ratio` o `ratio` >= UMBRAL en cualquiera de las dos.
      `score` = el mayor de los ratios (0-100).
+  4. También es candidato si los nombres son *compatibles* palabra por palabra
+     (`compatibles()`, tipo "compatible"), aunque el ratio quede bajo UMBRAL. Cubre
+     tres casos que el ratio sobre el nombre entero no ve (revisión 2026-10-11):
+     inicial vs. nombre completo ("Simona P. de Castro" / "Simona Palacios de
+     Castro"), una palabra de más ("Alfonsa de Barceló" / "Alfonsa Cuadrado de
+     Barceló") y texto agregado tras un guion ("Mamerta Monteros -Escuela
+     Sarmiento"). Pide nombre de pila parecido (>= 80), apellido parecido
+     (>= UMBRAL_APELLIDO) y que las palabras del medio coincidan o sean la inicial
+     de la otra, con a lo sumo una sobrante.
 
 Entrada : data/interim/tabla_normalizada_manual.xlsx   (Expositoras, Ciudades, Objetos)
           data/interim/revision_duplicados.xlsx                     (semilla anotada)
@@ -67,6 +76,7 @@ SEMILLA = INTERIM / "revision_duplicados.xlsx"
 HOJA_SEMILLA = "Personas - candidatos"
 HOJA = "candidatos"
 UMBRAL = 87  # ratio mínimo (0-100) para proponer un par
+UMBRAL_APELLIDO = 75  # en compatibles(): con 70 entraban Blanche/Sánchez, Pereira/Herrera
 
 COLS = [
     "id_A", "nombre_A", "id_B", "nombre_B",
@@ -92,6 +102,43 @@ def nucleo(s: str) -> str:
     return " ".join(t for t in normaliza(s).split() if t not in PARTICULAS)
 
 
+def _palabras(s: str) -> list[str]:
+    """Núcleo del nombre como lista, sin corchetes ni lo que va tras un guion
+    ("Mamerta Monteros -Escuela Sarmiento" -> ["mamerta", "monteros"])."""
+    s = re.sub(r"\[.*?\]", " ", str(s))
+    s = re.split(r"\s-|-\s", s)[0]
+    return nucleo(s).split()
+
+
+def _palabra_ok(x: str, y: str) -> bool:
+    if x == y:
+        return True
+    if len(x) == 1 or len(y) == 1:  # inicial: "p" vs "palacios"
+        return x[0] == y[0]
+    return fuzz.ratio(x, y) >= 80
+
+
+def compatibles(a: str, b: str) -> bool:
+    ta, tb = _palabras(a), _palabras(b)
+    if len(ta) < 2 or len(tb) < 2:
+        return False
+    if len(ta[0]) == 1 and len(tb[0]) == 1 or not _palabra_ok(ta[0], tb[0]):
+        return False
+    ua, ub = ta[-1], tb[-1]
+    if ua != ub and (len(ua) == 1 or len(ub) == 1 or fuzz.ratio(ua, ub) < UMBRAL_APELLIDO):
+        return False
+    medio_a, medio_b = ta[1:-1], tb[1:-1]
+    if len(medio_a) > len(medio_b):
+        medio_a, medio_b = medio_b, medio_a
+    resto = list(medio_b)
+    for t in medio_a:
+        par = next((u for u in resto if _palabra_ok(t, u)), None)
+        if par is None:
+            return False
+        resto.remove(par)
+    return len(resto) <= 1
+
+
 def detecta_pares(items: list[tuple[int, str]]) -> list[dict]:
     """items = [(persona_id, nombre), ...]. Devuelve los pares candidatos."""
     items = [(i, n) for i, n in items if str(n).strip() and str(n).strip().lower() != "nan"]
@@ -110,10 +157,13 @@ def detecta_pares(items: list[tuple[int, str]]) -> list[dict]:
             ca, cb = nuc[ida], nuc[idb]
             score_nuc = max(fuzz.token_sort_ratio(ca, cb), fuzz.ratio(ca, cb)) if ca and cb else 0.0
             score = max(score_full, score_nuc)
-            if not (exacto or score >= UMBRAL):
+            compat = not (exacto or score >= UMBRAL) and compatibles(na, nb)
+            if not (exacto or score >= UMBRAL or compat):
                 continue
             if exacto:
                 tipo = "exacto_norm"
+            elif compat:
+                tipo = "compatible (inicial / palabra agregada)"
             elif score_full < UMBRAL <= score_nuc:
                 tipo = "media (sin partículas)"
             else:
