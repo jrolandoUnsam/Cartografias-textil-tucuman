@@ -6,13 +6,15 @@ Recorre, fila por fila:
      comentario "Mis comentarios" / "Coment LM")
 
 y compara la decisión que dice el comentario contra el estado actual de
-`tabla_normalizada.xlsx` (y contra la copia congelada en `tests/golden/`, para
-saber qué se tocó).
+`tabla_normalizada.xlsx`, tomando como línea de base `tabla_normalizada_manual.xlsx`
+(la tabla antes del pipeline). NO se usa `tests/golden/`: ese snapshot se re-congela
+junto con las salidas, así que comparar contra él es circular (ver BASE, más abajo,
+y `docs/bitacora.md` 2026-09-15).
 
 Escribe un informe reproducible en `docs/auditoria_comentarios.md`.
 
 Veredictos:
-  SIN HACER      la fila sigue igual que en el golden; no se aplicó nada
+  SIN HACER      la fila sigue igual que en la línea de base; no se aplicó nada
   SOLO NOMBRE    se normalizó/corrigió el nombre, pero las filas NO se fusionaron
   FUSIÓN OK      una fila desapareció y quedó la que pide el comentario
   FUSIÓN REVISAR una fila desapareció pero quedó la otra / el nombre no coincide
@@ -257,7 +259,7 @@ def audita_premios(md: list[str]) -> None:
 
 
 def hallazgo_global() -> str:
-    """Compara la tabla actual contra el golden y describe el estado real.
+    """Compara la tabla actual contra la línea de base y describe el estado real.
 
     Esta frase se calcula, no se escribe a mano: el encabezado de este informe
     llegó a afirmar lo contrario de lo que decían sus propias filas.
@@ -303,7 +305,7 @@ def main() -> None:
         "`data/interim/tabla_normalizada_manual.xlsx` (la tabla antes del pipeline).\n",
         hallazgo_global(),
         "**Veredictos:**\n"
-        "- `SIN HACER` — la fila sigue igual que en el golden.\n"
+        "- `SIN HACER` — la fila sigue igual que en la línea de base.\n"
         "- `SOLO NOMBRE` — se corrigió/normalizó el nombre, pero las dos filas **siguen "
         "sin fusionar** (los objetos no se movieron).\n"
         "- `SOLO NOMBRE · OBJETOS PARTIDOS` — ídem, y además hay objetos en la fila que "

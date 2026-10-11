@@ -34,6 +34,7 @@ de qué página salió cada registro.
 | `nombre_ciudad` | texto | localidad tal como figura en la fuente histórica |
 | `nombre_ciudad_hoy` | texto | topónimo actual equivalente (decisión manual) |
 | `nombre_provincia` | texto | provincia actual (decisión manual) |
+| `lat` / `lon` | float | coordenadas de la localidad. Las agrega `04d_coordenadas` desde `decisiones/coordenadas_ciudades.csv`. 53 de 77 cargadas; el resto queda vacío (nombre ambiguo o desconocido) |
 
 ### Hoja `Objetos` (981 filas)
 | campo | tipo | descripción |
@@ -67,7 +68,7 @@ Columnas 15–17: anotación manual (estudiante y dirección).
 | `persona_id` | int | → `Expositoras.persona_id`, resuelto por nombre (fuzzy) |
 | `persona` | texto | nombre de esa expositora en el catálogo, para control visual |
 | `persona_score` | float | ratio 0–100 del match de nombre |
-| `objeto_id` | texto | → `Objetos.objeto_id`; puede traer varios separados por coma, o vacío |
+| `objeto_id` | texto | → `Objetos.objeto_id`; puede traer varios separados por `;` (ej. `35;36;37;38;39`), o vacío |
 | `objeto_match` | texto | cómo se resolvió el cruce: `num+categoria`, `num+categoria+persona`, … El sufijo `+persona` solo aparece si el filtro por persona se aplicó de verdad (ver bitácora, 2026‑09‑14) |
 | `revisar` | texto | `X` si el cruce quedó dudoso |
 | `Mis comentarios` | texto | anotación del estudiante |
@@ -115,9 +116,11 @@ mayúsculas)**. Dentro de un mismo grupo se conserva el orden del catálogo
 | `Concurso` / `Año` | del concurso |
 | `Expositora/Expositor` | nombre normalizado |
 | `Ciudad` | `nombre_ciudad` histórico; si la ciudad es desconocida se muestra la provincia |
+| `lat` / `lon` | coordenadas de esa ciudad (vacías si no están cargadas) |
 | `Categoría` | nombre de categoría |
 | `N.º de orden` | `ORDEN` |
 | `Descripción del objeto` | `OBJETO` |
+| `Imagen` | escaneo del catálogo donde figura el objeto (`Objetos.imagen`) |
 
 ## `data/interim/duplicados_expositoras_candidatos.xlsx`
 
@@ -135,6 +138,7 @@ para revisar a mano.
 | `detectado` | `True` si la detección de la última corrida lo propuso; `False` si se conserva de una corrida anterior (p. ej. porque los nombres ya se unificaron) |
 | `Hecho` | True = misma entidad; False = se deja separado (ver comentario) |
 | `Comentarios` | criterio aplicado / duda pendiente |
+| `origen_comentario` | de dónde viene el comentario: `candidatos` (anotado en este mismo archivo) o `revision_duplicados` (heredado de la semilla) |
 
 Las columnas `Hecho` y `Comentarios` son **insumo humano**: el script las relee y las
 conserva emparejadas por `(id_A, id_B)`. Regenerar el archivo nunca las pisa ni elimina
@@ -143,6 +147,18 @@ pares ya listados.
 `data/interim/revision_duplicados.xlsx` es la versión anterior de esta tabla, ya anotada;
 se conserva porque es la fuente de las decisiones que hoy están en
 `decisiones/fusiones_expositoras.csv`.
+
+## `data/interim/premios_vinculados.xlsx`
+
+Salida de `03b_premios.py`: la hoja `Premios` completa, misma cantidad de filas y mismo
+orden, con las columnas de vínculo recalculadas. Es un archivo de trabajo para revisar
+el cruce; **no lo consume ninguna etapa del pipeline**.
+
+Además de las columnas de `Premios`, agrega:
+
+| campo | descripción |
+|---|---|
+| `candidato_rechazado` | el objeto que se hubiera vinculado si no existiera el chequeo final de nombre, y de quién es en realidad (ej. `objeto 170 es de 'Rosalía Gutiérrez' (score 32.4)`). Sólo se completa si se rechazó algo: hoy son 3 filas, la 60, la 61 y la 99 — los tres casos de la bitácora del 2026-09-14 |
 
 ## `data/interim/decisiones/fusiones_expositoras.csv`
 

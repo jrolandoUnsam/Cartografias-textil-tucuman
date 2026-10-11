@@ -1,44 +1,26 @@
 # Tareas pendientes
 
-## Normalización de datos
+## Preguntas para Larisa
 
-- [ ] **Descripción de objeto con mayúscula inicial.** Que toda la columna `OBJETO`
-  (y `Descripción del objeto` en la vista plana) arranque con mayúscula. Hoy es
-  inconsistente: la mayoría va en minúscula, algunas en mayúscula (ej. objeto 283).
-  → aplicar de forma uniforme en la etapa de normalización.
+- [ ] **Facunda Cerone (47) / Facunda Coronel (476).** En la revisión de octubre dijo
+  no unirlas ("en el catálogo figura como Escuela de la Cocha y La Cocha"). Pero el
+  premio de 1915 a "Facunda Coronel, Escuela La Cocha, n.º 23" cae en el deshilado 23
+  de 1915, que en el catálogo es de **Facunda Cerone** (objeto 93); la 476 Coronel
+  sólo expone en 1916. El propio fallo llama "Coronel" a la Cerone del catálogo, lo
+  que apunta a que son la misma persona. Repreguntar antes de cerrar el par.
 
 ## Errores puntuales en `tabla_normalizada.xlsx` (hoja `Objetos`)
-
-- [x] **objeto 925**: `102 mantel deshilado y encaje` → `mantel deshilado y encaje`. *(corregido)*
-- [x] **objeto 880**: `fundas deshilada` → `fundas deshiladas`. *(corregido)*
-- [x] **objeto 844**: `fundas` → `funda`. *(corregido)*
 - [ ] **objeto 241**: `Almohadón tela hecha a pala` — se le quitó el punto final,
   pero el 243 (misma expositora, mismo bloque) sí conserva el punto
-  (`Colección lanas teñidas … tapices.`). Uniformar criterio de puntuación.
-- Nota: objetos 871/872 (CARMEN SAL) están **bien** — el catálogo tenía la errata
-  `48, 40` en la celda de orden (por `48, 49`) y en la tabla se corrigió a
-  `colcha bordada` (48) / `almohadón` (49).
-
-## Objetos con `expositora_id` mal asignado (erratas de tipeo)
-
-El objeto (texto + orden) es correcto, pero apunta a otra persona:
-
-| objeto_id | catálogo | asignado a (mal) | id actual | id correcto |
-|--:|---|---|--:|--:|
-| 424, 469, 593 | RAMONA S. DE VARELA | IRENE C. DE AYBAR | 284 | 254 |
-| 588 | GABRIEL GONZALEZ | JAVIER CÁRDENAS | 320 | 321 |
-| 652 | SOLANA CONSTANTINO | MARIA E. PEREYRA | 360 | 361 |
-| 684 | ANGELICA AGUIRRE | JULIA M. CHIROU | 466 | 384 |
-
-- [ ] Corregir esos 6 `expositora_id`. Con eso, RAMONA S. DE VARELA (254) y
-  ANGELICA AGUIRRE (384) dejan de estar huérfanas.
+  (`Colección lanas teñidas para fabricar alfombras y tapices.`). Uniformar criterio
+  de puntuación.
 
 ## Personas (`Expositoras`)
 
-- [ ] **Quedan 3 filas muertas en `Expositoras`** (sin ningún objeto asociado), las
-  tres el lado perdedor de un par `Hecho=True` con comentario "dejamos con tilde" que
-  nunca entró al CSV de fusiones. Se cierran agregando 3 filas a
-  `decisiones/fusiones_expositoras.csv`:
+- [x] **Las 3 filas muertas de `Expositoras`.** *(2026-09-18, cerrado)* Se agregaron
+  al CSV y se corrió `python run_pipeline.py 04`: las tres desaparecieron y sus
+  objetos quedaron en el id que sobrevive. Auditoría regenerada: las 3 pasaron de
+  `SIN HACER` a `FUSIÓN OK`.
 
   | mantener | descartar | nombre |
   |--:|--:|---|
@@ -46,26 +28,65 @@ El objeto (texto + orden) es correcto, pero apunta a otra persona:
   | 301 | 187 | Lugarda Juárez |
   | 345 | 329 | María Slopart de Llavi |
 
-- [ ] **3 pares tienen `Hecho=True` pero un comentario que dice lo contrario.** El
-  estado actual de la tabla (separadas) coincide con el comentario, no con la casilla:
-  corregir la casilla, no los datos.
+- [x] **María Ávila (222/115).** *(2026-09-18, cerrado)* Se corrigió la fila del CSV:
+  ahora `mantener=115` (era `222`). Sobrevive 115 con sus 20 objetos, tal como pedía
+  el comentario ("dejamos con tilde" → conservar A). Auditoría regenerada: la fila 39
+  pasó de `⚠ FUSIÓN REVISAR` a `FUSIÓN OK`.
+- [ ] **Dalmira González Sorol (4/404) sigue contradiciendo el comentario.** El
+  comentario pedía **mantener separadas** ("dejaría cada ciudad como está") y el CSV
+  las fusiona (`origen = sin_lado`). Auditoría, fila 68: `⚠ CONTRA LO PEDIDO`. Es la
+  única contradicción que queda en el informe.
 
-  | par | comentario |
-  |---|---|
-  | 182 / 183 | "estas no son la misma, quizás familia" |
-  | 92 / 201 | "estos no son el mismo nombre" |
-  | 161 / 255 | "las dejaría separadas de momento" |
-- [ ] `Nombre`: hacer `strip()` a toda la columna (~10 nombres tienen espacio final).
-- [ ] Revisar los ~20 pares casi-iguales (solo difieren en tilde/punto): decidir
-  cuáles son la misma persona y cuáles se dejan separados (`Hecho=False`).
+
+- [ ] `Nombre`: hacer `strip()` a toda la columna. Son **7** nombres con espacio
+  final: Cipriana González, Carmen V. de Roncedo, Margarita Díaz, Ernestina Silvetti,
+  Sra. de Serrano, Carmen Rodríguez, Candelaria Alincastro.
+- [ ] **Los 10 pares detectados que nunca se revisaron.** Es lo único del archivo de
+  candidatos que no tiene ninguna decisión tomada: `Hecho` vacío **y** `Comentarios`
+  vacío. El propio `03_candidatos` los cuenta al final de cada corrida
+  (`10 sin fusionar y sin revisar  <-- lo que falta mirar`). Los otros 17 pares sin
+  fusionar sí tienen comentario: ahí la decisión está tomada (dejarlos separados) o la
+  duda está registrada.
+
+  Cada objeto tiene ahora su escaneo (`Objetos.imagen`, que pone `04c`), así que estas
+  dudas se resuelven yendo a la foto del catálogo. Agrupados por lo que dice el
+  contexto documental:
+
+  **a) Casi seguro la misma persona — confirmar en el escaneo y fusionar**
+
+  | par | por qué | escaneos |
+  |---|---|---|
+  | `43` Sara M. Sal / `479` Sara Sal | misma ciudad (San Miguel), misma técnica (deshilado) en 1915 y 1916 | DSCN5180 / DSCN5226 |
+  | `338` María Ll. de Puig / `344` María Llavé de Puig | `Ll.` es la abreviatura de `Llavé`; misma ciudad, misma categoría, **misma página**, los dos un pañuelo al bolillo | DSCN5218 (órdenes 20 y 33) |
+  | `56` Rosa V. de Lezcano / `114` Rosa V. Lescano | | DSCN5181, DSCN5187 / DSCN5201 |
+
+  **b) Casi seguro personas distintas — anotar `Hecho=False` y cerrar**
+
+  | par | por qué | escaneos |
+  |---|---|---|
+  | `325` María Fernández / `334` Arsenia Fernández | **nombres de pila distintos y figuran consecutivas en la misma página** (órdenes 2 y 11; 68‑69 y 70‑74): el catálogo las lista como dos expositoras, probablemente parientes | DSCN5217, DSCN5226 |
+  | `198` María T. de Pérez / `303` María Pérez | apellido muy común, ciudades distintas (Atahona / Ensenada), categorías distintas | DSCN5208 / DSCN5214 |
+  | `170` Ofelia Zelaya / `241` Fidelia Zelaya | nombres de pila distintos, ciudades distintas (Niogasta / Chicligasta) | DSCN5205 / DSCN5211 |
+  | `124` Adela J. de Gramajo / `171` Adela G. de Gramajo | `J` vs `G`: misma ciudad (Monteagudo) y mismo concurso,  distinta categoría| DSCN5201 / DSCN5205 |
+  | `47` Facunda Cerone / `476` Facunda Coronel | ¿errata de transcripción? Misma localidad (Escuela de La Cocha / La Cocha), mismo nombre de pila raro, misma técnica | DSCN5181 / DSCN5226 |
+  | `155` Arsenia M. de Fernández / `334` Arsenia Fernández |ciudad y categoría distintas (Chicligasta/frazada vs Concepción‑Medinas/encajes) | DSCN5205 / DSCN5217‑5226 |
+  | `209` Delina J. de Román / `264` Delina I. de Román | parte del grupo Delina; 264 no tiene ciudad cargada | DSCN5208 / DSCN5212‑5213 |
+
+
+- [ ] **Los 17 pares sin fusionar que sí tienen comentario.** Repasar que el comentario
+  siga valiendo y, donde corresponda, bajarlo al CSV de fusiones. El grupo más cargado
+  es Delina J./I. de Román (161, 209, 255, 264) y le siguen Carmen de Moya (162 / 296,
+  con 7 y 3 objetos) y Segunda Gimónez / Jiménez (221 / 268).
+
+  Total del archivo (antes de las 4 fusiones de arriba): 85 filas = 58 ya resueltas
+  por el CSV de fusiones + 27 sin fusionar (10 sin revisar + 17 con comentario). De
+  esas 27, 3 tienen un id que ya no existe en la tabla.
 
 ## Género (`Expositoras`)
 
-- [ ] `Eleuterio Gramajo` (1915, PELLONES) figura como **F**. ¿Es varón, o errata de
-  "Eleuteria"?
-- [ ] Revisar `Jesus Rueda`, `JESUS MEDINA RUIZ`, `VIDAL VICTORIA` (marcados F).
-- [ ] Confirmar los 5 marcados **M** (todos de 1916). El reglamento de 1916 dice
-  "toda mujer"; Larisa afirma que en 1915 todas eran mujeres.
+Hoy son **460 F y 8 M** sobre 468 filas.
+- [ ] Criterio para instituciones (hoy marcadas F por convención): decidir si llevan
+  género o una marca aparte.
 
 ## Categorías
 
@@ -76,25 +97,35 @@ El objeto (texto + orden) es correcto, pero apunta a otra persona:
   - entre concursos: `TEJIDOS VARIOS` (1915) / `TEJIDOS EN GENERAL` (1916);
     `PELLONES Y JERGONES` (1915) / `PELLONES` + `JERGONES` (1916);
     `BORDADO EN BLANCO Y SEDA` / `BORDADOS EN BLANCO Y DESHILADOS`.
+  - La decisión va a `data/interim/decisiones/categorias.csv`, que todavía no existe.
 
-## Premios
+## Pipeline
 
-- [ ] Normalizar la hoja `Premios`: sumar `persona_id`, `concurso_id`, `categoria_id`.
-  39 nombres no matchean exacto con `Expositoras` (Delia Ruiz ≈ Delicia Ruiz, etc.).
-- [ ] Definir formato de `NÚM` (mezcla enteros, `s/d` y rangos como
-  `"17, 18, 19, 20 y 21"`) para poder enlazar con `Objetos`.
+- [ ] **`03b_premios.py` lee la salida de una etapa posterior.** Lee
+  `data/processed/tabla_normalizada.xlsx`, que escriben `04b`, `04c` y `04d`, así que
+  trabaja sobre la tabla de la corrida anterior. Es el mismo ciclo que se arregló en
+  `03_candidatos` (bitácora 2026-09-15) y que quedó sin arreglar acá. No rompe nada
+  hoy —`premios_vinculados.xlsx` es un callejón sin salida, no lo consume ninguna
+  etapa— pero el matching de nombres corre contra nombres ya fusionados y ya pasados
+  a título. → apuntarlo a `tabla_normalizada_manual.xlsx`, igual que `03_candidatos`.
+- [ ] **`02_entidades` es un esqueleto y nadie consume su salida.**
+  `personas_prov.csv` y `ciudades_prov.csv` no los lee ninguna etapa: `01`→`02` están
+  desconectadas de `03`→`06`. Decidir entre completarlo (era el camino hacia armar la
+  tabla normalizada desde el crudo) o sacarlo de la corrida y dejarlo documentado.
+- [ ] **Los `.xlsx` figuran como modificados en cada corrida** aunque el contenido sea
+  idéntico: cambia sólo la metadata del zip. Verificado el 2026-09-18: después de
+  correr el pipeline entero, las 5 salidas son idénticas celda por celda a las
+  commiteadas. Ensucia `git status`; ver si conviene documentarlo y listo.
 
-## Consistencia entre salidas
+## Geografía
 
-- [ ] **`vista_plana_tabla_consolidada.xlsx` quedó desincronizada**: la corrección de
-  categoría de los tapices 1916 (objetos 229–243, ahora TAPICES) se hizo en
-  `tabla_normalizada.xlsx` pero no en la vista plana (sigue mostrándolos como RANDAS).
-  Se resuelve al regenerar la vista con la etapa 05.
+- [ ] **24 de 77 ciudades siguen sin coordenadas** en
+  `decisiones/coordenadas_ciudades.csv` (53 cargadas). Completar las que se puedan y
+  fijar un criterio para las ambiguas o desconocidas.
+- [ ] `decisiones/ciudades.csv` (`nombre_ciudad_hoy`, `nombre_provincia`) todavía no
+  existe como tabla de decisión: esos dos campos hoy viven dentro del Excel manual.
 
 ## Imágenes
-
-- [x] Unificar `Imágenes/` (raíz) con `data/raw/images/`. *(movidos a
-  `data/raw/images/albumes/`; no había duplicados)*
 - [ ] Decidir cuál de las dos tomas del álbum de 1915 es la de referencia y registrar
   de qué documento físico salió cada foto (hoja `Fuentes`).
 
@@ -109,9 +140,10 @@ El objeto (texto + orden) es correcto, pero apunta a otra persona:
 - [ ] **Acordar con la dirección hasta dónde se publican datos y código** (§7). Es una
   conversación que se registra en el **Anexo V — Autorización de Divulgación** del
   informe final. No requiere ningún archivo en el repositorio.
-- [ ] **`outputs/` está vacío.** Los objetivos específicos 2 y 3 del formulario son
-  visualizaciones/mapas interactivos y vinculación registros↔imágenes. El 3 ya está
-  encaminado (`04c` asigna imagen a 981/981 objetos); el 2 vive solo dentro de
-  `notebooks/04_eda.ipynb` y no exporta nada.
-- [ ] **`docs/Hoja de horas.xlsx`** llega hasta el 2026‑08‑17. Es la evidencia de las
-  96 horas del cuatrimestre.
+- [ ] **`outputs/` tiene una sola salida.** Los objetivos específicos 2 y 3 del
+  formulario son visualizaciones/mapas interactivos y vinculación registros↔imágenes.
+  El 3 está resuelto (`04c`: 981/981 objetos con imagen). Del 2 hoy sale
+  `outputs/mapa_procedencias.html`, que exporta `notebooks/04_eda.ipynb`; las demás
+  figuras del EDA (categorías, comparación entre concursos, provincias, expositoras)
+  viven sólo dentro del notebook y no se exportan. Falta decidir si se exportan desde
+  el notebook o si se agrega una etapa `07_figuras` al pipeline.

@@ -54,7 +54,7 @@ descartadas. Cada entrada: fecha, decisión, motivo.
 
 - **Parámetro único del pipeline: `UMBRAL = 87`** en `03_candidatos.py` — el ratio
   mínimo (0–100) de `rapidfuzz` por debajo del cual un par de nombres no se propone
-  como candidato a duplicado. Con 87 salen 77 pares. Bajarlo aumenta el trabajo de
+  como candidato a duplicado. Con 87 salen 75 pares detectados. Bajarlo aumenta el trabajo de
   revisión manual y los falsos positivos; subirlo deja pasar variantes con partícula
   ("Rosa V. de Lezcano" / "Rosa V. Lescano"), que es justo el caso que más aparece.
   No hay modelos entrenados ni semillas de aleatoriedad: queda registrado acá por el
@@ -98,6 +98,38 @@ descartadas. Cada entrada: fecha, decisión, motivo.
 - **Dos bugs encontrados al escribir la prueba:** las celdas vacías de Excel llegaban
   como `NaN` y se escribían como el texto literal `"nan"`; y `main()` resolvía las rutas
   al importar el módulo en vez de al correrlo.
+
+## 2026-09-18 — Auditoría de la documentación contra los datos
+
+Se corrió el pipeline entero y se verificó, dato por dato, lo que afirmaban el README,
+`src/pipeline/README.md`, el diccionario y `docs/tareas_pendientes.md`. Resultados:
+
+- **El pipeline es reproducible.** Corriendo `python run_pipeline.py` sobre el repo
+  limpio, las cinco salidas quedan idénticas celda por celda a las commiteadas. La
+  única diferencia es la metadata del zip de cada `.xlsx`, que hace que `git status`
+  las marque como modificadas igual.
+- **Tres tareas de `tareas_pendientes.md` ya estaban hechas** y el documento no lo
+  reflejaba: los 6 `expositora_id` mal asignados (ya corregidos en
+  `tabla_normalizada_manual.xlsx`, con lo cual Ramona S. de Varela y Angélica Aguirre
+  dejaron de estar huérfanas), la desincronización de la vista plana en los tapices de
+  1916, y `outputs/` vacío (hoy tiene `mapa_procedencias.html`). Otras tres estaban
+  desactualizadas en los números (género: 8 M y no 5; nombres con espacio final: 7 y
+  no ~10; premios: `persona_id` ya está puesto).
+- **`03b_premios.py` sigue leyendo la salida de una etapa posterior**
+  (`data/processed/tabla_normalizada.xlsx`, que escriben `04b`/`04c`/`04d`). Es el
+  mismo ciclo que se cerró en `03_candidatos` el 2026-09-15 y que quedó sin cerrar
+  acá. `src/pipeline/README.md` afirmaba que ninguna etapa leía la salida de una
+  posterior: era falso y se corrigió.
+- **`tests/golden/` quedó desactualizado y `06_verificar` falla siempre**, porque el
+  snapshot no se re-congeló después de que `04d` agregara `lat`/`lon` y `04c`
+  agregara `Imagen`. Mientras tanto la etapa 06 no verifica nada. Re-congelarlo va en
+  un commit propio, según la regla de `tests/golden/README.md`.
+- **Dos fusiones del CSV contradicen el comentario anotado a mano**, las dos con
+  `origen = sin_lado`: `4,404` (Dalmira González Sorol — el comentario pedía dejarlas
+  separadas) y `222,115` (María Ávila — pedía conservar 115 y quedó 222). El criterio
+  automático "conservar el lado con más objetos" pisó una decisión humana; hay que
+  revisarlas a mano. *María Ávila quedó resuelta el mismo día: la fila pasó a
+  `115,222` y la auditoría da `FUSIÓN OK`. Queda pendiente Dalmira.*
 
 ## Fuentes del crudo que NO entran a la base
 

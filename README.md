@@ -23,21 +23,26 @@ Excel crudo hasta las tablas normalizadas y la vista consolidada.
 data/
   raw/          Excel original (nunca se edita) + imágenes de archivo (fuera del repo)
   interim/      resultados intermedios del pipeline y tablas de decisión manuales
+    decisiones/ lo que no se deriva del crudo: fusiones, coordenadas, overrides
   processed/    tabla_normalizada.xlsx, vista_plana_tabla_consolidada.xlsx
 src/pipeline/   etapas del pipeline (01_ingesta … 06_verificar)
 notebooks/      exploración y análisis
-outputs/        figuras, mapas, tableros
+outputs/        figuras, mapas, tableros (hoy: mapa_procedencias.html)
 docs/           bitácora de decisiones, diccionario de datos, evaluación de riesgos
 tests/golden/   copias congeladas de las salidas, para verificación
 ```
 
 ## Cómo correrlo
 
-```bash
-python -m venv .venv && .venv\Scripts\activate      # Windows
+```powershell
+python -m venv .venv
+.venv\Scripts\Activate.ps1          # Windows / PowerShell
 pip install -r requirements.txt
-python run_pipeline.py                               # corre el pipeline completo
+python run_pipeline.py              # corre el pipeline completo
 ```
+
+Con conda, en lugar de las dos primeras líneas:
+`conda env create -f environment.yml && conda activate cartografias-textil`.
 
 Desde una etapa en adelante: `python run_pipeline.py 04`. Una etapa suelta:
 `python src/pipeline/01_ingesta.py`.
@@ -55,6 +60,11 @@ scripts.
 - [`docs/diccionario_datos.md`](docs/diccionario_datos.md) — descripción de cada campo.
 - [`docs/tareas_pendientes.md`](docs/tareas_pendientes.md) — qué falta.
 - [`docs/evaluacion_riesgos.md`](docs/evaluacion_riesgos.md) — sesgo y privacidad.
+- [`docs/auditoria_comentarios.md`](docs/auditoria_comentarios.md) — informe generado:
+  decisión anotada a mano vs. estado real de la tabla. Lo escribe
+  `src/pipeline/audit_comentarios.py`, fuera de la corrida; no se edita a mano.
+- [`docs/referencias/README.md`](docs/referencias/README.md) — los PDF del marco
+  institucional y del proyecto, que quedan fuera del repositorio.
 
 ## Datos personales y ética
 

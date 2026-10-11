@@ -29,3 +29,17 @@ Dos commits, no uno. Así el `git log` conserva la evidencia de qué se movió y
 Snapshot a mitad de normalización: las decisiones de `docs/tareas_pendientes.md` todavía
 no están aplicadas. Que `06_verificar` dé OK significa "nada cambió desde la última vez",
 no "los datos están bien".
+
+**Al 2026-09-18 el snapshot está atrasado y `06_verificar` falla siempre.** Se agregaron
+columnas a las salidas (`lat`/`lon` en `Ciudades`, por `04d_coordenadas`; `Imagen` en la
+vista plana, por `04c_vincular_imagenes`) y el golden nunca se re-congeló:
+
+```
+tabla_normalizada.xlsx        [Ciudades] shape (78, 6) != golden (78, 4)
+vista_plana_consolidada.xlsx  [Objetos - Concursos Tucumán] shape (982, 10) != golden (982, 7)
+```
+
+El resto de las hojas da OK. Mientras siga así, esta carpeta no cumple su función: un
+cambio del pipeline que mueva una salida no se va a notar, porque la etapa 06 ya viene
+fallando. Re-congelarlo —en un commit propio, con estas dos líneas como justificación—
+es el primer paso antes de encarar las tareas de `docs/tareas_pendientes.md`.
