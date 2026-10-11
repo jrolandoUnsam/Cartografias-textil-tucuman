@@ -4,7 +4,7 @@ _Generado por `src/pipeline/audit_comentarios.py` — no editar a mano._
 
 Compara cada decisión anotada a mano contra el estado actual de `data/processed/tabla_normalizada.xlsx`, tomando como línea de base `data/interim/tabla_normalizada_manual.xlsx` (la tabla antes del pipeline).
 
-**Hallazgo global:** respecto de la tabla de partida (`tabla_normalizada_manual.xlsx`) se reasignaron **63 objetos** y desaparecieron **51 filas** de `Expositoras`: las fusiones **sí** están aplicadas. Nombres normalizados: 0.
+**Hallazgo global:** respecto de la tabla de partida (`tabla_normalizada_manual.xlsx`) se reasignaron **72 objetos** y desaparecieron **55 filas** de `Expositoras`: las fusiones **sí** están aplicadas. Nombres normalizados: 7.
 
 **Veredictos:**
 - `SIN HACER` — la fila sigue igual que en la línea de base.
@@ -14,10 +14,12 @@ Compara cada decisión anotada a mano contra el estado actual de `data/processed
 - `FUSIÓN REVISAR` — una fila desapareció pero quedó la otra.
 - `OK SEPARAR` — se pidió **no** unificar y siguen las dos filas (correcto).
 - `CONTRA LO PEDIDO` — se pidió separar y se fusionó, o al revés.
+- `FUSIÓN OK (en un tercer id)` — las dos filas desaparecieron porque entraron en un grupo de 3 o más; sus objetos están juntos en otro id.
+- `DUDA ABIERTA` — el comentario sólo pregunta; no hay decisión que verificar.
 
 ## 1. `revision_duplicados.xlsx` — hoja *Personas - candidatos*
 
-_Conteo:_ CONTRA LO PEDIDO (se fusionó): 1 · FUSIÓN OK: 49 · OK SEPARAR: 7 · SIN HACER: 4 · ninguna existe: 8
+_Conteo:_ DUDA ABIERTA: 3 · FUSIÓN OK: 51 · FUSIÓN OK (en un tercer id): 8 · OK SEPARAR: 7
 
 | # | id A / nombre | id B / nombre | Hecho | Comentario | Decisión leída | Estado actual | Veredicto |
 |---|---|---|---|---|---|---|---|
@@ -35,17 +37,17 @@ _Conteo:_ CONTRA LO PEDIDO (se fusionó): 1 · FUSIÓN OK: 49 · OK SEPARAR: 7 �
 | 12 | `196` Concepción de Pérez | `319` — | True | dejamos con tilde | Unificar (cualquiera de las dos) | 1 fila: 196 (Concepción de Pérez) · 3 obj | **FUSIÓN OK** |
 | 13 | `270` Felisa R. de Sánchez | `278` — | True | dejamos con tilde | Unificar → conservar A (270) | 1 fila: 270 (Felisa R. de Sánchez) · 9 obj | **FUSIÓN OK** |
 | 14 | `286` — | `492` Superiora del Colegio Santa Rosa de Viterbo | True | dejamos b | Unificar → conservar B (492) | 1 fila: 492 (Superiora del Colegio Santa Rosa de Viterbo) · 2 obj | **FUSIÓN OK** |
-| 15 | `313` — | `319` — | True | dejamos con tilde | Unificar → conservar B (319) | ninguna de las dos existe | **⚠ ninguna existe** |
-| 16 | `329` — | `345` María Slopart de Llavi | True | dejamos con tilde | Unificar → conservar B (345) | 1 fila: 345 (María Slopart de Llavi) · 2 obj | **FUSIÓN OK** |
-| 17 | `3` Isaura Sorroza de Risso Patron | `442` — | True | dejamos A | Unificar → conservar A (3) | 1 fila: 3 (Isaura Sorroza de Risso Patron) · 3 obj | **FUSIÓN OK** |
+| 15 | `313` — | `319` — | True | dejamos con tilde | Unificar → conservar B (319) | las dos fusionadas en `196` (Concepción de Pérez) · 3 obj | **FUSIÓN OK (en un tercer id)** |
+| 16 | `329` — | `345` María Slopart de Llaví | True | dejamos con tilde | Unificar → conservar B (345) | 1 fila: 345 (María Slopart de Llaví) · 2 obj | **FUSIÓN OK** |
+| 17 | `3` Isaura Sorroza de Risso Patrón | `442` — | True | dejamos A | Unificar → conservar A (3) | 1 fila: 3 (Isaura Sorroza de Risso Patrón) · 3 obj | **FUSIÓN OK** |
 | 18 | `12` — | `120` Lastenia Barrero | False | Dejamos barrero, fue una figura importante | Unificar → conservar B (120) | 1 fila: 120 (Lastenia Barrero) · 2 obj | **FUSIÓN OK** |
 | 19 | `70` María Cleofé de Bustamante | `213` — | False | DE /en los casos en que es DE mantenerlo (aporta más info) | Unificar → conservar A (70) | 1 fila: 70 (María Cleofé de Bustamante) · 2 obj | **FUSIÓN OK** |
-| 20 | `117` — | `450` — | True | Escuela y Hogar de Obreras de la Sociedad de Beneficencia (ídem arriba) | Unificar (cualquiera de las dos) | ninguna de las dos existe | **⚠ ninguna existe** |
-| 21 | `139` — | `261` — | True | dejamos con tilde | Unificar → conservar B (261) | ninguna de las dos existe | **⚠ ninguna existe** |
+| 20 | `117` — | `450` — | True | Escuela y Hogar de Obreras de la Sociedad de Beneficencia (ídem arriba) | Unificar (cualquiera de las dos) | las dos fusionadas en `102` (Escuela y Hogar de Obreras de la Sociedad de Beneficencia) · 14 obj | **FUSIÓN OK (en un tercer id)** |
+| 21 | `139` — | `261` — | True | dejamos con tilde | Unificar → conservar B (261) | las dos fusionadas en `52` (Edelmira C. de Roldán) · 8 obj | **FUSIÓN OK (en un tercer id)** |
 | 22 | `161` Delina J. de Román | `209` Delina J. de Román | False | MUY POLÉMICO. este no lo unificaría, no queda claro si son la misma persona o un familiar que podía prestarle lana de vicuña para tejer. total al momento de buscar info de vicuña se verá el matiz. por ahora lo dejaría así hasta más info a futuro- | Mantener SEPARADAS | 2 filas · A:1 obj, B:2 obj | **OK SEPARAR** |
-| 23 | `161` Delina J. de Román | `264` Delina I. de Román | False | J o I? Además, aparece en 3 ciudades distintas: Belén, Ciudad y Catamarca | Unificar (cualquiera de las dos) | 2 filas · A:1 obj, B:3 obj | **SIN HACER** |
-| 24 | `209` Delina J. de Román | `255` Delina I. de Román | False | J o I? Además, aparece en 3 ciudades distintas: Belén, Ciudad y Catamarca | Unificar (cualquiera de las dos) | 2 filas · A:2 obj, B:1 obj | **SIN HACER** |
-| 25 | `255` Delina I. de Román | `264` Delina I. de Román | False | J o I? Además, aparece en 3 ciudades distintas: Belén, Ciudad y Catamarca | Unificar (cualquiera de las dos) | 2 filas · A:1 obj, B:3 obj | **SIN HACER** |
+| 23 | `161` Delina J. de Román | `264` Delina I. de Román | False | J o I? Además, aparece en 3 ciudades distintas: Belén, Ciudad y Catamarca | Duda (sin decisión) | 2 filas · A:1 obj, B:3 obj | **DUDA ABIERTA** |
+| 24 | `209` Delina J. de Román | `255` Delina I. de Román | False | J o I? Además, aparece en 3 ciudades distintas: Belén, Ciudad y Catamarca | Duda (sin decisión) | 2 filas · A:2 obj, B:1 obj | **DUDA ABIERTA** |
+| 25 | `255` Delina I. de Román | `264` Delina I. de Román | False | J o I? Además, aparece en 3 ciudades distintas: Belén, Ciudad y Catamarca | Duda (sin decisión) | 2 filas · A:1 obj, B:3 obj | **DUDA ABIERTA** |
 | 26 | `8` — | `87` Isabel del Río | True | dejamos con tilde | Unificar → conservar B (87) | 1 fila: 87 (Isabel del Río) · 2 obj | **FUSIÓN OK** |
 | 27 | `165` — | `297` Lorenza de Díaz | True | dejamos con tilde | Unificar → conservar B (297) | 1 fila: 297 (Lorenza de Díaz) · 2 obj | **FUSIÓN OK** |
 | 28 | `187` — | `301` Lugarda Juárez | True | dejamos con tilde | Unificar → conservar B (301) | 1 fila: 301 (Lugarda Juárez) · 2 obj | **FUSIÓN OK** |
@@ -60,12 +62,12 @@ _Conteo:_ CONTRA LO PEDIDO (se fusionó): 1 · FUSIÓN OK: 49 · OK SEPARAR: 7 �
 | 37 | `7` — | `32` Ana del Río | True | dejamos con tilde | Unificar → conservar B (32) | 1 fila: 32 (Ana del Río) · 2 obj | **FUSIÓN OK** |
 | 38 | `86` Juana Pérez | `465` — | True | dejamos con tilde | Unificar → conservar A (86) | 1 fila: 86 (Juana Pérez) · 2 obj | **FUSIÓN OK** |
 | 39 | `115` María Ávila | `222` — | True | dejamos con tilde | Unificar → conservar A (115) | 1 fila: 115 (María Ávila) · 20 obj | **FUSIÓN OK** |
-| 40 | `118` — | `271` — | True | dejamos b | Unificar → conservar B (271) | ninguna de las dos existe | **⚠ ninguna existe** |
+| 40 | `118` — | `271` — | True | dejamos b | Unificar → conservar B (271) | las dos fusionadas en `281` (Escuela Profesional de Mujeres) · 26 obj | **FUSIÓN OK (en un tercer id)** |
 | 41 | `152` — | `323` Mercedes Ruiz de Arzuaga | True | dejamos el b | Unificar → conservar B (323) | 1 fila: 323 (Mercedes Ruiz de Arzuaga) · 2 obj | **FUSIÓN OK** |
-| 42 | `159` — | `308` — | True | ídem arriba | Unificar (cualquiera de las dos) | ninguna de las dos existe | **⚠ ninguna existe** |
+| 42 | `159` — | `308` — | True | ídem arriba | Unificar (cualquiera de las dos) | las dos fusionadas en `220` (Dorotea C. de Lazarte) · 3 obj | **FUSIÓN OK (en un tercer id)** |
 | 43 | `219` Amelia N. de Plaza | `285` — | True | dejamos a | Unificar → conservar A (219) | 1 fila: 219 (Amelia N. de Plaza) · 3 obj | **FUSIÓN OK** |
 | 44 | `260` — | `283` María Rueda | True | dejamos con tilde | Unificar → conservar B (283) | 1 fila: 283 (María Rueda) · 4 obj | **FUSIÓN OK** |
-| 45 | `373` — | `407` — | True | unifiqué porque ambos envíos además son irlansa | Unificar (cualquiera de las dos) | ninguna de las dos existe | **⚠ ninguna existe** |
+| 45 | `373` — | `407` — | True | unifiqué porque ambos envíos además son irlansa | Unificar (cualquiera de las dos) | las dos fusionadas en `35` (María J. de Aguirre) · 5 obj | **FUSIÓN OK (en un tercer id)** |
 | 46 | `54` — | `284` Irene C. de Aybar | True | dejamos b | Unificar → conservar B (284) | 1 fila: 284 (Irene C. de Aybar) · 4 obj | **FUSIÓN OK** |
 | 47 | `67` — | `76` Arsenia F. Medina | True | Vamos con Arsenia F. Medina. Veo que no está en el listado, falta la 67, ¿será que hice lío? | Unificar (cualquiera de las dos) | 1 fila: 76 (Arsenia F. Medina) · 2 obj | **FUSIÓN OK** |
 | 48 | `295` María Luna | `309` — | True | dejamos con tilde | Unificar → conservar A (295) | 1 fila: 295 (María Luna) · 2 obj | **FUSIÓN OK** |
@@ -77,18 +79,18 @@ _Conteo:_ CONTRA LO PEDIDO (se fusionó): 1 · FUSIÓN OK: 49 · OK SEPARAR: 7 �
 | 54 | `348` — | `466` Julia M. Chirou | True | dejamos b | Unificar → conservar B (466) | 1 fila: 466 (Julia M. Chirou) · 3 obj | **FUSIÓN OK** |
 | 55 | `364` Asilo del Buen Pastor | `521` — | False | DEL /dejamos del | Unificar → conservar A (364) | 1 fila: 364 (Asilo del Buen Pastor) · 6 obj | **FUSIÓN OK** |
 | 56 | `31` — | `55` Ana de Tactagi | False | DE /en los casos en que es DE mantenerlo (aporta más info) | Unificar → conservar B (55) | 1 fila: 55 (Ana de Tactagi) · 3 obj | **FUSIÓN OK** |
-| 57 | `162` Carmen de Moya | `296` Carmen de Moya | False | DE /en los casos en que es DE mantenerlo (aporta más info) | Unificar → conservar A (162) | 2 filas · A:7 obj, B:3 obj | **SIN HACER · OBJETOS PARTIDOS** |
+| 57 | `162` Carmen de Moya | `296` — | False | DE /en los casos en que es DE mantenerlo (aporta más info) | Unificar → conservar A (162) | 1 fila: 162 (Carmen de Moya) · 10 obj | **FUSIÓN OK** |
 | 58 | `182` Delina R. Espinosa | `183` Delia Espinosa | True | estas no son la misma, quizás familia porque la tercera en el catálogo es simona espinosa | Mantener SEPARADAS | 2 filas · A:1 obj, B:3 obj | **OK SEPARAR** |
-| 59 | `289` — | `470` — | True | dejamos con tilde, lo unificaría con el de abajo 234, 289, 470 | Unificar → conservar A (289) | ninguna de las dos existe | **⚠ ninguna existe** |
+| 59 | `289` — | `470` — | True | dejamos con tilde, lo unificaría con el de abajo 234, 289, 470 | Unificar → conservar A (289) | las dos fusionadas en `234` (Sofía C. de González) · 5 obj | **FUSIÓN OK (en un tercer id)** |
 | 60 | `333` Margarita García de Esparré | `354` — | True | dejamos a | Unificar → conservar A (333) | 1 fila: 333 (Margarita García de Esparré) · 3 obj | **FUSIÓN OK** |
 | 61 | `52` Edelmira C. de Roldán | `139` — | True | Dejamos el que aporta más info A | Unificar → conservar A (52) | 1 fila: 52 (Edelmira C. de Roldán) · 8 obj | **FUSIÓN OK** |
-| 62 | `381` — | `389` — | True | Dejar el que aporta más info A | Unificar → conservar A (381) | ninguna de las dos existe | **⚠ ninguna existe** |
+| 62 | `381` — | `389` — | True | Dejar el que aporta más info A | Unificar → conservar A (381) | las dos fusionadas en `121` (Tránsito Soaje de Ree) · 5 obj | **FUSIÓN OK (en un tercer id)** |
 | 63 | `23` Rosa Alderete | `422` Aurora Alderete | False | Ambas de Montero categoria Randas. Madre e Hija? /ojalá! es para un estudio a futuro hablar con las randeras. Por ahora el único apellido que aparece publicado en una genealogía con randeras es Lorenza Alderete de Núñez. | Mantener SEPARADAS | 2 filas · A:7 obj, B:1 obj | **OK SEPARAR** |
 | 64 | `92` Carmen Pereira | `201` Carmen Herrera | True | estos no son el mismo nombre, están unidos por algo en particular? | Mantener SEPARADAS | 2 filas · A:1 obj, B:1 obj | **OK SEPARAR** |
 | 65 | `234` Sofía C. de González | `289` — | False | unifiqué con el más completo | Unificar (cualquiera de las dos) | 1 fila: 234 (Sofía C. de González) · 5 obj | **FUSIÓN OK** |
 | 66 | `234` Sofía C. de González | `470` — | False | unifiqué con el más completo | Unificar (cualquiera de las dos) | 1 fila: 234 (Sofía C. de González) · 5 obj | **FUSIÓN OK** |
 | 67 | `409` María Abigail Gómez | `460` — | True | Dejar A | Unificar → conservar A (409) | 1 fila: 409 (María Abigail Gómez) · 5 obj | **FUSIÓN OK** |
-| 68 | `4` Dalmira González Sorol | `404` — | False | Tafi Viejo en 1915 y Tucumán 1916 /dejaría cada ciudad como está | Mantener SEPARADAS | 1 fila: 4 (Dalmira González Sorol) · 7 obj | **⚠ CONTRA LO PEDIDO (se fusionó)** |
+| 68 | `4` Dalmira González Sorol | `404` — | False | Tafi Viejo en 1915 y Tucumán 1916 /dejaría cada ciudad como está | Unificar (la ciudad queda en cada objeto) | 1 fila: 4 (Dalmira González Sorol) · 7 obj | **FUSIÓN OK** |
 | 69 | `28` — | `110` Rosario B. D'Empaire | False | vamos con B | Unificar → conservar B (110) | 1 fila: 110 (Rosario B. D'Empaire) · 3 obj | **FUSIÓN OK** |
 
 ## 2. `revision_duplicados.xlsx` — hoja *Ciudades - candidatos*
@@ -102,23 +104,23 @@ _Conteo:_ CONTRA LO PEDIDO (se fusionó): 1 · FUSIÓN OK: 49 · OK SEPARAR: 7 �
 
 ## 3. `tabla_normalizada.xlsx` — hoja *Premios* (filas con comentario)
 
-> Las 8 columnas originales de la hoja Premios están **intactas** respecto del golden. Lo que se agregó son las columnas de vínculo (`persona_id`, `objeto_id`, …, salida de `03b_premios.py`) y las de comentario.
+> Las 8 columnas originales de la hoja Premios están **MODIFICADAS** respecto del golden. Lo que se agregó son las columnas de vínculo (`persona_id`, `objeto_id`, …, salida de `03b_premios.py`) y las de comentario.
 >
 > Los comentarios de esta hoja son **observaciones sobre nombres**, no órdenes de fusión. La columna *Nombre real de la expositora* muestra a quién apunta hoy el `objeto_id` de esa fila (vía `Objetos.expositora_id`).
 
 | fila | NOMBRE en el fallo | objeto_id | Nombre real de la expositora (hoy) | Comentario(s) | Estado |
 |---|---|---|---|---|---|
-| 0 | Angela L. de Diblasi | 108 | Ángela S. de Diblasi | **Mis comentarios:** Angela L. vs Angela S | observación de forma del nombre — comparar contra 'Nombre real' y decidir |
+| 0 | Angela L. de Diblasi | 108 | Ángela S. [L.] de Diblasi | **Mis comentarios:** Angela L. vs Angela S | observación de forma del nombre — comparar contra 'Nombre real' y decidir |
 | 6 | Dominga Castaño | — | — (el premio no tiene objeto en el catálogo) | **Mis comentarios:** Son distintas personas para mi / **Coment LM:** Sí, son distintas. En el doc. de premiación figura "fuera de catálogo" probablemente por eso. | decisión: sin objeto en el catálogo (queda como nota, sin lugar formal aún) |
 | 8 | Vicenta B. de Medina | 121 | Vicenta V. [B.] de Medina | **Mis comentarios:** Vicenta V. vs Vicenta B. / **Coment LM:** ¿Te parece poner Vicenta V. [B.] de Medina? Así dejamos entre corchetes la otra referencia con la que se refiere a la misma persona. Siendo entre corchetes la versión de la premiación. | observación de forma del nombre — comparar contra 'Nombre real' y decidir |
 | 10 | Maria C. Bustamante | 122 | María Cleofé de Bustamante | **Mis comentarios:** Encontramos segundo nombre / **Coment LM:** buenísimo | observación de forma del nombre — comparar contra 'Nombre real' y decidir |
 | 13 | Lorenza V. de Pérez | 107 | Lorenza V. de Panei [Pérez] | **Mis comentarios:** Parece ser la misma persona. Vista en catalogo como de Panci y Panei / **Coment LM:** ídem 10. Lorenza V. de Panei [Pérez] | observación / confirmación |
-| 14 | Rosa V. de Lescano | 103 | Rosa V. de Lezcano | **Mis comentarios:** Lescano vs Lezcano. Nuevo posible duplicado no visto antes / **Coment LM:** vamos con Lescano (así aparece el apellido la mayoría de las veces) | observación de forma del nombre — comparar contra 'Nombre real' y decidir |
+| 14 | Rosa V. de Lescano | 103 | Rosa V. [de] Lescano | **Mis comentarios:** Lescano vs Lezcano. Nuevo posible duplicado no visto antes / **Coment LM:** vamos con Lescano (así aparece el apellido la mayoría de las veces) | observación de forma del nombre — comparar contra 'Nombre real' y decidir |
 | 15 | Lujarda J. de González | — | — (el premio no tiene objeto en el catálogo) | **Mis comentarios:** Lugarda vs Lujarda / **Coment LM:** Ídem acá también aparece en la premiación como "fuera de catálogo". Lugarda [Lujarda] J. de González | decisión: sin objeto en el catálogo (queda como nota, sin lugar formal aún) |
 | 16 | Lujarda J Gonzalez | — | — (el premio no tiene objeto en el catálogo) | **Mis comentarios:** Lugarda vs Lujarda. Además, es raro porque parece que ganan dos mujeres distintas según las fotos de los premios, una es de Gonzalez y la otra González. | decisión: sin objeto en el catálogo (queda como nota, sin lugar formal aún) |
 | 18 | Melchora Valenzuela | — | — (el premio no tiene objeto en el catálogo) | **Mis comentarios:** el número de orden citado no existe en esa categoría del catálogo / **Coment LM:** acá no sé si tendría que ver algo | decisión: sin objeto en el catálogo (queda como nota, sin lugar formal aún) |
 | 19 | Catalina Figueroa | 110 | Catalina R. de Figueroa | **Coment LM:** ídem arriba | observación / confirmación |
-| 20 | Isabel B. de Acuña de Zavalia | 145 | Isabel B. de Acuña Zavalía | **Mis comentarios:** DE Zavalia y tilde en i / **Coment LM:** Perfecto, lo dejamos en su versión más completa. Mantengamos las tildes. | observación de forma del nombre — comparar contra 'Nombre real' y decidir |
+| 20 | Isabel B. de Acuña de Zavalia | 145 | Isabel B. de Acuña de Zavalía | **Mis comentarios:** DE Zavalia y tilde en i / **Coment LM:** Perfecto, lo dejamos en su versión más completa. Mantengamos las tildes. | observación de forma del nombre — comparar contra 'Nombre real' y decidir |
 | 21 | (Sra.) de Plaza | 140 | Sra. de Plaza | **Mis comentarios:** Sra / **Coment LM:** logré ver lo mismo en el catálogo, genial, ok con sra! | observación / confirmación |
 | 24 | Elvira Araoz | 98 | Eloisa [Elvira] Aráoz | **Coment LM:** Dejamos    Eloisa [Elvira] Aráoz | observación / confirmación |
 | 25 | Delia Ruiz | 97 | Delicia [Delia] Ruiz | **Coment LM:** Dejamos Delicia [Delia] Ruiz | observación / confirmación |
@@ -130,7 +132,7 @@ _Conteo:_ CONTRA LO PEDIDO (se fusionó): 1 · FUSIÓN OK: 49 · OK SEPARAR: 7 �
 | 41 | Dominga Lezcano | 43 | Dominga Lescano | **Mis comentarios:** Lescano vs Lezcano / **Coment LM:** vamos con Lescano (así aparece el apellido la mayoría de las veces) | observación de forma del nombre — comparar contra 'Nombre real' y decidir |
 | 43 | Delicia G. de Robles | 34 | Delina [Delicia] G. de Robles | **Mis comentarios:** Delicia vs delina / **Coment LM:** Delina [Delicia] G. de Robles | observación de forma del nombre — comparar contra 'Nombre real' y decidir |
 | 46 | Lastenia Barrero | — | — (el premio no tiene objeto en el catálogo) | **Mis comentarios:** No hay orden 19. / **Coment LM:** ¿qué debería mirar acá? | decisión: sin objeto en el catálogo (queda como nota, sin lugar formal aún) |
-| 48 | Isaura Sorroza de Risso Patron | 3 | Isaura Sorroza de Risso Patron | **Coment LM:** ok el más completo | observación / confirmación |
+| 48 | Isaura Sorroza de Risso Patron | 3 | Isaura Sorroza de Risso Patrón | **Coment LM:** ok el más completo | observación / confirmación |
 | 50 | Maria Castillejo | 55 | María Castillón [Castillejo] | **Coment LM:** María Castillón [Castillejo] | observación / confirmación |
 | 60 | Argenia R. de Lautafy | — | — (el premio no tiene objeto en el catálogo) | **Mis comentarios:** DE + apellido / **Coment LM:** ok dejamos el más completo | decisión: sin objeto en el catálogo (queda como nota, sin lugar formal aún) |
 | 62 | Mercedes Pereyra | 174 | María Mercedes Pereira | **Mis comentarios:** No hay una Pereyra en el catalogo / **Coment LM:** En el catálogo coincide con el envío n.17 de crochet, traje punto irlanda. MARÍA M. PEREIRA (que debe ser María Mercedes). Lo podemos unificar como María Mercedes Pereira. | observación / confirmación |
@@ -141,6 +143,6 @@ _Conteo:_ CONTRA LO PEDIDO (se fusionó): 1 · FUSIÓN OK: 49 · OK SEPARAR: 7 �
 | 80 | Alejandrina Peiró | — | — (el premio no tiene objeto en el catálogo) | **Mis comentarios:** No está Alejandrina en el catálogo / **Coment LM:** está bien, debe haber sido fuera de catálogo. La dejamos suelta | decisión: sin objeto en el catálogo (queda como nota, sin lugar formal aún) |
 | 82 | Sta Santés | — | — (el premio no tiene objeto en el catálogo) | **Mis comentarios:** solo llega a 13 (la observación dice "sección deshilados" — ahí sí llega hasta 25, quizás haya que buscarlo ahí en vez de en Bordado) / **Coment LM:** Excelente. Además se identifica Santiago con Santiago del Estero del Catálogo. Nos viene re bien. | decisión: sin objeto en el catálogo (queda como nota, sin lugar formal aún) |
 | 86 | Lucrecia Carrazan | — | — (el premio no tiene objeto en el catálogo) | **Mis comentarios:** No hay una Lucrecia Carrazan en el catalogo / **Coment LM:** la dejamos suelta como alejandrina | decisión: sin objeto en el catálogo (queda como nota, sin lugar formal aún) |
-| 87 | Ezequiela P. de Gutiérrez | 195 | Ezequiela P. de Gutiérrez | **Mis comentarios:** Esequiela vs Ezequiela / **Coment LM:** dejaría Ezequiela | PENDIENTE: LM pide 'Ezequiela'; la expositora sigue como 'Esequiela' |
+| 87 | Ezequiela P. de Gutiérrez | 195 | Ezequiela P. de Gutiérrez | **Mis comentarios:** Esequiela vs Ezequiela / **Coment LM:** dejaría Ezequiela | resuelto: la expositora ya figura como 'Ezequiela' |
 | 89 | Amicia Diaz | — | — (el premio no tiene objeto en el catálogo) | **Mis comentarios:** No hay una Amicia Díaz en el catalogo / **Coment LM:** la dejamos suelta como alejandrina | decisión: sin objeto en el catálogo (queda como nota, sin lugar formal aún) |
 | 103 | Catalina de Figueroa | — | — (el premio no tiene objeto en el catálogo) | **Mis comentarios:** R. / **Coment LM:** ok | decisión: sin objeto en el catálogo (queda como nota, sin lugar formal aún) |

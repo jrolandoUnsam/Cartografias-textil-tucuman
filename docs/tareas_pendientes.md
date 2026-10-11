@@ -8,6 +8,36 @@
   de 1915, que en el catálogo es de **Facunda Cerone** (objeto 93); la 476 Coronel
   sólo expone en 1916. El propio fallo llama "Coronel" a la Cerone del catálogo, lo
   que apunta a que son la misma persona. Repreguntar antes de cerrar el par.
+- [ ] **Dos pares que no respondió:** `325` María Fernández / `334` Arsenia Fernández
+  (consecutivas en la misma página, DSCN5217) y `209` / `264` Delina J./I. de Román
+  (el resto del grupo Delina está en `Hecho=False`).
+- [ ] **Hermanas Dominicas: dos fichas.** `83` "Hermanas dominicas- asilo" (objetos de
+  1915) y `499` "Hermanas Dominicas" (1916). Los dos premios de 1915 apuntan a la 499,
+  y el de bordado n.º 4 lleva el objeto 149, que es de la 83. ¿Son la misma
+  institución? *(en espera, no tocar)*
+- [ ] **Posibles duplicados que `03_candidatos` no propuso** (2026-10-11). El detector
+  compara el nombre entero con umbral 87 y no ve inicial vs. nombre completo
+  ("P." / "Palacios"), texto agregado ("-Escuela Sarmiento") ni erratas repartidas.
+  Encontrados con un barrido más laxo y filtrados a mano por ciudad, año y objetos.
+  Confirmar en el escaneo antes de fusionar.
+
+  **Muy probable**
+
+  | par | evidencia | escaneos |
+  |---|---|---|
+  | `162` / `296` Carmen de Moya | nombre idéntico, Colalao del Valle 1916; ponchos, frazadón, vicuña, alforjas / 3 sobrepelos; alforjas n.º 5 y sobrepelos n.º 7‑9 en la misma página. Hoy `Hecho=False`, pero el comentario es la regla genérica del "DE", no una decisión sobre el par | DSCN5205, 5212 / DSCN5214 |
+  | `214` Simona Palacios de Castro / `266` Simona P. de Castro | P. = Palacios; Colalao del Valle 1916; mismo tipo de envío (frazadón / ponchos, vicuña, alforjas) | DSCN5210 / DSCN5212‑5215 |
+  | `346` Manuela B. de Graña / `472` Manuela Bartolomé de Graña | B. = Bartolomé; San Miguel 1916; encajes al bolillo / bordados | DSCN5218 / DSCN5226 |
+  | `33` Argenia R. de Lautafy (1915) / `410` Arsenia R. de Lontayf (1916) | misma inicial R.; las dos con punto de Irlanda (traje / torera); apellido probablemente mal transcripto | DSCN5179 / DSCN5221 |
+  | `93` María Elvira Pereira (1915) / `360` María E. Pereyra (1916) | E. = Elvira; San Miguel; crochet / Irlanda. Ojo: `94` María **Mercedes** Pereira es otra | DSCN5185 / DSCN5218 |
+
+  **Probable (misma persona en 1915 y 1916)**
+
+  | par | evidencia | escaneos |
+  |---|---|---|
+  | `106` Alfonsa de Barceló / `473` Alfonsa Cuadrado de Barceló | San Miguel; raffia 1915 / bordados 1916 | DSCN5186 / DSCN5226 |
+  | `108` Mamerta Monteros -Escuela Sarmiento / `485` Mamerta Monteros | San Miguel; raffia 1915 / deshilado 1916. Tiene un premio de 1915: la hoja Premios lo apuntaba a la 485, pero el objeto premiado (200) es de la 108 | DSCN5186 / DSCN5226 |
+  | `83` / `499` Hermanas Dominicas | ver el ítem anterior | DSCN5184 / DSCN5227 |
 
 ## Errores puntuales en `tabla_normalizada.xlsx` (hoja `Objetos`)
 - [ ] **objeto 241**: `Almohadón tela hecha a pala` — se le quitó el punto final,
@@ -32,59 +62,39 @@
   ahora `mantener=115` (era `222`). Sobrevive 115 con sus 20 objetos, tal como pedía
   el comentario ("dejamos con tilde" → conservar A). Auditoría regenerada: la fila 39
   pasó de `⚠ FUSIÓN REVISAR` a `FUSIÓN OK`.
-- [ ] **Dalmira González Sorol (4/404) sigue contradiciendo el comentario.** El
-  comentario pedía **mantener separadas** ("dejaría cada ciudad como está") y el CSV
-  las fusiona (`origen = sin_lado`). Auditoría, fila 68: `⚠ CONTRA LO PEDIDO`. Es la
-  única contradicción que queda en el informe.
-
-
-- [ ] `Nombre`: hacer `strip()` a toda la columna. Son **7** nombres con espacio
-  final: Cipriana González, Carmen V. de Roncedo, Margarita Díaz, Ernestina Silvetti,
-  Sra. de Serrano, Carmen Rodríguez, Candelaria Alincastro.
-- [ ] **Los 10 pares detectados que nunca se revisaron.** Es lo único del archivo de
-  candidatos que no tiene ninguna decisión tomada: `Hecho` vacío **y** `Comentarios`
-  vacío. El propio `03_candidatos` los cuenta al final de cada corrida
-  (`10 sin fusionar y sin revisar  <-- lo que falta mirar`). Los otros 17 pares sin
-  fusionar sí tienen comentario: ahí la decisión está tomada (dejarlos separados) o la
-  duda está registrada.
-
-  Cada objeto tiene ahora su escaneo (`Objetos.imagen`, que pone `04c`), así que estas
-  dudas se resuelven yendo a la foto del catálogo. Agrupados por lo que dice el
-  contexto documental:
-
-  **a) Casi seguro la misma persona — confirmar en el escaneo y fusionar**
-
-  | par | por qué | escaneos |
-  |---|---|---|
-  | `43` Sara M. Sal / `479` Sara Sal | misma ciudad (San Miguel), misma técnica (deshilado) en 1915 y 1916 | DSCN5180 / DSCN5226 |
-  | `338` María Ll. de Puig / `344` María Llavé de Puig | `Ll.` es la abreviatura de `Llavé`; misma ciudad, misma categoría, **misma página**, los dos un pañuelo al bolillo | DSCN5218 (órdenes 20 y 33) |
-  | `56` Rosa V. de Lezcano / `114` Rosa V. Lescano | | DSCN5181, DSCN5187 / DSCN5201 |
-
-  **b) Casi seguro personas distintas — anotar `Hecho=False` y cerrar**
-
-  | par | por qué | escaneos |
-  |---|---|---|
-  | `325` María Fernández / `334` Arsenia Fernández | **nombres de pila distintos y figuran consecutivas en la misma página** (órdenes 2 y 11; 68‑69 y 70‑74): el catálogo las lista como dos expositoras, probablemente parientes | DSCN5217, DSCN5226 |
-  | `198` María T. de Pérez / `303` María Pérez | apellido muy común, ciudades distintas (Atahona / Ensenada), categorías distintas | DSCN5208 / DSCN5214 |
-  | `170` Ofelia Zelaya / `241` Fidelia Zelaya | nombres de pila distintos, ciudades distintas (Niogasta / Chicligasta) | DSCN5205 / DSCN5211 |
-  | `124` Adela J. de Gramajo / `171` Adela G. de Gramajo | `J` vs `G`: misma ciudad (Monteagudo) y mismo concurso,  distinta categoría| DSCN5201 / DSCN5205 |
-  | `47` Facunda Cerone / `476` Facunda Coronel | ¿errata de transcripción? Misma localidad (Escuela de La Cocha / La Cocha), mismo nombre de pila raro, misma técnica | DSCN5181 / DSCN5226 |
-  | `155` Arsenia M. de Fernández / `334` Arsenia Fernández |ciudad y categoría distintas (Chicligasta/frazada vs Concepción‑Medinas/encajes) | DSCN5205 / DSCN5217‑5226 |
-  | `209` Delina J. de Román / `264` Delina I. de Román | parte del grupo Delina; 264 no tiene ciudad cargada | DSCN5208 / DSCN5212‑5213 |
-
+- [x] **Dalmira González Sorol (4/404).** *(2026-10-11)* La auditoría la marca
+  `⚠ CONTRA LO PEDIDO` porque lee "dejaría cada ciudad como está" como "mantener
+  separadas". Lectura de Julián: el comentario completo es "Tafi Viejo en 1915 y
+  Tucumán 1916 / dejaría cada ciudad como está", o sea que habla de la **ciudad**, no
+  de la persona. La fusión ya respeta eso: la ciudad va en cada objeto, y los 6 de
+  1915 siguen en Tafí Viejo y el de 1916 en San Miguel de Tucumán. Se mantiene la
+  fusión; el veredicto del informe es un falso positivo del parser.
+- [x] `Nombre` sin espacios al final. *(2026-10-11)* `04b` hace `strip()` a los
+  nombres; los 7 casos (Cipriana González, Carmen V. de Roncedo, Margarita Díaz,
+  Ernestina Silvetti, Sra. de Serrano, Carmen Rodríguez, Candelaria Alincastro)
+  quedaron limpios.
+- [x] **Revisión de Larisa (octubre) de los 10 pares sin revisar.** *(2026-10-11)*
+  - Fusionados: `43 ← 479` Sara M. Sal, `344 ← 338` María Llaví de Puig (en la tabla
+    figura "Llaví"; la lista que se le pasó decía "Llavé" por error),
+    `114 ← 56` Rosa V. [de] Lescano.
+  - `Hecho=False` en el archivo de candidatos: 198/303 (Pérez), 170/241 (Zelaya),
+    124/171 (Gramajo), 155/334 (Arsenia Fernández).
+  - Quedan 3 sin revisar (los cuenta `03_candidatos`): 47/476 Facunda (ver
+    *Preguntas para Larisa*), 325/334 María / Arsenia Fernández y 209/264 Delina
+    J./I. de Román, que no respondió.
 
 - [ ] **Los 17 pares sin fusionar que sí tienen comentario.** Repasar que el comentario
   siga valiendo y, donde corresponda, bajarlo al CSV de fusiones. El grupo más cargado
   es Delina J./I. de Román (161, 209, 255, 264) y le siguen Carmen de Moya (162 / 296,
-  con 7 y 3 objetos) y Segunda Gimónez / Jiménez (221 / 268).
+  con 7 y 3 objetos) y Segunda Giménez / Jiménez (221 / 268).
 
-  Total del archivo (antes de las 4 fusiones de arriba): 85 filas = 58 ya resueltas
+  Total del archivo al 2026-09-18 (antes de la revisión de octubre): 85 filas = 58 ya resueltas
   por el CSV de fusiones + 27 sin fusionar (10 sin revisar + 17 con comentario). De
   esas 27, 3 tienen un id que ya no existe en la tabla.
 
 ## Género (`Expositoras`)
 
-Hoy son **460 F y 8 M** sobre 468 filas.
+Hoy son **457 F y 8 M** sobre 465 filas.
 - [ ] Criterio para instituciones (hoy marcadas F por convención): decidir si llevan
   género o una marca aparte.
 
