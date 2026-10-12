@@ -35,12 +35,17 @@ Columnas agregadas:
                                    cuando hay varios y nada permite elegir ("ambiguo:
                                    ..."); la persona descartada por parecido bajo
                                    UMBRAL_PERSONA_SOLA. Vacío si no pasó nada de eso
-    revisar                        X si hay que mirarlo a mano
+    revisar                        X sólo si queda algo por decidir: premio sin objeto
+                                   y sin decisión, "pendiente" en premios_manual.csv,
+                                   u objeto premiado dos veces. No se marcan los
+                                   decididos a mano, los que el fallo da "fuera de
+                                   catálogo" ni los vinculados con objeto confirmado
 
 Correcciones a mano: data/interim/decisiones/premios_manual.csv
     premio_id,objeto_id,persona_id,nota
     (premio_id = número de fila 0-based de la hoja Premios; objeto_id="ninguno"
-    fuerza a que quede sin objeto sin correr el cruce automático)
+    fuerza a que quede sin objeto sin correr el cruce automático; objeto_id=
+    "pendiente" no cambia el cruce pero deja la fila marcada con la nota como motivo)
 """
 from __future__ import annotations
 
@@ -190,10 +195,16 @@ def main() -> None:
         for _, m in pd.read_csv(MANUAL, comment="#", dtype={"objeto_id": str}).dropna(how="all").iterrows():
             d = manual.setdefault(int(m["premio_id"]), {})
             obj_val = str(m.get("objeto_id", "")).strip().lower()
+            if pd.notna(m.get("nota")):
+                d["nota"] = str(m["nota"]).strip()
             if obj_val in ("ninguno", "sin_objeto", "sin objeto"):
                 # fuerza a que quede SIN objeto (el cruce automático había
-                # asignado uno equivocado): no correr el matching por número.
+                # asignado uno equivocado, o es un premio fuera de catálogo):
+                # no correr el matching por número.
                 d["sin_objeto"] = True
+            elif obj_val == "pendiente":
+                # duda abierta: el cruce sigue igual, pero la fila queda marcada
+                d["pendiente"] = True
             elif pd.notna(m.get("objeto_id")) and obj_val not in ("", "nan"):
                 d["objeto_id"] = int(m["objeto_id"])
             if pd.notna(m.get("persona_id")):
@@ -243,7 +254,9 @@ def main() -> None:
         metodo = ""
         ambiguos: list[str] = []
         if pid in manual and manual[pid].get("sin_objeto"):
-            metodo = "sin objeto (forzado a mano: el cruce automático asignaba otra persona)"
+            nota = manual[pid].get("nota", "")
+            metodo = f"decisión a mano: {nota}" if nota else \
+                "sin objeto (forzado a mano: el cruce automático asignaba otra persona)"
         elif pid in manual and "objeto_id" in manual[pid]:
             ids, metodo = [manual[pid]["objeto_id"]], "manual"
         elif nums:
@@ -332,7 +345,13 @@ def main() -> None:
             rechazado = "; ".join(x for x in (rechazado,
                 f"persona descartada: {per_nom!r} (score {per_sc})") if x)
             per_id, per_nom, per_sc = None, "", 0.0
-        revisar = "X" if (not ids or per_sc < 90) else ""
+        # Antes se marcaba todo premio sin objeto o con parecido de nombre < 90: salían
+        # 23, de los cuales sólo 5 estaban abiertos. Ahora sólo lo que falta decidir.
+        decidido = pid in manual and ("objeto_id" in manual[pid] or manual[pid].get("sin_objeto"))
+        pendiente = pid in manual and manual[pid].get("pendiente")
+        if pendiente:
+            metodo = f"{metodo} · PENDIENTE: {manual[pid].get('nota', '')}"
+        revisar = "X" if pendiente or (not ids and not decidido and not fuera_cat) else ""
 
         cols["persona_id"].append(per_id if per_id is not None else "")
         cols["persona"].append(per_nom)

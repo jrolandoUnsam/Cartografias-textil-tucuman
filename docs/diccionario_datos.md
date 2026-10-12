@@ -124,7 +124,7 @@ mayúsculas)**. Dentro de un mismo grupo se conserva el orden del catálogo
 
 ## `data/interim/duplicados_expositoras_candidatos.xlsx`
 
-Pares candidatos a fusión que genera `03_candidatos.py` (fuzzy matching, `UMBRAL = 87`),
+Pares candidatos a fusión que genera `03_candidatos.py` (fuzzy matching, `UMBRAL = 80`),
 para revisar a mano.
 
 | campo | descripción |

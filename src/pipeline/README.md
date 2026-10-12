@@ -83,9 +83,16 @@ decisión. Está en `git log` (commit `975476e`).
 
 ## Parámetros
 
-El único parámetro del pipeline es `UMBRAL = 87` en `03_candidatos.py`: el ratio
-mínimo (0–100) de `rapidfuzz` para proponer un par de nombres como candidato a
-duplicado. No hay modelos entrenados ni semillas de aleatoriedad.
+Todos son umbrales de parecido de nombres (0–100, `rapidfuzz`). No hay modelos
+entrenados ni semillas de aleatoriedad. Cada cambio queda en `docs/bitacora.md`.
+
+| parámetro | dónde | valor | para qué |
+|---|---|---|---|
+| `UMBRAL` | `03_candidatos.py` | 80 | parecido mínimo del nombre entero para proponer un par como duplicado (era 87) |
+| `UMBRAL_APELLIDO` | `03_candidatos.py` | 75 | en la regla de nombres "compatibles", parecido mínimo del apellido |
+| `UMBRAL_NOMBRE` | `03b_premios.py` | 60 | el dueño del objeto tiene que parecerse al nombre del premio para aceptar el vínculo |
+| `UMBRAL_ELEGIR` | `03b_premios.py` | 80 | con varios objetos con el mismo número, para elegir por el nombre de la dueña |
+| `UMBRAL_PERSONA_SOLA` | `03b_premios.py` | 90 | premio sin objeto: por debajo, la persona queda vacía en vez de adivinar |
 
 ## Sobre `tests/golden/`
 

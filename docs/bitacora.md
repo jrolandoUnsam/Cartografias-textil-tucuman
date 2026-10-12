@@ -155,6 +155,24 @@ Quedan dos huecos que **no son errores de la tabla**:
   a 15. Puede ser un error al cargar el índice o una página del catálogo que nunca se
   fotografió: si aparece el original, revisar.
 
+## 2026-10-12 — `UMBRAL` de `03_candidatos` baja de 87 a 80
+
+Con 87 el detector no veía pares como "Argenia R. de Lautafy" / "Arsenia R. de Lontayf"
+(80) ni "Hermanas dominicas- asilo" / "Hermanas Dominicas" (85,7). Se midió sobre la
+tabla de partida cuántos pares nuevos saldría revisar con cada valor:
+
+| `UMBRAL` | pares detectados | nuevos respecto del archivo de candidatos |
+|---|---|---|
+| 87 | 85 | 0 |
+| 80 | 135 | 48 |
+| 75 | 343 | 256 |
+| 70 | 689 | 602 |
+
+Con 70 casi todos los nuevos son ruido: mismo apellido y otro nombre de pila (Lola /
+Pabla González, Asunción / Visitación Díaz). Se eligió 80 (decisión de Julián). Los
+pares ya anotados se conservan con sus comentarios, como siempre. Los demás umbrales
+del pipeline están en la tabla de parámetros de `src/pipeline/README.md`.
+
 ## Fuentes del crudo que NO entran a la base
 
 Hojas `no PRENSA-EL ORDEN`, `no ARCHIVO PADILLA`, `no Prensa-Rakow lib`: material de

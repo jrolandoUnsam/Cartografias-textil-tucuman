@@ -75,7 +75,7 @@ FUSIONES_CSV = DECISIONES / "fusiones_expositoras.csv"
 SEMILLA = INTERIM / "revision_duplicados.xlsx"
 HOJA_SEMILLA = "Personas - candidatos"
 HOJA = "candidatos"
-UMBRAL = 87  # ratio mínimo (0-100) para proponer un par
+UMBRAL = 80  # ratio mínimo (0-100) para proponer un par; era 87 hasta 2026-10-12 (ver bitácora)
 UMBRAL_APELLIDO = 75  # en compatibles(): con 70 entraban Blanche/Sánchez, Pereira/Herrera
 
 COLS = [
