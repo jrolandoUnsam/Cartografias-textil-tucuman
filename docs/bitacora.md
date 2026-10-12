@@ -131,6 +131,30 @@ Se corrió el pipeline entero y se verificó, dato por dato, lo que afirmaban el
   revisarlas a mano. *María Ávila quedó resuelta el mismo día: la fila pasó a
   `115,222` y la auditoría da `FUSIÓN OK`. Queda pendiente Dalmira.*
 
+## 2026-10-12 — Números de orden corregidos contra el escaneo
+
+El premio de Lastenia Barrero cita "pañuelo n.º 19" y los pañuelos de 1915 llegaban
+sólo hasta el 18. Mirando la foto (DSCN5177) el catálogo imprime **16, 19, 18**: no hay
+17, y al transcribir se había renumerado en secuencia. Con eso se comparó, para cada
+categoría, el rango de `Paginas_Catalogo` (`orden_desde`–`orden_hasta`) contra los
+números transcriptos, y se buscaron números repetidos. Cada caso se resolvió en la foto
+y se corrigió a mano en `tabla_normalizada_manual.xlsx`:
+
+| objeto | expositora | `ORDEN` | foto | qué pasaba |
+|--:|---|---|---|---|
+| 17 | Lastenia Barrero | 17 → 19 | DSCN5177 | el catálogo salta del 16 al 19; el premio n.º 19 ahora se vincula solo |
+| 352 | Elena Segura | 108 → 109 | DSCN5210 | dos "sobrecama bordada" con el mismo 108 |
+| 651 | María E. Pereyra | 28 → 58 | DSCN5218 | transcripto como 28 (que ya era de Arsenia Fernández) |
+
+Quedan dos huecos que **no son errores de la tabla**:
+
+- **Pañuelos 1915, n.º 17** y **Bordado en blanco y seda 1915, n.º 9**: no existen en
+  el catálogo impreso (DSCN5177, DSCN5184). El control los va a seguir mostrando.
+- **Tapices 1916, n.º 16–25**: `Paginas_Catalogo` decía 1–25 para DSCN5202, pero en las
+  fotos sólo hay hasta el 15, igual que en la transcripción. Se corrigió `orden_hasta`
+  a 15. Puede ser un error al cargar el índice o una página del catálogo que nunca se
+  fotografió: si aparece el original, revisar.
+
 ## Fuentes del crudo que NO entran a la base
 
 Hojas `no PRENSA-EL ORDEN`, `no ARCHIVO PADILLA`, `no Prensa-Rakow lib`: material de
