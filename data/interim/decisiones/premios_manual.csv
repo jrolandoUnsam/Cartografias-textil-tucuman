@@ -10,3 +10,13 @@ premio_id,objeto_id,persona_id,nota
 # Ejemplos:
 #   46,,12,"Lastenia Barrero: el NÚM 19 no existe en PAÑUELOS del catálogo"
 #   60,ninguno,,"Argenia R. de Lautafy: el cruce automático le puso el objeto de Rosalía Gutiérrez"
+70,73,,"Isabel Ovejero: es el deshilado 3 (LM 5-10); el n.º 3 también existe en crochet, también suyo"
+16,ninguno,,"Lujarda J Gonzalez n.º 33: premio fuera de catálogo (LM 5-10)"
+18,ninguno,,"Melchora Valenzuela n.º 34: premio fuera de catálogo (LM 5-10)"
+89,ninguno,,"Amicia Díaz (Tres Pozos): premio estímulo fuera de catálogo (LM 5-10)"
+103,ninguno,,"Catalina de Figueroa: premio estímulo fuera de catálogo (LM 5-10); el objeto 110 es del premio de la fila 21"
+63,ninguno,,"Rosa Barceló: no es Rosa Baralo (LM 5-10), queda sin persona"
+6,pendiente,,"Dominga Castaño: LM 5-10 dice que es la randa 25, pero ese objeto (43) es de Dominga Lescano y ya tiene su premio (fila 43); antes ambos dijeron que eran personas distintas. Preguntar a Larisa"
+75,pendiente,,"Facunda Coronel: el deshilado 23 es de Facunda Cerone (objeto 93); ¿son la misma persona (47/476)? Preguntar a Larisa"
+80,ninguno,,"Alejandrina Peiró: no está en el catálogo, la dejamos suelta (Coment LM, antes de octubre)"
+86,ninguno,,"Lucrecia Carrazan: no está en el catálogo, la dejamos suelta como Alejandrina (Coment LM, antes de octubre)"
