@@ -197,6 +197,17 @@ del pipeline están en la tabla de parámetros de `src/pipeline/README.md`.
   catálogo), `ciudad_id` y el punto de provincia, para que LM pueda ver de dónde sale
   cada ubicación.
 
+## 2026-10-13 — El mapa pasa al pipeline (`05b_mapa`)
+
+`outputs/mapa_procedencias.html` lo exportaba a mano `notebooks/04_eda.ipynb`, y como
+nadie lo volvió a correr quedó con datos viejos ("Villa Vitulumba", Orán con punto, sin
+las coordenadas de la revisión LM 9-10). Ahora lo genera la etapa `05b_mapa` en cada
+corrida, a partir de la tabla normalizada. Agrega una capa "sólo provincia": lo que no
+tiene punto de ciudad se suma en la capital de su provincia, con otro color (pedido de
+LM). Las ubicaciones tentativas van con borde punteado. El notebook muestra el mismo
+mapa (importa la etapa) y ya no escribe el archivo, para que no pise la versión del
+pipeline.
+
 ## Fuentes del crudo que NO entran a la base
 
 Hojas `no PRENSA-EL ORDEN`, `no ARCHIVO PADILLA`, `no Prensa-Rakow lib`: material de

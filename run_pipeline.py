@@ -20,6 +20,7 @@ ETAPAS = [
     "04c_vincular_imagenes",
     "04d_coordenadas",
     "05_vista_plana",
+    "05b_mapa",
     "06_verificar",
 ]
 

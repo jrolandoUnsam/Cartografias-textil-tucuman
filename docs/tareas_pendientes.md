@@ -154,7 +154,7 @@ Hoy son **457 F y 8 M** sobre 465 filas.
 - [ ] **`outputs/` tiene una sola salida.** Los objetivos específicos 2 y 3 del
   formulario son visualizaciones/mapas interactivos y vinculación registros↔imágenes.
   El 3 está resuelto (`04c`: 981/981 objetos con imagen). Del 2 hoy sale
-  `outputs/mapa_procedencias.html`, que exporta `notebooks/04_eda.ipynb`; las demás
+  `outputs/mapa_procedencias.html`, que genera la etapa `05b_mapa` del pipeline; las demás
   figuras del EDA (categorías, comparación entre concursos, provincias, expositoras)
   viven sólo dentro del notebook y no se exportan. Falta decidir si se exportan desde
   el notebook o si se agrega una etapa `07_figuras` al pipeline.
