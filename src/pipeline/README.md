@@ -16,7 +16,7 @@ Correr todo: `python run_pipeline.py` (desde la raíz). Desde una etapa en adela
 | `04_aplicar_dedup` | `data/interim/tabla_normalizada_manual.xlsx` + `decisiones/fusiones_expositoras.csv` | `data/interim/tabla_normalizada_dedup.xlsx` — 42 decisiones en el CSV, **41 aplicadas**, 519 → 471 expositoras. Dos ids a descartar ya no existen en la tabla manual (67 y 117) y el script los avisa; la fila `76,67` queda sin efecto por eso | funciona |
 | `04b_titulo_nombres` | tabla_normalizada_dedup | `data/processed/tabla_normalizada.xlsx` (nombres ALLCAPS → Título) | funciona |
 | `04c_vincular_imagenes` | tabla_normalizada + hoja `Paginas_Catalogo` | tabla_normalizada con la columna `Objetos.imagen` — 981/981 objetos con imagen | funciona |
-| `04d_coordenadas` | tabla_normalizada + `decisiones/coordenadas_ciudades.csv` | tabla_normalizada con las columnas `Ciudades.lat`/`Ciudades.lon` — 53/77 ciudades con coordenada | funciona |
+| `04d_coordenadas` | tabla_normalizada + `decisiones/coordenadas_ciudades.csv` | tabla_normalizada con la ubicación de cada ciudad tomada del CSV: `nombre_ciudad_hoy`, `nombre_provincia`, `lat`/`lon`, `lat_provincia`/`lon_provincia`, `precision`, `nota` — 53/77 ciudades con coordenada | funciona |
 | `05_vista_plana` | tabla_normalizada | `data/processed/vista_plana_tabla_consolidada.xlsx` (981 filas, incluye `lat`/`lon` e `Imagen`) | funciona |
 | `06_verificar` | salidas + `tests/golden/` | reporte de diferencias, hoja por hoja | corre, pero **hoy falla siempre**: el golden está desactualizado (ver abajo) |
 | `audit_comentarios` | tabla_normalizada + `tabla_normalizada_manual.xlsx` | `docs/auditoria_comentarios.md` | funciona, fuera de la corrida |
@@ -75,10 +75,11 @@ decisión. Está en `git log` (commit `975476e`).
   respecto del catálogo (erratas, singular/plural, mayúsculas).
 - `premios_manual.csv` — correcciones al cruce Premios ↔ Objetos. Acepta
   `objeto_id = "ninguno"` para forzar que un premio quede sin objeto.
-- `coordenadas_ciudades.csv` — `lat`/`lon` de cada ciudad (`ciudad_id`), cargadas a
-  mano por la investigadora (Google Maps). 53/77 cargadas; el resto queda vacío
-  (nombre ambiguo o desconocido) hasta que se complete o se decida un criterio.
-- `ciudades.csv` *(pendiente)* — `nombre_ciudad_hoy` y `nombre_provincia`.
+- `coordenadas_ciudades.csv` — la única fuente de la ubicación de cada ciudad
+  (`ciudad_id`): `nombre_ciudad_hoy`, `nombre_provincia`, `lat`/`lon` (cargadas a mano
+  por la investigadora, Google Maps), `lat_provincia`/`lon_provincia` (capital),
+  `precision` y `nota`. `04d` pisa con esto la copia de la tabla manual. 53/77 con
+  punto de ciudad; el resto queda vacío (nombre ambiguo o desconocido).
 - `categorias.csv` *(pendiente)* — unificaciones de categorías entre 1915 y 1916.
 
 ## Parámetros
@@ -101,11 +102,12 @@ verificación **solo si no se re-congela en el mismo commit que cambia el pipeli
 
 **Estado al 2026-09-18: desactualizado, y por eso `06_verificar` falla siempre.** El
 golden nunca se re-congeló después de que `04d` agregara `lat`/`lon` a `Ciudades` y
-`04c` agregara `Imagen` a la vista plana:
+`04c` agregara `Imagen` a la vista plana (y, desde 2026-10-12, `05` le suma
+`Provincia`, `Lugar en el documento`, `ciudad_id` y las coordenadas de provincia):
 
 ```
-tabla_normalizada.xlsx        [Ciudades] shape (78, 6) != golden (78, 4)
-vista_plana_consolidada.xlsx  [Objetos - Concursos Tucumán] shape (982, 10) != golden (982, 7)
+tabla_normalizada.xlsx        [Ciudades] shape (78, 10) != golden (78, 4)
+vista_plana_consolidada.xlsx  [Objetos - Concursos Tucumán] shape (982, 15) != golden (982, 7)
 ```
 
 Las demás hojas dan OK. Re-congelarlo en un commit propio es una tarea pendiente

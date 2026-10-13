@@ -173,6 +173,30 @@ Pabla González, Asunción / Visitación Díaz). Se eligió 80 (decisión de Jul
 pares ya anotados se conservan con sus comentarios, como siempre. Los demás umbrales
 del pipeline están en la tabla de parámetros de `src/pipeline/README.md`.
 
+## 2026-10-12 — Ciudades: revisión LM 9-10 y punto de provincia
+
+- **`coordenadas_ciudades.csv` pasa a ser la única fuente de la ubicación de cada
+  ciudad.** `04d_coordenadas` toma de ahí también `nombre_ciudad_hoy` y
+  `nombre_provincia` (antes salían de la tabla manual, que tenía su propia copia y
+  llegó a diferir: "Villa Vitulumba" / "Villa Tulumba"). Se agregan las columnas
+  `lat_provincia`, `lon_provincia`, `precision` y `nota`. Los valores anteriores quedan
+  en el historial de git; cada cambio de la revisión lleva nota "LM 9-10: …".
+- **Punto de provincia:** la capital de cada provincia, para que en el mapa aparezca
+  también lo que sólo tiene provincia (pedido de LM). San Miguel de Tucumán y
+  Resistencia son las coordenadas que dio LM; las demás se cargaron a mano y Julián
+  las verificó. Sin punto de provincia quedan las provincias dudosas o vacías.
+- **Cambios de LM aplicados:** coordenadas corregidas o cargadas para Ingenio
+  Trinidad, El Tobar, San Antonio de Quisca, Las Lechuzas, Ingenio Luján, Asilo Ciudad
+  (26 y 79, centro de San Miguel) y Leales (Villa de Leales, `precision = tentativa`);
+  nota para Ingenio Guzmán; Orán, Concordia y La Banda quedan con provincia sin
+  definir y Orán también sin punto (puede ser el de Tucumán o el de Salta).
+- **No se aplicaron:** Chicligasta (la coordenada de LM lo llevaba 67 km al oeste, a
+  la zona de montaña; se deja la nuestra) y la normalización de "F.C.N.O.A." en
+  Arcadia (se deja como está).
+- **Vista plana:** se agregan Provincia, "Lugar en el documento" (el texto del
+  catálogo), `ciudad_id` y el punto de provincia, para que LM pueda ver de dónde sale
+  cada ubicación.
+
 ## Fuentes del crudo que NO entran a la base
 
 Hojas `no PRENSA-EL ORDEN`, `no ARCHIVO PADILLA`, `no Prensa-Rakow lib`: material de

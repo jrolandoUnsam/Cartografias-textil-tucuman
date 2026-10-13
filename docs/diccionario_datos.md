@@ -32,9 +32,12 @@ de qué página salió cada registro.
 |---|---|---|
 | `ciudad_id` | int | identificador |
 | `nombre_ciudad` | texto | localidad tal como figura en la fuente histórica |
-| `nombre_ciudad_hoy` | texto | topónimo actual equivalente (decisión manual) |
-| `nombre_provincia` | texto | provincia actual (decisión manual) |
-| `lat` / `lon` | float | coordenadas de la localidad. Las agrega `04d_coordenadas` desde `decisiones/coordenadas_ciudades.csv`. 53 de 77 cargadas; el resto queda vacío (nombre ambiguo o desconocido) |
+| `nombre_ciudad_hoy` | texto | topónimo actual equivalente. Sale de `decisiones/coordenadas_ciudades.csv` (lo pone `04d`) |
+| `nombre_provincia` | texto | provincia actual. Ídem |
+| `lat` / `lon` | float | punto de la ciudad. Ídem. 53 de 77 cargadas; el resto queda vacío (nombre ambiguo o desconocido) |
+| `lat_provincia` / `lon_provincia` | float | punto de la capital de la provincia, para ubicar a nivel provincia lo que no tiene ciudad o no tiene punto seguro (pedido de Larisa, 2026-10). Ídem |
+| `precision` | texto | vacío = ubicación segura; `tentativa` si no lo es. Ídem |
+| `nota` | texto | por qué se decidió así (p. ej. `LM 9-10: …`). Ídem |
 
 ### Hoja `Objetos` (981 filas)
 | campo | tipo | descripción |
@@ -116,7 +119,11 @@ mayúsculas)**. Dentro de un mismo grupo se conserva el orden del catálogo
 | `Concurso` / `Año` | del concurso |
 | `Expositora/Expositor` | nombre normalizado |
 | `Ciudad` | `nombre_ciudad` histórico; si la ciudad es desconocida se muestra la provincia |
+| `Provincia` | `nombre_provincia` de esa ciudad |
+| `Lugar en el documento` | la procedencia tal como la escribió el catálogo ("SANTIAGO", "SANTIAGO DEL ESTERO"), de `objetos_crudos.csv`. Para cotejar contra la fuente |
+| `ciudad_id` | → `Ciudades.ciudad_id`. Dos lugares escritos distinto con el mismo id son la misma fila de `Ciudades` |
 | `lat` / `lon` | coordenadas de esa ciudad (vacías si no están cargadas) |
+| `lat_provincia` / `lon_provincia` | coordenadas de la capital de su provincia |
 | `Categoría` | nombre de categoría |
 | `N.º de orden` | `ORDEN` |
 | `Descripción del objeto` | `OBJETO` |

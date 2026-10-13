@@ -31,12 +31,14 @@ no están aplicadas. Que `06_verificar` dé OK significa "nada cambió desde la 
 no "los datos están bien".
 
 **Al 2026-09-18 el snapshot está atrasado y `06_verificar` falla siempre.** Se agregaron
-columnas a las salidas (`lat`/`lon` en `Ciudades`, por `04d_coordenadas`; `Imagen` en la
-vista plana, por `04c_vincular_imagenes`) y el golden nunca se re-congeló:
+columnas a las salidas (`lat`/`lon` en `Ciudades`, por `04d_coordenadas`, y desde 2026-10-12
+`lat_provincia`/`lon_provincia`/`precision`/`nota`; `Imagen` en la
+vista plana, por `04c_vincular_imagenes`; desde 2026-10-12 también `Provincia`, `Lugar en
+el documento`, `ciudad_id` y las coordenadas de provincia, por `05_vista_plana`) y el golden nunca se re-congeló:
 
 ```
-tabla_normalizada.xlsx        [Ciudades] shape (78, 6) != golden (78, 4)
-vista_plana_consolidada.xlsx  [Objetos - Concursos Tucumán] shape (982, 10) != golden (982, 7)
+tabla_normalizada.xlsx        [Ciudades] shape (78, 10) != golden (78, 4)
+vista_plana_consolidada.xlsx  [Objetos - Concursos Tucumán] shape (982, 15) != golden (982, 7)
 ```
 
 El resto de las hojas da OK. Mientras siga así, esta carpeta no cumple su función: un

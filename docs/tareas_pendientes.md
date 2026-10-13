@@ -132,8 +132,9 @@ Hoy son **457 F y 8 M** sobre 465 filas.
 - [ ] **24 de 77 ciudades siguen sin coordenadas** en
   `decisiones/coordenadas_ciudades.csv` (53 cargadas). Completar las que se puedan y
   fijar un criterio para las ambiguas o desconocidas.
-- [ ] `decisiones/ciudades.csv` (`nombre_ciudad_hoy`, `nombre_provincia`) todavía no
-  existe como tabla de decisión: esos dos campos hoy viven dentro del Excel manual.
+- [x] *(2026-10-12)* `nombre_ciudad_hoy` y `nombre_provincia` vivían en dos lugares (tabla
+  manual y `coordenadas_ciudades.csv`). Ahora el CSV es la única fuente: `04d` los toma
+  de ahí. La única diferencia era Tulumba ("Villa Vitulumba" en la tabla).
 
 ## Imágenes
 - [ ] Decidir cuál de las dos tomas del álbum de 1915 es la de referencia y registrar
