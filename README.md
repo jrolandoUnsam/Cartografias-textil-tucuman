@@ -27,7 +27,7 @@ data/
   processed/    tabla_normalizada.xlsx, vista_plana_tabla_consolidada.xlsx
 src/pipeline/   etapas del pipeline (01_ingesta … 06_verificar)
 notebooks/      exploración y análisis
-outputs/        figuras, mapas, tableros (hoy: mapa_procedencias.html)
+outputs/        figuras, mapas, tableros (mapa_procedencias.html, explorador.html)
 docs/           bitácora de decisiones, diccionario de datos, evaluación de riesgos
 tests/golden/   copias congeladas de las salidas, para verificación
 ```

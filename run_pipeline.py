@@ -21,6 +21,7 @@ ETAPAS = [
     "04d_coordenadas",
     "05_vista_plana",
     "05b_mapa",
+    "05c_explorador",
     "06_verificar",
 ]
 

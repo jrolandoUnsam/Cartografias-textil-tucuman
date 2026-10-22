@@ -1,0 +1,78 @@
+﻿ciudad_id,nombre_ciudad,nombre_provincia,zona,criterio
+1,Monteros,Tucumán,tcs,"a 47 km de la capital, centro-sur"
+2,San Miguel de Tucumán,Tucumán,cap,a 0 km de la capital
+3,Tafí Viejo,Tucumán,cap,a 12 km de la capital
+4,Villa Alberdi,Tucumán,tcs,"a 94 km de la capital, centro-sur"
+5,,Santiago del Estero,sgo,por provincia
+6,San Pablo,Tucumán,cap,a 12 km de la capital
+7,Simoca,Tucumán,tcs,"a 50 km de la capital, centro-sur"
+8,,Catamarca,cat,por provincia
+9,,Córdoba,otr,por provincia
+10,,Salta,sju,por provincia
+11,Asilo Maternal Ciudad,,sa,provincia sin dato o sin definir
+12,Ingenio Concepcion,Tucumán,cap,a 4 km de la capital
+13,Colalao del Valle,Tucumán,tvn,"valles / norte (lat > -26,55 o lon < -65,7)"
+14,S/d,S/d,sa,provincia sin dato o sin definir
+15,Escuela de la Cocha,Tucumán,tcs,"a 111 km de la capital, centro-sur"
+16,Antofagasta Salta,,sa,provincia sin dato o sin definir
+17,La Cocha,Tucumán,tcs,"a 111 km de la capital, centro-sur"
+18,Yacuchiri,Tucumán,tcs,"a 60 km de la capital, centro-sur"
+19,Los Mendoza,Tucumán,tsl,solo provincia
+20,La Florida,Tucumán,cap,a 11 km de la capital
+21,Monteagudo,Tucumán,tcs,"a 76 km de la capital, centro-sur"
+22,Chicligasta,Tucumán,tcs,"a 67 km de la capital, centro-sur"
+23,Palominos,Tucumán,tcs,"a 70 km de la capital, centro-sur"
+24,Leales,Tucumán,tcs,"a 42 km de la capital, centro-sur"
+25,Cafayate Salta,Salta,sju,por provincia
+26,Asilo Ciudad,Tucumán,cap,a 0 km de la capital
+27,Jujuy,Jujuy,sju,por provincia
+28,Lules,Tucumán,cap,a 17 km de la capital
+29,San Pedro de Colalao,Tucumán,tvn,"valles / norte (lat > -26,55 o lon < -65,7)"
+31,Tinogasta,Catamarca,cat,por provincia
+32,Piedra Blanca,Catamarca,cat,por provincia
+33,Tucumán,Tucumán,tsl,solo provincia
+34,Tulumba,Córdoba,otr,por provincia
+35,"Escuela Ernesto E. Padilla, Concepcion",Tucumán,tcs,"a 69 km de la capital, centro-sur"
+36,Villa Belgrano,Tucumán,tcs,"a 88 km de la capital, centro-sur"
+38,Taco Ralo,Tucumán,tcs,"a 112 km de la capital, centro-sur"
+39,Rio Chico,Tucumán,tcs,"a 83 km de la capital, centro-sur"
+40,Ingenio Trinidad,Tucumán,tcs,"a 70 km de la capital, centro-sur"
+41,San Antonio de Quisca,Tucumán,tcs,"a 83 km de la capital, centro-sur"
+42,Niogasta,Tucumán,tcs,"a 77 km de la capital, centro-sur"
+43,Atahona,Tucumán,tcs,"a 66 km de la capital, centro-sur"
+44,Sandovales,Tucumán,tcs,"a 65 km de la capital, centro-sur"
+45,Las Lechuzas,Tucumán,tcs,"a 62 km de la capital, centro-sur"
+46,Ensenada,Tucumán,tcs,"a 61 km de la capital, centro-sur"
+47,Ampata,Tucumán,tcs,"a 67 km de la capital, centro-sur"
+48,Graneros,Tucumán,tcs,"a 94 km de la capital, centro-sur"
+49,Belén,Catamarca,cat,por provincia
+50,Santiago,Santiago del Estero,sgo,por provincia
+51,Cafayate,Salta,sju,por provincia
+52,La Madrid,Tucumán,tcs,"a 91 km de la capital, centro-sur"
+53,Chaco,Chaco,otr,por provincia
+54,El Tobar,Tucumán,tcs,"a 79 km de la capital, centro-sur"
+55,Los Trejo,Tucumán,tcs,"a 75 km de la capital, centro-sur"
+56,Los Perez,Tucumán,tcs,"a 48 km de la capital, centro-sur"
+57,Ingenio San José,Tucumán,cap,a 7 km de la capital
+58,Bella Vista,Tucumán,cap,a 24 km de la capital
+59,Concepcion,Tucumán,tcs,"a 69 km de la capital, centro-sur"
+60,Rosario,,sa,provincia sin dato o sin definir
+61,Famailla,Tucumán,tcs,"a 32 km de la capital, centro-sur"
+64,Ranchillos,Tucumán,cap,a 21 km de la capital
+65,Ingenio Lujan,Tucumán,cap,a 8 km de la capital
+66,Cerrillos,Salta,sju,por provincia
+67,Medinas,Tucumán,tcs,"a 73 km de la capital, centro-sur"
+68,Ingenio Lastenia,Tucumán,cap,a 7 km de la capital
+69,La Rioja,La Rioja,otr,por provincia
+70,"Arcadia, F.c.n.o.a.",Tucumán,tcs,"a 64 km de la capital, centro-sur"
+71,Los Sosa,Tucumán,tcs,"a 49 km de la capital, centro-sur"
+72,Santa Rosa,,sa,provincia sin dato o sin definir
+73,Orán,,sa,provincia sin dato o sin definir
+74,"Medinas, Gucheas",Tucumán,tcs,"a 73 km de la capital, centro-sur"
+75,Ingenio Guzman,Tucumán,cap,a 4 km de la capital
+76,Villa Nueva,tucuman o cordoba,sa,provincia sin dato o sin definir
+77,Acheral,Tucumán,tcs,"a 42 km de la capital, centro-sur"
+78,Concordia,,sa,provincia sin dato o sin definir
+79,"Asilo, Ciudad",Tucumán,cap,a 0 km de la capital
+80,Gucheas,Tucumán,tcs,"a 73 km de la capital, centro-sur"
+81,La Banda,,sa,provincia sin dato o sin definir

@@ -19,6 +19,7 @@ Correr todo: `python run_pipeline.py` (desde la raíz). Desde una etapa en adela
 | `04d_coordenadas` | tabla_normalizada + `decisiones/coordenadas_ciudades.csv` | tabla_normalizada con la ubicación de cada ciudad tomada del CSV: `nombre_ciudad_hoy`, `nombre_provincia`, `lat`/`lon`, `lat_provincia`/`lon_provincia`, `precision`, `nota` — 58/77 ciudades con coordenada, 68/77 con punto de provincia | funciona |
 | `05_vista_plana` | tabla_normalizada | `data/processed/vista_plana_tabla_consolidada.xlsx` (981 filas, incluye `lat`/`lon` e `Imagen`) | funciona |
 | `05b_mapa` | tabla_normalizada | `outputs/mapa_procedencias.html` (folium): capa de ciudades (57 puntos, 756 objetos; borde punteado si la ubicación es tentativa) y capa "sólo provincia" en la capital (8 puntos, 181 objetos); 44 objetos sin ubicar. Antes lo exportaba `notebooks/04_eda.ipynb`, que ahora sólo lo muestra | funciona |
+| `05c_explorador` | tabla_normalizada + `objetos_crudos.csv` + `premios_vinculados.xlsx` + `decisiones/familias_categorias.csv`, `decisiones/zonas_ciudades.csv` | `outputs/explorador.html`: explorador web autocontenido (mapa, técnicas por zona, fichas de expositoras) a partir de la plantilla `plantillas/explorador.template.html`. 994 obras = 981 objetos + 13 premios de 1915 sin obra en el catálogo. Técnicas inferidas por reglas sobre el texto del objeto (si no, la de la categoría) | funciona |
 | `06_verificar` | salidas + `tests/golden/` | reporte de diferencias, hoja por hoja | corre, pero **hoy falla siempre**: el golden está desactualizado (ver abajo) |
 | `audit_comentarios` | tabla_normalizada + `tabla_normalizada_manual.xlsx` | `docs/auditoria_comentarios.md` | funciona, fuera de la corrida |
 
@@ -81,6 +82,11 @@ decisión. Está en `git log` (commit `975476e`).
   por la investigadora, Google Maps), `lat_provincia`/`lon_provincia` (capital),
   `precision` y `nota`. `04d` pisa con esto la copia de la tabla manual. 53/77 con
   punto de ciudad; el resto queda vacío (nombre ambiguo o desconocido).
+- `familias_categorias.csv` — por categoría, el tipo de obra (`familia`) y la técnica que se
+  asume cuando el texto del objeto no nombra ninguna (`tecnica_por_categoria`). Lo usa
+  `05c_explorador`. Propuesta de esta versión, a validar con la dirección.
+- `zonas_ciudades.csv` — zona de cada `ciudad_id` para el explorador. La propuesta inicial
+  salió de la provincia y la distancia a la capital (columna `criterio`); se corrige a mano.
 - `categorias.csv` *(pendiente)* — unificaciones de categorías entre 1915 y 1916.
 
 ## Parámetros
