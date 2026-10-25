@@ -7,7 +7,10 @@ hoja `Objetos` a nombres y escribe
 
 Columnas: Concurso, Año, Expositora/Expositor, Ciudad, Provincia, Lugar en el
 documento, ciudad_id, lat, lon, lat_provincia, lon_provincia, Categoría, N.º de
-orden, Descripción del objeto, Fuera de concurso, Creación de la autora, Imagen.
+orden, Descripción del objeto, Fuera de concurso, Creación de la autora, Imagen,
+Foto del álbum.
+
+`Foto del álbum` es la foto del álbum de 1915 donde aparece la obra (la pone `04c`).
 
 `Fuera de concurso` y `Creación de la autora` (`sí` / vacío) las pone `04f` leyendo el
 texto del catálogo, que sigue entero en `Descripción del objeto`.
@@ -43,7 +46,7 @@ HOJA = "Objetos - Concursos Tucumán"
 COLS = ["Concurso", "Año", "Expositora/Expositor", "Ciudad", "Provincia",
         "Lugar en el documento", "ciudad_id", "lat", "lon", "lat_provincia", "lon_provincia",
         "Categoría", "N.º de orden", "Descripción del objeto", "Fuera de concurso",
-        "Creación de la autora", "Imagen"]
+        "Creación de la autora", "Imagen", "Foto del álbum"]
 
 
 def _hoja(xl: pd.ExcelFile, prefijo: str) -> pd.DataFrame:
@@ -104,6 +107,7 @@ def construir(fuente=FUENTE) -> pd.DataFrame:
         "Fuera de concurso": df["fuera_de_concurso"] if "fuera_de_concurso" in df.columns else pd.NA,
         "Creación de la autora": df["creacion_autora"] if "creacion_autora" in df.columns else pd.NA,
         "Imagen": df["imagen"] if "imagen" in df.columns else pd.NA,
+        "Foto del álbum": df["foto_album"] if "foto_album" in df.columns else pd.NA,
     })
 
     # Concurso, Categoría y Expositora (alfabético, sensible a mayúsculas).

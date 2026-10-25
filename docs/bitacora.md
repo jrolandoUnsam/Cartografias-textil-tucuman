@@ -288,8 +288,8 @@ auditoría y el EDA leían la hoja vieja.
   no se podía aplicar la coordenada de LM porque un `ciudad_id` tiene un solo punto.
 - **Antofagasta (16)** se ubica en Antofagasta de la Sierra, hoy Catamarca, para el
   mapa (decisión de Julián). El catálogo dice "Antofagasta Salta" y el fallo
-  "Catamarca"; en 1915 era el Territorio Nacional de Los Andes. Coordenada aproximada,
-  a verificar.
+  "Catamarca"; en 1915 era el Territorio Nacional de Los Andes. Coordenada verificada por
+  Julián (−26,06; −67,41).
 - **Se borra lo obsoleto y sin uso** (criterio de Julián): `02_entidades.py` con
   `personas_prov.csv` y `ciudades_prov.csv`, y `revision_duplicados_regenerado.xlsx`.
 - **Categorías:** Chales de vicuña / Chales y echarpes y los Jergones siguen separados,
@@ -305,6 +305,17 @@ de `Objetos` (`fuera_de_concurso`, `creacion_autora`), que también salen en la 
 plana; el texto del catálogo queda igual (decisión de Julián: no perder información).
 "India de la Misión Franciscana de Nueva Pompeya" queda tal como la nombra el catálogo,
 sin nota.
+
+## 2026-10-25 — Fotos del álbum de 1915 vinculadas a sus obras
+
+LM transcribió qué pieza se ve en cada foto del álbum de 1915 (n.º, descripción,
+posición). Nos tocaba encontrar cada pieza en el catálogo: se cruzó por n.º y
+descripción, y se revisó a mano. 12 de las 14 quedan vinculadas (`objeto_id` en
+`decisiones/album_1915.csv`). Una primera prueba automática daba sólo 10: comparaba
+palabras sueltas y elegía mal la sobrecama de filet (es Encajes varios n.º 8, D'Empaire)
+y el "22 Pañuelo" (Encajes varios n.º 22, "dos pañuelos guipure al bolillo"). Quedan
+para LM el poncho sin número y el "17 encaje ñanduty". `04c` agrega
+`Objetos.foto_album`, que sale en la vista plana y en la ficha del explorador.
 
 ## Fuentes del crudo que NO entran a la base
 

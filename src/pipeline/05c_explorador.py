@@ -273,6 +273,13 @@ def datos() -> dict:
              "tec": tec, "ts": ts}
         if re.search(INSTITUCION, clave(n)):
             r["inst"] = 1
+        # marcas que pone 04f leyendo el texto del catálogo
+        if texto(getattr(o, "fuera_de_concurso", "")) == "sí":
+            r["fc"] = 1
+        if texto(getattr(o, "creacion_autora", "")) == "sí":
+            r["ca"] = 1
+        if texto(getattr(o, "foto_album", "")):
+            r["fa"] = texto(o.foto_album)  # foto del álbum de 1915 (04c)
         recs.append(r)
     por_obj = {r["oid"]: r for r in recs}
 

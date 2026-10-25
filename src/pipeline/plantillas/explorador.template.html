@@ -378,6 +378,8 @@ h2 { font-family: var(--serif); font-weight: 600; font-size: 1.5rem; line-height
         <dl>
           <div><dt>Obra</dt><dd>Cada pieza del catálogo. Las filas de 1916 que agrupaban varias piezas de una misma expositora se separaron, una obra por número de orden.</dd></div>
           <div><dt>Expositora</dt><dd>Persona o institución que figura en el catálogo. No siempre es posible afirmar que sea la autora de la pieza.</dd></div>
+          <div><dt>Fuera de concurso</dt><dd>Obra que el catálogo marca "(fuera de concurso)": se exhibió pero no compitió por premios.</dd></div>
+          <div><dt>Creación de la autora</dt><dd>Obra que el catálogo presenta como "creación de la autora", es decir, de diseño propio.</dd></div>
           <div><dt>Técnica</dt><dd>Procedimiento mencionado en el catálogo, como randa, deshilado, crochet o telar. Una obra puede tener más de una.</dd></div>
           <div><dt>Zona</dt><dd>Agrupación de localidades en regiones, propuesta para esta versión.</dd></div>
           <div><dt>Obra premiada</dt><dd>Obra con premio, accésit o premio de estímulo en el fallo del jurado. Los montos se transcriben tal como figuran en el fallo.</dd></div>
@@ -459,14 +461,18 @@ const DATA = __DATA__;
     }).join(" ");
   }
   const tecChips = (r) => r.tec.filter((t) => t !== "sin").map((t) => `<span class="tg">${esc(TEC[t])}</span>`).join("");
+  function marks(r) {
+    return (r.fc ? ' <span class="dim">· Fuera de concurso</span>' : "") + (r.ca ? ' <span class="dim">· Creación de la autora</span>' : "") +
+      (r.fa ? ` <span class="dim">· Foto del álbum de 1915: ${esc(r.fa)}</span>` : "");
+  }
   function what(r) { return [r.c, r.o && strip(r.o) !== strip(r.c) ? r.o : ""].filter(Boolean).join(": "); }
   const personBtn = (pk, name) => `<button type="button" class="plink" data-act="person" data-pk="${esc(pk)}">${esc(name)}</button>`;
 
   function tsv(rows) {
-    const head = ["Año", "Expositora", "Procedencia según el catálogo", "Lugar", "Zona", "Categoría", "Objeto", "Técnicas", "N.º de orden", "Premio", "Monto ($)", "Vínculo premio-obra"];
+    const head = ["Año", "Expositora", "Procedencia según el catálogo", "Lugar", "Zona", "Categoría", "Objeto", "Técnicas", "N.º de orden", "Fuera de concurso", "Creación de la autora", "Foto del álbum", "Premio", "Monto ($)", "Vínculo premio-obra"];
     const clean = (s) => String(s == null ? "" : s).replace(/[\t\r\n]+/g, " ").trim();
     const lk = { ord: "por número de orden", nom: "por nombre", man: "decisión manual", "nom?": "a confirmar", sv: "sin obra en el listado" };
-    return [head].concat(rows.map((r) => [r.y, r.n, r.po, P[r.pl].n, ZON[r.z], r.c, r.o, r.tec.filter((t) => t !== "sin").map((t) => TEC[t]).join("; "), r.ord,
+    return [head].concat(rows.map((r) => [r.y, r.n, r.po, P[r.pl].n, ZON[r.z], r.c, r.o, r.tec.filter((t) => t !== "sin").map((t) => TEC[t]).join("; "), r.ord, r.fc ? "sí" : "", r.ca ? "sí" : "", r.fa || "",
       (r.pz || []).map((z) => z.t).join("; "), (r.pz || []).map((z) => z.m).join("; "), (r.pz || []).map((z) => lk[z.lk]).join("; ")].map(clean))).map((l) => l.join("\t")).join("\n");
   }
   function copyText(txt, btn) {
@@ -661,7 +667,7 @@ const DATA = __DATA__;
     const shown = state.moreRes ? list : list.slice(0, 12);
     res.innerHTML = `<h3>${esc(cur.t ? TEC[cur.t] : "Todas las técnicas")} en ${esc(cur.z ? ZON[cur.z] : "todas las zonas")}: ${plural(list.length, "obra", "obras")}, ${nPrized(list)} premiadas</h3>` +
       `<div class="acts"><button type="button" class="btn pri" data-act="applycell">Ver en el mapa</button><button type="button" class="btn" data-act="copyres">Copiar tabla</button><button type="button" class="btn" data-act="clearcell">Quitar selección</button></div>` +
-      `<ul class="rows">` + shown.map((r) => `<li><div>${personBtn(r.pk, r.n)}<div class="dim">${esc(r.po)} · ${r.y}</div></div><div title="${esc(what(r))}">${esc(clip(what(r), 120))} ${prizeBadges(r)}</div></li>`).join("") + `</ul>` +
+      `<ul class="rows">` + shown.map((r) => `<li><div>${personBtn(r.pk, r.n)}<div class="dim">${esc(r.po)} · ${r.y}</div></div><div title="${esc(what(r))}">${esc(clip(what(r), 120))}${marks(r)} ${prizeBadges(r)}</div></li>`).join("") + `</ul>` +
       (list.length > shown.length ? `<button type="button" class="more" data-act="moreres">Mostrar las ${list.length} obras</button>` : "");
   }
 
@@ -687,7 +693,7 @@ const DATA = __DATA__;
       (Object.keys(tc).length ? `<p class="ln">${Object.keys(tc).sort((a, b) => tc[b] - tc[a]).map((t) => `<span class="tg">${esc(TEC[t])} · ${tc[t]}</span>`).join("")}</p>` : "") +
       years.map((y) => `<h3>${y}</h3><ul>` + l.filter((r) => r.y === y).sort((a, b) => (parseInt(a.ord) || 0) - (parseInt(b.ord) || 0)).map((r) => {
         const ord = r.ord && r.ord.length < 12 ? "N.º " + esc(r.ord) : "";
-        return `<li><span class="yr">${ord}</span><span title="${esc(what(r))}">${esc(clip(what(r), 160))} ${prizeBadges(r, true)}${r.sv ? ' <span class="dim">Premio sin obra en el listado de expositoras</span>' : ""}</span></li>`;
+        return `<li><span class="yr">${ord}</span><span title="${esc(what(r))}">${esc(clip(what(r), 160))}${marks(r)} ${prizeBadges(r, true)}${r.sv ? ' <span class="dim">Premio sin obra en el listado de expositoras</span>' : ""}</span></li>`;
       }).join("") + "</ul>").join("") +
       `<div class="acts"><button type="button" class="btn" data-act="copyficha">Copiar obras</button></div>` +
       `<p class="foot">${nm.length ? "También figura como: " + esc(nm.join("; ")) + ". " : ""}La ficha muestra todas las obras de este nombre, sin aplicar los filtros.</p>`;

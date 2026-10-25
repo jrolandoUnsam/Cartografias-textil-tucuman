@@ -14,10 +14,17 @@ La correspondencia por nombre no importa acá: usa `ORDEN` + `categoria_id` +
 `concurso_id`, que no cambian con las fusiones de expositoras (`04_aplicar_dedup`)
 ni con el paso a título de nombres (`04b_titulo_nombres`).
 
+Además agrega `foto_album`: la foto del álbum de 1915 donde aparece el objeto, según
+`decisiones/album_1915.csv` (transcripción de LM de cada foto; el `objeto_id` de cada
+pieza lo encontramos cruzando n.º y descripción con el catálogo). Las fotos son las de
+`data/raw/images/albumes/1915-album-version-2/`. Si un objeto aparece en varias, van
+separadas por " | ".
+
 Entrada : data/interim/tabla_normalizada_manual.xlsx (hoja Paginas_Catalogo)
           data/processed/tabla_normalizada.xlsx (hojas Objetos, Categorías)
-Salida  : data/processed/tabla_normalizada.xlsx, hoja Objetos con columna `imagen`
-          agregada (sobreescribe el archivo, respetando las demás hojas)
+          data/interim/decisiones/album_1915.csv
+Salida  : data/processed/tabla_normalizada.xlsx, hoja Objetos con columnas `imagen` y
+          `foto_album` agregadas (sobreescribe el archivo, respetando las demás hojas)
 """
 from __future__ import annotations
 
@@ -26,9 +33,10 @@ import unicodedata
 
 import pandas as pd
 
-from _util import INTERIM, PROCESSED
+from _util import DECISIONES, INTERIM, PROCESSED
 
 MANUAL = INTERIM / "tabla_normalizada_manual.xlsx"
+ALBUM = DECISIONES / "album_1915.csv"
 FUENTE = PROCESSED / "tabla_normalizada.xlsx"
 
 # fuente_id de Paginas_Catalogo -> concurso_id de Objetos
@@ -80,6 +88,12 @@ def main() -> None:
             O.at[idx, "imagen"] = fila["imagen"]
             asignados += 1
 
+    album = pd.read_csv(ALBUM, dtype={"objeto_id": "Int64"}).dropna(subset=["objeto_id"])
+    faltan = set(album["objeto_id"]) - set(O["objeto_id"])
+    if faltan:
+        raise ValueError(f"{ALBUM.name}: objeto_id {sorted(faltan)} no existe en Objetos")
+    fotos = album.groupby("objeto_id")["foto"].agg(lambda s: " | ".join(dict.fromkeys(s)))
+    O["foto_album"] = O["objeto_id"].map(fotos)
     hojas["Objetos"] = O
 
     with pd.ExcelWriter(FUENTE, engine="openpyxl") as w:
@@ -89,6 +103,7 @@ def main() -> None:
     total = len(O)
     con_imagen = O["imagen"].notna().sum()
     print(f"{asignados} asignaciones de rango aplicadas")
+    print(f"{O['foto_album'].notna().sum()} objetos con foto del álbum de 1915")
     print(f"{con_imagen}/{total} objetos con imagen asignada "
           f"({total - con_imagen} sin página cargada todavía en Paginas_Catalogo)")
     if sin_match:

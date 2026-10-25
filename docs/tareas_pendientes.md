@@ -11,6 +11,10 @@
   pero ese objeto ya tiene su premio: fila 79, Bordado en blanco y seda n.º 4, también
   de $25. La blusa es otro premio (Deshilado, sin número).
 - [ ] **Orán (73): ¿Tucumán o Salta?** Hoy queda sin punto ni provincia (LM 9-10). Evidencia para la reunión: El Orden, 10/10/1916, "La randa tucumana" (hoja "no PRENSA-EL ORDEN" del crudo): Padilla, de gira por la provincia, visita Orán, "antiguo centro de la randera tucumana"; quien transcribió anotó "no queda claro si se refiere a Salta". En el catálogo hay 24 randas de Orán. No se decide nada sin LM.
+- [ ] **Dos piezas del álbum de 1915 sin obra en el catálogo** (`album_1915.csv`):
+  "Poncho" (DSCN5158), sin número, y en 1915 hay varios ponchos; "17 encaje ñanduty"
+  (DSCN5168): la n.º 17 de Encajes varios es una colcha de filet, y las de ñandutí son
+  Encajes varios n.º 18 y Pañuelos n.º 19. ¿El número de la foto es 18 o 19?
 - [ ] **Pares que no respondió en `pares_sin_revisar.xlsx` (25/10):** `2` Marina /
   `45` Máxima Belmonte, `390` Audelina y Abigail / `409` María Abigail Gómez, `215`
   Lidia / `474` Lastenia Moya Escobar, `120` Lastenia Barrero / `340` Lastenia Barquet,

@@ -82,7 +82,9 @@ decisión. Está en `git log` (commit `975476e`).
   listados pasan a ella. Lo aplica `04_aplicar_dedup`. Hoy: "CHACO" (53) → Misión
   Franciscana de Nueva Pompeya (82).
 - `album_1915.csv` — transcripción de LM de las fotos del álbum de 1915 (foto, n.º,
-  descripción, posición en la foto). Todavía no la lee ninguna etapa.
+  descripción, posición en la foto) y el `objeto_id` de cada pieza, que encontramos
+  cruzando n.º y descripción con el catálogo (12 de 14). Lo lee `04c`, que agrega
+  `Objetos.foto_album`.
 - `objetos_texto_override.csv` — celdas de texto que la investigadora corrigió a mano
   respecto del catálogo (erratas, singular/plural, mayúsculas).
 - `premios_manual.csv` — correcciones al cruce Premios ↔ Objetos. Acepta

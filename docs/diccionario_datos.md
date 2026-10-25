@@ -53,6 +53,7 @@ de qué página salió cada registro.
 | `imagen` | texto | escaneo del catálogo donde figura este objeto. Lo agrega `04c_vincular_imagenes` cruzando `Paginas_Catalogo` por concurso + categoría + rango de `ORDEN` |
 | `fuera_de_concurso` | texto | `sí` si el catálogo dice "(fuera de concurso)": se exhibió pero no compitió. Lo agrega `04f_marcas_objetos` leyendo `OBJETO`, que no se toca |
 | `creacion_autora` | texto | `sí` si el catálogo dice "creación de la autora" (diseño propio). Ídem |
+| `foto_album` | texto | foto del álbum de 1915 donde aparece la obra (`data/raw/images/albumes/1915-album-version-2/`). La agrega `04c` desde `decisiones/album_1915.csv` |
 
 ### Hoja `Premios` (102 filas)
 
@@ -137,6 +138,7 @@ mayúsculas)**. Dentro de un mismo grupo se conserva el orden del catálogo
 | `Descripción del objeto` | `OBJETO` |
 | `Fuera de concurso` | `Objetos.fuera_de_concurso` |
 | `Creación de la autora` | `Objetos.creacion_autora` |
+| `Foto del álbum` | `Objetos.foto_album` |
 | `Imagen` | escaneo del catálogo donde figura el objeto (`Objetos.imagen`) |
 
 ## `data/interim/duplicados_expositoras_candidatos.xlsx`

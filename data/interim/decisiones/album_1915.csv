@@ -1,15 +1,15 @@
-foto,orden,descripcion,posicion,nota
-DSCN5152,20,mantel de altar encaje deshilado,arriba,"la transcripción dice ""SCN5152"""
-DSCN5152,21,encaje filet y randa,abajo izquierda,
-DSCN5152,11,tapete encaje Esmirna randa,abajo derecha,
-DSCN5156,19,Alba de encaje tucumano,,"número dudoso: ""[19?]"""
-DSCN5158,,Poncho,,
-DSCN5159,2,Puntilla de encaje de seda al bolillo,derecha abajo,
-DSCN5159,10,cuello encaje de Venecia,derecha arriba,
-DSCN5159,4,traje bordado Richelieu,izquierda,
-DSCN5159,22,Pañuelo,segundo arriba,
-DSCN5161,,Sobrecama encaje filet de hilo,,
-DSCN5162,1,encaje creación de la autora,derecha,
-DSCN5168,4,encaje creación de la autora,derecha arriba,
-DSCN5168,17,encaje ñanduty,izquierda arriba,
-DSCN5168,1,cuello y puños creación de la autora,abajo,
+foto,orden,descripcion,posicion,objeto_id,nota
+DSCN5152,20,mantel de altar encaje deshilado,arriba,66,"la transcripción dice ""SCN5152""; Encajes varios n.º 20, Dalmira González Sorol: 'mantel de altar, encaje y deshilado'"
+DSCN5152,21,encaje filet y randa,abajo izquierda,67,"Encajes varios n.º 21, Dalmira González Sorol: 'trabajo de encaje filet y randa'"
+DSCN5152,11,tapete encaje Esmirna randa,abajo derecha,57,"Encajes varios n.º 11, Ana de Tactagi: 'tapete, encaje esmirna y randa'"
+DSCN5156,19,Alba de encaje tucumano,,65,"número dudoso: ""[19?]""; Encajes varios n.º 19, Dalmira González Sorol: 'alba de encaje tucumano' (confirma el 19)"
+DSCN5158,,Poncho,,,sin número; en 1915 hay varios ponchos y no se puede saber cuál es sin mirar la foto. Preguntar a LM
+DSCN5159,2,Puntilla de encaje de seda al bolillo,derecha abajo,48,"Encajes varios n.º 2, Consuelo Belmonte: 'puntilla, de encaje de seda, al bolillo'"
+DSCN5159,10,cuello encaje de Venecia,derecha arriba,56,"Encajes varios n.º 10, Elisa del Prado: 'cuello, encaje de venecia'"
+DSCN5159,4,traje bordado Richelieu,izquierda,149,"Bordado en blanco y seda n.º 4, Hermanas dominicas [asilo]: 'traje bordado richelieu'"
+DSCN5159,22,Pañuelo,segundo arriba,68,"Encajes varios n.º 22, Hermanas de la Inmaculada Concepción: 'dos pañuelos guipure al bolillo'"
+DSCN5161,,Sobrecama encaje filet de hilo,,54,"sin número en la foto; es Encajes varios n.º 8, Rosario B. D'Empaire: 'sobrecama, encaje filet de hilo'"
+DSCN5162,1,encaje creación de la autora,derecha,1,"Pañuelos n.º 1, Leticia Sorroza: 'Encaje, creación de la autora'"
+DSCN5168,4,encaje creación de la autora,derecha arriba,4,"Pañuelos n.º 4, Dalmira González Sorol: 'Encaje, creación de la autora'"
+DSCN5168,17,encaje ñanduty,izquierda arriba,,"la obra n.º 17 de Encajes varios es 'colcha, punto filet'; las de ñandutí de 1915 son Encajes varios n.º 18 ('tapete, encaje ñanduty') y Pañuelos n.º 19 ('Encaje ñanduty'). ¿El número de la foto es 18 o 19? Preguntar a LM"
+DSCN5168,1,cuello y puños creación de la autora,abajo,47,"Encajes varios n.º 1, Leticia Sorroza: 'cuello y puño encaje, creación de la autora'"
