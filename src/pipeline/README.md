@@ -13,7 +13,7 @@ Correr todo: `python run_pipeline.py` (desde la raíz). Desde una etapa en adela
 | `02_entidades` | objetos_crudos | `personas_prov.csv`, `ciudades_prov.csv` (id por orden de aparición) | esqueleto; **su salida no la consume ninguna etapa** |
 | `03_candidatos` | `data/interim/tabla_normalizada_manual.xlsx` (Expositoras, Ciudades, Objetos) | `data/interim/duplicados_expositoras_candidatos.xlsx` — 85 filas (75 detectadas hoy + 10 conservadas de corridas anteriores), con `Hecho`/`Comentarios` para anotar. Conserva las anotaciones y los pares que ya figuraban. Al final imprime cuántos quedan **sin fusionar y sin revisar**: hoy son 10 (otros 10, no los conservados — ver `docs/tareas_pendientes.md`) | funciona |
 | `03b_premios` | `data/processed/tabla_normalizada.xlsx` (Premios) ⚠ ver abajo | `data/interim/premios_vinculados.xlsx` — misma cantidad de filas y mismo orden, con `persona_id`/`objeto_id` agregados. **Callejón sin salida: no lo lee ninguna etapa** | funciona |
-| `04_aplicar_dedup` | `data/interim/tabla_normalizada_manual.xlsx` + `decisiones/fusiones_expositoras.csv` | `data/interim/tabla_normalizada_dedup.xlsx` — 42 decisiones en el CSV, **41 aplicadas**, 519 → 471 expositoras. Dos ids a descartar ya no existen en la tabla manual (67 y 117) y el script los avisa; la fila `76,67` queda sin efecto por eso | funciona |
+| `04_aplicar_dedup` | `data/interim/tabla_normalizada_manual.xlsx` + `decisiones/fusiones_expositoras.csv`, `nombres_expositoras.csv`, `fusiones_ciudades.csv` | `data/interim/tabla_normalizada_dedup.xlsx` — 42 decisiones en el CSV, **41 aplicadas**, 519 → 471 expositoras. Dos ids a descartar ya no existen en la tabla manual (67 y 117) y el script los avisa; la fila `76,67` queda sin efecto por eso | funciona |
 | `04b_titulo_nombres` | tabla_normalizada_dedup | `data/processed/tabla_normalizada.xlsx` (nombres ALLCAPS → Título) | funciona |
 | `04c_vincular_imagenes` | tabla_normalizada + hoja `Paginas_Catalogo` | tabla_normalizada con la columna `Objetos.imagen` — 981/981 objetos con imagen | funciona |
 | `04d_coordenadas` | tabla_normalizada + `decisiones/coordenadas_ciudades.csv` | tabla_normalizada con la ubicación de cada ciudad tomada del CSV: `nombre_ciudad_hoy`, `nombre_provincia`, `lat`/`lon`, `lat_provincia`/`lon_provincia`, `precision`, `nota` — 58/77 ciudades con coordenada, 68/77 con punto de provincia | funciona |
@@ -67,12 +67,20 @@ decisión. Está en `git log` (commit `975476e`).
 
 ## Insumos que no salen del crudo (`data/interim/decisiones/`)
 
-- `fusiones_expositoras.csv` — las 42 fusiones de expositoras duplicadas
+- `fusiones_expositoras.csv` — las fusiones de expositoras duplicadas (55 filas)
   (`mantener`, `descartar`, `origen`, `nota`). Cada fila corresponde a una decisión
   anotada en `duplicados_expositoras_candidatos.xlsx`. `origen` dice si el comentario
   indicaba explícitamente qué lado conservar (`decidida`), si no lo indicaba y se
   aplicó el criterio "conservar el lado con más objetos" (`sin_lado`), o si es un
   grupo de 3+ ids resuelto en conjunto (`cluster`).
+- `nombres_expositoras.csv` — nombre con que queda una expositora después de fusionar
+  (`persona_id`, `nombre`, `nota`), p. ej. la variante entre corchetes acordada con
+  Larisa ("Facunda Cerone [Coronel]"). Lo aplica `04_aplicar_dedup`.
+- `fusiones_ciudades.csv` — mismo lugar cargado con dos `ciudad_id` (mismo formato que
+  las fusiones de expositoras). Lo aplica `04_aplicar_dedup`; el texto del catálogo
+  sigue visible en la vista plana ("Lugar en el documento").
+- `album_1915.csv` — transcripción de LM de las fotos del álbum de 1915 (foto, n.º,
+  descripción, posición en la foto). Todavía no la lee ninguna etapa.
 - `objetos_texto_override.csv` — celdas de texto que la investigadora corrigió a mano
   respecto del catálogo (erratas, singular/plural, mayúsculas).
 - `premios_manual.csv` — correcciones al cruce Premios ↔ Objetos. Acepta

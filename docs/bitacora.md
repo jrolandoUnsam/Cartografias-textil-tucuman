@@ -208,6 +208,23 @@ LM). Las ubicaciones tentativas van con borde punteado. El notebook muestra el m
 mapa (importa la etapa) y ya no escribe el archivo, para que no pise la versión del
 pipeline.
 
+## 2026-10-25 — Revisión de LM: pares, premios y Santiago
+
+- **Todo entra por tablas de decisión** (pedido de Julián): nada se corrigió a mano en
+  la tabla manual. Dos tablas nuevas que lee `04_aplicar_dedup`:
+  `nombres_expositoras.csv` (nombre final después de fusionar; hasta ahora los nombres
+  con corchetes se escribían a mano en la tabla) y `fusiones_ciudades.csv`.
+- **Expositoras:** 6 fusiones nuevas según las respuestas de LM en
+  `pares_sin_revisar.xlsx` y en la hoja Premios (Facunda Cerone [Coronel]). 464 → 458.
+- **Premios:** Marina Belmonte y Dalmira quedan fuera de catálogo; Facunda se cierra
+  con el objeto 93. La blusa de las Dominicas **no** se vinculó al objeto 149 como
+  sugería LM, porque ese objeto ya tiene su propio premio (fila 79): queda pendiente,
+  como el de Dominga Castaño.
+- **Santiago (50) se une a Santiago del Estero (5).** El 13/10 se había hecho y
+  deshecho a la espera de la respuesta de LM; ahora ella lo confirmó.
+- **Álbum de 1915:** la transcripción de LM queda en `decisiones/album_1915.csv`. Ya
+  sirvió para la blusa (n.º 4 "traje bordado Richelieu", DSCN5159).
+
 ## Fuentes del crudo que NO entran a la base
 
 Hojas `no PRENSA-EL ORDEN`, `no ARCHIVO PADILLA`, `no Prensa-Rakow lib`: material de

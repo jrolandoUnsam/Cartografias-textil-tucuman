@@ -21,9 +21,23 @@ La columna `origen` dice de dónde sale la decisión:
             conservar el lado con más objetos (menos movimientos).
   cluster   grupo de 3+ ids resuelto como una sola decisión, no par por par.
 
+Después de fusionar, `data/interim/decisiones/nombres_expositoras.csv` (persona_id,
+nombre, nota) fija el nombre con que queda una expositora, p. ej. la variante entre
+corchetes que acordamos con Larisa al unificar ("Facunda Cerone [Coronel]"). Se aplica
+antes de reapuntar los premios, así la hoja Premios ya muestra el nombre final.
+
+Lo mismo que las expositoras, para ciudades, con
+`data/interim/decisiones/fusiones_ciudades.csv` (mismo formato): el mismo lugar cargado
+con dos ids ("SANTIAGO" / "SANTIAGO DEL ESTERO"). Los objetos pasan a
+`Objetos.ciudad_id = mantener` y la fila descartada sale de `Ciudades`. Cómo lo
+escribió el catálogo no se pierde: la vista plana lo muestra en "Lugar en el
+documento", tomado del crudo.
+
 Entrada : data/interim/tabla_normalizada_manual.xlsx   (export manual más reciente,
           con las revisiones de Larisa en la hoja Premios)
           data/interim/decisiones/fusiones_expositoras.csv
+          data/interim/decisiones/nombres_expositoras.csv
+          data/interim/decisiones/fusiones_ciudades.csv
 Salida  : data/interim/tabla_normalizada_dedup.xlsx   (insumo de 04b)
 """
 from __future__ import annotations
@@ -38,6 +52,8 @@ from _util import DECISIONES, INTERIM
 FUENTE = INTERIM / "tabla_normalizada_manual.xlsx"
 SALIDA = INTERIM / "tabla_normalizada_dedup.xlsx"
 FUSIONES_CSV = DECISIONES / "fusiones_expositoras.csv"
+NOMBRES_CSV = DECISIONES / "nombres_expositoras.csv"
+FUSIONES_CIUDADES_CSV = DECISIONES / "fusiones_ciudades.csv"
 
 
 @dataclass
@@ -75,6 +91,34 @@ def aplicar(E: pd.DataFrame, O: pd.DataFrame, fusiones: list[Fusion]):
     return E, O, log
 
 
+def renombrar(E: pd.DataFrame, ruta=NOMBRES_CSV) -> pd.DataFrame:
+    E = E.copy()
+    for _, r in pd.read_csv(ruta).iterrows():
+        pid = int(r["persona_id"])
+        fila = E["persona_id"] == pid
+        if not fila.any():
+            raise ValueError(f"{ruta.name}: persona_id {pid} no existe después de las fusiones")
+        print(f"  {pid}: {E.loc[fila, 'Nombre'].iloc[0]!r} -> {r['nombre']!r}")
+        E.loc[fila, "Nombre"] = r["nombre"]
+    return E
+
+
+def fusionar_ciudades(C: pd.DataFrame, O: pd.DataFrame, fusiones: list[Fusion]):
+    ids = set(C["ciudad_id"])
+    C, O = C.copy(), O.copy()
+    for f in fusiones:
+        faltan = [i for i in [f.mantener] + f.descartar if i not in ids]
+        if faltan:
+            raise ValueError(f"{FUSIONES_CIUDADES_CSV.name}: ciudad_id {faltan} no existe "
+                             f"en {FUENTE.name} ({f.nota})")
+        n = int(O["ciudad_id"].isin(f.descartar).sum())
+        O.loc[O["ciudad_id"].isin(f.descartar), "ciudad_id"] = f.mantener
+        C = C[~C["ciudad_id"].isin(f.descartar)]
+        print(f"  -> queda ciudad {f.mantener} ({n} obj. de {f.descartar}): {f.nota}")
+    assert set(O["ciudad_id"].dropna()) <= set(C["ciudad_id"]), "quedaron objetos sin ciudad"
+    return C, O
+
+
 def main() -> None:
     xl = pd.ExcelFile(FUENTE)
     hojas = {s: xl.parse(s) for s in xl.sheet_names}
@@ -96,6 +140,8 @@ def main() -> None:
             validas.append(Fusion(f.mantener, vivos, f.origen, f.nota))
 
     E2, O2, log = aplicar(E, O, validas)
+    print(f"\nnombres fijados ({NOMBRES_CSV.name}):")
+    E2 = renombrar(E2)
 
     # La hoja Premios también apunta a expositoras: si no se reapunta, un premio
     # queda colgado de un id que la fusión acaba de borrar.
@@ -121,6 +167,10 @@ def main() -> None:
     # sanity check: ids duplicados / objetos huérfanos
     assert E2["persona_id"].is_unique, "quedaron ids de expositora duplicados"
     assert set(O2["expositora_id"]) <= set(E2["persona_id"]), "quedaron objetos huérfanos"
+
+    fus_c = leer_fusiones(FUSIONES_CIUDADES_CSV)
+    print(f"\n{len(fus_c)} fusiones de ciudades")
+    hojas["Ciudades"], O2 = fusionar_ciudades(hojas["Ciudades"], O2, fus_c)
 
     hojas["Expositoras"], hojas["Objetos"] = E2, O2
     with pd.ExcelWriter(SALIDA, engine="openpyxl") as w:

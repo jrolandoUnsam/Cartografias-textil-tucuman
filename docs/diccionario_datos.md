@@ -14,7 +14,7 @@ de qué página salió cada registro.
 | `nombre` | texto | nombre del concurso |
 | `lugar` | texto | ciudad sede |
 
-### Hoja `Expositoras` (471 filas)
+### Hoja `Expositoras` (458 filas)
 | campo | tipo | descripción |
 |---|---|---|
 | `persona_id` | int | identificador de persona / institución expositora |

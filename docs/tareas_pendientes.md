@@ -2,42 +2,34 @@
 
 ## Preguntas para Larisa
 
-- [ ] **Facunda Cerone (47) / Facunda Coronel (476).** En la revisión de octubre dijo
-  no unirlas ("en el catálogo figura como Escuela de la Cocha y La Cocha"). Pero el
-  premio de 1915 a "Facunda Coronel, Escuela La Cocha, n.º 23" cae en el deshilado 23
-  de 1915, que en el catálogo es de **Facunda Cerone** (objeto 93); la 476 Coronel
-  sólo expone en 1916. El propio fallo llama "Coronel" a la Cerone del catálogo, lo
-  que apunta a que son la misma persona. Repreguntar antes de cerrar el par.
-- [ ] **Dos pares que no respondió:** `325` María Fernández / `334` Arsenia Fernández
-  (consecutivas en la misma página, DSCN5217) y `209` / `264` Delina J./I. de Román
-  (el resto del grupo Delina está en `Hecho=False`).
-- [ ] **Hermanas Dominicas: dos fichas.** `83` "Hermanas dominicas- asilo" (objetos de
-  1915) y `499` "Hermanas Dominicas" (1916). Los dos premios de 1915 apuntan a la 499,
-  y el de bordado n.º 4 lleva el objeto 149, que es de la 83. ¿Son la misma
-  institución? *(en espera, no tocar)*
-- [ ] **Posibles duplicados que `03_candidatos` no propuso** (2026-10-11). El detector
-  compara el nombre entero con umbral 87 y no ve inicial vs. nombre completo
-  ("P." / "Palacios"), texto agregado ("-Escuela Sarmiento") ni erratas repartidas.
-  Encontrados con un barrido más laxo y filtrados a mano por ciudad, año y objetos.
-  Confirmar en el escaneo antes de fusionar.
-
-  **Muy probable**
-
-  | par | evidencia | escaneos |
-  |---|---|---|
-  | `162` / `296` Carmen de Moya | nombre idéntico, Colalao del Valle 1916; ponchos, frazadón, vicuña, alforjas / 3 sobrepelos; alforjas n.º 5 y sobrepelos n.º 7‑9 en la misma página. Hoy `Hecho=False`, pero el comentario es la regla genérica del "DE", no una decisión sobre el par | DSCN5205, 5212 / DSCN5214 |
-  | `214` Simona Palacios de Castro / `266` Simona P. de Castro | P. = Palacios; Colalao del Valle 1916; mismo tipo de envío (frazadón / ponchos, vicuña, alforjas) | DSCN5210 / DSCN5212‑5215 |
-  | `346` Manuela B. de Graña / `472` Manuela Bartolomé de Graña | B. = Bartolomé; San Miguel 1916; encajes al bolillo / bordados | DSCN5218 / DSCN5226 |
-  | `33` Argenia R. de Lautafy (1915) / `410` Arsenia R. de Lontayf (1916) | misma inicial R.; las dos con punto de Irlanda (traje / torera); apellido probablemente mal transcripto | DSCN5179 / DSCN5221 |
-  | `93` María Elvira Pereira (1915) / `360` María E. Pereyra (1916) | E. = Elvira; San Miguel; crochet / Irlanda. Ojo: `94` María **Mercedes** Pereira es otra | DSCN5185 / DSCN5218 |
-
-  **Probable (misma persona en 1915 y 1916)**
-
-  | par | evidencia | escaneos |
-  |---|---|---|
-  | `106` Alfonsa de Barceló / `473` Alfonsa Cuadrado de Barceló | San Miguel; raffia 1915 / bordados 1916 | DSCN5186 / DSCN5226 |
-  | `108` Mamerta Monteros -Escuela Sarmiento / `485` Mamerta Monteros | San Miguel; raffia 1915 / deshilado 1916. Tiene un premio de 1915: la hoja Premios lo apuntaba a la 485, pero el objeto premiado (200) es de la 108 | DSCN5186 / DSCN5226 |
-  | `83` / `499` Hermanas Dominicas | ver el ítem anterior | DSCN5184 / DSCN5227 |
+- [ ] **Premio de Dominga Castaño (hoja Premios, fila 8; `premios_manual.csv` 6).**
+  LM dijo que es la randa 25 de 1915, pero la 24 y la 25 son de Dominga Lescano
+  (objetos 42 y 43) y la 25 ya tiene su premio. En la revisión del 25/10 respondió
+  "hay que verlo en el catálogo de 1915": mirar DSCN5178 y ver si Castaño figura.
+- [ ] **Blusa de las Hermanas Dominicas (fila 69; `premios_manual.csv` 67).** LM
+  sugiere el n.º 4 "traje bordado richelieu" (objeto 149; en el álbum, DSCN5159),
+  pero ese objeto ya tiene su premio: fila 79, Bordado en blanco y seda n.º 4, también
+  de $25. La blusa es otro premio (Deshilado, sin número).
+- [ ] **Pares que no respondió en `pares_sin_revisar.xlsx` (25/10):** `2` Marina /
+  `45` Máxima Belmonte, `390` Audelina y Abigail / `409` María Abigail Gómez, `215`
+  Lidia / `474` Lastenia Moya Escobar, `120` Lastenia Barrero / `340` Lastenia Barquet,
+  `366` Manuela / `485` Mamerta Monteros, `33` Argenia R. de Lautafy / `410` Arsenia R.
+  de Lontayf, `129` María Díaz / `176` María Cruz Díaz, `466` Julia M. / `468` Paulina
+  P. de Chirou y `435` Rosa / `506` Rita Ariza. También sigue sin respuesta `325` María
+  / `334` Arsenia Fernández.
+- [x] **Revisión de LM del 25/10** *(aplicada 2026-10-25)*:
+  - Fusionadas (`fusiones_expositoras.csv`, nombre en `nombres_expositoras.csv`):
+    `83 ← 499` Hermanas dominicas [asilo], `214 ← 266` Simona Palacios de Castro,
+    `472 ← 346` Manuela Bartolomé de Graña, `473 ← 106` Alfonsa [Cuadrado] de Barceló,
+    `108 ← 485` Mamerta Monteros [Escuela Sarmiento 1915] y `47 ← 476` Facunda Cerone
+    [Coronel] (su premio queda en el deshilado 23, objeto 93).
+  - No se unen: `227` / `315` Rosario Herrera ("hay MUCHAS Herrera de Chicligasta") y
+    `93` / `360` María E. Pereira / Pereyra ("en principio no").
+  - Premios fuera de catálogo: Marina Belmonte n.º 22 y el mantel de altar de Dalmira.
+  - Ciudades: "Santiago" (50) se une a Santiago del Estero (5)
+    (`fusiones_ciudades.csv`).
+  - Transcripción de fotos del álbum de 1915: `decisiones/album_1915.csv`. Todavía no
+    la lee ninguna etapa.
 
 ## Errores puntuales en `tabla_normalizada.xlsx` (hoja `Objetos`)
 - [ ] **objeto 241**: `Almohadón tela hecha a pala` — se le quitó el punto final,
