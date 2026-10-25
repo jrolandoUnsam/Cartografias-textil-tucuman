@@ -44,3 +44,8 @@ data/raw/images/**/*.JPEG
 # ---- Salidas generadas voluminosas (los .xlsx de data/ SÍ se versionan) ----
 outputs/**/*.mbtiles
 outputs/**/tiles/
+
+# ---- Revisiones de la dirección (Larisa Mantovani): quedan sólo en local, no se
+#      suben a GitHub (decisión de Julián, 2026-10-25). Lo que se decidió con
+#      ellas está en data/interim/decisiones/ y en docs/bitacora.md ----
+data/raw/revisiones_LM_10_2026/
