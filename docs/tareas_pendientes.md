@@ -10,6 +10,7 @@
   sugiere el n.º 4 "traje bordado richelieu" (objeto 149; en el álbum, DSCN5159),
   pero ese objeto ya tiene su premio: fila 79, Bordado en blanco y seda n.º 4, también
   de $25. La blusa es otro premio (Deshilado, sin número).
+- [ ] **Orán (73): ¿Tucumán o Salta?** Hoy queda sin punto ni provincia (LM 9-10). Evidencia para la reunión: El Orden, 10/10/1916, "La randa tucumana" (hoja "no PRENSA-EL ORDEN" del crudo): Padilla, de gira por la provincia, visita Orán, "antiguo centro de la randera tucumana"; quien transcribió anotó "no queda claro si se refiere a Salta". En el catálogo hay 24 randas de Orán. No se decide nada sin LM.
 - [ ] **Pares que no respondió en `pares_sin_revisar.xlsx` (25/10):** `2` Marina /
   `45` Máxima Belmonte, `390` Audelina y Abigail / `409` María Abigail Gómez, `215`
   Lidia / `474` Lastenia Moya Escobar, `120` Lastenia Barrero / `340` Lastenia Barquet,
@@ -32,7 +33,7 @@
     la lee ninguna etapa.
 
 ## Errores puntuales en `tabla_normalizada.xlsx` (hoja `Objetos`)
-- [ ] **objeto 241**: `Almohadón tela hecha a pala` — se le quitó el punto final,
+- [x] *(2026-10-25: ya ningún objeto termina en punto, ni el 241 ni el 243)* **objeto 241**: `Almohadón tela hecha a pala` — se le quitó el punto final,
   pero el 243 (misma expositora, mismo bloque) sí conserva el punto
   (`Colección lanas teñidas para fabricar alfombras y tapices.`). Uniformar criterio
   de puntuación.
@@ -75,7 +76,7 @@
     *Preguntas para Larisa*), 325/334 María / Arsenia Fernández y 209/264 Delina
     J./I. de Román, que no respondió.
 
-- [ ] **Los 17 pares sin fusionar que sí tienen comentario.** Repasar que el comentario
+- [x] *(2026-10-25: revisados; hoy son 18 y todos están resueltos — decididos "no unificar" o ya unificados por otro camino, como Ana e Isabel del Río y la Escuela Profesional de Mujeres)* **Los 17 pares sin fusionar que sí tienen comentario.** Repasar que el comentario
   siga valiendo y, donde corresponda, bajarlo al CSV de fusiones. El grupo más cargado
   es Delina J./I. de Román (161, 209, 255, 264) y le siguen Carmen de Moya (162 / 296,
   con 7 y 3 objetos) y Segunda Giménez / Jiménez (221 / 268).
@@ -103,17 +104,13 @@ Hoy son **457 F y 8 M** sobre 465 filas.
 
 ## Pipeline
 
-- [ ] **`03b_premios.py` lee la salida de una etapa posterior.** Lee
-  `data/processed/tabla_normalizada.xlsx`, que escriben `04b`, `04c` y `04d`, así que
-  trabaja sobre la tabla de la corrida anterior. Es el mismo ciclo que se arregló en
-  `03_candidatos` (bitácora 2026-09-15) y que quedó sin arreglar acá. No rompe nada
-  hoy —`premios_vinculados.xlsx` es un callejón sin salida, no lo consume ninguna
-  etapa— pero el matching de nombres corre contra nombres ya fusionados y ya pasados
-  a título. → apuntarlo a `tabla_normalizada_manual.xlsx`, igual que `03_candidatos`.
-- [ ] **`02_entidades` es un esqueleto y nadie consume su salida.**
-  `personas_prov.csv` y `ciudades_prov.csv` no los lee ninguna etapa: `01`→`02` están
-  desconectadas de `03`→`06`. Decidir entre completarlo (era el camino hacia armar la
-  tabla normalizada desde el crudo) o sacarlo de la corrida y dejarlo documentado.
+- [x] **`03b_premios.py` leía la salida de una etapa posterior.** *(2026-10-25)* Ahora
+  es `04e_premios`, corre después de `04d` y escribe la hoja `Premios` curada en la
+  tabla procesada; `premios_vinculados.xlsx` ya no existe.
+- [x] **`02_entidades` era un esqueleto y nadie consumía su salida.** *(2026-10-25)*
+  Se borró, con `personas_prov.csv` y `ciudades_prov.csv` (criterio de Julián: lo
+  obsoleto y sin uso se borra). Queda en `git log` por si se retoma el armado de la
+  tabla normalizada desde el crudo.
 - [ ] **Los `.xlsx` figuran como modificados en cada corrida** aunque el contenido sea
   idéntico: cambia sólo la metadata del zip. Verificado el 2026-09-18: después de
   correr el pipeline entero, las 5 salidas son idénticas celda por celda a las

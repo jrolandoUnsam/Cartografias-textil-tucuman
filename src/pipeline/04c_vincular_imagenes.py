@@ -8,7 +8,7 @@ rango) y le agrega una columna `imagen`.
 
 Solo cubre `fuente_id` 1 y 3 (los dos catálogos → Objetos). `fuente_id` 2 es el
 fallo del jurado, que se corresponde con la hoja `Premios`, no con `Objetos`
-(ver `03b_premios.py`) — queda fuera de este script.
+(ver `04e_premios.py`) — queda fuera de este script.
 
 La correspondencia por nombre no importa acá: usa `ORDEN` + `categoria_id` +
 `concurso_id`, que no cambian con las fusiones de expositoras (`04_aplicar_dedup`)

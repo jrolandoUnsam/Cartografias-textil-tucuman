@@ -2,8 +2,9 @@
 
 Recorre, fila por fila:
   1. `data/interim/revision_duplicados.xlsx`  (hojas Personas y Ciudades)
-  2. la hoja `Premios` de `data/processed/tabla_normalizada.xlsx`  (columnas de
-     comentario "Mis comentarios" / "Coment LM")
+  2. la hoja `Premios` original (tabla manual, vía `tabla_normalizada_dedup.xlsx`),
+     columnas de comentario "Mis comentarios" / "Coment LM", contra el vínculo
+     vigente de la hoja `Premios` curada (`04e_premios`)
 
 y compara la decisión que dice el comentario contra el estado actual de
 `tabla_normalizada.xlsx`, tomando como línea de base `tabla_normalizada_manual.xlsx`
@@ -244,7 +245,11 @@ def audita_ciudades(md: list[str]) -> None:
 
 def audita_premios(md: list[str]) -> None:
     xl = pd.ExcelFile(FUENTE)
-    P = xl.parse("Premios")
+    # Los comentarios viven en la hoja Premios original (tabla manual, vía 04); el
+    # vínculo vigente, en la hoja curada que arma 04e. Se cruzan por premio_id (fila).
+    P = pd.read_excel(INTERIM / "tabla_normalizada_dedup.xlsx", sheet_name="Premios")
+    vigente = xl.parse("Premios").set_index("premio_id")["objeto_id"]
+    P["objeto_id"] = P.index.map(vigente)
     E = xl.parse("Expositoras")
     O = xl.parse("Objetos")
     g = pd.ExcelFile(BASE)
@@ -253,7 +258,7 @@ def audita_premios(md: list[str]) -> None:
     exp_de_obj = O.set_index("objeto_id")["expositora_id"].to_dict()
     cols_com = [c for c in P.columns if "coment" in c.lower()]
 
-    cols_orig = [c for c in Pg.columns]
+    cols_orig = list(Pg.columns[:8])  # PREMIOS … NÚM: lo que transcribe el fallo
     intactas = all(
         (P[c].fillna("").astype(str) == Pg[c].fillna("").astype(str)).all() for c in cols_orig
     )
@@ -262,7 +267,7 @@ def audita_premios(md: list[str]) -> None:
     md.append(
         f"> Las 8 columnas originales de la hoja Premios están **{'intactas' if intactas else 'MODIFICADAS'}** "
         "respecto del golden. Lo que se agregó son las columnas de vínculo (`persona_id`, "
-        "`objeto_id`, …, salida de `03b_premios.py`) y las de comentario.\n"
+        "`objeto_id`, …; el vínculo que se muestra es el de la hoja curada de `04e_premios.py`) y las de comentario.\n"
         ">\n"
         "> Los comentarios de esta hoja son **observaciones sobre nombres**, no órdenes de "
         "fusión. La columna *Nombre real de la expositora* muestra a quién apunta hoy el "

@@ -12,13 +12,13 @@ from pathlib import Path
 
 ETAPAS = [
     "01_ingesta",
-    "02_entidades",
     "03_candidatos",
-    "03b_premios",
     "04_aplicar_dedup",
     "04b_titulo_nombres",
     "04c_vincular_imagenes",
     "04d_coordenadas",
+    "04e_premios",
+    "04f_marcas_objetos",
     "05_vista_plana",
     "05b_mapa",
     "05c_explorador",

@@ -8,7 +8,7 @@ World Street Map, como en `05b_mapa`, y se carga de internet al abrir la página
 (tile.openstreetmap.org se bloquea si la página se abre como archivo local).
 
 Una obra = una fila de `Objetos` (981). A eso se suman, como obras aparte, los premios
-de 1915 que no tienen objeto en el catálogo (`premios_vinculados.xlsx` sin
+de 1915 que no tienen objeto en el catálogo (hoja `Premios`, que arma `04e`, sin
 `objeto_id`): el fallo los premia pero no figuran en el listado de expositoras.
 
 Lo que no sale de la tabla y es decisión del proyecto vive en `decisiones/`:
@@ -31,8 +31,8 @@ en `05b_mapa`. Lo que no tiene ninguno de los dos queda sin coordenadas: se list
 la matriz y en las fichas, no en el mapa.
 
 Entrada : data/processed/tabla_normalizada.xlsx (Objetos, Expositoras, Categorías,
-          Ciudades), data/interim/objetos_crudos.csv (nombre tal como figura en el
-          catálogo), data/interim/premios_vinculados.xlsx, decisiones/*.csv
+          Ciudades, Premios), data/interim/objetos_crudos.csv (nombre tal como figura
+          en el catálogo), decisiones/*.csv
 Salida  : outputs/explorador.html
 """
 from __future__ import annotations
@@ -48,7 +48,6 @@ from _util import DECISIONES, INTERIM, PROCESSED, RAIZ
 
 FUENTE = PROCESSED / "tabla_normalizada.xlsx"
 CRUDOS = INTERIM / "objetos_crudos.csv"
-PREMIOS = INTERIM / "premios_vinculados.xlsx"
 FAMILIAS = DECISIONES / "familias_categorias.csv"
 ZONAS = DECISIONES / "zonas_ciudades.csv"
 PLANTILLAS = RAIZ / "src" / "pipeline" / "plantillas"
@@ -186,25 +185,17 @@ def nota_publica(v) -> str:
 
 # ------------------------------------------------------------------------- premios
 def premios(P: pd.DataFrame) -> list[dict]:
-    """Una entrada por línea del fallo con nombre, con la sección del fallo resuelta."""
-    out, previa = [], ""
-    for i, r in P.iterrows():
-        nombre = texto(r["NOMBRE"])
-        cat, obj = texto(r["CATEGORÍA"]), texto(r["OBJETO"])
-        if cat:
-            seccion = cat
-        elif obj:
-            seccion = obj
-        elif clave(previa) in ("deshilado", "accesit"):
-            # en el crudo, después de DESHILADOS: "se crean 9 accesits" (sin categoría)
-            seccion = "Accésit"
-        else:
-            seccion = ""
-        previa = seccion or previa
-        if not nombre:
-            continue
+    """Una entrada por premio de la hoja Premios curada (etapa 04e).
+
+    Cada premio lleva su `premio_id` (`pz.k`): un premio que abarca varias obras
+    (Rosa Alderete, randas n.º 17 a 21) se cuelga de cada una, pero cuenta una vez.
+    """
+    out = []
+    for _, r in P.iterrows():
+        nombre = texto(r["Nombre en el fallo"])
+        seccion, obj = texto(r["Sección del fallo"]), texto(r["Objeto en el fallo"])
         sec = clave(seccion)
-        pr = clave(r["PREMIOS"])
+        pr = clave(r["Premio"])
         if sec == "accesit":
             tipo = "Accésit"
         elif sec == "estimulo":
@@ -217,24 +208,25 @@ def premios(P: pd.DataFrame) -> list[dict]:
             tipo = "Premio"
         m = re.search(r"\d+", pr)
         ids = [int(float(x)) for x in re.split(r"[;,]", texto(r["objeto_id"])) if x.strip()]
-        match = texto(r["objeto_match"])
+        vinculo = clave(r["Vínculo"])
         if not ids:
             lk = "sv"
-        elif "pendiente" in clave(match) or texto(r["revisar"]) == "X":
+        elif texto(r["Estado"]) == "pendiente":
             lk = "nom?"
-        elif match.startswith("num+categoria"):
+        elif vinculo.startswith("n.o"):
             lk = "ord"
-        elif match == "manual" or match.startswith("decisión a mano"):
+        elif vinculo.startswith("decision a mano"):
             lk = "man"
         else:
             lk = "nom"
-        obs = texto(r["OBSERVACIONES"])
+        obs = texto(r["Observaciones"])
         pid = r["persona_id"]
         out.append({
-            "fila": i, "nombre": nombre, "persona_id": None if pd.isna(pid) else int(pid),
-            "ciudad": texto(r["CIUDAD"]), "provincia": texto(r["PROVINCIA"]), "objeto": obj,
-            "num": texto(r["NÚM"]), "seccion": seccion, "objetos": ids,
-            "pz": {"t": tipo, "m": int(m.group()) if m else None,
+            "fila": int(r["premio_id"]), "nombre": nombre,
+            "persona_id": None if pd.isna(pid) else int(pid),
+            "ciudad": texto(r["Ciudad en el fallo"]), "provincia": texto(r["Provincia en el fallo"]),
+            "objeto": obj, "num": texto(r["N.º"]), "seccion": seccion, "objetos": ids,
+            "pz": {"k": int(r["premio_id"]), "t": tipo, "m": int(m.group()) if m else None,
                    "c": frase(seccion) if seccion else "Sin sección",
                    "ob": obs, "lk": lk, "foto": "foto" in clave(obs)},
         })
@@ -285,7 +277,7 @@ def datos() -> dict:
     por_obj = {r["oid"]: r for r in recs}
 
     # premios: sobre la obra si hay vínculo; si no, como obra aparte
-    lista = premios(pd.read_excel(PREMIOS))
+    lista = premios(xl.parse("Premios"))
     sin_obra = 0
     for z in lista:
         if z["objetos"]:

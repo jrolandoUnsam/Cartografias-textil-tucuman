@@ -1,0 +1,38 @@
+termino,patron,tipo,propuesta,n_obras,ejemplo,lo_detecta_hoy_el_explorador,validacion_LM,nota
+randa,\brand,técnica,Randa,84,"tapete, encaje esmirna y randa",sí,,
+encaje,encaj,técnica,Encaje,84,mantel y servilletas encaje richelieu,sí,,"genérico: puede ser bolillo, aguja, Venecia…"
+bolillo,bolillo,técnica,Encaje de bolillos,27,"traje, encaje al bolillo",sí,,
+puntilla,puntilla,técnica,Encaje,31,juego de puntillas de crochet,sí,,"puntilla es un tipo de pieza (borde), no una técnica; hoy cuenta como encaje"
+a la aguja,a la aguja|de aguja,técnica,Encaje de aguja,10,"abanico, encaje venecia y a la aguja",no,,
+Venecia,venecia,técnica,Encaje de Venecia,13,"cuello, encaje de venecia",no,,encaje de aguja
+ñanduty,nanduti|nanduty,técnica,Ñandutí,6,"tapete, encaje ñanduty",no,,encaje de aguja
+frivolité,frivolit,técnica,Frivolité,4,cuello de frivolité,no,,encaje de lanzadera
+macramé,macram,técnica,Macramé,2,"toalla, deshilado y macramé",no,,anudado
+malla,\bmalla,técnica,Malla / red,10,sobrecama de malla,no,,¿base del filet?
+filet,filet,técnica,Filet,20,carpeta encaje de filet de hilo,sí,,
+crochet,crochet|croche|ganchillo,técnica,Crochet,25,cubreteclado con flores crochet,sí,,
+Irlanda,irlanda,técnica,Crochet de Irlanda,36,traje de punto de irlanda,sí,,
+deshilado,deshil,técnica,Deshilado,86,"toalla, deshilado y crochet",sí,,
+bordado,bordad,técnica,Bordado,124,toalla bordada en seda,sí,,
+Richelieu,richelieu,técnica,Bordado Richelieu,12,tapete richelieu,sí,,hoy cuenta como bordado
+en relieve,relieve,técnica,Bordado en relieve,20,alfombra 3x4 tejida en telar con dibujos en relieve,no,,también aparece en alfombras (dibujo en relieve)
+telar,telar,técnica,Tejido en telar,82,alfombra 3x4 tejida en telar con dibujos en relieve,sí,,
+a pala,\ba pala\b,técnica,Tejido a pala,24,frazada a pala con dibujo en el tejido,sí,,
+bastones,baston,técnica,Tejido a bastones,4,colcha de vicuña bordada a bastones,sí,,
+atada,\batad,técnica,Alfombra atada (nudo),9,par alforjas atadas,no,,¿técnica de anudado?
+Esmirna,esmirna|smyrna,técnica,Punto Esmirna,4,"Alfombra esmirna, guarda y flores",no,,nudo de alfombra
+gobelino,gobelin,técnica,Gobelino,4,"Stor tejido Gobelino, de hilo y seda",no,,tapiz
+tejido a mano,tejid[oa]s? a mano|a mano,técnica,Tejido a mano,8,colcha de hilo tejida en telar y bordada a mano,no,,muy genérico
+hilado,hilad|hilo propio|hilado por,proceso,Hilado a mano,99,colcha de algodón hilado y tejido,no (el explorador no tiene materiales),,"proceso, no técnica de la pieza"
+teñido,tenid|tintura|tenida,proceso,Teñido,8,"colcha tejida a pala, bordada, teñida con los procedimientos criollos",no (el explorador no tiene materiales),,proceso
+lana,\blana,material,Lana,122,colcha de lana,no (el explorador no tiene materiales),,¿de oveja? a veces sin especificar
+vicuña,vicun,material,Vicuña,78,colcha de vicuña bordada,no (el explorador no tiene materiales),,
+llama,\bllama\b,material,Llama,1,poncho lana de llama,no (el explorador no tiene materiales),,
+seda,\bseda,material,Seda,25,toalla bordada en seda,no (el explorador no tiene materiales),,
+hilo,\bhilo\b,material,Hilo (lino o algodón),21,alfombra de hilo tejida en telar con dibujos en relieve,no (el explorador no tiene materiales),,¿lino o algodón? sin especificar
+algodón,algodon,material,Algodón,17,colcha de algodón hilado y tejido,no (el explorador no tiene materiales),,
+caña,\bcana\b|cana de azucar,material,Hoja de caña,5,"Centro de mesa, hecho con hojas de caña",no (el explorador no tiene materiales),,fibra vegetal
+raffia,raff?ia,material,Rafia (imitación),3,Centro de mesa con Raffia,no (el explorador no tiene materiales),,fibra vegetal
+plátano,platano,material,Fibra de plátano,1,cubre bandeja hecho con la fibra del plátano,no (el explorador no tiene materiales),,fibra vegetal
+paja,\bpaja,material,Paja,1,"canasta raffia, teñida de la misma paja",no (el explorador no tiene materiales),,fibra vegetal
+piolín,piolin,material,Piolín,1,jardinera en piolín tejida a crochet,no (el explorador no tiene materiales),,

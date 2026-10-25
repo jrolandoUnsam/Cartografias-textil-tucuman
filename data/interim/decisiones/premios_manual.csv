@@ -1,5 +1,5 @@
 premio_id,objeto_id,persona_id,nota
-# Correcciones manuales para 03b_premios.py. Una fila por premio a corregir.
+# Correcciones manuales para 04e_premios.py. Una fila por premio a corregir.
 # - premio_id: número de fila (0-based) en la hoja Premios (col 'premio_id' de la salida).
 # - objeto_id: fuerza el vínculo a ese objeto (dejar vacío si no aplica).
 # - objeto_id = "ninguno": fuerza a que quede SIN objeto, sin correr el cruce

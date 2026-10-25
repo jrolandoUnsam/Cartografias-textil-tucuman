@@ -208,6 +208,24 @@ LM). Las ubicaciones tentativas van con borde punteado. El notebook muestra el m
 mapa (importa la etapa) y ya no escribe el archivo, para que no pise la versión del
 pipeline.
 
+## 2026-10-18 a 22 — Explorador web (`05c_explorador`)
+
+- **El explorador es una etapa del pipeline.** `outputs/explorador.html` se genera desde
+  la tabla normalizada con la plantilla de `src/pipeline/plantillas/`: un único archivo,
+  sin servidor, que se abre en el navegador.
+- **Mapa base: Esri World Street Map**, como en `05b_mapa`. `tile.openstreetmap.org`
+  bloquea las páginas abiertas como archivo local, que es como se va a compartir.
+- **Zonas** (`decisiones/zonas_ciudades.csv`): cada `ciudad_id` va a una zona (capital
+  y alrededores, centro y sur, valles y norte de Tucumán, otras provincias). La
+  propuesta inicial salió de la provincia y la distancia a la capital (columna
+  `criterio`) y se corrige a mano. A validar con LM.
+- **Familias** (`decisiones/familias_categorias.csv`): cada categoría del catálogo va a
+  un tipo de obra y tiene una técnica por defecto para cuando el texto del objeto no
+  nombra ninguna. A validar con LM.
+- **Técnicas:** se infieren del texto del objeto con reglas fijas del script
+  (`REGLAS_TECNICA`). No están validadas; el 25/10 se armó
+  `decisiones/tecnicas_materiales.csv` para que LM las revise y reemplacen a esas reglas.
+
 ## 2026-10-25 — Revisión de LM: pares, premios y Santiago
 
 - **Todo entra por tablas de decisión** (pedido de Julián): nada se corrigió a mano en
@@ -224,6 +242,69 @@ pipeline.
   deshecho a la espera de la respuesta de LM; ahora ella lo confirmó.
 - **Álbum de 1915:** la transcripción de LM queda en `decisiones/album_1915.csv`. Ya
   sirvió para la blusa (n.º 4 "traje bordado Richelieu", DSCN5159).
+
+## 2026-10-25 — Premios: una sola hoja, ya cruzada con el catálogo (`04e_premios`)
+
+Los vínculos premio–obra estaban en dos lugares que no coincidían: la hoja `Premios` de
+la tabla procesada (la de la tabla manual, con 43 filas marcadas "revisar" y vínculos
+viejos) y `premios_vinculados.xlsx`, que armaba `03b` y sólo leía el explorador. La
+auditoría y el EDA leían la hoja vieja.
+
+- `03b_premios` pasa a ser `04e_premios` y corre después de `04d`, sobre las
+  expositoras, objetos e imágenes de la misma corrida: se cierra el último ciclo del
+  pipeline.
+- Escribe la hoja `Premios` curada en `tabla_normalizada.xlsx` (pedido de Julián: "la
+  hoja premios debería darme todos los premios con el catálogo ya cruzado y curado").
+  Una fila por premio, con lo que dice el fallo, la obra del catálogo, `Estado`,
+  `Vínculo` y `Nota`. Las columnas de trabajo de la revisión no van.
+- `premios_vinculados.xlsx` se elimina. El explorador, la auditoría y el EDA leen la
+  hoja nueva; la auditoría toma los comentarios de la hoja original y el vínculo de la
+  curada.
+- **Explorador:** un premio que abarca varias obras (Rosa Alderete, randas n.º 17–21;
+  Palmira Contreras, 4 y 5) se contaba una vez por obra y la ficha decía "5 premios".
+  Ahora cada premio lleva su `premio_id` y se cuenta una vez.
+
+## 2026-10-25 — Arreglos chicos y tabla de técnicas y materiales
+
+- Nombres actuales de ciudades con tilde o errata corregidos en
+  `coordenadas_ciudades.csv`: Famaillá (era "Faimalla"), Concepción (35 y 59), Río
+  Chico, Banda del Río Salí (12 y 75: son dos ingenios distintos de la misma
+  localidad, no se fusionan).
+- Créditos del explorador: estudiante (Julián Rolando), dirección (Larisa Mantovani) y
+  tutoría (Agustín Moro); el programa es la optativa del Proyecto Interdisciplinario
+  CIAI-LCD, no una "pasantía de investigación" (Recomendaciones, §7).
+- `decisiones/tecnicas_materiales.csv`: cada término de técnica, proceso o material que
+  aparece en los textos de las obras, con un patrón de búsqueda, una propuesta de
+  nombre, cuántas obras lo mencionan, un ejemplo y si el explorador lo reconoce hoy.
+  La columna `validacion_LM` queda para que la complete LM. Todavía no la lee ninguna
+  etapa: cuando esté validada reemplaza a `REGLAS_TECNICA` de `05c`.
+
+## 2026-10-25 — Chaco en dos localidades, Antofagasta y limpieza
+
+- **Chaco (53) se separa** (`separaciones_ciudades.csv`, mecanismo nuevo en
+  `04_aplicar_dedup`): las 2 frazadas de la India de la Misión Franciscana de Nueva
+  Pompeya pasan a la ciudad 82, con la coordenada que dio LM (−24,93; −61,48); el
+  jergón de Amelia Zunubate queda en 53, con Resistencia como punto de provincia. Antes
+  no se podía aplicar la coordenada de LM porque un `ciudad_id` tiene un solo punto.
+- **Antofagasta (16)** se ubica en Antofagasta de la Sierra, hoy Catamarca, para el
+  mapa (decisión de Julián). El catálogo dice "Antofagasta Salta" y el fallo
+  "Catamarca"; en 1915 era el Territorio Nacional de Los Andes. Coordenada aproximada,
+  a verificar.
+- **Se borra lo obsoleto y sin uso** (criterio de Julián): `02_entidades.py` con
+  `personas_prov.csv` y `ciudades_prov.csv`, y `revision_duplicados_regenerado.xlsx`.
+- **Categorías:** Chales de vicuña / Chales y echarpes y los Jergones siguen separados,
+  como se había decidido, aunque la numeración del catálogo continúe de una a otra.
+- **Orán:** no se decide nada; la nota de El Orden queda como pregunta para LM.
+
+## 2026-10-25 — "Fuera de concurso" y "creación de la autora" como dato aparte
+
+El catálogo de 1916 marca 2 obras "(fuera de concurso)": se exhibieron pero no
+compitieron. Y 12 obras dicen "creación de la autora" (diseño propio). Hasta ahora sólo
+estaba en el texto. La etapa nueva `04f_marcas_objetos` lo lee y lo deja en dos columnas
+de `Objetos` (`fuera_de_concurso`, `creacion_autora`), que también salen en la vista
+plana; el texto del catálogo queda igual (decisión de Julián: no perder información).
+"India de la Misión Franciscana de Nueva Pompeya" queda tal como la nombra el catálogo,
+sin nota.
 
 ## Fuentes del crudo que NO entran a la base
 

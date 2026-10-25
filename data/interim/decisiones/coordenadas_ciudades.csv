@@ -10,11 +10,11 @@
 9,,Córdoba,,,-31.4201,-64.1888,,
 10,,Salta,,,-24.7821,-65.4232,,
 11,,,,,,,,
-12,Banda del Rio Sali,Tucumán,-26.834119766034306,-65.16539176432775,-26.8304,-65.2038,,
+12,Banda del Río Salí,Tucumán,-26.834119766034306,-65.16539176432775,-26.8304,-65.2038,,
 13,Colalao del Valle,Tucumán,-26.362041479870303,-65.9570139297426,-26.8304,-65.2038,,
 14,,S/d,,,,,,
 15,La Cocha,Tucumán,-27.768819368705635,-65.58602233340218,-26.8304,-65.2038,,
-16,,,,,,,,
+16,Antofagasta de la Sierra,Catamarca,-26.0586,-67.4058,-28.4696,-65.7852,,"Ubicada en Antofagasta de la Sierra, hoy Catamarca, para el mapa (Julián 2026-10-25). El catálogo dice 'Antofagasta Salta' y el fallo 'Catamarca'; en 1915 la zona era el Territorio Nacional de Los Andes. Coordenada aproximada: verificar"
 17,La Cocha,Tucumán,-27.768819368705635,-65.58602233340218,-26.8304,-65.2038,,
 18,Yacuchiri,Tucumán,-27.370247084592897,-65.2154275458708,-26.8304,-65.2038,,
 19,Simoca ?,Tucumán,,,-26.8304,-65.2038,,
@@ -32,10 +32,10 @@
 32,San José de Piedra Blanca,Catamarca,-28.389181529989457,-65.70294782934222,-28.4696,-65.7852,,
 33,,Tucumán,,,-26.8304,-65.2038,,
 34,Villa Tulumba,Córdoba,-30.395850610727486,-64.12181690120042,-31.4201,-64.1888,,
-35,Concepcion,Tucumán,-27.34606029784943,-65.59314479075141,-26.8304,-65.2038,,
+35,Concepción,Tucumán,-27.34606029784943,-65.59314479075141,-26.8304,-65.2038,,
 36,Villa Belgrano,Tucumán,-27.527562207212128,-65.6160825489703,-26.8304,-65.2038,,
 38,Taco Ralo,Tucumán,-27.835790632953756,-65.19449686596924,-26.8304,-65.2038,,
-39,Rio Chico,Tucumán,-27.479586051285526,-65.62502678000573,-26.8304,-65.2038,,
+39,Río Chico,Tucumán,-27.479586051285526,-65.62502678000573,-26.8304,-65.2038,,
 40,La Trinidad,Tucumán,-27.4000,-65.5167,-26.8304,-65.2038,,LM 9-10: coordenada corregida
 41,,Tucumán,-27.56667,-65.05000,-26.8304,-65.2038,,LM 9-10: coordenada cargada
 42,Niogasta,Tucumán,-27.52312649955564,-65.22648175012597,-26.8304,-65.2038,,
@@ -49,15 +49,15 @@
 50,,Santiago del Estero,,,-27.7951,-64.2615,,"fusionada en la ciudad 5 (fusiones_ciudades.csv, LM 2026-10-25); esta fila ya no se usa"
 51,Cafayate,Salta,-26.072984058275928,-65.97604632212621,-24.7821,-65.4232,,
 52,La Madrid,Tucumán,-27.645892524659146,-65.24742254530331,-26.8304,-65.2038,,
-53,,Chaco,,,-27.4511,-58.9865,,"LM 9-10: Marcaría para el envío INDIA DE LA MISIÓN FRANCISCANA DE NUEVA POMPEYA −24,93; −61,48 (misión franciscana de nueva pompeya, chaco) y Resistencia como referencia general al territorio nacional para el caso del envío de AMELIA ZUNUBATE −27,4511; −58,9865"
+53,,Chaco,,,-27.4511,-58.9865,,"LM 9-10: Marcaría para el envío INDIA DE LA MISIÓN FRANCISCANA DE NUEVA POMPEYA −24,93; −61,48 (misión franciscana de nueva pompeya, chaco) y Resistencia como referencia general al territorio nacional para el caso del envío de AMELIA ZUNUBATE −27,4511; −58,9865; el envío de la Misión de Nueva Pompeya pasó a la ciudad 82 (separaciones_ciudades.csv); acá queda Amelia Zunubate, con Resistencia como punto de provincia"
 54,El Tobar,Tucumán,-27.53333,-65.06667,-26.8304,-65.2038,,LM 9-10: coordenada corregida
 55,Los Trejos,Tucumán,-27.488549516415397,-65.35837616702516,-26.8304,-65.2038,,
 56,Los Perez,Tucumán,-27.236538806669387,-65.38189745063092,-26.8304,-65.2038,,
 57,San José,Tucumán,-26.79654948959901,-65.26119927428856,-26.8304,-65.2038,,
 58,Bella Vista,Tucumán,-27.029318334348453,-65.30326038582962,-26.8304,-65.2038,,
-59,Concepcion,Tucumán,-27.345986476137266,-65.5928809376399,-26.8304,-65.2038,,
+59,Concepción,Tucumán,-27.345986476137266,-65.5928809376399,-26.8304,-65.2038,,
 60,,,,,,,,
-61,Faimalla,Tucumán,-27.054320220637845,-65.40252455347067,-26.8304,-65.2038,,
+61,Famaillá,Tucumán,-27.054320220637845,-65.40252455347067,-26.8304,-65.2038,,
 64,Ranchillos,Tucumán,-26.955738618194573,-65.04703395283748,-26.8304,-65.2038,,
 65,DELFIN GALLO o Ex Ingenio Luján,Tucumán,-26.8489,-65.1311,-26.8304,-65.2038,,LM 9-10: ex ingenio Luján
 66,Cerrillos,Salta,-24.904024191522783,-65.48694641581035,-24.7821,-65.4232,,
@@ -69,10 +69,11 @@
 72,,,,,,,,
 73,Orán,,,,,,,LM 9-10: puede ser Orán de Tucumán o de Salta; lugar y provincia sin definir
 74,Medinas,Tucumán,-27.42028050718691,-65.53332242564282,-26.8304,-65.2038,,
-75,Banda del Río Sali,Tucumán,-26.8342019678845,-65.16527739409442,-26.8304,-65.2038,,"LM 9-10: Ingenio Concepción (Banda del Río Salí), propiedad de Alfredo Guzmán"
+75,Banda del Río Salí,Tucumán,-26.8342019678845,-65.16527739409442,-26.8304,-65.2038,,"LM 9-10: Ingenio Concepción (Banda del Río Salí), propiedad de Alfredo Guzmán"
 76,,tucuman o cordoba,,,,,,
 77,Acheral,Tucumán,-27.120085406899566,-65.46893220495674,-26.8304,-65.2038,,
 78,,,,,,,,LM 9-10: provincia sin definir
 79,,Tucumán,-26.8304,-65.2038,-26.8304,-65.2038,,LM 9-10: coordenadas de San Miguel de Tucumán
 80,Los Gucheas,Tucumán,-27.399480526168492,-65.57344049162205,-26.8304,-65.2038,,
 81,,,,,,,,LM 9-10: provincia sin definir
+82,Nueva Pompeya,Chaco,-24.93,-61.48,-27.4511,-58.9865,,"LM 9-10: Misión Franciscana de Nueva Pompeya (Chaco), −24,93; −61,48"

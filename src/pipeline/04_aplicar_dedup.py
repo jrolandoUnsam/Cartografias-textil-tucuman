@@ -33,11 +33,19 @@ con dos ids ("SANTIAGO" / "SANTIAGO DEL ESTERO"). Los objetos pasan a
 escribió el catálogo no se pierde: la vista plana lo muestra en "Lugar en el
 documento", tomado del crudo.
 
+Y al revés, `data/interim/decisiones/separaciones_ciudades.csv` (ciudad_id_nueva,
+ciudad_id_origen, objetos, nombre_ciudad, nota): un `ciudad_id` que junta envíos de
+lugares distintos ("CHACO": la Misión de Nueva Pompeya y Amelia Zunubate) se parte en
+dos. Se crea la fila `ciudad_id_nueva` en `Ciudades` (provincia copiada del origen) y
+los objetos listados pasan a ella. Su ubicación va en `coordenadas_ciudades.csv`, como
+la de cualquier otra ciudad.
+
 Entrada : data/interim/tabla_normalizada_manual.xlsx   (export manual más reciente,
           con las revisiones de Larisa en la hoja Premios)
           data/interim/decisiones/fusiones_expositoras.csv
           data/interim/decisiones/nombres_expositoras.csv
           data/interim/decisiones/fusiones_ciudades.csv
+          data/interim/decisiones/separaciones_ciudades.csv
 Salida  : data/interim/tabla_normalizada_dedup.xlsx   (insumo de 04b)
 """
 from __future__ import annotations
@@ -54,6 +62,7 @@ SALIDA = INTERIM / "tabla_normalizada_dedup.xlsx"
 FUSIONES_CSV = DECISIONES / "fusiones_expositoras.csv"
 NOMBRES_CSV = DECISIONES / "nombres_expositoras.csv"
 FUSIONES_CIUDADES_CSV = DECISIONES / "fusiones_ciudades.csv"
+SEPARACIONES_CSV = DECISIONES / "separaciones_ciudades.csv"
 
 
 @dataclass
@@ -119,6 +128,31 @@ def fusionar_ciudades(C: pd.DataFrame, O: pd.DataFrame, fusiones: list[Fusion]):
     return C, O
 
 
+def separar_ciudades(C: pd.DataFrame, O: pd.DataFrame, ruta=SEPARACIONES_CSV):
+    C, O = C.copy(), O.copy()
+    for _, r in pd.read_csv(ruta).iterrows():
+        nueva, origen = int(r["ciudad_id_nueva"]), int(r["ciudad_id_origen"])
+        objetos = [int(x) for x in str(r["objetos"]).split()]
+        if nueva in set(C["ciudad_id"]):
+            raise ValueError(f"{ruta.name}: el ciudad_id {nueva} ya existe")
+        if origen not in set(C["ciudad_id"]):
+            raise ValueError(f"{ruta.name}: el ciudad_id {origen} no existe")
+        de_otro = O.loc[O["objeto_id"].isin(objetos) & (O["ciudad_id"] != origen), "objeto_id"]
+        faltan = set(objetos) - set(O["objeto_id"])
+        if faltan or len(de_otro):
+            raise ValueError(f"{ruta.name}: objetos {sorted(faltan) + list(de_otro)} no son "
+                             f"de la ciudad {origen}")
+        fila = C[C["ciudad_id"] == origen].copy()
+        fila["ciudad_id"], fila["nombre_ciudad"] = nueva, r["nombre_ciudad"]
+        if "nombre_ciudad_hoy" in fila.columns:
+            fila["nombre_ciudad_hoy"] = None
+        C = pd.concat([C, fila], ignore_index=True)
+        O.loc[O["objeto_id"].isin(objetos), "ciudad_id"] = nueva
+        print(f"  -> ciudad {origen} se separa: {len(objetos)} obj. pasan a {nueva} "
+              f"({r['nombre_ciudad']}): {r['nota']}")
+    return C, O
+
+
 def main() -> None:
     xl = pd.ExcelFile(FUENTE)
     hojas = {s: xl.parse(s) for s in xl.sheet_names}
@@ -171,6 +205,8 @@ def main() -> None:
     fus_c = leer_fusiones(FUSIONES_CIUDADES_CSV)
     print(f"\n{len(fus_c)} fusiones de ciudades")
     hojas["Ciudades"], O2 = fusionar_ciudades(hojas["Ciudades"], O2, fus_c)
+    print("\nseparaciones de ciudades")
+    hojas["Ciudades"], O2 = separar_ciudades(hojas["Ciudades"], O2)
 
     hojas["Expositoras"], hojas["Objetos"] = E2, O2
     with pd.ExcelWriter(SALIDA, engine="openpyxl") as w:

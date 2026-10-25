@@ -7,7 +7,10 @@ hoja `Objetos` a nombres y escribe
 
 Columnas: Concurso, Año, Expositora/Expositor, Ciudad, Provincia, Lugar en el
 documento, ciudad_id, lat, lon, lat_provincia, lon_provincia, Categoría, N.º de
-orden, Descripción del objeto, Imagen.
+orden, Descripción del objeto, Fuera de concurso, Creación de la autora, Imagen.
+
+`Fuera de concurso` y `Creación de la autora` (`sí` / vacío) las pone `04f` leyendo el
+texto del catálogo, que sigue entero en `Descripción del objeto`.
 
 `lat`/`lon` es el punto de la ciudad y `lat_provincia`/`lon_provincia` el de la
 capital de su provincia (los pone `04d`): lo que sólo tiene provincia, o una ciudad
@@ -39,7 +42,8 @@ HOJA = "Objetos - Concursos Tucumán"
 
 COLS = ["Concurso", "Año", "Expositora/Expositor", "Ciudad", "Provincia",
         "Lugar en el documento", "ciudad_id", "lat", "lon", "lat_provincia", "lon_provincia",
-        "Categoría", "N.º de orden", "Descripción del objeto", "Imagen"]
+        "Categoría", "N.º de orden", "Descripción del objeto", "Fuera de concurso",
+        "Creación de la autora", "Imagen"]
 
 
 def _hoja(xl: pd.ExcelFile, prefijo: str) -> pd.DataFrame:
@@ -97,6 +101,8 @@ def construir(fuente=FUENTE) -> pd.DataFrame:
         "Categoría": df["nombre_categoria"],
         "N.º de orden": df["ORDEN"],
         "Descripción del objeto": df["OBJETO"],
+        "Fuera de concurso": df["fuera_de_concurso"] if "fuera_de_concurso" in df.columns else pd.NA,
+        "Creación de la autora": df["creacion_autora"] if "creacion_autora" in df.columns else pd.NA,
         "Imagen": df["imagen"] if "imagen" in df.columns else pd.NA,
     })
 

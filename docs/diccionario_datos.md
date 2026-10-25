@@ -51,32 +51,40 @@ de qué página salió cada registro.
 | `OBJETO` | texto | descripción del objeto, textual de la fuente |
 | `fuente` | texto | hoja del Excel crudo de origen |
 | `imagen` | texto | escaneo del catálogo donde figura este objeto. Lo agrega `04c_vincular_imagenes` cruzando `Paginas_Catalogo` por concurso + categoría + rango de `ORDEN` |
+| `fuera_de_concurso` | texto | `sí` si el catálogo dice "(fuera de concurso)": se exhibió pero no compitió. Lo agrega `04f_marcas_objetos` leyendo `OBJETO`, que no se toca |
+| `creacion_autora` | texto | `sí` si el catálogo dice "creación de la autora" (diseño propio). Ídem |
 
-### Hoja `Premios` (104 filas)
+### Hoja `Premios` (102 filas)
 
-Columnas 1–8: transcripción del fallo del jurado, casi textual.
-Columnas 9–14: agregadas por `03b_premios.py`.
-Columnas 15–17: anotación manual (estudiante y dirección).
+La arma `04e_premios`: un premio del fallo del jurado de 1915 por fila, cruzado con el
+catálogo y curado. Las decisiones a mano están en `decisiones/premios_manual.csv`. Las
+columnas de trabajo de la revisión (`persona_score`, `revisar`, "Mis comentarios",
+"Coment LM", …) quedan en la tabla manual y en las revisiones de LM de `data/raw`; acá
+no van. Los renglones del fallo que no premian a nadie ("Primer premio desierto") no
+son filas.
 
 | campo | tipo | descripción |
 |---|---|---|
-| `PREMIOS` | texto | premio otorgado (monto / mención) |
-| `NOMBRE` | texto | expositora premiada, según el fallo |
-| `CIUDAD` | texto | localidad según el fallo |
-| `PROVINCIA` | texto | provincia según el fallo |
-| `OBJETO` | texto | objeto premiado |
-| `CATEGORÍA` | texto | categoría del premio |
-| `OBSERVACIONES` | texto | notas del relevamiento |
-| `NÚM` | texto | nº de orden del objeto en el catálogo (puede ser "s/d" o un rango) |
-| `persona_id` | int | → `Expositoras.persona_id`, resuelto por nombre (fuzzy) |
-| `persona` | texto | nombre de esa expositora en el catálogo, para control visual |
-| `persona_score` | float | ratio 0–100 del match de nombre |
-| `objeto_id` | texto | → `Objetos.objeto_id`; puede traer varios separados por `;` (ej. `35;36;37;38;39`), o vacío |
-| `objeto_match` | texto | cómo se resolvió el cruce: `num+categoria`, `num+categoria+persona`, … El sufijo `+persona` solo aparece si el filtro por persona se aplicó de verdad (ver bitácora, 2026‑09‑14) |
-| `revisar` | texto | `X` si el cruce quedó dudoso |
-| `Mis comentarios` | texto | anotación del estudiante |
-| `Coment LM` | texto | anotación de la dirección |
-| `Hecho o revisado` | texto | estado de la revisión conjunta |
+| `premio_id` | int | número de fila (0-based) de la hoja Premios de la tabla manual; es la clave de `premios_manual.csv` |
+| `Premio` | texto | premio otorgado, textual del fallo (monto / tipo) |
+| `Nombre en el fallo` | texto | expositora premiada, como la escribe el fallo |
+| `Ciudad en el fallo` | texto | localidad según el fallo |
+| `Provincia en el fallo` | texto | provincia según el fallo |
+| `Categoría del fallo` | texto | categoría del premio, textual (vacía cuando el fallo no la repite) |
+| `Sección del fallo` | texto | la sección a la que pertenece el premio: la categoría, o la última que nombró el fallo; tras DESHILADO, "Accésit" |
+| `Objeto en el fallo` | texto | objeto premiado, según el fallo |
+| `N.º` | texto | n.º de orden que cita el fallo (puede ser "s/d" o un rango) |
+| `Observaciones` | texto | notas del relevamiento ("HAY FOTO…", "fuera de catálogo") |
+| `persona_id` | int | → `Expositoras.persona_id`; vacío si no está en el catálogo |
+| `Expositora` | texto | nombre normalizado de esa expositora |
+| `objeto_id` | texto | → `Objetos.objeto_id`; varios separados por `;` si el premio abarca un rango (ej. `35;36;37;38;39`) |
+| `Obra en el catálogo` | texto | descripción de la(s) obra(s) en el catálogo, separadas por una barra vertical |
+| `Categoría del catálogo` | texto | categoría del catálogo de esa obra |
+| `N.º en el catálogo` | texto | n.º de orden en el catálogo |
+| `Imagen` | texto | escaneo del catálogo donde figura la obra |
+| `Estado` | texto | `vinculado`, `fuera de catálogo` o `pendiente` |
+| `Vínculo` | texto | cómo se vinculó: `n.º, categoría y nombre`, `n.º y categoría`, `única obra de la expositora en la categoría`, `obra de la expositora con texto parecido` o `decisión a mano` |
+| `Nota` | texto | la decisión a mano (`premios_manual.csv`) o, si está pendiente, qué falta resolver |
 
 ### Hoja `Fuentes` (4 filas)
 | campo | tipo | descripción |
@@ -127,6 +135,8 @@ mayúsculas)**. Dentro de un mismo grupo se conserva el orden del catálogo
 | `Categoría` | nombre de categoría |
 | `N.º de orden` | `ORDEN` |
 | `Descripción del objeto` | `OBJETO` |
+| `Fuera de concurso` | `Objetos.fuera_de_concurso` |
+| `Creación de la autora` | `Objetos.creacion_autora` |
 | `Imagen` | escaneo del catálogo donde figura el objeto (`Objetos.imagen`) |
 
 ## `data/interim/duplicados_expositoras_candidatos.xlsx`
@@ -155,21 +165,9 @@ pares ya listados.
 se conserva porque es la fuente de las decisiones que hoy están en
 `decisiones/fusiones_expositoras.csv`.
 
-## `data/interim/premios_vinculados.xlsx`
-
-Salida de `03b_premios.py`: la hoja `Premios` completa, misma cantidad de filas y mismo
-orden, con las columnas de vínculo recalculadas. Es un archivo de trabajo para revisar
-el cruce; **no lo consume ninguna etapa del pipeline**.
-
-Además de las columnas de `Premios`, agrega:
-
-| campo | descripción |
-|---|---|
-| `candidato_rechazado` | el objeto que se hubiera vinculado si no existiera el chequeo final de nombre, y de quién es en realidad (ej. `objeto 170 es de 'Rosalía Gutiérrez' (score 32.4)`). Sólo se completa si se rechazó algo: hoy son 3 filas, la 60, la 61 y la 99 — los tres casos de la bitácora del 2026-09-14 |
-
 ## `data/interim/decisiones/fusiones_expositoras.csv`
 
-Las 42 fusiones de expositoras que aplica `04_aplicar_dedup.py`.
+Las fusiones de expositoras que aplica `04_aplicar_dedup.py` (55 filas).
 
 | campo | descripción |
 |---|---|

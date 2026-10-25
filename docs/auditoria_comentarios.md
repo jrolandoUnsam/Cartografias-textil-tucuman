@@ -4,7 +4,7 @@ _Generado por `src/pipeline/audit_comentarios.py` — no editar a mano._
 
 Compara cada decisión anotada a mano contra el estado actual de `data/processed/tabla_normalizada.xlsx`, tomando como línea de base `data/interim/tabla_normalizada_manual.xlsx` (la tabla antes del pipeline).
 
-**Hallazgo global:** respecto de la tabla de partida (`tabla_normalizada_manual.xlsx`) se reasignaron **72 objetos** y desaparecieron **55 filas** de `Expositoras`: las fusiones **sí** están aplicadas. Nombres normalizados: 7.
+**Hallazgo global:** respecto de la tabla de partida (`tabla_normalizada_manual.xlsx`) se reasignaron **84 objetos** y desaparecieron **61 filas** de `Expositoras`: las fusiones **sí** están aplicadas. Nombres normalizados: 11.
 
 **Veredictos:**
 - `SIN HACER` — la fila sigue igual que en la línea de base.
@@ -104,7 +104,7 @@ _Conteo:_ DUDA ABIERTA: 3 · FUSIÓN OK: 51 · FUSIÓN OK (en un tercer id): 8 �
 
 ## 3. `tabla_normalizada.xlsx` — hoja *Premios* (filas con comentario)
 
-> Las 8 columnas originales de la hoja Premios están **MODIFICADAS** respecto del golden. Lo que se agregó son las columnas de vínculo (`persona_id`, `objeto_id`, …, salida de `03b_premios.py`) y las de comentario.
+> Las 8 columnas originales de la hoja Premios están **intactas** respecto del golden. Lo que se agregó son las columnas de vínculo (`persona_id`, `objeto_id`, …; el vínculo que se muestra es el de la hoja curada de `04e_premios.py`) y las de comentario.
 >
 > Los comentarios de esta hoja son **observaciones sobre nombres**, no órdenes de fusión. La columna *Nombre real de la expositora* muestra a quién apunta hoy el `objeto_id` de esa fila (vía `Objetos.expositora_id`).
 
@@ -131,17 +131,17 @@ _Conteo:_ DUDA ABIERTA: 3 · FUSIÓN OK: 51 · FUSIÓN OK (en un tercer id): 8 �
 | 39 | Lujarda J. de González | — | — (el premio no tiene objeto en el catálogo) | **Mis comentarios:** Lugarda vs Lujarda / **Coment LM:** Lugarda [Lujarda] J. de González | decisión: sin objeto en el catálogo (queda como nota, sin lugar formal aún) |
 | 41 | Dominga Lezcano | 43 | Dominga Lescano | **Mis comentarios:** Lescano vs Lezcano / **Coment LM:** vamos con Lescano (así aparece el apellido la mayoría de las veces) | observación de forma del nombre — comparar contra 'Nombre real' y decidir |
 | 43 | Delicia G. de Robles | 34 | Delina [Delicia] G. de Robles | **Mis comentarios:** Delicia vs delina / **Coment LM:** Delina [Delicia] G. de Robles | observación de forma del nombre — comparar contra 'Nombre real' y decidir |
-| 46 | Lastenia Barrero | — | — (el premio no tiene objeto en el catálogo) | **Mis comentarios:** No hay orden 19. / **Coment LM:** ¿qué debería mirar acá? | decisión: sin objeto en el catálogo (queda como nota, sin lugar formal aún) |
+| 46 | Lastenia Barrero | 17 | Lastenia Barrero | **Mis comentarios:** No hay orden 19. / **Coment LM:** ¿qué debería mirar acá? | observación / confirmación |
 | 48 | Isaura Sorroza de Risso Patron | 3 | Isaura Sorroza de Risso Patrón | **Coment LM:** ok el más completo | observación / confirmación |
 | 50 | Maria Castillejo | 55 | María Castillón [Castillejo] | **Coment LM:** María Castillón [Castillejo] | observación / confirmación |
-| 60 | Argenia R. de Lautafy | — | — (el premio no tiene objeto en el catálogo) | **Mis comentarios:** DE + apellido / **Coment LM:** ok dejamos el más completo | decisión: sin objeto en el catálogo (queda como nota, sin lugar formal aún) |
+| 60 | Argenia R. de Lautafy | 59 | Argenia R. de Lautafy | **Mis comentarios:** DE + apellido / **Coment LM:** ok dejamos el más completo | observación de forma del nombre — comparar contra 'Nombre real' y decidir |
 | 62 | Mercedes Pereyra | 174 | María Mercedes Pereira | **Mis comentarios:** No hay una Pereyra en el catalogo / **Coment LM:** En el catálogo coincide con el envío n.17 de crochet, traje punto irlanda. MARÍA M. PEREIRA (que debe ser María Mercedes). Lo podemos unificar como María Mercedes Pereira. | observación / confirmación |
 | 64 | Adela Amuchástegui | 180 | María S. [Adela] Amuchástegui | **Mis comentarios:** No parecen ser la misma. Pero no hay una Adela / **Coment LM:** María S. [Adela] Amuchástegui | observación / confirmación |
 | 67 | Hermanas domínicas | — | — (el premio no tiene objeto en el catálogo) | **Coment LM:** sin tilde | decisión: sin objeto en el catálogo (queda como nota, sin lugar formal aún) |
 | 71 | Argentina Sal | 83 | Argentina J. Sal | **Coment LM:** ok el más completo | observación / confirmación |
 | 73 | Elvira Rodríguez | 90 | Elvira Rodríguez They | **Mis comentarios:** Segundo apellido / **Coment LM:** perfect | observación de forma del nombre — comparar contra 'Nombre real' y decidir |
 | 80 | Alejandrina Peiró | — | — (el premio no tiene objeto en el catálogo) | **Mis comentarios:** No está Alejandrina en el catálogo / **Coment LM:** está bien, debe haber sido fuera de catálogo. La dejamos suelta | decisión: sin objeto en el catálogo (queda como nota, sin lugar formal aún) |
-| 82 | Sta Santés | — | — (el premio no tiene objeto en el catálogo) | **Mis comentarios:** solo llega a 13 (la observación dice "sección deshilados" — ahí sí llega hasta 25, quizás haya que buscarlo ahí en vez de en Bordado) / **Coment LM:** Excelente. Además se identifica Santiago con Santiago del Estero del Catálogo. Nos viene re bien. | decisión: sin objeto en el catálogo (queda como nota, sin lugar formal aún) |
+| 82 | Sta Santés | 94 | Sta Sandés | **Mis comentarios:** solo llega a 13 (la observación dice "sección deshilados" — ahí sí llega hasta 25, quizás haya que buscarlo ahí en vez de en Bordado) / **Coment LM:** Excelente. Además se identifica Santiago con Santiago del Estero del Catálogo. Nos viene re bien. | observación / confirmación |
 | 86 | Lucrecia Carrazan | — | — (el premio no tiene objeto en el catálogo) | **Mis comentarios:** No hay una Lucrecia Carrazan en el catalogo / **Coment LM:** la dejamos suelta como alejandrina | decisión: sin objeto en el catálogo (queda como nota, sin lugar formal aún) |
 | 87 | Ezequiela P. de Gutiérrez | 195 | Ezequiela P. de Gutiérrez | **Mis comentarios:** Esequiela vs Ezequiela / **Coment LM:** dejaría Ezequiela | resuelto: la expositora ya figura como 'Ezequiela' |
 | 89 | Amicia Diaz | — | — (el premio no tiene objeto en el catálogo) | **Mis comentarios:** No hay una Amicia Díaz en el catalogo / **Coment LM:** la dejamos suelta como alejandrina | decisión: sin objeto en el catálogo (queda como nota, sin lugar formal aún) |

@@ -1,13 +1,24 @@
-"""Etapa 03b — Vincular cada línea de la hoja `Premios` con la hoja `Objetos`.
+"""Etapa 04e — Hoja `Premios`: cada premio del fallo cruzado con el catálogo.
 
-Toma la hoja `Premios` de `tabla_normalizada.xlsx` (fallo del jurado de 1915) y le
-agrega, fila por fila y en el mismo orden, dos columnas:
+Toma los premios del fallo del jurado de 1915 tal como están en la tabla manual (vía
+`tabla_normalizada_dedup.xlsx`, con los `persona_id` ya reapuntados por las fusiones)
+y vincula cada uno con su expositora y su obra:
 
     persona_id   ->  Expositoras.persona_id  (por nombre)
     objeto_id    ->  Objetos.objeto_id       (por categoría + N.º de orden,
                                               CONFIRMADO por nombre del dueño real)
 
-Salida: data/interim/premios_vinculados.xlsx
+El resultado reemplaza la hoja `Premios` de `data/processed/tabla_normalizada.xlsx`:
+una fila por premio, ya curada (ver `hoja_curada`). Hasta 2026-10-25 esto era la etapa
+`03b`, que corría ANTES de las fusiones, leía la tabla procesada de la corrida anterior
+y dejaba su resultado aparte, en `premios_vinculados.xlsx`; la hoja Premios de la
+tabla procesada seguía siendo la vieja. Ahora corre después de `04d`, sobre las
+expositoras, objetos e imágenes de la misma corrida, y no hay segunda copia.
+
+Entrada : data/interim/tabla_normalizada_dedup.xlsx (hoja Premios, salida de 04)
+          data/processed/tabla_normalizada.xlsx (Expositoras, Objetos, Categorías)
+          data/interim/decisiones/premios_manual.csv
+Salida  : data/processed/tabla_normalizada.xlsx, hoja Premios
 
 Diferencia con la versión anterior (`git log` / `docs/bitacora.md` 2026-09-14): cruzaba por
 categoría + N.º de orden y, si quedaba un único objeto candidato, lo tomaba sin
@@ -24,7 +35,7 @@ aproximado, igual criterio que para personas). Si no se parecen lo suficiente
 candidato descartado se deja anotado en `candidato_rechazado` para no perder el
 dato.
 
-Columnas agregadas:
+Columnas del cruce (internas; la hoja curada las traduce):
     persona_id, persona            expositora resuelta y su nombre normalizado
     persona_score                  0-100; < 90 = revisar
     objeto_id                      id del objeto; varios ids separados por ";" si el
@@ -58,7 +69,7 @@ from unidecode import unidecode
 from _util import DECISIONES, INTERIM, PROCESSED
 
 FUENTE = PROCESSED / "tabla_normalizada.xlsx"
-SALIDA = INTERIM / "premios_vinculados.xlsx"
+FUENTE_PREMIOS = INTERIM / "tabla_normalizada_dedup.xlsx"
 MANUAL = DECISIONES / "premios_manual.csv"
 UMBRAL_NOMBRE = 60  # 0-100, mismo umbral que ya usaba el desempate por texto
 # Premio sin objeto: la persona sale sólo del parecido de nombre contra todo el
@@ -174,9 +185,11 @@ def elegir(sub: pd.DataFrame, nombre_premio, obj_label: str,
     return None, nota
 
 
-def main() -> None:
+def cruzar() -> tuple[pd.DataFrame, pd.DataFrame, dict]:
+    """El cruce premio ↔ expositora ↔ objeto. Devuelve la hoja Premios original con
+    las columnas del cruce agregadas, la hoja Objetos y las decisiones a mano."""
     xl = pd.ExcelFile(FUENTE)
-    P = xl.parse("Premios")
+    P = pd.read_excel(FUENTE_PREMIOS, sheet_name="Premios")
     E = xl.parse("Expositoras")
     O = xl.parse("Objetos")
     K = xl.parse("Categorías")
@@ -381,14 +394,109 @@ def main() -> None:
     salida = P.copy()
     for c, v in cols.items():
         salida[c] = v
+    return salida, O.merge(K, on="categoria_id", how="left"), manual
 
-    INTERIM.mkdir(parents=True, exist_ok=True)
-    salida.to_excel(SALIDA, sheet_name="Premios", index=False)
 
-    hechos = sum(1 for x in cols["objeto_id"] if x)
-    rev = sum(1 for x in cols["revisar"] if x)
-    print(f"{P['NOMBRE'].notna().sum()} premios | {hechos} con objeto_id | {rev} para revisar")
-    print(f"-> {SALIDA}")
+# objeto_match (cómo lo resolvió el cruce) -> columna "Vínculo" de la hoja curada
+VINCULO = [
+    ("num+categoria+persona", "n.º, categoría y nombre"),
+    ("num+categoria", "n.º y categoría"),
+    ("persona+categoria", "única obra de la expositora en la categoría"),
+    ("persona+texto", "obra de la expositora con texto parecido"),
+    ("manual", "decisión a mano"),
+    ("revisado a mano", "decisión a mano"),
+]
+
+
+def seccion_del_fallo(P: pd.DataFrame) -> list[str]:
+    """Sección del fallo de cada línea. El fallo pone la categoría una vez y después
+    la deja vacía; tras DESHILADO vienen los accésits ("se crean 9 accesits"), sin
+    categoría. Antes lo reconstruía el explorador mirando la fila anterior."""
+    out, previa = [], ""
+    for _, r in P.iterrows():
+        cat, obj = _txt(r["CATEGORÍA"]), _txt(r["OBJETO"])
+        if cat:
+            sec = cat
+        elif obj:
+            sec = obj
+        elif norm(previa) in ("deshilado", "accesit"):
+            sec = "Accésit"
+        else:
+            sec = ""
+        previa = sec or previa
+        out.append(sec)
+    return out
+
+
+def _txt(v) -> str:
+    return "" if pd.isna(v) else str(v).strip()
+
+
+def hoja_curada(cruce: pd.DataFrame, O: pd.DataFrame, manual: dict) -> pd.DataFrame:
+    """Una fila por premio (sin los renglones del fallo que no premian a nadie, p. ej.
+    "Primer premio desierto"), con lo que dice el fallo, la obra del catálogo y en qué
+    estado quedó: vinculado, fuera de catálogo o pendiente."""
+    obj = O.set_index("objeto_id")
+    cruce = cruce.assign(_seccion=seccion_del_fallo(cruce))
+    filas = []
+    for pid, r in cruce.iterrows():
+        if pd.isna(r["NOMBRE"]):
+            continue
+        ids = [int(x) for x in str(r["objeto_id"]).split(";") if x.strip()]
+        metodo = _txt(r["objeto_match"])
+        nota_manual = manual.get(pid, {}).get("nota", "")
+        if r["revisar"] == "X":
+            estado = "pendiente"
+            nota = nota_manual or "; ".join(x for x in (metodo, _txt(r["candidato_rechazado"])) if x)
+        elif ids:
+            estado, nota = "vinculado", nota_manual
+        else:
+            estado = "fuera de catálogo"
+            nota = nota_manual or ("el fallo dice fuera de catálogo" if "fuera de cat" in metodo else metodo)
+        vinculo = next((v for k, v in VINCULO if metodo.lower().startswith(k)), "") if ids else ""
+        en_cat = obj.loc[[i for i in ids if i in obj.index]]
+        unicos = lambda col: " | ".join(dict.fromkeys(en_cat[col].dropna().astype(str)))
+        filas.append({
+            "premio_id": pid,
+            "Premio": r["PREMIOS"],
+            "Nombre en el fallo": r["NOMBRE"],
+            "Ciudad en el fallo": r["CIUDAD"],
+            "Provincia en el fallo": r["PROVINCIA"],
+            "Categoría del fallo": r["CATEGORÍA"],
+            "Sección del fallo": r["_seccion"],
+            "Objeto en el fallo": r["OBJETO"],
+            "N.º": r["NÚM"],
+            "Observaciones": r["OBSERVACIONES"],
+            "persona_id": r["persona_id"] if r["persona_id"] != "" else None,
+            "Expositora": r["persona"] or None,
+            "objeto_id": ";".join(map(str, ids)) or None,
+            "Obra en el catálogo": " | ".join(en_cat["OBJETO"].astype(str)) or None,
+            "Categoría del catálogo": unicos("nombre_categoria") or None,
+            "N.º en el catálogo": " | ".join(en_cat["ORDEN"].astype(str)) or None,
+            "Imagen": unicos("imagen") or None if "imagen" in en_cat.columns else None,
+            "Estado": estado,
+            "Vínculo": vinculo or None,
+            "Nota": nota or None,
+        })
+    return pd.DataFrame(filas)
+
+
+def main() -> None:
+    cruce, O, manual = cruzar()
+    hoja = hoja_curada(cruce, O, manual)
+
+    xl = pd.ExcelFile(FUENTE)
+    hojas = {s: xl.parse(s) for s in xl.sheet_names}
+    hojas["Premios"] = hoja
+    with pd.ExcelWriter(FUENTE, engine="openpyxl") as w:
+        for s, df in hojas.items():
+            df.to_excel(w, sheet_name=s, index=False)
+
+    print(f"{len(hoja)} premios: " + ", ".join(
+        f"{n} {e}" for e, n in hoja["Estado"].value_counts().items()))
+    for _, r in hoja[hoja["Estado"] == "pendiente"].iterrows():
+        print(f"  pendiente — premio_id {r['premio_id']} {r['Nombre en el fallo']}")
+    print(f"-> {FUENTE} (hoja Premios)")
 
 
 if __name__ == "__main__":

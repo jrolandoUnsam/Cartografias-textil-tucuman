@@ -285,9 +285,11 @@ h2 { font-family: var(--serif); font-weight: 600; font-size: 1.5rem; line-height
     </figure>
   </div>
   <dl class="cred">
+    <div><dt>Estudiante</dt><dd>Julián Rolando</dd></div>
     <div><dt>Dirección</dt><dd>Larisa Mantovani</dd></div>
+    <div><dt>Tutoría</dt><dd>Agustín Moro</dd></div>
     <div><dt>Centro</dt><dd>Centro de Investigaciones en Arte y Patrimonio (CIAP, CONICET-UNSAM)</dd></div>
-    <div><dt>Programa</dt><dd>Pasantía de investigación, Licenciatura en Ciencia de Datos, UNSAM</dd></div>
+    <div><dt>Programa</dt><dd>Optativa del Proyecto Interdisciplinario CIAI-LCD, Licenciatura en Ciencia de Datos, UNSAM</dd></div>
   </dl>
 </header>
 
@@ -389,7 +391,7 @@ h2 { font-family: var(--serif); font-weight: 600; font-size: 1.5rem; line-height
     <div class="cita">
       <div>
         <h3>Cómo citar</h3>
-        <p class="quote" id="citetxt">Proyecto Interno CIAI-LCD (2026). <i>Cartografías del textil tucumano: explorador de los concursos de tejidos y bordados de Tucumán, 1915-1916</i> [versión de trabajo, octubre de 2026]. Dirección: Larisa Mantovani. Universidad Nacional de San Martín.</p>
+        <p class="quote" id="citetxt">Rolando, J. (2026). <i>Cartografías del textil tucumano: explorador de los concursos de tejidos y bordados de Tucumán, 1915-1916</i> [versión de trabajo, octubre de 2026]. Dirección: Larisa Mantovani; tutoría: Agustín Moro. Proyecto Interdisciplinario CIAI-LCD, Universidad Nacional de San Martín.</p>
         <button type="button" class="btn" data-act="cite">Copiar cita</button>
       </div>
       <div>
@@ -676,7 +678,7 @@ const DATA = __DATA__;
     const el = $("ficha"), l = state.person && byPk.get(state.person);
     if (!l) { el.innerHTML = '<p class="empty">Seleccione un nombre de la lista para ver sus obras, sus técnicas y los premios que obtuvo.</p>'; return; }
     const name = l[0].n, nm = [...new Set(l.map((r) => r.nv).filter((v) => v && v !== name))];
-    const years = [...new Set(l.map((r) => r.y))].sort(), nprz = l.reduce((a, r) => a + (r.pz ? r.pz.length : 0), 0), tc = {};
+    const years = [...new Set(l.map((r) => r.y))].sort(), nprz = new Set(l.flatMap((r) => (r.pz || []).map((z) => z.k))).size, tc = {};
     l.forEach((r) => r.tec.forEach((t) => { if (t !== "sin") tc[t] = (tc[t] || 0) + 1; }));
     const places = [...new Set(l.map((r) => r.po).filter(Boolean))], zonas = [...new Set(l.map((r) => ZON[r.z]))];
     el.innerHTML = `<span class="eyebrow">${l[0].inst ? "Institución" : "Expositora"}</span><h2>${esc(name)}</h2>` +

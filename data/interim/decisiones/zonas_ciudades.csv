@@ -14,7 +14,7 @@
 13,Colalao del Valle,Tucumán,tvn,"valles / norte (lat > -26,55 o lon < -65,7)"
 14,S/d,S/d,sa,provincia sin dato o sin definir
 15,Escuela de la Cocha,Tucumán,tcs,"a 111 km de la capital, centro-sur"
-16,Antofagasta Salta,,sa,provincia sin dato o sin definir
+16,Antofagasta Salta,Catamarca,cat,"Antofagasta de la Sierra, hoy Catamarca"
 17,La Cocha,Tucumán,tcs,"a 111 km de la capital, centro-sur"
 18,Yacuchiri,Tucumán,tcs,"a 60 km de la capital, centro-sur"
 19,Los Mendoza,Tucumán,tsl,solo provincia
@@ -76,3 +76,4 @@
 79,"Asilo, Ciudad",Tucumán,cap,a 0 km de la capital
 80,Gucheas,Tucumán,tcs,"a 73 km de la capital, centro-sur"
 81,La Banda,,sa,provincia sin dato o sin definir
+82,Misión Franciscana de Nueva Pompeya,Chaco,otr,por provincia
