@@ -30,23 +30,10 @@ Snapshot a mitad de normalización: las decisiones de `docs/tareas_pendientes.md
 no están aplicadas. Que `06_verificar` dé OK significa "nada cambió desde la última vez",
 no "los datos están bien".
 
-**Estado al 2026-10-25: desactualizado, y por eso `06_verificar` falla siempre.** El
-golden es del 2026-09 y nunca se re-congeló: desde entonces las salidas sumaron
-columnas (`lat`/`lon` y la ubicación de provincia en `Ciudades`; las marcas de
-`04f` y `foto_album` en `Objetos`; la hoja `Premios` curada de `04e`; varias columnas en
-la vista plana) y cambiaron filas (fusiones de expositoras, índice de páginas corregido):
-
-```
-tabla_normalizada.xlsx        [Expositoras] shape (459, 3) != golden (472, 3)
-                              [Ciudades] shape (78, 10) != golden (78, 4)
-                              [Objetos] shape (982, 12) != golden (982, 9)
-                              [Premios] shape (103, 20) != golden (105, 17)
-                              [Paginas_Catalogo] 5 celdas distintas
-vista_plana_consolidada.xlsx  [Objetos - Concursos Tucumán] shape (982, 18) != golden (982, 7)
-```
-
-`Concursos`, `Categorías` y `Fuentes` dan OK. Re-congelarlo en un commit propio es una
-tarea pendiente (`docs/tareas_pendientes.md`).
-
-Mientras siga así, esta carpeta no cumple su función: un cambio del pipeline que mueva
-una salida no se va a notar, porque la etapa 06 ya viene fallando.
+**Re-congelado el 2026-10-25**, después de la auditoría completa y de aplicar las
+decisiones de la revisión de LM del 25/10. Hasta entonces era del 2026-09 y
+`06_verificar` fallaba siempre, porque las salidas habían sumado columnas (`lat`/`lon` y
+provincia en `Ciudades`; marcas de `04f` y `foto_album` en `Objetos`; la hoja `Premios`
+curada de `04e`; fechas y sede en `Concursos`; fuentes 4-6) y cambiado filas (fusiones
+de expositoras, índice de páginas corregido). Desde ahora, si `06_verificar` falla es
+porque algo cambió.

@@ -133,8 +133,8 @@ Hoy son **449 F y 9 M** sobre 458 filas.
   fuentes y un párrafo de contexto (telares en las escuelas, Onelli Alfombras); (5) una
   columna "En la prensa" en la vista plana. Sin hoja nueva en la tabla normalizada.
 
-- [ ] **Re-congelar `tests/golden/`** en un commit propio (ver `tests/golden/README.md`):
-  hoy `06_verificar` falla en 5 hojas y no detecta nada.
+- [x] *(2026-10-25)* **Re-congelar `tests/golden/`** en un commit propio (ver
+  `tests/golden/README.md`).
 - [ ] **Premios 98 y 99 (`decisión a mano`) sin nota:** el vínculo del portarretrato de
   D'Empaire (objeto 204) y de la colcha de Dominga Nieva (objeto 104) sale de la tabla
   manual; falta anotar en `premios_manual.csv` qué se miró para decidirlo.

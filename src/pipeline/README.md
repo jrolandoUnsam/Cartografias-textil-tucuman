@@ -20,7 +20,7 @@ Correr todo: `python run_pipeline.py` (desde la raíz). Desde una etapa en adela
 | `05_vista_plana` | tabla_normalizada | `data/processed/vista_plana_tabla_consolidada.xlsx` (981 filas, incluye `lat`/`lon` e `Imagen`) | funciona |
 | `05b_mapa` | tabla_normalizada | `outputs/mapa_procedencias.html` (folium): capa de ciudades (un círculo por localidad actual: 53 puntos, 764 objetos; el popup avisa si la ubicación es tentativa) y capa "sólo provincia" en la capital, con borde punteado como en el explorador (8 puntos, 179 objetos); 38 objetos sin ubicar. Los ids de folium se reemplazan por correlativos, así dos corridas dan el mismo archivo. Antes lo exportaba `notebooks/04_eda.ipynb`, que ahora sólo lo muestra | funciona |
 | `05c_explorador` | tabla_normalizada (incluida la hoja Premios) + `objetos_crudos.csv` + `decisiones/familias_categorias.csv`, `decisiones/zonas_ciudades.csv` | `outputs/explorador.html`: explorador web autocontenido (mapa, técnicas por zona, fichas de expositoras) a partir de la plantilla `plantillas/explorador.template.html`. 994 obras = 981 objetos + 13 premios de 1915 sin obra en el catálogo (12 fuera de catálogo y 1 pendiente de vincular). Técnicas inferidas por reglas sobre el texto del objeto (si no, la de la categoría) | funciona |
-| `06_verificar` | salidas + `tests/golden/` | reporte de diferencias, hoja por hoja | corre, pero **hoy falla siempre**: el golden está desactualizado (ver abajo). Ya no compara `revision_duplicados.xlsx`, que es un insumo |
+| `06_verificar` | salidas + `tests/golden/` | reporte de diferencias, hoja por hoja | funciona: golden re-congelado el 2026-10-25 (ver abajo). Ya no compara `revision_duplicados.xlsx`, que es un insumo |
 | `audit_comentarios` | tabla_normalizada + `tabla_normalizada_manual.xlsx` | `docs/auditoria_comentarios.md` | funciona, fuera de la corrida |
 
 ## Aciclicidad: qué se arregló y qué falta
@@ -129,20 +129,5 @@ entrenados ni semillas de aleatoriedad. Cada cambio queda en `docs/bitacora.md`.
 Ver `tests/golden/README.md`. Resumen: es un snapshot congelado, no un test. Vale como
 verificación **solo si no se re-congela en el mismo commit que cambia el pipeline**.
 
-**Estado al 2026-10-25: desactualizado, y por eso `06_verificar` falla siempre.** El
-golden es del 2026-09 y nunca se re-congeló: desde entonces las salidas sumaron
-columnas (`lat`/`lon` y la ubicación de provincia en `Ciudades`; las marcas de
-`04f` y `foto_album` en `Objetos`; la hoja `Premios` curada de `04e`; varias columnas en
-la vista plana) y cambiaron filas (fusiones de expositoras, índice de páginas corregido):
-
-```
-tabla_normalizada.xlsx        [Expositoras] shape (459, 3) != golden (472, 3)
-                              [Ciudades] shape (78, 10) != golden (78, 4)
-                              [Objetos] shape (982, 12) != golden (982, 9)
-                              [Premios] shape (103, 20) != golden (105, 17)
-                              [Paginas_Catalogo] 5 celdas distintas
-vista_plana_consolidada.xlsx  [Objetos - Concursos Tucumán] shape (982, 18) != golden (982, 7)
-```
-
-`Concursos`, `Categorías` y `Fuentes` dan OK. Re-congelarlo en un commit propio es una
-tarea pendiente (`docs/tareas_pendientes.md`).
+**Re-congelado el 2026-10-25** en un commit propio; hoy `06_verificar` da OK en todas las
+hojas. Detalle en `tests/golden/README.md`.
