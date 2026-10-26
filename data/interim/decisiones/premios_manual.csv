@@ -5,21 +5,24 @@ premio_id,objeto_id,persona_id,nota
 # - objeto_id = "ninguno": fuerza a que quede SIN objeto, sin correr el cruce
 #   automático (usar cuando el cruce por número+categoría había asignado el
 #   objeto de otra persona — ver docs/bitacora.md).
+# - objeto_id = "pendiente": no cambia el cruce, pero el premio queda en estado
+#   "pendiente" con la nota como motivo (duda abierta).
 # - persona_id: fuerza la expositora (dejar vacío si no aplica).
 # - Se puede completar solo objeto_id, solo persona_id, o ambos.
 # Ejemplos:
-#   46,,12,"Lastenia Barrero: el NÚM 19 no existe en PAÑUELOS del catálogo"
+#   46,,120,"Lastenia Barrero: fuerza la expositora 120"
 #   60,ninguno,,"Argenia R. de Lautafy: el cruce automático le puso el objeto de Rosalía Gutiérrez"
+# En las notas, los premios se citan por premio_id, no por fila de Excel.
 70,73,,"Isabel Ovejero: es el deshilado 3 (LM 5-10); el n.º 3 también existe en crochet, también suyo"
 16,ninguno,,"Lujarda J Gonzalez n.º 33: premio fuera de catálogo (LM 5-10)"
 18,ninguno,,"Melchora Valenzuela n.º 34: premio fuera de catálogo (LM 5-10)"
 89,ninguno,,"Amicia Díaz (Tres Pozos): premio estímulo fuera de catálogo (LM 5-10)"
-103,ninguno,,"Catalina de Figueroa: premio estímulo fuera de catálogo (LM 5-10); el objeto 110 es del premio de la fila 21"
+103,ninguno,,"Catalina de Figueroa: premio estímulo fuera de catálogo (LM 5-10); el objeto 110 es del premio_id 19"
 63,ninguno,,"Rosa Barceló: no es Rosa Baralo (LM 5-10), queda sin persona"
-6,pendiente,,"Dominga Castaño: LM 5-10 dijo randa 25, pero la 24 y la 25 son de Dominga Lescano (objetos 42 y 43; la 25 ya tiene premio, fila 43). LM 2026-10-25: 'hay que verlo en el catálogo de 1915' (DSCN5178)"
+6,ninguno,,"Dominga Castaño: premio fuera de catálogo (el fallo lo anota así). No es Dominga Lescano, de quien son las randas 24 y 25 (objetos 42 y 43); Julián 2026-10-25"
 75,93,,"Facunda Coronel: es el deshilado 23 de Facunda Cerone (objeto 93); LM 2026-10-25: misma persona, se unifican 47/476"
 80,ninguno,,"Alejandrina Peiró: no está en el catálogo, la dejamos suelta (Coment LM, antes de octubre)"
 86,ninguno,,"Lucrecia Carrazan: no está en el catálogo, la dejamos suelta como Alejandrina (Coment LM, antes de octubre)"
 76,ninguno,,Marina Belmonte n.º 22: el deshilado 22 es de Eloisa López; LM 2026-10-25: 'en el premio figura 22 Belmonte… la ponemos [fuera de catálogo]'
 66,ninguno,,"Dalmira González Sorol, mantel de altar: fuera de catálogo (LM 5-10); LM 2026-10-25: lo del álbum (encajes varios 20) eran 'observaciones nomás'"
-67,pendiente,,"Hermanas Dominicas, blusa (Deshilado, s/d): LM 2026-10-25 sugiere el n.º 4 'traje bordado richelieu' (objeto 149, álbum DSCN5159), pero ese objeto ya tiene su premio (fila 79, Bordado en blanco y seda n.º 4). Preguntar a Larisa"
+67,pendiente,,"Hermanas Dominicas, blusa (Deshilado, s/d): LM 2026-10-25 sugiere el n.º 4 'traje bordado richelieu' (objeto 149, álbum DSCN5159), pero ese objeto ya tiene su premio (premio_id 79, Bordado en blanco y seda n.º 4). Preguntar a Larisa"

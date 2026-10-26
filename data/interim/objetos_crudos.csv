@@ -15,7 +15,7 @@ objeto_id,fuente,concurso_id,nombre_raw,ciudad_raw,categoria_raw,orden,objeto
 14,1915 1er concurso EXPOS,1,Lola M. de Sosa,SAN PABLO,PAÑUELOS,14,Bordado en tul
 15,1915 1er concurso EXPOS,1,Lola M. de Sosa,SAN PABLO,PAÑUELOS,15,Bordado en tul
 16,1915 1er concurso EXPOS,1,Lola M. de Sosa,SAN PABLO,PAÑUELOS,16,Bordado en tul
-17,1915 1er concurso EXPOS,1,Lastenia Barrera,SAN MIGUEL DE TUCUMÁN,PAÑUELOS,17,Encaje ñanduty
+17,1915 1er concurso EXPOS,1,Lastenia Barrera,SAN MIGUEL DE TUCUMÁN,PAÑUELOS,19,Encaje ñanduty
 18,1915 1er concurso EXPOS,1,Ignacia Puparelli,SAN MIGUEL DE TUCUMÁN,PAÑUELOS,18,Encaje filet
 19,1915 1er concurso EXPOS,1,Paula Olea,SIMOCA,RANDAS,1,"Puntilla de 4,25x0.15"
 20,1915 1er concurso EXPOS,1,Tomasa R. de Palacio,SAN MIGUEL DE TUCUMÁN,RANDAS,2,Tapete
@@ -350,7 +350,7 @@ objeto_id,fuente,concurso_id,nombre_raw,ciudad_raw,categoria_raw,orden,objeto
 349,1916 Concurso Tejidos,2,ELENA SEGURA,SAN MIGUEL DE TUCUMÁN,COLCHAS Y FRAZADAS,106,sobrecama bordada
 350,1916 Concurso Tejidos,2,ELENA SEGURA,SAN MIGUEL DE TUCUMÁN,COLCHAS Y FRAZADAS,107,sobrecama bordada
 351,1916 Concurso Tejidos,2,ELENA SEGURA,SAN MIGUEL DE TUCUMÁN,COLCHAS Y FRAZADAS,108,sobrecama bordada
-352,1916 Concurso Tejidos,2,ELENA SEGURA,SAN MIGUEL DE TUCUMÁN,COLCHAS Y FRAZADAS,108,sobrecama bordada
+352,1916 Concurso Tejidos,2,ELENA SEGURA,SAN MIGUEL DE TUCUMÁN,COLCHAS Y FRAZADAS,109,sobrecama bordada
 353,1916 Concurso Tejidos,2,AUDELIA DE GUERRA,SAN MIGUEL DE TUCUMÁN,COLCHAS Y FRAZADAS,110,frazada de lana en telar
 354,1916 Concurso Tejidos,2,AUDELIA DE GUERRA,SAN MIGUEL DE TUCUMÁN,COLCHAS Y FRAZADAS,111,frazada de lana en telar
 355,1916 Concurso Tejidos,2,CRISPINA DE HERRERA,SANTIAGO,COLCHAS Y FRAZADAS,112,frazadón de lana
@@ -649,7 +649,7 @@ objeto_id,fuente,concurso_id,nombre_raw,ciudad_raw,categoria_raw,orden,objeto
 648,1916 Concurso Tejidos,2,RAMONA SALINA,SAN MIGUEL DE TUCUMÁN,ENCAJES Y RANDAS,55,vestido de encaje
 649,1916 Concurso Tejidos,2,SEÑORA DE PUIG,SAN MIGUEL DE TUCUMÁN,ENCAJES Y RANDAS,56,mantilla española
 650,1916 Concurso Tejidos,2,MARIA E. PEREYRA,SAN MIGUEL DE TUCUMÁN,ENCAJES Y RANDAS,57,deshabillé de irlanda
-651,1916 Concurso Tejidos,2,MARIA E. PEREYRA,SAN MIGUEL DE TUCUMÁN,ENCAJES Y RANDAS,28,cuello de irlanda
+651,1916 Concurso Tejidos,2,MARIA E. PEREYRA,SAN MIGUEL DE TUCUMÁN,ENCAJES Y RANDAS,58,cuello de irlanda
 652,1916 Concurso Tejidos,2,SOLANA CONSTANTINO,CATAMARCA,ENCAJES Y RANDAS,59,cuello crochet inglés
 653,1916 Concurso Tejidos,2,SOLANA CONSTANTINO,CATAMARCA,ENCAJES Y RANDAS,60,cuello filet y puños
 654,1916 Concurso Tejidos,2,SOLANA CONSTANTINO,CATAMARCA,ENCAJES Y RANDAS,61,pañuelos con encaje
@@ -667,7 +667,7 @@ objeto_id,fuente,concurso_id,nombre_raw,ciudad_raw,categoria_raw,orden,objeto
 666,1916 Concurso Tejidos,2,MARIA BRITO,SAN MIGUEL DE TUCUMÁN,ENCAJES Y RANDAS,73,sobrecama de crochet
 667,1916 Concurso Tejidos,2,ANGELA SOTILLO,SAN MIGUEL DE TUCUMÁN,ENCAJES Y RANDAS,74,sobrecama de varios encajes
 668,1916 Concurso Tejidos,2,CARMEN M. DE VILLA,SAN MIGUEL DE TUCUMÁN,ENCAJES Y RANDAS,75,sobrecama de crochet
-669,1916 Concurso Tejidos,2,MARIA AGÜERO,SAN MIGUEL DE TUCUMÁN,ENCAJES Y RANDAS,76,sobrecama  y almohadón de filet
+669,1916 Concurso Tejidos,2,MARIA AGÜERO,SAN MIGUEL DE TUCUMÁN,ENCAJES Y RANDAS,76,sobrecama y almohadón de filet
 670,1916 Concurso Tejidos,2,DOMINGA VILLOLDO,SAN MIGUEL DE TUCUMÁN,ENCAJES Y RANDAS,77,sobrecama de malla
 671,1916 Concurso Tejidos,2,MARIA J. DE AGUIRRE,SAN MIGUEL DE TUCUMÁN,ENCAJES Y RANDAS,78,sobrecama de Irlanda
 672,1916 Concurso Tejidos,2,ANGÉLICA S. DE HEINECKE,SAN MIGUEL DE TUCUMÁN,ENCAJES Y RANDAS,79,sobrecama de malla

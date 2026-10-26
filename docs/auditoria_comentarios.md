@@ -4,7 +4,7 @@ _Generado por `src/pipeline/audit_comentarios.py` — no editar a mano._
 
 Compara cada decisión anotada a mano contra el estado actual de `data/processed/tabla_normalizada.xlsx`, tomando como línea de base `data/interim/tabla_normalizada_manual.xlsx` (la tabla antes del pipeline).
 
-**Hallazgo global:** respecto de la tabla de partida (`tabla_normalizada_manual.xlsx`) se reasignaron **84 objetos** y desaparecieron **61 filas** de `Expositoras`: las fusiones **sí** están aplicadas. Nombres normalizados: 11.
+**Hallazgo global:** respecto de la tabla de partida (`tabla_normalizada_manual.xlsx`) se reasignaron **84 objetos** y desaparecieron **61 filas** de `Expositoras`: las fusiones **sí** están aplicadas. Nombres normalizados: 27.
 
 **Veredictos:**
 - `SIN HACER` — la fila sigue igual que en la línea de base.
@@ -100,48 +100,48 @@ _Conteo:_ DUDA ABIERTA: 3 · FUSIÓN OK: 51 · FUSIÓN OK (en un tercer id): 8 �
 | 1 | `26` ASILO CIUDAD | `79` ASILO, CIUDAD | False | — | 2 filas · A:6 obj, B:1 obj | **OK SEPARAR** |
 | 2 | `37` LAMADRID | `52` LA MADRID | True | La  Madrid | 1 fila: 52 (La Madrid) | **FUSIÓN OK** |
 | 3 | `62` GUCHEA | `80` GUCHEAS | True | Gucheas | 1 fila: 80 (Gucheas) | **FUSIÓN OK** |
-| 4 | `9` CÓRDOBA | `63` CORDOBA | True | — | 1 fila: 9 (nan) | **FUSIÓN OK** |
+| 4 | `9` CÓRDOBA | `63` CORDOBA | True | — | 1 fila: 9 (Córdoba) | **FUSIÓN OK** |
 
 ## 3. `tabla_normalizada.xlsx` — hoja *Premios* (filas con comentario)
 
-> Las 8 columnas originales de la hoja Premios están **intactas** respecto del golden. Lo que se agregó son las columnas de vínculo (`persona_id`, `objeto_id`, …; el vínculo que se muestra es el de la hoja curada de `04e_premios.py`) y las de comentario.
+> Las 8 columnas originales de la hoja Premios están **intactas** respecto de la tabla de partida (sin contar espacios de más). El vínculo que se muestra es el de la hoja curada de `04e_premios.py`.
 >
 > Los comentarios de esta hoja son **observaciones sobre nombres**, no órdenes de fusión. La columna *Nombre real de la expositora* muestra a quién apunta hoy el `objeto_id` de esa fila (vía `Objetos.expositora_id`).
 
-| fila | NOMBRE en el fallo | objeto_id | Nombre real de la expositora (hoy) | Comentario(s) | Estado |
+| premio_id | NOMBRE en el fallo | objeto_id | Nombre real de la expositora (hoy) | Comentario(s) | Estado |
 |---|---|---|---|---|---|
-| 0 | Angela L. de Diblasi | 108 | Ángela S. [L.] de Diblasi | **Mis comentarios:** Angela L. vs Angela S | observación de forma del nombre — comparar contra 'Nombre real' y decidir |
+| 0 | Angela L. de Diblasi | 108 | Ángela S. [L.] de Diblasi | **Mis comentarios:** Angela L. vs Angela S | observación sin respuesta de LM |
 | 6 | Dominga Castaño | — | — (el premio no tiene objeto en el catálogo) | **Mis comentarios:** Son distintas personas para mi / **Coment LM:** Sí, son distintas. En el doc. de premiación figura "fuera de catálogo" probablemente por eso. | decisión: sin objeto en el catálogo (queda como nota, sin lugar formal aún) |
-| 8 | Vicenta B. de Medina | 121 | Vicenta V. [B.] de Medina | **Mis comentarios:** Vicenta V. vs Vicenta B. / **Coment LM:** ¿Te parece poner Vicenta V. [B.] de Medina? Así dejamos entre corchetes la otra referencia con la que se refiere a la misma persona. Siendo entre corchetes la versión de la premiación. | observación de forma del nombre — comparar contra 'Nombre real' y decidir |
-| 10 | Maria C. Bustamante | 122 | María Cleofé de Bustamante | **Mis comentarios:** Encontramos segundo nombre / **Coment LM:** buenísimo | observación de forma del nombre — comparar contra 'Nombre real' y decidir |
-| 13 | Lorenza V. de Pérez | 107 | Lorenza V. de Panei [Pérez] | **Mis comentarios:** Parece ser la misma persona. Vista en catalogo como de Panci y Panei / **Coment LM:** ídem 10. Lorenza V. de Panei [Pérez] | observación / confirmación |
-| 14 | Rosa V. de Lescano | 103 | Rosa V. [de] Lescano | **Mis comentarios:** Lescano vs Lezcano. Nuevo posible duplicado no visto antes / **Coment LM:** vamos con Lescano (así aparece el apellido la mayoría de las veces) | observación de forma del nombre — comparar contra 'Nombre real' y decidir |
+| 8 | Vicenta B. de Medina | 121 | Vicenta V. [B.] de Medina | **Mis comentarios:** Vicenta V. vs Vicenta B. / **Coment LM:** ¿Te parece poner Vicenta V. [B.] de Medina? Así dejamos entre corchetes la otra referencia con la que se refiere a la misma persona. Siendo entre corchetes la versión de la premiación. | respondida por LM — el nombre que quedó está en 'Nombre real' |
+| 10 | Maria C. Bustamante | 122 | María Cleofé de Bustamante | **Mis comentarios:** Encontramos segundo nombre / **Coment LM:** buenísimo | respondida por LM — el nombre que quedó está en 'Nombre real' |
+| 13 | Lorenza V. de Pérez | 107 | Lorenza V. de Panei [Pérez] | **Mis comentarios:** Parece ser la misma persona. Vista en catalogo como de Panci y Panei / **Coment LM:** ídem 10. Lorenza V. de Panei [Pérez] | respondida por LM — el nombre que quedó está en 'Nombre real' |
+| 14 | Rosa V. de Lescano | 103 | Rosa V. [de] Lescano | **Mis comentarios:** Lescano vs Lezcano. Nuevo posible duplicado no visto antes / **Coment LM:** vamos con Lescano (así aparece el apellido la mayoría de las veces) | respondida por LM — el nombre que quedó está en 'Nombre real' |
 | 15 | Lujarda J. de González | — | — (el premio no tiene objeto en el catálogo) | **Mis comentarios:** Lugarda vs Lujarda / **Coment LM:** Ídem acá también aparece en la premiación como "fuera de catálogo". Lugarda [Lujarda] J. de González | decisión: sin objeto en el catálogo (queda como nota, sin lugar formal aún) |
 | 16 | Lujarda J Gonzalez | — | — (el premio no tiene objeto en el catálogo) | **Mis comentarios:** Lugarda vs Lujarda. Además, es raro porque parece que ganan dos mujeres distintas según las fotos de los premios, una es de Gonzalez y la otra González. | decisión: sin objeto en el catálogo (queda como nota, sin lugar formal aún) |
 | 18 | Melchora Valenzuela | — | — (el premio no tiene objeto en el catálogo) | **Mis comentarios:** el número de orden citado no existe en esa categoría del catálogo / **Coment LM:** acá no sé si tendría que ver algo | decisión: sin objeto en el catálogo (queda como nota, sin lugar formal aún) |
-| 19 | Catalina Figueroa | 110 | Catalina R. de Figueroa | **Coment LM:** ídem arriba | observación / confirmación |
-| 20 | Isabel B. de Acuña de Zavalia | 145 | Isabel B. de Acuña de Zavalía | **Mis comentarios:** DE Zavalia y tilde en i / **Coment LM:** Perfecto, lo dejamos en su versión más completa. Mantengamos las tildes. | observación de forma del nombre — comparar contra 'Nombre real' y decidir |
-| 21 | (Sra.) de Plaza | 140 | Sra. de Plaza | **Mis comentarios:** Sra / **Coment LM:** logré ver lo mismo en el catálogo, genial, ok con sra! | observación / confirmación |
-| 24 | Elvira Araoz | 98 | Eloisa [Elvira] Aráoz | **Coment LM:** Dejamos    Eloisa [Elvira] Aráoz | observación / confirmación |
-| 25 | Delia Ruiz | 97 | Delicia [Delia] Ruiz | **Coment LM:** Dejamos Delicia [Delia] Ruiz | observación / confirmación |
-| 28 | Escuela y hogar de obreras de la sociedad de beneficencia | 192 | Escuela y Hogar de Obreras de la Sociedad de Beneficencia | **Mis comentarios:** Misma / **Coment LM:** ok | observación / confirmación |
-| 31 | Clemencia Zelarayan | 193 | Clemencia de Zelarayán | **Mis comentarios:** DE + apellido / **Coment LM:** ok | observación de forma del nombre — comparar contra 'Nombre real' y decidir |
-| 35 | Rosa Valenzuela | 135 | Rosa V. de Valenzuela | **Mis comentarios:** V. Aparentemente apellido o segundo nombre / **Coment LM:** ok | observación de forma del nombre — comparar contra 'Nombre real' y decidir |
-| 36 | Arsenia Medina | 134 | Arsenia F. Medina | **Mis comentarios:** F. Aparentemente apellido o segundo nombre / **Coment LM:** ok | observación de forma del nombre — comparar contra 'Nombre real' y decidir |
+| 19 | Catalina Figueroa | 110 | Catalina R. de Figueroa | **Coment LM:** ídem arriba | respondida por LM — el nombre que quedó está en 'Nombre real' |
+| 20 | Isabel B. de Acuña de Zavalia | 145 | Isabel B. de Acuña de Zavalía | **Mis comentarios:** DE Zavalia y tilde en i / **Coment LM:** Perfecto, lo dejamos en su versión más completa. Mantengamos las tildes. | respondida por LM — el nombre que quedó está en 'Nombre real' |
+| 21 | (Sra.) de Plaza | 140 | Sra. de Plaza | **Mis comentarios:** Sra / **Coment LM:** logré ver lo mismo en el catálogo, genial, ok con sra! | respondida por LM — el nombre que quedó está en 'Nombre real' |
+| 24 | Elvira Araoz | 98 | Eloisa [Elvira] Aráoz | **Coment LM:** Dejamos Eloisa [Elvira] Aráoz | respondida por LM — el nombre que quedó está en 'Nombre real' |
+| 25 | Delia Ruiz | 97 | Delicia [Delia] Ruiz | **Coment LM:** Dejamos Delicia [Delia] Ruiz | respondida por LM — el nombre que quedó está en 'Nombre real' |
+| 28 | Escuela y hogar de obreras de la sociedad de beneficencia | 192 | Escuela y Hogar de Obreras de la Sociedad de Beneficencia | **Mis comentarios:** Misma / **Coment LM:** ok | respondida por LM — el nombre que quedó está en 'Nombre real' |
+| 31 | Clemencia Zelarayan | 193 | Clemencia de Zelarayán | **Mis comentarios:** DE + apellido / **Coment LM:** ok | respondida por LM — el nombre que quedó está en 'Nombre real' |
+| 35 | Rosa Valenzuela | 135 | Rosa V. de Valenzuela | **Mis comentarios:** V. Aparentemente apellido o segundo nombre / **Coment LM:** ok | respondida por LM — el nombre que quedó está en 'Nombre real' |
+| 36 | Arsenia Medina | 134 | Arsenia F. Medina | **Mis comentarios:** F. Aparentemente apellido o segundo nombre / **Coment LM:** ok | respondida por LM — el nombre que quedó está en 'Nombre real' |
 | 39 | Lujarda J. de González | — | — (el premio no tiene objeto en el catálogo) | **Mis comentarios:** Lugarda vs Lujarda / **Coment LM:** Lugarda [Lujarda] J. de González | decisión: sin objeto en el catálogo (queda como nota, sin lugar formal aún) |
-| 41 | Dominga Lezcano | 43 | Dominga Lescano | **Mis comentarios:** Lescano vs Lezcano / **Coment LM:** vamos con Lescano (así aparece el apellido la mayoría de las veces) | observación de forma del nombre — comparar contra 'Nombre real' y decidir |
-| 43 | Delicia G. de Robles | 34 | Delina [Delicia] G. de Robles | **Mis comentarios:** Delicia vs delina / **Coment LM:** Delina [Delicia] G. de Robles | observación de forma del nombre — comparar contra 'Nombre real' y decidir |
-| 46 | Lastenia Barrero | 17 | Lastenia Barrero | **Mis comentarios:** No hay orden 19. / **Coment LM:** ¿qué debería mirar acá? | observación / confirmación |
-| 48 | Isaura Sorroza de Risso Patron | 3 | Isaura Sorroza de Risso Patrón | **Coment LM:** ok el más completo | observación / confirmación |
-| 50 | Maria Castillejo | 55 | María Castillón [Castillejo] | **Coment LM:** María Castillón [Castillejo] | observación / confirmación |
-| 60 | Argenia R. de Lautafy | 59 | Argenia R. de Lautafy | **Mis comentarios:** DE + apellido / **Coment LM:** ok dejamos el más completo | observación de forma del nombre — comparar contra 'Nombre real' y decidir |
-| 62 | Mercedes Pereyra | 174 | María Mercedes Pereira | **Mis comentarios:** No hay una Pereyra en el catalogo / **Coment LM:** En el catálogo coincide con el envío n.17 de crochet, traje punto irlanda. MARÍA M. PEREIRA (que debe ser María Mercedes). Lo podemos unificar como María Mercedes Pereira. | observación / confirmación |
-| 64 | Adela Amuchástegui | 180 | María S. [Adela] Amuchástegui | **Mis comentarios:** No parecen ser la misma. Pero no hay una Adela / **Coment LM:** María S. [Adela] Amuchástegui | observación / confirmación |
+| 41 | Dominga Lezcano | 43 | Dominga Lescano | **Mis comentarios:** Lescano vs Lezcano / **Coment LM:** vamos con Lescano (así aparece el apellido la mayoría de las veces) | respondida por LM — el nombre que quedó está en 'Nombre real' |
+| 43 | Delicia G. de Robles | 34 | Delina [Delicia] G. de Robles | **Mis comentarios:** Delicia vs delina / **Coment LM:** Delina [Delicia] G. de Robles | respondida por LM — el nombre que quedó está en 'Nombre real' |
+| 46 | Lastenia Barrero | 17 | Lastenia Barrero | **Mis comentarios:** No hay orden 19. / **Coment LM:** ¿qué debería mirar acá? | respondida por LM — el nombre que quedó está en 'Nombre real' |
+| 48 | Isaura Sorroza de Risso Patron | 3 | Isaura Sorroza de Risso Patrón | **Coment LM:** ok el más completo | respondida por LM — el nombre que quedó está en 'Nombre real' |
+| 50 | Maria Castillejo | 55 | María Castillón [Castillejo] | **Coment LM:** María Castillón [Castillejo] | respondida por LM — el nombre que quedó está en 'Nombre real' |
+| 60 | Argenia R. de Lautafy | 59 | Argenia R. de Lautafy | **Mis comentarios:** DE + apellido / **Coment LM:** ok dejamos el más completo | respondida por LM — el nombre que quedó está en 'Nombre real' |
+| 62 | Mercedes Pereyra | 174 | María Mercedes Pereira | **Mis comentarios:** No hay una Pereyra en el catalogo / **Coment LM:** En el catálogo coincide con el envío n.17 de crochet, traje punto irlanda. MARÍA M. PEREIRA (que debe ser María Mercedes). Lo podemos unificar como María Mercedes Pereira. | respondida por LM — el nombre que quedó está en 'Nombre real' |
+| 64 | Adela Amuchástegui | 180 | María S. [Adela] Amuchástegui | **Mis comentarios:** No parecen ser la misma. Pero no hay una Adela / **Coment LM:** María S. [Adela] Amuchástegui | respondida por LM — el nombre que quedó está en 'Nombre real' |
 | 67 | Hermanas domínicas | — | — (el premio no tiene objeto en el catálogo) | **Coment LM:** sin tilde | decisión: sin objeto en el catálogo (queda como nota, sin lugar formal aún) |
-| 71 | Argentina Sal | 83 | Argentina J. Sal | **Coment LM:** ok el más completo | observación / confirmación |
-| 73 | Elvira Rodríguez | 90 | Elvira Rodríguez They | **Mis comentarios:** Segundo apellido / **Coment LM:** perfect | observación de forma del nombre — comparar contra 'Nombre real' y decidir |
+| 71 | Argentina Sal | 83 | Argentina J. Sal | **Coment LM:** ok el más completo | respondida por LM — el nombre que quedó está en 'Nombre real' |
+| 73 | Elvira Rodríguez | 90 | Elvira Rodríguez They | **Mis comentarios:** Segundo apellido / **Coment LM:** perfect | respondida por LM — el nombre que quedó está en 'Nombre real' |
 | 80 | Alejandrina Peiró | — | — (el premio no tiene objeto en el catálogo) | **Mis comentarios:** No está Alejandrina en el catálogo / **Coment LM:** está bien, debe haber sido fuera de catálogo. La dejamos suelta | decisión: sin objeto en el catálogo (queda como nota, sin lugar formal aún) |
-| 82 | Sta Santés | 94 | Sta Sandés | **Mis comentarios:** solo llega a 13 (la observación dice "sección deshilados" — ahí sí llega hasta 25, quizás haya que buscarlo ahí en vez de en Bordado) / **Coment LM:** Excelente. Además se identifica Santiago con Santiago del Estero del Catálogo. Nos viene re bien. | observación / confirmación |
+| 82 | Sta Santés | 94 | Sta. Sandés | **Mis comentarios:** solo llega a 13 (la observación dice "sección deshilados" — ahí sí llega hasta 25, quizás haya que buscarlo ahí en vez de en Bordado) / **Coment LM:** Excelente. Además se identifica Santiago con Santiago del Estero del Catálogo. Nos viene re bien. | respondida por LM — el nombre que quedó está en 'Nombre real' |
 | 86 | Lucrecia Carrazan | — | — (el premio no tiene objeto en el catálogo) | **Mis comentarios:** No hay una Lucrecia Carrazan en el catalogo / **Coment LM:** la dejamos suelta como alejandrina | decisión: sin objeto en el catálogo (queda como nota, sin lugar formal aún) |
 | 87 | Ezequiela P. de Gutiérrez | 195 | Ezequiela P. de Gutiérrez | **Mis comentarios:** Esequiela vs Ezequiela / **Coment LM:** dejaría Ezequiela | resuelto: la expositora ya figura como 'Ezequiela' |
 | 89 | Amicia Diaz | — | — (el premio no tiene objeto en el catálogo) | **Mis comentarios:** No hay una Amicia Díaz en el catalogo / **Coment LM:** la dejamos suelta como alejandrina | decisión: sin objeto en el catálogo (queda como nota, sin lugar formal aún) |

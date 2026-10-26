@@ -9,18 +9,18 @@ Correr todo: `python run_pipeline.py` (desde la raíz). Desde una etapa en adela
 
 | etapa | entrada | salida | estado |
 |---|---|---|---|
-| `01_ingesta` | `data/raw/TUCUMÁN text 1915-16 DATOS.xlsx` | `data/interim/objetos_crudos.csv` (981 objetos; separa las filas explotadas de 1916) | funciona |
-| `03_candidatos` | `data/interim/tabla_normalizada_manual.xlsx` (Expositoras, Ciudades, Objetos) | `data/interim/duplicados_expositoras_candidatos.xlsx` — 85 filas (75 detectadas hoy + 10 conservadas de corridas anteriores), con `Hecho`/`Comentarios` para anotar. Conserva las anotaciones y los pares que ya figuraban. Al final imprime cuántos quedan **sin fusionar y sin revisar**: hoy son 10 (otros 10, no los conservados — ver `docs/tareas_pendientes.md`) | funciona |
-| `04_aplicar_dedup` | `data/interim/tabla_normalizada_manual.xlsx` + `decisiones/fusiones_expositoras.csv`, `nombres_expositoras.csv`, `fusiones_ciudades.csv`, `separaciones_ciudades.csv` | `data/interim/tabla_normalizada_dedup.xlsx` — 55 decisiones en el CSV, **54 aplicadas**, 519 → 458 expositoras; 1 fusión de ciudades (50 → 5). Dos ids a descartar ya no existen en la tabla manual (67 y 117) y el script los avisa; la fila `76,67` queda sin efecto por eso | funciona |
+| `01_ingesta` | `data/raw/TUCUMÁN text 1915-16 DATOS.xlsx` | `data/interim/objetos_crudos.csv` (981 objetos; separa las filas explotadas de 1916). Aplica `decisiones/objetos_texto_override.csv` y deja los textos sin espacios de más (`limpiar_texto`, `_util.py`) | funciona |
+| `03_candidatos` | `data/interim/tabla_normalizada_manual.xlsx` (Expositoras, Ciudades, Objetos) | `data/interim/duplicados_expositoras_candidatos.xlsx` — 141 filas (135 detectadas hoy + 6 conservadas de corridas anteriores), con `Hecho`/`Comentarios` para anotar. Conserva las anotaciones y los pares que ya figuraban. Al final imprime cuántos quedan **sin fusionar y sin revisar**: hoy 50, contando pares con un id que ya se fusionó por otro camino (ver `docs/tareas_pendientes.md`) | funciona |
+| `04_aplicar_dedup` | `data/interim/tabla_normalizada_manual.xlsx` + `decisiones/fusiones_expositoras.csv`, `nombres_expositoras.csv`, `fusiones_ciudades.csv`, `separaciones_ciudades.csv` | `data/interim/tabla_normalizada_dedup.xlsx`. Antes de aplicar nada, limpia los espacios de más en todas las hojas (hoy: 8 nombres, 21 objetos, 7 celdas de Premios, 1 de Paginas_Catalogo). 55 decisiones en el CSV, **54 aplicadas**, 519 → 458 expositoras; 1 fusión de ciudades (50 → 5). Dos ids a descartar ya no existen en la tabla manual (67 y 117) y el script los avisa; la fila `76,67` queda sin efecto por eso | funciona |
 | `04b_titulo_nombres` | tabla_normalizada_dedup | `data/processed/tabla_normalizada.xlsx` (nombres ALLCAPS → Título) | funciona |
 | `04c_vincular_imagenes` | tabla_normalizada + hoja `Paginas_Catalogo` | tabla_normalizada con la columna `Objetos.imagen` — 981/981 objetos con imagen | funciona |
-| `04d_coordenadas` | tabla_normalizada + `decisiones/coordenadas_ciudades.csv` | tabla_normalizada con la ubicación de cada ciudad tomada del CSV: `nombre_ciudad_hoy`, `nombre_provincia`, `lat`/`lon`, `lat_provincia`/`lon_provincia`, `precision`, `nota` — 58/77 ciudades con coordenada, 68/77 con punto de provincia | funciona |
-| `04e_premios` | `tabla_normalizada_dedup.xlsx` (Premios de la tabla manual) + tabla_normalizada (Expositoras, Objetos) + `decisiones/premios_manual.csv` | tabla_normalizada con la hoja `Premios` curada: un premio por fila, con su obra del catálogo, `Estado` (vinculado / fuera de catálogo / pendiente), `Vínculo` y `Nota` — 102 premios: 89 vinculados, 11 fuera de catálogo, 2 pendientes | funciona |
+| `04d_coordenadas` | tabla_normalizada + `decisiones/coordenadas_ciudades.csv` | tabla_normalizada con la ubicación de cada ciudad tomada del CSV: `nombre_ciudad_hoy`, `nombre_provincia`, `lat`/`lon`, `lat_provincia`/`lon_provincia`, `precision`, `nota` — 61/77 ciudades con coordenada, 70/77 con punto de provincia | funciona |
+| `04e_premios` | `tabla_normalizada_dedup.xlsx` (Premios de la tabla manual) + tabla_normalizada (Expositoras, Objetos) + `decisiones/premios_manual.csv` | tabla_normalizada con la hoja `Premios` curada: un premio por fila, con su obra del catálogo, `Estado` (vinculado / fuera de catálogo / pendiente), `Vínculo` y `Nota` — 102 premios: 89 vinculados, 12 fuera de catálogo, 1 pendiente | funciona |
 | `04f_marcas_objetos` | tabla_normalizada (Objetos) | tabla_normalizada con `Objetos.fuera_de_concurso` (2) y `Objetos.creacion_autora` (12), leídas del texto del catálogo, que no se toca | funciona |
 | `05_vista_plana` | tabla_normalizada | `data/processed/vista_plana_tabla_consolidada.xlsx` (981 filas, incluye `lat`/`lon` e `Imagen`) | funciona |
-| `05b_mapa` | tabla_normalizada | `outputs/mapa_procedencias.html` (folium): capa de ciudades (57 puntos, 756 objetos; borde punteado si la ubicación es tentativa) y capa "sólo provincia" en la capital (8 puntos, 181 objetos); 44 objetos sin ubicar. Antes lo exportaba `notebooks/04_eda.ipynb`, que ahora sólo lo muestra | funciona |
-| `05c_explorador` | tabla_normalizada (incluida la hoja Premios) + `objetos_crudos.csv` + `decisiones/familias_categorias.csv`, `decisiones/zonas_ciudades.csv` | `outputs/explorador.html`: explorador web autocontenido (mapa, técnicas por zona, fichas de expositoras) a partir de la plantilla `plantillas/explorador.template.html`. 994 obras = 981 objetos + 13 premios de 1915 sin obra en el catálogo. Técnicas inferidas por reglas sobre el texto del objeto (si no, la de la categoría) | funciona |
-| `06_verificar` | salidas + `tests/golden/` | reporte de diferencias, hoja por hoja | corre, pero **hoy falla siempre**: el golden está desactualizado (ver abajo) |
+| `05b_mapa` | tabla_normalizada | `outputs/mapa_procedencias.html` (folium): capa de ciudades (un círculo por localidad actual: 53 puntos, 764 objetos; el popup avisa si la ubicación es tentativa) y capa "sólo provincia" en la capital, con borde punteado como en el explorador (8 puntos, 179 objetos); 38 objetos sin ubicar. Los ids de folium se reemplazan por correlativos, así dos corridas dan el mismo archivo. Antes lo exportaba `notebooks/04_eda.ipynb`, que ahora sólo lo muestra | funciona |
+| `05c_explorador` | tabla_normalizada (incluida la hoja Premios) + `objetos_crudos.csv` + `decisiones/familias_categorias.csv`, `decisiones/zonas_ciudades.csv` | `outputs/explorador.html`: explorador web autocontenido (mapa, técnicas por zona, fichas de expositoras) a partir de la plantilla `plantillas/explorador.template.html`. 994 obras = 981 objetos + 13 premios de 1915 sin obra en el catálogo (12 fuera de catálogo y 1 pendiente de vincular). Técnicas inferidas por reglas sobre el texto del objeto (si no, la de la categoría) | funciona |
+| `06_verificar` | salidas + `tests/golden/` | reporte de diferencias, hoja por hoja | corre, pero **hoy falla siempre**: el golden está desactualizado (ver abajo). Ya no compara `revision_duplicados.xlsx`, que es un insumo |
 | `audit_comentarios` | tabla_normalizada + `tabla_normalizada_manual.xlsx` | `docs/auditoria_comentarios.md` | funciona, fuera de la corrida |
 
 ## Aciclicidad: qué se arregló y qué falta
@@ -41,10 +41,10 @@ Hoy las tres etapas que necesitan una línea de base leen **la misma y fija**,
 `04d` sobre la tabla de la misma corrida, toma los premios de la tabla manual (vía
 `tabla_normalizada_dedup.xlsx`) y escribe la hoja `Premios` curada.
 
-Ninguna etapa lee la salida de una posterior. Verificado el
-2026-09-18: corriendo `python run_pipeline.py` sobre el repo limpio, las cinco salidas
-quedan **idénticas celda por celda** a las commiteadas (cambia sólo la metadata del zip
-de cada `.xlsx`, así que `git status` las marca como modificadas igual).
+Ninguna etapa lee la salida de una posterior. Verificado otra vez el 2026-10-25: corriendo
+`python run_pipeline.py` en una copia limpia del repo, las salidas quedan **idénticas
+celda por celda** a las commiteadas (cambia sólo la metadata del zip de cada `.xlsx`,
+así que `git status` las marca como modificadas igual).
 
 Además, `03_candidatos` nunca destruye trabajo manual: relee su propia salida y
 conserva `Hecho`/`Comentarios` emparejados por `(id_A, id_B)`, y mantiene los pares ya
@@ -72,8 +72,9 @@ decisión. Está en `git log` (commit `975476e`).
   aplicó el criterio "conservar el lado con más objetos" (`sin_lado`), o si es un
   grupo de 3+ ids resuelto en conjunto (`cluster`).
 - `nombres_expositoras.csv` — nombre con que queda una expositora después de fusionar
-  (`persona_id`, `nombre`, `nota`), p. ej. la variante entre corchetes acordada con
-  Larisa ("Facunda Cerone [Coronel]"). Lo aplica `04_aplicar_dedup`.
+  (`persona_id`, `nombre`, `nota`, `genero`), p. ej. la variante entre corchetes acordada
+  con Larisa ("Facunda Cerone [Coronel]"). `genero` (F / M) corrige el de la tabla
+  manual; un `nombre` vacío deja el nombre como está. Lo aplica `04_aplicar_dedup`.
 - `fusiones_ciudades.csv` — mismo lugar cargado con dos `ciudad_id` (mismo formato que
   las fusiones de expositoras). Lo aplica `04_aplicar_dedup`; el texto del catálogo
   sigue visible en la vista plana ("Lugar en el documento").
@@ -86,13 +87,15 @@ decisión. Está en `git log` (commit `975476e`).
   cruzando n.º y descripción con el catálogo (12 de 14). Lo lee `04c`, que agrega
   `Objetos.foto_album`.
 - `objetos_texto_override.csv` — celdas de texto que la investigadora corrigió a mano
-  respecto del catálogo (erratas, singular/plural, mayúsculas).
+  respecto del catálogo (erratas, singular/plural, mayúsculas) y números de orden
+  corregidos contra el escaneo (objeto 17: 17 → 19). Lo aplica `01_ingesta`.
 - `premios_manual.csv` — correcciones al cruce Premios ↔ Objetos. Acepta
-  `objeto_id = "ninguno"` para forzar que un premio quede sin objeto.
+  `objeto_id = "ninguno"` para forzar que un premio quede sin objeto y
+  `objeto_id = "pendiente"` para dejarlo marcado como duda abierta.
 - `coordenadas_ciudades.csv` — la única fuente de la ubicación de cada ciudad
   (`ciudad_id`): `nombre_ciudad_hoy`, `nombre_provincia`, `lat`/`lon` (cargadas a mano
   por la investigadora, Google Maps), `lat_provincia`/`lon_provincia` (capital),
-  `precision` y `nota`. `04d` pisa con esto la copia de la tabla manual. 53/77 con
+  `precision` y `nota`. `04d` pisa con esto la copia de la tabla manual. 61/77 con
   punto de ciudad; el resto queda vacío (nombre ambiguo o desconocido).
 - `familias_categorias.csv` — por categoría, el tipo de obra (`familia`) y la técnica que se
   asume cuando el texto del objeto no nombra ninguna (`tecnica_por_categoria`). Lo usa
@@ -103,6 +106,9 @@ decisión. Está en `git log` (commit `975476e`).
   los textos de las obras (patrón, propuesta de nombre, cantidad de obras, ejemplo),
   para que los valide LM (`validacion_LM`). Todavía no la lee ninguna etapa; validada,
   reemplaza a `REGLAS_TECNICA` de `05c_explorador`.
+- `menciones_prensa.csv` — qué obras, expositoras y lugares comenta la prensa de época,
+  con la cita textual (ver `docs/relevamiento_prensa_archivo.md`). Todavía no la lee
+  ninguna etapa.
 - `categorias.csv` *(pendiente)* — unificaciones de categorías entre 1915 y 1916.
 
 ## Parámetros
@@ -123,15 +129,20 @@ entrenados ni semillas de aleatoriedad. Cada cambio queda en `docs/bitacora.md`.
 Ver `tests/golden/README.md`. Resumen: es un snapshot congelado, no un test. Vale como
 verificación **solo si no se re-congela en el mismo commit que cambia el pipeline**.
 
-**Estado al 2026-09-18: desactualizado, y por eso `06_verificar` falla siempre.** El
-golden nunca se re-congeló después de que `04d` agregara `lat`/`lon` a `Ciudades` y
-`04c` agregara `Imagen` a la vista plana (y, desde 2026-10-12, `05` le suma
-`Provincia`, `Lugar en el documento`, `ciudad_id` y las coordenadas de provincia):
+**Estado al 2026-10-25: desactualizado, y por eso `06_verificar` falla siempre.** El
+golden es del 2026-09 y nunca se re-congeló: desde entonces las salidas sumaron
+columnas (`lat`/`lon` y la ubicación de provincia en `Ciudades`; las marcas de
+`04f` y `foto_album` en `Objetos`; la hoja `Premios` curada de `04e`; varias columnas en
+la vista plana) y cambiaron filas (fusiones de expositoras, índice de páginas corregido):
 
 ```
-tabla_normalizada.xlsx        [Ciudades] shape (78, 10) != golden (78, 4)
-vista_plana_consolidada.xlsx  [Objetos - Concursos Tucumán] shape (982, 15) != golden (982, 7)
+tabla_normalizada.xlsx        [Expositoras] shape (459, 3) != golden (472, 3)
+                              [Ciudades] shape (78, 10) != golden (78, 4)
+                              [Objetos] shape (982, 12) != golden (982, 9)
+                              [Premios] shape (103, 20) != golden (105, 17)
+                              [Paginas_Catalogo] 5 celdas distintas
+vista_plana_consolidada.xlsx  [Objetos - Concursos Tucumán] shape (982, 18) != golden (982, 7)
 ```
 
-Las demás hojas dan OK. Re-congelarlo en un commit propio es una tarea pendiente
-(`docs/tareas_pendientes.md`).
+`Concursos`, `Categorías` y `Fuentes` dan OK. Re-congelarlo en un commit propio es una
+tarea pendiente (`docs/tareas_pendientes.md`).

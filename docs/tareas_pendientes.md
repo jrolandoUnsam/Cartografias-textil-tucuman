@@ -2,19 +2,25 @@
 
 ## Preguntas para Larisa
 
-- [ ] **Premio de Dominga Castaño (hoja Premios, fila 8; `premios_manual.csv` 6).**
-  LM dijo que es la randa 25 de 1915, pero la 24 y la 25 son de Dominga Lescano
-  (objetos 42 y 43) y la 25 ya tiene su premio. En la revisión del 25/10 respondió
-  "hay que verlo en el catálogo de 1915": mirar DSCN5178 y ver si Castaño figura.
-- [ ] **Blusa de las Hermanas Dominicas (fila 69; `premios_manual.csv` 67).** LM
+- [x] *(2026-10-25)* **Premio de Dominga Castaño (`premio_id` 6).** Julián: Castaño y
+  Lescano son personas distintas; el premio queda fuera de catálogo, como lo anota el
+  fallo.
+- [ ] **Blusa de las Hermanas Dominicas (`premio_id` 67).** LM
   sugiere el n.º 4 "traje bordado richelieu" (objeto 149; en el álbum, DSCN5159),
-  pero ese objeto ya tiene su premio: fila 79, Bordado en blanco y seda n.º 4, también
+  pero ese objeto ya tiene su premio: `premio_id` 79, Bordado en blanco y seda n.º 4, también
   de $25. La blusa es otro premio (Deshilado, sin número).
 - [ ] **Orán (73): ¿Tucumán o Salta?** Hoy queda sin punto ni provincia (LM 9-10). Evidencia para la reunión: El Orden, 10/10/1916, "La randa tucumana" (hoja "no PRENSA-EL ORDEN" del crudo): Padilla, de gira por la provincia, visita Orán, "antiguo centro de la randera tucumana"; quien transcribió anotó "no queda claro si se refiere a Salta". En el catálogo hay 24 randas de Orán. No se decide nada sin LM.
 - [ ] **Dos piezas del álbum de 1915 sin obra en el catálogo** (`album_1915.csv`):
   "Poncho" (DSCN5158), sin número, y en 1915 hay varios ponchos; "17 encaje ñanduty"
   (DSCN5168): la n.º 17 de Encajes varios es una colcha de filet, y las de ñandutí son
   Encajes varios n.º 18 y Pañuelos n.º 19. ¿El número de la foto es 18 o 19?
+- [ ] **Prensa y Archivo Padilla (`docs/relevamiento_prensa_archivo.md`):** ¿de qué
+  documento salen las fotos del "álbum de 1915"? El Archivo Padilla tiene un boletín del
+  concurso interprovincial de julio de 1916 que "tiene las fotos del álbum", y su
+  transcripción no está en el crudo. ¿Quién presidía la comisión de 1915: Guillermina
+  Leston de Guzmán (El Orden) o Lucila López Islas (foto del Archivo Padilla)? ¿Dónde
+  está la entrevista a Ana Toledo que cita la hoja de El Orden? ¿Qué es "AHT", en qué
+  repositorio está el Archivo Padilla y en qué medio salió la nota de Páez de la Torre?
 - [ ] **Pares que no respondió en `pares_sin_revisar.xlsx` (25/10):** `2` Marina /
   `45` Máxima Belmonte, `390` Audelina y Abigail / `409` María Abigail Gómez, `215`
   Lidia / `474` Lastenia Moya Escobar, `120` Lastenia Barrero / `340` Lastenia Barquet,
@@ -33,8 +39,8 @@
   - Premios fuera de catálogo: Marina Belmonte n.º 22 y el mantel de altar de Dalmira.
   - Ciudades: "Santiago" (50) se une a Santiago del Estero (5)
     (`fusiones_ciudades.csv`).
-  - Transcripción de fotos del álbum de 1915: `decisiones/album_1915.csv`. Todavía no
-    la lee ninguna etapa.
+  - Transcripción de fotos del álbum de 1915: `decisiones/album_1915.csv`. La lee `04c`
+    (`Objetos.foto_album`).
 
 ## Errores puntuales en `tabla_normalizada.xlsx` (hoja `Objetos`)
 - [x] *(2026-10-25: ya ningún objeto termina en punto, ni el 241 ni el 243)* **objeto 241**: `Almohadón tela hecha a pala` — se le quitó el punto final,
@@ -89,9 +95,20 @@
   por el CSV de fusiones + 27 sin fusionar (10 sin revisar + 17 con comentario). De
   esas 27, 3 tienen un id que ya no existe en la tabla.
 
+- [x] *(2026-10-25)* **30 pares candidatos que nunca se revisaron ni se mandaron a LM.**
+  Julián: no son la misma persona (mismo apellido y otro nombre de pila, del umbral 80);
+  no se mandan y quedan sin anotar a propósito. `03_candidatos` marca 50 pares "sin
+  fusionar y sin revisar": esos 30, 12 con un id que ya se fusionó por otro camino y 8
+  de `pares_sin_revisar.xlsx` sin respuesta. Las respuestas "no se unen" de LM para
+  227/315 y 93/360 se cargaron como `Hecho = False`, y los pares de Delina 161/255 y
+  209/264 pasaron de `True` a `False` (el comentario decía "separadas").
+- [ ] **Nombres de la auditoría 2026-10-25 para confirmar con LM:** "Sta. Sandés"
+  (el "Sta" viene del fallo, probablemente "señorita"), las 6 filas que son dos personas (p. ej. "Concepción y Rosa
+  Cuello") y las dos Delina J. / I. de Román con nombres idénticos (161/209, 255/264).
+
 ## Género (`Expositoras`)
 
-Hoy son **457 F y 8 M** sobre 465 filas.
+Hoy son **449 F y 9 M** sobre 458 filas.
 - [ ] Criterio para instituciones (hoy marcadas F por convención): decidir si llevan
   género o una marca aparte.
 
@@ -108,6 +125,20 @@ Hoy son **457 F y 8 M** sobre 465 filas.
 
 ## Pipeline
 
+- [ ] **Prensa en el explorador y en la vista plana (semana del 26/10/2026).** Una etapa
+  lee `decisiones/menciones_prensa.csv` y: (1) en la ficha de cada expositora, un
+  recuadro "En la prensa" con la cita, el diario y la fecha; (2) en la lista de obras, la
+  marca "· En la prensa"; (3) en los lugares (Orán, Monteros, La Cocha), sus citas; (4) en
+  "Fuentes y método", fechas, sede y comisión de cada concurso (hoja `Concursos`), las 6
+  fuentes y un párrafo de contexto (telares en las escuelas, Onelli Alfombras); (5) una
+  columna "En la prensa" en la vista plana. Sin hoja nueva en la tabla normalizada.
+
+- [ ] **Re-congelar `tests/golden/`** en un commit propio (ver `tests/golden/README.md`):
+  hoy `06_verificar` falla en 5 hojas y no detecta nada.
+- [ ] **Premios 98 y 99 (`decisión a mano`) sin nota:** el vínculo del portarretrato de
+  D'Empaire (objeto 204) y de la colcha de Dominga Nieva (objeto 104) sale de la tabla
+  manual; falta anotar en `premios_manual.csv` qué se miró para decidirlo.
+
 - [x] **`03b_premios.py` leía la salida de una etapa posterior.** *(2026-10-25)* Ahora
   es `04e_premios`, corre después de `04d` y escribe la hoja `Premios` curada en la
   tabla procesada; `premios_vinculados.xlsx` ya no existe.
@@ -122,8 +153,13 @@ Hoy son **457 F y 8 M** sobre 465 filas.
 
 ## Geografía
 
-- [ ] **24 de 77 ciudades siguen sin coordenadas** en
-  `decisiones/coordenadas_ciudades.csv` (53 cargadas). Completar las que se puedan y
+- [ ] **Para LM (auditoría 2026-10-25):** Concordia, La Banda, Rosario, Santa Rosa (72,
+  ¿la misma que Leales?), Villa Nueva (¿Tucumán o Córdoba?) y Los Mendoza (¿Simoca?)
+  siguen sin ubicar. Chicligasta
+  queda con la coordenada nuestra, no la de LM (Julián, 2026-10-25).
+
+- [ ] **16 de 77 ciudades siguen sin coordenadas** en
+  `decisiones/coordenadas_ciudades.csv` (61 cargadas). Completar las que se puedan y
   fijar un criterio para las ambiguas o desconocidas.
 - [x] *(2026-10-12)* `nombre_ciudad_hoy` y `nombre_provincia` vivían en dos lugares (tabla
   manual y `coordenadas_ciudades.csv`). Ahora el CSV es la única fuente: `04d` los toma

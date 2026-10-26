@@ -9,10 +9,10 @@
 8,,Catamarca,cat,por provincia
 9,,Córdoba,otr,por provincia
 10,,Salta,sju,por provincia
-11,Asilo Maternal Ciudad,,sa,provincia sin dato o sin definir
+11,Asilo Maternal Ciudad,Tucumán,cap,a 0 km de la capital
 12,Ingenio Concepcion,Tucumán,cap,a 4 km de la capital
 13,Colalao del Valle,Tucumán,tvn,"valles / norte (lat > -26,55 o lon < -65,7)"
-14,S/d,S/d,sa,provincia sin dato o sin definir
+14,S/d,,sa,provincia sin dato o sin definir
 15,Escuela de la Cocha,Tucumán,tcs,"a 111 km de la capital, centro-sur"
 16,Antofagasta Salta,Catamarca,cat,"Antofagasta de la Sierra, hoy Catamarca"
 17,La Cocha,Tucumán,tcs,"a 111 km de la capital, centro-sur"
@@ -46,7 +46,6 @@
 47,Ampata,Tucumán,tcs,"a 67 km de la capital, centro-sur"
 48,Graneros,Tucumán,tcs,"a 94 km de la capital, centro-sur"
 49,Belén,Catamarca,cat,por provincia
-50,Santiago,Santiago del Estero,sgo,por provincia
 51,Cafayate,Salta,sju,por provincia
 52,La Madrid,Tucumán,tcs,"a 91 km de la capital, centro-sur"
 53,Chaco,Chaco,otr,por provincia
@@ -70,7 +69,7 @@
 73,Orán,,sa,provincia sin dato o sin definir
 74,"Medinas, Gucheas",Tucumán,tcs,"a 73 km de la capital, centro-sur"
 75,Ingenio Guzman,Tucumán,cap,a 4 km de la capital
-76,Villa Nueva,tucuman o cordoba,sa,provincia sin dato o sin definir
+76,Villa Nueva,,sa,provincia sin dato o sin definir
 77,Acheral,Tucumán,tcs,"a 42 km de la capital, centro-sur"
 78,Concordia,,sa,provincia sin dato o sin definir
 79,"Asilo, Ciudad",Tucumán,cap,a 0 km de la capital

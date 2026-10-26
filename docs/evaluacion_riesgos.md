@@ -25,8 +25,10 @@ estudiante.
 - **Sesgo de georreferenciación:** asignar un topónimo actual a una localidad de 1915
   puede forzar equivalencias. `nombre_ciudad` (histórico) se conserva siempre aparte
   de `nombre_ciudad_hoy`.
-- **Atribución de género:** se infiere del nombre de pila; los casos dudosos y las
-  instituciones se marcan para revisión.
+- **Atribución de género:** se infiere del nombre de pila. Las instituciones llevan `F`
+  por convención y todavía no tienen una marca propia en los datos (decisión pendiente
+  con la dirección); el explorador y el EDA las reconocen por el comienzo del nombre
+  (`INSTITUCION` en `src/pipeline/_util.py`).
 
 ## Resguardo
 

@@ -33,7 +33,7 @@ import unicodedata
 
 import pandas as pd
 
-from _util import INTERIM, PROCESSED, RAIZ
+from _util import INTERIM, PROCESSED, RAIZ, limpiar_texto
 
 FUENTE = PROCESSED / "tabla_normalizada.xlsx"
 REVISION = INTERIM / "revision_duplicados.xlsx"
@@ -206,7 +206,9 @@ def audita_ciudades(md: list[str]) -> None:
     xl = pd.ExcelFile(FUENTE)
     C, O = xl.parse("Ciudades"), xl.parse("Objetos")
     ids = set(C["ciudad_id"])
-    nom = C.set_index("ciudad_id")["nombre_ciudad"].to_dict()
+    # ciudad conocida sólo por la provincia (p. ej. 9, Córdoba): se muestra la provincia
+    nom = C.set_index("ciudad_id")["nombre_ciudad"].fillna(
+        C.set_index("ciudad_id")["nombre_provincia"]).to_dict()
     n_obj = O.groupby("ciudad_id").size().to_dict()
     rev = pd.read_excel(REVISION, sheet_name="Ciudades - candidatos")
     col_com = "Comentarios" if "Comentarios" in rev.columns else "Comendatios"
@@ -259,22 +261,22 @@ def audita_premios(md: list[str]) -> None:
     cols_com = [c for c in P.columns if "coment" in c.lower()]
 
     cols_orig = list(Pg.columns[:8])  # PREMIOS … NÚM: lo que transcribe el fallo
-    intactas = all(
-        (P[c].fillna("").astype(str) == Pg[c].fillna("").astype(str)).all() for c in cols_orig
-    )
+    # 04 limpia espacios de más en todas las celdas: eso no cuenta como modificación
+    txt = lambda s: s.map(limpiar_texto).fillna("").astype(str)
+    intactas = all((txt(P[c]) == txt(Pg[c])).all() for c in cols_orig)
 
     md.append("\n## 3. `tabla_normalizada.xlsx` — hoja *Premios* (filas con comentario)\n")
     md.append(
         f"> Las 8 columnas originales de la hoja Premios están **{'intactas' if intactas else 'MODIFICADAS'}** "
-        "respecto del golden. Lo que se agregó son las columnas de vínculo (`persona_id`, "
-        "`objeto_id`, …; el vínculo que se muestra es el de la hoja curada de `04e_premios.py`) y las de comentario.\n"
+        "respecto de la tabla de partida (sin contar espacios de más). El vínculo que se muestra "
+        "es el de la hoja curada de `04e_premios.py`.\n"
         ">\n"
         "> Los comentarios de esta hoja son **observaciones sobre nombres**, no órdenes de "
         "fusión. La columna *Nombre real de la expositora* muestra a quién apunta hoy el "
         "`objeto_id` de esa fila (vía `Objetos.expositora_id`).\n"
     )
     md.append(
-        "| fila | NOMBRE en el fallo | objeto_id | Nombre real de la expositora (hoy) | "
+        "| premio_id | NOMBRE en el fallo | objeto_id | Nombre real de la expositora (hoy) | "
         "Comentario(s) | Estado |\n"
         "|---|---|---|---|---|---|"
     )
@@ -298,10 +300,10 @@ def audita_premios(md: list[str]) -> None:
             estado = ("resuelto: la expositora ya figura como 'Ezequiela'"
                       if "ezequiela" in real.lower() else
                       "PENDIENTE: LM pide 'Ezequiela'; la expositora sigue como 'Esequiela'")
-        elif any(k in c for k in ["vs", "de +", "de zavalia", "segundo", "aparentemente", "encontramos", "r."]):
-            estado = "observación de forma del nombre — comparar contra 'Nombre real' y decidir"
+        elif "Coment LM" in cols_com and pd.notna(r["Coment LM"]):
+            estado = "respondida por LM — el nombre que quedó está en 'Nombre real'"
         else:
-            estado = "observación / confirmación"
+            estado = "observación sin respuesta de LM"
         md.append(
             f"| {i} | {r['NOMBRE']} | {obj or '—'} | {real} | {' / '.join(coms)} | {estado} |"
         )

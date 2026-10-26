@@ -317,6 +317,72 @@ y el "22 Pañuelo" (Encajes varios n.º 22, "dos pañuelos guipure al bolillo").
 para LM el poncho sin número y el "17 encaje ñanduty". `04c` agrega
 `Objetos.foto_album`, que sale en la vista plana y en la ficha del explorador.
 
+## 2026-10-25 — Auditoría completa del repositorio y correcciones
+
+Se leyó cada archivo versionado (docs, código, tablas de decisión, cada hoja de cada
+Excel) y se corrió el pipeline en una copia limpia: las salidas se reproducen celda por
+celda. Correcciones aplicadas (decisión de Julián, punto por punto):
+
+- **`objetos_texto_override.csv` reintroducía dos errores.** Fijaba el N.º de orden de los
+  objetos 352 y 651 en 108 y 28, los valores equivocados que se habían corregido contra el
+  escaneo el 2026-10-12; el crudo ya dice 109 y 58. Se borraron esas dos filas y se agregó
+  la del objeto 17 (17 → 19, DSCN5177), así `objetos_crudos.csv` coincide con la tabla.
+- **Asilo Maternal Ciudad (11)** pasa a San Miguel de Tucumán, como Asilo Ciudad (26 y
+  79): las 3 obras de las Hermanas de la Inmaculada Concepción quedan ubicadas.
+- **`Paginas_Catalogo`:** DSCN5226 cubre 27–54 (pág. 52) y 55–79 (pág. 53), antes se
+  pisaban en 54–55; la nota de DSCN5220 dice "Igual que DSCN5219.JPG". Que falte
+  DSCN5209 está bien.
+- **Espacios de más:** `limpiar_texto` (`_util.py`) los saca en `01` y, para todas las
+  hojas de la tabla manual, al entrar en `04` (21 objetos, 8 nombres, 7 celdas de Premios,
+  1 de Paginas_Catalogo). `04b` ya no hace su propio `strip`.
+- **Notas de `fusiones_expositoras.csv`** que citaban mal el comentario (9 filas, p. ej.
+  `76,67` decía "dejamos A" y se conservó B): ahora citan el texto real.
+- **Coordenadas sin normalizar:** provincias "tucuman o cordoba" y "S/d" quedan vacías con
+  nota; nombres actuales "Simoca ?", "Santa Rosa o Villa de Leales", "DELFIN GALLO o Ex
+  Ingenio Luján", "Los Perez" se normalizan; 26, 41, 45 y 79 reciben nombre actual; se
+  borra la fila muerta 50 (fusionada en 5).
+- **Nombres** (`nombres_expositoras.csv`): tildes según el pedido de LM (Catalán, Suárez,
+  Vázquez, Ordóñez…), "de" en minúscula, abreviaturas "Sra." y "Sta.". "Marcedes Cayata"
+  queda así: el catálogo lo imprime así (DSCN5212). Julián confirma que Ataliva Salazar
+  (185) es varón y que "Vidal Victoria" (520) es Victoria Vidal: el CSV suma la columna
+  `genero` para corregir el de la tabla manual (quedan 449 F y 9 M).
+- **Pares candidatos:** en `duplicados_expositoras_candidatos.xlsx`, los pares de Delina
+  161/255 y 209/264 pasan de `Hecho = True` a `False` (el comentario siempre dijo
+  "separadas"); se cargan como `False` las respuestas de LM del 25/10 para 227/315 y
+  93/360. Los 30 pares nunca revisados no se mandan: Julián los da por personas
+  distintas. Quedan 50 "sin revisar" en `03_candidatos`.
+- **Premio de Dominga Castaño (`premio_id` 6):** pasa de pendiente a fuera de catálogo
+  (Julián: no es Dominga Lescano). Quedan 89 vinculados, 12 fuera de catálogo y 1
+  pendiente (la blusa de las Hermanas Dominicas).
+- **Prensa y archivo:** se repasaron fila por fila las hojas "no PRENSA-EL ORDEN", "no
+  ARCHIVO PADILLA" y "no Prensa-Rakow lib" (`docs/relevamiento_prensa_archivo.md`). En
+  la tabla manual, `Fuentes` completa la fila 4 (El Orden) y suma el Archivo Padilla
+  (5) y la nota de Páez de la Torre (6); `Concursos` suma fechas, sede y organización
+  de cada concurso. Nueva `decisiones/menciones_prensa.csv`: 14 menciones de obras,
+  expositoras y lugares. Hallazgos: las 7 obras de Mercedes Pacheco son del Colegio de
+  la Sagrada Familia, que ella dirigía; Isabel Bascary de Acuña Zavalía era de la
+  comisión organizadora y a la vez expositora.
+- **Chicligasta:** se confirma nuestra coordenada (no la de LM 9-10); queda la nota en
+  `coordenadas_ciudades.csv`.
+- **Ingenio Concepción (12) e Ingenio Guzmán (75):** según LM 9-10 son el mismo ingenio.
+  Julián decide no unirlos: quedan como los escribió el catálogo; los dos tienen
+  Banda del Río Salí como localidad actual y el mapa ya los muestra en un solo punto.
+- **Premios:** las notas citan `premio_id`, no la fila de Excel; `premios_manual.csv`
+  documenta `pendiente`. El explorador separa los 2 premios pendientes de los 11 fuera de
+  catálogo.
+- **Mapas:** un círculo por localidad actual en `05b` y en el explorador (antes Cafayate,
+  Concepción, Banda del Río Salí y Medinas salían duplicados); el borde punteado significa
+  "sólo provincia" en los dos; `05b` da el mismo HTML en cada corrida.
+- **Explorador:** `<!doctype>` y `<meta charset>`; título del formulario ("Cartografías del
+  textil argentino"); "Proyecto Interdisciplinario"; ya no afirma que el Nivel 1 esté
+  cerrado.
+  Sin modo oscuro: se ve siempre claro, aunque el sistema esté en oscuro (Julián).
+- **Pipeline:** `run_pipeline.py 04d` arranca en 04d; `06` deja de comparar
+  `revision_duplicados.xlsx` (insumo, no salida); una sola regla de institución
+  (`INSTITUCION`, `_util.py`) para el explorador y el EDA.
+- **Docs:** números al día (61/77 ciudades con punto, 449 F y 9 M, 141 pares candidatos,
+  estado real del golden) y lo que quedó abierto, en `tareas_pendientes.md`.
+
 ## Fuentes del crudo que NO entran a la base
 
 Hojas `no PRENSA-EL ORDEN`, `no ARCHIVO PADILLA`, `no Prensa-Rakow lib`: material de

@@ -11,8 +11,7 @@ Reglas:
     primera palabra del nombre.
   - Las iniciales con punto quedan igual ("C." -> "C.").
   - No agrega ni saca tildes: si la mayúscula no tenía tilde, el resultado tampoco.
-  - Antes de todo, a cada celda de esas columnas se le sacan los espacios al principio
-    y al final ("Margarita Díaz " -> "Margarita Díaz"), esté o no en mayúscula.
+  - Los espacios de más ya los sacó `04_aplicar_dedup` (`limpiar_texto`).
 
 Entrada : data/interim/tabla_normalizada_dedup.xlsx   (salida de 04_aplicar_dedup)
 Salida  : data/processed/tabla_normalizada.xlsx
@@ -56,8 +55,6 @@ def _capitaliza_palabra(palabra: str) -> str:
 
 
 def a_titulo(nombre: str) -> str:
-    if isinstance(nombre, str):
-        nombre = nombre.strip()
     if not es_todo_mayuscula(nombre):
         return nombre
     palabras = str(nombre).split(" ")
@@ -94,7 +91,7 @@ def main() -> None:
         for s, df in hojas.items():
             df.to_excel(w, sheet_name=s, index=False)
 
-    print(f"\n{total_cambios} celdas pasadas a título o sin espacios sobrantes")
+    print(f"\n{total_cambios} celdas pasadas a título")
     print(f"-> {SALIDA}")
 
 

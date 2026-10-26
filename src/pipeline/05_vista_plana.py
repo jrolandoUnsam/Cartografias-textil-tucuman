@@ -25,8 +25,10 @@ sin punto seguro, igual se puede ubicar a nivel provincia.
 poder cotejar contra la fuente sin cruzar hojas, y `ciudad_id` deja ver cuándo dos
 lugares escritos distinto son la misma fila de `Ciudades` (o no). Pedido de Larisa,
 2026-10: "no entiendo de dónde son las referencias, está desagregada".
+
 Orden de filas: Concurso (1915 → 1916), Categoría (alfabético), Expositora
-(alfabético, sensible a mayúsculas), N.º de orden.
+(alfabético, sensible a mayúsculas); dentro de cada grupo, el orden del catálogo
+(`objeto_id`), no el N.º de orden.
 
 Se regenera a partir de la tabla normalizada tal cual está: cualquier corrección
 hecha a mano en `tabla_normalizada.xlsx` (categorías, ids de expositora, texto de

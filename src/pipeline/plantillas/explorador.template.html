@@ -1,4 +1,8 @@
-<title>Cartografías del textil tucumano</title>
+<!doctype html>
+<html lang="es">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cartografías del textil argentino</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&display=swap">
@@ -28,20 +32,7 @@ __LEAFLET_CSS__
   --gut: clamp(1rem, 3.2vw, 2.6rem);
   --wrap: 1640px;
   --navh: 3.6rem;
-}
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --paper: #0e1119; --card: #161a25; --ink: #e9ecf5; --ink2: #9ba4bb; --rule: #272d41; --chip: #202636;
-    --sea: #0a0d14; --nbr: #131824; --land: #1c2132; --landline: #353d57; --home: #292d3d;
-    --indigo: #93a2ff; --madder: #ff907f; --gold: #e2b55e; --shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-    color-scheme: dark;
-  }
-}
-:root[data-theme="dark"] {
-  --paper: #0e1119; --card: #161a25; --ink: #e9ecf5; --ink2: #9ba4bb; --rule: #272d41; --chip: #202636;
-  --sea: #0a0d14; --nbr: #131824; --land: #1c2132; --landline: #353d57; --home: #292d3d;
-  --indigo: #93a2ff; --madder: #ff907f; --gold: #e2b55e; --shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-  color-scheme: dark;
+  color-scheme: light;
 }
 * { box-sizing: border-box; }
 [hidden] { display: none !important; }
@@ -131,8 +122,6 @@ h1 { font-family: var(--serif); font-optical-sizing: auto; font-weight: 600; fon
 .tool { display: flex; gap: 0.45rem; align-items: center; background: color-mix(in srgb, var(--card) 94%, transparent); border: 1px solid var(--rule); border-radius: 999px; padding: 0.3rem 0.8rem; font-size: 0.78rem; }
 .tool input { accent-color: var(--indigo); width: 0.9rem; height: 0.9rem; margin: 0; }
 .hint { position: absolute; top: 0.8rem; right: 0.8rem; z-index: 800; background: color-mix(in srgb, var(--card) 94%, transparent); border: 1px solid var(--rule); border-radius: 999px; padding: 0.3rem 0.85rem; font-size: 0.78rem; color: var(--ink2); }
-@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .osm { filter: invert(1) hue-rotate(180deg) saturate(0.4) brightness(0.85); } }
-:root[data-theme="dark"] .osm { filter: invert(1) hue-rotate(180deg) saturate(0.4) brightness(0.85); }
 .leaflet-container { font-family: var(--sans); background: var(--sea); }
 .leaflet-tooltip { background: var(--card); color: var(--ink); border: 1px solid var(--rule); border-radius: 8px; box-shadow: none; font-size: 12px; padding: 4px 9px; }
 .leaflet-tooltip-top:before { border-top-color: var(--rule); }
@@ -273,9 +262,9 @@ h2 { font-family: var(--serif); font-weight: 600; font-size: 1.5rem; line-height
 <header class="mast" id="top">
   <div class="mast-in">
     <div>
-      <p class="kicker">Proyecto Interno CIAI-LCD · Universidad Nacional de San Martín</p>
-      <h1>Cartografías del textil tucumano</h1>
-      <p class="lede">Producción, exhibición y circulación a partir de datos históricos e imágenes de archivo</p>
+      <p class="kicker">Proyecto Interdisciplinario CIAI-LCD · Universidad Nacional de San Martín</p>
+      <h1>Cartografías del textil argentino</h1>
+      <p class="lede">Producción y exhibición a partir de datos históricos e imágenes de archivo</p>
       <p class="abs">Base de datos histórica de los concursos de tejidos y bordados celebrados en Tucumán en 1915 y 1916. Reúne expositoras, obras, técnicas, procedencias y premios, y permite consultar de dónde venían las obras, qué técnicas se practicaban en cada zona y quiénes fueron premiadas.</p>
       <a class="cta" href="#explorador" data-scroll="explorador">Explorar los datos <span aria-hidden="true">↓</span></a>
     </div>
@@ -295,7 +284,7 @@ h2 { font-family: var(--serif); font-weight: 600; font-size: 1.5rem; line-height
 
 <nav class="nav" id="nav" aria-label="Vistas del explorador">
   <div class="nav-in">
-    <a class="brand" href="#top" data-scroll="top"><span class="dm" aria-hidden="true"></span><span>Cartografías del textil tucumano</span></a>
+    <a class="brand" href="#top" data-scroll="top"><span class="dm" aria-hidden="true"></span><span>Cartografías del textil argentino</span></a>
     <div class="tabs" id="tabs" role="tablist" aria-label="Vistas">
       <button type="button" role="tab" id="tab-map" data-view="map" aria-selected="true" aria-controls="view-map">Mapa</button>
       <button type="button" role="tab" id="tab-tec" data-view="tec" aria-selected="false" aria-controls="view-tec">Técnicas por zona</button>
@@ -367,7 +356,7 @@ h2 { font-family: var(--serif); font-weight: 600; font-size: 1.5rem; line-height
         <h3>Cómo se construye la base</h3>
         <ul>
           <li><span class="st ok">Hecho</span>Transcripción de los catálogos, el fallo y los decretos a una planilla.</li>
-          <li><span class="st ok">Hecho</span>Normalización manual de nombres de expositoras y de ciudades, con identificadores, y vinculación de cada premio con su obra.</li>
+          <li><span class="st ok">Hecho</span>Normalización manual de nombres de expositoras y de ciudades, con identificadores, y vinculación de los premios de 1915 con su obra (los casos abiertos se indican en los límites de esta versión).</li>
           <li><span class="st ok">Hecho</span>Separación de las filas del catálogo de 1916 que agrupaban varias piezas, y vinculación de cada obra con la página escaneada del catálogo.</li>
           <li><span class="st wip">En esta versión</span>El explorador se genera desde la tabla normalizada con el pipeline del proyecto. Las técnicas, las zonas y parte de las coordenadas son provisorias y se explican más abajo.</li>
           <li><span class="st">Pendiente</span>Georreferenciación completa de las localidades, carga de los premios de 1916 y análisis de redes de participación.</li>
@@ -393,12 +382,12 @@ h2 { font-family: var(--serif); font-weight: 600; font-size: 1.5rem; line-height
     <div class="cita">
       <div>
         <h3>Cómo citar</h3>
-        <p class="quote" id="citetxt">Rolando, J. (2026). <i>Cartografías del textil tucumano: explorador de los concursos de tejidos y bordados de Tucumán, 1915-1916</i> [versión de trabajo, octubre de 2026]. Dirección: Larisa Mantovani; tutoría: Agustín Moro. Proyecto Interdisciplinario CIAI-LCD, Universidad Nacional de San Martín.</p>
+        <p class="quote" id="citetxt">Rolando, J. (2026). <i>Cartografías del textil argentino: explorador de los concursos de tejidos y bordados de Tucumán, 1915-1916</i> [versión de trabajo, octubre de 2026]. Dirección: Larisa Mantovani; tutoría: Agustín Moro. Proyecto Interdisciplinario CIAI-LCD, Universidad Nacional de San Martín.</p>
         <button type="button" class="btn" data-act="cite">Copiar cita</button>
       </div>
       <div>
         <h3>Gobernanza de datos</h3>
-        <p>El corpus es histórico y de dominio público. El proyecto se clasificó en el Nivel 1 (riesgo mínimo) según los Lineamientos de Gobernanza de Datos e IA de la UNSAM.</p>
+        <p>El corpus es histórico y de dominio público. La evaluación de riesgos propone el Nivel 1 (riesgo mínimo) según los Lineamientos de Gobernanza de Datos e IA de la UNSAM; se cierra en conjunto con la dirección del proyecto.</p>
         <p class="dim">Mapa base: Esri World Street Map (© Esri y proveedores). Los límites que muestra son los actuales.</p>
       </div>
     </div>
@@ -407,7 +396,7 @@ h2 { font-family: var(--serif); font-weight: 600; font-size: 1.5rem; line-height
 
 <footer class="foot">
   <div class="foot-in">
-    <span>Cartografías del textil tucumano · versión de trabajo, octubre de 2026</span>
+    <span>Cartografías del textil argentino · versión de trabajo, octubre de 2026</span>
     <a href="#top" data-scroll="top">Volver al inicio ↑</a>
   </div>
 </footer>
@@ -456,7 +445,7 @@ const DATA = __DATA__;
   function prizeBadges(r, foto) {
     if (!r.pz) return "";
     return r.pz.map((z) => {
-      const tip = [z.c, z.lk === "nom?" ? "El vínculo con la obra del catálogo está por confirmar" : "", z.lk === "sv" ? "Este premio no figura en el listado de expositoras" : ""].filter(Boolean).join(". ");
+      const tip = [z.c, z.lk === "nom?" ? "El vínculo con la obra del catálogo está por confirmar" : "", z.lk === "sv" ? "Este premio no figura en el listado de expositoras" : "", z.lk === "pen" ? "El premio todavía no está vinculado con una obra del catálogo" : ""].filter(Boolean).join(". ");
       return `<span class="prize" title="${esc(tip)}">${esc(z.t)}${z.m ? " · $" + z.m : ""}${z.lk === "nom?" ? " ≈" : ""}</span>` + (foto && z.foto ? ' <span class="dim">foto en el catálogo</span>' : "");
     }).join(" ");
   }
@@ -471,7 +460,7 @@ const DATA = __DATA__;
   function tsv(rows) {
     const head = ["Año", "Expositora", "Procedencia según el catálogo", "Lugar", "Zona", "Categoría", "Objeto", "Técnicas", "N.º de orden", "Fuera de concurso", "Creación de la autora", "Foto del álbum", "Premio", "Monto ($)", "Vínculo premio-obra"];
     const clean = (s) => String(s == null ? "" : s).replace(/[\t\r\n]+/g, " ").trim();
-    const lk = { ord: "por número de orden", nom: "por nombre", man: "decisión manual", "nom?": "a confirmar", sv: "sin obra en el listado" };
+    const lk = { ord: "por número de orden", nom: "por nombre", man: "decisión manual", "nom?": "a confirmar", sv: "sin obra en el listado", pen: "pendiente de vincular" };
     return [head].concat(rows.map((r) => [r.y, r.n, r.po, P[r.pl].n, ZON[r.z], r.c, r.o, r.tec.filter((t) => t !== "sin").map((t) => TEC[t]).join("; "), r.ord, r.fc ? "sí" : "", r.ca ? "sí" : "", r.fa || "",
       (r.pz || []).map((z) => z.t).join("; "), (r.pz || []).map((z) => z.m).join("; "), (r.pz || []).map((z) => lk[z.lk]).join("; ")].map(clean))).map((l) => l.join("\t")).join("\n");
   }
@@ -495,8 +484,7 @@ const DATA = __DATA__;
   L.control.attribution({ prefix: false, position: "bottomright" }).addAttribution("© Esri y proveedores").addTo(map);
   L.control.scale({ imperial: false, position: "bottomright", maxWidth: 110 }).addTo(map);
   // Mapa base Esri World Street Map, el mismo de `05b_mapa`. Carga aun con la página abierta
-  // como archivo local (tile.openstreetmap.org la bloquea por falta de Referer). En modo
-  // oscuro se invierte con un filtro (clase .osm).
+  // como archivo local (tile.openstreetmap.org la bloquea por falta de Referer).
   L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}", { maxZoom: 19, className: "osm" }).addTo(map);
   const flowLayer = L.layerGroup().addTo(map), dotLayer = L.layerGroup().addTo(map);
   map.on("click", () => { if (state.place) { state.place = null; render(); } });
@@ -693,7 +681,7 @@ const DATA = __DATA__;
       (Object.keys(tc).length ? `<p class="ln">${Object.keys(tc).sort((a, b) => tc[b] - tc[a]).map((t) => `<span class="tg">${esc(TEC[t])} · ${tc[t]}</span>`).join("")}</p>` : "") +
       years.map((y) => `<h3>${y}</h3><ul>` + l.filter((r) => r.y === y).sort((a, b) => (parseInt(a.ord) || 0) - (parseInt(b.ord) || 0)).map((r) => {
         const ord = r.ord && r.ord.length < 12 ? "N.º " + esc(r.ord) : "";
-        return `<li><span class="yr">${ord}</span><span title="${esc(what(r))}">${esc(clip(what(r), 160))}${marks(r)} ${prizeBadges(r, true)}${r.sv ? ' <span class="dim">Premio sin obra en el listado de expositoras</span>' : ""}</span></li>`;
+        return `<li><span class="yr">${ord}</span><span title="${esc(what(r))}">${esc(clip(what(r), 160))}${marks(r)} ${prizeBadges(r, true)}${r.sv ? ' <span class="dim">' + (r.pz[0].lk === "pen" ? "Premio todavía sin vincular con una obra del catálogo" : "Premio sin obra en el listado de expositoras") + '</span>' : ""}</span></li>`;
       }).join("") + "</ul>").join("") +
       `<div class="acts"><button type="button" class="btn" data-act="copyficha">Copiar obras</button></div>` +
       `<p class="foot">${nm.length ? "También figura como: " + esc(nm.join("; ")) + ". " : ""}La ficha muestra todas las obras de este nombre, sin aplicar los filtros.</p>`;
@@ -701,12 +689,12 @@ const DATA = __DATA__;
 
   /* ---------------------------------------------------------------- límites (dependen de los datos) */
   (function limits() {
-    const S = DATA.stats, sv = S.sin_obra, amb = S.dudosos;
+    const S = DATA.stats, fuera = S.fuera, pen = S.pendientes, amb = S.dudosos;
     const sin = R.filter((r) => r.tec[0] === "sin").length, cat = R.filter((r) => r.ts === "c" && r.tec[0] !== "sin").length;
     const unp = R.filter((r) => P[r.pl].lat == null).length, prv = R.filter((r) => P[r.pl].t === "prov").length;
     $("limits").innerHTML = [
       `Los nombres de expositoras están unificados con las fusiones revisadas por la dirección; quedan algunos pares por confirmar, así que una misma persona todavía puede figurar dos veces.`,
-      `Premios de 1915: ${S.premios - sv} de ${S.premios} están vinculados con su obra, en su mayoría por categoría y número de orden, confirmados con el nombre; ${amb} ${amb === 1 ? "está marcado" : "están marcados"} con ≈ porque el vínculo falta confirmar. ${sv} no tienen obra en el listado de expositoras y se muestran como obras aparte. Los premios de 1916 no están cargados.`,
+      `Premios de 1915: ${S.premios - fuera - pen} de ${S.premios} están vinculados con su obra, en su mayoría por categoría y número de orden, confirmados con el nombre${amb ? `; ${amb} ${amb === 1 ? "está marcado" : "están marcados"} con ≈ porque el vínculo falta confirmar` : ""}. ${fuera} figuran en el fallo pero no en el listado de expositoras (fuera de catálogo) y se muestran como obras aparte${pen ? `; ${pen} ${pen === 1 ? "está pendiente" : "están pendientes"} de vincular y también se muestran aparte` : ""}. Los premios de 1916 no están cargados.`,
       `Técnicas: se infieren con reglas a partir del texto del objeto y de la categoría. ${sin} de ${fmt(R.length)} obras quedan sin técnica indicada, y en ${cat} la técnica sale solo de la categoría. La clasificación debe ser validada por la dirección del proyecto.`,
       `Ubicación: ${fmt(unp)} obras proceden de lugares todavía sin coordenadas ni provincia, y ${fmt(prv)} se ubican solo por la provincia (de localidad desconocida o todavía sin ubicar). Las coordenadas se cargaron a mano y algunas son tentativas.`,
       `Los límites provinciales son los actuales, no los de 1915-1916.`,
@@ -718,8 +706,5 @@ const DATA = __DATA__;
   const h = (location.hash || "").replace("#", "");
   if (["map", "tec", "art"].includes(h)) state.view = h;
   render();
-  const rr = () => render();
-  window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", rr);
-  new MutationObserver(rr).observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
 })();
 </script>

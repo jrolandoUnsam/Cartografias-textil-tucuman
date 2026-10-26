@@ -1,6 +1,6 @@
 """Corre el pipeline completo: 01 -> 06.
 
-Uso:  python run_pipeline.py [desde]     (ej. `python run_pipeline.py 04`)
+Uso:  python run_pipeline.py [desde]     (ej. `python run_pipeline.py 04` o `04d`)
 
 El detalle de qué hace cada etapa está en `src/pipeline/README.md`.
 """
@@ -32,7 +32,9 @@ def main() -> None:
     sys.path.insert(0, str(PIPE))
     desde = sys.argv[1] if len(sys.argv) > 1 else "01"
     for etapa in ETAPAS:
-        if etapa[:2] < desde:
+        # se compara con tantos caracteres como tenga `desde`: "04" corre 04, 04b, …;
+        # "04d" arranca en 04d
+        if etapa[:len(desde)] < desde:
             continue
         print(f"\n=== {etapa} ===")
         runpy.run_path(str(PIPE / f"{etapa}.py"), run_name="__main__")

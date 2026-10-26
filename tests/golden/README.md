@@ -1,8 +1,8 @@
 # `tests/golden/` — copias congeladas de las salidas
 
-Qué es: una foto de `data/processed/tabla_normalizada.xlsx`,
-`vista_plana_tabla_consolidada.xlsx` y `data/interim/revision_duplicados.xlsx` en un
-momento dado. `06_verificar` compara las salidas actuales contra esta foto, hoja por
+Qué es: una foto de `data/processed/tabla_normalizada.xlsx` y
+`vista_plana_tabla_consolidada.xlsx` en un momento dado. (Hasta 2026-10-25 también
+guardaba `revision_duplicados.xlsx`, que es un insumo anotado y no una salida: se quitó.) `06_verificar` compara las salidas actuales contra esta foto, hoja por
 hoja, y reporta las celdas que difieren.
 
 **No es un test.** Un test afirma qué tiene que pasar; esto solo avisa si algo cambió.
@@ -30,18 +30,23 @@ Snapshot a mitad de normalización: las decisiones de `docs/tareas_pendientes.md
 no están aplicadas. Que `06_verificar` dé OK significa "nada cambió desde la última vez",
 no "los datos están bien".
 
-**Al 2026-09-18 el snapshot está atrasado y `06_verificar` falla siempre.** Se agregaron
-columnas a las salidas (`lat`/`lon` en `Ciudades`, por `04d_coordenadas`, y desde 2026-10-12
-`lat_provincia`/`lon_provincia`/`precision`/`nota`; `Imagen` en la
-vista plana, por `04c_vincular_imagenes`; desde 2026-10-12 también `Provincia`, `Lugar en
-el documento`, `ciudad_id` y las coordenadas de provincia, por `05_vista_plana`) y el golden nunca se re-congeló:
+**Estado al 2026-10-25: desactualizado, y por eso `06_verificar` falla siempre.** El
+golden es del 2026-09 y nunca se re-congeló: desde entonces las salidas sumaron
+columnas (`lat`/`lon` y la ubicación de provincia en `Ciudades`; las marcas de
+`04f` y `foto_album` en `Objetos`; la hoja `Premios` curada de `04e`; varias columnas en
+la vista plana) y cambiaron filas (fusiones de expositoras, índice de páginas corregido):
 
 ```
-tabla_normalizada.xlsx        [Ciudades] shape (78, 10) != golden (78, 4)
-vista_plana_consolidada.xlsx  [Objetos - Concursos Tucumán] shape (982, 15) != golden (982, 7)
+tabla_normalizada.xlsx        [Expositoras] shape (459, 3) != golden (472, 3)
+                              [Ciudades] shape (78, 10) != golden (78, 4)
+                              [Objetos] shape (982, 12) != golden (982, 9)
+                              [Premios] shape (103, 20) != golden (105, 17)
+                              [Paginas_Catalogo] 5 celdas distintas
+vista_plana_consolidada.xlsx  [Objetos - Concursos Tucumán] shape (982, 18) != golden (982, 7)
 ```
 
-El resto de las hojas da OK. Mientras siga así, esta carpeta no cumple su función: un
-cambio del pipeline que mueva una salida no se va a notar, porque la etapa 06 ya viene
-fallando. Re-congelarlo —en un commit propio, con estas dos líneas como justificación—
-es el primer paso antes de encarar las tareas de `docs/tareas_pendientes.md`.
+`Concursos`, `Categorías` y `Fuentes` dan OK. Re-congelarlo en un commit propio es una
+tarea pendiente (`docs/tareas_pendientes.md`).
+
+Mientras siga así, esta carpeta no cumple su función: un cambio del pipeline que mueva
+una salida no se va a notar, porque la etapa 06 ya viene fallando.

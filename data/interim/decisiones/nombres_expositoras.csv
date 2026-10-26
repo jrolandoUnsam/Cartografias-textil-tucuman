@@ -1,5 +1,23 @@
-persona_id,nombre,nota
-83,Hermanas dominicas [asilo],"revisión LM 2026-10-25, al unificar con 499"
-473,Alfonsa [Cuadrado] de Barceló,"revisión LM 2026-10-25, al unificar con 106"
-108,Mamerta Monteros [Escuela Sarmiento 1915],"revisión LM 2026-10-25, al unificar con 485: sólo en 1915 figura con la Escuela Sarmiento"
-47,Facunda Cerone [Coronel],"revisión LM 2026-10-25, al unificar con 476: el fallo dice Facunda Coronel"
+persona_id,nombre,nota,genero
+83,Hermanas dominicas [asilo],"revisión LM 2026-10-25, al unificar con 499",
+473,Alfonsa [Cuadrado] de Barceló,"revisión LM 2026-10-25, al unificar con 106",
+108,Mamerta Monteros [Escuela Sarmiento 1915],"revisión LM 2026-10-25, al unificar con 485: sólo en 1915 figura con la Escuela Sarmiento",
+47,Facunda Cerone [Coronel],"revisión LM 2026-10-25, al unificar con 476: el fallo dice Facunda Coronel",
+174,Celia de Jesús García,"auditoría 2026-10-25: partícula 'de' en minúscula, como en el resto de los nombres",
+447,Patricia de Robles,"auditoría 2026-10-25: partícula 'de' en minúscula, como en el resto de los nombres",
+359,Sra. de Puig,auditoría 2026-10-25: misma abreviatura que Sra. de Plaza y Sra. de Serrano; el catálogo escribe 'SEÑORA DE PUIG',
+48,Sta. Sandés,"auditoría 2026-10-25: abreviatura con punto, como Sta. Guerineau; el fallo dice 'Sta Santés' y el catálogo '….. Sandés'",
+328,Adela Catalán,auditoría 2026-10-25: tilde (LM: 'mantengamos las tildes'); el catálogo escribe en mayúsculas sin tilde,
+355,Clotilde Millán,auditoría 2026-10-25: tilde (LM: 'mantengamos las tildes'); el catálogo escribe en mayúsculas sin tilde,
+513,Juana Suárez,auditoría 2026-10-25: tilde (LM: 'mantengamos las tildes'); el catálogo escribe en mayúsculas sin tilde,
+324,María A. de Vázquez,auditoría 2026-10-25: tilde (LM: 'mantengamos las tildes'); el catálogo escribe en mayúsculas sin tilde,
+439,Limbania de Páez,auditoría 2026-10-25: tilde (LM: 'mantengamos las tildes'); el catálogo escribe en mayúsculas sin tilde,
+505,Teresa de J. Zárate,auditoría 2026-10-25: tilde (LM: 'mantengamos las tildes'); el catálogo escribe en mayúsculas sin tilde,
+511,Encarnación Gutiérrez,auditoría 2026-10-25: tilde (LM: 'mantengamos las tildes'); el catálogo escribe en mayúsculas sin tilde,
+515,Lucía Delissi,auditoría 2026-10-25: tilde (LM: 'mantengamos las tildes'); el catálogo escribe en mayúsculas sin tilde,
+517,Felipa Lizárraga,auditoría 2026-10-25: tilde (LM: 'mantengamos las tildes'); el catálogo escribe en mayúsculas sin tilde,
+272,Águeda de Vildoza,auditoría 2026-10-25: tilde (LM: 'mantengamos las tildes'); el catálogo imprime la mayúscula sin tilde,
+488,Ramona Córdoba,auditoría 2026-10-25: tilde (LM: 'mantengamos las tildes'); el catálogo escribe en mayúsculas sin tilde,
+353,Gumersinda Ordóñez,auditoría 2026-10-25: tilde (LM: 'mantengamos las tildes'); el catálogo escribe en mayúsculas sin tilde,
+185,,Julián 2026-10-25: Ataliva es nombre de varón,M
+520,Victoria Vidal,"Julián 2026-10-25: es Victoria Vidal, mujer",F

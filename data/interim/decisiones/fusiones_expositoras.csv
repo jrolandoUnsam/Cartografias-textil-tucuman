@@ -4,21 +4,21 @@ mantener,descartar,origen,nota
 426,16,decidida,Palmira Contreras — 'dejamos b'
 110,28,decidida,Rosario B. d'Empaire — 'vamos con B'
 52,139 261,decidida,Edelmira C. de Roldán — 'dejamos el A'
-284,54,decidida,Irene C. de Aybar — 'dejamos el b'
-82,514,decidida,Ángeles Cuadrado — 'dejamos a'
-323,152,decidida,Mercedes Ruiz de Arzuaga — 'dejamos b'
+284,54,decidida,Irene C. de Aybar — 'dejamos b'
+82,514,decidida,Ángeles Cuadrados — 'dejamos a'
+323,152,decidida,Mercedes Ruiz de Arzuaga — 'dejamos el b'
 302,191,decidida,María A. de Argañaraz — regla DE (aporta más info)
-219,285,decidida,Amelia N. de Plaza — 'dejamos el A'
-283,260,decidida,María Rueda — 'dejamos el b'
+219,285,decidida,Amelia N. de Plaza — 'dejamos a'
+283,260,decidida,María Rueda — 'dejamos con tilde'
 281,271,decidida,Escuela Profesional de Mujeres — 'dejamos b'
 492,286,decidida,Superiora del Colegio Santa Rosa de Viterbo — 'dejamos b'
 466,348,decidida,Julia M. Chirou — 'dejamos b'
 400,385,decidida,M. Luisa Roberti — 'dejamos b'
 409,460,decidida,María Abigail Gómez — 'Dejar A'
 333,354,decidida,Margarita García de Esparré — 'dejamos a'
-297,165,decidida,Lorenza de Díaz — 'dejamos b'
-102,450 117,decidida,Escuela y Hogar de Obreras de la Sociedad de Beneficencia — 'dejamos A'
-76,67,decidida,Arsenia F. Medina — 'dejamos A'
+297,165,decidida,Lorenza de Díaz — 'dejamos con tilde'
+102,450 117,decidida,Escuela y Hogar de Obreras de la Sociedad de Beneficencia — 'Dejar completo: Escuela y Hogar de Obreras de la Sociedad de Beneficencia'
+76,67,decidida,Arsenia F. Medina — 'Vamos con Arsenia F. Medina' (se conserva B)
 121,381 389,decidida,Tránsito Soaje de Ree — 'Dejar el que aporta más info A' (incluye devolver el objeto 689 que había quedado en 381)
 196,313 319,decidida,Concepción de Pérez — 'dejamos con tilde' (completa el movimiento parcial que ya habías hecho a mano)
 4,404,sin_lado,"Dalmira González Sorol — conservamos 4 (6 obj: 4,5,65,66,67,206), se le suma el objeto 710 que tenía la 404"
@@ -43,7 +43,7 @@ mantener,descartar,origen,nota
 252,59 316,cluster,Lorenza V. (de) Panei
 256,148,decidida,María Salinas con tilde
 301,187,decidida,Lugarda Juárez con tilde
-345,329,decidida,María Slopart de Llavi
+345,329,decidida,María Slopart de Llaví — 'dejamos con tilde'
 43,479,decidida,"Sara M. Sal — revisión LM 2026-10: ok unir; se conserva la versión más completa"
 344,338,decidida,"María Llaví de Puig — revisión LM 2026-10: ok unir; Ll. = Llaví, se conserva el apellido completo"
 114,56,decidida,"Rosa V. [de] Lescano — revisión LM 2026-10: ok unir, 'vamos con Lescano'; el 'de' viene del catálogo 1915 y del fallo"

@@ -1,7 +1,10 @@
 """Etapa 06 — Verificación.
 
-Compara las salidas de `data/processed/` y `data/interim/revision_duplicados.xlsx`
-contra las copias congeladas de `tests/golden/`, hoja por hoja, y reporta diferencias.
+Compara las salidas de `data/processed/` contra las copias congeladas de
+`tests/golden/`, hoja por hoja, y reporta diferencias.
+
+`data/interim/revision_duplicados.xlsx` no se compara: es un insumo anotado a mano
+(la semilla de `03_candidatos`), no algo que el pipeline escriba.
 """
 from __future__ import annotations
 
@@ -9,12 +12,11 @@ import sys
 
 import pandas as pd
 
-from _util import GOLDEN, INTERIM, PROCESSED
+from _util import GOLDEN, PROCESSED
 
 PARES = [
     (PROCESSED / "tabla_normalizada.xlsx", GOLDEN / "tabla_normalizada.xlsx"),
     (PROCESSED / "vista_plana_tabla_consolidada.xlsx", GOLDEN / "vista_plana_tabla_consolidada.xlsx"),
-    (INTERIM / "revision_duplicados.xlsx", GOLDEN / "revision_duplicados.xlsx"),
 ]
 
 

@@ -13,13 +13,19 @@ de qué página salió cada registro.
 | `anio` | int | año de realización |
 | `nombre` | texto | nombre del concurso |
 | `lugar` | texto | ciudad sede |
+| `fecha_decreto` | texto | fecha del decreto que lo convoca (AAAA-MM-DD o `s/d`) |
+| `fecha_inauguracion` | texto | inauguración de la exposición |
+| `fecha_fallo` | texto | fecha del fallo del jurado |
+| `sede` | texto | local de la exposición |
+| `organizacion` | texto | quién lo organizó (gobierno, comisión de damas) |
+| `notas_fechas` | texto | de qué fuente sale cada dato (prensa, Archivo Padilla) y sus contradicciones. Ver `docs/relevamiento_prensa_archivo.md` |
 
 ### Hoja `Expositoras` (458 filas)
 | campo | tipo | descripción |
 |---|---|---|
 | `persona_id` | int | identificador de persona / institución expositora |
 | `Nombre` | texto | nombre tal como se decidió normalizar |
-| `Género` | F / M | inferido del nombre; instituciones marcadas F por convención (revisar) |
+| `Género` | F / M | inferido del nombre (correcciones en `decisiones/nombres_expositoras.csv`); instituciones marcadas F por convención (revisar) |
 
 ### Hoja `Categorías` (24 filas)
 | campo | tipo | descripción |
@@ -34,7 +40,7 @@ de qué página salió cada registro.
 | `nombre_ciudad` | texto | localidad tal como figura en la fuente histórica |
 | `nombre_ciudad_hoy` | texto | topónimo actual equivalente. Sale de `decisiones/coordenadas_ciudades.csv` (lo pone `04d`) |
 | `nombre_provincia` | texto | provincia actual. Ídem |
-| `lat` / `lon` | float | punto de la ciudad. Ídem. 53 de 77 cargadas; el resto queda vacío (nombre ambiguo o desconocido) |
+| `lat` / `lon` | float | punto de la ciudad. Ídem. 61 de 77 cargadas; el resto queda vacío (nombre ambiguo o desconocido) |
 | `lat_provincia` / `lon_provincia` | float | punto de la capital de la provincia, para ubicar a nivel provincia lo que no tiene ciudad o no tiene punto seguro (pedido de Larisa, 2026-10). Ídem |
 | `precision` | texto | vacío = ubicación segura; `tentativa` si no lo es. Ídem |
 | `nota` | texto | por qué se decidió así (p. ej. `LM 9-10: …`). Ídem |
@@ -87,11 +93,11 @@ son filas.
 | `Vínculo` | texto | cómo se vinculó: `n.º, categoría y nombre`, `n.º y categoría`, `única obra de la expositora en la categoría`, `obra de la expositora con texto parecido` o `decisión a mano` |
 | `Nota` | texto | la decisión a mano (`premios_manual.csv`) o, si está pendiente, qué falta resolver |
 
-### Hoja `Fuentes` (4 filas)
+### Hoja `Fuentes` (6 filas)
 | campo | tipo | descripción |
 |---|---|---|
-| `fuente_id` | int | identificador del documento (1 = catálogo 1915, 2 = fallo del jurado 1915, 3 = catálogo 1916) |
-| `tipo` | texto | catálogo, fallo de jurado, … |
+| `fuente_id` | int | identificador del documento (1 = catálogo 1915, 2 = fallo del jurado 1915, 3 = catálogo 1916, 4 = diario El Orden, 5 = Archivo Padilla, 6 = nota de Páez de la Torre, 1986) |
+| `tipo` | texto | catálogo, fallo de jurado, prensa, archivo personal, … |
 | `descripcion` | texto | título del documento |
 | `anio` | int | año |
 | `repositorio` | texto | dónde se consultó |
@@ -150,7 +156,7 @@ para revisar a mano.
 |---|---|
 | `id_A`, `nombre_A` / `id_B`, `nombre_B` | los dos registros del par |
 | `score` | mayor ratio obtenido (0–100) |
-| `tipo` | `exacto_norm`, `alta`, `media`, `media (sin partículas)` |
+| `tipo` | `exacto_norm`, `alta`, `media`, `media (sin partículas)`, `compatible (inicial / palabra agregada)` |
 | `ciudades_A/B`, `misma_ciudad` | contexto geográfico de cada lado |
 | `concursos_A/B`, `n_obj_A/B`, `id_objetos_A/B` | contexto documental de cada lado |
 | `ya_fusionada` | el par ya está resuelto en `decisiones/fusiones_expositoras.csv` |
@@ -177,3 +183,21 @@ Las fusiones de expositoras que aplica `04_aplicar_dedup.py` (55 filas).
 | `descartar` | uno o más `persona_id` a fusionar, separados por espacio |
 | `origen` | `decidida` (el comentario dice qué lado queda), `sin_lado` (no lo dice; se conserva el lado con más objetos), `cluster` (grupo de 3+ ids) |
 | `nota` | el comentario de la revisión que originó la decisión |
+
+## `data/interim/decisiones/menciones_prensa.csv`
+
+Qué obras, expositoras y lugares de la base comenta la prensa de época (14 filas, armada
+a mano a partir de las hojas "no …" del crudo; ver `docs/relevamiento_prensa_archivo.md`).
+Hoy no la lee ninguna etapa del pipeline.
+
+| campo | descripción |
+|---|---|
+| `fuente_id` | → `Fuentes.fuente_id` |
+| `fecha` | fecha de la nota (AAAA-MM-DD) |
+| `titulo` | título de la nota |
+| `persona_id` | → `Expositoras.persona_id` (vacío si la nota habla de un lugar) |
+| `objeto_id` | → `Objetos.objeto_id`; varios separados por `;` si la nota no permite elegir entre dos |
+| `ciudad_id` | → `Ciudades.ciudad_id`, para menciones de lugares; varios separados por `;` |
+| `nivel` | `obra`, `persona` o `lugar`: a qué se puede atar la mención con seguridad |
+| `cita` | el pasaje, textual de la transcripción |
+| `nota` | cómo se identificó la obra o la persona, y dudas |

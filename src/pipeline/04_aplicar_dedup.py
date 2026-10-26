@@ -22,9 +22,11 @@ La columna `origen` dice de dónde sale la decisión:
   cluster   grupo de 3+ ids resuelto como una sola decisión, no par por par.
 
 Después de fusionar, `data/interim/decisiones/nombres_expositoras.csv` (persona_id,
-nombre, nota) fija el nombre con que queda una expositora, p. ej. la variante entre
-corchetes que acordamos con Larisa al unificar ("Facunda Cerone [Coronel]"). Se aplica
-antes de reapuntar los premios, así la hoja Premios ya muestra el nombre final.
+nombre, nota, genero) fija el nombre con que queda una expositora, p. ej. la variante entre
+corchetes que acordamos con Larisa al unificar ("Facunda Cerone [Coronel]"), y, si
+`genero` no está vacío, corrige el `Género` de la tabla manual (F / M). Un `nombre`
+vacío deja el nombre como está. Se aplica antes de reapuntar los premios, así la hoja
+Premios ya muestra el nombre final.
 
 Lo mismo que las expositoras, para ciudades, con
 `data/interim/decisiones/fusiones_ciudades.csv` (mismo formato): el mismo lugar cargado
@@ -39,6 +41,10 @@ lugares distintos ("CHACO": la Misión de Nueva Pompeya y Amelia Zunubate) se pa
 dos. Se crea la fila `ciudad_id_nueva` en `Ciudades` (provincia copiada del origen) y
 los objetos listados pasan a ella. Su ubicación va en `coordenadas_ciudades.csv`, como
 la de cualquier otra ciudad.
+
+Antes de todo, cada celda de texto de todas las hojas pasa por `limpiar_texto`
+(`_util.py`): sin espacios al principio ni al final y con uno solo entre palabras. La
+tabla manual no se toca; la limpieza vale desde esta etapa en adelante.
 
 Entrada : data/interim/tabla_normalizada_manual.xlsx   (export manual más reciente,
           con las revisiones de Larisa en la hoja Premios)
@@ -55,7 +61,7 @@ from dataclasses import dataclass
 
 import pandas as pd
 
-from _util import DECISIONES, INTERIM
+from _util import DECISIONES, INTERIM, limpiar_texto
 
 FUENTE = INTERIM / "tabla_normalizada_manual.xlsx"
 SALIDA = INTERIM / "tabla_normalizada_dedup.xlsx"
@@ -107,8 +113,12 @@ def renombrar(E: pd.DataFrame, ruta=NOMBRES_CSV) -> pd.DataFrame:
         fila = E["persona_id"] == pid
         if not fila.any():
             raise ValueError(f"{ruta.name}: persona_id {pid} no existe después de las fusiones")
-        print(f"  {pid}: {E.loc[fila, 'Nombre'].iloc[0]!r} -> {r['nombre']!r}")
-        E.loc[fila, "Nombre"] = r["nombre"]
+        if pd.notna(r["nombre"]):
+            print(f"  {pid}: {E.loc[fila, 'Nombre'].iloc[0]!r} -> {r['nombre']!r}")
+            E.loc[fila, "Nombre"] = r["nombre"]
+        if pd.notna(r.get("genero")):
+            print(f"  {pid}: género {E.loc[fila, 'Género'].iloc[0]} -> {r['genero']}")
+            E.loc[fila, "Género"] = r["genero"]
     return E
 
 
@@ -156,6 +166,15 @@ def separar_ciudades(C: pd.DataFrame, O: pd.DataFrame, ruta=SEPARACIONES_CSV):
 def main() -> None:
     xl = pd.ExcelFile(FUENTE)
     hojas = {s: xl.parse(s) for s in xl.sheet_names}
+    for s, df in hojas.items():
+        cambios = 0
+        for c in df.columns:
+            if df[c].dtype == object or pd.api.types.is_string_dtype(df[c]):
+                limpio = df[c].map(limpiar_texto)
+                cambios += int((df[c].notna() & (limpio != df[c])).sum())
+                df[c] = limpio
+        if cambios:
+            print(f"  {s}: {cambios} celdas con espacios de más")
     E, O = hojas["Expositoras"], hojas["Objetos"]
     ids = set(E["persona_id"])
 

@@ -9,22 +9,22 @@
 8,,Catamarca,,,-28.4696,-65.7852,,
 9,,Córdoba,,,-31.4201,-64.1888,,
 10,,Salta,,,-24.7821,-65.4232,,
-11,,,,,,,,
+11,San Miguel de Tucumán,Tucumán,-26.8304,-65.2038,-26.8304,-65.2038,,"Coordenadas de San Miguel de Tucumán, como Asilo Ciudad (26 y 79) (Julián 2026-10-25)"
 12,Banda del Río Salí,Tucumán,-26.834119766034306,-65.16539176432775,-26.8304,-65.2038,,
 13,Colalao del Valle,Tucumán,-26.362041479870303,-65.9570139297426,-26.8304,-65.2038,,
-14,,S/d,,,,,,
+14,,,,,,,,el catálogo no indica procedencia
 15,La Cocha,Tucumán,-27.768819368705635,-65.58602233340218,-26.8304,-65.2038,,
 16,Antofagasta de la Sierra,Catamarca,-26.06,-67.41,-28.4696,-65.7852,,"Ubicada en Antofagasta de la Sierra, hoy Catamarca, para el mapa (Julián 2026-10-25). El catálogo dice 'Antofagasta Salta' y el fallo 'Catamarca'; en 1915 la zona era el Territorio Nacional de Los Andes. Coordenada verificada por Julián"
 17,La Cocha,Tucumán,-27.768819368705635,-65.58602233340218,-26.8304,-65.2038,,
 18,Yacuchiri,Tucumán,-27.370247084592897,-65.2154275458708,-26.8304,-65.2038,,
-19,Simoca ?,Tucumán,,,-26.8304,-65.2038,,
+19,,Tucumán,,,-26.8304,-65.2038,,Los Mendoza: quizás en Simoca (sin confirmar); sin punto de ciudad
 20,La Florida,Tucumán,-26.820778471936574,-65.09534790440236,-26.8304,-65.2038,,
 21,Monteagudo,Tucumán,-27.5110096797826,-65.27780895113939,-26.8304,-65.2038,,
-22,Chicligasta,Tucumán,-27.434702337179967,-65.16300656024512,-26.8304,-65.2038,,
+22,Chicligasta,Tucumán,-27.434702337179967,-65.16300656024512,-26.8304,-65.2038,,"Julián 2026-10-25: queda esta coordenada, no la de LM 9-10 (67 km al oeste, zona de montaña)"
 23,Palominos,Tucumán,-27.461167764366174,-65.23449981573728,-26.8304,-65.2038,,
-24,Santa Rosa o Villa de Leales,Tucumán,-27.1943,-65.3096,-26.8304,-65.2038,tentativa,"LM 9-10: Villa de Leales (la ciudad más antigua), tentativo"
+24,Villa de Leales,Tucumán,-27.1943,-65.3096,-26.8304,-65.2038,tentativa,"LM 9-10: Villa de Leales (la ciudad más antigua), tentativo"
 25,Cafayate,Salta,-26.073204579107614,-65.97599133875704,-24.7821,-65.4232,,
-26,,Tucumán,-26.8304,-65.2038,-26.8304,-65.2038,,LM 9-10: coordenadas de San Miguel de Tucumán
+26,San Miguel de Tucumán,Tucumán,-26.8304,-65.2038,-26.8304,-65.2038,,LM 9-10: coordenadas de San Miguel de Tucumán
 27,,Jujuy,,,-24.1858,-65.2995,,
 28,Lules,Tucumán,-26.92553827167781,-65.33785021416045,-26.8304,-65.2038,,
 29,San Pedro de Colalao,Tucumán,-26.240195172743462,-65.49981205920878,-26.8304,-65.2038,,
@@ -37,29 +37,28 @@
 38,Taco Ralo,Tucumán,-27.835790632953756,-65.19449686596924,-26.8304,-65.2038,,
 39,Río Chico,Tucumán,-27.479586051285526,-65.62502678000573,-26.8304,-65.2038,,
 40,La Trinidad,Tucumán,-27.4000,-65.5167,-26.8304,-65.2038,,LM 9-10: coordenada corregida
-41,,Tucumán,-27.56667,-65.05000,-26.8304,-65.2038,,LM 9-10: coordenada cargada
+41,San Antonio de Quisca,Tucumán,-27.56667,-65.05000,-26.8304,-65.2038,,LM 9-10: coordenada cargada
 42,Niogasta,Tucumán,-27.52312649955564,-65.22648175012597,-26.8304,-65.2038,,
 43,Atahona,Tucumán,-27.416743759793057,-65.28821918184147,-26.8304,-65.2038,,
 44,Los Sandovales,Tucumán,-27.398061927613572,-65.34068623993062,-26.8304,-65.2038,,
-45,,Tucumán,-27.383,-65.267,-26.8304,-65.2038,,LM 9-10: coordenada cargada
+45,Las Lechuzas,Tucumán,-27.383,-65.267,-26.8304,-65.2038,,LM 9-10: coordenada cargada
 46,La Ensenada,Tucumán,-27.368096304068334,-65.31115089243588,-26.8304,-65.2038,,
 47,Ampata,Tucumán,-27.430681076534864,-65.24555311417254,-26.8304,-65.2038,,
 48,Graneros,Tucumán,-27.64848130468006,-65.44007022223863,-26.8304,-65.2038,,
 49,Belén,Catamarca,-27.65018980702781,-67.02636572940136,-28.4696,-65.7852,,
-50,,Santiago del Estero,,,-27.7951,-64.2615,,"fusionada en la ciudad 5 (fusiones_ciudades.csv, LM 2026-10-25); esta fila ya no se usa"
 51,Cafayate,Salta,-26.072984058275928,-65.97604632212621,-24.7821,-65.4232,,
 52,La Madrid,Tucumán,-27.645892524659146,-65.24742254530331,-26.8304,-65.2038,,
 53,,Chaco,,,-27.4511,-58.9865,,"LM 9-10: Marcaría para el envío INDIA DE LA MISIÓN FRANCISCANA DE NUEVA POMPEYA −24,93; −61,48 (misión franciscana de nueva pompeya, chaco) y Resistencia como referencia general al territorio nacional para el caso del envío de AMELIA ZUNUBATE −27,4511; −58,9865; el envío de la Misión de Nueva Pompeya pasó a la ciudad 82 (separaciones_ciudades.csv); acá queda Amelia Zunubate, con Resistencia como punto de provincia"
 54,El Tobar,Tucumán,-27.53333,-65.06667,-26.8304,-65.2038,,LM 9-10: coordenada corregida
 55,Los Trejos,Tucumán,-27.488549516415397,-65.35837616702516,-26.8304,-65.2038,,
-56,Los Perez,Tucumán,-27.236538806669387,-65.38189745063092,-26.8304,-65.2038,,
+56,Los Pérez,Tucumán,-27.236538806669387,-65.38189745063092,-26.8304,-65.2038,,
 57,San José,Tucumán,-26.79654948959901,-65.26119927428856,-26.8304,-65.2038,,
 58,Bella Vista,Tucumán,-27.029318334348453,-65.30326038582962,-26.8304,-65.2038,,
 59,Concepción,Tucumán,-27.345986476137266,-65.5928809376399,-26.8304,-65.2038,,
 60,,,,,,,,
 61,Famaillá,Tucumán,-27.054320220637845,-65.40252455347067,-26.8304,-65.2038,,
 64,Ranchillos,Tucumán,-26.955738618194573,-65.04703395283748,-26.8304,-65.2038,,
-65,DELFIN GALLO o Ex Ingenio Luján,Tucumán,-26.8489,-65.1311,-26.8304,-65.2038,,LM 9-10: ex ingenio Luján
+65,Delfín Gallo,Tucumán,-26.8489,-65.1311,-26.8304,-65.2038,,LM 9-10: ex ingenio Luján
 66,Cerrillos,Salta,-24.904024191522783,-65.48694641581035,-24.7821,-65.4232,,
 67,Medinas,Tucumán,-27.421381467471008,-65.5330838021461,-26.8304,-65.2038,,
 68,Ingenio Lastenia,Tucumán,-26.86886211750726,-65.1519665157932,-26.8304,-65.2038,,
@@ -70,10 +69,10 @@
 73,Orán,,,,,,,LM 9-10: puede ser Orán de Tucumán o de Salta; lugar y provincia sin definir
 74,Medinas,Tucumán,-27.42028050718691,-65.53332242564282,-26.8304,-65.2038,,
 75,Banda del Río Salí,Tucumán,-26.8342019678845,-65.16527739409442,-26.8304,-65.2038,,"LM 9-10: Ingenio Concepción (Banda del Río Salí), propiedad de Alfredo Guzmán"
-76,,tucuman o cordoba,,,,,,
+76,,,,,,,,provincia sin definir: Tucumán o Córdoba
 77,Acheral,Tucumán,-27.120085406899566,-65.46893220495674,-26.8304,-65.2038,,
 78,,,,,,,,LM 9-10: provincia sin definir
-79,,Tucumán,-26.8304,-65.2038,-26.8304,-65.2038,,LM 9-10: coordenadas de San Miguel de Tucumán
+79,San Miguel de Tucumán,Tucumán,-26.8304,-65.2038,-26.8304,-65.2038,,LM 9-10: coordenadas de San Miguel de Tucumán
 80,Los Gucheas,Tucumán,-27.399480526168492,-65.57344049162205,-26.8304,-65.2038,,
 81,,,,,,,,LM 9-10: provincia sin definir
 82,Nueva Pompeya,Chaco,-24.93,-61.48,-27.4511,-58.9865,,"LM 9-10: Misión Franciscana de Nueva Pompeya (Chaco), −24,93; −61,48"

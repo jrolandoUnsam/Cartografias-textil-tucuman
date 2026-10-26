@@ -13,7 +13,7 @@ from __future__ import annotations
 
 import pandas as pd
 
-from _util import DECISIONES, INTERIM, RAW_XLSX, separar_orden_objeto
+from _util import DECISIONES, INTERIM, RAW_XLSX, limpiar_texto, separar_orden_objeto
 
 OVERRIDE = DECISIONES / "objetos_texto_override.csv"
 
@@ -23,7 +23,7 @@ COLS = ["fuente", "concurso_id", "nombre_raw", "ciudad_raw", "categoria_raw", "o
 def _norm(x) -> str:
     if x is None or (isinstance(x, float) and pd.isna(x)):
         return ""
-    return str(x).strip()
+    return limpiar_texto(str(x))
 
 
 def ingesta_1915(xls: pd.ExcelFile) -> pd.DataFrame:

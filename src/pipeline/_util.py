@@ -11,6 +11,19 @@ DECISIONES = INTERIM / "decisiones"
 PROCESSED = RAIZ / "data" / "processed"
 GOLDEN = RAIZ / "tests" / "golden"
 
+# Instituciones (asilos, escuelas, congregaciones…), por el comienzo del nombre.
+# "Mamerta Monteros [Escuela Sarmiento 1915]" es una persona de una escuela, no la
+# escuela. Única definición del proyecto: la usan el explorador y el EDA.
+INSTITUCION = r"^(?:asilo|escuela|hermanas|colegio|superiora|sociedad|patronato|taller|instituto)\b"
+
+
+def limpiar_texto(v):
+    """Saca los espacios del principio y del final y deja uno solo entre palabras
+    ("jergón " -> "jergón", "sobrecama  y almohadón" -> "sobrecama y almohadón").
+    Lo que no es texto pasa igual."""
+    return re.sub(r"\s+", " ", v).strip() if isinstance(v, str) else v
+
+
 def separar_orden_objeto(orden_celda: str, objeto_celda: str) -> list[tuple[int | None, str]]:
     """Separa filas 'explotadas' del catálogo de 1916.
 

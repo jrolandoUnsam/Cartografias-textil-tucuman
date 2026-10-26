@@ -24,8 +24,9 @@ Las técnicas se infieren del texto del objeto con las reglas de `REGLAS_TECNICA
 no hay ninguna, se usa la de la categoría (`ts = "c"`); si tampoco, queda "sin técnica
 indicada" (`ts = "n"`).
 
-Lugares: un círculo por punto (`lat`/`lon` redondeados a ~100 m), así "La Cocha" y
-"Escuela de la Cocha" o "Asilo Ciudad" y San Miguel van juntos. Lo que no tiene punto
+Lugares: un círculo por localidad actual (`nombre_ciudad_hoy` + provincia), como en
+`05b_mapa`: "La Cocha" y "Escuela de la Cocha", o "Asilo Ciudad" y San Miguel, van
+juntos; el punto es el de la fila con más obras. Lo que no tiene punto
 de ciudad pero sí provincia se agrupa en un lugar "sólo provincia" en la capital, como
 en `05b_mapa`. Lo que no tiene ninguno de los dos queda sin coordenadas: se lista en
 la matriz y en las fichas, no en el mapa.
@@ -44,7 +45,7 @@ from collections import Counter
 import pandas as pd
 from unidecode import unidecode
 
-from _util import DECISIONES, INTERIM, PROCESSED, RAIZ
+from _util import DECISIONES, INSTITUCION, INTERIM, PROCESSED, RAIZ
 
 FUENTE = PROCESSED / "tabla_normalizada.xlsx"
 CRUDOS = INTERIM / "objetos_crudos.csv"
@@ -77,10 +78,6 @@ REGLAS_TECNICA = {
     "telar": r"telar",
     "pala": r"\ba pala\b|baston",
 }
-
-# Instituciones: por el comienzo del nombre. "Mamerta Monteros -Escuela Sarmiento" es
-# una persona de una escuela, no la escuela.
-INSTITUCION = r"^(asilo|escuela|hermanas|colegio|superiora|sociedad|patronato|taller|instituto)\b"
 
 # Sección del fallo de 1915 -> tipo de obra, para los premios sin objeto en el catálogo
 FAM_SECCION = {"frazada": "tej", "poncho": "tej", "sendero": "tej", "alforja": "tej",
@@ -128,9 +125,8 @@ def lugares(C: pd.DataFrame, zona: dict[int, str]) -> tuple[dict, dict[int, str]
     C["localidad"] = C["nombre_ciudad_hoy"].fillna(C["nombre_ciudad"])
     places, de_ciudad = {}, {}
 
-    con_punto = C[C["lat"].notna()].copy()
-    con_punto["pt"] = list(zip(con_punto["lat"].round(3), con_punto["lon"].round(3)))
-    for pt, g in con_punto.groupby("pt", sort=False):
+    con_punto = C[C["lat"].notna()]
+    for _, g in con_punto.groupby(["localidad", "nombre_provincia"], sort=False, dropna=False):
         g = g.sort_values("n_obj", ascending=False)
         top = g.iloc[0]
         k = slug(top["localidad"]) or f"c{top.ciudad_id}"
@@ -209,9 +205,10 @@ def premios(P: pd.DataFrame) -> list[dict]:
         m = re.search(r"\d+", pr)
         ids = [int(float(x)) for x in re.split(r"[;,]", texto(r["objeto_id"])) if x.strip()]
         vinculo = clave(r["Vínculo"])
+        pendiente = texto(r["Estado"]) == "pendiente"
         if not ids:
-            lk = "sv"
-        elif texto(r["Estado"]) == "pendiente":
+            lk = "pen" if pendiente else "sv"  # pendiente de vincular / fuera de catálogo
+        elif pendiente:
             lk = "nom?"
         elif vinculo.startswith("n.o"):
             lk = "ord"
@@ -292,7 +289,7 @@ def datos() -> dict:
                 if oid in por_obj:
                     por_obj[oid].setdefault("pz", []).append(z["pz"])
                 else:
-                    print(f"  ⚠ premio fila {z['fila']}: objeto_id {oid} no está en Objetos")
+                    print(f"  ⚠ premio_id {z['fila']}: objeto_id {oid} no está en Objetos")
             continue
         sin_obra += 1
         recs.append(obra_sin_catalogo(z, recs, nombre, places, de_ciudad, C, zona))
@@ -301,8 +298,9 @@ def datos() -> dict:
     cuenta = Counter()
     for r in recs:
         cuenta[r["pk"]] += 10 * len(r.get("pz", [])) + 1
-    stats = {"premios": len(lista), "sin_obra": sin_obra,
-             "dudosos": sum(z["pz"]["lk"] == "nom?" for z in lista)}
+    lks = Counter(z["pz"]["lk"] for z in lista)
+    stats = {"premios": len(lista), "sin_obra": sin_obra, "fuera": lks["sv"],
+             "pendientes": lks["pen"], "dudosos": lks["nom?"]}
     return {"places": places, "fam": FAM, "tec": TEC, "zon": ZON, "recs": recs,
             "sede": sede, "person0": cuenta.most_common(1)[0][0], "stats": stats}
 
