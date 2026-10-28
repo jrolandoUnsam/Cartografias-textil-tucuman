@@ -206,6 +206,44 @@ h2 { font-family: var(--serif); font-weight: 600; font-size: 1.5rem; line-height
 .ficha .foot { margin: 1.4rem 0 0; font-size: 0.8rem; color: var(--ink2); }
 .ficha .acts { margin-top: 1rem; }
 
+/* análisis */
+.v-ana { overflow-y: auto; padding: clamp(1rem, 2vw, 1.7rem); display: flex; flex-direction: column; gap: 2.2rem; }
+.v-ana > * { flex: none; }
+.ana-bar { display: flex; flex-wrap: wrap; align-items: center; gap: 0.6rem 1.2rem; }
+.ana-bar .base { margin: 0; font-size: 0.82rem; color: var(--ink2); }
+.ana-sec { border-top: 1px solid var(--rule); padding-top: 1.3rem; }
+.ana-sec h3 { font-family: var(--serif); font-size: 1.3rem; font-weight: 600; margin: 0 0 0.25rem; }
+.ana-sec .mxnote { margin: 0 0 0.9rem; }
+.ana-sec .sel { display: inline-flex; margin-bottom: 0.9rem; }
+.finds { margin: 0 0 1rem; padding-left: 1.1rem; font-size: 0.88rem; display: flex; flex-direction: column; gap: 0.3rem; max-width: 80ch; }
+.lg { display: flex; flex-wrap: wrap; gap: 0.3rem 1.3rem; font-size: 0.78rem; color: var(--ink2); margin-bottom: 0.4rem; }
+.lg i { display: inline-block; width: 0.8rem; height: 0.5rem; border-radius: 2px; margin-right: 0.35rem; }
+.lg i.a, .bar.a { background: var(--indigo); }
+.lg i.b, .bar.b { background: var(--gold); }
+.dr { display: grid; grid-template-columns: minmax(9rem, 15rem) minmax(0, 1fr) 8.5rem; gap: 0.5rem 1rem; align-items: center; padding: 0.4rem 0; border-top: 1px solid var(--rule); font-size: 0.86rem; }
+.dr .bars { display: flex; flex-direction: column; gap: 3px; padding-right: 6.5rem; }
+.bar { position: relative; height: 0.55rem; border-radius: 3px; min-width: 2px; }
+.bar span { position: absolute; left: 100%; top: 50%; margin-left: 0.4rem; transform: translateY(-50%); font-size: 0.72rem; color: var(--ink2); white-space: nowrap; font-variant-numeric: tabular-nums; }
+.dl { text-align: right; font-variant-numeric: tabular-nums; color: var(--ink2); }
+.dl.sig { color: var(--ink); font-weight: 600; }
+.ch { font-size: 0.78rem; line-height: 1.2; padding: 0 0.2rem 0.4rem; text-align: center; }
+.ch small { display: block; font-size: 0.7rem; color: var(--ink2); }
+.lc { height: 3rem; border-radius: 0.65rem; display: flex; flex-direction: column; align-items: center; justify-content: center; font-weight: 600; font-variant-numeric: tabular-nums; line-height: 1.15; }
+.lc small { font-weight: 400; font-size: 0.68rem; opacity: 0.85; }
+.lc.sig { box-shadow: 0 0 0 2px var(--ink); }
+.lc.thin { opacity: 0.55; }
+.lc.zero { background: color-mix(in srgb, var(--chip) 55%, transparent); color: var(--ink2); font-weight: 400; }
+.scale i.dv { background: linear-gradient(90deg, color-mix(in srgb, var(--gold) 80%, var(--card)), var(--card), color-mix(in srgb, var(--indigo) 82%, var(--card))); border: 1px solid var(--rule); }
+.iv { position: relative; height: 1rem; }
+.iv .rng { position: absolute; top: 0.35rem; height: 0.3rem; border-radius: 2px; background: color-mix(in srgb, var(--madder) 35%, var(--card)); }
+.iv .pt { position: absolute; top: 0.1rem; width: 0.8rem; height: 0.8rem; margin-left: -0.4rem; border-radius: 50%; background: var(--madder); }
+.iv .ov { position: absolute; top: 0; bottom: 0; width: 1px; background: var(--ink2); }
+.pairs { width: 100%; border-collapse: collapse; font-size: 0.86rem; font-variant-numeric: tabular-nums; }
+.pairs th, .pairs td { text-align: right; padding: 0.4rem 0.6rem; border-top: 1px solid var(--rule); }
+.pairs th:first-child, .pairs td:first-child { text-align: left; padding-left: 0; }
+.pairs thead th { border-top: 0; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink2); }
+.caveat { margin: 1rem 0 0; font-size: 0.8rem; color: var(--ink2); max-width: 80ch; }
+
 /* fuentes y método */
 .metodo { border-top: 1px solid var(--rule); background: color-mix(in srgb, var(--chip) 45%, var(--paper)); padding: clamp(2.2rem, 5vw, 4rem) var(--gut); }
 .m-in { max-width: var(--wrap); margin: 0 auto; }
@@ -249,6 +287,9 @@ h2 { font-family: var(--serif); font-weight: 600; font-size: 1.5rem; line-height
   .ficha { overflow: visible; }
   .rows li { grid-template-columns: 1fr; }
   .maptools { left: 3.6rem; }
+  .v-ana { overflow: visible; }
+  .dr { grid-template-columns: 1fr; }
+  .dl { text-align: left; }
   .hint { display: none; }
   .legend { font-size: 0.7rem; padding: 0.45rem 0.6rem; }
 }
@@ -289,6 +330,7 @@ h2 { font-family: var(--serif); font-weight: 600; font-size: 1.5rem; line-height
       <button type="button" role="tab" id="tab-map" data-view="map" aria-selected="true" aria-controls="view-map">Mapa</button>
       <button type="button" role="tab" id="tab-tec" data-view="tec" aria-selected="false" aria-controls="view-tec">Técnicas por zona</button>
       <button type="button" role="tab" id="tab-art" data-view="art" aria-selected="false" aria-controls="view-art">Expositoras</button>
+      <button type="button" role="tab" id="tab-ana" data-view="ana" aria-selected="false" aria-controls="view-ana">Análisis</button>
     </div>
     <a class="navlink" href="#metodo" data-scroll="metodo">Fuentes y método</a>
   </div>
@@ -335,6 +377,56 @@ h2 { font-family: var(--serif); font-weight: 600; font-size: 1.5rem; line-height
   <section class="view v-art" id="view-art" role="tabpanel" aria-labelledby="tab-art" hidden>
     <div class="card plist" id="plist"></div>
     <div class="card ficha" id="ficha" aria-live="polite"></div>
+  </section>
+
+  <section class="view card v-ana" id="view-ana" role="tabpanel" aria-labelledby="tab-ana" hidden>
+    <div class="tec-head">
+      <div>
+        <h2>Análisis: técnicas, zonas y años</h2>
+        <p class="mxnote">Lectura estadística de la base. Los filtros de tipo de obra y búsqueda se aplican; el año, la técnica, la zona y las premiadas se comparan dentro de cada panel. Son indicios para orientar la investigación: las técnicas se infieren del texto del catálogo y las zonas son una propuesta provisoria.</p>
+      </div>
+    </div>
+    <div class="ana-bar">
+      <label class="tool"><input type="checkbox" id="a-exp"> Solo técnica mencionada en el texto del objeto</label>
+      <p class="base" id="a-base"></p>
+    </div>
+
+    <div class="ana-sec">
+      <h3>Del concurso de 1915 al de 1916</h3>
+      <p class="mxnote">Porcentaje de las obras con técnica que corresponde a cada técnica, en cada año. El concurso de 1916 fue interprovincial, así que parte del cambio refleja a quién se convocó, no una moda.</p>
+      <label class="sel" id="s-azona"><span>Zona</span><div class="box"><select id="a-zona"></select></div></label>
+      <div id="a-ev"></div>
+    </div>
+
+    <div class="ana-sec">
+      <h3>De dónde venían las obras</h3>
+      <p class="mxnote">Porcentaje de las obras del catálogo que corresponde a cada zona, en cada año.</p>
+      <div id="a-comp"></div>
+    </div>
+
+    <div class="ana-sec">
+      <h3>Qué técnica caracteriza a cada zona</h3>
+      <p class="mxnote">Cada celda compara el peso de la técnica en la zona con su peso en el total: ×2 significa que aparece el doble de lo esperado si la técnica se repartiera parejo. Las celdas con borde son las que no se explican por azar (residuo ≥ 2) y tienen muestra suficiente.</p>
+      <label class="sel" id="s-ayear"><span>Año</span><div class="box"><select id="a-year"><option value="both">1915 y 1916</option><option value="1915">Solo 1915</option><option value="1916">Solo 1916</option></select></div></label>
+      <ul class="finds" id="a-finds"></ul>
+      <div class="scale" aria-hidden="true">menos de lo esperado <i class="dv"></i> más de lo esperado</div>
+      <div class="mxwrap" id="a-lift"></div>
+    </div>
+
+    <div class="ana-sec">
+      <h3>Qué técnicas aparecen juntas</h3>
+      <p class="mxnote">Pares de técnicas que se mencionan en una misma obra. «Lift» mayor que 1 indica que se combinan más de lo esperado por separado. Refleja cómo se redactó el catálogo («randa con encaje»), no solo cómo se tejía.</p>
+      <div id="a-pairs"></div>
+    </div>
+
+    <div class="ana-sec">
+      <h3>Qué tan premiadas fueron</h3>
+      <p class="mxnote">Solo 1915 (los premios de 1916 no están cargados) y solo obras que compitieron. El punto es la tasa de obras premiadas y la barra, su intervalo al 95 %: cuanto más larga, menos obras sostienen la cifra. La línea gris es el promedio del conjunto; una barra que no la cruza sugiere una diferencia real.</p>
+      <h4 class="eyebrow" style="margin:0.4rem 0">Por técnica</h4>
+      <div id="a-rt"></div>
+      <h4 class="eyebrow" style="margin:1.4rem 0 0.4rem">Por zona</h4>
+      <div id="a-rz"></div>
+    </div>
   </section>
 </section>
 
@@ -415,7 +507,7 @@ const DATA = __DATA__;
   const fmt = (n) => n.toLocaleString("es-AR");
   const plural = (n, s, p) => fmt(n) + " " + (n === 1 ? s : p);
   const clip = (s, n) => (s.length > n ? s.slice(0, n - 1).trimEnd() + "…" : s);
-  const ZORD = Object.keys(ZON), SOFT = ["encrand", "bordesh", "sin"];
+  const ZORD = Object.keys(ZON), SOFT = ["encrand", "bordesh", "sin"], VIEWS = ["map", "tec", "art", "ana"];
 
   R.forEach((r) => { r._s = strip([r.n, r.nv, r.c, r.o, r.po].join(" ")); });
   const byPk = new Map();
@@ -425,12 +517,16 @@ const DATA = __DATA__;
     view: "map", year: "both", prize: false, fam: "", tec: "", zona: "", q: "", flows: false, prov: true,
     place: null, person: byPk.has(DATA.person0) ? DATA.person0 : null,
     cell: { t: "randa", z: "tcs" }, more: false, moreRes: false, morePeople: false,
+    explicit: false, anaZona: "", anaYear: "both",
   };
+  // lo que va en la URL (#clave=valor&...) para poder compartir un enlace a una consulta
+  const HASHED = ["view", "year", "prize", "fam", "tec", "zona", "q", "explicit", "anaZona", "anaYear", "person"];
+  const DEFAULTS = Object.fromEntries(HASHED.map((k) => [k, state[k]]));
   let toks = [], lastList = [];
 
-  function match(r, noTZ) {
-    if (state.year !== "both" && r.y !== +state.year) return false;
-    if (state.prize && !r.pz) return false;
+  function match(r, noTZ, noYear) {
+    if (!noYear && state.year !== "both" && r.y !== +state.year) return false;
+    if (state.prize && !r.pz && !noYear) return false;  // noYear solo lo pide el análisis, que compara premiadas con no premiadas
     if (state.fam && r.f !== state.fam) return false;
     if (!noTZ) {
       if (state.tec && !r.tec.includes(state.tec)) return false;
@@ -494,6 +590,7 @@ const DATA = __DATA__;
     const tc = {}, zc = {}, fc = {};
     R.forEach((r) => { zc[r.z] = (zc[r.z] || 0) + 1; fc[r.f] = (fc[r.f] || 0) + 1; r.tec.forEach((t) => (tc[t] = (tc[t] || 0) + 1)); });
     const tk = Object.keys(TEC).filter((t) => tc[t]).sort((a, b) => (SOFT.includes(a) - SOFT.includes(b)) || (tc[b] - tc[a]));
+    $("a-zona").innerHTML = '<option value="">Todas las zonas</option>' + ZORD.filter((z) => zc[z]).map((z) => `<option value="${z}">${esc(ZON[z])}</option>`).join("");
     $("f-tec").innerHTML = '<option value="">Todas</option>' + tk.map((t) => `<option value="${t}">${esc(TEC[t])} (${tc[t]})</option>`).join("");
     $("f-zona").innerHTML = '<option value="">Todas</option>' + ZORD.filter((z) => zc[z]).map((z) => `<option value="${z}">${esc(ZON[z])} (${zc[z]})</option>`).join("");
     $("f-fam").innerHTML = '<option value="">Todos</option>' + Object.entries(FAM).filter(([k]) => fc[k]).map(([k, v]) => `<option value="${k}">${esc(v)} (${fc[k]})</option>`).join("");
@@ -502,8 +599,9 @@ const DATA = __DATA__;
     $("f-prize").value = state.prize ? "yes" : "all"; $("f-tec").value = state.tec; $("f-zona").value = state.zona; $("f-fam").value = state.fam; $("f-year").value = state.year;
     const dflt = { prize: !state.prize, tec: !state.tec, fam: !state.fam, zona: !state.zona, year: state.year === "both" };
     Object.keys(dflt).forEach((k) => $("s-" + k).classList.toggle("on", !dflt[k]));
-    const tz = state.view === "tec";
-    ["tec", "zona"].forEach((k) => { $("f-" + k).disabled = tz; $("s-" + k).classList.toggle("off", tz); $("s-" + k).title = tz ? "En esta vista son las filas y las columnas" : ""; });
+    const tz = state.view === "tec" || state.view === "ana", an = state.view === "ana";
+    ["tec", "zona"].forEach((k) => { $("f-" + k).disabled = tz; $("s-" + k).classList.toggle("off", tz); $("s-" + k).title = tz ? "En esta vista se comparan dentro de cada panel" : ""; });
+    [["year", "En esta vista se comparan los dos años"], ["prize", "En esta vista se comparan las premiadas con las demás"]].forEach(([k, t]) => { $("f-" + k).disabled = an; $("s-" + k).classList.toggle("off", an); $("s-" + k).title = an ? t : ""; });
     $("reset").hidden = Object.values(dflt).every(Boolean) && !state.q;
   }
   $("f-prize").onchange = (e) => { state.prize = e.target.value === "yes"; resetPaging(); render(); };
@@ -512,6 +610,9 @@ const DATA = __DATA__;
   $("reset").onclick = () => { state.prize = false; state.tec = ""; state.zona = ""; state.fam = ""; state.year = "both"; state.q = ""; $("q").value = ""; resetPaging(); render(); };
   $("flows").onchange = () => { state.flows = $("flows").checked; render(); };
   $("prov").onchange = () => { state.prov = $("prov").checked; render(); };
+  $("a-exp").onchange = () => { state.explicit = $("a-exp").checked; render(); };
+  $("a-zona").onchange = (e) => { state.anaZona = e.target.value; render(); };
+  $("a-year").onchange = (e) => { state.anaYear = e.target.value; render(); };
   function resetPaging() { state.more = false; state.moreRes = false; state.morePeople = false; }
 
   document.addEventListener("click", (e) => {
@@ -544,7 +645,24 @@ const DATA = __DATA__;
     if (e.key === "ArrowRight") j = (i + 1) % t.length; else if (e.key === "ArrowLeft") j = (i - 1 + t.length) % t.length;
     if (j != null) { e.preventDefault(); t[j].focus(); setView(t[j].dataset.view); }
   });
-  function setView(v) { state.view = v; try { history.replaceState(null, "", "#" + v); } catch (e) { /* sin historial */ } render(); }
+  function setView(v) { state.view = v; render(); }
+  function writeHash() {
+    const p = new URLSearchParams();
+    HASHED.forEach((k) => { if (state[k] !== DEFAULTS[k]) p.set(k, state[k] === true ? "1" : state[k]); });
+    try { history.replaceState(null, "", p.toString() ? "#" + p : location.pathname + location.search); } catch (e) { /* sin historial */ }
+  }
+  function readHash() {
+    const h = (location.hash || "").slice(1), p = new URLSearchParams(h);
+    if (VIEWS.includes(h)) { state.view = h; return; }  // enlaces viejos: #map, #tec, #art
+    const ok = { view: (v) => VIEWS.includes(v), year: (v) => ["both", "1915", "1916"].includes(v), anaYear: (v) => ["both", "1915", "1916"].includes(v),
+      fam: (v) => v in FAM, tec: (v) => v in TEC, zona: (v) => v in ZON, anaZona: (v) => v in ZON, person: (v) => byPk.has(v) };
+    HASHED.forEach((k) => {
+      if (!p.has(k)) return;
+      const v = p.get(k);
+      if (typeof DEFAULTS[k] === "boolean") state[k] = v === "1"; else if (!ok[k] || ok[k](v)) state[k] = v;
+    });
+    $("q").value = state.q;
+  }
   document.addEventListener("keydown", (e) => { if (e.key === "Escape" && state.place) { state.place = null; render(); } });
   const ask = $("ask"), mq = window.matchMedia("(min-width: 981px)");
   ask.open = mq.matches; mq.addEventListener("change", () => { ask.open = mq.matches; });
@@ -554,16 +672,17 @@ const DATA = __DATA__;
   function render() {
     toks = strip(state.q).split(/\s+/).filter(Boolean);
     syncControls();
-    ["map", "tec", "art"].forEach((v) => {
+    writeHash();
+    VIEWS.forEach((v) => {
       $("view-" + v).hidden = state.view !== v;
       const t = $("tab-" + v); t.setAttribute("aria-selected", state.view === v); t.tabIndex = state.view === v ? 0 : -1;
     });
-    const rs = R.filter((r) => match(r, state.view === "tec"));
+    const rs = R.filter((r) => match(r, state.view === "tec" || state.view === "ana", state.view === "ana"));
     $("strip").innerHTML = `<span><span class="n">${fmt(rs.length)}</span> <span class="u">obras</span></span>` +
       `<span><span class="n p">${fmt(nPrized(rs))}</span> <span class="u">premiadas</span></span>` +
       `<span><span class="n">${fmt(new Set(rs.map((r) => r.pk)).size)}</span> <span class="u">nombres de expositoras</span></span>` +
       (state.prize && state.year !== "1915" ? '<p class="warn">Los premios de 1916 todavía no están cargados en la planilla.</p>' : "");
-    if (state.view === "map") renderMap(rs); else if (state.view === "tec") renderMatrix(rs); else renderPeople(rs);
+    if (state.view === "map") renderMap(rs); else if (state.view === "tec") renderMatrix(rs); else if (state.view === "ana") renderAnalysis(rs); else renderPeople(rs);
   }
 
   /* ---------------------------------------------------------------- mapa */
@@ -659,6 +778,101 @@ const DATA = __DATA__;
       (list.length > shown.length ? `<button type="button" class="more" data-act="moreres">Mostrar las ${list.length} obras</button>` : "");
   }
 
+  /* ---------------------------------------------------------------- análisis */
+  const pc = (x, d) => (100 * x).toLocaleString("es-AR", { minimumFractionDigits: d || 0, maximumFractionDigits: d || 0 }) + " %";
+  const dc = (x, d) => x.toLocaleString("es-AR", { minimumFractionDigits: d, maximumFractionDigits: d });
+  const tally = (rs, keysOf) => { const c = {}; rs.forEach((r) => keysOf(r).forEach((k) => { c[k] = (c[k] || 0) + 1; })); return c; };
+  const tecOrder = (cnt) => Object.keys(cnt).filter((t) => t !== "sin" && cnt[t]).sort((a, b) => (SOFT.includes(a) - SOFT.includes(b)) || (cnt[b] - cnt[a]));
+  const tecsOf = (r) => r.tec.filter((t) => t !== "sin");
+  // intervalo de Wilson al 95 % para una proporción k/n
+  function wilson(k, n) {
+    const z = 1.96, p = k / n, d = 1 + z * z / n, c = p + z * z / (2 * n), s = z * Math.sqrt(p * (1 - p) / n + z * z / (4 * n * n));
+    return [Math.max(0, (c - s) / d), Math.min(1, (c + s) / d)];
+  }
+  const legendYears = (n1, n2) => `<div class="lg"><span><i class="a"></i>1915 · ${plural(n1, "obra", "obras")}</span><span><i class="b"></i>1916 · ${plural(n2, "obra", "obras")}</span><span>● diferencia que no se explica por azar</span></div>`;
+
+  // barras de 1915 y 1916 por categoría; la marca ● sale de una prueba z de dos proporciones
+  function yearRows(keys, label, c1, n1, c2, n2) {
+    const sh = (c, n, k) => (n ? (c[k] || 0) / n : 0);
+    const mx = Math.max(0.01, ...keys.map((k) => Math.max(sh(c1, n1, k), sh(c2, n2, k))));
+    return keys.map((k) => {
+      const a = c1[k] || 0, b = c2[k] || 0, pa = sh(c1, n1, k), pb = sh(c2, n2, k);
+      const pool = n1 + n2 ? (a + b) / (n1 + n2) : 0, se = n1 && n2 ? Math.sqrt(pool * (1 - pool) * (1 / n1 + 1 / n2)) : 0;
+      const sig = se > 0 && a + b >= 8 && Math.abs(pb - pa) / se >= 1.96, d = (pb - pa) * 100;
+      return `<div class="dr"><div>${esc(label(k))}</div><div class="bars"><div class="bar a" style="width:${(100 * pa / mx).toFixed(1)}%"><span>${pc(pa)} · ${a}</span></div><div class="bar b" style="width:${(100 * pb / mx).toFixed(1)}%"><span>${pc(pb)} · ${b}</span></div></div>` +
+        `<div class="dl${sig ? " sig" : ""}" title="${sig ? "Diferencia que no se explica por azar (z ≥ 1,96)" : "Dentro de lo que cabe por azar, o muestra muy chica"}">${d >= 0 ? "+" : "−"}${dc(Math.abs(d), 1)} pp${sig ? " ●" : ""}</div></div>`;
+    }).join("");
+  }
+
+  // tasa de obras premiadas por grupo, con su intervalo
+  function rateRows(items, keysOf, label) {
+    const g = {};
+    items.forEach((r) => keysOf(r).forEach((k) => { const e = g[k] || (g[k] = { n: 0, m: 0 }); e.n++; if (r.pz) e.m++; }));
+    const ov = items.length ? nPrized(items) / items.length : 0;
+    const rows = Object.keys(g).filter((k) => g[k].n >= 5).map((k) => ({ k, n: g[k].n, m: g[k].m, p: g[k].m / g[k].n, ci: wilson(g[k].m, g[k].n) })).sort((a, b) => b.p - a.p);
+    if (!rows.length) return '<p class="empty">Ningún grupo tiene 5 obras o más con estos filtros.</p>';
+    const mx = Math.max(0.1, ov, ...rows.map((r) => r.ci[1])), pos = (v) => (100 * v / mx).toFixed(1);
+    return `<p class="mxnote" style="margin-bottom:0.3rem">Promedio del conjunto: ${pc(ov, 1)} (${nPrized(items)} de ${items.length} obras). Se muestran los grupos con 5 obras o más.</p>` +
+      rows.map((r) => `<div class="dr"><div>${esc(label(r.k))} <span class="dim">· ${r.n} obras</span></div><div class="iv"><span class="ov" style="left:${pos(ov)}%"></span><span class="rng" style="left:${pos(r.ci[0])}%;width:${pos(r.ci[1] - r.ci[0])}%"></span><span class="pt" style="left:${pos(r.p)}%"></span></div><div class="dl">${pc(r.p)} <span class="dim">(${r.m}/${r.n})</span></div></div>`).join("");
+  }
+
+  function renderAnalysis(rs) {
+    const exp = state.explicit, cat = rs.filter((r) => !r.sv);
+    const withT = cat.filter((r) => tecsOf(r).length && (!exp || r.ts === "o"));
+    $("a-exp").checked = exp; $("a-zona").value = state.anaZona; $("a-year").value = state.anaYear;
+    $("a-base").textContent = `Base: ${fmt(withT.length)} de ${fmt(cat.length)} obras del catálogo con técnica ${exp ? "mencionada en el texto del objeto" : "(del texto del objeto o, si falta, de la categoría)"}. Los premios del fallo sin obra en el catálogo no entran.`;
+
+    // 1) evolución de cada técnica entre 1915 y 1916, opcionalmente dentro de una zona
+    const sel = (y) => withT.filter((r) => r.y === y && (!state.anaZona || r.z === state.anaZona));
+    const y1 = sel(1915), y2 = sel(1916), kEv = tecOrder(tally(y1.concat(y2), tecsOf));
+    $("a-ev").innerHTML = kEv.length ? legendYears(y1.length, y2.length) + yearRows(kEv, (t) => TEC[t], tally(y1, tecsOf), y1.length, tally(y2, tecsOf), y2.length) : '<p class="empty">Sin obras con estos filtros.</p>';
+
+    // 2) composición por zona de cada concurso
+    const z1 = cat.filter((r) => r.y === 1915), z2 = cat.filter((r) => r.y === 1916), cz1 = tally(z1, (r) => [r.z]), cz2 = tally(z2, (r) => [r.z]);
+    $("a-comp").innerHTML = legendYears(z1.length, z2.length) + yearRows(ZORD.filter((z) => cz1[z] || cz2[z]), (z) => ZON[z], cz1, z1.length, cz2, z2.length);
+
+    // 3) especialización: peso de cada técnica en cada zona frente a su peso total (lift y residuo de Pearson)
+    const its = withT.filter((r) => state.anaYear === "both" || r.y === +state.anaYear), N = its.length;
+    const ct = tally(its, tecsOf), cz = tally(its, (r) => [r.z]), cc = tally(its, (r) => tecsOf(r).map((t) => t + "|" + r.z));
+    const zks = ZORD.filter((z) => z !== "sa" && cz[z] >= 15), tks = tecOrder(ct), finds = [];
+    if (!zks.length || !tks.length) {
+      $("a-lift").innerHTML = '<p class="empty">Muy pocas obras con estos filtros para comparar zonas (se piden 15 por zona).</p>';
+    } else {
+      let h = '<table class="mx"><thead><tr><th></th>' + zks.map((z) => `<th scope="col"><div class="ch">${esc(ZON[z])}<small>${cz[z]} obras</small></div></th>`).join("") + "</tr></thead><tbody>";
+      tks.forEach((t) => {
+        const p = ct[t] / N;
+        h += `<tr><th scope="row"><div class="rh${SOFT.includes(t) ? " soft" : ""}"><span>${esc(TEC[t])}</span><i>${ct[t]}</i></div></th>`;
+        zks.forEach((z) => {
+          const n = cc[t + "|" + z] || 0, ex = cz[z] * p, res = p < 1 ? (n - ex) / Math.sqrt(cz[z] * p * (1 - p)) : 0;
+          if (!n) { h += '<td><div class="lc zero">—</div></td>'; return; }
+          const lift = n / ex, sig = Math.abs(res) >= 2 && (res > 0 ? n >= 5 : ex >= 5), a = Math.min(1, Math.abs(res) / 4);
+          const x = Math.round(8 + 74 * a), col = res >= 0 ? "var(--indigo)" : "var(--gold)";
+          if (sig) finds.push({ t, z, n, res, p, q: n / cz[z] });
+          h += `<td><div class="lc${sig ? " sig" : ""}${n < 5 ? " thin" : ""}" style="background:color-mix(in srgb,${col} ${x}%,var(--card));color:${x > 52 ? "var(--card)" : "var(--ink)"}" title="${esc(TEC[t])} en ${esc(ZON[z])}: ${n} de ${cz[z]} obras (esperado ≈ ${dc(ex, 1)})">×${dc(lift, 1)}<small>${n} obras</small></div></td>`;
+        });
+        h += "</tr>";
+      });
+      $("a-lift").innerHTML = h + "</tbody></table>";
+    }
+    finds.sort((a, b) => Math.abs(b.res) - Math.abs(a.res));
+    $("a-finds").innerHTML = finds.slice(0, 6).map((f) => `<li><b>${esc(TEC[f.t])}</b> pesa ${pc(f.q)} de las obras con técnica en ${esc(ZON[f.z])}, frente a ${pc(f.p)} en el total: ${f.res > 0 ? "más" : "menos"} de lo esperado (${f.n} obras).</li>`).join("") ||
+      (zks.length ? "<li>Ninguna combinación se aparta del azar con estos filtros.</li>" : "");
+
+    // 4) pares de técnicas que se mencionan juntas
+    const nt = withT.length, pairs = [];
+    const ctt = tally(withT, tecsOf), pk = {};
+    withT.forEach((r) => { const t = tecsOf(r); for (let i = 0; i < t.length; i++) for (let j = i + 1; j < t.length; j++) { const k = [t[i], t[j]].sort().join("|"); pk[k] = (pk[k] || 0) + 1; } });
+    Object.entries(pk).forEach(([k, n]) => { const [a, b] = k.split("|"); if (n >= 3) pairs.push({ a, b, n, lift: (n / nt) / ((ctt[a] / nt) * (ctt[b] / nt)), pa: n / ctt[a], pb: n / ctt[b] }); });
+    pairs.sort((x, y) => y.n - x.n);
+    $("a-pairs").innerHTML = pairs.length ? '<table class="pairs"><thead><tr><th>Par</th><th>Obras</th><th>Lift</th><th>Con la 1.ª, también la 2.ª</th><th>Con la 2.ª, también la 1.ª</th></tr></thead><tbody>' +
+      pairs.slice(0, 10).map((p) => `<tr><td>${esc(TEC[p.a])} + ${esc(TEC[p.b])}</td><td>${p.n}</td><td>${dc(p.lift, 1)}</td><td>${pc(p.pa)}</td><td>${pc(p.pb)}</td></tr>`).join("") + "</tbody></table>" : '<p class="empty">Ningún par de técnicas aparece en 3 obras o más.</p>';
+
+    // 5) tasa de premiación, solo 1915, solo obras que competían
+    const c15 = cat.filter((r) => r.y === 1915 && !r.fc);
+    $("a-rt").innerHTML = rateRows(c15.filter((r) => tecsOf(r).length && (!exp || r.ts === "o")), tecsOf, (t) => TEC[t]);
+    $("a-rz").innerHTML = rateRows(c15, (r) => [r.z], (z) => ZON[z]);
+  }
+
   /* ---------------------------------------------------------------- expositoras */
   function renderPeople(rs) {
     const by = new Map();
@@ -703,8 +917,7 @@ const DATA = __DATA__;
 
   /* ---------------------------------------------------------------- arranque */
   buildSelects();
-  const h = (location.hash || "").replace("#", "");
-  if (["map", "tec", "art"].includes(h)) state.view = h;
+  readHash();
   render();
 })();
 </script>
