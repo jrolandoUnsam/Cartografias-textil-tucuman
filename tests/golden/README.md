@@ -41,3 +41,8 @@ porque algo cambió.
 **Re-congelado el 2026-10-28**, después de las respuestas de LM del 28/10: 8 celdas de
 `Género` (instituciones de F a I) y 2 de `Premios` (la blusa de las Hermanas Dominicas,
 fuera de catálogo).
+
+**Re-congelado otra vez el 2026-10-28**, después de la regla de lugares y la auditoría:
+6 celdas de `Concursos` (sedes y fechas corregidas), la columna nueva
+`ciudad_id_catalogo` en `Objetos` y 212 celdas de la vista plana (53 obras pasan de
+"solo provincia" a la localidad de su expositora).
