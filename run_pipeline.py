@@ -1,4 +1,4 @@
-"""Corre el pipeline completo: 01 -> 06.
+"""Corre el pipeline completo: 01 -> 06b.
 
 Uso:  python run_pipeline.py [desde]     (ej. `python run_pipeline.py 04` o `04d`)
 
@@ -23,6 +23,7 @@ ETAPAS = [
     "05b_mapa",
     "05c_explorador",
     "06_verificar",
+    "06b_controles",
 ]
 
 PIPE = Path(__file__).resolve().parent / "src" / "pipeline"
@@ -31,13 +32,21 @@ PIPE = Path(__file__).resolve().parent / "src" / "pipeline"
 def main() -> None:
     sys.path.insert(0, str(PIPE))
     desde = sys.argv[1] if len(sys.argv) > 1 else "01"
+    codigo = 0
     for etapa in ETAPAS:
         # se compara con tantos caracteres como tenga `desde`: "04" corre 04, 04b, …;
         # "04d" arranca en 04d
         if etapa[:len(desde)] < desde:
             continue
         print(f"\n=== {etapa} ===")
-        runpy.run_path(str(PIPE / f"{etapa}.py"), run_name="__main__")
+        # 06_verificar termina con sys.exit(): sin esto, la corrida se cortaba ahí y
+        # las etapas siguientes no se ejecutaban. Su resultado se devuelve al final.
+        try:
+            runpy.run_path(str(PIPE / f"{etapa}.py"), run_name="__main__")
+        except SystemExit as e:
+            if e.code:
+                codigo = e.code
+    sys.exit(codigo)
 
 
 if __name__ == "__main__":
