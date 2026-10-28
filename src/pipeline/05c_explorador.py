@@ -1,4 +1,4 @@
-"""Etapa 05c — Explorador web (mapa, técnicas por zona, expositoras).
+"""Etapa 05c — Explorador web (mapa, técnicas por provincia, expositoras).
 
 Llena la plantilla `plantillas/explorador.template.html` con los datos de la tabla
 normalizada y escribe `outputs/explorador.html`: un único archivo, sin servidor, que
@@ -13,12 +13,13 @@ de 1915 que no tienen objeto en el catálogo (hoja `Premios`, que arma `04e`, si
 
 Lo que no sale de la tabla y es decisión del proyecto vive en `decisiones/`:
 
-  familias_categorias.csv   por categoría: `familia` (tipo de obra) y
-                            `tecnica_por_categoria`, la técnica que se asume cuando el
-                            texto del objeto no menciona ninguna
-  zonas_ciudades.csv        zona de cada `ciudad_id`. Propuesta inicial armada por
-                            provincia y distancia a la capital (columna `criterio`);
-                            se edita a mano
+  familias_categorias.csv   por categoría, `tecnica_por_categoria`: la técnica que se
+                            asume cuando el texto del objeto no menciona ninguna
+
+Las zonas (`zonas_ciudades.csv`) y los tipos de obra (columna `familia` de
+`familias_categorias.csv`) eran agrupaciones propuestas por el proyecto sin respaldo en
+las fuentes; desde el 28/10 el explorador no las usa hasta que LM las revise. La
+procedencia se agrupa por provincia, la misma que muestra el mapa.
 
 Las técnicas se infieren del texto del objeto con las reglas de `REGLAS_TECNICA`. Si
 no hay ninguna, se usa la de la categoría (`ts = "c"`); si tampoco, queda "sin técnica
@@ -41,6 +42,7 @@ from __future__ import annotations
 import json
 import re
 from collections import Counter
+from datetime import date
 
 import pandas as pd
 from unidecode import unidecode
@@ -50,22 +52,17 @@ from _util import DECISIONES, INSTITUCION, INTERIM, PROCESSED, RAIZ
 FUENTE = PROCESSED / "tabla_normalizada.xlsx"
 CRUDOS = INTERIM / "objetos_crudos.csv"
 FAMILIAS = DECISIONES / "familias_categorias.csv"
-ZONAS = DECISIONES / "zonas_ciudades.csv"
+PRENSA = DECISIONES / "menciones_prensa.csv"
+COMISIONES = DECISIONES / "comisiones.csv"
 PLANTILLAS = RAIZ / "src" / "pipeline" / "plantillas"
 SALIDA = RAIZ / "outputs" / "explorador.html"
 
 SEDE_CIUDAD = 2  # San Miguel de Tucumán: sede de los dos concursos
 
-FAM = {"tej": "Tejidos de telar y abrigo", "alf": "Alfombras y tapices",
-       "enc": "Encajes, randas y crochet", "bor": "Bordados y deshilados", "otr": "Otros"}
 TEC = {"randa": "Randa", "encaje": "Encaje", "filet": "Filet", "crochet": "Crochet e irlanda",
        "deshilado": "Deshilado", "bordado": "Bordado", "telar": "Telar",
        "pala": "A pala o a bastones", "encrand": "Encaje o randa (sin precisar)",
        "bordesh": "Bordado o deshilado (sin precisar)", "sin": "Sin técnica indicada"}
-ZON = {"cap": "Capital y alrededores", "tcs": "Centro y sur de Tucumán",
-       "tvn": "Valles y norte de Tucumán", "tsl": "Tucumán, sin localidad",
-       "cat": "Catamarca", "sgo": "Santiago del Estero", "sju": "Salta y Jujuy",
-       "otr": "Córdoba y otras provincias", "sa": "Sin asignar"}
 
 # Sobre el texto sin tildes y en minúsculas. Una obra puede tener varias.
 REGLAS_TECNICA = {
@@ -78,12 +75,6 @@ REGLAS_TECNICA = {
     "telar": r"telar",
     "pala": r"\ba pala\b|baston",
 }
-
-# Sección del fallo de 1915 -> tipo de obra, para los premios sin objeto en el catálogo
-FAM_SECCION = {"frazada": "tej", "poncho": "tej", "sendero": "tej", "alforja": "tej",
-               "jergon": "tej", "alfombra": "alf", "randa": "enc", "panuelo": "enc",
-               "encaje": "enc", "crochet": "enc", "deshilado": "bor", "bordado": "bor",
-               "mantel": "bor", "raffia": "otr"}
 
 
 def clave(s) -> str:
@@ -119,7 +110,7 @@ def leer_csv(ruta) -> pd.DataFrame:
 
 
 # ------------------------------------------------------------------------- lugares
-def lugares(C: pd.DataFrame, zona: dict[int, str]) -> tuple[dict, dict[int, str], int]:
+def lugares(C: pd.DataFrame) -> tuple[dict, dict[int, str], int]:
     """Devuelve `places` (clave -> lugar), ciudad_id -> clave, y la clave de la sede."""
     C = C.copy()
     C["localidad"] = C["nombre_ciudad_hoy"].fillna(C["nombre_ciudad"])
@@ -165,9 +156,6 @@ def lugares(C: pd.DataFrame, zona: dict[int, str]) -> tuple[dict, dict[int, str]
                      "lat": None, "lon": None, "t": "loc", "c": None, "note": nota}
         de_ciudad[int(r.ciudad_id)] = k
 
-    for cid in C["ciudad_id"]:
-        if int(cid) not in zona:
-            print(f"  ⚠ ciudad_id {cid} sin fila en {ZONAS.name}: zona 'Sin asignar'")
     return places, de_ciudad, de_ciudad[SEDE_CIUDAD]
 
 
@@ -239,12 +227,11 @@ def datos() -> dict:
     C = xl.parse(next(s for s in xl.sheet_names if s.startswith("Ciudad")))
     crudos = pd.read_csv(CRUDOS, dtype={"objeto_id": int}).set_index("objeto_id")["nombre_raw"]
     F = leer_csv(FAMILIAS).assign(categoria_id=lambda d: d.categoria_id.astype(int)).set_index("categoria_id")
-    Z = leer_csv(ZONAS)
-    zona = {int(c): z for c, z in zip(Z.ciudad_id, Z.zona) if z in ZON}
     anio = dict(zip(xl.parse("Concursos").concurso_id, xl.parse("Concursos").anio))
+    pagina = paginas(O, xl.parse("Paginas_Catalogo"), K)
 
     C["n_obj"] = C["ciudad_id"].map(O["ciudad_id"].value_counts()).fillna(0)
-    places, de_ciudad, sede = lugares(C, zona)
+    places, de_ciudad, sede = lugares(C)
     ciudad = C.set_index("ciudad_id")
     nombre = E.set_index("persona_id")["Nombre"]
     categoria = K.set_index("categoria_id")["nombre_categoria"]
@@ -260,14 +247,16 @@ def datos() -> dict:
         fam = F.loc[o.categoria_id] if o.categoria_id in F.index else None
         cat = texto(categoria.get(o.categoria_id))
         tec, ts = tecnicas(texto(o.OBJETO), fam["tecnica_por_categoria"] if fam is not None else "")
-        cr = ciudad.loc[o.ciudad_id]
+        # procedencia como la escribió el catálogo, aunque 04d haya pasado la obra a la
+        # localidad de la expositora
+        cat_id = getattr(o, "ciudad_id_catalogo", None)
+        cr = ciudad.loc[int(cat_id) if pd.notna(cat_id) else o.ciudad_id]
         po = texto(cr["nombre_ciudad"]) or texto(cr["nombre_provincia"]) or "s/d"
         r = {"i": len(recs), "oid": int(o.objeto_id), "y": int(anio[o.concurso_id]),
              "n": n, "nv": nv if clave(nv) != clave(n) else n, "pk": str(o.expositora_id),
              "pl": de_ciudad[int(o.ciudad_id)], "po": "s/d" if clave(po) == "s/d" else po,
-             "c": frase(cat), "f": fam["familia"] if fam is not None else "otr",
-             "o": texto(o.OBJETO), "ord": str(o.ORDEN), "z": zona.get(int(o.ciudad_id), "sa"),
-             "tec": tec, "ts": ts}
+             "c": frase(cat), "o": texto(o.OBJETO), "ord": str(o.ORDEN),
+             "tec": tec, "ts": ts, "cit": cita(int(anio[o.concurso_id]), pagina.get(o.objeto_id), o.imagen)}
         if re.search(INSTITUCION, clave(n)):
             r["inst"] = 1
         # marcas que pone 04f leyendo el texto del catálogo
@@ -275,6 +264,8 @@ def datos() -> dict:
             r["fc"] = 1
         if texto(getattr(o, "creacion_autora", "")) == "sí":
             r["ca"] = 1
+        if pd.notna(cat_id):
+            r["li"] = 1  # localidad deducida de las otras obras de la expositora (04d)
         if texto(getattr(o, "foto_album", "")):
             r["fa"] = texto(o.foto_album)  # foto del álbum de 1915 (04c)
         recs.append(r)
@@ -292,7 +283,42 @@ def datos() -> dict:
                     print(f"  ⚠ premio_id {z['fila']}: objeto_id {oid} no está en Objetos")
             continue
         sin_obra += 1
-        recs.append(obra_sin_catalogo(z, recs, nombre, places, de_ciudad, C, zona))
+        recs.append(obra_sin_catalogo(z, recs, nombre, places, de_ciudad, C))
+
+    # provincia de cada obra: la del lugar en que la muestra el mapa
+    n_prov = Counter(places[r["pl"]]["p"] for r in recs)
+    prv = {slug(p) or "sd": p or "Sin dato" for p, _ in sorted(n_prov.items(), key=lambda x: (not x[0], -x[1]))}
+    for r in recs:
+        r["pv"] = slug(places[r["pl"]]["p"]) or "sd"
+
+    # prensa de época: la mención va a la obra, a la ficha de la persona o al lugar
+    fuentes = xl.parse("Fuentes")
+    diario = {int(f): texto(d).split(",")[0] for f, d in zip(fuentes.fuente_id, fuentes.descripcion)}
+    prensa = []
+    for m in leer_csv(PRENSA).itertuples():
+        oids = [int(x) for x in m.objeto_id.split(";") if x.strip()]
+        lugares_m = [de_ciudad[int(c)] for c in m.ciudad_id.split(";") if c.strip() and int(c) in de_ciudad]
+        k = len(prensa)
+        for oid in oids:
+            if oid in por_obj:
+                por_obj[oid].setdefault("pr", []).append(k)
+            else:
+                print(f"  ⚠ {PRENSA.name}: objeto_id {oid} no está en Objetos")
+        if m.persona_id and int(m.persona_id) not in set(O["expositora_id"]):
+            print(f"  ⚠ {PRENSA.name}: persona_id {m.persona_id} no está en Expositoras")
+        y, mes, d = m.fecha.split("-")
+        prensa.append({"d": diario.get(int(m.fuente_id), ""), "f": f"{int(d)}/{int(mes)}/{y}", "t": m.titulo,
+                       "c": m.cita, "pk": m.persona_id, "pl": lugares_m})
+
+    # comisión organizadora y jurado; si comparte apellido con expositoras, se dice cuáles
+    # (solo eso: el apellido no prueba parentesco)
+    comision = []
+    for c in leer_csv(COMISIONES).itertuples():
+        apellido = clave(c.nombre).split()[-1]
+        mismo = [] if c.persona_id else sorted(
+            {texto(n) for pid, n in nombre.items() if apellido in clave(n).replace("[", " ").replace("]", " ").split()})
+        comision.append({"a": int(c.anio), "n": c.nombre, "nf": c.nombre_en_fuente, "r": c.rol, "s": c.seccion,
+                         "f": c.fuente, "pk": c.persona_id, "mismo": mismo})
 
     # la ficha que se abre al entrar: la expositora con más premios
     cuenta = Counter()
@@ -301,46 +327,76 @@ def datos() -> dict:
     lks = Counter(z["pz"]["lk"] for z in lista)
     stats = {"premios": len(lista), "sin_obra": sin_obra, "fuera": lks["sv"],
              "pendientes": lks["pen"], "dudosos": lks["nom?"]}
-    return {"places": places, "fam": FAM, "tec": TEC, "zon": ZON, "recs": recs,
-            "sede": sede, "person0": cuenta.most_common(1)[0][0], "stats": stats}
+    return {"places": places, "tec": TEC, "prv": prv, "recs": recs,
+            "sede": sede, "person0": cuenta.most_common(1)[0][0], "stats": stats,
+            "version": fecha_larga(date.today()), "prensa": prensa, "comision": comision,
+            "fuentes": [{k: texto(v) for k, v in f.items()} for f in fuentes.to_dict("records")],
+            "concursos": [{k: texto(v) for k, v in c.items()} for c in xl.parse("Concursos").to_dict("records")]}
 
 
-def obra_sin_catalogo(z, recs, nombre, places, de_ciudad, C, zona) -> dict:
+MESES = ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto",
+         "septiembre", "octubre", "noviembre", "diciembre"]
+
+
+def fecha_larga(d: date) -> str:
+    return f"{d.day} de {MESES[d.month - 1]} de {d.year}"
+
+
+def paginas(O: pd.DataFrame, Pg: pd.DataFrame, K: pd.DataFrame) -> dict:
+    """objeto_id -> página impresa del catálogo, por escaneo, sección y rango de N.º
+    (`Paginas_Catalogo`). Un escaneo puede tener dos páginas y varias secciones."""
+    cat = K.set_index("categoria_id")["nombre_categoria"].map(clave)
+    Pg = Pg.dropna(subset=["orden_desde", "orden_hasta", "pagina_impresa"])
+    out = {}
+    for o in O.itertuples():
+        c = Pg[(Pg["imagen"] == o.imagen) & Pg["orden_desde"].le(o.ORDEN) & Pg["orden_hasta"].ge(o.ORDEN)
+               & (Pg["categoria_o_seccion"].map(clave).str[:6] == cat[o.categoria_id][:6])]
+        if len(c) == 1:
+            out[o.objeto_id] = int(c["pagina_impresa"].iloc[0])
+    return out
+
+
+def cita(anio: int, pagina, imagen) -> str:
+    """'Catálogo de 1916, p. 13 (DSCN5201)': de dónde sale la obra, para ir a la fuente."""
+    esc = re.sub(r"\.jpe?g$", "", texto(imagen), flags=re.I)
+    return f"Catálogo de {anio}" + (f", p. {pagina}" if pagina else "") + (f" ({esc})" if esc else "")
+
+
+def obra_sin_catalogo(z, recs, nombre, places, de_ciudad, C) -> dict:
     """Premio del fallo sin objeto en el listado: una obra más, marcada `sv`."""
     pid = z["persona_id"]
     propias = [r for r in recs if pid is not None and r["pk"] == str(pid) and "sv" not in r]
     if propias:
-        base = Counter((r["pl"], r["po"], r["z"]) for r in propias if r["y"] == 1915) \
-            or Counter((r["pl"], r["po"], r["z"]) for r in propias)
-        pl, po, zn = base.most_common(1)[0][0]
+        base = Counter((r["pl"], r["po"]) for r in propias if r["y"] == 1915) \
+            or Counter((r["pl"], r["po"]) for r in propias)
+        pl, po = base.most_common(1)[0][0]
     else:
-        pl, po, zn = lugar_del_fallo(z, places, de_ciudad, C, zona)
+        pl, po = lugar_del_fallo(z, places, de_ciudad, C)
     n = texto(nombre.get(pid)) if pid is not None else z["nombre"]
     tec, ts = tecnicas(z["objeto"] + " " + z["seccion"], "")
-    sec = clave(z["seccion"])
-    fam = next((v for k, v in FAM_SECCION.items() if sec.startswith(k)), "otr")
     return {"i": len(recs), "y": 1915, "n": n, "nv": z["nombre"],
             "pk": str(pid) if pid is not None else "x:" + slug(z["nombre"]),
-            "pl": pl, "po": po, "c": z["pz"]["c"], "f": fam, "o": z["objeto"],
-            "ord": z["num"], "z": zn, "tec": tec, "ts": ts, "pz": [z["pz"]], "sv": 1,
+            "pl": pl, "po": po, "c": z["pz"]["c"], "o": z["objeto"],
+            "ord": z["num"], "tec": tec, "ts": ts, "pz": [z["pz"]], "sv": 1,
+            "cit": "Fallo del jurado de 1915" + (f", {frase(z['seccion'])}" if z["seccion"] else ""),
             **({"inst": 1} if re.search(INSTITUCION, clave(n)) else {})}
 
 
-def lugar_del_fallo(z, places, de_ciudad, C, zona) -> tuple[str, str, str]:
+def lugar_del_fallo(z, places, de_ciudad, C) -> tuple[str, str]:
     """Lugar de un premio sin persona en la tabla, según la columna CIUDAD del fallo."""
     ciudad = z["ciudad"]
     if clave(ciudad) in ("", "s/d"):
         sd = C.loc[C["nombre_ciudad"].map(clave) == "s/d", "ciudad_id"]
-        return de_ciudad[int(sd.iloc[0])], "s/d", "sa"
+        return de_ciudad[int(sd.iloc[0])], "s/d"
     cid = SEDE_CIUDAD if clave(ciudad) == "ciudad" else next(
         (int(c) for c, n in zip(C["ciudad_id"], C["nombre_ciudad"]) if clave(n) == clave(ciudad)), None)
     if cid is not None:
-        return de_ciudad[cid], texto(C.set_index("ciudad_id").at[cid, "nombre_ciudad"]), zona.get(cid, "sa")
+        return de_ciudad[cid], texto(C.set_index("ciudad_id").at[cid, "nombre_ciudad"])
     k = "f_" + slug(ciudad)
     places.setdefault(k, {"n": ciudad.title(), "p": z["provincia"].title(), "lat": None, "lon": None,
                           "t": "loc", "c": None,
                           "note": "Figura sólo en el fallo del jurado; pendiente de georreferenciar."})
-    return k, ciudad.title(), "tsl" if clave(z["provincia"]) == "tucuman" else "sa"
+    return k, ciudad.title()
 
 
 def js(obj) -> str:
@@ -367,7 +423,7 @@ def main() -> None:
           f"{sum(p['t'] == 'prov' for p in P.values())} sólo provincia, "
           f"{sum(p['lat'] is None for p in P.values())} sin ubicar "
           f"({sum(P[r['pl']]['lat'] is None for r in R)} obras)")
-    print("técnica:", dict(Counter(r["ts"] for r in R)), "· zonas:", dict(Counter(r["z"] for r in R)))
+    print("técnica:", dict(Counter(r["ts"] for r in R)), "· provincias:", dict(Counter(r["pv"] for r in R)))
     print(f"\n-> {SALIDA}")
 
 

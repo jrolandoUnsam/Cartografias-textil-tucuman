@@ -26,6 +26,8 @@ __LEAFLET_CSS__
   --indigo: #2a3b91;
   --madder: #b0372b;
   --gold: #a97b24;
+  --y15: #7a5cc9;
+  --y16: #e07a2e;
   --shadow: 0 10px 30px rgba(20, 28, 60, 0.16);
   --serif: "Newsreader", Georgia, "Times New Roman", serif;
   --sans: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
@@ -88,11 +90,11 @@ h1 { font-family: var(--serif); font-optical-sizing: auto; font-weight: 600; fon
 .sel > span, .search .lb { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.09em; text-transform: uppercase; color: var(--ink2); padding-left: 0.8rem; }
 .sel .box { position: relative; }
 .sel .box::after { content: ""; position: absolute; right: 0.9rem; top: 50%; width: 0.4rem; height: 0.4rem; border-right: 1.5px solid var(--ink2); border-bottom: 1.5px solid var(--ink2); transform: translateY(-70%) rotate(45deg); pointer-events: none; }
-.sel select { appearance: none; -webkit-appearance: none; min-width: 9.5rem; max-width: 15rem; border: 1px solid var(--rule); background: var(--card); border-radius: 999px; padding: 0.5rem 2.1rem 0.5rem 0.95rem; }
+.sel select { appearance: none; -webkit-appearance: none; min-width: 9.5rem; max-width: 12.5rem; border: 1px solid var(--rule); background: var(--card); border-radius: 999px; padding: 0.5rem 2.1rem 0.5rem 0.95rem; }
 .sel select:hover { border-color: var(--ink2); }
 .sel.on select { border-color: var(--indigo); background: color-mix(in srgb, var(--indigo) 9%, var(--card)); }
 .sel.off select { opacity: 0.5; }
-.search { flex: 1 1 13rem; max-width: 21rem; margin-left: auto; }
+.search { flex: 1 1 12rem; max-width: 21rem; margin-left: auto; }
 .search .lb { display: block; margin-bottom: 0.2rem; }
 .search input { width: 100%; border: 1px solid var(--rule); background: var(--card); border-radius: 999px; padding: 0.5rem 0.95rem; }
 .linkbtn { border: 0; background: transparent; color: var(--ink2); text-decoration: underline; text-decoration-color: var(--rule); text-underline-offset: 4px; padding: 0.3rem; }
@@ -118,6 +120,8 @@ h1 { font-family: var(--serif); font-optical-sizing: auto; font-weight: 600; fon
 .sw.h { border-style: dashed; }
 .sw.r { background: var(--madder); border-color: var(--madder); }
 .sw.l { width: 1.2rem; height: 0; border: 0; border-top: 3px solid color-mix(in srgb, var(--gold) 70%, transparent); border-radius: 0; }
+.sw.l.d { border-top-style: dashed; }
+.legend .lnote { margin: 0.1rem 0 0; max-width: 15rem; font-size: 0.72rem; line-height: 1.35; color: var(--ink2); }
 .maptools { position: absolute; top: 0.8rem; left: 4rem; z-index: 900; display: flex; gap: 0.4rem; flex-wrap: wrap; }
 .tool { display: flex; gap: 0.45rem; align-items: center; background: color-mix(in srgb, var(--card) 94%, transparent); border: 1px solid var(--rule); border-radius: 999px; padding: 0.3rem 0.8rem; font-size: 0.78rem; }
 .tool input { accent-color: var(--indigo); width: 0.9rem; height: 0.9rem; margin: 0; }
@@ -125,8 +129,6 @@ h1 { font-family: var(--serif); font-optical-sizing: auto; font-weight: 600; fon
 .leaflet-container { font-family: var(--sans); background: var(--sea); }
 .leaflet-tooltip { background: var(--card); color: var(--ink); border: 1px solid var(--rule); border-radius: 8px; box-shadow: none; font-size: 12px; padding: 4px 9px; }
 .leaflet-tooltip-top:before { border-top-color: var(--rule); }
-.leaflet-tooltip.plab { background: transparent; border: 0; box-shadow: none; padding: 0; font-size: 12px; font-weight: 600; color: var(--ink); text-shadow: 0 0 3px var(--land), 0 0 3px var(--land), 0 0 6px var(--land); }
-.leaflet-tooltip.plab:before { display: none; }
 .leaflet-bar a { background: var(--card); color: var(--ink); border-bottom-color: var(--rule); }
 .leaflet-bar { border: 1px solid var(--rule); box-shadow: none; }
 .leaflet-control-scale-line { background: color-mix(in srgb, var(--card) 88%, transparent); border-color: var(--ink2); color: var(--ink); font-size: 10.5px; }
@@ -148,13 +150,16 @@ h2 { font-family: var(--serif); font-weight: 600; font-size: 1.5rem; line-height
 .more { margin-top: 0.7rem; border: 1px solid var(--rule); background: transparent; border-radius: 999px; padding: 0.4rem 1rem; }
 .empty { color: var(--ink2); margin: 0; }
 
-/* técnicas por zona */
+/* técnicas por provincia */
 .v-tec { overflow-y: auto; padding: clamp(1rem, 2vw, 1.7rem); display: flex; flex-direction: column; gap: 1.2rem; }
 .v-tec > * { flex: none; }
 .tec-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 0.8rem 2rem; }
 .mxnote { margin: 0; font-size: 0.86rem; color: var(--ink2); max-width: 70ch; }
 .scale { display: flex; align-items: center; gap: 0.5rem; font-size: 0.75rem; color: var(--ink2); }
 .scale i { display: block; width: 7rem; height: 0.6rem; border-radius: 3px; background: linear-gradient(90deg, color-mix(in srgb, var(--indigo) 10%, var(--card)), color-mix(in srgb, var(--indigo) 82%, var(--card))); }
+.mxv { display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem 1rem; }
+.mxv .cfmt { margin: 0; }
+.mxv .mxhint { font-size: 0.75rem; color: var(--ink2); max-width: 46ch; }
 .scale .d { display: inline-flex; align-items: center; gap: 0.3rem; margin-left: 0.8rem; }
 .scale .d s { text-decoration: none; display: inline-block; width: 0.9rem; height: 0.9rem; border-radius: 50%; background: var(--madder); }
 .mxwrap { overflow-x: auto; padding-top: 0.4rem; }
@@ -171,6 +176,7 @@ h2 { font-family: var(--serif); font-weight: 600; font-size: 1.5rem; line-height
 .mx button[aria-pressed="true"]:not(.cell) { border-color: var(--ink); }
 .cell { position: relative; height: 3rem; font-variant-numeric: tabular-nums; font-weight: 600; font-size: 1rem; transition: transform 0.12s; }
 .cell:not(.zero):hover { transform: scale(1.04); }
+.cell.out { background: transparent; border: 1px dashed var(--rule); color: var(--ink2); font-weight: 500; }
 .cell.zero { background: color-mix(in srgb, var(--chip) 55%, transparent); }
 .cell .dot { position: absolute; top: -5px; right: -4px; min-width: 1.15rem; height: 1.15rem; padding: 0 0.25rem; border-radius: 0.6rem; background: var(--madder); color: var(--card); font-size: 0.68rem; font-weight: 600; line-height: 1.15rem; text-align: center; border: 2px solid var(--card); box-sizing: content-box; }
 .mx td button[aria-pressed="true"] { border-color: var(--ink); box-shadow: 0 0 0 2px var(--ink); }
@@ -184,7 +190,9 @@ h2 { font-family: var(--serif); font-weight: 600; font-size: 1.5rem; line-height
 .rows li { display: grid; grid-template-columns: minmax(9rem, 15rem) minmax(0, 1fr); gap: 0.25rem 1.1rem; padding: 0.6rem 0; border-top: 1px solid var(--rule); font-size: 0.87rem; }
 
 /* expositoras */
-.v-art { display: grid; grid-template-columns: minmax(16rem, 21rem) minmax(0, 1fr); gap: 0.9rem; }
+.v-art { display: grid; grid-template-columns: minmax(16rem, 21rem) minmax(0, 1fr); gap: 0.9rem; align-items: start; }
+/* la lista y la ficha quedan a la vista y cada una se desliza por su cuenta */
+.v-art > .card { position: sticky; top: calc(var(--navh) + 0.8rem); max-height: calc(100vh - var(--navh) - 1.6rem); }
 .plist { min-height: 0; overflow-y: auto; padding: 0.6rem; }
 .plist .cap { display: block; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink2); padding: 0.4rem 0.5rem 0.5rem; }
 .plist button.row { width: 100%; display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 1px 0.5rem; text-align: left; background: transparent; border: 0; border-radius: 0.65rem; padding: 0.5rem 0.65rem; }
@@ -206,43 +214,100 @@ h2 { font-family: var(--serif); font-weight: 600; font-size: 1.5rem; line-height
 .ficha .foot { margin: 1.4rem 0 0; font-size: 0.8rem; color: var(--ink2); }
 .ficha .acts { margin-top: 1rem; }
 
-/* análisis */
-.v-ana { overflow-y: auto; padding: clamp(1rem, 2vw, 1.7rem); display: flex; flex-direction: column; gap: 2.2rem; }
-.v-ana > * { flex: none; }
-.ana-bar { display: flex; flex-wrap: wrap; align-items: center; gap: 0.6rem 1.2rem; }
-.ana-bar .base { margin: 0; font-size: 0.82rem; color: var(--ink2); }
-.ana-sec { border-top: 1px solid var(--rule); padding-top: 1.3rem; }
-.ana-sec h3 { font-family: var(--serif); font-size: 1.3rem; font-weight: 600; margin: 0 0 0.25rem; }
-.ana-sec .mxnote { margin: 0 0 0.9rem; }
-.ana-sec .sel { display: inline-flex; margin-bottom: 0.9rem; }
-.finds { margin: 0 0 1rem; padding-left: 1.1rem; font-size: 0.88rem; display: flex; flex-direction: column; gap: 0.3rem; max-width: 80ch; }
-.lg { display: flex; flex-wrap: wrap; gap: 0.3rem 1.3rem; font-size: 0.78rem; color: var(--ink2); margin-bottom: 0.4rem; }
-.lg i { display: inline-block; width: 0.8rem; height: 0.5rem; border-radius: 2px; margin-right: 0.35rem; }
-.lg i.a, .bar.a { background: var(--indigo); }
-.lg i.b, .bar.b { background: var(--gold); }
-.dr { display: grid; grid-template-columns: minmax(9rem, 15rem) minmax(0, 1fr) 8.5rem; gap: 0.5rem 1rem; align-items: center; padding: 0.4rem 0; border-top: 1px solid var(--rule); font-size: 0.86rem; }
-.dr .bars { display: flex; flex-direction: column; gap: 3px; padding-right: 6.5rem; }
-.bar { position: relative; height: 0.55rem; border-radius: 3px; min-width: 2px; }
-.bar span { position: absolute; left: 100%; top: 50%; margin-left: 0.4rem; transform: translateY(-50%); font-size: 0.72rem; color: var(--ink2); white-space: nowrap; font-variant-numeric: tabular-nums; }
-.dl { text-align: right; font-variant-numeric: tabular-nums; color: var(--ink2); }
-.dl.sig { color: var(--ink); font-weight: 600; }
-.ch { font-size: 0.78rem; line-height: 1.2; padding: 0 0.2rem 0.4rem; text-align: center; }
-.ch small { display: block; font-size: 0.7rem; color: var(--ink2); }
-.lc { height: 3rem; border-radius: 0.65rem; display: flex; flex-direction: column; align-items: center; justify-content: center; font-weight: 600; font-variant-numeric: tabular-nums; line-height: 1.15; }
-.lc small { font-weight: 400; font-size: 0.68rem; opacity: 0.85; }
-.lc.sig { box-shadow: 0 0 0 2px var(--ink); }
-.lc.thin { opacity: 0.55; }
-.lc.zero { background: color-mix(in srgb, var(--chip) 55%, transparent); color: var(--ink2); font-weight: 400; }
-.scale i.dv { background: linear-gradient(90deg, color-mix(in srgb, var(--gold) 80%, var(--card)), var(--card), color-mix(in srgb, var(--indigo) 82%, var(--card))); border: 1px solid var(--rule); }
-.iv { position: relative; height: 1rem; }
-.iv .rng { position: absolute; top: 0.35rem; height: 0.3rem; border-radius: 2px; background: color-mix(in srgb, var(--madder) 35%, var(--card)); }
-.iv .pt { position: absolute; top: 0.1rem; width: 0.8rem; height: 0.8rem; margin-left: -0.4rem; border-radius: 50%; background: var(--madder); }
-.iv .ov { position: absolute; top: 0; bottom: 0; width: 1px; background: var(--ink2); }
-.pairs { width: 100%; border-collapse: collapse; font-size: 0.86rem; font-variant-numeric: tabular-nums; }
-.pairs th, .pairs td { text-align: right; padding: 0.4rem 0.6rem; border-top: 1px solid var(--rule); }
-.pairs th:first-child, .pairs td:first-child { text-align: left; padding-left: 0; }
-.pairs thead th { border-top: 0; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink2); }
-.caveat { margin: 1rem 0 0; font-size: 0.8rem; color: var(--ink2); max-width: 80ch; }
+/* análisis: una página con índice */
+.v-ana { padding: clamp(1rem, 2vw, 1.7rem); display: grid; grid-template-columns: 11.5rem minmax(0, 1fr); gap: 0 clamp(1.2rem, 3vw, 2.6rem); }
+.aidx { position: sticky; top: calc(var(--navh) + 1rem); align-self: start; display: flex; flex-direction: column; gap: 0.15rem; font-size: 0.86rem; }
+.aidx .eyebrow { margin-bottom: 0.4rem; }
+.aidx a { color: var(--ink2); text-decoration: none; padding: 0.3rem 0.6rem; border-left: 2px solid var(--rule); }
+.aidx a:hover { color: var(--ink); }
+.afil { margin-top: 1rem; padding: 0.7rem 0.8rem; border: 1px solid var(--rule); border-radius: 0.7rem; font-size: 0.78rem; color: var(--ink2); display: flex; flex-direction: column; gap: 0.3rem; }
+.afil b { font-size: 0.66rem; font-weight: 600; letter-spacing: 0.09em; text-transform: uppercase; }
+.afil span { color: var(--ink); }
+.afil .linkbtn { align-self: flex-start; padding: 0; font-size: 0.78rem; }
+.nof { display: inline-block; margin-left: 0.5rem; vertical-align: 0.2em; font-family: var(--sans); font-size: 0.66rem; font-weight: 600; letter-spacing: 0.04em; padding: 0.12rem 0.55rem; border-radius: 999px; background: color-mix(in srgb, var(--gold) 16%, var(--card)); color: var(--ink); white-space: nowrap; }
+.aidx a[aria-current="true"] { color: var(--ink); border-left-color: var(--indigo); font-weight: 600; }
+.abody { min-width: 0; display: flex; flex-direction: column; }
+.asec { scroll-margin-top: calc(var(--navh) + 1rem); padding: 0 0 2.2rem; display: flex; flex-direction: column; gap: 1.4rem; }
+.asec + .asec { border-top: 1px solid var(--rule); padding-top: 1.6rem; }
+.asec > h2 { margin: 0; }
+.asec > .mxnote { margin-top: -1rem; }
+.asec > h2 + .pc, .asec > .mxnote + .pc, .asec .pgrid > .pc { border-top: 0; padding-top: 0; }
+details.vt { margin-top: 0.6rem; }
+details.vt > summary { cursor: pointer; font-size: 0.8rem; color: var(--indigo); width: max-content; }
+details.vt[open] > summary { margin-bottom: 0.6rem; }
+.ded { border-bottom: 1px dotted currentColor; cursor: help; }
+.cit { display: block; font-size: 0.74rem; color: var(--ink2); margin-top: 0.1rem; }
+
+/* comparación de concursos, prensa, fuentes, citas */
+.cmp { width: 100%; border-collapse: collapse; font-size: 0.86rem; }
+.cmp th, .cmp td { text-align: left; vertical-align: top; padding: 0.5rem 0.8rem 0.5rem 0; border-top: 1px solid var(--rule); }
+.cmp thead th { border-top: 0; font-family: var(--serif); font-size: 1.05rem; font-weight: 600; }
+.cmp tbody th { font-weight: 500; color: var(--ink2); width: 11rem; }
+.cmp .num { font-variant-numeric: tabular-nums; }
+.prensa { margin: 0 0 1rem; padding: 0.8rem 1rem; border-left: 3px solid var(--gold); background: color-mix(in srgb, var(--gold) 7%, var(--card)); border-radius: 0 0.6rem 0.6rem 0; font-size: 0.86rem; }
+.prensa h4 { margin: 0 0 0.5rem; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink2); }
+.prensa blockquote { margin: 0 0 0.25rem; font-family: var(--serif); font-size: 0.98rem; }
+.prensa cite { display: block; font-style: normal; font-size: 0.76rem; color: var(--ink2); margin-bottom: 0.7rem; }
+.prensa cite:last-child { margin-bottom: 0; }
+.cfmt { display: inline-flex; gap: 2px; padding: 3px; background: var(--chip); border-radius: 999px; margin-bottom: 0.6rem; }
+.cfmt button { border: 0; background: transparent; border-radius: 999px; padding: 0.25rem 0.8rem; font-size: 0.8rem; color: var(--ink2); }
+.cfmt button[aria-pressed="true"] { background: var(--card); color: var(--ink); box-shadow: 0 1px 2px rgba(20, 28, 60, 0.14); }
+.cita .quote.bib { font-family: ui-monospace, "Cascadia Mono", Consolas, monospace; font-size: 0.8rem; white-space: pre-wrap; }
+
+/* panorama */
+.v-pan { overflow-y: auto; padding: clamp(1rem, 2vw, 1.7rem); display: flex; flex-direction: column; gap: 1.6rem; }
+.v-pan > * { flex: none; }
+.kpis { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 0.8rem; }
+.kpi { border: 1px solid var(--rule); border-radius: 0.8rem; padding: 0.75rem 1rem; }
+.kpi b { display: block; font-family: var(--serif); font-size: clamp(1.5rem, 2.4vw, 2.1rem); font-weight: 600; line-height: 1.1; font-variant-numeric: tabular-nums; }
+.kpi span { font-size: 0.8rem; color: var(--ink2); }
+.pgrid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.8rem 2.4rem; }
+.pc { border-top: 1px solid var(--rule); padding-top: 1rem; min-width: 0; }
+.pc h3 { font-family: var(--serif); font-size: 1.2rem; font-weight: 600; margin: 0 0 0.2rem; }
+.pc .mxnote { margin: 0 0 0.7rem; font-size: 0.8rem; }
+.plg { display: flex; flex-wrap: wrap; gap: 0.3rem 1rem; font-size: 0.76rem; color: var(--ink2); margin-bottom: 0.5rem; }
+.plg i { display: inline-block; width: 0.75rem; height: 0.75rem; border-radius: 3px; margin-right: 0.35rem; vertical-align: -0.1rem; }
+.prow { display: grid; grid-template-columns: minmax(7rem, 11.5rem) minmax(0, 1fr); gap: 0.7rem; align-items: center; width: 100%; padding: 0.35rem 0.3rem; border: 0; background: none; text-align: left; border-radius: 0.4rem; font-size: 0.84rem; color: var(--ink); line-height: 1.2; }
+button.prow:hover { background: var(--chip); }
+.prow[aria-pressed="true"] { background: var(--chip); font-weight: 600; }
+.pdim .prow:not([aria-pressed="true"]) { opacity: 0.4; }
+.pbars { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.pb { display: flex; align-items: center; gap: 0.4rem; min-width: 0; font-size: 0.74rem; font-weight: 400; color: var(--ink2); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.pb > i { display: block; flex: 0 0 auto; height: 0.6rem; border-radius: 0 4px 4px 0; min-width: 2px; }
+.pstack { display: flex; flex: 0 0 auto; height: 0.95rem; gap: 2px; min-width: 2px; }
+.pstack i { display: block; height: 100%; min-width: 2px; }
+.pstack i:last-child { border-radius: 0 4px 4px 0; }
+.hist { display: flex; align-items: flex-end; gap: 0.7rem; height: 11.5rem; }
+.hist > div { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; gap: 0.25rem; height: 100%; font-size: 0.76rem; color: var(--ink2); }
+.hist i { display: block; width: 100%; max-width: 3.6rem; background: var(--indigo); border-radius: 4px 4px 0 0; min-height: 2px; }
+.hist b { font-weight: 500; color: var(--ink); font-variant-numeric: tabular-nums; }
+.axl { margin: 0.35rem 0 0; text-align: center; font-size: 0.74rem; color: var(--ink2); }
+.tip { position: fixed; z-index: 2000; pointer-events: none; background: var(--ink); color: var(--card); font-size: 0.78rem; padding: 0.35rem 0.6rem; border-radius: 0.4rem; max-width: 20rem; box-shadow: var(--shadow); }
+
+/* cuadros */
+.v-cua { overflow-y: auto; padding: clamp(1rem, 2vw, 1.7rem); display: flex; flex-direction: column; gap: 2.2rem; }
+.v-cua > * { flex: none; }
+.cua-sec + .cua-sec { border-top: 1px solid var(--rule); padding-top: 1.3rem; }
+.cua-sec h3 { font-family: var(--serif); font-size: 1.3rem; font-weight: 600; margin: 0 0 0.25rem; }
+.cua-sec .mxnote { margin: 0 0 0.9rem; }
+.cua-sec .acts { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 0.8rem; }
+.tw { overflow-x: auto; }
+.tb { width: 100%; border-collapse: collapse; font-size: 0.86rem; }
+.tb th, .tb td { text-align: left; padding: 0.45rem 0.6rem; border-top: 1px solid var(--rule); vertical-align: top; }
+.tb th:first-child, .tb td:first-child { padding-left: 0; }
+.tb thead th { border-top: 0; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink2); white-space: nowrap; vertical-align: bottom; }
+.tb thead button { border: 0; background: none; padding: 0; font: inherit; color: inherit; letter-spacing: inherit; text-transform: inherit; }
+.tb thead button:hover { color: var(--ink); }
+.tb th[aria-sort] button { color: var(--ink); }
+.tb th[aria-sort="descending"] button::after { content: " ↓"; }
+.tb th[aria-sort="ascending"] button::after { content: " ↑"; }
+.tb .num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.tb .bc { width: 24%; min-width: 8rem; }
+.tb .sm { color: var(--ink2); font-size: 0.82rem; }
+.hb { display: flex; align-items: center; gap: 0.45rem; font-variant-numeric: tabular-nums; }
+.hb span { flex: 1; }
+.hb i { display: block; height: 0.55rem; border-radius: 0 4px 4px 0; background: var(--indigo); min-width: 2px; }
+.hb b { font-weight: 500; min-width: 2ch; text-align: right; }
 
 /* fuentes y método */
 .metodo { border-top: 1px solid var(--rule); background: color-mix(in srgb, var(--chip) 45%, var(--paper)); padding: clamp(2.2rem, 5vw, 4rem) var(--gut); }
@@ -283,13 +348,20 @@ h2 { font-family: var(--serif); font-weight: 600; font-size: 1.5rem; line-height
   .drawer { left: 0.5rem; right: 0.5rem; top: auto; bottom: 0.5rem; width: auto; max-width: none; max-height: 62%; }
   .v-tec { overflow: visible; }
   .v-art { display: flex; flex-direction: column; }
-  .plist { max-height: 44vh; }
+  .v-art > .card { position: static; max-height: none; }
+  .v-art > .plist { max-height: 44vh; }
   .ficha { overflow: visible; }
   .rows li { grid-template-columns: 1fr; }
   .maptools { left: 3.6rem; }
-  .v-ana { overflow: visible; }
-  .dr { grid-template-columns: 1fr; }
-  .dl { text-align: left; }
+  .v-cua, .v-pan { overflow: visible; }
+  .v-ana { grid-template-columns: minmax(0, 1fr); }
+  .aidx { position: static; flex-direction: row; flex-wrap: wrap; gap: 0.3rem; margin-bottom: 1.2rem; }
+  .aidx .eyebrow { display: none; }
+  .aidx a { border: 1px solid var(--rule); border-radius: 999px; padding: 0.25rem 0.7rem; }
+  .kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .pgrid { grid-template-columns: minmax(0, 1fr); }
+  .prow { grid-template-columns: 7.5rem minmax(0, 1fr); }
+  .tb { min-width: 40rem; }
   .hint { display: none; }
   .legend { font-size: 0.7rem; padding: 0.45rem 0.6rem; }
 }
@@ -306,7 +378,7 @@ h2 { font-family: var(--serif); font-weight: 600; font-size: 1.5rem; line-height
       <p class="kicker">Proyecto Interdisciplinario CIAI-LCD · Universidad Nacional de San Martín</p>
       <h1>Cartografías del textil argentino</h1>
       <p class="lede">Producción y exhibición a partir de datos históricos e imágenes de archivo</p>
-      <p class="abs">Base de datos histórica de los concursos de tejidos y bordados celebrados en Tucumán en 1915 y 1916. Reúne expositoras, obras, técnicas, procedencias y premios, y permite consultar de dónde venían las obras, qué técnicas se practicaban en cada zona y quiénes fueron premiadas.</p>
+      <p class="abs">Base de datos histórica de los concursos de tejidos y bordados celebrados en Tucumán en 1915 y 1916. Reúne expositoras, obras, técnicas, procedencias y premios, y permite consultar de dónde venían las obras, qué técnicas se practicaban en cada provincia y quiénes fueron premiadas.</p>
       <a class="cta" href="#explorador" data-scroll="explorador">Explorar los datos <span aria-hidden="true">↓</span></a>
     </div>
     <figure class="epi">
@@ -328,9 +400,8 @@ h2 { font-family: var(--serif); font-weight: 600; font-size: 1.5rem; line-height
     <a class="brand" href="#top" data-scroll="top"><span class="dm" aria-hidden="true"></span><span>Cartografías del textil argentino</span></a>
     <div class="tabs" id="tabs" role="tablist" aria-label="Vistas">
       <button type="button" role="tab" id="tab-map" data-view="map" aria-selected="true" aria-controls="view-map">Mapa</button>
-      <button type="button" role="tab" id="tab-tec" data-view="tec" aria-selected="false" aria-controls="view-tec">Técnicas por zona</button>
-      <button type="button" role="tab" id="tab-art" data-view="art" aria-selected="false" aria-controls="view-art">Expositoras</button>
       <button type="button" role="tab" id="tab-ana" data-view="ana" aria-selected="false" aria-controls="view-ana">Análisis</button>
+      <button type="button" role="tab" id="tab-art" data-view="art" aria-selected="false" aria-controls="view-art">Expositoras</button>
     </div>
     <a class="navlink" href="#metodo" data-scroll="metodo">Fuentes y método</a>
   </div>
@@ -340,10 +411,9 @@ h2 { font-family: var(--serif); font-weight: 600; font-size: 1.5rem; line-height
   <details class="ask" id="ask" open>
     <summary>Filtros</summary>
     <div class="askrow">
-      <label class="sel" id="s-prize"><span>Obras</span><div class="box"><select id="f-prize"><option value="all">Todas</option><option value="yes">Solo premiadas</option></select></div></label>
+      <label class="sel" id="s-prize"><span>Premio</span><div class="box"><select id="f-prize"><option value="all">Todas las obras</option><option value="yes">Solo premiadas</option></select></div></label>
       <label class="sel" id="s-tec"><span>Técnica</span><div class="box"><select id="f-tec"></select></div></label>
-      <label class="sel" id="s-fam"><span>Tipo de obra</span><div class="box"><select id="f-fam"></select></div></label>
-      <label class="sel" id="s-zona"><span>Zona</span><div class="box"><select id="f-zona"></select></div></label>
+      <label class="sel" id="s-provincia"><span>Provincia</span><div class="box"><select id="f-provincia"></select></div></label>
       <label class="sel" id="s-year"><span>Año</span><div class="box"><select id="f-year"><option value="both">1915 y 1916</option><option value="1915">Solo 1915</option><option value="1916">Solo 1916</option></select></div></label>
       <div class="search"><label class="lb" for="q">Buscar</label><input id="q" type="search" placeholder="Nombre u objeto: vicuña, Cuello" autocomplete="off"></div>
       <button type="button" class="linkbtn" id="reset" hidden>Limpiar filtros</button>
@@ -362,16 +432,65 @@ h2 { font-family: var(--serif); font-weight: 600; font-size: 1.5rem; line-height
     <aside class="card drawer" id="drawer" hidden aria-live="polite"></aside>
   </section>
 
-  <section class="view card v-tec" id="view-tec" role="tabpanel" aria-labelledby="tab-tec" hidden>
-    <div class="tec-head">
-      <div>
-        <h2>Qué técnicas hay en cada zona</h2>
-        <p class="mxnote">Cada celda indica la cantidad de obras y, en rojo, cuántas fueron premiadas. Una obra puede combinar técnicas, por eso las filas no suman el total. Seleccione una celda, una fila o una columna para ver las obras.</p>
-      </div>
-      <div class="scale" aria-hidden="true">1 obra <i></i> <span id="scalemax"></span><span class="d"><s></s> premiadas</span></div>
+  <section class="view card v-ana" id="view-ana" role="tabpanel" aria-labelledby="tab-ana" hidden>
+    <nav class="aidx" id="aidx" aria-label="Secciones del análisis">
+      <span class="eyebrow">En esta página</span>
+      <a href="#a-cifras" data-scroll="a-cifras">Cifras generales</a>
+      <a href="#a-conc" data-scroll="a-conc">Los dos concursos</a>
+      <a href="#a-proc" data-scroll="a-proc">Procedencia</a>
+      <a href="#a-tec" data-scroll="a-tec">Técnicas</a>
+      <a href="#a-exp" data-scroll="a-exp">Expositoras</a>
+      <a href="#a-prem" data-scroll="a-prem">Premios</a>
+      <div class="afil" id="afil" aria-live="polite"></div>
+    </nav>
+    <div class="abody">
+      <section class="asec" id="a-cifras" aria-labelledby="h-cifras">
+        <h2 id="h-cifras">Cifras generales</h2>
+        <p class="mxnote">Con los filtros aplicados. Los gráficos también filtran: seleccione una provincia para aplicarla a todo el explorador, y otra vez para quitarlo.</p>
+        <div class="kpis" id="p-kpi"></div>
+        <p class="mxnote" id="p-kpi-n"></p>
+      </section>
+
+      <section class="asec" id="a-conc" aria-labelledby="h-conc">
+        <h2 id="h-conc">Los dos concursos</h2>
+        <div class="pc"><h3>1915 y 1916, lado a lado<span class="nof">No usa los filtros</span></h3><p class="mxnote">Datos de los catálogos, el fallo y la prensa (hoja Concursos). Las expositoras y las obras son las del catálogo de cada año.</p><div class="tw" id="p-cmp"></div></div>
+        <div class="pc"><h3>Comisión organizadora y jurado<span class="nof">No usa los filtros</span></h3><p class="mxnote">Las mujeres que organizaron los concursos y juzgaron las obras, según el catálogo y el fallo de 1915 y el catálogo de 1916. Que compartan apellido con alguna expositora no prueba parentesco: se indica como pista para investigar.</p><div class="tw" id="p-com"></div></div>
+        <div class="pc"><h3>Las que expusieron en los dos concursos<span class="nof">No usa el filtro de año</span></h3><p class="mxnote">Expositoras con obras en 1915 y en 1916, y las categorías del catálogo en que participaron cada año. Incluye a quien en 1915 figura solo en el fallo.</p><div id="c-both"></div></div>
+      </section>
+
+      <section class="asec" id="a-proc" aria-labelledby="h-proc">
+        <h2 id="h-proc">Procedencia</h2>
+        <div class="pc"><h3>De dónde venían las obras<span class="nof">No usa los filtros de año y provincia</span></h3><p class="mxnote">Obras por provincia de procedencia en cada concurso. El de 1915 fue provincial y el de 1916 interprovincial, aunque en 1915 ya hubo obras de otras provincias. Como 1916 tuvo más de tres veces más obras, para comparar los dos años conviene verlo en % de cada año.</p><div class="cfmt" role="group" aria-label="Cómo mostrar las obras"><button type="button" data-act="procv" data-v="n" aria-pressed="true">Cantidad</button><button type="button" data-act="procv" data-v="pct" aria-pressed="false">% de cada año</button></div><div id="p-zon"></div><details class="vt"><summary>Ver tabla</summary><div id="t-zon"></div></details></div>
+        <div class="pc"><h3>Qué se mostró de cada lugar</h3><p class="mxnote">Obras por lugar de procedencia, con sus tres categorías más frecuentes. Seleccione un lugar para verlo en el mapa.</p><div id="c-place"></div></div>
+      </section>
+
+      <section class="asec" id="a-tec" aria-labelledby="h-tec">
+        <h2 id="h-tec">Técnicas<span class="nof">No usa los filtros de técnica y provincia</span></h2>
+        <p class="mxnote">Qué técnicas hay entre las obras enviadas desde cada provincia. La provincia es la procedencia de la expositora, no el origen de la técnica. La técnica la infiere el proyecto del texto de cada obra (ver Fuentes y método); no es la categoría del catálogo, que es la que usan las tablas de lugares y las fichas. Una obra puede combinar técnicas, por eso las filas no suman el total. En rojo, las obras premiadas. Seleccione una celda, una fila o una columna para ver las obras.</p>
+        <div class="tec-head">
+          <div class="mxv"><div class="cfmt" role="group" aria-label="Qué muestra cada celda"><button type="button" data-act="mxv" data-v="n" aria-pressed="true">Obras</button><button type="button" data-act="mxv" data-v="pct" aria-pressed="false">% de la provincia</button><button type="button" data-act="mxv" data-v="exp" aria-pressed="false">Expositoras</button></div><span class="mxhint" id="mxhint"></span></div>
+          <div class="scale" aria-hidden="true"><span id="scalemin"></span> <i></i> <span id="scalemax"></span><span class="d"><s></s> premiadas</span></div>
+        </div>
+        <div class="mxwrap" id="mx"></div>
+        <p class="mxnote" id="mx-sin"></p>
+        <div class="res" id="res"></div>
+      </section>
+
+      <section class="asec" id="a-exp" aria-labelledby="h-exp">
+        <h2 id="h-exp">Expositoras</h2>
+        <div class="pgrid">
+          <div class="pc"><h3>Cuántas obras presentó cada expositora</h3><p class="mxnote" id="p-dist-n"></p><div id="p-dist"></div><details class="vt"><summary>Ver tabla</summary><div id="t-dist"></div></details></div>
+          <div class="pc"><h3>Personas e instituciones</h3><p class="mxnote">Obras de cada grupo y cuántas fueron premiadas (solo hay premios de 1915). Al lado de cada grupo, cuántos nombres lo forman.</p><div id="p-inst"></div><details class="vt"><summary>Ver tabla</summary><div id="t-inst"></div></details></div>
+        </div>
+        <div class="pc"><h3>Quiénes expusieron más</h3><p class="mxnote">Expositoras según la cantidad de obras. Seleccione un nombre para ver su ficha, o un encabezado para ordenar.</p><div id="c-people"></div></div>
+      </section>
+
+      <section class="asec" id="a-prem" aria-labelledby="h-prem">
+        <h2 id="h-prem">Premios</h2>
+        <div class="pc"><h3>Premios de 1915 por sección del fallo</h3><p class="mxnote" id="p-prz-n"></p><div id="p-prz"></div><details class="vt"><summary>Ver tabla</summary><div id="t-prz"></div></details></div>
+        <div class="pc"><h3>Los premios uno por uno</h3><p class="mxnote" id="c-prem-n"></p><div id="c-prem"></div></div>
+      </section>
     </div>
-    <div class="mxwrap" id="mx"></div>
-    <div class="res" id="res"></div>
   </section>
 
   <section class="view v-art" id="view-art" role="tabpanel" aria-labelledby="tab-art" hidden>
@@ -379,55 +498,6 @@ h2 { font-family: var(--serif); font-weight: 600; font-size: 1.5rem; line-height
     <div class="card ficha" id="ficha" aria-live="polite"></div>
   </section>
 
-  <section class="view card v-ana" id="view-ana" role="tabpanel" aria-labelledby="tab-ana" hidden>
-    <div class="tec-head">
-      <div>
-        <h2>Análisis: técnicas, zonas y años</h2>
-        <p class="mxnote">Lectura estadística de la base. Los filtros de tipo de obra y búsqueda se aplican; el año, la técnica, la zona y las premiadas se comparan dentro de cada panel. Son indicios para orientar la investigación: las técnicas se infieren del texto del catálogo y las zonas son una propuesta provisoria.</p>
-      </div>
-    </div>
-    <div class="ana-bar">
-      <label class="tool"><input type="checkbox" id="a-exp"> Solo técnica mencionada en el texto del objeto</label>
-      <p class="base" id="a-base"></p>
-    </div>
-
-    <div class="ana-sec">
-      <h3>Del concurso de 1915 al de 1916</h3>
-      <p class="mxnote">Porcentaje de las obras con técnica que corresponde a cada técnica, en cada año. El concurso de 1916 fue interprovincial, así que parte del cambio refleja a quién se convocó, no una moda.</p>
-      <label class="sel" id="s-azona"><span>Zona</span><div class="box"><select id="a-zona"></select></div></label>
-      <div id="a-ev"></div>
-    </div>
-
-    <div class="ana-sec">
-      <h3>De dónde venían las obras</h3>
-      <p class="mxnote">Porcentaje de las obras del catálogo que corresponde a cada zona, en cada año.</p>
-      <div id="a-comp"></div>
-    </div>
-
-    <div class="ana-sec">
-      <h3>Qué técnica caracteriza a cada zona</h3>
-      <p class="mxnote">Cada celda compara el peso de la técnica en la zona con su peso en el total: ×2 significa que aparece el doble de lo esperado si la técnica se repartiera parejo. Las celdas con borde son las que no se explican por azar (residuo ≥ 2) y tienen muestra suficiente.</p>
-      <label class="sel" id="s-ayear"><span>Año</span><div class="box"><select id="a-year"><option value="both">1915 y 1916</option><option value="1915">Solo 1915</option><option value="1916">Solo 1916</option></select></div></label>
-      <ul class="finds" id="a-finds"></ul>
-      <div class="scale" aria-hidden="true">menos de lo esperado <i class="dv"></i> más de lo esperado</div>
-      <div class="mxwrap" id="a-lift"></div>
-    </div>
-
-    <div class="ana-sec">
-      <h3>Qué técnicas aparecen juntas</h3>
-      <p class="mxnote">Pares de técnicas que se mencionan en una misma obra. «Lift» mayor que 1 indica que se combinan más de lo esperado por separado. Refleja cómo se redactó el catálogo («randa con encaje»), no solo cómo se tejía.</p>
-      <div id="a-pairs"></div>
-    </div>
-
-    <div class="ana-sec">
-      <h3>Qué tan premiadas fueron</h3>
-      <p class="mxnote">Solo 1915 (los premios de 1916 no están cargados) y solo obras que compitieron. El punto es la tasa de obras premiadas y la barra, su intervalo al 95 %: cuanto más larga, menos obras sostienen la cifra. La línea gris es el promedio del conjunto; una barra que no la cruza sugiere una diferencia real.</p>
-      <h4 class="eyebrow" style="margin:0.4rem 0">Por técnica</h4>
-      <div id="a-rt"></div>
-      <h4 class="eyebrow" style="margin:1.4rem 0 0.4rem">Por zona</h4>
-      <div id="a-rz"></div>
-    </div>
-  </section>
 </section>
 
 <section class="metodo" id="metodo" aria-labelledby="m-t">
@@ -438,8 +508,8 @@ h2 { font-family: var(--serif); font-weight: 600; font-size: 1.5rem; line-height
       <article>
         <h3>Fuentes</h3>
         <ul>
-          <li><b>Primer Concurso Provincial de Tejidos y Bordados</b>, Tucumán, 24 de septiembre al 3 de octubre de 1915, en el edificio del Museo y Archivos: listado de expositoras y fallo del jurado.</li>
-          <li><b>Concurso Interprovincial de Tejidos y Bordados</b>, Tucumán, julio de 1916: catálogo de expositoras (Imp. Prebisch y Violetto).</li>
+          <li><b>Primer Concurso Provincial de Tejidos y Bordados</b>, Tucumán, 1915, en el edificio del Museo y Archivos: listado de expositoras y fallo del jurado. El catálogo anuncia la muestra del 24 de septiembre al 3 de octubre; según El Orden, la inauguración se postergó al 29 de septiembre, y los premios se entregaron el 3 de octubre.</li>
+          <li><b>Concurso Interprovincial de Tejidos y Bordados</b>, Tucumán, julio de 1916, en la Escuela Pedagógica Sarmiento: catálogo de expositoras (Imp. Prebisch y Violetto).</li>
           <li>Decretos del Poder Ejecutivo provincial del 21 de julio de 1915 y del 1.º de marzo de 1916, y discurso de Amalia Prebisch del 3 de octubre de 1915.</li>
           <li>Marco: Larisa Mantovani, «Entre el tejido de vicuña y el encaje de Burano», <i>Separata</i> n.º 34, CIAAL, UNR, 2024.</li>
         </ul>
@@ -450,8 +520,8 @@ h2 { font-family: var(--serif); font-weight: 600; font-size: 1.5rem; line-height
           <li><span class="st ok">Hecho</span>Transcripción de los catálogos, el fallo y los decretos a una planilla.</li>
           <li><span class="st ok">Hecho</span>Normalización manual de nombres de expositoras y de ciudades, con identificadores, y vinculación de los premios de 1915 con su obra (los casos abiertos se indican en los límites de esta versión).</li>
           <li><span class="st ok">Hecho</span>Separación de las filas del catálogo de 1916 que agrupaban varias piezas, y vinculación de cada obra con la página escaneada del catálogo.</li>
-          <li><span class="st wip">En esta versión</span>El explorador se genera desde la tabla normalizada con el pipeline del proyecto. Las técnicas, las zonas y parte de las coordenadas son provisorias y se explican más abajo.</li>
-          <li><span class="st">Pendiente</span>Georreferenciación completa de las localidades, carga de los premios de 1916 y análisis de redes de participación.</li>
+          <li><span class="st wip">En esta versión</span>El explorador se genera desde la tabla normalizada con el pipeline del proyecto. Las técnicas y parte de las coordenadas son provisorias y se explican más abajo.</li>
+          <li><span class="st">Pendiente</span>Georreferenciación completa de las localidades y análisis de redes de participación.</li>
         </ul>
       </article>
       <article>
@@ -461,10 +531,21 @@ h2 { font-family: var(--serif); font-weight: 600; font-size: 1.5rem; line-height
           <div><dt>Expositora</dt><dd>Persona o institución que figura en el catálogo. No siempre es posible afirmar que sea la autora de la pieza.</dd></div>
           <div><dt>Fuera de concurso</dt><dd>Obra que el catálogo marca "(fuera de concurso)": se exhibió pero no compitió por premios.</dd></div>
           <div><dt>Creación de la autora</dt><dd>Obra que el catálogo presenta como "creación de la autora", es decir, de diseño propio.</dd></div>
-          <div><dt>Técnica</dt><dd>Procedimiento mencionado en el catálogo, como randa, deshilado, crochet o telar. Una obra puede tener más de una.</dd></div>
-          <div><dt>Zona</dt><dd>Agrupación de localidades en regiones, propuesta para esta versión.</dd></div>
+          <div><dt>Técnica</dt><dd>Procedimiento mencionado en el catálogo, como randa, deshilado, crochet o telar. Una obra puede tener más de una. Las fuentes no dicen de dónde proviene cada técnica: el mapa y los cruces por provincia muestran desde dónde se envió la obra, no el origen del saber.</dd></div>
+          <div><dt>Procedencia</dt><dd>Lugar desde donde se presentó la obra, tal como figura en el catálogo ("procedencia según el catálogo"), y su forma normalizada con el nombre actual ("lugar"). Puede no ser donde vivía o aprendió la tejedora.</dd></div>
+          <div><dt>Provincia</dt><dd>La de la localidad de procedencia, la misma que muestra el mapa. Las agrupaciones de localidades en zonas y de secciones del catálogo en tipos de obra quedaron fuera de esta versión hasta revisarlas con la dirección del proyecto.</dd></div>
+          <div><dt>Dato deducido</dt><dd>Lo que no figura tal cual en la fuente va <span class="ded">subrayado con puntos</span>, con la explicación al pasar el mouse: la ubicación deducida de las otras obras de la expositora y el vínculo de un premio con su obra cuando falta confirmarlo (≈). Las técnicas son siempre una lectura del proyecto, no un dato del catálogo.</dd></div>
           <div><dt>Obra premiada</dt><dd>Obra con premio, accésit o premio de estímulo en el fallo del jurado. Los montos se transcriben tal como figuran en el fallo.</dd></div>
         </dl>
+      </article>
+      <article>
+        <h3>Dónde están los documentos</h3>
+        <ul id="repos"></ul>
+      </article>
+      <article>
+        <h3>Lo que el archivo no dice</h3>
+        <p class="dim" style="margin-top:0">Los catálogos y el fallo registran lo que a la organización le interesaba registrar. Estos silencios condicionan cualquier lectura de la base:</p>
+        <ul id="sesgo"></ul>
       </article>
       <article>
         <h3>Límites de esta versión</h3>
@@ -474,8 +555,13 @@ h2 { font-family: var(--serif); font-weight: 600; font-size: 1.5rem; line-height
     <div class="cita">
       <div>
         <h3>Cómo citar</h3>
-        <p class="quote" id="citetxt">Rolando, J. (2026). <i>Cartografías del textil argentino: explorador de los concursos de tejidos y bordados de Tucumán, 1915-1916</i> [versión de trabajo, octubre de 2026]. Dirección: Larisa Mantovani; tutoría: Agustín Moro. Proyecto Interdisciplinario CIAI-LCD, Universidad Nacional de San Martín.</p>
+        <div class="cfmt" role="group" aria-label="Formato de la cita"><button type="button" data-act="citefmt" data-f="apa" aria-pressed="true">APA</button><button type="button" data-act="citefmt" data-f="chicago" aria-pressed="false">Chicago</button><button type="button" data-act="citefmt" data-f="bib" aria-pressed="false">BibTeX</button></div>
+        <p class="quote" id="citetxt">Rolando, J. (2026). <i>Cartografías del textil argentino: explorador de los concursos de tejidos y bordados de Tucumán, 1915-1916</i> [versión de trabajo del <span class="ver"></span>]. Dirección: Larisa Mantovani; tutoría: Agustín Moro. Proyecto Interdisciplinario CIAI-LCD, Universidad Nacional de San Martín.</p>
         <button type="button" class="btn" data-act="cite">Copiar cita</button>
+        <h3 style="margin-top:1.6rem">Datos</h3>
+        <p>La base completa, una fila por obra (incluye los premios sin obra en el catálogo), con la fuente de cada una. CSV separado por punto y coma, UTF-8, listo para abrir en Excel.</p>
+        <button type="button" class="btn pri" data-act="csv">Descargar la base (CSV)</button>
+        <button type="button" class="btn" data-act="dic">Descargar el diccionario (CSV)</button>
       </div>
       <div>
         <h3>Gobernanza de datos</h3>
@@ -488,7 +574,7 @@ h2 { font-family: var(--serif); font-weight: 600; font-size: 1.5rem; line-height
 
 <footer class="foot">
   <div class="foot-in">
-    <span>Cartografías del textil argentino · versión de trabajo, octubre de 2026</span>
+    <span>Cartografías del textil argentino · versión de trabajo del <span class="ver"></span></span>
     <a href="#top" data-scroll="top">Volver al inicio ↑</a>
   </div>
 </footer>
@@ -499,7 +585,7 @@ const DATA = __DATA__;
 
 (function () {
   document.documentElement.lang = "es";
-  const P = DATA.places, TEC = DATA.tec, ZON = DATA.zon, FAM = DATA.fam, R = DATA.recs, SEDE = DATA.sede;
+  const P = DATA.places, TEC = DATA.tec, PRV = DATA.prv, R = DATA.recs, SEDE = DATA.sede;
   const $ = (id) => document.getElementById(id);
   const strip = (s) => String(s || "").normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
   const esc = (s) => String(s == null ? "" : s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
@@ -507,30 +593,29 @@ const DATA = __DATA__;
   const fmt = (n) => n.toLocaleString("es-AR");
   const plural = (n, s, p) => fmt(n) + " " + (n === 1 ? s : p);
   const clip = (s, n) => (s.length > n ? s.slice(0, n - 1).trimEnd() + "…" : s);
-  const ZORD = Object.keys(ZON), SOFT = ["encrand", "bordesh", "sin"], VIEWS = ["map", "tec", "art", "ana"];
+  const PORD = Object.keys(PRV), SOFT = ["encrand", "bordesh", "sin"], VIEWS = ["map", "ana", "art"];
 
   R.forEach((r) => { r._s = strip([r.n, r.nv, r.c, r.o, r.po].join(" ")); });
   const byPk = new Map();
   R.forEach((r) => { if (!byPk.has(r.pk)) byPk.set(r.pk, []); byPk.get(r.pk).push(r); });
 
   const state = {
-    view: "map", year: "both", prize: false, fam: "", tec: "", zona: "", q: "", flows: false, prov: true,
+    view: "map", year: "both", prize: false, tec: "", provincia: "", q: "", flows: false, prov: true, mxv: "n", procv: "n",
     place: null, person: byPk.has(DATA.person0) ? DATA.person0 : null,
-    cell: { t: "randa", z: "tcs" }, more: false, moreRes: false, morePeople: false,
-    explicit: false, anaZona: "", anaYear: "both",
+    cell: null, more: false, moreRes: false, morePeople: false,
+    cuaAll: {},
   };
   // lo que va en la URL (#clave=valor&...) para poder compartir un enlace a una consulta
-  const HASHED = ["view", "year", "prize", "fam", "tec", "zona", "q", "explicit", "anaZona", "anaYear", "person"];
+  const HASHED = ["view", "year", "prize", "tec", "provincia", "q", "person"];
   const DEFAULTS = Object.fromEntries(HASHED.map((k) => [k, state[k]]));
   let toks = [], lastList = [];
 
   function match(r, noTZ, noYear) {
     if (!noYear && state.year !== "both" && r.y !== +state.year) return false;
-    if (state.prize && !r.pz && !noYear) return false;  // noYear solo lo pide el análisis, que compara premiadas con no premiadas
-    if (state.fam && r.f !== state.fam) return false;
+    if (state.prize && !r.pz) return false;
     if (!noTZ) {
       if (state.tec && !r.tec.includes(state.tec)) return false;
-      if (state.zona && r.z !== state.zona) return false;
+      if (state.provincia && r.pv !== state.provincia) return false;
     }
     for (const t of toks) if (!r._s.includes(t)) return false;
     return true;
@@ -548,17 +633,19 @@ const DATA = __DATA__;
   const tecChips = (r) => r.tec.filter((t) => t !== "sin").map((t) => `<span class="tg">${esc(TEC[t])}</span>`).join("");
   function marks(r) {
     return (r.fc ? ' <span class="dim">· Fuera de concurso</span>' : "") + (r.ca ? ' <span class="dim">· Creación de la autora</span>' : "") +
-      (r.fa ? ` <span class="dim">· Foto del álbum de 1915: ${esc(r.fa)}</span>` : "");
+      (r.li ? ` <span class="dim ded" title="${esc(`El catálogo dice «${r.po}»; ubicada en ${P[r.pl].n} por las otras obras de la expositora`)}">· Ubicación deducida</span>` : "") +
+      (r.fa ? ` <span class="dim">· Foto del álbum de 1915: ${esc(r.fa)}</span>` : "") +
+      (r.pr ? ' <span class="dim">· En la prensa</span>' : "");
   }
   function what(r) { return [r.c, r.o && strip(r.o) !== strip(r.c) ? r.o : ""].filter(Boolean).join(": "); }
   const personBtn = (pk, name) => `<button type="button" class="plink" data-act="person" data-pk="${esc(pk)}">${esc(name)}</button>`;
 
+  const LK = { ord: "por número de orden", nom: "por nombre", man: "decisión manual", "nom?": "a confirmar", sv: "sin obra en el listado", pen: "pendiente de vincular" };
   function tsv(rows) {
-    const head = ["Año", "Expositora", "Procedencia según el catálogo", "Lugar", "Zona", "Categoría", "Objeto", "Técnicas", "N.º de orden", "Fuera de concurso", "Creación de la autora", "Foto del álbum", "Premio", "Monto ($)", "Vínculo premio-obra"];
+    const head = ["Año", "Expositora", "Nombre en la fuente", "Procedencia según el catálogo", "Lugar", "Provincia", "Categoría", "Objeto", "Técnicas", "N.º de orden", "Fuera de concurso", "Creación de la autora", "Foto del álbum", "Premio", "Monto ($)", "Vínculo premio-obra", "Ubicación", "Fuente"];
     const clean = (s) => String(s == null ? "" : s).replace(/[\t\r\n]+/g, " ").trim();
-    const lk = { ord: "por número de orden", nom: "por nombre", man: "decisión manual", "nom?": "a confirmar", sv: "sin obra en el listado", pen: "pendiente de vincular" };
-    return [head].concat(rows.map((r) => [r.y, r.n, r.po, P[r.pl].n, ZON[r.z], r.c, r.o, r.tec.filter((t) => t !== "sin").map((t) => TEC[t]).join("; "), r.ord, r.fc ? "sí" : "", r.ca ? "sí" : "", r.fa || "",
-      (r.pz || []).map((z) => z.t).join("; "), (r.pz || []).map((z) => z.m).join("; "), (r.pz || []).map((z) => lk[z.lk]).join("; ")].map(clean))).map((l) => l.join("\t")).join("\n");
+    return [head].concat(rows.map((r) => [r.y, r.n, r.nv, r.po, P[r.pl].n, PRV[r.pv], r.c, r.o, r.tec.filter((t) => t !== "sin").map((t) => TEC[t]).join("; "), r.ord, r.fc ? "sí" : "", r.ca ? "sí" : "", r.fa || "",
+      (r.pz || []).map((z) => z.t).join("; "), (r.pz || []).map((z) => z.m).join("; "), (r.pz || []).map((z) => LK[z.lk]).join("; "), r.li ? "deducida de sus otras obras" : "", r.cit].map(clean))).map((l) => l.join("\t")).join("\n");
   }
   function copyText(txt, btn) {
     const orig = btn.dataset.l || btn.textContent;
@@ -587,33 +674,25 @@ const DATA = __DATA__;
 
   /* ---------------------------------------------------------------- controles */
   function buildSelects() {
-    const tc = {}, zc = {}, fc = {};
-    R.forEach((r) => { zc[r.z] = (zc[r.z] || 0) + 1; fc[r.f] = (fc[r.f] || 0) + 1; r.tec.forEach((t) => (tc[t] = (tc[t] || 0) + 1)); });
+    const tc = {}, pc = {};
+    R.forEach((r) => { pc[r.pv] = (pc[r.pv] || 0) + 1; r.tec.forEach((t) => (tc[t] = (tc[t] || 0) + 1)); });
     const tk = Object.keys(TEC).filter((t) => tc[t]).sort((a, b) => (SOFT.includes(a) - SOFT.includes(b)) || (tc[b] - tc[a]));
-    $("a-zona").innerHTML = '<option value="">Todas las zonas</option>' + ZORD.filter((z) => zc[z]).map((z) => `<option value="${z}">${esc(ZON[z])}</option>`).join("");
     $("f-tec").innerHTML = '<option value="">Todas</option>' + tk.map((t) => `<option value="${t}">${esc(TEC[t])} (${tc[t]})</option>`).join("");
-    $("f-zona").innerHTML = '<option value="">Todas</option>' + ZORD.filter((z) => zc[z]).map((z) => `<option value="${z}">${esc(ZON[z])} (${zc[z]})</option>`).join("");
-    $("f-fam").innerHTML = '<option value="">Todos</option>' + Object.entries(FAM).filter(([k]) => fc[k]).map(([k, v]) => `<option value="${k}">${esc(v)} (${fc[k]})</option>`).join("");
+    $("f-provincia").innerHTML = '<option value="">Todas</option>' + PORD.filter((k) => pc[k]).map((k) => `<option value="${k}">${esc(PRV[k])} (${pc[k]})</option>`).join("");
   }
   function syncControls() {
-    $("f-prize").value = state.prize ? "yes" : "all"; $("f-tec").value = state.tec; $("f-zona").value = state.zona; $("f-fam").value = state.fam; $("f-year").value = state.year;
-    const dflt = { prize: !state.prize, tec: !state.tec, fam: !state.fam, zona: !state.zona, year: state.year === "both" };
+    $("f-prize").value = state.prize ? "yes" : "all"; $("f-tec").value = state.tec; $("f-provincia").value = state.provincia; $("f-year").value = state.year;
+    const dflt = { prize: !state.prize, tec: !state.tec, provincia: !state.provincia, year: state.year === "both" };
     Object.keys(dflt).forEach((k) => $("s-" + k).classList.toggle("on", !dflt[k]));
-    const tz = state.view === "tec" || state.view === "ana", an = state.view === "ana";
-    ["tec", "zona"].forEach((k) => { $("f-" + k).disabled = tz; $("s-" + k).classList.toggle("off", tz); $("s-" + k).title = tz ? "En esta vista se comparan dentro de cada panel" : ""; });
-    [["year", "En esta vista se comparan los dos años"], ["prize", "En esta vista se comparan las premiadas con las demás"]].forEach(([k, t]) => { $("f-" + k).disabled = an; $("s-" + k).classList.toggle("off", an); $("s-" + k).title = an ? t : ""; });
     $("reset").hidden = Object.values(dflt).every(Boolean) && !state.q;
   }
   $("f-prize").onchange = (e) => { state.prize = e.target.value === "yes"; resetPaging(); render(); };
-  ["tec", "zona", "fam", "year"].forEach((k) => { $("f-" + k).onchange = (e) => { state[k] = e.target.value; resetPaging(); render(); }; });
+  ["tec", "provincia", "year"].forEach((k) => { $("f-" + k).onchange = (e) => { state[k] = e.target.value; resetPaging(); render(); }; });
   $("q").oninput = () => { state.q = $("q").value; resetPaging(); render(); };
-  $("reset").onclick = () => { state.prize = false; state.tec = ""; state.zona = ""; state.fam = ""; state.year = "both"; state.q = ""; $("q").value = ""; resetPaging(); render(); };
+  $("reset").onclick = () => { state.prize = false; state.tec = ""; state.provincia = ""; state.year = "both"; state.q = ""; $("q").value = ""; resetPaging(); render(); };
   $("flows").onchange = () => { state.flows = $("flows").checked; render(); };
   $("prov").onchange = () => { state.prov = $("prov").checked; render(); };
-  $("a-exp").onchange = () => { state.explicit = $("a-exp").checked; render(); };
-  $("a-zona").onchange = (e) => { state.anaZona = e.target.value; render(); };
-  $("a-year").onchange = (e) => { state.anaYear = e.target.value; render(); };
-  function resetPaging() { state.more = false; state.moreRes = false; state.morePeople = false; }
+  function resetPaging() { state.more = false; state.moreRes = false; state.morePeople = false; state.cuaAll = {}; }
 
   document.addEventListener("click", (e) => {
     const sc = e.target.closest("[data-scroll]");
@@ -621,7 +700,7 @@ const DATA = __DATA__;
     const a = e.target.closest("[data-act]");
     if (!a) return;
     const act = a.dataset.act;
-    if (act === "person") { state.person = a.dataset.pk; setView("art"); }
+    if (act === "person") { state.person = a.dataset.pk; $("ficha").scrollTop = 0; setView("art"); }
     else if (act === "close") { state.place = null; render(); }
     else if (act === "more") { state.more = true; render(); }
     else if (act === "moreres") { state.moreRes = true; render(); }
@@ -631,11 +710,27 @@ const DATA = __DATA__;
       state.cell = cur && cur.t === t && cur.z === z ? null : { t, z }; state.moreRes = false; render();
     }
     else if (act === "clearcell") { state.cell = null; render(); }
-    else if (act === "applycell") { state.tec = state.cell.t || ""; state.zona = state.cell.z || ""; state.place = null; setView("map"); $("explorador").scrollIntoView({ behavior: "smooth", block: "start" }); }
+    else if (act === "applycell") { state.tec = state.cell.t || ""; state.provincia = state.cell.z || ""; state.place = null; setView("map"); $("explorador").scrollIntoView({ behavior: "smooth", block: "start" }); }
     else if (act === "copyres") copyText(tsv(lastList), a);
     else if (act === "copyficha") copyText(tsv(byPk.get(state.person) || []), a);
+    else if (act === "copylink") copyText(location.href, a);
+    else if (act === "citeficha") {
+      const l = byPk.get(state.person) || [], cod = /^\d+$/.test(state.person) ? `, n.º ${state.person}` : "";
+      copyText(`«${l[0].n}» [ficha de ${l[0].inst ? "institución" : "expositora"}${cod}]. En Rolando, J. (2026). Cartografías del textil argentino: explorador de los concursos de tejidos y bordados de Tucumán, 1915-1916 [versión de trabajo del ${DATA.version}]. Proyecto Interdisciplinario CIAI-LCD, Universidad Nacional de San Martín. ${location.href}`, a);
+    }
     else if (act === "cite") copyText($("citetxt").textContent, a);
+    else if (act === "citefmt") citar(a.dataset.f);
+    else if (act === "csv") bajar("cartografias_textil_obras.csv", deTsv(tsv(R)));
+    else if (act === "dic") bajar("cartografias_textil_diccionario.csv", [["Columna", "Descripción"]].concat(DIC));
     else if (act === "place") { state.place = a.dataset.id; state.more = false; render(); }
+    else if (act === "sort") { const [k, d] = SORT[a.dataset.t]; SORT[a.dataset.t] = [a.dataset.k, k === a.dataset.k ? -d : a.dataset.n ? -1 : 1]; render(); }
+    else if (act === "mxv") { state.mxv = a.dataset.v; render(); }
+    else if (act === "procv") { state.procv = a.dataset.v; render(); }
+    else if (act === "resetf") $("reset").click();
+    else if (act === "pprov") { state.provincia = state.provincia === a.dataset.k ? "" : a.dataset.k; resetPaging(); render(); }
+    else if (act === "cuaall") { state.cuaAll[a.dataset.t] = true; render(); }
+    else if (act === "copycua") copyText(CUA[a.dataset.t].map((l) => l.join("\t")).join("\n"), a);
+    else if (act === "gomap") { state.place = a.dataset.id; state.more = false; setView("map"); $("explorador").scrollIntoView({ behavior: "smooth", block: "start" }); }
   });
   document.querySelectorAll(".tabs button").forEach((b) => (b.onclick = () => setView(b.dataset.view)));
   $("tabs").addEventListener("keydown", (e) => {
@@ -653,9 +748,12 @@ const DATA = __DATA__;
   }
   function readHash() {
     const h = (location.hash || "").slice(1), p = new URLSearchParams(h);
-    if (VIEWS.includes(h)) { state.view = h; return; }  // enlaces viejos: #map, #tec, #art
-    const ok = { view: (v) => VIEWS.includes(v), year: (v) => ["both", "1915", "1916"].includes(v), anaYear: (v) => ["both", "1915", "1916"].includes(v),
-      fam: (v) => v in FAM, tec: (v) => v in TEC, zona: (v) => v in ZON, anaZona: (v) => v in ZON, person: (v) => byPk.has(v) };
+    if (VIEWS.includes(h)) { state.view = h; return; }  // enlaces viejos: #map, #art
+    // Panorama, Técnicas por zona y Cuadros se unieron en Análisis
+    if (["pan", "tec", "cua"].includes(h)) { state.view = "ana"; return; }
+    if (["pan", "tec", "cua"].includes(p.get("view"))) p.set("view", "ana");
+    const ok = { view: (v) => VIEWS.includes(v), year: (v) => ["both", "1915", "1916"].includes(v),
+      tec: (v) => v in TEC, provincia: (v) => v in PRV, person: (v) => byPk.has(v) };
     HASHED.forEach((k) => {
       if (!p.has(k)) return;
       const v = p.get(k);
@@ -677,17 +775,31 @@ const DATA = __DATA__;
       $("view-" + v).hidden = state.view !== v;
       const t = $("tab-" + v); t.setAttribute("aria-selected", state.view === v); t.tabIndex = state.view === v ? 0 : -1;
     });
-    const rs = R.filter((r) => match(r, state.view === "tec" || state.view === "ana", state.view === "ana"));
+    const rs = R.filter((r) => match(r));
     $("strip").innerHTML = `<span><span class="n">${fmt(rs.length)}</span> <span class="u">obras</span></span>` +
       `<span><span class="n p">${fmt(nPrized(rs))}</span> <span class="u">premiadas</span></span>` +
       `<span><span class="n">${fmt(new Set(rs.map((r) => r.pk)).size)}</span> <span class="u">nombres de expositoras</span></span>` +
-      (state.prize && state.year !== "1915" ? '<p class="warn">Los premios de 1916 todavía no están cargados en la planilla.</p>' : "");
-    if (state.view === "map") renderMap(rs); else if (state.view === "tec") renderMatrix(rs); else if (state.view === "ana") renderAnalysis(rs); else renderPeople(rs);
+      detalle(rs) +
+      (state.prize && state.year !== "1915" ? '<p class="warn">No hay premios de 1916.</p>' : "");
+    if (state.view === "map") renderMap(rs); else if (state.view === "ana") renderAnalisis(rs); else renderPeople(rs);
+  }
+
+  // de dónde sale el número de obras y cuántas se ven en el mapa, para que coincidan
+  function detalle(rs) {
+    const sv = rs.filter((r) => r.sv).length, partes = [];
+    if (sv) partes.push(`${fmt(rs.length - sv)} del catálogo y ${fmt(sv)} ${sv === 1 ? "premiada que no figura" : "premiadas que no figuran"} en él`);
+    if (state.view === "map") {
+      const sinLat = rs.filter((r) => P[r.pl].lat == null).length, prov = rs.filter((r) => P[r.pl].lat != null && P[r.pl].t === "prov").length;
+      partes.push(`en el mapa: ${fmt(rs.length - sinLat - (state.prov ? 0 : prov))}`);
+      if (sinLat) partes.push(`sin ubicar: ${fmt(sinLat)}`);
+      if (!state.prov && prov) partes.push(`ocultas por conocerse solo la provincia: ${fmt(prov)}`);
+    }
+    return partes.length ? `<p class="warn">${partes.join(" · ")}</p>` : "";
   }
 
   /* ---------------------------------------------------------------- mapa */
   const NICE = [1000, 500, 200, 100, 50, 20, 10, 5, 2, 1];
-  function legend(maxN, rad, flows) {
+  function legend(maxN, rad, flows, aprox) {
     const top = NICE.find((v) => v <= maxN) || 1;
     const vals = [top, NICE.find((v) => v <= top / 4), NICE.find((v) => v <= top / 16)].filter((v, i, a) => v && a.indexOf(v) === i);
     const R0 = rad(top), W = 2 * R0 + 52, H = 2 * R0 + 4;
@@ -697,7 +809,9 @@ const DATA = __DATA__;
       svg += `<circle cx="${R0 + 2}" cy="${cy}" r="${r}" fill="none" stroke="var(--indigo)" stroke-width="1.5"/><line x1="${R0 + 2}" y1="${cy - r}" x2="${2 * R0 + 8}" y2="${cy - r}" stroke="var(--ink2)" stroke-width="0.8"/><text x="${2 * R0 + 11}" y="${cy - r + 3.5}" font-size="10.5" fill="var(--ink)">${v}</text>`;
     });
     $("legend").innerHTML = `<b>Obras por lugar</b>${svg}</svg><div class="li"><span class="sw r"></span><span>Parte premiada</span></div><div class="li"><span class="sw h"></span><span>Se conoce solo la provincia</span></div>` +
-      (flows ? '<div class="li"><span class="sw l"></span><span>Hacia San Miguel de Tucumán, sede</span></div>' : "");
+      (flows ? '<div class="li"><span class="sw l"></span><span>Hacia San Miguel de Tucumán, sede</span></div>' +
+        (aprox ? '<div class="li"><span class="sw l d"></span><span>Desde una ubicación aproximada</span></div>' : "") +
+        '<p class="lnote">Cada línea une el lugar de procedencia declarado en el catálogo con la sede del concurso. No indica un traslado documentado de la obra ni de la expositora. Los lugares de los que solo se conoce la provincia no tienen línea.</p>' : "");
   }
   function groupsOf(rs) {
     const m = new Map();
@@ -709,20 +823,22 @@ const DATA = __DATA__;
     flowLayer.clearLayers(); dotLayer.clearLayers();
     const placed = [...gs.values()].filter((g) => P[g.id].lat != null && (state.prov || P[g.id].t !== "prov")).sort((a, b) => b.recs.length - a.recs.length);
     const maxN = Math.max(1, ...placed.map((g) => g.recs.length)), sede = P[SEDE], radius = (n) => 5 + 30 * Math.sqrt(n / maxN);
+    let aprox = false;
     if (state.flows) placed.forEach((g) => {
       const p = P[g.id];
       if (p.t === "prov" || g.id === SEDE) return;
-      L.polyline([[p.lat, p.lon], [sede.lat, sede.lon]], { pane: "flows", color: flow, weight: 0.8 + 3.4 * Math.sqrt(g.recs.length / maxN), opacity: 0.6, interactive: false }).addTo(flowLayer);
+      if (p.c === "aprox") aprox = true;
+      L.polyline([[p.lat, p.lon], [sede.lat, sede.lon]], { pane: "flows", color: flow, weight: 0.8 + 3.4 * Math.sqrt(g.recs.length / maxN), opacity: 0.6, dashArray: p.c === "aprox" ? "4 5" : null, interactive: false }).addTo(flowLayer);
     });
-    placed.forEach((g, i) => {
+    placed.forEach((g) => {
       const p = P[g.id], n = g.recs.length, m = nPrized(g.recs), hollow = p.t === "prov", sel = state.place === g.id, rad = radius(n);
       const o = L.circleMarker([p.lat, p.lon], { pane: "dots", radius: rad, color: sel ? ink : indigo, weight: sel ? 3 : 2, fillColor: indigo, fillOpacity: hollow ? 0.04 : 0.38, dashArray: hollow ? "5 5" : null, bubblingMouseEvents: false }).addTo(dotLayer);
-      if (i < 4) o.bindTooltip(`${esc(p.n.replace(" (departamento)", ""))} · ${n}`, { permanent: true, direction: "right", offset: [rad + 2, 0], className: "plab" });
-      else o.bindTooltip(`<b>${esc(p.n)}</b><br>${plural(n, "obra", "obras")} · ${m} premiadas`, { direction: "top", offset: [0, -4] });
+      // sin rótulos fijos: el mapa base ya nombra los lugares
+      o.bindTooltip(`<b>${esc(p.n)}</b><br>${plural(n, "obra", "obras")} · ${m} premiadas`, { direction: "top", offset: [0, -4] });
       o.on("click", () => { state.place = state.place === g.id ? null : g.id; state.more = false; render(); });
       if (m) L.circleMarker([p.lat, p.lon], { pane: "dots", radius: Math.max(3, rad * Math.sqrt(m / n)), color: mad, weight: 1, fillColor: mad, fillOpacity: 0.88, interactive: false }).addTo(dotLayer);
     });
-    legend(maxN, radius, state.flows);
+    legend(maxN, radius, state.flows, aprox);
     $("maphint").hidden = !!state.place;
 
     const el = $("drawer"), g = state.place && gs.get(state.place);
@@ -735,33 +851,52 @@ const DATA = __DATA__;
     const people = [...by.values()].sort((a, b) => a[0].n.localeCompare(b[0].n, "es")), shown = state.more ? people : people.slice(0, 25);
     const sub = [p.p, p.lat == null ? "sin coordenadas" : p.t === "prov" ? "solo se indica la provincia" : p.c === "aprox" ? "ubicación aproximada" : ""].filter(Boolean).join(" · ");
     el.innerHTML = x + `<h2>${esc(p.n)}</h2><p class="meta">${plural(g.recs.length, "obra", "obras")}, ${nPrized(g.recs)} premiadas · ${plural(people.length, "nombre", "nombres")}${sub ? "<br>" + esc(sub) : ""}</p>` +
-      (p.note ? `<p class="pnote">${esc(p.note)}</p>` : "") +
+      (p.note ? `<p class="pnote">${esc(p.note)}</p>` : "") + enPrensa(DATA.prensa.filter((m) => m.pl.includes(g.id))) +
       shown.map((l) => `<div class="who">${personBtn(l[0].pk, l[0].n)}<ul>${l.sort((a, b) => a.y - b.y).map((r) => `<li><span class="yr">${r.y}</span><span title="${esc(what(r))}">${esc(clip(what(r), 90))} ${prizeBadges(r)}</span></li>`).join("")}</ul></div>`).join("") +
       (people.length > shown.length ? `<button type="button" class="more" data-act="more">Mostrar los ${people.length} nombres</button>` : "");
   }
   // lugares sin ubicar: se listan desde la matriz y la ficha; en el mapa se avisa en el panel de límites
 
-  /* ---------------------------------------------------------------- técnicas por zona */
+  /* ---------------------------------------------------------------- técnicas por provincia */
   function renderMatrix(rs) {
-    const cnt = {}, pri = {}, rowT = {}, colT = {};
+    const cnt = {}, pri = {}, exp = {}, rowT = {}, rowE = {}, colT = {}, colE = {};
+    const add = (o, k, pk) => (o[k] || (o[k] = new Set())).add(pk);
     rs.forEach((r) => {
-      colT[r.z] = (colT[r.z] || 0) + 1;
-      r.tec.forEach((t) => { const k = t + "|" + r.z; cnt[k] = (cnt[k] || 0) + 1; if (r.pz) pri[k] = (pri[k] || 0) + 1; rowT[t] = (rowT[t] || 0) + 1; });
+      colT[r.pv] = (colT[r.pv] || 0) + 1; add(colE, r.pv, r.pk);
+      r.tec.forEach((t) => { const k = t + "|" + r.pv; cnt[k] = (cnt[k] || 0) + 1; if (r.pz) pri[k] = (pri[k] || 0) + 1; add(exp, k, r.pk); rowT[t] = (rowT[t] || 0) + 1; add(rowE, t, r.pk); });
     });
     const tks = Object.keys(rowT).sort((a, b) => (SOFT.includes(a) - SOFT.includes(b)) || (rowT[b] - rowT[a]));
-    const zks = ZORD.filter((z) => colT[z]), mx = Math.max(1, ...Object.values(cnt)), cur = state.cell;
-    $("scalemax").textContent = mx + " obras";
-    let h = `<table class="mx"><thead><tr><th></th>` + zks.map((z) => `<th scope="col"><button type="button" data-act="cell" data-z="${z}" data-c="${z}" aria-pressed="${!!cur && !cur.t && cur.z === z}">${esc(ZON[z])}<small>${colT[z]} obras</small></button></th>`).join("") + `</tr></thead><tbody>`;
+    const zks = PORD.filter((z) => colT[z]), cur = state.cell, v = state.mxv;
+    // lo que muestra la celda: obras, % de las obras de la provincia o expositoras distintas
+    const val = (k, z) => (v === "pct" ? (cnt[k] ? 100 * cnt[k] / colT[z] : 0) : v === "exp" ? (exp[k] ? exp[k].size : 0) : cnt[k] || 0);
+    const lab = (k, z) => (v === "pct" ? Math.round(val(k, z)) + " %" : fmt(val(k, z)));
+    // "sin técnica" queda fuera de la escala de color: si no, es la fila más oscura
+    const mx = Math.max(1, ...tks.filter((t) => t !== "sin").flatMap((t) => zks.map((z) => val(t + "|" + z, z))));
+    const uni = v === "exp" ? ["expositora", "expositoras"] : ["obra", "obras"];
+    $("scalemin").textContent = v === "pct" ? "0 %" : "1 " + uni[0];
+    $("scalemax").textContent = v === "pct" ? Math.round(mx) + " %" : plural(mx, uni[0], uni[1]);
+    $("mxhint").textContent = v === "pct" ? "Qué parte de las obras de cada provincia tiene la técnica. En provincias con pocas obras, un porcentaje alto puede ser una sola obra." :
+      v === "exp" ? "Cuántas expositoras distintas presentaron la técnica: una sola expositora con muchas obras puede parecer un rasgo de su provincia." : "";
+    document.querySelectorAll('[data-act="mxv"]').forEach((b) => b.setAttribute("aria-pressed", b.dataset.v === v));
+    let h = `<table class="mx"><thead><tr><th></th>` + zks.map((z) => `<th scope="col"><button type="button" data-act="cell" data-z="${z}" data-c="${z}" aria-pressed="${!!cur && !cur.t && cur.z === z}">${esc(PRV[z])}<small>${v === "exp" ? plural(colE[z].size, "expositora", "expositoras") : plural(colT[z], "obra", "obras")}</small></button></th>`).join("") + `</tr></thead><tbody>`;
     tks.forEach((t) => {
-      h += `<tr><th scope="row"><button type="button" class="rh${SOFT.includes(t) ? " soft" : ""}" data-act="cell" data-t="${t}" data-r="${t}" aria-pressed="${!!cur && cur.t === t && !cur.z}"><span>${esc(TEC[t])}</span><i>${rowT[t]}</i></button></th>`;
+      h += `<tr><th scope="row"><button type="button" class="rh${SOFT.includes(t) ? " soft" : ""}" data-act="cell" data-t="${t}" data-r="${t}" aria-pressed="${!!cur && cur.t === t && !cur.z}"><span>${esc(TEC[t])}</span><i>${v === "exp" ? rowE[t].size : rowT[t]}</i></button></th>`;
       zks.forEach((z) => {
-        const n = cnt[t + "|" + z] || 0, m = pri[t + "|" + z] || 0;
-        if (!n) { h += `<td><button type="button" class="cell zero" disabled aria-label="${esc(TEC[t])}, ${esc(ZON[z])}: sin obras"></button></td>`; return; }
-        const pct = Math.round(10 + 72 * Math.sqrt(n / mx));
-        h += `<td><button type="button" class="cell" data-act="cell" data-t="${t}" data-z="${z}" data-r="${t}" data-c="${z}" aria-pressed="${!!cur && cur.t === t && cur.z === z}" aria-label="${esc(TEC[t])}, ${esc(ZON[z])}: ${n} obras, ${m} premiadas" style="background:color-mix(in srgb,var(--indigo) ${pct}%,var(--card));color:${pct > 52 ? "var(--card)" : "var(--ink)"}">${n}${m ? `<span class="dot">${m}</span>` : ""}</button></td>`;
+        const k = t + "|" + z, n = cnt[k] || 0, m = pri[k] || 0;
+        if (!n) { h += `<td><button type="button" class="cell zero" disabled aria-label="${esc(TEC[t])}, ${esc(PRV[z])}: sin obras"></button></td>`; return; }
+        const d = `${TEC[t]}, ${PRV[z]}: ${plural(n, "obra", "obras")} (${Math.round(100 * n / colT[z])} % de las de la provincia), de ${plural(exp[k].size, "expositora", "expositoras")}${m ? `, ${m} premiadas` : ""}`;
+        const fuera = t === "sin", pct = Math.round(10 + 72 * Math.sqrt(Math.min(1, val(k, z) / mx)));
+        const st = fuera ? "" : ` style="background:color-mix(in srgb,var(--indigo) ${pct}%,var(--card));color:${pct > 52 ? "var(--card)" : "var(--ink)"}"`;
+        h += `<td><button type="button" class="cell${fuera ? " out" : ""}" data-act="cell" data-t="${t}" data-z="${z}" data-r="${t}" data-c="${z}" aria-pressed="${!!cur && cur.t === t && cur.z === z}" aria-label="${esc(d)}" title="${esc(d)}"${st}>${lab(k, z)}${m ? `<span class="dot">${m}</span>` : ""}</button></td>`;
       });
       h += `</tr>`;
     });
+    // qué hay en "sin técnica indicada", sobre toda la base
+    const sinT = R.filter((r) => r.tec.length === 1 && r.tec[0] === "sin"), cs = {};
+    sinT.forEach((r) => { cs[r.c] = (cs[r.c] || 0) + 1; });
+    const topS = Object.keys(cs).sort((a, b) => cs[b] - cs[a]).slice(0, 5).map((c) => `${c} (${cs[c]})`).join(", ");
+    const pv3 = PORD.filter((z) => z !== "sd").slice(0, 2).map((z) => { const l = R.filter((r) => r.pv === z); return `${PRV[z]} ${Math.round(100 * l.filter((r) => sinT.includes(r)).length / l.length)} %`; }).join(", ");
+    $("mx-sin").textContent = `"Sin técnica indicada" va en gris, fuera de la escala de color: son ${fmt(sinT.length)} obras (${Math.round(100 * sinT.length / R.length)} % de la base) cuyo texto no nombra ninguna técnica. Las secciones del catálogo que más aportan son ${topS}. Pesan distinto según la provincia (${pv3}), así que la clasificación por técnica describe mejor las labores de aguja que los tejidos de abrigo y las alfombras.`;
     const mxEl = $("mx");
     mxEl.innerHTML = h + `</tbody></table>`;
     const hl = (on, e) => { const b = e.target.closest(".cell[data-r]"); if (!b) return; mxEl.querySelectorAll(`.rh[data-r="${CSS.escape(b.dataset.r)}"], thead button[data-c="${CSS.escape(b.dataset.c)}"]`).forEach((x) => x.classList.toggle("hl", on)); };
@@ -769,111 +904,252 @@ const DATA = __DATA__;
 
     const res = $("res");
     if (!cur) { lastList = []; res.innerHTML = '<p class="empty">Seleccione una celda, una fila o una columna para ver las obras que la forman.</p>'; return; }
-    const list = rs.filter((r) => (!cur.t || r.tec.includes(cur.t)) && (!cur.z || r.z === cur.z)).sort((a, b) => (!!b.pz - !!a.pz) || a.n.localeCompare(b.n, "es"));
+    const list = rs.filter((r) => (!cur.t || r.tec.includes(cur.t)) && (!cur.z || r.pv === cur.z)).sort((a, b) => (!!b.pz - !!a.pz) || a.n.localeCompare(b.n, "es"));
     lastList = list;
     const shown = state.moreRes ? list : list.slice(0, 12);
-    res.innerHTML = `<h3>${esc(cur.t ? TEC[cur.t] : "Todas las técnicas")} en ${esc(cur.z ? ZON[cur.z] : "todas las zonas")}: ${plural(list.length, "obra", "obras")}, ${nPrized(list)} premiadas</h3>` +
+    res.innerHTML = `<h3>${esc(cur.t ? TEC[cur.t] : "Todas las técnicas")} en ${esc(cur.z ? PRV[cur.z] : "todas las provincias")}: ${plural(list.length, "obra", "obras")}, ${nPrized(list)} premiadas</h3>` +
       `<div class="acts"><button type="button" class="btn pri" data-act="applycell">Ver en el mapa</button><button type="button" class="btn" data-act="copyres">Copiar tabla</button><button type="button" class="btn" data-act="clearcell">Quitar selección</button></div>` +
       `<ul class="rows">` + shown.map((r) => `<li><div>${personBtn(r.pk, r.n)}<div class="dim">${esc(r.po)} · ${r.y}</div></div><div title="${esc(what(r))}">${esc(clip(what(r), 120))}${marks(r)} ${prizeBadges(r)}</div></li>`).join("") + `</ul>` +
       (list.length > shown.length ? `<button type="button" class="more" data-act="moreres">Mostrar las ${list.length} obras</button>` : "");
   }
 
-  /* ---------------------------------------------------------------- análisis */
-  const pc = (x, d) => (100 * x).toLocaleString("es-AR", { minimumFractionDigits: d || 0, maximumFractionDigits: d || 0 }) + " %";
-  const dc = (x, d) => x.toLocaleString("es-AR", { minimumFractionDigits: d, maximumFractionDigits: d });
-  const tally = (rs, keysOf) => { const c = {}; rs.forEach((r) => keysOf(r).forEach((k) => { c[k] = (c[k] || 0) + 1; })); return c; };
-  const tecOrder = (cnt) => Object.keys(cnt).filter((t) => t !== "sin" && cnt[t]).sort((a, b) => (SOFT.includes(a) - SOFT.includes(b)) || (cnt[b] - cnt[a]));
-  const tecsOf = (r) => r.tec.filter((t) => t !== "sin");
-  // intervalo de Wilson al 95 % para una proporción k/n
-  function wilson(k, n) {
-    const z = 1.96, p = k / n, d = 1 + z * z / n, c = p + z * z / (2 * n), s = z * Math.sqrt(p * (1 - p) / n + z * z / (4 * n * n));
-    return [Math.max(0, (c - s) / d), Math.min(1, (c + s) / d)];
+  /* ---------------------------------------------------------------- cuadros */
+  // orden de cada cuadro: [columna, 1 ascendente | -1 descendente]
+  const SORT = { people: ["n", -1], both: ["n", -1], prem: ["sec", 1], place: ["n", -1] }, CUA = {};
+  const groupBy = (rs, f) => { const m = new Map(); rs.forEach((r) => { const k = f(r); if (!m.has(k)) m.set(k, []); m.get(k).push(r); }); return m; };
+  const inYear = (l, y) => l.filter((r) => r.y === y).length;
+  const nPremios = (l) => new Set(l.flatMap((r) => (r.pz || []).map((z) => z.k))).size;
+  function topCats(l, n) {
+    const c = {};
+    l.forEach((r) => { c[r.c] = (c[r.c] || 0) + 1; });
+    return Object.keys(c).sort((a, b) => (c[b] - c[a]) || a.localeCompare(b, "es")).slice(0, n || 99).map((k) => `${k} (${c[k]})`).join(", ");
   }
-  const legendYears = (n1, n2) => `<div class="lg"><span><i class="a"></i>1915 · ${plural(n1, "obra", "obras")}</span><span><i class="b"></i>1916 · ${plural(n2, "obra", "obras")}</span><span>● diferencia que no se explica por azar</span></div>`;
+  const hbar = (n, mx) => `<div class="hb"><span><i style="width:${(100 * n / mx).toFixed(1)}%"></i></span><b>${fmt(n)}</b></div>`;
 
-  // barras de 1915 y 1916 por categoría; la marca ● sale de una prueba z de dos proporciones
-  function yearRows(keys, label, c1, n1, c2, n2) {
-    const sh = (c, n, k) => (n ? (c[k] || 0) / n : 0);
-    const mx = Math.max(0.01, ...keys.map((k) => Math.max(sh(c1, n1, k), sh(c2, n2, k))));
-    return keys.map((k) => {
-      const a = c1[k] || 0, b = c2[k] || 0, pa = sh(c1, n1, k), pb = sh(c2, n2, k);
-      const pool = n1 + n2 ? (a + b) / (n1 + n2) : 0, se = n1 && n2 ? Math.sqrt(pool * (1 - pool) * (1 / n1 + 1 / n2)) : 0;
-      const sig = se > 0 && a + b >= 8 && Math.abs(pb - pa) / se >= 1.96, d = (pb - pa) * 100;
-      return `<div class="dr"><div>${esc(label(k))}</div><div class="bars"><div class="bar a" style="width:${(100 * pa / mx).toFixed(1)}%"><span>${pc(pa)} · ${a}</span></div><div class="bar b" style="width:${(100 * pb / mx).toFixed(1)}%"><span>${pc(pb)} · ${b}</span></div></div>` +
-        `<div class="dl${sig ? " sig" : ""}" title="${sig ? "Diferencia que no se explica por azar (z ≥ 1,96)" : "Dentro de lo que cabe por azar, o muestra muy chica"}">${d >= 0 ? "+" : "−"}${dc(Math.abs(d), 1)} pp${sig ? " ●" : ""}</div></div>`;
+  // cols: { k, label, num (columna numérica), cls, html(fila), txt(fila) para copiar }
+  function table(t, cols, rows, limit) {
+    if (!rows.length) { CUA[t] = []; return '<p class="empty">Nada con estos filtros.</p>'; }
+    const [sk, sd] = SORT[t];
+    rows = rows.slice().sort((a, b) => {
+      const x = a[sk], y = b[sk], d = typeof x === "number" ? x - y : String(x).localeCompare(String(y), "es");
+      return d * sd || String(a._t).localeCompare(String(b._t), "es");
+    });
+    CUA[t] = [cols.map((c) => c.label)].concat(rows.map((r) => cols.map((c) => String(c.txt ? c.txt(r) : r[c.k] == null ? "" : r[c.k]).replace(/[\t\r\n]+/g, " "))));
+    const shown = state.cuaAll[t] ? rows : rows.slice(0, limit), cl = (c) => (c.num ? ' class="num"' : c.cls ? ` class="${c.cls}"` : "");
+    return `<div class="tw"><table class="tb"><thead><tr>` +
+      cols.map((c) => `<th${cl(c)}${c.k === sk ? ` aria-sort="${sd < 0 ? "descending" : "ascending"}"` : ""}><button type="button" data-act="sort" data-t="${t}" data-k="${c.k}"${c.num || c.cls === "bc" ? ' data-n="1"' : ""}>${esc(c.label)}</button></th>`).join("") +
+      `</tr></thead><tbody>` + shown.map((r) => "<tr>" + cols.map((c) => `<td${cl(c)}>${c.html ? c.html(r) : esc(r[c.k])}</td>`).join("") + "</tr>").join("") + `</tbody></table></div>` +
+      `<div class="acts">${rows.length > shown.length ? `<button type="button" class="btn" data-act="cuaall" data-t="${t}">Mostrar las ${fmt(rows.length)} filas</button>` : ""}<button type="button" class="btn" data-act="copycua" data-t="${t}">Copiar tabla</button></div>`;
+  }
+  const places = (l) => [...new Set(l.map((r) => P[r.pl].n).filter((n) => n && strip(n) !== "s/d"))].join(", ");  // lugar normalizado, no como lo escribió el catálogo
+  const nameCol = { k: "name", label: "Expositora", html: (r) => personBtn(r.pk, r.name) + (r.inst ? ' <span class="dim">· institución</span>' : "") };
+
+  function renderCuadros(rs) {
+    // 1) quiénes expusieron más
+    const ppl = [...groupBy(rs, (r) => r.pk).entries()].map(([pk, l]) => ({ _t: l[0].n, pk, name: l[0].n, inst: l[0].inst, lugar: places(l), n: l.length, y1: inYear(l, 1915), y2: inYear(l, 1916), m: nPremios(l) }));
+    const mx1 = Math.max(1, ...ppl.map((p) => p.n));
+    $("c-people").innerHTML = table("people", [nameCol, { k: "lugar", label: "Procedencia", cls: "sm" },
+      { k: "n", label: "Obras", cls: "bc", html: (r) => hbar(r.n, mx1) }, { k: "y1", label: "1915", num: true }, { k: "y2", label: "1916", num: true },
+      { k: "m", label: "Premios", num: true, html: (r) => (r.m ? fmt(r.m) : "") }], ppl, 25);
+
+    // 2) en los dos concursos (sin filtro de año)
+    const both = [...groupBy(R.filter((r) => match(r, false, true)), (r) => r.pk).entries()].filter(([, l]) => inYear(l, 1915) && inYear(l, 1916)).map(([pk, l]) => {
+      const a = l.filter((r) => r.y === 1915), b = l.filter((r) => r.y === 1916);
+      return { _t: l[0].n, pk, name: l[0].n, inst: l[0].inst, lugar: places(l), n: l.length, na: a.length, nb: b.length, ca: topCats(a), cb: topCats(b) };
+    });
+    $("c-both").innerHTML = table("both", [nameCol, { k: "lugar", label: "Procedencia", cls: "sm" },
+      { k: "na", label: "En 1915", html: (r) => `<b>${r.na}</b> <span class="sm">· ${esc(r.ca)}</span>`, txt: (r) => `${r.na}: ${r.ca}` },
+      { k: "nb", label: "En 1916", html: (r) => `<b>${r.nb}</b> <span class="sm">· ${esc(r.cb)}</span>`, txt: (r) => `${r.nb}: ${r.cb}` },
+      { k: "n", label: "Total", num: true }], both, 25);
+
+    // 3) premios: uno por fila aunque abarque varias obras
+    const pz = new Map();
+    rs.forEach((r) => (r.pz || []).forEach((z) => { if (!pz.has(z.k)) pz.set(z.k, { z, recs: [] }); pz.get(z.k).recs.push(r); }));
+    const prem = [...pz.values()].map(({ z, recs }) => ({ _t: String(1000 - (z.m || 0)).padStart(4, "0") + recs[0].n, sec: z.c, tipo: z.t, m: z.m || 0, pk: recs[0].pk, name: recs[0].n, inst: recs[0].inst,
+      obra: recs.map((r) => (r.sv ? r.o : what(r)) + (r.ord && r.ord.length < 12 && !r.sv ? ` (n.º ${r.ord})` : "")).join("; "), vin: LK[z.lk] }));
+    const total = prem.reduce((s, p) => s + p.m, 0);
+    $("c-prem-n").textContent = state.year === "1916" ? "No hay premios de 1916." :
+      `${plural(prem.length, "premio", "premios")} del fallo del jurado${total ? ", $ " + fmt(total) + " en total" : ""}. Un premio que abarca varias obras ocupa una sola fila. No hay premios de 1916.`;
+    $("c-prem").innerHTML = table("prem", [{ k: "sec", label: "Sección del fallo" }, { k: "tipo", label: "Premio" }, { k: "m", label: "Monto ($)", num: true, html: (r) => (r.m ? fmt(r.m) : "") },
+      nameCol, { k: "obra", label: "Obra", html: (r) => `<span title="${esc(r.obra)}">${esc(clip(r.obra, 110))}</span>` }, { k: "vin", label: "Vínculo con la obra", cls: "sm" }], prem, 30);
+
+    // 4) qué se mostró de cada lugar
+    const plc = [...groupBy(rs, (r) => r.pl).entries()].map(([id, l]) => ({ _t: P[id].n, id, lugar: P[id].n, prov: P[id].p || "", n: l.length, y1: inYear(l, 1915), y2: inYear(l, 1916), m: nPrized(l), cat: topCats(l, 3) }));
+    const mx4 = Math.max(1, ...plc.map((p) => p.n));
+    $("c-place").innerHTML = table("place", [
+      { k: "lugar", label: "Lugar", html: (r) => (P[r.id].lat != null ? `<button type="button" class="plink" data-act="gomap" data-id="${esc(r.id)}">${esc(r.lugar)}</button>` : `${esc(r.lugar)} <span class="dim">· sin ubicar</span>`) },
+      { k: "prov", label: "Provincia", cls: "sm" }, { k: "n", label: "Obras", cls: "bc", html: (r) => hbar(r.n, mx4) }, { k: "y1", label: "1915", num: true }, { k: "y2", label: "1916", num: true },
+      { k: "m", label: "Premiadas", num: true, html: (r) => (r.m ? fmt(r.m) : "") }, { k: "cat", label: "Categorías más frecuentes", cls: "sm" }], plc, 25);
+  }
+
+  /* ---------------------------------------------------------------- panorama */
+  // Como match(), pero sin los filtros que el gráfico mismo muestra: si no, al elegir una
+  // provincia su propio gráfico quedaría con una sola barra.
+  function matchSin(r, skip) {
+    if (!skip.includes("year") && state.year !== "both" && r.y !== +state.year) return false;
+    if (state.prize && !r.pz) return false;
+    if (state.tec && !r.tec.includes(state.tec)) return false;
+    if (!skip.includes("provincia") && state.provincia && r.pv !== state.provincia) return false;
+    for (const t of toks) if (!r._s.includes(t)) return false;
+    return true;
+  }
+  const tip = (s) => ` data-tip="${esc(s)}"`;
+  const pct = (a, b) => (b ? Math.round(100 * a / b) : 0) + " %";
+  const sw = (col, label) => `<span><i style="background:${col}"></i>${label}</span>`;
+  const pbar = (n, mx, col, label) => `<span class="pb"><i style="flex-basis:${(82 * n / mx).toFixed(1)}%;background:${col}"></i>${label == null ? fmt(n) : label}</span>`;
+  // barra apilada: segs = [[n, color, texto del tooltip]]
+  const pstack = (segs, w, label) => `<span class="pb"><span class="pstack" style="flex-basis:${w.toFixed(1)}%">` +
+    segs.filter((s) => s[0]).map(([n, col, t]) => `<i style="flex:${n};background:${col}"${tip(t)}></i>`).join("") + `</span>${label}</span>`;
+  const provinciasDe = (l) => { const c = {}; l.forEach((r) => { c[r.pv] = (c[r.pv] || 0) + 1; }); return PORD.filter((k) => c[k]).sort((a, b) => ((a === "sd") - (b === "sd")) || (c[b] - c[a])); };
+
+  function renderPanorama(rs) {
+    // cifras
+    const pzs = new Map();
+    rs.forEach((r) => (r.pz || []).forEach((z) => pzs.set(z.k, z)));
+    const monto = [...pzs.values()].reduce((s, z) => s + (z.m || 0), 0);
+    $("p-kpi").innerHTML = [[fmt(rs.length), "obras"], [fmt(new Set(rs.map((r) => r.pk)).size), "expositoras"], [fmt(new Set(rs.map((r) => r.pl)).size), "lugares de procedencia"],
+      [fmt(pzs.size), "premios (1915)"], ["$ " + fmt(monto), "en premios"]].map(([b, s]) => `<div class="kpi"><b>${b}</b><span>${s}</span></div>`).join("");
+    // de dónde salen las cifras, para que cierren con las de otras secciones
+    const sv = rs.filter((r) => r.sv).length, soloFallo = [...groupBy(rs, (r) => r.pk).values()].filter((l) => l.every((r) => r.sv)).length, np = nPrized(rs), notas = [];
+    if (sv) notas.push(`Las ${fmt(rs.length)} obras incluyen ${plural(sv, "premiada en el fallo que no figura", "premiadas en el fallo que no figuran")} en el catálogo${soloFallo ? `, y ${plural(soloFallo, "expositora aparece", "expositoras aparecen")} solo en el fallo` : ""}.`);
+    if (pzs.size !== np) notas.push(`Los ${fmt(pzs.size)} premios recaen en ${plural(np, "obra", "obras")}: algunos premios abarcan varias obras.`);
+    $("p-kpi-n").textContent = notas.join(" ");
+
+    // 1) cuántas obras presentó cada expositora
+    const per = [...groupBy(rs, (r) => r.pk).values()].map((l) => l.length);
+    const bins = [["1", (n) => n === 1], ["2", (n) => n === 2], ["3 a 5", (n) => n >= 3 && n <= 5], ["6 a 10", (n) => n >= 6 && n <= 10], ["11 o más", (n) => n > 10]].map(([l, f]) => [l, per.filter(f).length]);
+    const mxB = Math.max(1, ...bins.map((b) => b[1]));
+    $("p-dist-n").textContent = per.length ? `${plural(per.length, "expositora", "expositoras")}: ${pct(bins[0][1], per.length)} presentó una sola obra.` : "";
+    $("p-dist").innerHTML = per.length ? `<div class="hist">` + bins.map(([l, n]) => `<div${tip(`${plural(n, "expositora", "expositoras")} con ${l} ${l === "1" ? "obra" : "obras"} (${pct(n, per.length)})`)}><b>${fmt(n)}</b><i style="height:${Math.round(130 * n / mxB)}px"></i><span>${l}</span></div>`).join("") +
+      `</div><p class="axl">obras por expositora</p>` : '<p class="empty">Sin obras con estos filtros.</p>';
+
+    // 2) de dónde venían, por concurso
+    const rc = R.filter((r) => matchSin(r, ["provincia", "year"]));
+    const zc = provinciasDe(rc), totC = (z) => rc.filter((r) => r.pv === z).length, mxC = Math.max(1, ...zc.map(totC));
+    $("p-zon").className = state.provincia ? "pdim" : "";
+    const t15 = inYear(rc, 1915), t16 = inYear(rc, 1916), pc = (a, t) => (t ? 100 * a / t : 0);
+    const mxP = Math.max(1, ...zc.flatMap((z) => { const l = rc.filter((r) => r.pv === z); return [pc(inYear(l, 1915), t15), pc(inYear(l, 1916), t16)]; }));
+    document.querySelectorAll('[data-act="procv"]').forEach((b) => b.setAttribute("aria-pressed", b.dataset.v === state.procv));
+    $("p-zon").innerHTML = !rc.length ? '<p class="empty">Sin obras con estos filtros.</p>' : state.procv === "pct" ?
+      `<div class="plg">${sw("var(--y15)", "1915 · " + plural(t15, "obra", "obras"))}${sw("var(--y16)", "1916 · " + plural(t16, "obra", "obras"))}</div>` + zc.map((z) => {
+        const l = rc.filter((r) => r.pv === z), a = pc(inYear(l, 1915), t15), b = pc(inYear(l, 1916), t16), f = (x) => (x > 0 && x < 1 ? "<1" : Math.round(x)) + " %";
+        return `<button type="button" class="prow" data-act="pprov" data-k="${z}" aria-pressed="${state.provincia === z}"${tip(`${PRV[z]}: ${f(a)} de las obras de 1915 y ${f(b)} de las de 1916`)}><span>${esc(PRV[z])}</span><span class="pbars">${pbar(a, mxP, "var(--y15)", f(a))}${pbar(b, mxP, "var(--y16)", f(b))}</span></button>`;
+      }).join("") : `<div class="plg">${sw("var(--y15)", "1915")}${sw("var(--y16)", "1916")}</div>` + zc.map((z) => {
+      const l = rc.filter((r) => r.pv === z), a = inYear(l, 1915), b = inYear(l, 1916);
+      return `<button type="button" class="prow" data-act="pprov" data-k="${z}" aria-pressed="${state.provincia === z}" aria-label="${esc(PRV[z])}: ${a} obras en 1915, ${b} en 1916"><span>${esc(PRV[z])}</span>` +
+        pstack([[a, "var(--y15)", `${PRV[z]}: ${plural(a, "obra", "obras")} en 1915`], [b, "var(--y16)", `${PRV[z]}: ${plural(b, "obra", "obras")} en 1916`]], 82 * l.length / mxC, fmt(l.length)) + `</button>`;
     }).join("");
+
+    // 3) premios por sección del fallo (un premio cuenta una vez aunque abarque varias obras)
+    const pf = {}, seen = new Set();
+    rs.forEach((r) => (r.pz || []).forEach((z) => {
+      if (seen.has(z.k)) return;
+      seen.add(z.k); const e = pf[z.c] || (pf[z.c] = { n: 0, m: 0 }); e.n++; e.m += z.m || 0;
+    }));
+    const fkE = Object.keys(pf).sort((a, b) => (pf[b].n - pf[a].n) || a.localeCompare(b, "es")), mxE = Math.max(1, ...fkE.map((f) => pf[f].n));
+    $("p-prz-n").textContent = state.year === "1916" ? "No hay premios de 1916." : "Cantidad de premios y monto total de cada sección, tal como las nombra el fallo del jurado.";
+    $("p-prz").innerHTML = fkE.length ? fkE.map((f) => `<div class="prow"${tip(`${f}: ${plural(pf[f].n, "premio", "premios")}, $ ${fmt(pf[f].m)}`)}><span>${esc(f)}</span><span class="pbars">${pbar(pf[f].n, mxE, "var(--madder)", `${fmt(pf[f].n)} · $ ${fmt(pf[f].m)}`)}</span></div>`).join("") :
+      '<p class="empty">Ningún premio con estos filtros.</p>';
+
+    // 4) personas e instituciones
+    const grp = [["Personas", rs.filter((r) => !r.inst)], ["Instituciones", rs.filter((r) => r.inst)]].filter(([, l]) => l.length), mxF = Math.max(1, ...grp.map(([, l]) => l.length));
+    $("p-inst").innerHTML = grp.length ? `<div class="plg">${sw("var(--madder)", "Premiadas")}${sw("var(--indigo)", "Sin premio")}</div>` + grp.map(([g, l]) => {
+      const m = nPrized(l), k = new Set(l.map((r) => r.pk)).size;
+      return `<div class="prow"><span>${g} <span class="dim">· ${fmt(k)}</span></span>` + pstack([[m, "var(--madder)", `${g}: ${plural(m, "obra premiada", "obras premiadas")}`], [l.length - m, "var(--indigo)", `${g}: ${plural(l.length - m, "obra sin premio", "obras sin premio")}`]],
+        62 * l.length / mxF, `${plural(l.length, "obra", "obras")} · ${fmt(m)} premiadas`) + `</div>`;
+    }).join("") : '<p class="empty">Sin obras con estos filtros.</p>';
+
+    // la tabla de cada gráfico, plegada debajo
+    const n = (v) => ({ k: v, num: true });
+    $("t-zon").innerHTML = table("zon", [{ k: "t", label: "Provincia" }, { ...n("a"), label: "1915" }, { ...n("b"), label: "1916" }, { ...n("n"), label: "Total" }, { ...n("pa"), label: "% de 1915" }, { ...n("pb"), label: "% de 1916" }],
+      zc.map((z) => { const l = rc.filter((r) => r.pv === z), a = inYear(l, 1915), b = inYear(l, 1916); return { _t: PRV[z], t: PRV[z], a, b, n: l.length, pa: Math.round(pc(a, t15)), pb: Math.round(pc(b, t16)) }; }), 99);
+    $("t-dist").innerHTML = table("dist", [{ k: "t", label: "Obras por expositora" }, { ...n("n"), label: "Expositoras" }],
+      bins.map(([l, c], i) => ({ _t: String(i), t: l, n: c, i })), 99);
+    $("t-prz").innerHTML = table("prz", [{ k: "t", label: "Sección del fallo" }, { ...n("n"), label: "Premios" }, { ...n("m"), label: "Monto ($)" }],
+      fkE.map((f) => ({ _t: f, t: f, n: pf[f].n, m: pf[f].m })), 99);
+    $("t-inst").innerHTML = table("inst", [{ k: "t", label: "Grupo" }, { ...n("k"), label: "Nombres" }, { ...n("n"), label: "Obras" }, { ...n("m"), label: "Premiadas" }],
+      grp.map(([g, l]) => ({ _t: g, t: g, k: new Set(l.map((r) => r.pk)).size, n: l.length, m: nPrized(l) })), 99);
+  }
+  Object.assign(SORT, { zon: ["n", -1], dist: ["i", 1], prz: ["n", -1], inst: ["n", -1] });
+  const tipEl = document.createElement("div");
+  tipEl.className = "tip"; tipEl.hidden = true; document.body.appendChild(tipEl);
+  $("view-ana").addEventListener("mousemove", (e) => {
+    const t = e.target.closest("[data-tip]");
+    if (!t) { tipEl.hidden = true; return; }
+    tipEl.textContent = t.dataset.tip; tipEl.hidden = false;
+    const x = Math.min(e.clientX + 14, innerWidth - tipEl.offsetWidth - 8);
+    tipEl.style.left = x + "px"; tipEl.style.top = (e.clientY + 16) + "px";
+  });
+  $("view-ana").addEventListener("mouseleave", () => { tipEl.hidden = true; });
+
+  /* ---------------------------------------------------------------- análisis: todo junto */
+  function renderAnalisis(rs) {
+    const act = [state.prize && "Solo premiadas", state.tec && "Técnica: " + TEC[state.tec], state.provincia && "Provincia: " + PRV[state.provincia],
+      state.year !== "both" && "Año: " + state.year, state.q.trim() && `Búsqueda: «${state.q.trim()}»`].filter(Boolean);
+    $("afil").innerHTML = `<b>Filtros activos</b>` + (act.length ? act.map((t) => `<span>${esc(t)}</span>`).join("") + '<button type="button" class="linkbtn" data-act="resetf">Limpiar filtros</button>' :
+      `<span>Ninguno: ${plural(R.length, "obra", "obras")}</span>`) + `<small>Todos los gráficos los usan, salvo donde se indica.</small>`;
+    renderPanorama(rs);
+    renderMatrix(R.filter((r) => match(r, true)));  // la matriz cruza técnica y provincia: no se filtra por ellas
+    renderCuadros(rs);
+  }
+  // el índice marca la sección que se está leyendo
+  if ("IntersectionObserver" in window) {
+    const links = [...document.querySelectorAll("#aidx a")];
+    const io = new IntersectionObserver((ents) => ents.forEach((en) => {
+      if (en.isIntersecting) links.forEach((a) => a.setAttribute("aria-current", a.dataset.scroll === en.target.id));
+    }), { rootMargin: "-30% 0px -60% 0px" });
+    document.querySelectorAll(".asec").forEach((sec) => io.observe(sec));
   }
 
-  // tasa de obras premiadas por grupo, con su intervalo
-  function rateRows(items, keysOf, label) {
-    const g = {};
-    items.forEach((r) => keysOf(r).forEach((k) => { const e = g[k] || (g[k] = { n: 0, m: 0 }); e.n++; if (r.pz) e.m++; }));
-    const ov = items.length ? nPrized(items) / items.length : 0;
-    const rows = Object.keys(g).filter((k) => g[k].n >= 5).map((k) => ({ k, n: g[k].n, m: g[k].m, p: g[k].m / g[k].n, ci: wilson(g[k].m, g[k].n) })).sort((a, b) => b.p - a.p);
-    if (!rows.length) return '<p class="empty">Ningún grupo tiene 5 obras o más con estos filtros.</p>';
-    const mx = Math.max(0.1, ov, ...rows.map((r) => r.ci[1])), pos = (v) => (100 * v / mx).toFixed(1);
-    return `<p class="mxnote" style="margin-bottom:0.3rem">Promedio del conjunto: ${pc(ov, 1)} (${nPrized(items)} de ${items.length} obras). Se muestran los grupos con 5 obras o más.</p>` +
-      rows.map((r) => `<div class="dr"><div>${esc(label(r.k))} <span class="dim">· ${r.n} obras</span></div><div class="iv"><span class="ov" style="left:${pos(ov)}%"></span><span class="rng" style="left:${pos(r.ci[0])}%;width:${pos(r.ci[1] - r.ci[0])}%"></span><span class="pt" style="left:${pos(r.p)}%"></span></div><div class="dl">${pc(r.p)} <span class="dim">(${r.m}/${r.n})</span></div></div>`).join("");
+  /* ---------------------------------------------------------------- descarga de datos */
+  const DIC = [
+    ["Año", "Año del concurso (1915 o 1916)"],
+    ["Expositora", "Nombre normalizado de la expositora (persona o institución)"],
+    ["Nombre en la fuente", "Cómo la escribió el catálogo o, si la obra no figura en él, el fallo"],
+    ["Procedencia según el catálogo", "Lugar tal como figura en la fuente"],
+    ["Lugar", "Localidad normalizada (o \"provincia (solo provincia)\" si no se conoce la localidad)"],
+    ["Provincia", "Provincia de la localidad de procedencia"],
+    ["Categoría", "Sección del catálogo (o del fallo)"],
+    ["Objeto", "Descripción de la obra en el catálogo"],
+    ["Técnicas", "Técnicas inferidas por reglas sobre el texto (lectura del proyecto)"],
+    ["N.º de orden", "Número de la obra en su sección del catálogo"],
+    ["Fuera de concurso", "\"sí\" si el catálogo la marca fuera de concurso"],
+    ["Creación de la autora", "\"sí\" si el catálogo la presenta como creación de la autora"],
+    ["Foto del álbum", "Foto del álbum de 1915 donde aparece la obra"],
+    ["Premio", "Premio del fallo del jurado de 1915"],
+    ["Monto ($)", "Monto del premio, en pesos de la época"],
+    ["Vínculo premio-obra", "Cómo se vinculó el premio con la obra del catálogo"],
+    ["Ubicación", "\"deducida de sus otras obras\" si el lugar no figura así en la fuente"],
+    ["Fuente", "Documento, página impresa y escaneo de donde sale la obra"],
+  ];
+  function bajar(nombre, filas) {
+    const cel = (v) => { const t = String(v == null ? "" : v); return /[;"\n]/.test(t) ? '"' + t.replace(/"/g, '""') + '"' : t; };
+    const txt = "\ufeff" + filas.map((l) => l.map(cel).join(";")).join("\r\n");
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(new Blob([txt], { type: "text/csv;charset=utf-8" }));
+    a.download = nombre; document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(() => URL.revokeObjectURL(a.href), 1000);
   }
-
-  function renderAnalysis(rs) {
-    const exp = state.explicit, cat = rs.filter((r) => !r.sv);
-    const withT = cat.filter((r) => tecsOf(r).length && (!exp || r.ts === "o"));
-    $("a-exp").checked = exp; $("a-zona").value = state.anaZona; $("a-year").value = state.anaYear;
-    $("a-base").textContent = `Base: ${fmt(withT.length)} de ${fmt(cat.length)} obras del catálogo con técnica ${exp ? "mencionada en el texto del objeto" : "(del texto del objeto o, si falta, de la categoría)"}. Los premios del fallo sin obra en el catálogo no entran.`;
-
-    // 1) evolución de cada técnica entre 1915 y 1916, opcionalmente dentro de una zona
-    const sel = (y) => withT.filter((r) => r.y === y && (!state.anaZona || r.z === state.anaZona));
-    const y1 = sel(1915), y2 = sel(1916), kEv = tecOrder(tally(y1.concat(y2), tecsOf));
-    $("a-ev").innerHTML = kEv.length ? legendYears(y1.length, y2.length) + yearRows(kEv, (t) => TEC[t], tally(y1, tecsOf), y1.length, tally(y2, tecsOf), y2.length) : '<p class="empty">Sin obras con estos filtros.</p>';
-
-    // 2) composición por zona de cada concurso
-    const z1 = cat.filter((r) => r.y === 1915), z2 = cat.filter((r) => r.y === 1916), cz1 = tally(z1, (r) => [r.z]), cz2 = tally(z2, (r) => [r.z]);
-    $("a-comp").innerHTML = legendYears(z1.length, z2.length) + yearRows(ZORD.filter((z) => cz1[z] || cz2[z]), (z) => ZON[z], cz1, z1.length, cz2, z2.length);
-
-    // 3) especialización: peso de cada técnica en cada zona frente a su peso total (lift y residuo de Pearson)
-    const its = withT.filter((r) => state.anaYear === "both" || r.y === +state.anaYear), N = its.length;
-    const ct = tally(its, tecsOf), cz = tally(its, (r) => [r.z]), cc = tally(its, (r) => tecsOf(r).map((t) => t + "|" + r.z));
-    const zks = ZORD.filter((z) => z !== "sa" && cz[z] >= 15), tks = tecOrder(ct), finds = [];
-    if (!zks.length || !tks.length) {
-      $("a-lift").innerHTML = '<p class="empty">Muy pocas obras con estos filtros para comparar zonas (se piden 15 por zona).</p>';
-    } else {
-      let h = '<table class="mx"><thead><tr><th></th>' + zks.map((z) => `<th scope="col"><div class="ch">${esc(ZON[z])}<small>${cz[z]} obras</small></div></th>`).join("") + "</tr></thead><tbody>";
-      tks.forEach((t) => {
-        const p = ct[t] / N;
-        h += `<tr><th scope="row"><div class="rh${SOFT.includes(t) ? " soft" : ""}"><span>${esc(TEC[t])}</span><i>${ct[t]}</i></div></th>`;
-        zks.forEach((z) => {
-          const n = cc[t + "|" + z] || 0, ex = cz[z] * p, res = p < 1 ? (n - ex) / Math.sqrt(cz[z] * p * (1 - p)) : 0;
-          if (!n) { h += '<td><div class="lc zero">—</div></td>'; return; }
-          const lift = n / ex, sig = Math.abs(res) >= 2 && (res > 0 ? n >= 5 : ex >= 5), a = Math.min(1, Math.abs(res) / 4);
-          const x = Math.round(8 + 74 * a), col = res >= 0 ? "var(--indigo)" : "var(--gold)";
-          if (sig) finds.push({ t, z, n, res, p, q: n / cz[z] });
-          h += `<td><div class="lc${sig ? " sig" : ""}${n < 5 ? " thin" : ""}" style="background:color-mix(in srgb,${col} ${x}%,var(--card));color:${x > 52 ? "var(--card)" : "var(--ink)"}" title="${esc(TEC[t])} en ${esc(ZON[z])}: ${n} de ${cz[z]} obras (esperado ≈ ${dc(ex, 1)})">×${dc(lift, 1)}<small>${n} obras</small></div></td>`;
-        });
-        h += "</tr>";
-      });
-      $("a-lift").innerHTML = h + "</tbody></table>";
-    }
-    finds.sort((a, b) => Math.abs(b.res) - Math.abs(a.res));
-    $("a-finds").innerHTML = finds.slice(0, 6).map((f) => `<li><b>${esc(TEC[f.t])}</b> pesa ${pc(f.q)} de las obras con técnica en ${esc(ZON[f.z])}, frente a ${pc(f.p)} en el total: ${f.res > 0 ? "más" : "menos"} de lo esperado (${f.n} obras).</li>`).join("") ||
-      (zks.length ? "<li>Ninguna combinación se aparta del azar con estos filtros.</li>" : "");
-
-    // 4) pares de técnicas que se mencionan juntas
-    const nt = withT.length, pairs = [];
-    const ctt = tally(withT, tecsOf), pk = {};
-    withT.forEach((r) => { const t = tecsOf(r); for (let i = 0; i < t.length; i++) for (let j = i + 1; j < t.length; j++) { const k = [t[i], t[j]].sort().join("|"); pk[k] = (pk[k] || 0) + 1; } });
-    Object.entries(pk).forEach(([k, n]) => { const [a, b] = k.split("|"); if (n >= 3) pairs.push({ a, b, n, lift: (n / nt) / ((ctt[a] / nt) * (ctt[b] / nt)), pa: n / ctt[a], pb: n / ctt[b] }); });
-    pairs.sort((x, y) => y.n - x.n);
-    $("a-pairs").innerHTML = pairs.length ? '<table class="pairs"><thead><tr><th>Par</th><th>Obras</th><th>Lift</th><th>Con la 1.ª, también la 2.ª</th><th>Con la 2.ª, también la 1.ª</th></tr></thead><tbody>' +
-      pairs.slice(0, 10).map((p) => `<tr><td>${esc(TEC[p.a])} + ${esc(TEC[p.b])}</td><td>${p.n}</td><td>${dc(p.lift, 1)}</td><td>${pc(p.pa)}</td><td>${pc(p.pb)}</td></tr>`).join("") + "</tbody></table>" : '<p class="empty">Ningún par de técnicas aparece en 3 obras o más.</p>';
-
-    // 5) tasa de premiación, solo 1915, solo obras que competían
-    const c15 = cat.filter((r) => r.y === 1915 && !r.fc);
-    $("a-rt").innerHTML = rateRows(c15.filter((r) => tecsOf(r).length && (!exp || r.ts === "o")), tecsOf, (t) => TEC[t]);
-    $("a-rz").innerHTML = rateRows(c15, (r) => [r.z], (z) => ZON[z]);
-  }
+  const deTsv = (t) => t.split("\n").map((l) => l.split("\t"));
+  document.querySelectorAll(".ver").forEach((el) => { el.textContent = DATA.version; });
 
   /* ---------------------------------------------------------------- expositoras */
+  // una línea por cada lugar que 04d dedujo: "El catálogo dice «Catamarca» en 33 obras; …"
+  function comisionDe(pk) {
+    const cs = DATA.comision.filter((c) => c.pk && c.pk === pk);
+    return cs.length ? `<p class="pnote">También integró la comisión de los concursos: ${cs.map((c) => `${esc(c.r)} en ${c.a} (${esc(c.f)})`).join("; ")}.</p>` : "";
+  }
+  // menciones de El Orden: la cita, el diario, la fecha y el título de la nota
+  function enPrensa(ms) {
+    if (!ms.length) return "";
+    return `<div class="prensa"><h4>En la prensa de época</h4>` + ms.map((m) => `<blockquote>${esc(m.c)}</blockquote><cite>${esc(m.d)}, ${esc(m.f)}, «${esc(m.t)}»</cite>`).join("") + `</div>`;
+  }
+  function dedu(l) {
+    const g = new Map();
+    l.filter((r) => r.li).forEach((r) => { const k = r.po + "|" + r.pl; g.set(k, (g.get(k) || []).concat(r)); });
+    return [...g.values()].map((rs) => `<p class="pnote">El catálogo dice «${esc(rs[0].po)}» en ${plural(rs.length, "obra", "obras")}: se ubican en ${esc(P[rs[0].pl].n)}, la localidad de sus otras obras en esa provincia. Están marcadas «Ubicación deducida».</p>`).join("");
+  }
+
   function renderPeople(rs) {
     const by = new Map();
     rs.forEach((r) => { if (!by.has(r.pk)) by.set(r.pk, []); by.get(r.pk).push(r); });
@@ -888,16 +1164,18 @@ const DATA = __DATA__;
     const name = l[0].n, nm = [...new Set(l.map((r) => r.nv).filter((v) => v && v !== name))];
     const years = [...new Set(l.map((r) => r.y))].sort(), nprz = new Set(l.flatMap((r) => (r.pz || []).map((z) => z.k))).size, tc = {};
     l.forEach((r) => r.tec.forEach((t) => { if (t !== "sin") tc[t] = (tc[t] || 0) + 1; }));
-    const places = [...new Set(l.map((r) => r.po).filter(Boolean))], zonas = [...new Set(l.map((r) => ZON[r.z]))];
-    el.innerHTML = `<span class="eyebrow">${l[0].inst ? "Institución" : "Expositora"}</span><h2>${esc(name)}</h2>` +
-      `<p class="meta" style="margin:0">${esc(places.join(", ") || "Sin dato de procedencia")}${places.length ? " · " + esc(zonas.join(", ")) : ""}</p>` +
+    const places = [...new Set(l.map((r) => r.po).filter(Boolean))], provs = [...new Set(l.map((r) => PRV[r.pv]))];
+    const codigo = /^\d+$/.test(state.person) ? ` · n.º ${state.person}` : "";
+    el.innerHTML = `<span class="eyebrow">${l[0].inst ? "Institución" : "Expositora"}${codigo}</span><h2>${esc(name)}</h2>` +
+      `<p class="meta" style="margin:0">${esc(places.join(", ") || "Sin dato de procedencia")}${places.length ? " · " + esc(provs.join(", ")) : ""}</p>` +
       `<div class="stats"><div><b>${l.length}</b><span>${l.length === 1 ? "obra" : "obras"}</span></div><div><b class="p">${nprz}</b><span>${nprz === 1 ? "premio" : "premios"}</span></div><div><b>${years.length > 1 ? "1915 · 1916" : years[0]}</b><span>${years.length > 1 ? "participó en ambos concursos" : "concurso"}</span></div></div>` +
       (Object.keys(tc).length ? `<p class="ln">${Object.keys(tc).sort((a, b) => tc[b] - tc[a]).map((t) => `<span class="tg">${esc(TEC[t])} · ${tc[t]}</span>`).join("")}</p>` : "") +
+      comisionDe(state.person) + dedu(l) + enPrensa(DATA.prensa.filter((m, k) => m.pk === state.person || l.some((r) => (r.pr || []).includes(k)))) +
       years.map((y) => `<h3>${y}</h3><ul>` + l.filter((r) => r.y === y).sort((a, b) => (parseInt(a.ord) || 0) - (parseInt(b.ord) || 0)).map((r) => {
         const ord = r.ord && r.ord.length < 12 ? "N.º " + esc(r.ord) : "";
-        return `<li><span class="yr">${ord}</span><span title="${esc(what(r))}">${esc(clip(what(r), 160))}${marks(r)} ${prizeBadges(r, true)}${r.sv ? ' <span class="dim">' + (r.pz[0].lk === "pen" ? "Premio todavía sin vincular con una obra del catálogo" : "Premio sin obra en el listado de expositoras") + '</span>' : ""}</span></li>`;
+        return `<li><span class="yr">${ord}</span><span title="${esc(what(r))}">${esc(clip(what(r), 160))}${marks(r)} ${prizeBadges(r, true)}${r.sv ? ' <span class="dim">' + (r.pz[0].lk === "pen" ? "Premio todavía sin vincular con una obra del catálogo" : "Premio sin obra en el listado de expositoras") + '</span>' : ""}<span class="cit">${esc(r.cit)}</span></span></li>`;
       }).join("") + "</ul>").join("") +
-      `<div class="acts"><button type="button" class="btn" data-act="copyficha">Copiar obras</button></div>` +
+      `<div class="acts"><button type="button" class="btn" data-act="copyficha">Copiar obras</button><button type="button" class="btn" data-act="copylink">Copiar enlace a esta ficha</button><button type="button" class="btn" data-act="citeficha">Copiar cita de esta ficha</button></div>` +
       `<p class="foot">${nm.length ? "También figura como: " + esc(nm.join("; ")) + ". " : ""}La ficha muestra todas las obras de este nombre, sin aplicar los filtros.</p>`;
   }
 
@@ -914,6 +1192,73 @@ const DATA = __DATA__;
       `Los límites provinciales son los actuales, no los de 1915-1916.`,
     ].map((t) => `<li>${esc(t)}</li>`).join("");
   })();
+
+  /* ---------------------------------------------------------------- 1915 y 1916 lado a lado */
+  (function comparar() {
+    const K = DATA.concursos, fecha = (v) => (/^\d{4}-\d{2}-\d{2}$/.test(v) ? v.split("-").reverse().map((x, i) => (i < 2 ? +x : x)).join("/") : v || "s/d");
+    const pres = (c) => ((c.organizacion.match(/presidida por ([^,;(]+)/) || [])[1] || "s/d").trim();
+    const de = (y) => R.filter((r) => r.y === y), cat = (y) => de(y).filter((r) => !r.sv);
+    const fila = (t, f) => `<tr><th scope="row">${t}</th>${K.map((c) => `<td>${f(c, +c.anio)}</td>`).join("")}</tr>`;
+    $("p-cmp").innerHTML = `<table class="cmp"><thead><tr><th></th>${K.map((c) => `<th scope="col">${esc(c.anio)}</th>`).join("")}</tr></thead><tbody>` +
+      fila("Nombre", (c) => esc(c.nombre)) +
+      fila("Decreto", (c) => fecha(c.fecha_decreto)) +
+      fila("Inauguración", (c) => fecha(c.fecha_inauguracion)) +
+      fila("Fallo del jurado", (c) => fecha(c.fecha_fallo)) +
+      fila("Sede", (c) => esc(c.sede)) +
+      fila("Presidenta de la comisión", (c) => esc(pres(c))) +
+      fila("Expositoras", (c, y) => `<span class="num">${fmt(new Set(cat(y).map((r) => r.pk)).size)}</span>`) +
+      fila("Obras en el catálogo", (c, y) => `<span class="num">${fmt(cat(y).length)}</span>`) +
+      fila("Lugares de procedencia", (c, y) => `<span class="num">${fmt(new Set(cat(y).map((r) => r.pl)).size)}</span>`) +
+      fila("Premios", (c, y) => (y === 1915 ? `<span class="num">${fmt(new Set(de(y).flatMap((r) => (r.pz || []).map((z) => z.k))).size)}</span>` : "no hay")) +
+      `</tbody></table>`;
+  })();
+
+  (function comisiones() {
+    const por = new Map();
+    DATA.comision.forEach((c) => { if (!por.has(c.n)) por.set(c.n, []); por.get(c.n).push(c); });
+    const rol = (cs, a) => cs.filter((c) => c.a === a).map((c) => esc(c.r) + (c.s ? ` (${esc(c.s)})` : "") + (c.f.startsWith("El Orden") ? ` <span class="dim">· según ${esc(c.f)}</span>` : "")).join("; ") || "—";
+    const filas = [...por.entries()].sort((a, b) => (b[1].length - a[1].length) || a[0].localeCompare(b[0], "es"));
+    $("p-com").innerHTML = `<table class="tb"><thead><tr><th>Nombre</th><th>1915</th><th>1916</th><th>Vínculo con las expositoras</th></tr></thead><tbody>` +
+      filas.map(([n, cs]) => {
+        const pk = (cs.find((c) => c.pk) || {}).pk, mismo = [...new Set(cs.flatMap((c) => c.mismo))];
+        const v = pk ? `También expositora: ${personBtn(pk, n)}` : mismo.length ? `<span class="dim">Mismo apellido: ${esc(mismo.join(", "))}</span>` : "";
+        return `<tr><td><b>${esc(n)}</b></td><td>${rol(cs, 1915)}</td><td>${rol(cs, 1916)}</td><td>${v}</td></tr>`;
+      }).join("") + `</tbody></table>`;
+  })();
+
+  /* ---------------------------------------------------------------- fuentes y método */
+  (function fuentes() {
+    const repo = (v) => (!v || /^s\/d/.test(v) ? "Repositorio a confirmar" : v);
+    $("repos").innerHTML = DATA.fuentes.map((f) => `<li><b>${esc(f.descripcion.replace(/: \d.*$/, ""))}</b>. ${esc(repo(f.repositorio))}${/\d/.test(f.signatura) ? `; signatura ${esc(f.signatura)}` : ""}.</li>`).join("");
+    const nombres = new Map(R.map((r) => [r.pk, r]));
+    const ps = [...nombres.values()];
+    const inst = ps.filter((r) => r.inst).length, sra = ps.filter((r) => /^(Sra|Sta|Srta)\.?\s/.test(r.n)).length;
+    const omit = ps.filter((r) => /…|\.\.\./.test(r.nv)).length, sd0 = R.filter((r) => r.po === "s/d").length, prov = R.filter((r) => P[r.pl].t === "prov").length;
+    $("sesgo").innerHTML = [
+      `Expone quien figura en el catálogo, que no siempre es quien tejió. ${inst} expositoras son instituciones (asilos, escuelas, congregaciones) y la prensa cuenta que una alfombra del Colegio de la Sagrada Familia fue "tejida por las alumnas", aunque figura a nombre de su directora.`,
+      `Algunas mujeres aparecen sin nombre propio: ${sra} solo como "Sra." o "Sta." más un apellido, y ${omit === 1 ? "una con el nombre de pila omitido en el impreso" : omit + " con el nombre de pila omitido en el impreso"}. Muchas figuran con el apellido del marido, lo que dificulta reconocerlas en otros documentos.`,
+      `El género de cada expositora se infiere del nombre: los registros no lo dicen.`,
+      `${fmt(sd0)} ${sd0 === 1 ? "obra no indica" : "obras no indican"} procedencia, y ${fmt(prov)} solo la provincia.`,
+      `El fallo de 1915 premia ${DATA.stats.sin_obra} obras que no figuran en el catálogo de expositoras, y, según la transcripción, anuncia nueve accésits pero lista ocho.`,
+    ].map((t) => `<li>${esc(t)}</li>`).join("");
+  })();
+  const CITAS = {
+    apa: () => `Rolando, J. (2026). <i>Cartografías del textil argentino: explorador de los concursos de tejidos y bordados de Tucumán, 1915-1916</i> [versión de trabajo del ${esc(DATA.version)}]. Dirección: Larisa Mantovani; tutoría: Agustín Moro. Proyecto Interdisciplinario CIAI-LCD, Universidad Nacional de San Martín.`,
+    chicago: () => `Rolando, Julián. 2026. <i>Cartografías del textil argentino: explorador de los concursos de tejidos y bordados de Tucumán, 1915-1916</i>. Versión de trabajo del ${esc(DATA.version)}. Dirigido por Larisa Mantovani, con tutoría de Agustín Moro. Proyecto Interdisciplinario CIAI-LCD, Universidad Nacional de San Martín.`,
+    bib: () => esc(`@misc{rolando2026cartografias,
+  author       = {Rolando, Julián},
+  title        = {Cartografías del textil argentino: explorador de los concursos de tejidos y bordados de {Tucumán}, 1915-1916},
+  year         = {2026},
+  howpublished = {Proyecto Interdisciplinario CIAI-LCD, Universidad Nacional de San Martín},
+  note         = {Versión de trabajo del ${DATA.version}. Dirección: Larisa Mantovani; tutoría: Agustín Moro}
+}`),
+  };
+  function citar(f) {
+    $("citetxt").innerHTML = CITAS[f]();
+    $("citetxt").classList.toggle("bib", f === "bib");
+    document.querySelectorAll('[data-act="citefmt"]').forEach((b) => b.setAttribute("aria-pressed", b.dataset.f === f));
+  }
+  citar("apa");
 
   /* ---------------------------------------------------------------- arranque */
   buildSelects();

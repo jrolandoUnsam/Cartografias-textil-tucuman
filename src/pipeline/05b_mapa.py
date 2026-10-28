@@ -49,6 +49,10 @@ def _radio(objetos: int) -> float:
     return 3 + objetos ** .5 * 1.6
 
 
+def _cuantos(n: int, uno: str, varios: str) -> str:
+    return f"{n} {uno if n == 1 else varios}"
+
+
 def _lista(valores) -> str:
     return ", ".join(sorted({str(v) for v in valores if pd.notna(v)}))
 
@@ -90,13 +94,15 @@ def puntos(fuente=FUENTE) -> tuple[pd.DataFrame, pd.DataFrame, int]:
 
 
 def mapa(ciudades: pd.DataFrame, provincias: pd.DataFrame) -> folium.Map:
-    m = folium.Map(location=[-27.2, -65.3], zoom_start=6, tiles=TILES, attr="Esri")
+    m = folium.Map(location=[-27.2, -65.3], zoom_start=6, tiles=None)
+    folium.TileLayer(TILES, attr="Esri", name="Mapa base (Esri)").add_to(m)
 
     capa_c = folium.FeatureGroup(name="Ciudades", show=True)
     for _, r in ciudades.iterrows():
         nota = "<br><i>ubicación tentativa</i>" if r.tentativa else ""
         popup = (f"<b>{html.escape(r.localidad)}</b> ({html.escape(str(r.provincia))})<br>"
-                 f"{r.objetos} objetos · {r.expositoras} expositoras<br>"
+                 f"{_cuantos(r.objetos, 'objeto', 'objetos')} · "
+                 f"{_cuantos(r.expositoras, 'expositora', 'expositoras')}<br>"
                  f"en el catálogo: {html.escape(r.en_catalogo)}{nota}")
         folium.CircleMarker(
             [r.lat, r.lon], radius=_radio(r.objetos), color=COLOR_CIUDAD,
@@ -109,7 +115,8 @@ def mapa(ciudades: pd.DataFrame, provincias: pd.DataFrame) -> folium.Map:
     for _, r in provincias.iterrows():
         cat = f"<br>en el catálogo: {html.escape(r.en_catalogo)}" if r.en_catalogo else ""
         popup = (f"<b>{html.escape(r.nombre_provincia)}</b> — sin ciudad ubicada<br>"
-                 f"{r.objetos} objetos · {r.expositoras} expositoras{cat}<br>"
+                 f"{_cuantos(r.objetos, 'objeto', 'objetos')} · "
+                 f"{_cuantos(r.expositoras, 'expositora', 'expositoras')}{cat}<br>"
                  f"<i>punto de referencia: capital de la provincia</i>")
         folium.CircleMarker(
             [r.lat_provincia, r.lon_provincia], radius=_radio(r.objetos),
@@ -127,6 +134,10 @@ def main() -> None:
     ciudades, provincias, sin_ubicar = puntos()
     SALIDA.parent.mkdir(exist_ok=True)
     texto = mapa(ciudades, provincias).get_root().render()
+    # folium bloquea el zoom con los dedos; se deja hacer, como en el explorador
+    texto, n = re.subn(r"initial-scale=1\.0, maximum-scale=1\.0, user-scalable=no",
+                       "initial-scale=1.0", texto)
+    assert n == 1, "cambió el viewport de folium"
     ids: dict[str, str] = {}
     texto = re.sub(r"(?<=_)[0-9a-f]{32}(?![0-9a-f])",
                    lambda m: ids.setdefault(m.group(), f"{len(ids) + 1:04d}"), texto)
