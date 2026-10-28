@@ -37,3 +37,7 @@ provincia en `Ciudades`; marcas de `04f` y `foto_album` en `Objetos`; la hoja `P
 curada de `04e`; fechas y sede en `Concursos`; fuentes 4-6) y cambiado filas (fusiones
 de expositoras, índice de páginas corregido). Desde ahora, si `06_verificar` falla es
 porque algo cambió.
+
+**Re-congelado el 2026-10-28**, después de las respuestas de LM del 28/10: 8 celdas de
+`Género` (instituciones de F a I) y 2 de `Premios` (la blusa de las Hermanas Dominicas,
+fuera de catálogo).
