@@ -2,6 +2,27 @@
 
 ## Preguntas para Larisa
 
+- [ ] **Isabel B. de Acuña Zavalía (`persona_id` 58): ¿"B." o "Bascary"?** El catálogo
+  (6 veces) y el fallo (2) escriben "Isabel B. de Acuña Zavalía"; El Orden (28/7 y
+  30/9/1915) la nombra "Isabel Bascary de Acuña Zavalía", y así figura en
+  `decisiones/comisiones.csv`. Opciones: usar el nombre completo de la prensa, marcando
+  "Bascary" como dato deducido con su cita, o dejar "B." y aclarar en la ficha "Bascary
+  según El Orden". Si se usa la prensa, decidir si el criterio vale para otras
+  expositoras que la prensa nombra completas. Aparte, el nombre normalizado dice
+  "Acuña **de** Zavalía", que sale de una sola fila del fallo (premio 20); las otras
+  siete menciones y El Orden dicen "Acuña Zavalía". Corregirlo en la misma pasada.
+- [ ] **Zonas y tipos de obra (28/10).** Los armó el proyecto para el explorador, sin
+  respaldo en las fuentes, y se sacaron hasta que LM los revise:
+  - *Zonas* (`decisiones/zonas_ciudades.csv`): cada localidad va a una región (capital y
+    alrededores, centro y sur, valles y norte de Tucumán, otras provincias) según su
+    provincia y su distancia a la capital (columna `criterio`). ¿Sirve una regionalización
+    así? ¿Hay una de época o de la bibliografía que convenga usar?
+  - *Tipos de obra* (columna `familia` de `decisiones/familias_categorias.csv`): las 24
+    secciones de los catálogos agrupadas en tejidos de telar y abrigo, alfombras y
+    tapices, encajes/randas/crochet, bordados y deshilados, y otros. Casos dudosos:
+    Pañuelos con los encajes, Manteles de té con los bordados, Raffia en "otros".
+  Mientras tanto, el explorador agrupa la procedencia por provincia y los premios por
+  sección del fallo.
 - [x] *(2026-10-25)* **Premio de Dominga Castaño (`premio_id` 6).** Julián: Castaño y
   Lescano son personas distintas; el premio queda fuera de catálogo, como lo anota el
   fallo.
@@ -131,6 +152,32 @@ Hoy son **441 F, 9 M y 8 I** (institución) sobre 458 filas.
     `BORDADO EN BLANCO Y SEDA` / `BORDADOS EN BLANCO Y DESHILADOS`.
   - La decisión va a `data/interim/decisiones/categorias.csv`, que todavía no existe.
 
+## Revisión completa del 28/10 (ver `outputs/controles_calidad.md`)
+
+- [ ] **Carmen Pérez (199):** frazada desde Cerrillos (Salta) y cuello bordado desde
+  Atahona (Tucumán), los dos en 1916. ¿Dos personas con el mismo nombre?
+- [ ] **Premios cuyo lugar en el fallo no coincide con el catálogo:** Ana Tactagi (93:
+  fallo Simoca, catálogo San Miguel), Melchora y Rosa Valenzuela (17 y 35: fallo "Ciudad",
+  catálogo Simoca), Elvira Rodríguez (73: fallo San Rafael, catálogo S/D; el fallo
+  completaría su procedencia).
+- [ ] **Huecos en la numeración de 1915:** Bordado en blanco y seda n.º 9 y Pañuelos n.º 17
+  (mirar DSCN5177 y la página de Bordado).
+- [ ] **Varones en 1916:** el decreto del 1/3/1916 abre el concurso a "toda mujer radicada";
+  hay 7 expositores varones en 1916, casi todos con pellones. Confirmar con LM que el
+  género está bien y, si es así, es un dato para comentar.
+- [ ] **Mercedes Pereyra (premio 62)** vinculada a María Mercedes Pereira: confirmar.
+- [ ] **Accésits de 1915:** el fallo anuncia "se crean 9 accesits" y lista 8 (la
+  transcripción anota "(son 8)"). Mirar el escaneo del fallo: ¿falta uno?
+- [ ] **El índice de páginas no coincide con las obras** (mirar los escaneos):
+  - Pañuelos 1915 (DSCN5177, pág. 5): el índice cierra con Ignacia Puparelli (n.º 18),
+    pero Lastenia Barrero figura después con el n.º 19 (corrección 17 → 19 del 25/10, y
+    falta el n.º 17).
+  - Encajes y randas 1916 (DSCN5221, págs. 42-43): n.º 125 y 126 invertidos (Elena R. de
+    Lemiere / María de Aguirre).
+  - Bordados en blanco y deshilados 1916 (DSCN5226, págs. 52-53): n.º 54 y 55 invertidos
+    (Margarita Robles / Ercilia Vera de Cáceres); el índice dice "Margarita R." y la
+    transcripción "Margarita T.".
+
 ## Pedidos de LM (28/10)
 
 - [ ] **Darle un lugar donde ver el trabajo.** "Quizás a futuro es mejor pasarnos el link
@@ -142,9 +189,17 @@ Hoy son **441 F, 9 M y 8 I** (institución) sobre 458 filas.
   reunión con el personal técnico del instituto. El modelo que quería (la base de
   tejedores del Renatra) ya no está en línea ni en la Wayback Machine.
 
+## Explorador
+
+- [ ] **Parte premiada en el cúmulo de Tucumán.** El punto rojo (área proporcional a las
+  premiadas) se lee bien en los lugares aislados, pero alrededor de San Miguel de Tucumán
+  los puntos se superponen y hacen ruido. Probar un anillo parcial en el borde del
+  círculo (premiadas sobre total). Sugerencia de una revisión externa, 28/10.
+
 ## Pipeline
 
-- [ ] **Prensa en el explorador y en la vista plana (semana del 26/10/2026).** Una etapa
+- [ ] *(2026-10-28: hechos 1 a 4 en `05c`, salvo el párrafo de contexto, que debería escribir
+  o revisar LM; falta 5)* **Prensa en el explorador y en la vista plana (semana del 26/10/2026).** Una etapa
   lee `decisiones/menciones_prensa.csv` y: (1) en la ficha de cada expositora, un
   recuadro "En la prensa" con la cita, el diario y la fecha; (2) en la lista de obras, la
   marca "· En la prensa"; (3) en los lugares (Orán, Monteros, La Cocha), sus citas; (4) en
@@ -199,6 +254,14 @@ Hoy son **441 F, 9 M y 8 I** (institución) sobre 458 filas.
 - [ ] **Acordar con la dirección hasta dónde se publican datos y código** (§7). Es una
   conversación que se registra en el **Anexo V — Autorización de Divulgación** del
   informe final. No requiere ningún archivo en el repositorio.
+- [ ] **Publicar el explorador en GitHub Pages** (idea de Julián, 28/10; todavía no).
+  Antes: el OK de LM y la licencia (punto anterior), y decidir si el repo pasa a ser
+  público o si el sitio va en un repo aparte (en el plan gratuito, Pages exige repo
+  público). No usar `docs/` como raíz, porque ahí están la bitácora y la hoja de horas.
+  Plan: una carpeta `sitio/` que llene el pipeline, con `index.html` (el explorador),
+  `vendor/leaflet/` (Leaflet copiado, sin CDN) y `datos/` (CSV, xlsx normalizado y
+  GeoJSON de lugares para descargar). El mapa de Folium no se publica: el explorador
+  ya lo cubre.
 - [ ] **`outputs/` tiene una sola salida.** Los objetivos específicos 2 y 3 del
   formulario son visualizaciones/mapas interactivos y vinculación registros↔imágenes.
   El 3 está resuelto (`04c`: 981/981 objetos con imagen). Del 2 hoy sale

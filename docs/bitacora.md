@@ -405,6 +405,153 @@ celda. Correcciones aplicadas (decisión de Julián, punto por punto):
 - `06_verificar` marca 8 celdas de `Expositoras` y 2 de `Premios` contra el golden, todas
   de estas decisiones: hay que volver a congelarlo.
 
+## 2026-10-28 — Obras con sólo la provincia pasan a la localidad de la expositora
+
+Criterio de Julián: si una expositora tiene obras donde el catálogo escribió sólo la
+provincia y otras con una localidad de esa misma provincia, las primeras pasan a esa
+localidad. Lo aplica `04d` (`localidad_de_la_expositora`); la ciudad del catálogo queda en
+`Objetos.ciudad_id_catalogo` y el texto, en "Lugar en el documento". En la ficha del explorador esas
+obras llevan la marca "Ubicación deducida" y una nota arriba explica de dónde sale. Si hubiera dos
+localidades posibles no se mueve nada y se avisa. Hoy son 53 obras de 7 expositoras:
+
+- Concepción y Rosa Cuello: 33 de "CATAMARCA" a Piedra Blanca (el catálogo pone "PIEDRA
+  BLANCA, CATAMARCA" sólo en Alfombras y Tapices de 1916).
+- Delia Espinosa: 2 de "TUCUMAN" a Niogasta.
+- Escuela Profesional de Mujeres (10), Isabel B. de Acuña de Zavalía (4), Escuela y Hogar
+  de Obreras (2), Lastenia Barrero (1) y María Retambay (1): de "TUCUMÁN" a San Miguel de
+  Tucumán.
+
+Todos los "TUCUMÁN" a secas están en Alfombras, Tapices, Ponchos y Chales de 1916
+(DSCN5201, 5202, 5212, 5213), secciones que escriben "LOCALIDAD, PROVINCIA". Cambia el
+criterio del 25/8 (con sólo la provincia, la ciudad queda vacía) para estos casos.
+
+## 2026-10-28 — Controles de calidad (`06b_controles`)
+
+Nueva etapa al final del pipeline: busca en toda la base los errores típicos de
+transcribir los catálogos y escribe `outputs/controles_calidad.md`, con id y página de
+cada caso. No corrige nada, y lo ya decidido (pares "no se unen", las 6 filas de dos
+personas, variantes entre corchetes) no vuelve a aparecer. Primera corrida: sin números
+de orden repetidos ni fuera de su página, sin premios cruzados entre personas ni obras
+sin página. Casos nuevos: Carmen Pérez (199) en Cerrillos (Salta) y en Atahona (Tucumán);
+premios cuyo lugar en el fallo no coincide con el catálogo (17, 35, 73, 93); huecos en
+la numeración de 1915 (Bordado en blanco y seda n.º 9, Pañuelos n.º 17).
+
+## 2026-10-28 — Revisión completa antes de presentar
+
+Se cruzó todo contra el crudo y los escaneos transcriptos: integridad entre hojas (sin ids
+huérfanos ni duplicados), las 981 obras contra `objetos_crudos.csv` (N.º, sección y
+descripción idénticos; las diferencias de nombre son variantes y fusiones decididas), los
+102 premios uno por uno contra el fallo (el total, $ 4.440, cierra), las coordenadas
+contra su provincia y la documentación (links, rutas, números). Correcciones:
+
+- `Concursos`: la sede de 1915 decía "esquina Sala" (el catálogo: "24 de setiembre y
+  salta"); 1916 suma decreto (1/3/1916), sede (Escuela Pedagógica Sarmiento, Rivadavia 40)
+  y comisión, que estaban en el catálogo y figuraban s/d.
+- Explorador: las fechas de 1915 citan las dos fuentes (el catálogo anuncia 24/9–3/10; El
+  Orden, inauguración el 29/9) y 1916 nombra la sede.
+- `run_pipeline.py`: `06_verificar` termina con `sys.exit()` y cortaba la corrida; ahora
+  se ejecutan todas las etapas y el código de salida se devuelve al final.
+- README del pipeline y raíz: números al día (13 fuera de catálogo, 48 pares sin revisar,
+  puntos del mapa) y la etapa `06b`; `requirements.txt`: folium no es opcional.
+- `notebooks/04_eda.ipynb` vuelto a correr (441 F, 9 M, 8 I).
+
+## 2026-10-28 — Explorador: una sola pestaña de análisis, fuentes y datos descargables
+
+- Panorama, Técnicas por zona y Cuadros pasan a ser una pestaña, **Análisis**, con un
+  índice fijo: cifras generales, los dos concursos, procedencia, técnicas, expositoras y
+  premios. Cada gráfico tiene su tabla plegada debajo ("Ver tabla"). Los enlaces viejos
+  (`#tec`, `view=cua`…) abren Análisis.
+- Cada obra de la ficha cita su fuente: "Catálogo de 1916, p. 13 (DSCN5201)", con la
+  página impresa de `Paginas_Catalogo` (sección y rango de N.º); los premios sin obra
+  citan el fallo. La tabla copiada suma "Nombre en la fuente", "Ubicación" y "Fuente".
+- Convención de certeza: lo deducido va subrayado con puntos y explicado al pasar el
+  mouse; "Dato deducido" se define en Fuentes y método.
+- Botones para descargar la base (una fila por obra) y su diccionario, en CSV con punto y
+  coma y UTF-8 para Excel.
+- La versión ("versión de trabajo del 28 de octubre de 2026") sale de la fecha de la
+  corrida y aparece en la cita y en el pie.
+- Al revisar el índice de páginas aparecieron tres bordes de página que no coinciden con
+  la transcripción (Pañuelos 1915; Encajes y randas 125/126 y Bordados 54/55 de 1916): van
+  a `06b_controles` y a las tareas.
+
+## 2026-10-28 — Explorador: comparación de concursos, prensa, fuentes, sesgo y citas
+
+- Análisis, "Los dos concursos": tabla 1915 / 1916 lado a lado (nombre, decreto,
+  inauguración, fallo, sede, presidenta de la comisión, expositoras, obras, lugares,
+  premios), desde la hoja `Concursos` y la base sin filtros.
+- Prensa de época: `05c` lee `menciones_prensa.csv`. Las 14 menciones de El Orden aparecen
+  en la ficha de la persona ("En la prensa de época": cita, diario, fecha y título), como
+  "· En la prensa" en la obra y en el panel del lugar en el mapa (Monteros, La Cocha, Orán).
+- Fuentes y método suma "Dónde están los documentos" (hoja `Fuentes`; lo no confirmado dice
+  "a confirmar") y "Lo que el archivo no dice": expositora no es autora, mujeres sin nombre
+  propio, género inferido, obras sin procedencia, premios sin obra, accésits anunciados y
+  listados, fallo de 1916 sin relevar. Los números salen de la base.
+- "Cómo citar" en APA, Chicago y BibTeX.
+
+## 2026-10-28 — Comisiones, enlace por ficha y procedencia no es origen de la técnica
+
+- Nueva `decisiones/comisiones.csv`: las integrantes de la comisión organizadora y jurado
+  de 1915 (catálogo y fallo, más Isabel Bascary de Acuña Zavalía según El Orden) y de 1916
+  (catálogo). En Análisis, "Comisión organizadora y jurado" las muestra con su rol en cada
+  año. Sólo Bascary de Acuña Zavalía es a la vez expositora; para las demás se indica si
+  comparten apellido con alguna expositora (Frías, Colombres, Haurigot, Molina), aclarando
+  que no prueba parentesco.
+- La ficha muestra su código ("Expositora · n.º 58") y suma "Copiar enlace a esta ficha"
+  y "Copiar cita de esta ficha".
+- La matriz de técnicas y las Definiciones aclaran que la zona es la procedencia de la
+  expositora, no el origen de la técnica; se define "Procedencia".
+
+## 2026-10-28 — Mapa: correcciones de una revisión externa
+
+- El filtro "Obras: Todas" pasa a "Premio: Todas las obras / Solo premiadas".
+- "Líneas hacia la sede": al activarlas, la leyenda aclara que unen la procedencia
+  declarada con la sede y no documentan un traslado. Las que salen de una ubicación
+  aproximada van punteadas. Los lugares con solo la provincia ya no tenían línea.
+- Los filtros entran en una sola fila en una laptop de 1366 px (antes, dos filas):
+  los desplegables pasan de 15 a 12,5 rem de ancho máximo.
+- El contador explica de dónde sale el número: "994 obras" son 981 del catálogo y 13
+  premiadas que no figuran en él. En el mapa dice además cuántas se ven (953, o 827 sin
+  la capa de provincias) y cuántas no tienen ubicación (41).
+- `05b_mapa` (Folium): plurales ("1 objeto · 1 expositora"), el mapa base se llama
+  "Mapa base (Esri)" en el control de capas y se puede hacer zoom con los dedos.
+
+## 2026-10-28 — Explorador sin zonas ni tipos de obra
+
+- Las zonas (`zonas_ciudades.csv`) y los tipos de obra (`familia` en
+  `familias_categorias.csv`) eran agrupaciones del proyecto, sin respaldo en las fuentes
+  ni validadas por LM. Julián decide sacarlas del explorador hasta preguntarle.
+- La procedencia se agrupa por provincia, la de la localidad que muestra el mapa: filtro
+  "Provincia", gráfico "De dónde venían las obras", columnas de la matriz de técnicas,
+  ficha de la expositora y columna del CSV descargable.
+- Los premios se agrupan por sección del fallo de 1915, tal como las nombra (19
+  secciones, 102 premios).
+- Se quitan el filtro "Tipo de obra" y los gráficos "Tipos de obra en 1915 y 1916" y
+  "Qué tipo de obra hubo en cada zona". Los CSV quedan en `decisiones/` para la revisión.
+
+## 2026-10-28 — No hay premios de 1916
+
+- El explorador decía que los premios de 1916 "todavía no están cargados" y que el fallo
+  de 1916 estaba "sin relevar". No hay premios de 1916: se corrigen esos textos (avisos
+  de Premios y del filtro, comparación de concursos, pendientes y "Lo que el archivo no
+  dice"). Las cifras de premiadas no cambian.
+
+## 2026-10-28 — Análisis: matriz en tres vistas, filtros visibles y cifras que cierran
+
+A partir de una revisión externa:
+- La matriz técnica × provincia se ve en obras, en % de las obras de la provincia o en
+  expositoras distintas: Concepción y Rosa Cuello (36 obras) y María Ávila (20) dejan de
+  parecer un rasgo de Catamarca. "Sin técnica indicada" va en gris, fuera de la escala
+  de color, con una nota de qué secciones caen ahí (colchas, ponchos, alfombras,
+  jergones, chales) y cuánto pesan por provincia (Tucumán 30 %, Catamarca 55 %).
+- "De dónde venían las obras" se ve en cantidad o en % de cada año, con una nota sobre
+  1915 provincial y 1916 interprovincial (en 1915 ya hubo obras de otras provincias).
+- Las secciones que no usan algunos filtros lo dicen con una insignia, y el índice
+  lateral muestra los filtros activos con "Limpiar filtros".
+- Cifras generales explica por qué 994 obras (13 premiadas solo en el fallo), 463
+  expositoras (5 solo en el fallo) y 102 premios en 108 obras.
+- La nota de la matriz distingue la técnica (inferida por el proyecto) de la categoría
+  del catálogo.
+
 ## Fuentes del crudo que NO entran a la base
 
 Hojas `no PRENSA-EL ORDEN`, `no ARCHIVO PADILLA`, `no Prensa-Rakow lib`: material de

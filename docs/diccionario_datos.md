@@ -52,6 +52,7 @@ de qué página salió cada registro.
 | `expositora_id` | int | → `Expositoras.persona_id` |
 | `concurso_id` | int | → `Concursos.concurso_id` |
 | `ciudad_id` | int | → `Ciudades.ciudad_id` |
+| `ciudad_id_catalogo` | int | ciudad que escribió el catálogo cuando `04d` pasó la obra a otra: el catálogo dice sólo la provincia ("TUCUMÁN") y la misma expositora tiene obras en una localidad de esa provincia, que pasa a ser `ciudad_id`. Vacío = sin cambio (Julián, 2026-10-28; hoy 53 obras de 7 expositoras) |
 | `categoria_id` | int | → `Categorías.categoria_id` |
 | `ORDEN` | int | número de orden dentro de la categoría en el catálogo |
 | `OBJETO` | texto | descripción del objeto, textual de la fuente |
@@ -188,7 +189,8 @@ Las fusiones de expositoras que aplica `04_aplicar_dedup.py` (55 filas).
 
 Qué obras, expositoras y lugares de la base comenta la prensa de época (14 filas, armada
 a mano a partir de las hojas "no …" del crudo; ver `docs/relevamiento_prensa_archivo.md`).
-Hoy no la lee ninguna etapa del pipeline.
+La lee `05c_explorador`: cada mención aparece en la ficha de la persona, en sus obras
+("· En la prensa") y en el panel del lugar en el mapa.
 
 | campo | descripción |
 |---|---|
@@ -201,3 +203,20 @@ Hoy no la lee ninguna etapa del pipeline.
 | `nivel` | `obra`, `persona` o `lugar`: a qué se puede atar la mención con seguridad |
 | `cita` | el pasaje, textual de la transcripción |
 | `nota` | cómo se identificó la obra o la persona, y dudas |
+
+## `data/interim/decisiones/comisiones.csv`
+
+Integrantes de la comisión organizadora y jurado de cada concurso (25 filas, cargadas a
+mano del catálogo y el fallo de 1915, del catálogo de 1916 y de El Orden). Una fila por
+persona, año y rol. La lee `05c_explorador`.
+
+| campo | descripción |
+|---|---|
+| `anio` | 1915 o 1916 |
+| `nombre` | nombre normalizado (con tildes; la forma más completa entre las fuentes) |
+| `nombre_en_fuente` | como lo escribe la fuente |
+| `rol` | presidenta, vicepresidenta, secretaria, secretaria general, secretaria de sección, vocal, integrante de la comisión |
+| `seccion` | para las secretarias de sección de 1916 |
+| `fuente` | de dónde sale el dato |
+| `persona_id` | → `Expositoras.persona_id`, si también expuso (hoy sólo Isabel Bascary de Acuña Zavalía, 58) |
+| `nota` | aclaraciones |

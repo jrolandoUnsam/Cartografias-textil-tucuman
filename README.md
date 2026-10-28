@@ -25,9 +25,9 @@ data/
   interim/      resultados intermedios del pipeline y tablas de decisión manuales
     decisiones/ lo que no se deriva del crudo: fusiones, coordenadas, overrides
   processed/    tabla_normalizada.xlsx, vista_plana_tabla_consolidada.xlsx
-src/pipeline/   etapas del pipeline (01_ingesta … 06_verificar)
+src/pipeline/   etapas del pipeline (01_ingesta … 06b_controles)
 notebooks/      exploración y análisis
-outputs/        figuras, mapas, tableros (mapa_procedencias.html, explorador.html)
+outputs/        mapa_procedencias.html, explorador.html y controles_calidad.md
 docs/           bitácora de decisiones, diccionario de datos, evaluación de riesgos
 tests/golden/   copias congeladas de las salidas, para verificación
 ```
@@ -63,6 +63,8 @@ scripts.
 - [`docs/auditoria_comentarios.md`](docs/auditoria_comentarios.md) — informe generado:
   decisión anotada a mano vs. estado real de la tabla. Lo escribe
   `src/pipeline/audit_comentarios.py`, fuera de la corrida; no se edita a mano.
+- [`outputs/controles_calidad.md`](outputs/controles_calidad.md) — informe generado en
+  cada corrida (`06b_controles`): errores típicos de los catálogos para revisar.
 - [`docs/referencias/README.md`](docs/referencias/README.md) — los PDF del marco
   institucional y del proyecto, que quedan fuera del repositorio.
 
