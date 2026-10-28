@@ -25,7 +25,7 @@ de qué página salió cada registro.
 |---|---|---|
 | `persona_id` | int | identificador de persona / institución expositora |
 | `Nombre` | texto | nombre tal como se decidió normalizar |
-| `Género` | F / M | inferido del nombre (correcciones en `decisiones/nombres_expositoras.csv`); instituciones marcadas F por convención (revisar) |
+| `Género` | F / M / I | inferido del nombre (correcciones en `decisiones/nombres_expositoras.csv`); I = institución (asilo, escuela, congregación), marca propia en lugar de género (LM 2026-10-28) |
 
 ### Hoja `Categorías` (24 filas)
 | campo | tipo | descripción |

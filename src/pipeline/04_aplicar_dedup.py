@@ -24,7 +24,7 @@ La columna `origen` dice de dónde sale la decisión:
 Después de fusionar, `data/interim/decisiones/nombres_expositoras.csv` (persona_id,
 nombre, nota, genero) fija el nombre con que queda una expositora, p. ej. la variante entre
 corchetes que acordamos con Larisa al unificar ("Facunda Cerone [Coronel]"), y, si
-`genero` no está vacío, corrige el `Género` de la tabla manual (F / M). Un `nombre`
+`genero` no está vacío, corrige el `Género` de la tabla manual (F / M, o I para una institución). Un `nombre`
 vacío deja el nombre como está. Se aplica antes de reapuntar los premios, así la hoja
 Premios ya muestra el nombre final.
 

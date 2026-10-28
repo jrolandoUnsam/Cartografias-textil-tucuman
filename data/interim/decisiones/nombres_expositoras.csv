@@ -1,5 +1,5 @@
 persona_id,nombre,nota,genero
-83,Hermanas dominicas [asilo],"revisión LM 2026-10-25, al unificar con 499",
+83,Hermanas dominicas [asilo],"revisión LM 2026-10-25, al unificar con 499; institución: LM 2026-10-28",I
 473,Alfonsa [Cuadrado] de Barceló,"revisión LM 2026-10-25, al unificar con 106",
 108,Mamerta Monteros [Escuela Sarmiento 1915],"revisión LM 2026-10-25, al unificar con 485: sólo en 1915 figura con la Escuela Sarmiento",
 47,Facunda Cerone [Coronel],"revisión LM 2026-10-25, al unificar con 476: el fallo dice Facunda Coronel",
@@ -21,3 +21,10 @@ persona_id,nombre,nota,genero
 353,Gumersinda Ordóñez,auditoría 2026-10-25: tilde (LM: 'mantengamos las tildes'); el catálogo escribe en mayúsculas sin tilde,
 185,,Julián 2026-10-25: Ataliva es nombre de varón,M
 520,Victoria Vidal,"Julián 2026-10-25: es Victoria Vidal, mujer",F
+37,,"institución, no persona: género I (LM 2026-10-28)",I
+50,,"institución, no persona: género I (LM 2026-10-28)",I
+102,,"institución, no persona: género I (LM 2026-10-28)",I
+281,,"institución, no persona: género I (LM 2026-10-28)",I
+364,,"institución, no persona: género I (LM 2026-10-28)",I
+398,,"institución, no persona: género I (LM 2026-10-28)",I
+492,,"institución, no persona: género I (LM 2026-10-28)",I

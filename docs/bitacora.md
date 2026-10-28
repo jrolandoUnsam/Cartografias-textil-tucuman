@@ -383,6 +383,28 @@ celda. Correcciones aplicadas (decisión de Julián, punto por punto):
 - **Docs:** números al día (61/77 ciudades con punto, 449 F y 9 M, 141 pares candidatos,
   estado real del golden) y lo que quedó abierto, en `tareas_pendientes.md`.
 
+## 2026-10-28 — Respuestas de LM del 28/10
+
+- **Blusa de las Hermanas Dominicas (`premio_id` 67):** queda fuera de catálogo ("no
+  tiene número de catálogo, s/d significa sin datos"). Quedan 89 premios vinculados, 13
+  fuera de catálogo y ninguno pendiente. Lo de Dominga Castaño (`premio_id` 6) ya estaba
+  resuelto así: LM había mirado el objeto de Lescano, no la persona.
+- **Instituciones:** LM prefiere una marca propia en lugar de género. Las 8 expositoras que
+  reconoce la regla `INSTITUCION` pasan de F a `I` vía `nombres_expositoras.csv` (441 F,
+  9 M, 8 I). Mercedes Pacheco sigue como persona, aunque sus obras sean del Colegio de la
+  Sagrada Familia.
+- **Pares:** no se unen 120/340 (Lastenia Barrero / Barquet) ni 33/410 (Argenia R. de
+  Lautafy / Arsenia R. de Lontayf, "podrían ser hermanas"); `Hecho = False` en los
+  candidatos. Quedan 48 sin revisar.
+- **Registros de dos personas** (6 filas): siguen como registro conjunto, porque son
+  envíos colectivos.
+- **Álbum de 1915:** el poncho (DSCN5158) queda sin identificar. Lo del ñandutí 17 (¿18 o
+  19?) no lo contestó.
+- **Orán:** LM se inclina por Tucumán, pero no hay información suficiente; espera la
+  respuesta del archivo. No cambia nada en la base.
+- `06_verificar` marca 8 celdas de `Expositoras` y 2 de `Premios` contra el golden, todas
+  de estas decisiones: hay que volver a congelarlo.
+
 ## Fuentes del crudo que NO entran a la base
 
 Hojas `no PRENSA-EL ORDEN`, `no ARCHIVO PADILLA`, `no Prensa-Rakow lib`: material de

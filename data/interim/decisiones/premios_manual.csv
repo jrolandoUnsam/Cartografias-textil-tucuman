@@ -25,4 +25,4 @@ premio_id,objeto_id,persona_id,nota
 86,ninguno,,"Lucrecia Carrazan: no está en el catálogo, la dejamos suelta como Alejandrina (Coment LM, antes de octubre)"
 76,ninguno,,Marina Belmonte n.º 22: el deshilado 22 es de Eloisa López; LM 2026-10-25: 'en el premio figura 22 Belmonte… la ponemos [fuera de catálogo]'
 66,ninguno,,"Dalmira González Sorol, mantel de altar: fuera de catálogo (LM 5-10); LM 2026-10-25: lo del álbum (encajes varios 20) eran 'observaciones nomás'"
-67,pendiente,,"Hermanas Dominicas, blusa (Deshilado, s/d): LM 2026-10-25 sugiere el n.º 4 'traje bordado richelieu' (objeto 149, álbum DSCN5159), pero ese objeto ya tiene su premio (premio_id 79, Bordado en blanco y seda n.º 4). Preguntar a Larisa"
+67,ninguno,,"Hermanas Dominicas, blusa (Deshilado, s/d): fuera de catálogo. LM 2026-10-28: 'no tiene número de catálogo (s/d significa sin datos)'. No es el n.º 4 'traje bordado richelieu' (objeto 149, álbum DSCN5159), que ya tiene su premio (premio_id 79)"

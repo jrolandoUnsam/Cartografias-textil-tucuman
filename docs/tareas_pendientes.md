@@ -5,15 +5,18 @@
 - [x] *(2026-10-25)* **Premio de Dominga Castaño (`premio_id` 6).** Julián: Castaño y
   Lescano son personas distintas; el premio queda fuera de catálogo, como lo anota el
   fallo.
-- [ ] **Blusa de las Hermanas Dominicas (`premio_id` 67).** LM
+- [x] *(2026-10-28: fuera de catálogo; LM: "no tiene número de catálogo, s/d significa
+  sin datos")* **Blusa de las Hermanas Dominicas (`premio_id` 67).** LM
   sugiere el n.º 4 "traje bordado richelieu" (objeto 149; en el álbum, DSCN5159),
   pero ese objeto ya tiene su premio: `premio_id` 79, Bordado en blanco y seda n.º 4, también
   de $25. La blusa es otro premio (Deshilado, sin número).
-- [ ] **Orán (73): ¿Tucumán o Salta?** Hoy queda sin punto ni provincia (LM 9-10). Evidencia para la reunión: El Orden, 10/10/1916, "La randa tucumana" (hoja "no PRENSA-EL ORDEN" del crudo): Padilla, de gira por la provincia, visita Orán, "antiguo centro de la randera tucumana"; quien transcribió anotó "no queda claro si se refiere a Salta". En el catálogo hay 24 randas de Orán. No se decide nada sin LM.
-- [ ] **Dos piezas del álbum de 1915 sin obra en el catálogo** (`album_1915.csv`):
-  "Poncho" (DSCN5158), sin número, y en 1915 hay varios ponchos; "17 encaje ñanduty"
+- [ ] **Orán (73): ¿Tucumán o Salta?** Hoy queda sin punto ni provincia (LM 9-10). Evidencia para la reunión: El Orden, 10/10/1916, "La randa tucumana" (hoja "no PRENSA-EL ORDEN" del crudo): Padilla, de gira por la provincia, visita Orán, "antiguo centro de la randera tucumana"; quien transcribió anotó "no queda claro si se refiere a Salta". En el catálogo hay 24 randas de Orán. No se decide nada sin LM. *LM 2026-10-28: se inclina por Tucumán, pero no hay información suficiente; escribió al archivo de Tucumán que le pasó la nota y espera respuesta.*
+- [ ] **Una pieza del álbum de 1915 sin obra en el catálogo** (`album_1915.csv`).
+  El "Poncho" (DSCN5158) queda sin identificar (LM 2026-10-28: "es super difícil de
+  identificar"). Sigue sin respuesta: "17 encaje ñanduty"
   (DSCN5168): la n.º 17 de Encajes varios es una colcha de filet, y las de ñandutí son
-  Encajes varios n.º 18 y Pañuelos n.º 19. ¿El número de la foto es 18 o 19?
+  Encajes varios n.º 18 y Pañuelos n.º 19. ¿El número de la foto es 18 o 19? (no lo
+  contestó el 28/10)
 - [ ] **Prensa y Archivo Padilla (`docs/relevamiento_prensa_archivo.md`):** ¿de qué
   documento salen las fotos del "álbum de 1915"? El Archivo Padilla tiene un boletín del
   concurso interprovincial de julio de 1916 que "tiene las fotos del álbum", y su
@@ -21,11 +24,12 @@
   Leston de Guzmán (El Orden) o Lucila López Islas (foto del Archivo Padilla)? ¿Dónde
   está la entrevista a Ana Toledo que cita la hoja de El Orden? ¿Qué es "AHT", en qué
   repositorio está el Archivo Padilla y en qué medio salió la nota de Páez de la Torre?
-- [ ] **Pares que no respondió en `pares_sin_revisar.xlsx` (25/10):** `2` Marina /
+- [ ] **Pares que no respondió en `pares_sin_revisar.xlsx` (25/10):** *(LM 2026-10-28: no se unen `120` / `340` Barrero / Barquet ni `33` / `410`
+  Argenia / Arsenia, "podrían ser hermanas"; cargados como `Hecho = False`. Del resto no
+  dijo nada.)* `2` Marina /
   `45` Máxima Belmonte, `390` Audelina y Abigail / `409` María Abigail Gómez, `215`
-  Lidia / `474` Lastenia Moya Escobar, `120` Lastenia Barrero / `340` Lastenia Barquet,
-  `366` Manuela / `485` Mamerta Monteros, `33` Argenia R. de Lautafy / `410` Arsenia R.
-  de Lontayf, `129` María Díaz / `176` María Cruz Díaz, `466` Julia M. / `468` Paulina
+  Lidia / `474` Lastenia Moya Escobar,
+  `366` Manuela / `485` Mamerta Monteros, `129` María Díaz / `176` María Cruz Díaz, `466` Julia M. / `468` Paulina
   P. de Chirou y `435` Rosa / `506` Rita Ariza. También sigue sin respuesta `325` María
   / `334` Arsenia Fernández.
 - [x] **Revisión de LM del 25/10** *(aplicada 2026-10-25)*:
@@ -103,14 +107,18 @@
   227/315 y 93/360 se cargaron como `Hecho = False`, y los pares de Delina 161/255 y
   209/264 pasaron de `True` a `False` (el comentario decía "separadas").
 - [ ] **Nombres de la auditoría 2026-10-25 para confirmar con LM:** "Sta. Sandés"
-  (el "Sta" viene del fallo, probablemente "señorita"), las 6 filas que son dos personas (p. ej. "Concepción y Rosa
-  Cuello") y las dos Delina J. / I. de Román con nombres idénticos (161/209, 255/264).
+  (el "Sta" viene del fallo, probablemente "señorita") y las dos Delina J. / I. de Román con nombres idénticos (161/209, 255/264).
 
 ## Género (`Expositoras`)
 
-Hoy son **449 F y 9 M** sobre 458 filas.
-- [ ] Criterio para instituciones (hoy marcadas F por convención): decidir si llevan
-  género o una marca aparte.
+Hoy son **441 F, 9 M y 8 I** (institución) sobre 458 filas.
+- [x] *(2026-10-28)* Criterio para instituciones: LM prefiere una marca propia en lugar de
+  género. Las 8 que reconoce la regla `INSTITUCION` llevan `Género = I`
+  (`nombres_expositoras.csv`): 37, 50, 83, 102, 281, 364, 398 y 492.
+- [x] *(2026-10-28)* **Las 6 filas que son dos personas** (Concepción y Rosa Cuello,
+  María Díaz y Victoria Bazán, María Luisa y Angélica Gramajo, Audelina y Abigail Gómez,
+  Cristina e Isabel Blay, Virginia Vivolo y Antonia Cerrasuolo): LM, se dejan como registro
+  conjunto, porque son envíos colectivos.
 
 ## Categorías
 
@@ -122,6 +130,17 @@ Hoy son **449 F y 9 M** sobre 458 filas.
     `PELLONES Y JERGONES` (1915) / `PELLONES` + `JERGONES` (1916);
     `BORDADO EN BLANCO Y SEDA` / `BORDADOS EN BLANCO Y DESHILADOS`.
   - La decisión va a `data/interim/decisiones/categorias.csv`, que todavía no existe.
+
+## Pedidos de LM (28/10)
+
+- [ ] **Darle un lugar donde ver el trabajo.** "Quizás a futuro es mejor pasarnos el link
+  de donde trabajamos": le cuesta encontrar dónde está cada cosa (p. ej. las obras con foto
+  del álbum). El explorador puede servir de respuesta.
+- [ ] **Técnicas y materiales:** la lista se la mandaron; devuelve la revisión el 29/10.
+- Referencia para el explorador: la Ciapoteca del CIAP (CONICET-UNSAM), hecha en Omeka,
+  https://coleccionesciap.ar/s/ciapoteca/page/buenos-aires-de-plata. LM ofrece una
+  reunión con el personal técnico del instituto. El modelo que quería (la base de
+  tejedores del Renatra) ya no está en línea ni en la Wayback Machine.
 
 ## Pipeline
 
