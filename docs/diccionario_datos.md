@@ -89,7 +89,7 @@ son filas.
 | `Obra en el catálogo` | texto | descripción de la(s) obra(s) en el catálogo, separadas por una barra vertical |
 | `Categoría del catálogo` | texto | categoría del catálogo de esa obra |
 | `N.º en el catálogo` | texto | n.º de orden en el catálogo |
-| `Imagen` | texto | escaneo del catálogo donde figura la obra |
+| `Imagen del catálogo` | texto | escaneo del catálogo donde figura la obra (no es la foto del álbum) |
 | `Estado` | texto | `vinculado`, `fuera de catálogo` o `pendiente` |
 | `Vínculo` | texto | cómo se vinculó: `n.º, categoría y nombre`, `n.º y categoría`, `única obra de la expositora en la categoría`, `obra de la expositora con texto parecido` o `decisión a mano` |
 | `Nota` | texto | la decisión a mano (`premios_manual.csv`) o, si está pendiente, qué falta resolver |
@@ -146,7 +146,7 @@ mayúsculas)**. Dentro de un mismo grupo se conserva el orden del catálogo
 | `Fuera de concurso` | `Objetos.fuera_de_concurso` |
 | `Creación de la autora` | `Objetos.creacion_autora` |
 | `Foto del álbum` | `Objetos.foto_album` |
-| `Imagen` | escaneo del catálogo donde figura el objeto (`Objetos.imagen`) |
+| `Imagen del catálogo` | escaneo de la página del catálogo donde figura el objeto (`Objetos.imagen`); la foto de la pieza va en `Foto del álbum` |
 
 ## `data/interim/duplicados_expositoras_candidatos.xlsx`
 

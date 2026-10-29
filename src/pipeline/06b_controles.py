@@ -244,12 +244,14 @@ def main() -> None:
                 "(`Paginas_Catalogo`): la página o el número están mal.",
                 filas, ["Año", "Sección", "N.º", "objeto_id", "Expositora", "Página", "Rango de la página"], "Corregir página o número")
 
-    # el índice de páginas anota quién abre y quién cierra cada sección de cada página
+    # el índice de páginas anota quién abre y quién cierra cada sección de cada página.
+    # Se ordena por objeto_id (el orden impreso), no por N.º: Pañuelos 1915 imprime
+    # 16, 19, 18 (DSCN5177) y la última de la página es la del 18
     filas = []
     O["kcat"] = O["cat"].map(clave)
     for r in Pg.dropna(subset=["orden_desde", "orden_hasta"]).itertuples():
         o = O[(O["imagen"] == r.imagen) & O["ORDEN"].between(r.orden_desde, r.orden_hasta)
-              & (O["kcat"].str[:6] == clave(r.categoria_o_seccion)[:6])].sort_values("ORDEN")
+              & (O["kcat"].str[:6] == clave(r.categoria_o_seccion)[:6])].sort_values("objeto_id")
         if o.empty:
             continue
         for lado, quien, ob in (("primera", r.primera_persona, o.iloc[0]), ("última", r.ultima_persona, o.iloc[-1])):

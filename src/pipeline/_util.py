@@ -9,7 +9,6 @@ RAW_XLSX = RAIZ / "data" / "raw" / "TUCUMÁN text 1915-16 DATOS.xlsx"
 INTERIM = RAIZ / "data" / "interim"
 DECISIONES = INTERIM / "decisiones"
 PROCESSED = RAIZ / "data" / "processed"
-GOLDEN = RAIZ / "tests" / "golden"
 
 # Instituciones (asilos, escuelas, congregaciones…), por el comienzo del nombre.
 # "Mamerta Monteros [Escuela Sarmiento 1915]" es una persona de una escuela, no la

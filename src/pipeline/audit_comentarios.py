@@ -8,9 +8,7 @@ Recorre, fila por fila:
 
 y compara la decisión que dice el comentario contra el estado actual de
 `tabla_normalizada.xlsx`, tomando como línea de base `tabla_normalizada_manual.xlsx`
-(la tabla antes del pipeline). NO se usa `tests/golden/`: ese snapshot se re-congela
-junto con las salidas, así que comparar contra él es circular (ver BASE, más abajo,
-y `docs/bitacora.md` 2026-09-15).
+(la tabla antes del pipeline).
 
 Escribe un informe reproducible en `docs/auditoria_comentarios.md`.
 
@@ -40,8 +38,7 @@ REVISION = INTERIM / "revision_duplicados.xlsx"
 INFORME = RAIZ / "docs" / "auditoria_comentarios.md"
 
 # Línea de base: la tabla tal como la dejó la investigadora, ANTES de que el
-# pipeline aplicara ninguna decisión. No se usa tests/golden/ porque ese
-# snapshot se re-congela junto con las salidas y la comparación queda circular.
+# pipeline aplicara ninguna decisión.
 BASE = INTERIM / "tabla_normalizada_manual.xlsx"
 FUSIONES = INTERIM / "decisiones" / "fusiones_expositoras.csv"
 

@@ -22,7 +22,6 @@ ETAPAS = [
     "05_vista_plana",
     "05b_mapa",
     "05c_explorador",
-    "06_verificar",
     "06b_controles",
 ]
 
@@ -39,8 +38,8 @@ def main() -> None:
         if etapa[:len(desde)] < desde:
             continue
         print(f"\n=== {etapa} ===")
-        # 06_verificar termina con sys.exit(): sin esto, la corrida se cortaba ahí y
-        # las etapas siguientes no se ejecutaban. Su resultado se devuelve al final.
+        # si una etapa termina con sys.exit(), la corrida sigue con las demás y el
+        # código se devuelve al final
         try:
             runpy.run_path(str(PIPE / f"{etapa}.py"), run_name="__main__")
         except SystemExit as e:

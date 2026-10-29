@@ -48,7 +48,7 @@ HOJA = "Objetos - Concursos Tucumán"
 COLS = ["Concurso", "Año", "Expositora/Expositor", "Ciudad", "Provincia",
         "Lugar en el documento", "ciudad_id", "lat", "lon", "lat_provincia", "lon_provincia",
         "Categoría", "N.º de orden", "Descripción del objeto", "Fuera de concurso",
-        "Creación de la autora", "Imagen", "Foto del álbum"]
+        "Creación de la autora", "Imagen del catálogo", "Foto del álbum"]
 
 
 def _hoja(xl: pd.ExcelFile, prefijo: str) -> pd.DataFrame:
@@ -108,7 +108,7 @@ def construir(fuente=FUENTE) -> pd.DataFrame:
         "Descripción del objeto": df["OBJETO"],
         "Fuera de concurso": df["fuera_de_concurso"] if "fuera_de_concurso" in df.columns else pd.NA,
         "Creación de la autora": df["creacion_autora"] if "creacion_autora" in df.columns else pd.NA,
-        "Imagen": df["imagen"] if "imagen" in df.columns else pd.NA,
+        "Imagen del catálogo": df["imagen"] if "imagen" in df.columns else pd.NA,
         "Foto del álbum": df["foto_album"] if "foto_album" in df.columns else pd.NA,
     })
 

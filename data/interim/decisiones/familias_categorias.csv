@@ -1,25 +1,25 @@
-categoria_id,nombre_categoria,familia,tecnica_por_categoria
-1,PAÑUELOS,enc,
-2,RANDAS,enc,randa
-3,ENCAJES VARIOS,enc,encaje
-4,DESHILADO,bor,deshilado
-5,PONCHOS,tej,
-6,COLCHAS Y FRAZADAS,tej,
-7,PELLONES Y JERGONES,tej,
-8,ALFOMBRAS,alf,
-9,BORDADO EN BLANCO Y SEDA,bor,bordado
-10,CROCHET,enc,crochet
-11,TEJIDOS VARIOS,tej,
-12,RAFFIA IMITACIÓN CON HOJAS DE CAÑA,otr,
-13,VARIOS,otr,
-14,TAPICES,alf,
-15,CHALES DE VICUÑA,tej,
-16,CHALES Y ECHARPES,tej,
-17,TEJIDOS EN GENERAL,tej,
-18,JERGONES,tej,
-19,JERGONES Y SOBREPELOS,tej,
-20,ALFORJAS,tej,
-21,PELLONES,tej,
-22,MANTELES DE TÉ,bor,
-23,ENCAJES Y RANDAS,enc,encrand
-24,BORDADOS EN BLANCO Y DESHILADOS,bor,bordesh
+categoria_id,nombre_categoria,familia,tecnica_por_categoria,material_por_categoria
+1,PAÑUELOS,enc,,
+2,RANDAS,enc,randa,
+3,ENCAJES VARIOS,enc,encaje,
+4,DESHILADO,bor,deshilado,
+5,PONCHOS,tej,,
+6,COLCHAS Y FRAZADAS,tej,,
+7,PELLONES Y JERGONES,tej,,
+8,ALFOMBRAS,alf,,
+9,BORDADO EN BLANCO Y SEDA,bor,bordado,
+10,CROCHET,enc,crochet,
+11,TEJIDOS VARIOS,tej,,
+12,RAFFIA IMITACIÓN CON HOJAS DE CAÑA,otr,,cana
+13,VARIOS,otr,,
+14,TAPICES,alf,,
+15,CHALES DE VICUÑA,tej,,vicuna
+16,CHALES Y ECHARPES,tej,,
+17,TEJIDOS EN GENERAL,tej,,
+18,JERGONES,tej,,
+19,JERGONES Y SOBREPELOS,tej,,
+20,ALFORJAS,tej,,
+21,PELLONES,tej,,
+22,MANTELES DE TÉ,bor,,
+23,ENCAJES Y RANDAS,enc,encrand,
+24,BORDADOS EN BLANCO Y DESHILADOS,bor,bordesh,

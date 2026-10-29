@@ -552,6 +552,109 @@ A partir de una revisión externa:
 - La nota de la matriz distingue la técnica (inferida por el proyecto) de la categoría
   del catálogo.
 
+## 2026-10-28 — Índice de páginas contra los escaneos
+
+El control "El índice de páginas no coincide con las obras" (`06b`) marcaba tres páginas.
+Mirando las fotos, la transcripción estaba bien en las tres:
+
+- **DSCN5177 (Pañuelos 1915):** el catálogo imprime 16, 19, 18, así que la última de la
+  página es Ignacia Puparelli (18), como dice el índice. El control comparaba por N.º;
+  ahora sigue el orden impreso (`objeto_id`).
+- **DSCN5221 (Encajes y randas 1916):** la pág. 42 termina con María de Aguirre (125) y la
+  43 empieza con Elena R. de Lemière (126). El índice los tenía invertidos (Lemière
+  también aparece en la pág. 42, con el n.º 115).
+- **DSCN5226 (Bordados en blanco y deshilados 1916):** la pág. 52 termina con Margarita
+  T. Robles (53-54) y la 53 empieza con Ercilia Vera de Cáceres (55). El índice los tenía
+  invertidos y con la inicial "R.".
+
+Se corrigieron esas cuatro celdas en la hoja `Paginas_Catalogo` de la tabla manual. Los
+rangos de N.º estaban bien. El control da 0.
+
+## 2026-10-28 — Cotejo de la transcripción contra los escaneos
+
+Se compararon las 981 obras con el papel: las 11 páginas del catálogo de 1915
+(DSCN5177-5187) y las 21 del de 1916 (DSCN5201-5228), obra por obra (número, expositora,
+lugar y descripción). Hasta ahora sólo se había controlado la base contra la
+transcripción cruda.
+
+**Errores corregidos** (en `objetos_texto_override.csv` y en la tabla manual; los
+nombres en `nombres_expositoras.csv`):
+
+| obra | antes | el catálogo dice | página |
+|--:|---|---|---|
+| 42 | juego puntilla y entredós | juego de puntilla y entredós | DSCN5178 |
+| 88 | carpeta encaje de filet de hilo | Carpeta | DSCN5180 |
+| 167 | adorno madramé | adorno macramé | DSCN5185 |
+| 227 | Alfombra cudrada | Alfombra cuadrada | DSCN5202 |
+| 407 | …bodada con hilo merino | …bordada con hilo merino | DSCN5211 |
+| 432 | cubrecma de algodón… | cubrecama de algodón… | DSCN5211 |
+| 478 | chaón de vicuña | chalón de vicuña | DSCN5212 |
+| 761 | escote de randa | caminos de mesa | DSCN5222 |
+| 762 | escote de randa | carpeta randa | DSCN5222 |
+| 773-775 | carpetas de randas | carpetas de randa | DSCN5222 |
+| 915 | barbero | babero | DSCN5227 |
+
+Nombres: Clemencia **de** Zelarayán → Clemencia Zelarayán (103; catálogo y fallo, sin
+"de"), Predeslinda → **Predesfinda** de Lloveras (445), Marta A. Beretta → **Berretta**
+(501). Las 762 y 773-775 venían de correcciones viejas del override que estaban mal (762
+se había completado copiando la 763).
+
+**Detalles mínimos que no se tocaron** (no cambian el sentido): falta o sobra un "de" en
+María C. Arrieta (289, 540), María T. Pérez (335), María R. Morales (490), Amparo
+Rodríguez de Aberasturi (726), Josefa M. de Lazarte (125), Elena Gramajo (298), Poncho
+vicuña (441), Par alforjas de lana (567, 568), Un par estores (926), Canasta con flores
+de lana (515), Randas para alba (749); "un cuello" (740) es "Un cuello al bolillo" por
+las comillas de repetición.
+
+**Lo que el papel aclara:** la frazada n.º 93 de Carmen Pérez es de Atahona y el cuello
+n.º 101 de "Cerrillos", sin provincia (el "Salta" es del proyecto). Concordia (Josefa
+López Rivero) tampoco tiene provincia. La n.º 17 de Crochet 1915 es de "María M.
+Pereira", lo que confirma el premio 62. Elvira Rodríguez They no tiene lugar impreso.
+Jergones 1916 empieza en el n.º 26 en el propio catálogo; no falta ninguna página.
+
+## 2026-10-28 — Técnicas y materiales con la revisión de LM
+
+LM devolvió `tecnicas_materiales.csv` con un comentario por término (columna
+`validacion_LM`). El explorador ya no usa las reglas fijas de `05c` (`REGLAS_TECNICA`):
+lee el CSV, que ahora tiene `clave`, `etiqueta`, `grupo` (la técnica general de un
+subtipo) y `excepto`. El texto del catálogo no cambia: técnicas y materiales son
+etiquetas que se agregan al lado.
+
+Lo que cambia con sus comentarios:
+- **Subtipos con nombre propio**, que cuentan también en su técnica general: Encaje de
+  bolillos, de aguja y de Venecia, Ñandutí y Frivolité (en Encaje); Bordado Richelieu y
+  Bordado en relieve (en Bordado). "Encaje richelieu" va sólo como Bordado Richelieu.
+- **Puntilla** deja de ser técnica (es una pieza): la técnica sale del resto del texto o
+  de la categoría.
+- **Guarda atada** (teñido por reserva, no nudo), **Gobelino (tapiz)**, **Macramé**,
+  **Malla / red** y **Esmirna** pasan a ser técnicas; antes esas obras no tenían o
+  contaban como otra cosa.
+- **Tejido punto de Irlanda** se separa de Crochet, con el nombre que propuso LM.
+- "Tejido a mano" no es técnica; "bordado en relieve" no se aplica a las alfombras con
+  dibujos en relieve (LM: no se sabe si son bordados).
+- **Materiales**, nuevos en el explorador (filtro, ficha y descarga): Lana, Vicuña, Lana
+  de llama, Seda, Hilo, Algodón, Hoja de caña, Raffia, Fibra de plátano y Piolín. La
+  sección del catálogo también aporta (`material_por_categoria` en
+  `familias_categorias.csv`): Chales de vicuña → Vicuña; Raffia imitación con hojas de
+  caña → Hoja de caña. "Hilo merino" no cuenta como Hilo.
+
+Cambian 174 obras de las 994; "sin técnica indicada" baja de 318 a 303. Quedan para LM:
+Esmirna en alfombras (¿punto de alfombra?), "a bastones" (en "bordada a bastones" o
+"frazada a bastones de colores" parece un dibujo a rayas, no una técnica), "pintada a la
+aguja" (634, 724: no se toma como encaje de aguja), si Punto de Irlanda va dentro de
+Crochet, Bruselas (3 obras, no estaba en la lista), y qué hacer con teñido e hilado.
+
+## 2026-10-28 — Se elimina el golden
+
+Julián decide sacar `tests/golden/` y la etapa `06_verificar`. La base se corrige todo
+el tiempo (cotejo, revisiones de LM, nombres de columnas), así que la foto congelada
+siempre daba diferencias y había que re-congelarla en cada commit, sin que eso
+detectara errores. Los controles que sí sirven siguen en `06b_controles`
+(`outputs/controles_calidad.md`) y en `audit_comentarios`. Queda en el historial de git.
+
+En el mismo día: la columna `Imagen` de la vista plana y de la hoja Premios pasa a
+llamarse `Imagen del catálogo`, para no confundirla con `Foto del álbum`.
+
 ## Fuentes del crudo que NO entran a la base
 
 Hojas `no PRENSA-EL ORDEN`, `no ARCHIVO PADILLA`, `no Prensa-Rakow lib`: material de

@@ -22,7 +22,7 @@ Generado por `src/pipeline/06b_controles.py` en cada corrida del pipeline. Lista
 | Números de orden y páginas | N.º de orden repetido en la misma sección | 0 | Corregir contra el escaneo |
 | Números de orden y páginas | Huecos en la numeración de una sección | 2 | Mirar el escaneo de esa sección |
 | Números de orden y páginas | N.º fuera del rango de su página | 0 | Corregir página o número |
-| Números de orden y páginas | El índice de páginas no coincide con las obras | 5 | Mirar el escaneo y corregir el número o el índice |
+| Números de orden y páginas | El índice de páginas no coincide con las obras | 0 | Mirar el escaneo y corregir el número o el índice |
 | Números de orden y páginas | Secciones que existen en un solo concurso | 20 | Decidir la unificación de categorías |
 | Premios | La expositora del premio no es la de la obra | 0 | Corregir el vínculo |
 | Premios | Obra con más de un premio | 0 | Confirmar |
@@ -215,13 +215,7 @@ Ningún caso.
 
 `Paginas_Catalogo` dice quién abre y quién cierra cada sección en cada página; acá no coincide con la obra de ese número. Suele ser un número de orden mal transcripto o dos obras invertidas.
 
-| Página | Pág. impresa | Sección | Lugar | Según el índice | N.º | Según la transcripción |
-|---|---|---|---|---|---|---|
-| DSCN5177.JPG | 5 | Pañuelos | última | Ignacia Puparelli | 19 | Lastenia Barrera |
-| DSCN5221.JPG | 42 | Encajes y randas | última | Elena R. de Lemiere | 125 | MARIA DE AGUIRRE |
-| DSCN5221.JPG | 43 | Encajes y randas | primera | María de Aguirre | 126 | ELENA R. DE LEMIERE |
-| DSCN5226.JPG | 52 | Bordados en blanco y deshilados | última | Ercilia Vera de Cáceres | 54 | MARGARITA T. ROBLES |
-| DSCN5226.JPG | 53 | Bordados en blanco y deshilados | primera | Margarita R. Robles | 55 | ERCILIA VERA DE CÁCERES |
+Ningún caso.
 
 ### Secciones que existen en un solo concurso
 

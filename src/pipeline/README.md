@@ -17,10 +17,9 @@ Correr todo: `python run_pipeline.py` (desde la raíz). Desde una etapa en adela
 | `04d_coordenadas` | tabla_normalizada + `decisiones/coordenadas_ciudades.csv` | tabla_normalizada con la ubicación de cada ciudad tomada del CSV: `nombre_ciudad_hoy`, `nombre_provincia`, `lat`/`lon`, `lat_provincia`/`lon_provincia`, `precision`, `nota` — 61/77 ciudades con coordenada, 70/77 con punto de provincia. En `Objetos`, las obras con sólo la provincia pasan a la localidad de la misma expositora en esa provincia (`ciudad_id_catalogo` guarda la original) | funciona |
 | `04e_premios` | `tabla_normalizada_dedup.xlsx` (Premios de la tabla manual) + tabla_normalizada (Expositoras, Objetos) + `decisiones/premios_manual.csv` | tabla_normalizada con la hoja `Premios` curada: un premio por fila, con su obra del catálogo, `Estado` (vinculado / fuera de catálogo / pendiente), `Vínculo` y `Nota` — 102 premios: 89 vinculados y 13 fuera de catálogo | funciona |
 | `04f_marcas_objetos` | tabla_normalizada (Objetos) | tabla_normalizada con `Objetos.fuera_de_concurso` (2) y `Objetos.creacion_autora` (12), leídas del texto del catálogo, que no se toca | funciona |
-| `05_vista_plana` | tabla_normalizada | `data/processed/vista_plana_tabla_consolidada.xlsx` (981 filas, incluye `lat`/`lon` e `Imagen`) | funciona |
+| `05_vista_plana` | tabla_normalizada | `data/processed/vista_plana_tabla_consolidada.xlsx` (981 filas, incluye `lat`/`lon` e `Imagen del catálogo`) | funciona |
 | `05b_mapa` | tabla_normalizada | `outputs/mapa_procedencias.html` (folium): capa de ciudades (un círculo por localidad actual: 53 puntos, 817 objetos; el popup avisa si la ubicación es tentativa) y capa "sólo provincia" en la capital, con borde punteado como en el explorador (8 puntos, 126 objetos); 38 objetos sin ubicar. Los ids de folium se reemplazan por correlativos, así dos corridas dan el mismo archivo. Antes lo exportaba `notebooks/04_eda.ipynb`, que ahora sólo lo muestra | funciona |
 | `05c_explorador` | tabla_normalizada (incluida la hoja Premios) + `objetos_crudos.csv` + `decisiones/familias_categorias.csv` | `outputs/explorador.html`: explorador web autocontenido en tres pestañas: mapa, análisis (cifras, los dos concursos, procedencia, técnicas, expositoras y premios, cada gráfico con su tabla) y fichas de expositoras con la fuente de cada obra (catálogo, página impresa y escaneo, de `Paginas_Catalogo`); descarga de la base y del diccionario en CSV; prensa de época (`decisiones/menciones_prensa.csv`) en fichas, obras y lugares; comparación 1915/1916 (hoja `Concursos`) y comisión organizadora y jurado (`decisiones/comisiones.csv`), dónde están los documentos (hoja `Fuentes`) y lo que el archivo no dice a partir de la plantilla `plantillas/explorador.template.html`. 994 obras = 981 objetos + 13 premios de 1915 sin obra en el catálogo (fuera de catálogo). Técnicas inferidas por reglas sobre el texto del objeto (si no, la de la categoría). La procedencia se agrupa por provincia; zonas y tipos de obra quedaron fuera el 28/10 hasta que los revise LM | funciona |
-| `06_verificar` | salidas + `tests/golden/` | reporte de diferencias, hoja por hoja | funciona: golden re-congelado el 2026-10-25 (ver abajo). Ya no compara `revision_duplicados.xlsx`, que es un insumo |
 | `06b_controles` | tabla_normalizada + `objetos_crudos.csv` + candidatos | `outputs/controles_calidad.md`: errores típicos de los catálogos (personas, lugares, números de orden y páginas, premios, transcripción), con id y página escaneada. No corrige nada; lo ya decidido no vuelve a aparecer | funciona |
 | `audit_comentarios` | tabla_normalizada + `tabla_normalizada_manual.xlsx` | `docs/auditoria_comentarios.md` | funciona, fuera de la corrida |
 
@@ -99,16 +98,19 @@ decisión. Está en `git log` (commit `975476e`).
   `precision` y `nota`. `04d` pisa con esto la copia de la tabla manual. 61/77 con
   punto de ciudad; el resto queda vacío (nombre ambiguo o desconocido).
 - `familias_categorias.csv` — por categoría, la técnica que se asume cuando el texto del
-  objeto no nombra ninguna (`tecnica_por_categoria`), que usa `05c_explorador`, y un tipo
+  objeto no nombra ninguna (`tecnica_por_categoria`), el material que nombra la sección
+  (`material_por_categoria`: Chales de vicuña, Raffia imitación con hojas de caña), que
+  usa `05c_explorador`, y un tipo
   de obra (`familia`) que propuso el proyecto sin respaldo en las fuentes. Desde el 28/10
   el explorador no usa la `familia`: queda para revisar con LM.
 - `zonas_ciudades.csv` — zona de cada `ciudad_id`, propuesta por el proyecto a partir de
   la provincia y la distancia a la capital (columna `criterio`). Desde el 28/10 el
   explorador no la usa: queda para revisar con LM.
 - `tecnicas_materiales.csv` — términos de técnica, proceso y material que aparecen en
-  los textos de las obras (patrón, propuesta de nombre, cantidad de obras, ejemplo),
-  para que los valide LM (`validacion_LM`). Todavía no la lee ninguna etapa; validada,
-  reemplaza a `REGLAS_TECNICA` de `05c_explorador`.
+  los textos de las obras, con la revisión de LM del 28/10 (`validacion_LM`). La lee
+  `05c_explorador`: `clave` (vacía = no se usa), `etiqueta`, `grupo` (técnica general de
+  un subtipo), `patron` y `excepto` (expresiones regulares sobre el texto sin tildes y en
+  minúsculas). `n_obras` cuenta las obras que cumplen la regla.
 - `menciones_prensa.csv` — qué obras, expositoras y lugares comenta la prensa de época,
   con la cita textual (ver `docs/relevamiento_prensa_archivo.md`). Todavía no la lee
   ninguna etapa.
@@ -126,11 +128,3 @@ entrenados ni semillas de aleatoriedad. Cada cambio queda en `docs/bitacora.md`.
 | `UMBRAL_NOMBRE` | `04e_premios.py` | 60 | el dueño del objeto tiene que parecerse al nombre del premio para aceptar el vínculo |
 | `UMBRAL_ELEGIR` | `04e_premios.py` | 80 | con varios objetos con el mismo número, para elegir por el nombre de la dueña |
 | `UMBRAL_PERSONA_SOLA` | `04e_premios.py` | 90 | premio sin objeto: por debajo, la persona queda vacía en vez de adivinar |
-
-## Sobre `tests/golden/`
-
-Ver `tests/golden/README.md`. Resumen: es un snapshot congelado, no un test. Vale como
-verificación **solo si no se re-congela en el mismo commit que cambia el pipeline**.
-
-**Re-congelado el 2026-10-25** en un commit propio; hoy `06_verificar` da OK en todas las
-hojas. Detalle en `tests/golden/README.md`.

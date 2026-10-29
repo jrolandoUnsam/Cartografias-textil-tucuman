@@ -37,12 +37,15 @@
   identificar"). Sigue sin respuesta: "17 encaje ñanduty"
   (DSCN5168): la n.º 17 de Encajes varios es una colcha de filet, y las de ñandutí son
   Encajes varios n.º 18 y Pañuelos n.º 19. ¿El número de la foto es 18 o 19? (no lo
-  contestó el 28/10)
+  contestó el 28/10). Cotejo con el escaneo (DSCN5179): la n.º 17 es "Colcha, punto filet"
+  de Ignacia Puparelli y la 18 "Tapete, encaje ñanduty" de María R. Coletti.
 - [ ] **Prensa y Archivo Padilla (`docs/relevamiento_prensa_archivo.md`):** ¿de qué
   documento salen las fotos del "álbum de 1915"? El Archivo Padilla tiene un boletín del
   concurso interprovincial de julio de 1916 que "tiene las fotos del álbum", y su
-  transcripción no está en el crudo. ¿Quién presidía la comisión de 1915: Guillermina
-  Leston de Guzmán (El Orden) o Lucila López Islas (foto del Archivo Padilla)? ¿Dónde
+  transcripción no está en el crudo. (La presidenta de la comisión de 1915 ya no es duda: el
+  fallo firma "Presidenta — Guillermina Leston de Guzmán" (DSCN5258), igual que el
+  catálogo y El Orden; el rótulo de la foto del Archivo Padilla, que nombra a Lucila López
+  Islas, es el que se equivoca.) ¿Dónde
   está la entrevista a Ana Toledo que cita la hoja de El Orden? ¿Qué es "AHT", en qué
   repositorio está el Archivo Padilla y en qué medio salió la nota de Páez de la Torre?
 - [ ] **Pares que no respondió en `pares_sin_revisar.xlsx` (25/10):** *(LM 2026-10-28: no se unen `120` / `340` Barrero / Barquet ni `33` / `410`
@@ -154,36 +157,56 @@ Hoy son **441 F, 9 M y 8 I** (institución) sobre 458 filas.
 
 ## Revisión completa del 28/10 (ver `outputs/controles_calidad.md`)
 
-- [ ] **Carmen Pérez (199):** frazada desde Cerrillos (Salta) y cuello bordado desde
-  Atahona (Tucumán), los dos en 1916. ¿Dos personas con el mismo nombre?
+- [ ] **Carmen Pérez (199):** la frazada n.º 93 dice "Atahona" y el cuello bordado n.º 101
+  dice "Cerrillos", sin provincia (DSCN5208 y DSCN5219). Que ese Cerrillos sea el de Salta
+  lo decidió el proyecto al cargar coordenadas, no el catálogo. Pregunta para LM: ¿qué
+  Cerrillos es? Si es un paraje de Tucumán cerca de Atahona, probablemente es la misma
+  mujer. (El informe del 28/10 tenía los dos lugares invertidos.)
 - [ ] **Premios cuyo lugar en el fallo no coincide con el catálogo:** Ana Tactagi (93:
   fallo Simoca, catálogo San Miguel), Melchora y Rosa Valenzuela (17 y 35: fallo "Ciudad",
   catálogo Simoca), Elvira Rodríguez (73: fallo San Rafael, catálogo S/D; el fallo
   completaría su procedencia).
-- [ ] **Huecos en la numeración de 1915:** Bordado en blanco y seda n.º 9 y Pañuelos n.º 17
-  (mirar DSCN5177 y la página de Bordado).
-- [ ] **Varones en 1916:** el decreto del 1/3/1916 abre el concurso a "toda mujer radicada";
-  hay 7 expositores varones en 1916, casi todos con pellones. Confirmar con LM que el
+- [x] *(2026-10-28: ya verificado el 12/10, no son errores)* **Huecos en la numeración de
+  1915:** Bordado en blanco y seda n.º 9 y Pañuelos n.º 17 no existen en el catálogo
+  impreso (DSCN5177, DSCN5184). El control los va a seguir mostrando.
+- [ ] **Varones:** el decreto del 1/3/1916 abre el concurso a "toda mujer radicada";
+  hay 9 expositores varones, 7 de ellos en 1916 (casi todos con pellones) y 2 en 1915
+  (Jesús Rueda, colchas; Eleuterio Gramajo, pellones). Confirmar con LM que el
   género está bien y, si es así, es un dato para comentar.
-- [ ] **Mercedes Pereyra (premio 62)** vinculada a María Mercedes Pereira: confirmar.
-- [ ] **Accésits de 1915:** el fallo anuncia "se crean 9 accesits" y lista 8 (la
-  transcripción anota "(son 8)"). Mirar el escaneo del fallo: ¿falta uno?
-- [ ] **El índice de páginas no coincide con las obras** (mirar los escaneos):
-  - Pañuelos 1915 (DSCN5177, pág. 5): el índice cierra con Ignacia Puparelli (n.º 18),
-    pero Lastenia Barrero figura después con el n.º 19 (corrección 17 → 19 del 25/10, y
-    falta el n.º 17).
-  - Encajes y randas 1916 (DSCN5221, págs. 42-43): n.º 125 y 126 invertidos (Elena R. de
-    Lemiere / María de Aguirre).
-  - Bordados en blanco y deshilados 1916 (DSCN5226, págs. 52-53): n.º 54 y 55 invertidos
-    (Margarita Robles / Ercilia Vera de Cáceres); el índice dice "Margarita R." y la
-    transcripción "Margarita T.".
+- [x] *(2026-10-28, cotejo DSCN5185)* **Mercedes Pereyra (premio 62)** vinculada a María
+  Mercedes Pereira: el catálogo de 1915 dice "María M. Pereira (Ciudad)", Crochet n.º 17,
+  y el fallo premia la "No. 17 de Mercedes Pereyra (Ciudad)" en crochet. Confirmado.
+- [x] *(2026-10-28, escaneo DSCN5256-5257)* **Accésits de 1915:** el fallo impreso dice
+  "Se resuelve crear 9 accesits" y lista 8 (Ovejero, Argentina Sal, Fronzutti, Elvira
+  Rodríguez, Mercedes Pacheco, Facunda Coronel, Marina Belmonte y Sara M. Sal). No falta
+  ninguno en la transcripción: el error es del propio fallo.
+- [x] *(2026-10-28, mirando los escaneos)* **El índice de páginas no coincide con las
+  obras.** La transcripción estaba bien en los tres casos:
+  - Pañuelos 1915 (DSCN5177): el catálogo imprime 16, 19, 18; Puparelli (18) es la
+    última de la página. El control `06b` ahora ordena por el orden impreso
+    (`objeto_id`), no por N.º.
+  - Encajes y randas 1916 (DSCN5221): la pág. 42 termina con María de Aguirre (125) y la
+    43 empieza con Elena R. de Lemière (126). Se corrigió el índice.
+  - Bordados en blanco y deshilados 1916 (DSCN5226): la pág. 52 termina con Margarita
+    T. Robles (53-54) y la 53 empieza con Ercilia Vera de Cáceres (55). Se corrigió el
+    índice, incluida la inicial ("T.", no "R.").
+
+- [x] *(2026-10-28)* **Cotejo de la transcripción contra los escaneos** de los dos
+  catálogos (981 obras, 32 páginas). 13 errores corregidos (`objetos_texto_override.csv`,
+  tabla manual y `nombres_expositoras.csv`); detalle en la bitácora. Quedan sin tocar unos
+  15 detalles mínimos (un "de" de más o de menos) listados ahí.
 
 ## Pedidos de LM (28/10)
 
 - [ ] **Darle un lugar donde ver el trabajo.** "Quizás a futuro es mejor pasarnos el link
   de donde trabajamos": le cuesta encontrar dónde está cada cosa (p. ej. las obras con foto
   del álbum). El explorador puede servir de respuesta.
-- [ ] **Técnicas y materiales:** la lista se la mandaron; devuelve la revisión el 29/10.
+- [x] **Técnicas y materiales:** revisión devuelta y aplicada al explorador (28/10, ver
+  bitácora). Quedan para preguntarle: Esmirna en alfombras, "a bastones", "pintada a la
+  aguja", si Punto de Irlanda va dentro de Crochet, Bruselas, y teñido e hilado. También
+  si se puede asumir una técnica general "(sin precisar)" para las categorías de tejidos
+  (Jergones, Pellones, Ponchos, Alforjas, Colchas y frazadas): 138 obras no tienen ni
+  técnica ni material en el texto.
 - Referencia para el explorador: la Ciapoteca del CIAP (CONICET-UNSAM), hecha en Omeka,
   https://coleccionesciap.ar/s/ciapoteca/page/buenos-aires-de-plata. LM ofrece una
   reunión con el personal técnico del instituto. El modelo que quería (la base de
@@ -198,20 +221,20 @@ Hoy son **441 F, 9 M y 8 I** (institución) sobre 458 filas.
 
 ## Pipeline
 
-- [ ] *(2026-10-28: hechos 1 a 4 en `05c`, salvo el párrafo de contexto, que debería escribir
-  o revisar LM; falta 5)* **Prensa en el explorador y en la vista plana (semana del 26/10/2026).** Una etapa
+- [ ] *(2026-10-28: hechos 1 a 4 en `05c`; falta 5)* **Prensa en el explorador y en la vista plana (semana del 26/10/2026).** Una etapa
   lee `decisiones/menciones_prensa.csv` y: (1) en la ficha de cada expositora, un
   recuadro "En la prensa" con la cita, el diario y la fecha; (2) en la lista de obras, la
   marca "· En la prensa"; (3) en los lugares (Orán, Monteros, La Cocha), sus citas; (4) en
   "Fuentes y método", fechas, sede y comisión de cada concurso (hoja `Concursos`), las 6
-  fuentes y un párrafo de contexto (telares en las escuelas, Onelli Alfombras); (5) una
+  fuentes; (5) una
   columna "En la prensa" en la vista plana. Sin hoja nueva en la tabla normalizada.
 
-- [x] *(2026-10-25)* **Re-congelar `tests/golden/`** en un commit propio (ver
-  `tests/golden/README.md`).
-- [ ] **Premios 98 y 99 (`decisión a mano`) sin nota:** el vínculo del portarretrato de
-  D'Empaire (objeto 204) y de la colcha de Dominga Nieva (objeto 104) sale de la tabla
-  manual; falta anotar en `premios_manual.csv` qué se miró para decidirlo.
+- [x] *(2026-10-25)* **Re-congelar `tests/golden/`**. *(2026-10-28: el golden y
+  `06_verificar` se eliminaron; ver bitácora.)*
+- [x] *(2026-10-28)* **Premios 98 y 99 (`decisión a mano`) sin nota.** Notas cargadas en
+  `premios_manual.csv`: el portarretrato es la única obra de D'Empaire que coincide con el
+  fallo (Varios n.º 3); la colcha de Dominga Nieva es su única obra (Colchas y frazadas
+  n.º 4), aunque el fallo impreso dice "No. 9" (DSCN5258), que es de Jesús Rueda.
 
 - [x] **`03b_premios.py` leía la salida de una etapa posterior.** *(2026-10-25)* Ahora
   es `04e_premios`, corre después de `04d` y escribe la hoja `Premios` curada en la

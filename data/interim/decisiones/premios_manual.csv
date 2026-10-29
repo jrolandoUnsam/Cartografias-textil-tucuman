@@ -26,3 +26,5 @@ premio_id,objeto_id,persona_id,nota
 76,ninguno,,Marina Belmonte n.º 22: el deshilado 22 es de Eloisa López; LM 2026-10-25: 'en el premio figura 22 Belmonte… la ponemos [fuera de catálogo]'
 66,ninguno,,"Dalmira González Sorol, mantel de altar: fuera de catálogo (LM 5-10); LM 2026-10-25: lo del álbum (encajes varios 20) eran 'observaciones nomás'"
 67,ninguno,,"Hermanas Dominicas, blusa (Deshilado, s/d): fuera de catálogo. LM 2026-10-28: 'no tiene número de catálogo (s/d significa sin datos)'. No es el n.º 4 'traje bordado richelieu' (objeto 149, álbum DSCN5159), que ya tiene su premio (premio_id 79)"
+98,204,,"Rosario V. D'Empaire, porta-retrato con flores de alumbre (s/d): única obra de la expositora que coincide con el fallo; es el único portarretrato del catálogo (Varios n.º 3). Fallo: DSCN5257"
+99,104,,"Dominga Nieva, colcha n.º 9: su única obra en el catálogo es una colcha (Colchas y frazadas n.º 4); el n.º 9 de esa sección es una sobrecama de Jesús Rueda, así que el número del fallo no corresponde (el fallo impreso dice 'No. 9', DSCN5258)"

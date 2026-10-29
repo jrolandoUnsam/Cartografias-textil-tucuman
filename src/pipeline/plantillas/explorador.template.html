@@ -147,6 +147,7 @@ h2 { font-family: var(--serif); font-weight: 600; font-size: 1.5rem; line-height
 .yr { color: var(--ink2); font-variant-numeric: tabular-nums; }
 .prize { display: inline-block; margin: 0 2px; padding: 0 0.55rem; border-radius: 999px; background: var(--madder); color: var(--card); font-size: 0.74rem; white-space: nowrap; }
 .tg { display: inline-block; margin: 2px 4px 2px 0; padding: 1px 0.6rem; border-radius: 999px; background: var(--chip); color: var(--ink2); font-size: 0.76rem; white-space: nowrap; }
+.tg.mt { background: transparent; box-shadow: inset 0 0 0 1px var(--rule); }
 .more { margin-top: 0.7rem; border: 1px solid var(--rule); background: transparent; border-radius: 999px; padding: 0.4rem 1rem; }
 .empty { color: var(--ink2); margin: 0; }
 
@@ -172,6 +173,7 @@ h2 { font-family: var(--serif); font-weight: 600; font-size: 1.5rem; line-height
 .mx .rh { text-align: left; padding: 0.4rem 0.7rem; font-size: 0.88rem; height: 3rem; display: flex; align-items: center; justify-content: space-between; gap: 0.6rem; }
 .mx .rh i { display: inline; }
 .mx .rh.soft { color: var(--ink2); font-style: italic; }
+.mx .rh.sub { padding-left: 1.7rem; font-size: 0.82rem; color: var(--ink2); }
 .mx button.hl { background: var(--chip); }
 .mx button[aria-pressed="true"]:not(.cell) { border-color: var(--ink); }
 .cell { position: relative; height: 3rem; font-variant-numeric: tabular-nums; font-weight: 600; font-size: 1rem; transition: transform 0.12s; }
@@ -413,6 +415,7 @@ button.prow:hover { background: var(--chip); }
     <div class="askrow">
       <label class="sel" id="s-prize"><span>Premio</span><div class="box"><select id="f-prize"><option value="all">Todas las obras</option><option value="yes">Solo premiadas</option></select></div></label>
       <label class="sel" id="s-tec"><span>Técnica</span><div class="box"><select id="f-tec"></select></div></label>
+      <label class="sel" id="s-mat"><span>Material</span><div class="box"><select id="f-mat"></select></div></label>
       <label class="sel" id="s-provincia"><span>Provincia</span><div class="box"><select id="f-provincia"></select></div></label>
       <label class="sel" id="s-year"><span>Año</span><div class="box"><select id="f-year"><option value="both">1915 y 1916</option><option value="1915">Solo 1915</option><option value="1916">Solo 1916</option></select></div></label>
       <div class="search"><label class="lb" for="q">Buscar</label><input id="q" type="search" placeholder="Nombre u objeto: vicuña, Cuello" autocomplete="off"></div>
@@ -466,7 +469,7 @@ button.prow:hover { background: var(--chip); }
 
       <section class="asec" id="a-tec" aria-labelledby="h-tec">
         <h2 id="h-tec">Técnicas<span class="nof">No usa los filtros de técnica y provincia</span></h2>
-        <p class="mxnote">Qué técnicas hay entre las obras enviadas desde cada provincia. La provincia es la procedencia de la expositora, no el origen de la técnica. La técnica la infiere el proyecto del texto de cada obra (ver Fuentes y método); no es la categoría del catálogo, que es la que usan las tablas de lugares y las fichas. Una obra puede combinar técnicas, por eso las filas no suman el total. En rojo, las obras premiadas. Seleccione una celda, una fila o una columna para ver las obras.</p>
+        <p class="mxnote">Qué técnicas hay entre las obras enviadas desde cada provincia. La provincia es la procedencia de la expositora, no el origen de la técnica. La técnica la infiere el proyecto del texto de cada obra (ver Fuentes y método); no es la categoría del catálogo, que es la que usan las tablas de lugares y las fichas. Una obra puede combinar técnicas, por eso las filas no suman el total; los subtipos van debajo de su técnica general y también cuentan en ella. En rojo, las obras premiadas. Seleccione una celda, una fila o una columna para ver las obras.</p>
         <div class="tec-head">
           <div class="mxv"><div class="cfmt" role="group" aria-label="Qué muestra cada celda"><button type="button" data-act="mxv" data-v="n" aria-pressed="true">Obras</button><button type="button" data-act="mxv" data-v="pct" aria-pressed="false">% de la provincia</button><button type="button" data-act="mxv" data-v="exp" aria-pressed="false">Expositoras</button></div><span class="mxhint" id="mxhint"></span></div>
           <div class="scale" aria-hidden="true"><span id="scalemin"></span> <i></i> <span id="scalemax"></span><span class="d"><s></s> premiadas</span></div>
@@ -520,7 +523,7 @@ button.prow:hover { background: var(--chip); }
           <li><span class="st ok">Hecho</span>Transcripción de los catálogos, el fallo y los decretos a una planilla.</li>
           <li><span class="st ok">Hecho</span>Normalización manual de nombres de expositoras y de ciudades, con identificadores, y vinculación de los premios de 1915 con su obra (los casos abiertos se indican en los límites de esta versión).</li>
           <li><span class="st ok">Hecho</span>Separación de las filas del catálogo de 1916 que agrupaban varias piezas, y vinculación de cada obra con la página escaneada del catálogo.</li>
-          <li><span class="st wip">En esta versión</span>El explorador se genera desde la tabla normalizada con el pipeline del proyecto. Las técnicas y parte de las coordenadas son provisorias y se explican más abajo.</li>
+          <li><span class="st wip">En esta versión</span>El explorador se genera desde la tabla normalizada con el pipeline del proyecto. Las técnicas y los materiales siguen una lista de términos revisada por la dirección del proyecto; parte de las coordenadas son provisorias. Los límites se explican más abajo.</li>
           <li><span class="st">Pendiente</span>Georreferenciación completa de las localidades y análisis de redes de participación.</li>
         </ul>
       </article>
@@ -531,7 +534,8 @@ button.prow:hover { background: var(--chip); }
           <div><dt>Expositora</dt><dd>Persona o institución que figura en el catálogo. No siempre es posible afirmar que sea la autora de la pieza.</dd></div>
           <div><dt>Fuera de concurso</dt><dd>Obra que el catálogo marca "(fuera de concurso)": se exhibió pero no compitió por premios.</dd></div>
           <div><dt>Creación de la autora</dt><dd>Obra que el catálogo presenta como "creación de la autora", es decir, de diseño propio.</dd></div>
-          <div><dt>Técnica</dt><dd>Procedimiento mencionado en el catálogo, como randa, deshilado, crochet o telar. Una obra puede tener más de una. Las fuentes no dicen de dónde proviene cada técnica: el mapa y los cruces por provincia muestran desde dónde se envió la obra, no el origen del saber.</dd></div>
+          <div><dt>Técnica</dt><dd>Procedimiento mencionado en el catálogo, como randa, deshilado, crochet o telar. Una obra puede tener más de una. Los subtipos (Encaje de bolillos, Bordado Richelieu) cuentan también en su técnica general. Las fuentes no dicen de dónde proviene cada técnica: el mapa y los cruces por provincia muestran desde dónde se envió la obra, no el origen del saber.</dd></div>
+          <div><dt>Material</dt><dd>Fibra nombrada en el texto de la obra (lana, vicuña, seda, hilo, hoja de caña) o en la sección del catálogo (Chales de vicuña). La mayoría de las obras no lo dice; "Lana" no distingue oveja, llama o alpaca, e "Hilo" no distingue lino de algodón.</dd></div>
           <div><dt>Procedencia</dt><dd>Lugar desde donde se presentó la obra, tal como figura en el catálogo ("procedencia según el catálogo"), y su forma normalizada con el nombre actual ("lugar"). Puede no ser donde vivía o aprendió la tejedora.</dd></div>
           <div><dt>Provincia</dt><dd>La de la localidad de procedencia, la misma que muestra el mapa. Las agrupaciones de localidades en zonas y de secciones del catálogo en tipos de obra quedaron fuera de esta versión hasta revisarlas con la dirección del proyecto.</dd></div>
           <div><dt>Dato deducido</dt><dd>Lo que no figura tal cual en la fuente va <span class="ded">subrayado con puntos</span>, con la explicación al pasar el mouse: la ubicación deducida de las otras obras de la expositora y el vínculo de un premio con su obra cuando falta confirmarlo (≈). Las técnicas son siempre una lectura del proyecto, no un dato del catálogo.</dd></div>
@@ -585,7 +589,7 @@ const DATA = __DATA__;
 
 (function () {
   document.documentElement.lang = "es";
-  const P = DATA.places, TEC = DATA.tec, PRV = DATA.prv, R = DATA.recs, SEDE = DATA.sede;
+  const P = DATA.places, TEC = DATA.tec, TECG = DATA.tecg, MAT = DATA.mat, PRV = DATA.prv, R = DATA.recs, SEDE = DATA.sede;
   const $ = (id) => document.getElementById(id);
   const strip = (s) => String(s || "").normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
   const esc = (s) => String(s == null ? "" : s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
@@ -600,19 +604,20 @@ const DATA = __DATA__;
   R.forEach((r) => { if (!byPk.has(r.pk)) byPk.set(r.pk, []); byPk.get(r.pk).push(r); });
 
   const state = {
-    view: "map", year: "both", prize: false, tec: "", provincia: "", q: "", flows: false, prov: true, mxv: "n", procv: "n",
+    view: "map", year: "both", prize: false, tec: "", mat: "", provincia: "", q: "", flows: false, prov: true, mxv: "n", procv: "n",
     place: null, person: byPk.has(DATA.person0) ? DATA.person0 : null,
     cell: null, more: false, moreRes: false, morePeople: false,
     cuaAll: {},
   };
   // lo que va en la URL (#clave=valor&...) para poder compartir un enlace a una consulta
-  const HASHED = ["view", "year", "prize", "tec", "provincia", "q", "person"];
+  const HASHED = ["view", "year", "prize", "tec", "mat", "provincia", "q", "person"];
   const DEFAULTS = Object.fromEntries(HASHED.map((k) => [k, state[k]]));
   let toks = [], lastList = [];
 
   function match(r, noTZ, noYear) {
     if (!noYear && state.year !== "both" && r.y !== +state.year) return false;
     if (state.prize && !r.pz) return false;
+    if (state.mat && !mats(r).includes(state.mat)) return false;
     if (!noTZ) {
       if (state.tec && !r.tec.includes(state.tec)) return false;
       if (state.provincia && r.pv !== state.provincia) return false;
@@ -630,7 +635,15 @@ const DATA = __DATA__;
       return `<span class="prize" title="${esc(tip)}">${esc(z.t)}${z.m ? " · $" + z.m : ""}${z.lk === "nom?" ? " ≈" : ""}</span>` + (foto && z.foto ? ' <span class="dim">foto en el catálogo</span>' : "");
     }).join(" ");
   }
-  const tecChips = (r) => r.tec.filter((t) => t !== "sin").map((t) => `<span class="tg">${esc(TEC[t])}</span>`).join("");
+  // la técnica más precisa de la obra: "Encaje de bolillos", sin repetir "Encaje"
+  const hojas = (r) => r.tec.filter((t) => t !== "sin" && !r.tec.some((u) => TECG[u] === t));
+  const mats = (r) => r.mat || [];
+  // técnicas generales por cantidad, cada una seguida de sus subtipos; las imprecisas al final
+  function ordTec(ks, n) {
+    const por = (a, b) => (SOFT.includes(a) - SOFT.includes(b)) || (n[b] - n[a]);
+    return ks.filter((t) => !ks.includes(TECG[t])).sort(por).flatMap((t) => [t, ...ks.filter((u) => TECG[u] === t).sort(por)]);
+  }
+  const tecChips = (r) => hojas(r).map((t) => `<span class="tg">${esc(TEC[t])}</span>`).join("") + mats(r).map((m) => `<span class="tg mt">${esc(MAT[m])}</span>`).join("");
   function marks(r) {
     return (r.fc ? ' <span class="dim">· Fuera de concurso</span>' : "") + (r.ca ? ' <span class="dim">· Creación de la autora</span>' : "") +
       (r.li ? ` <span class="dim ded" title="${esc(`El catálogo dice «${r.po}»; ubicada en ${P[r.pl].n} por las otras obras de la expositora`)}">· Ubicación deducida</span>` : "") +
@@ -642,9 +655,9 @@ const DATA = __DATA__;
 
   const LK = { ord: "por número de orden", nom: "por nombre", man: "decisión manual", "nom?": "a confirmar", sv: "sin obra en el listado", pen: "pendiente de vincular" };
   function tsv(rows) {
-    const head = ["Año", "Expositora", "Nombre en la fuente", "Procedencia según el catálogo", "Lugar", "Provincia", "Categoría", "Objeto", "Técnicas", "N.º de orden", "Fuera de concurso", "Creación de la autora", "Foto del álbum", "Premio", "Monto ($)", "Vínculo premio-obra", "Ubicación", "Fuente"];
+    const head = ["Año", "Expositora", "Nombre en la fuente", "Procedencia según el catálogo", "Lugar", "Provincia", "Categoría", "Objeto", "Técnicas", "Materiales", "N.º de orden", "Fuera de concurso", "Creación de la autora", "Foto del álbum", "Premio", "Monto ($)", "Vínculo premio-obra", "Ubicación", "Fuente"];
     const clean = (s) => String(s == null ? "" : s).replace(/[\t\r\n]+/g, " ").trim();
-    return [head].concat(rows.map((r) => [r.y, r.n, r.nv, r.po, P[r.pl].n, PRV[r.pv], r.c, r.o, r.tec.filter((t) => t !== "sin").map((t) => TEC[t]).join("; "), r.ord, r.fc ? "sí" : "", r.ca ? "sí" : "", r.fa || "",
+    return [head].concat(rows.map((r) => [r.y, r.n, r.nv, r.po, P[r.pl].n, PRV[r.pv], r.c, r.o, hojas(r).map((t) => TEC[t]).join("; "), mats(r).map((m) => MAT[m]).join("; "), r.ord, r.fc ? "sí" : "", r.ca ? "sí" : "", r.fa || "",
       (r.pz || []).map((z) => z.t).join("; "), (r.pz || []).map((z) => z.m).join("; "), (r.pz || []).map((z) => LK[z.lk]).join("; "), r.li ? "deducida de sus otras obras" : "", r.cit].map(clean))).map((l) => l.join("\t")).join("\n");
   }
   function copyText(txt, btn) {
@@ -674,22 +687,23 @@ const DATA = __DATA__;
 
   /* ---------------------------------------------------------------- controles */
   function buildSelects() {
-    const tc = {}, pc = {};
-    R.forEach((r) => { pc[r.pv] = (pc[r.pv] || 0) + 1; r.tec.forEach((t) => (tc[t] = (tc[t] || 0) + 1)); });
-    const tk = Object.keys(TEC).filter((t) => tc[t]).sort((a, b) => (SOFT.includes(a) - SOFT.includes(b)) || (tc[b] - tc[a]));
-    $("f-tec").innerHTML = '<option value="">Todas</option>' + tk.map((t) => `<option value="${t}">${esc(TEC[t])} (${tc[t]})</option>`).join("");
+    const tc = {}, pc = {}, mc = {};
+    R.forEach((r) => { pc[r.pv] = (pc[r.pv] || 0) + 1; r.tec.forEach((t) => (tc[t] = (tc[t] || 0) + 1)); mats(r).forEach((m) => (mc[m] = (mc[m] || 0) + 1)); });
+    const tk = ordTec(Object.keys(TEC).filter((t) => tc[t]), tc);
+    $("f-tec").innerHTML = '<option value="">Todas</option>' + tk.map((t) => `<option value="${t}">${TECG[t] ? "   " : ""}${esc(TEC[t])} (${tc[t]})</option>`).join("");
+    $("f-mat").innerHTML = '<option value="">Todos</option>' + Object.keys(MAT).filter((m) => mc[m]).sort((a, b) => mc[b] - mc[a]).map((m) => `<option value="${m}">${esc(MAT[m])} (${mc[m]})</option>`).join("");
     $("f-provincia").innerHTML = '<option value="">Todas</option>' + PORD.filter((k) => pc[k]).map((k) => `<option value="${k}">${esc(PRV[k])} (${pc[k]})</option>`).join("");
   }
   function syncControls() {
-    $("f-prize").value = state.prize ? "yes" : "all"; $("f-tec").value = state.tec; $("f-provincia").value = state.provincia; $("f-year").value = state.year;
-    const dflt = { prize: !state.prize, tec: !state.tec, provincia: !state.provincia, year: state.year === "both" };
+    $("f-prize").value = state.prize ? "yes" : "all"; $("f-tec").value = state.tec; $("f-mat").value = state.mat; $("f-provincia").value = state.provincia; $("f-year").value = state.year;
+    const dflt = { prize: !state.prize, tec: !state.tec, mat: !state.mat, provincia: !state.provincia, year: state.year === "both" };
     Object.keys(dflt).forEach((k) => $("s-" + k).classList.toggle("on", !dflt[k]));
     $("reset").hidden = Object.values(dflt).every(Boolean) && !state.q;
   }
   $("f-prize").onchange = (e) => { state.prize = e.target.value === "yes"; resetPaging(); render(); };
-  ["tec", "provincia", "year"].forEach((k) => { $("f-" + k).onchange = (e) => { state[k] = e.target.value; resetPaging(); render(); }; });
+  ["tec", "mat", "provincia", "year"].forEach((k) => { $("f-" + k).onchange = (e) => { state[k] = e.target.value; resetPaging(); render(); }; });
   $("q").oninput = () => { state.q = $("q").value; resetPaging(); render(); };
-  $("reset").onclick = () => { state.prize = false; state.tec = ""; state.provincia = ""; state.year = "both"; state.q = ""; $("q").value = ""; resetPaging(); render(); };
+  $("reset").onclick = () => { state.prize = false; state.tec = ""; state.mat = ""; state.provincia = ""; state.year = "both"; state.q = ""; $("q").value = ""; resetPaging(); render(); };
   $("flows").onchange = () => { state.flows = $("flows").checked; render(); };
   $("prov").onchange = () => { state.prov = $("prov").checked; render(); };
   function resetPaging() { state.more = false; state.moreRes = false; state.morePeople = false; state.cuaAll = {}; }
@@ -753,7 +767,7 @@ const DATA = __DATA__;
     if (["pan", "tec", "cua"].includes(h)) { state.view = "ana"; return; }
     if (["pan", "tec", "cua"].includes(p.get("view"))) p.set("view", "ana");
     const ok = { view: (v) => VIEWS.includes(v), year: (v) => ["both", "1915", "1916"].includes(v),
-      tec: (v) => v in TEC, provincia: (v) => v in PRV, person: (v) => byPk.has(v) };
+      tec: (v) => v in TEC, mat: (v) => v in MAT, provincia: (v) => v in PRV, person: (v) => byPk.has(v) };
     HASHED.forEach((k) => {
       if (!p.has(k)) return;
       const v = p.get(k);
@@ -865,7 +879,7 @@ const DATA = __DATA__;
       colT[r.pv] = (colT[r.pv] || 0) + 1; add(colE, r.pv, r.pk);
       r.tec.forEach((t) => { const k = t + "|" + r.pv; cnt[k] = (cnt[k] || 0) + 1; if (r.pz) pri[k] = (pri[k] || 0) + 1; add(exp, k, r.pk); rowT[t] = (rowT[t] || 0) + 1; add(rowE, t, r.pk); });
     });
-    const tks = Object.keys(rowT).sort((a, b) => (SOFT.includes(a) - SOFT.includes(b)) || (rowT[b] - rowT[a]));
+    const tks = ordTec(Object.keys(rowT), rowT);
     const zks = PORD.filter((z) => colT[z]), cur = state.cell, v = state.mxv;
     // lo que muestra la celda: obras, % de las obras de la provincia o expositoras distintas
     const val = (k, z) => (v === "pct" ? (cnt[k] ? 100 * cnt[k] / colT[z] : 0) : v === "exp" ? (exp[k] ? exp[k].size : 0) : cnt[k] || 0);
@@ -880,7 +894,7 @@ const DATA = __DATA__;
     document.querySelectorAll('[data-act="mxv"]').forEach((b) => b.setAttribute("aria-pressed", b.dataset.v === v));
     let h = `<table class="mx"><thead><tr><th></th>` + zks.map((z) => `<th scope="col"><button type="button" data-act="cell" data-z="${z}" data-c="${z}" aria-pressed="${!!cur && !cur.t && cur.z === z}">${esc(PRV[z])}<small>${v === "exp" ? plural(colE[z].size, "expositora", "expositoras") : plural(colT[z], "obra", "obras")}</small></button></th>`).join("") + `</tr></thead><tbody>`;
     tks.forEach((t) => {
-      h += `<tr><th scope="row"><button type="button" class="rh${SOFT.includes(t) ? " soft" : ""}" data-act="cell" data-t="${t}" data-r="${t}" aria-pressed="${!!cur && cur.t === t && !cur.z}"><span>${esc(TEC[t])}</span><i>${v === "exp" ? rowE[t].size : rowT[t]}</i></button></th>`;
+      h += `<tr><th scope="row"><button type="button" class="rh${SOFT.includes(t) ? " soft" : ""}${TECG[t] ? " sub" : ""}" data-act="cell" data-t="${t}" data-r="${t}" aria-pressed="${!!cur && cur.t === t && !cur.z}"><span>${esc(TEC[t])}</span><i>${v === "exp" ? rowE[t].size : rowT[t]}</i></button></th>`;
       zks.forEach((z) => {
         const k = t + "|" + z, n = cnt[k] || 0, m = pri[k] || 0;
         if (!n) { h += `<td><button type="button" class="cell zero" disabled aria-label="${esc(TEC[t])}, ${esc(PRV[z])}: sin obras"></button></td>`; return; }
@@ -989,6 +1003,7 @@ const DATA = __DATA__;
     if (!skip.includes("year") && state.year !== "both" && r.y !== +state.year) return false;
     if (state.prize && !r.pz) return false;
     if (state.tec && !r.tec.includes(state.tec)) return false;
+    if (state.mat && !mats(r).includes(state.mat)) return false;
     if (!skip.includes("provincia") && state.provincia && r.pv !== state.provincia) return false;
     for (const t of toks) if (!r._s.includes(t)) return false;
     return true;
@@ -1084,7 +1099,7 @@ const DATA = __DATA__;
 
   /* ---------------------------------------------------------------- análisis: todo junto */
   function renderAnalisis(rs) {
-    const act = [state.prize && "Solo premiadas", state.tec && "Técnica: " + TEC[state.tec], state.provincia && "Provincia: " + PRV[state.provincia],
+    const act = [state.prize && "Solo premiadas", state.tec && "Técnica: " + TEC[state.tec], state.mat && "Material: " + MAT[state.mat], state.provincia && "Provincia: " + PRV[state.provincia],
       state.year !== "both" && "Año: " + state.year, state.q.trim() && `Búsqueda: «${state.q.trim()}»`].filter(Boolean);
     $("afil").innerHTML = `<b>Filtros activos</b>` + (act.length ? act.map((t) => `<span>${esc(t)}</span>`).join("") + '<button type="button" class="linkbtn" data-act="resetf">Limpiar filtros</button>' :
       `<span>Ninguno: ${plural(R.length, "obra", "obras")}</span>`) + `<small>Todos los gráficos los usan, salvo donde se indica.</small>`;
@@ -1111,7 +1126,8 @@ const DATA = __DATA__;
     ["Provincia", "Provincia de la localidad de procedencia"],
     ["Categoría", "Sección del catálogo (o del fallo)"],
     ["Objeto", "Descripción de la obra en el catálogo"],
-    ["Técnicas", "Técnicas inferidas por reglas sobre el texto (lectura del proyecto)"],
+    ["Técnicas", "Técnicas que nombra el texto del objeto, con los términos revisados por la dirección del proyecto (lectura del proyecto, no del catálogo)"],
+    ["Materiales", "Materiales que nombra el texto del objeto o la sección del catálogo (lectura del proyecto)"],
     ["N.º de orden", "Número de la obra en su sección del catálogo"],
     ["Fuera de concurso", "\"sí\" si el catálogo la marca fuera de concurso"],
     ["Creación de la autora", "\"sí\" si el catálogo la presenta como creación de la autora"],
@@ -1163,13 +1179,15 @@ const DATA = __DATA__;
     if (!l) { el.innerHTML = '<p class="empty">Seleccione un nombre de la lista para ver sus obras, sus técnicas y los premios que obtuvo.</p>'; return; }
     const name = l[0].n, nm = [...new Set(l.map((r) => r.nv).filter((v) => v && v !== name))];
     const years = [...new Set(l.map((r) => r.y))].sort(), nprz = new Set(l.flatMap((r) => (r.pz || []).map((z) => z.k))).size, tc = {};
-    l.forEach((r) => r.tec.forEach((t) => { if (t !== "sin") tc[t] = (tc[t] || 0) + 1; }));
+    const mc = {};
+    l.forEach((r) => { hojas(r).forEach((t) => { tc[t] = (tc[t] || 0) + 1; }); mats(r).forEach((m) => { mc[m] = (mc[m] || 0) + 1; }); });
     const places = [...new Set(l.map((r) => r.po).filter(Boolean))], provs = [...new Set(l.map((r) => PRV[r.pv]))];
     const codigo = /^\d+$/.test(state.person) ? ` · n.º ${state.person}` : "";
     el.innerHTML = `<span class="eyebrow">${l[0].inst ? "Institución" : "Expositora"}${codigo}</span><h2>${esc(name)}</h2>` +
       `<p class="meta" style="margin:0">${esc(places.join(", ") || "Sin dato de procedencia")}${places.length ? " · " + esc(provs.join(", ")) : ""}</p>` +
       `<div class="stats"><div><b>${l.length}</b><span>${l.length === 1 ? "obra" : "obras"}</span></div><div><b class="p">${nprz}</b><span>${nprz === 1 ? "premio" : "premios"}</span></div><div><b>${years.length > 1 ? "1915 · 1916" : years[0]}</b><span>${years.length > 1 ? "participó en ambos concursos" : "concurso"}</span></div></div>` +
-      (Object.keys(tc).length ? `<p class="ln">${Object.keys(tc).sort((a, b) => tc[b] - tc[a]).map((t) => `<span class="tg">${esc(TEC[t])} · ${tc[t]}</span>`).join("")}</p>` : "") +
+      (Object.keys(tc).length + Object.keys(mc).length ? `<p class="ln">${Object.keys(tc).sort((a, b) => tc[b] - tc[a]).map((t) => `<span class="tg">${esc(TEC[t])} · ${tc[t]}</span>`).join("")}` +
+        `${Object.keys(mc).sort((a, b) => mc[b] - mc[a]).map((m) => `<span class="tg mt" title="Material">${esc(MAT[m])} · ${mc[m]}</span>`).join("")}</p>` : "") +
       comisionDe(state.person) + dedu(l) + enPrensa(DATA.prensa.filter((m, k) => m.pk === state.person || l.some((r) => (r.pr || []).includes(k)))) +
       years.map((y) => `<h3>${y}</h3><ul>` + l.filter((r) => r.y === y).sort((a, b) => (parseInt(a.ord) || 0) - (parseInt(b.ord) || 0)).map((r) => {
         const ord = r.ord && r.ord.length < 12 ? "N.º " + esc(r.ord) : "";
@@ -1187,7 +1205,7 @@ const DATA = __DATA__;
     $("limits").innerHTML = [
       `Los nombres de expositoras están unificados con las fusiones revisadas por la dirección; quedan algunos pares por confirmar, así que una misma persona todavía puede figurar dos veces.`,
       `Premios de 1915: ${S.premios - fuera - pen} de ${S.premios} están vinculados con su obra, en su mayoría por categoría y número de orden, confirmados con el nombre${amb ? `; ${amb} ${amb === 1 ? "está marcado" : "están marcados"} con ≈ porque el vínculo falta confirmar` : ""}. ${fuera} figuran en el fallo pero no en el listado de expositoras (fuera de catálogo) y se muestran como obras aparte${pen ? `; ${pen} ${pen === 1 ? "está pendiente" : "están pendientes"} de vincular y también se muestran aparte` : ""}. Los premios de 1916 no están cargados.`,
-      `Técnicas: se infieren con reglas a partir del texto del objeto y de la categoría. ${sin} de ${fmt(R.length)} obras quedan sin técnica indicada, y en ${cat} la técnica sale solo de la categoría. La clasificación debe ser validada por la dirección del proyecto.`,
+      `Técnicas y materiales: se leen del texto de cada obra con una lista de términos revisada por la dirección del proyecto (octubre de 2026); el texto del catálogo se muestra tal cual. ${sin} de ${fmt(R.length)} obras quedan sin técnica indicada, y en ${cat} la técnica sale solo de la categoría. Algunos términos siguen en revisión (Esmirna, «a bastones», teñido e hilado).`,
       `Ubicación: ${fmt(unp)} obras proceden de lugares todavía sin coordenadas ni provincia, y ${fmt(prv)} se ubican solo por la provincia (de localidad desconocida o todavía sin ubicar). Las coordenadas se cargaron a mano y algunas son tentativas.`,
       `Los límites provinciales son los actuales, no los de 1915-1916.`,
     ].map((t) => `<li>${esc(t)}</li>`).join("");

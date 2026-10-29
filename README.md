@@ -29,7 +29,6 @@ src/pipeline/   etapas del pipeline (01_ingesta … 06b_controles)
 notebooks/      exploración y análisis
 outputs/        mapa_procedencias.html, explorador.html y controles_calidad.md
 docs/           bitácora de decisiones, diccionario de datos, evaluación de riesgos
-tests/golden/   copias congeladas de las salidas, para verificación
 ```
 
 ## Cómo correrlo

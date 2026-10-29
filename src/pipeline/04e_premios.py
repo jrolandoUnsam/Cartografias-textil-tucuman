@@ -473,7 +473,7 @@ def hoja_curada(cruce: pd.DataFrame, O: pd.DataFrame, manual: dict) -> pd.DataFr
             "Obra en el catálogo": " | ".join(en_cat["OBJETO"].astype(str)) or None,
             "Categoría del catálogo": unicos("nombre_categoria") or None,
             "N.º en el catálogo": " | ".join(en_cat["ORDEN"].astype(str)) or None,
-            "Imagen": unicos("imagen") or None if "imagen" in en_cat.columns else None,
+            "Imagen del catálogo": unicos("imagen") or None if "imagen" in en_cat.columns else None,
             "Estado": estado,
             "Vínculo": vinculo or None,
             "Nota": nota or None,

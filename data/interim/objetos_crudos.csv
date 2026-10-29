@@ -40,7 +40,7 @@ objeto_id,fuente,concurso_id,nombre_raw,ciudad_raw,categoria_raw,orden,objeto
 39,1915 1er concurso EXPOS,1,Rosa Alderete,MONTEROS,RANDAS,21,tapete
 40,1915 1er concurso EXPOS,1,Rosario Loto,SANTIAGO DEL ESTERO,RANDAS,22,entredós
 41,1915 1er concurso EXPOS,1,Rosario Loto,SANTIAGO DEL ESTERO,RANDAS,23,tapete
-42,1915 1er concurso EXPOS,1,Dominga Lescano,SANTIAGO DEL ESTERO,RANDAS,24,juego puntilla y entredós
+42,1915 1er concurso EXPOS,1,Dominga Lescano,SANTIAGO DEL ESTERO,RANDAS,24,juego de puntilla y entredós
 43,1915 1er concurso EXPOS,1,Dominga Lescano,SANTIAGO DEL ESTERO,RANDAS,25,colcha
 44,1915 1er concurso EXPOS,1,Concepción y Rosa Cuello,CATAMARCA,RANDAS,26,tapete
 45,1915 1er concurso EXPOS,1,Concepción y Rosa Cuello,CATAMARCA,RANDAS,27,tapete
@@ -86,7 +86,7 @@ objeto_id,fuente,concurso_id,nombre_raw,ciudad_raw,categoria_raw,orden,objeto
 85,1915 1er concurso EXPOS,1,Eloisa Aráoz,COLALAO DEL VALLE,DESHILADO,15,un par de fundas con dibujos regionales
 86,1915 1er concurso EXPOS,1,Eloisa Aráoz,COLALAO DEL VALLE,DESHILADO,16,un almohadón
 87,1915 1er concurso EXPOS,1,Eloisa Aráoz,COLALAO DEL VALLE,DESHILADO,17,un almohadón
-88,1915 1er concurso EXPOS,1,Eloisa Aráoz,COLALAO DEL VALLE,DESHILADO,18,carpeta encaje de filet de hilo
+88,1915 1er concurso EXPOS,1,Eloisa Aráoz,COLALAO DEL VALLE,DESHILADO,18,carpeta
 89,1915 1er concurso EXPOS,1,Sara M. Sal,SAN MIGUEL DE TUCUMÁN,DESHILADO,19,"toalla, deshilado y macramé"
 90,1915 1er concurso EXPOS,1,Elvira Rodríguez They,S/D,DESHILADO,20,"toalla, deshilado"
 91,1915 1er concurso EXPOS,1,Máxima Belmonte,SAN MIGUEL DE TUCUMÁN,DESHILADO,21,"carpeta, deshilado en tela de hilo"
@@ -165,7 +165,7 @@ objeto_id,fuente,concurso_id,nombre_raw,ciudad_raw,categoria_raw,orden,objeto
 164,1915 1er concurso EXPOS,1,Isabel Ovejero,INGENIO CONCEPCION,CROCHET,7,juego de puntillas de crochet
 165,1915 1er concurso EXPOS,1,Isabel Ovejero,INGENIO CONCEPCION,CROCHET,8,tapete
 166,1915 1er concurso EXPOS,1,Isabel Ovejero,INGENIO CONCEPCION,CROCHET,9,dos corbatas
-167,1915 1er concurso EXPOS,1,Rosario Villoldo,INGENIO CONCEPCION,CROCHET,10,adorno madramé
+167,1915 1er concurso EXPOS,1,Rosario Villoldo,INGENIO CONCEPCION,CROCHET,10,adorno macramé
 168,1915 1er concurso EXPOS,1,Benita P. de Novillo,SAN MIGUEL DE TUCUMÁN,CROCHET,11,colcha
 169,1915 1er concurso EXPOS,1,María J. de Aguirre,SAN MIGUEL DE TUCUMÁN,CROCHET,12,colcha
 170,1915 1er concurso EXPOS,1,Rosalía Gutierrez,SAN MIGUEL DE TUCUMÁN,CROCHET,13,colcha
@@ -225,7 +225,7 @@ objeto_id,fuente,concurso_id,nombre_raw,ciudad_raw,categoria_raw,orden,objeto
 224,1916 Concurso Tejidos,2,CECILIA BUSTOS,SIMOCA,ALFOMBRAS,18,Alfombra chica
 225,1916 Concurso Tejidos,2,GREGORIA LUNA,CATAMARCA,ALFOMBRAS,19,Alfombra estilo mosaico
 226,1916 Concurso Tejidos,2,VITALINA ZELAYA,SAN MIGUEL DE TUCUMÁN,ALFOMBRAS,20,Alfombra
-227,1916 Concurso Tejidos,2,CONCEPCIÓN Y ROSA CUELLO,"PIEDRA BLANCA, CATAMARCA",ALFOMBRAS,21,Alfombra cudrada
+227,1916 Concurso Tejidos,2,CONCEPCIÓN Y ROSA CUELLO,"PIEDRA BLANCA, CATAMARCA",ALFOMBRAS,21,Alfombra cuadrada
 228,1916 Concurso Tejidos,2,GREGORIA LUNA,CATAMARCA,ALFOMBRAS,22,Alfombra sendero
 229,1916 Concurso Tejidos,2,ESC. Y HOGAR DE OBRERAS DE LA SOC. DE BENEFICENCIA,TUCUMÁN,TAPICES,1,Tapiz de colgar
 230,1916 Concurso Tejidos,2,CONCEPCIÓN Y ROSA CUELLO,"PIEDRA BLANCA, CATAMARCA",TAPICES,2,Juego de tapices para muebles
@@ -405,7 +405,7 @@ objeto_id,fuente,concurso_id,nombre_raw,ciudad_raw,categoria_raw,orden,objeto
 404,1916 Concurso Tejidos,2,EDELMIRA A. DE MORENO,CATAMARCA,COLCHAS Y FRAZADAS,161,sobrecama blanca bordada con vicuña café
 405,1916 Concurso Tejidos,2,EDELMIRA A. DE MORENO,CATAMARCA,COLCHAS Y FRAZADAS,162,"colcha tejida en telar, a pala"
 406,1916 Concurso Tejidos,2,EDELMIRA A. DE MORENO,CATAMARCA,COLCHAS Y FRAZADAS,163,"colcha tejida en telar, a pala"
-407,1916 Concurso Tejidos,2,EDELMIRA A. DE MORENO,CATAMARCA,COLCHAS Y FRAZADAS,164,colcha tejida en telar bodada con hilo merino
+407,1916 Concurso Tejidos,2,EDELMIRA A. DE MORENO,CATAMARCA,COLCHAS Y FRAZADAS,164,colcha tejida en telar bordada con hilo merino
 408,1916 Concurso Tejidos,2,EDELMIRA A. DE MORENO,CATAMARCA,COLCHAS Y FRAZADAS,165,frazada a bastones de colores criollos
 409,1916 Concurso Tejidos,2,VICTORIA NAVARRETE,SALTA,COLCHAS Y FRAZADAS,166,colcha tejida y bordada
 410,1916 Concurso Tejidos,2,INDAMIRA GONZALEZ,CHICLIGASTA,COLCHAS Y FRAZADAS,167,frazada de labor
@@ -430,7 +430,7 @@ objeto_id,fuente,concurso_id,nombre_raw,ciudad_raw,categoria_raw,orden,objeto
 429,1916 Concurso Tejidos,2,NORBERTA C. ORTIZ,TACO RALO,COLCHAS Y FRAZADAS,186,colcha lana tejida en telar
 430,1916 Concurso Tejidos,2,CONCEPCIÓN Y ROSA CUELLO,CATAMARCA,COLCHAS Y FRAZADAS,187,cubrecama de vicuña con listas de color
 431,1916 Concurso Tejidos,2,CONCEPCIÓN Y ROSA CUELLO,CATAMARCA,COLCHAS Y FRAZADAS,188,"frazadon algodón de ""palo borracho"""
-432,1916 Concurso Tejidos,2,CONCEPCIÓN Y ROSA CUELLO,CATAMARCA,COLCHAS Y FRAZADAS,189,cubrecma de algodón bordada con seda
+432,1916 Concurso Tejidos,2,CONCEPCIÓN Y ROSA CUELLO,CATAMARCA,COLCHAS Y FRAZADAS,189,cubrecama de algodón bordada con seda
 433,1916 Concurso Tejidos,2,MARGARITA DIAZ,CATAMARCA,PONCHOS,1,poncho lana color blanco
 434,1916 Concurso Tejidos,2,SARVELIA LEDESMA,SANTIAGO,PONCHOS,2,poncho lana tejido en telar
 435,1916 Concurso Tejidos,2,FELIPA VARELA,CATAMARCA,PONCHOS,3,poncho lana tejido en telar
@@ -476,7 +476,7 @@ objeto_id,fuente,concurso_id,nombre_raw,ciudad_raw,categoria_raw,orden,objeto
 475,1916 Concurso Tejidos,2,FELISA CARRIZO,SAN MIGUEL DE TUCUMÁN,CHALES DE VICUÑA,4,chalón de vicuña
 476,1916 Concurso Tejidos,2,EDELMIRA C. DE ROLDÁN,SAN MIGUEL DE TUCUMÁN,CHALES DE VICUÑA,5,chalina de vicuña
 477,1916 Concurso Tejidos,2,EDELMIRA C. DE ROLDÁN,SAN MIGUEL DE TUCUMÁN,CHALES DE VICUÑA,6,chalina de vicuña
-478,1916 Concurso Tejidos,2,EDELMIRA C. DE ROLDÁN,SAN MIGUEL DE TUCUMÁN,CHALES DE VICUÑA,7,chaón de vicuña
+478,1916 Concurso Tejidos,2,EDELMIRA C. DE ROLDÁN,SAN MIGUEL DE TUCUMÁN,CHALES DE VICUÑA,7,chalón de vicuña
 479,1916 Concurso Tejidos,2,EDELMIRA C. DE ROLDÁN,SAN MIGUEL DE TUCUMÁN,CHALES DE VICUÑA,8,chalina de vicuña
 480,1916 Concurso Tejidos,2,SERVANDA PALACIOS,SAN MIGUEL DE TUCUMÁN,CHALES DE VICUÑA,9,chalina de vicuña
 481,1916 Concurso Tejidos,2,SERVANDA PALACIOS,SAN MIGUEL DE TUCUMÁN,CHALES DE VICUÑA,10,chalina de vicuña
@@ -759,8 +759,8 @@ objeto_id,fuente,concurso_id,nombre_raw,ciudad_raw,categoria_raw,orden,objeto
 758,1916 Concurso Tejidos,2,ANGELA ROBLES,ORAN,RANDAS,17,randas para fundas
 759,1916 Concurso Tejidos,2,ANGELA ROBLES,ORAN,RANDAS,18,carpetas de randas
 760,1916 Concurso Tejidos,2,MARIA LUISA ROBLES,ORAN,RANDAS,19,cuatro metros puntilla randa
-761,1916 Concurso Tejidos,2,CORINA ROLDAN,ORAN,RANDAS,20,escote de randa
-762,1916 Concurso Tejidos,2,CORINA ROLDAN,ORAN,RANDAS,21,escote de randa
+761,1916 Concurso Tejidos,2,CORINA ROLDAN,ORAN,RANDAS,20,caminos de mesa
+762,1916 Concurso Tejidos,2,CORINA ROLDAN,ORAN,RANDAS,21,carpeta randa
 763,1916 Concurso Tejidos,2,CORINA ROLDAN,ORAN,RANDAS,22,escote de randa
 764,1916 Concurso Tejidos,2,CANDELARIA ALINCASTRO,ORAN,RANDAS,23,puntilla de randa cuatro metros
 765,1916 Concurso Tejidos,2,CANDELARIA ALINCASTRO,ORAN,RANDAS,24,carpeta de randa
@@ -771,9 +771,9 @@ objeto_id,fuente,concurso_id,nombre_raw,ciudad_raw,categoria_raw,orden,objeto
 770,1916 Concurso Tejidos,2,AUDELINA A. DE QUINTEROS,ORAN,RANDAS,29,carpeta de randa
 771,1916 Concurso Tejidos,2,AUDELINA A. DE QUINTEROS,ORAN,RANDAS,30,carpeta de randa
 772,1916 Concurso Tejidos,2,FLORINDA Q. DE ALINCASTRO,ORAN,RANDAS,31,cuellos y puños de randa
-773,1916 Concurso Tejidos,2,FLORINDA Q. DE ALINCASTRO,ORAN,RANDAS,32,carpetas de randas
-774,1916 Concurso Tejidos,2,ROSARIO QUINTEROS,ORAN,RANDAS,33,carpetas de randas
-775,1916 Concurso Tejidos,2,ROSARIO QUINTEROS,ORAN,RANDAS,34,carpetas de randas
+773,1916 Concurso Tejidos,2,FLORINDA Q. DE ALINCASTRO,ORAN,RANDAS,32,carpetas de randa
+774,1916 Concurso Tejidos,2,ROSARIO QUINTEROS,ORAN,RANDAS,33,carpetas de randa
+775,1916 Concurso Tejidos,2,ROSARIO QUINTEROS,ORAN,RANDAS,34,carpetas de randa
 776,1916 Concurso Tejidos,2,ROSA ARIZA,MONTEROS,RANDAS,35,carpeta de randa
 777,1916 Concurso Tejidos,2,JOSEFA POSSE,SAN MIGUEL DE TUCUMÁN,RANDAS,36,pañuelo de randa
 778,1916 Concurso Tejidos,2,JOSEFA POSSE,SAN MIGUEL DE TUCUMÁN,RANDAS,37,escote de randa
@@ -913,7 +913,7 @@ objeto_id,fuente,concurso_id,nombre_raw,ciudad_raw,categoria_raw,orden,objeto
 912,1916 Concurso Tejidos,2,CARMEN BRAVO,SANTIAGO DEL ESTERO,BORDADOS EN BLANCO Y DESHILADOS,89,un deshilado
 913,1916 Concurso Tejidos,2,HIGINIA GUARDO BELTRAN,SANTIAGO DEL ESTERO,BORDADOS EN BLANCO Y DESHILADOS,90,pechera bordada
 914,1916 Concurso Tejidos,2,HIGINIA GUARDO BELTRAN,SANTIAGO DEL ESTERO,BORDADOS EN BLANCO Y DESHILADOS,91,pechera bordada
-915,1916 Concurso Tejidos,2,HIGINIA GUARDO BELTRAN,SANTIAGO DEL ESTERO,BORDADOS EN BLANCO Y DESHILADOS,92,barbero
+915,1916 Concurso Tejidos,2,HIGINIA GUARDO BELTRAN,SANTIAGO DEL ESTERO,BORDADOS EN BLANCO Y DESHILADOS,92,babero
 916,1916 Concurso Tejidos,2,HIGINIA GUARDO BELTRAN,SANTIAGO DEL ESTERO,BORDADOS EN BLANCO Y DESHILADOS,93,cuello
 917,1916 Concurso Tejidos,2,MARIA JESUS JIMENEZ,SANTIAGO DEL ESTERO,BORDADOS EN BLANCO Y DESHILADOS,94,mantel deshilado y bordado
 918,1916 Concurso Tejidos,2,MARIA JESUS JIMENEZ,SANTIAGO DEL ESTERO,BORDADOS EN BLANCO Y DESHILADOS,95,pañuelo bordado

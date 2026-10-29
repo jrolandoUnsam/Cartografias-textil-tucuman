@@ -14,16 +14,20 @@ de 1915 que no tienen objeto en el catálogo (hoja `Premios`, que arma `04e`, si
 Lo que no sale de la tabla y es decisión del proyecto vive en `decisiones/`:
 
   familias_categorias.csv   por categoría, `tecnica_por_categoria`: la técnica que se
-                            asume cuando el texto del objeto no menciona ninguna
+                            asume cuando el texto del objeto no menciona ninguna, y
+                            `material_por_categoria`: el que nombra la sección del
+                            catálogo (Chales de vicuña, Raffia imitación con hojas de caña)
+  tecnicas_materiales.csv   términos de técnica y material validados por LM (28/10/2026):
+                            etiqueta, técnica general (`grupo`) y regla sobre el texto
 
 Las zonas (`zonas_ciudades.csv`) y los tipos de obra (columna `familia` de
 `familias_categorias.csv`) eran agrupaciones propuestas por el proyecto sin respaldo en
 las fuentes; desde el 28/10 el explorador no las usa hasta que LM las revise. La
 procedencia se agrupa por provincia, la misma que muestra el mapa.
 
-Las técnicas se infieren del texto del objeto con las reglas de `REGLAS_TECNICA`. Si
-no hay ninguna, se usa la de la categoría (`ts = "c"`); si tampoco, queda "sin técnica
-indicada" (`ts = "n"`).
+Las técnicas y los materiales se leen del texto del objeto con las reglas de
+`tecnicas_materiales.csv`; el texto del catálogo no se toca. Si no hay técnica, se usa
+la de la categoría (`ts = "c"`); si tampoco, queda "sin técnica indicada" (`ts = "n"`).
 
 Lugares: un círculo por localidad actual (`nombre_ciudad_hoy` + provincia), como en
 `05b_mapa`: "La Cocha" y "Escuela de la Cocha", o "Asilo Ciudad" y San Miguel, van
@@ -52,6 +56,7 @@ from _util import DECISIONES, INSTITUCION, INTERIM, PROCESSED, RAIZ
 FUENTE = PROCESSED / "tabla_normalizada.xlsx"
 CRUDOS = INTERIM / "objetos_crudos.csv"
 FAMILIAS = DECISIONES / "familias_categorias.csv"
+TECNICAS = DECISIONES / "tecnicas_materiales.csv"
 PRENSA = DECISIONES / "menciones_prensa.csv"
 COMISIONES = DECISIONES / "comisiones.csv"
 PLANTILLAS = RAIZ / "src" / "pipeline" / "plantillas"
@@ -59,22 +64,10 @@ SALIDA = RAIZ / "outputs" / "explorador.html"
 
 SEDE_CIUDAD = 2  # San Miguel de Tucumán: sede de los dos concursos
 
-TEC = {"randa": "Randa", "encaje": "Encaje", "filet": "Filet", "crochet": "Crochet e irlanda",
-       "deshilado": "Deshilado", "bordado": "Bordado", "telar": "Telar",
-       "pala": "A pala o a bastones", "encrand": "Encaje o randa (sin precisar)",
-       "bordesh": "Bordado o deshilado (sin precisar)", "sin": "Sin técnica indicada"}
-
-# Sobre el texto sin tildes y en minúsculas. Una obra puede tener varias.
-REGLAS_TECNICA = {
-    "randa": r"\brand",
-    "encaje": r"encaj|bolillo|puntilla",
-    "filet": r"filet",
-    "crochet": r"crochet|croche|irlanda|ganchillo",
-    "deshilado": r"deshil",
-    "bordado": r"bordad|richelieu",
-    "telar": r"telar",
-    "pala": r"\ba pala\b|baston",
-}
+# Técnicas que no salen de las reglas: la de la categoría cuando no se puede precisar,
+# y la falta de dato.
+TEC_SIN_REGLA = {"encrand": "Encaje o randa (sin precisar)",
+                 "bordesh": "Bordado o deshilado (sin precisar)", "sin": "Sin técnica indicada"}
 
 
 def clave(s) -> str:
@@ -95,18 +88,48 @@ def frase(s: str) -> str:
     return s[:1].upper() + s[1:]
 
 
-def tecnicas(txt: str, de_categoria: str) -> tuple[list[str], str]:
+def leer_csv(ruta) -> pd.DataFrame:
+    return pd.read_csv(ruta, encoding="utf-8-sig", dtype=str, keep_default_na=False)
+
+
+def leer_reglas() -> tuple[dict, dict, dict, list]:
+    """De `tecnicas_materiales.csv`, validada por LM: etiquetas de técnicas y materiales,
+    la técnica general de cada subtipo (Encaje de bolillos -> Encaje) y las reglas. Los
+    términos sin `clave` (puntilla, tejido a mano, hilado, teñido) no se usan."""
+    T = leer_csv(TECNICAS)
+    T = T[T["clave"] != ""]
+    tec, mat, grupo, reglas = {}, {}, {}, []
+    for r in T.itertuples():
+        (tec if r.tipo == "técnica" else mat).setdefault(r.clave, r.etiqueta)
+        if r.grupo:
+            grupo[r.clave] = r.grupo
+        reglas.append((r.tipo, r.clave, re.compile(r.patron), re.compile(r.excepto) if r.excepto else None))
+    return {**tec, **TEC_SIN_REGLA}, mat, grupo, reglas
+
+
+TEC, MAT, GRUPO, REGLAS = leer_reglas()
+
+
+def hallar(tipo: str, txt: str) -> list[str]:
     t = clave(txt)
-    hallo = [k for k, rx in REGLAS_TECNICA.items() if re.search(rx, t)]
+    return [k for tp, k, rx, no in REGLAS if tp == tipo and rx.search(t) and not (no and no.search(t))]
+
+
+def tecnicas(txt: str, de_categoria: str) -> tuple[list[str], str]:
+    """Una obra puede tener varias. Si tiene un subtipo, lleva también la técnica general,
+    así el filtro "Encaje" incluye las de bolillos."""
+    hallo = hallar("técnica", txt)
     if hallo:
-        return hallo, "o"
+        hallo += [GRUPO[k] for k in hallo if k in GRUPO]
+        return [k for k in TEC if k in hallo], "o"
     if de_categoria:
         return [de_categoria], "c"
     return ["sin"], "n"
 
 
-def leer_csv(ruta) -> pd.DataFrame:
-    return pd.read_csv(ruta, encoding="utf-8-sig", dtype=str, keep_default_na=False)
+def materiales(txt: str, de_categoria: str) -> list[str]:
+    hallo = hallar("material", txt) + ([de_categoria] if de_categoria else [])
+    return [k for k in MAT if k in hallo]
 
 
 # ------------------------------------------------------------------------- lugares
@@ -247,6 +270,7 @@ def datos() -> dict:
         fam = F.loc[o.categoria_id] if o.categoria_id in F.index else None
         cat = texto(categoria.get(o.categoria_id))
         tec, ts = tecnicas(texto(o.OBJETO), fam["tecnica_por_categoria"] if fam is not None else "")
+        mat = materiales(texto(o.OBJETO), fam["material_por_categoria"] if fam is not None else "")
         # procedencia como la escribió el catálogo, aunque 04d haya pasado la obra a la
         # localidad de la expositora
         cat_id = getattr(o, "ciudad_id_catalogo", None)
@@ -257,6 +281,8 @@ def datos() -> dict:
              "pl": de_ciudad[int(o.ciudad_id)], "po": "s/d" if clave(po) == "s/d" else po,
              "c": frase(cat), "o": texto(o.OBJETO), "ord": str(o.ORDEN),
              "tec": tec, "ts": ts, "cit": cita(int(anio[o.concurso_id]), pagina.get(o.objeto_id), o.imagen)}
+        if mat:
+            r["mat"] = mat
         if re.search(INSTITUCION, clave(n)):
             r["inst"] = 1
         # marcas que pone 04f leyendo el texto del catálogo
@@ -327,7 +353,7 @@ def datos() -> dict:
     lks = Counter(z["pz"]["lk"] for z in lista)
     stats = {"premios": len(lista), "sin_obra": sin_obra, "fuera": lks["sv"],
              "pendientes": lks["pen"], "dudosos": lks["nom?"]}
-    return {"places": places, "tec": TEC, "prv": prv, "recs": recs,
+    return {"places": places, "tec": TEC, "tecg": GRUPO, "mat": MAT, "prv": prv, "recs": recs,
             "sede": sede, "person0": cuenta.most_common(1)[0][0], "stats": stats,
             "version": fecha_larga(date.today()), "prensa": prensa, "comision": comision,
             "fuentes": [{k: texto(v) for k, v in f.items()} for f in fuentes.to_dict("records")],
@@ -374,7 +400,10 @@ def obra_sin_catalogo(z, recs, nombre, places, de_ciudad, C) -> dict:
         pl, po = lugar_del_fallo(z, places, de_ciudad, C)
     n = texto(nombre.get(pid)) if pid is not None else z["nombre"]
     tec, ts = tecnicas(z["objeto"] + " " + z["seccion"], "")
+    # el material sólo del objeto: la sección "Bordado en blanco y seda" no dice que la obra sea de seda
+    mat = materiales(z["objeto"], "")
     return {"i": len(recs), "y": 1915, "n": n, "nv": z["nombre"],
+            **({"mat": mat} if mat else {}),
             "pk": str(pid) if pid is not None else "x:" + slug(z["nombre"]),
             "pl": pl, "po": po, "c": z["pz"]["c"], "o": z["objeto"],
             "ord": z["num"], "tec": tec, "ts": ts, "pz": [z["pz"]], "sv": 1,
@@ -424,6 +453,7 @@ def main() -> None:
           f"{sum(p['lat'] is None for p in P.values())} sin ubicar "
           f"({sum(P[r['pl']]['lat'] is None for r in R)} obras)")
     print("técnica:", dict(Counter(r["ts"] for r in R)), "· provincias:", dict(Counter(r["pv"] for r in R)))
+    print("materiales:", dict(Counter(m for r in R for m in r.get("mat", []))))
     print(f"\n-> {SALIDA}")
 
 
