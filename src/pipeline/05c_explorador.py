@@ -36,9 +36,15 @@ de ciudad pero sí provincia se agrupa en un lugar "sólo provincia" en la capit
 en `05b_mapa`. Lo que no tiene ninguno de los dos queda sin coordenadas: se lista en
 la matriz y en las fichas, no en el mapa.
 
+Los grupos de expositoras con el mismo apellido en el mismo lugar salen de la hoja
+`Grupos` de `redes.xlsx` (`05a_redes`, que corre antes): se muestran en Análisis y en
+cada ficha como pista de parentesco, no como dato.
+La pestaña Red dibuja el grafo completo (hojas Nodos y Aristas) con sigma.js y graphology,
+que la página carga de un CDN con versión fija, como Leaflet.
+
 Entrada : data/processed/tabla_normalizada.xlsx (Objetos, Expositoras, Categorías,
           Ciudades, Premios), data/interim/objetos_crudos.csv (nombre tal como figura
-          en el catálogo), decisiones/*.csv
+          en el catálogo), data/processed/redes.xlsx (Grupos, Nodos y Aristas), decisiones/*.csv
 Salida  : outputs/explorador.html
 """
 from __future__ import annotations
@@ -59,6 +65,7 @@ FAMILIAS = DECISIONES / "familias_categorias.csv"
 TECNICAS = DECISIONES / "tecnicas_materiales.csv"
 PRENSA = DECISIONES / "menciones_prensa.csv"
 COMISIONES = DECISIONES / "comisiones.csv"
+REDES = PROCESSED / "redes.xlsx"  # hoja Grupos, de 05a_redes
 PLANTILLAS = RAIZ / "src" / "pipeline" / "plantillas"
 SALIDA = RAIZ / "outputs" / "explorador.html"
 
@@ -346,6 +353,21 @@ def datos() -> dict:
         comision.append({"a": int(c.anio), "n": c.nombre, "nf": c.nombre_en_fuente, "r": c.rol, "s": c.seccion,
                          "f": c.fuente, "pk": c.persona_id, "mismo": mismo})
 
+    # grupos con el mismo apellido en el mismo lugar (05a_redes): una pista de parentesco
+    redes = [{"ap": g.apellidos, "l": g.lugar, "c": g.confianza, "pk": str(g.persona_ids).split(";")}
+             for g in pd.read_excel(REDES, sheet_name="Grupos").itertuples()] if REDES.exists() else []
+    # la red completa, para la pestaña Red: nodos [id, tipo, nombre, persona_id, concursos,
+    # provincia, obras, premios] y aristas [origen, destino, tipo, detalle, confianza, peso]
+    red = {"n": [], "e": []}
+    if REDES.exists():
+        N = pd.read_excel(REDES, sheet_name="Nodos")
+        A = pd.read_excel(REDES, sheet_name="Aristas")
+        num = lambda v: int(v) if pd.notna(v) else 0  # noqa: E731
+        red["n"] = [[n.id, n.tipo, texto(n.nombre), str(num(n.persona_id)) if pd.notna(n.persona_id) else "",
+                     texto(n.concursos), texto(n.provincia), num(n.obras) or num(n.expositoras), num(n.premios)]
+                    for n in N.itertuples()]
+        red["e"] = [[a.origen, a.destino, a.tipo, texto(a.detalle), a.confianza, num(a.peso)] for a in A.itertuples()]
+
     # la ficha que se abre al entrar: la expositora con más premios
     cuenta = Counter()
     for r in recs:
@@ -355,7 +377,7 @@ def datos() -> dict:
              "pendientes": lks["pen"], "dudosos": lks["nom?"]}
     return {"places": places, "tec": TEC, "tecg": GRUPO, "mat": MAT, "prv": prv, "recs": recs,
             "sede": sede, "person0": cuenta.most_common(1)[0][0], "stats": stats,
-            "version": fecha_larga(date.today()), "prensa": prensa, "comision": comision,
+            "version": fecha_larga(date.today()), "prensa": prensa, "comision": comision, "redes": redes, "red": red,
             "fuentes": [{k: texto(v) for k, v in f.items()} for f in fuentes.to_dict("records")],
             "concursos": [{k: texto(v) for k, v in c.items()} for c in xl.parse("Concursos").to_dict("records")]}
 

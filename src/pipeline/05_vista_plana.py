@@ -6,9 +6,9 @@ hoja `Objetos` a nombres y escribe
 (hoja 'Objetos - Concursos Tucumán').
 
 Columnas: Concurso, Año, Expositora/Expositor, Ciudad, Provincia, Lugar en el
-documento, ciudad_id, lat, lon, lat_provincia, lon_provincia, Categoría, N.º de
-orden, Descripción del objeto, Fuera de concurso, Creación de la autora, Imagen,
-Foto del álbum.
+documento, ciudad_id, lat, lon, lat_provincia, lon_provincia, Categoría, Categoría
+normalizada, Categoría comparable (las pone `04g`), N.º de orden, Descripción del
+objeto, Fuera de concurso, Creación de la autora, Imagen, Foto del álbum.
 
 `Foto del álbum` es la foto del álbum de 1915 donde aparece la obra (la pone `04c`).
 
@@ -47,7 +47,8 @@ HOJA = "Objetos - Concursos Tucumán"
 
 COLS = ["Concurso", "Año", "Expositora/Expositor", "Ciudad", "Provincia",
         "Lugar en el documento", "ciudad_id", "lat", "lon", "lat_provincia", "lon_provincia",
-        "Categoría", "N.º de orden", "Descripción del objeto", "Fuera de concurso",
+        "Categoría", "Categoría normalizada", "Categoría comparable", "N.º de orden",
+        "Descripción del objeto", "Fuera de concurso",
         "Creación de la autora", "Imagen del catálogo", "Foto del álbum"]
 
 
@@ -104,6 +105,8 @@ def construir(fuente=FUENTE) -> pd.DataFrame:
         "lat_provincia": df["lat_provincia"] if "lat_provincia" in df.columns else pd.NA,
         "lon_provincia": df["lon_provincia"] if "lon_provincia" in df.columns else pd.NA,
         "Categoría": df["nombre_categoria"],
+        "Categoría normalizada": df["categoria_norm"] if "categoria_norm" in df.columns else pd.NA,
+        "Categoría comparable": df["categoria_comparable"] if "categoria_comparable" in df.columns else pd.NA,
         "N.º de orden": df["ORDEN"],
         "Descripción del objeto": df["OBJETO"],
         "Fuera de concurso": df["fuera_de_concurso"] if "fuera_de_concurso" in df.columns else pd.NA,

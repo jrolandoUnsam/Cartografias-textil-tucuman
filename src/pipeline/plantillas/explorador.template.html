@@ -267,6 +267,30 @@ details.vt[open] > summary { margin-bottom: 0.6rem; }
 .pc { border-top: 1px solid var(--rule); padding-top: 1rem; min-width: 0; }
 .pc h3 { font-family: var(--serif); font-size: 1.2rem; font-weight: 600; margin: 0 0 0.2rem; }
 .pc .mxnote { margin: 0 0 0.7rem; font-size: 0.8rem; }
+/* pestaña Red */
+.v-red { display: grid; grid-template-columns: minmax(16rem, 20rem) minmax(0, 1fr); gap: 0.9rem; align-items: start; }
+.v-red > .card { position: sticky; top: calc(var(--navh) + 0.8rem); max-height: calc(100vh - var(--navh) - 1.6rem); overflow: auto; padding: 1rem 1.1rem; font-size: 0.86rem; }
+.v-red .mxnote { font-size: 0.8rem; margin: 0 0 0.8rem; }
+.v-red fieldset { border: 0; padding: 0; margin: 0 0 0.8rem; }
+.v-red legend, .v-red .rlb { display: block; font-size: 0.68rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink2); margin-bottom: 0.3rem; }
+.v-red fieldset label { display: flex; gap: 0.45rem; align-items: baseline; margin: 0.2rem 0; }
+.v-red select, .v-red input[type="search"] { width: 100%; font: inherit; padding: 0.4rem 0.55rem; border: 1px solid var(--rule); border-radius: 0.5rem; background: var(--card); color: var(--ink); margin-bottom: 0.8rem; }
+.rgraph { position: relative; height: calc(100vh - var(--navh) - 3rem); min-height: 32rem; max-height: 56rem; border: 1px solid var(--rule); border-radius: 0.9rem; background: var(--card); overflow: hidden; }
+.rgraph .rhint { position: absolute; left: 0.8rem; bottom: 0.6rem; font-size: 0.75rem; color: var(--ink2); background: var(--card); padding: 0.2rem 0.5rem; border-radius: 0.4rem; pointer-events: none; }
+.rgraph .rzoom { position: absolute; right: 0.6rem; top: 0.6rem; display: flex; flex-direction: column; gap: 4px; }
+.rgraph .rzoom button { width: 2rem; height: 2rem; border: 1px solid var(--rule); border-radius: 0.4rem; background: var(--card); font-size: 1rem; line-height: 1; color: var(--ink); }
+.rleg { display: flex; flex-direction: column; gap: 0.25rem; margin: 0 0 0.8rem; font-size: 0.8rem; }
+.rleg i { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 0.45rem; vertical-align: -1px; }
+.rleg i.l { width: 16px; height: 0; border-radius: 0; border-top: 2px solid; vertical-align: 3px; }
+.rsel { border-top: 1px solid var(--rule); padding-top: 0.8rem; }
+.rsel h3 { font-family: var(--serif); font-size: 1.15rem; margin: 0.1rem 0 0.3rem; }
+.rsel h4 { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink2); margin: 0.8rem 0 0.25rem; }
+.rsel ul { list-style: none; margin: 0; padding: 0; }
+.rsel li { margin: 0.15rem 0; }
+.rsel .btn { margin-top: 0.7rem; }
+.rwrap { min-width: 0; }
+.v-red .cfmt { margin-bottom: 0.9rem; }
+.v-red fieldset .sub { font-size: 0.72rem; color: var(--ink2); margin: 0.5rem 0 0.1rem; }
 .plg { display: flex; flex-wrap: wrap; gap: 0.3rem 1rem; font-size: 0.76rem; color: var(--ink2); margin-bottom: 0.5rem; }
 .plg i { display: inline-block; width: 0.75rem; height: 0.75rem; border-radius: 3px; margin-right: 0.35rem; vertical-align: -0.1rem; }
 .prow { display: grid; grid-template-columns: minmax(7rem, 11.5rem) minmax(0, 1fr); gap: 0.7rem; align-items: center; width: 100%; padding: 0.35rem 0.3rem; border: 0; background: none; text-align: left; border-radius: 0.4rem; font-size: 0.84rem; color: var(--ink); line-height: 1.2; }
@@ -352,6 +376,9 @@ button.prow:hover { background: var(--chip); }
   .v-art { display: flex; flex-direction: column; }
   .v-art > .card { position: static; max-height: none; }
   .v-art > .plist { max-height: 44vh; }
+  .v-red { display: flex; flex-direction: column-reverse; }
+  .v-red > .card { position: static; max-height: none; }
+  .rgraph { height: 70vh; min-height: 22rem; }
   .ficha { overflow: visible; }
   .rows li { grid-template-columns: 1fr; }
   .maptools { left: 3.6rem; }
@@ -404,6 +431,7 @@ button.prow:hover { background: var(--chip); }
       <button type="button" role="tab" id="tab-map" data-view="map" aria-selected="true" aria-controls="view-map">Mapa</button>
       <button type="button" role="tab" id="tab-ana" data-view="ana" aria-selected="false" aria-controls="view-ana">Análisis</button>
       <button type="button" role="tab" id="tab-art" data-view="art" aria-selected="false" aria-controls="view-art">Expositoras</button>
+      <button type="button" role="tab" id="tab-red" data-view="red" aria-selected="false" aria-controls="view-red">Red</button>
     </div>
     <a class="navlink" href="#metodo" data-scroll="metodo">Fuentes y método</a>
   </div>
@@ -485,6 +513,7 @@ button.prow:hover { background: var(--chip); }
           <div class="pc"><h3>Cuántas obras presentó cada expositora</h3><p class="mxnote" id="p-dist-n"></p><div id="p-dist"></div><details class="vt"><summary>Ver tabla</summary><div id="t-dist"></div></details></div>
           <div class="pc"><h3>Personas e instituciones</h3><p class="mxnote">Obras de cada grupo y cuántas fueron premiadas (solo hay premios de 1915). Al lado de cada grupo, cuántos nombres lo forman.</p><div id="p-inst"></div><details class="vt"><summary>Ver tabla</summary><div id="t-inst"></div></details></div>
         </div>
+        <div class="pc"><h3>Mismo apellido, mismo lugar<span class="nof">No usa los filtros</span></h3><p class="mxnote">Grupos de expositoras que comparten un apellido y un lugar de procedencia. Es una pista para investigar parentescos (madres e hijas, hermanas, familias de tejedoras), no un dato: las fuentes no dicen quién era pariente de quién. Con un apellido muy común en la base (González, Pérez, López) la pista es más débil. Seleccione un nombre para ver su ficha. <button type="button" class="linkbtn" data-act="gored">Ver la red completa</button></p><div id="c-redes"></div></div>
         <div class="pc"><h3>Quiénes expusieron más</h3><p class="mxnote">Expositoras según la cantidad de obras. Seleccione un nombre para ver su ficha, o un encabezado para ordenar.</p><div id="c-people"></div></div>
       </section>
 
@@ -493,6 +522,47 @@ button.prow:hover { background: var(--chip); }
         <div class="pc"><h3>Premios de 1915 por sección del fallo</h3><p class="mxnote" id="p-prz-n"></p><div id="p-prz"></div><details class="vt"><summary>Ver tabla</summary><div id="t-prz"></div></details></div>
         <div class="pc"><h3>Los premios uno por uno</h3><p class="mxnote" id="c-prem-n"></p><div id="c-prem"></div></div>
       </section>
+    </div>
+  </section>
+
+  <section class="view v-red" id="view-red" role="tabpanel" aria-labelledby="tab-red" hidden>
+    <div class="card">
+      <div class="cfmt" role="group" aria-label="Qué red mostrar"><button type="button" data-act="redmode" data-v="exp" aria-pressed="true">Expositoras</button><button type="button" data-act="redmode" data-v="lt" aria-pressed="false">Lugares y técnicas</button></div>
+      <div id="r-ctl1">
+      <p class="mxnote">Red de participación: expositoras e instituciones unidas a los concursos en que expusieron, a su lugar de procedencia y, en rojo, a las del mismo lugar con quienes comparten apellido. Esas líneas rojas son pistas de parentesco, no datos. Esta vista no usa los filtros de arriba.</p>
+      <label class="rlb" for="r-q">Buscar en la red</label>
+      <input id="r-q" type="search" list="r-names" placeholder="Nombre o lugar" autocomplete="off"><datalist id="r-names"></datalist>
+      <fieldset><legend>Mostrar</legend>
+        <label><input type="checkbox" id="r-t-exp" checked> Expositoras e instituciones</label>
+        <label><input type="checkbox" id="r-t-lug" checked> Lugares</label>
+        <label><input type="checkbox" id="r-t-con" checked> Concursos</label>
+        <label><input type="checkbox" id="r-t-com" checked> Comisión organizadora</label>
+        <label><input type="checkbox" id="r-ap" checked> Mismo apellido y misma localidad</label>
+        <label><input type="checkbox" id="r-rep"> Solo quienes expusieron en 1915 y 1916</label>
+        <p class="sub">Qué hicieron (cada uno se ubica en el centro de quienes lo usaron)</p>
+        <label><input type="checkbox" id="r-t-tec"> Técnicas</label>
+        <label><input type="checkbox" id="r-t-mat"> Materiales</label>
+        <label><input type="checkbox" id="r-t-cat"> Categorías del catálogo</label>
+      </fieldset>
+      <label class="rlb" for="r-color">Color</label>
+      <select id="r-color"><option value="conc">Concurso en que expuso</option><option value="loc">Localidad</option><option value="prov">Provincia</option><option value="tipo">Tipo de nodo</option></select>
+      <label class="rlb" for="r-size">Tamaño</label>
+      <select id="r-size"><option value="obras">Obras</option><option value="grado">Conexiones</option></select>
+      </div>
+      <div id="r-ctl2" hidden>
+        <p class="mxnote">Localidades unidas a las técnicas de las obras que llegaron de ellas; el grosor de la línea es la cantidad de obras. Lugares que producían lo mismo quedan cerca. La procedencia es desde dónde se envió la obra, no el origen de la técnica, y la técnica la lee el proyecto del texto del catálogo. Esta vista no usa los filtros de arriba.</p>
+        <label class="rlb" for="r2-por">Unir los lugares con</label>
+        <select id="r2-por"><option value="tec">Técnicas</option><option value="mat">Materiales</option><option value="cat">Categorías del catálogo</option></select>
+        <label class="rlb" for="r2-min">Mostrar conexiones de al menos</label>
+        <select id="r2-min"><option value="1">1 obra</option><option value="2">2 obras</option><option value="3">3 obras</option><option value="5">5 obras</option></select>
+      </div>
+      <div class="rleg" id="r-leg"></div>
+      <p class="mxnote" id="r-stats"></p>
+      <div class="rsel" id="r-sel"><p class="mxnote">Seleccione un nodo para ver sus conexiones.</p></div>
+    </div>
+    <div class="rwrap">
+      <div class="rgraph" id="r-graph" role="application" aria-label="Red de participación"></div>
+      <div class="rgraph" id="r-graph2" role="application" aria-label="Red de lugares y técnicas" hidden></div>
     </div>
   </section>
 
@@ -524,7 +594,8 @@ button.prow:hover { background: var(--chip); }
           <li><span class="st ok">Hecho</span>Normalización manual de nombres de expositoras y de ciudades, con identificadores, y vinculación de los premios de 1915 con su obra (los casos abiertos se indican en los límites de esta versión).</li>
           <li><span class="st ok">Hecho</span>Separación de las filas del catálogo de 1916 que agrupaban varias piezas, y vinculación de cada obra con la página escaneada del catálogo.</li>
           <li><span class="st wip">En esta versión</span>El explorador se genera desde la tabla normalizada con el pipeline del proyecto. Las técnicas y los materiales siguen una lista de términos revisada por la dirección del proyecto; parte de las coordenadas son provisorias. Los límites se explican más abajo.</li>
-          <li><span class="st">Pendiente</span>Georreferenciación completa de las localidades y análisis de redes de participación.</li>
+          <li><span class="st wip">En esta versión</span>Redes de participación: quiénes expusieron en los dos concursos, la comisión organizadora y los grupos con el mismo apellido en el mismo lugar, que son pistas de parentesco y no datos. La pestaña Red dibuja la red completa con sigma.js y graphology; la disposición es ForceAtlas2, el algoritmo de Gephi, con semilla fija para que el dibujo sea el mismo en cada apertura.</li>
+          <li><span class="st">Pendiente</span>Georreferenciación completa de las localidades y confirmación, con otras fuentes, de los parentescos que sugieren los apellidos.</li>
         </ul>
       </article>
       <article>
@@ -584,6 +655,9 @@ button.prow:hover { background: var(--chip); }
 </footer>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/graphology/0.25.4/graphology.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/graphology-library@0.8.0/dist/graphology-library.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sigma.js/2.4.0/sigma.min.js"></script>
 <script>
 const DATA = __DATA__;
 
@@ -597,7 +671,7 @@ const DATA = __DATA__;
   const fmt = (n) => n.toLocaleString("es-AR");
   const plural = (n, s, p) => fmt(n) + " " + (n === 1 ? s : p);
   const clip = (s, n) => (s.length > n ? s.slice(0, n - 1).trimEnd() + "…" : s);
-  const PORD = Object.keys(PRV), SOFT = ["encrand", "bordesh", "sin"], VIEWS = ["map", "ana", "art"];
+  const PORD = Object.keys(PRV), SOFT = ["encrand", "bordesh", "sin"], VIEWS = ["map", "ana", "art", "red"];
 
   R.forEach((r) => { r._s = strip([r.n, r.nv, r.c, r.o, r.po].join(" ")); });
   const byPk = new Map();
@@ -716,6 +790,10 @@ const DATA = __DATA__;
     const act = a.dataset.act;
     if (act === "person") { state.person = a.dataset.pk; $("ficha").scrollTop = 0; setView("art"); }
     else if (act === "close") { state.place = null; render(); }
+    else if (act === "gored") { setView("red"); $("explorador").scrollIntoView({ behavior: "smooth", block: "start" }); }
+    else if (act === "rnode") { if (RED && RED.select) RED.select(a.dataset.n, true); }
+    else if (act === "rnode2") { if (RED && RED.lt) RED.lt.select(a.dataset.n, true); }
+    else if (act === "redmode") redMode(a.dataset.v);
     else if (act === "more") { state.more = true; render(); }
     else if (act === "moreres") { state.moreRes = true; render(); }
     else if (act === "morepeople") { state.morePeople = true; render(); }
@@ -795,7 +873,7 @@ const DATA = __DATA__;
       `<span><span class="n">${fmt(new Set(rs.map((r) => r.pk)).size)}</span> <span class="u">nombres de expositoras</span></span>` +
       detalle(rs) +
       (state.prize && state.year !== "1915" ? '<p class="warn">No hay premios de 1916.</p>' : "");
-    if (state.view === "map") renderMap(rs); else if (state.view === "ana") renderAnalisis(rs); else renderPeople(rs);
+    if (state.view === "map") renderMap(rs); else if (state.view === "ana") renderAnalisis(rs); else if (state.view === "red") renderRed(); else renderPeople(rs);
   }
 
   // de dónde sale el número de obras y cuántas se ven en el mapa, para que coincidan
@@ -1160,6 +1238,11 @@ const DATA = __DATA__;
     if (!ms.length) return "";
     return `<div class="prensa"><h4>En la prensa de época</h4>` + ms.map((m) => `<blockquote>${esc(m.c)}</blockquote><cite>${esc(m.d)}, ${esc(m.f)}, «${esc(m.t)}»</cite>`).join("") + `</div>`;
   }
+  // otras expositoras con su mismo apellido en el mismo lugar (05a_redes)
+  function parientes(pk) {
+    const gs = DATA.redes.filter((g) => g.pk.includes(pk));
+    return gs.map((g) => `<p class="pnote">Comparte el apellido ${esc(g.ap)} en ${esc(g.l)} con ${g.pk.filter((k) => k !== pk && byPk.has(k)).map((k) => personBtn(k, byPk.get(k)[0].n)).join(", ")}. Puede indicar un parentesco, pero las fuentes no lo dicen${g.c === "baja" ? ", y es un apellido frecuente en la base" : ""}.</p>`).join("");
+  }
   function dedu(l) {
     const g = new Map();
     l.filter((r) => r.li).forEach((r) => { const k = r.po + "|" + r.pl; g.set(k, (g.get(k) || []).concat(r)); });
@@ -1188,7 +1271,7 @@ const DATA = __DATA__;
       `<div class="stats"><div><b>${l.length}</b><span>${l.length === 1 ? "obra" : "obras"}</span></div><div><b class="p">${nprz}</b><span>${nprz === 1 ? "premio" : "premios"}</span></div><div><b>${years.length > 1 ? "1915 · 1916" : years[0]}</b><span>${years.length > 1 ? "participó en ambos concursos" : "concurso"}</span></div></div>` +
       (Object.keys(tc).length + Object.keys(mc).length ? `<p class="ln">${Object.keys(tc).sort((a, b) => tc[b] - tc[a]).map((t) => `<span class="tg">${esc(TEC[t])} · ${tc[t]}</span>`).join("")}` +
         `${Object.keys(mc).sort((a, b) => mc[b] - mc[a]).map((m) => `<span class="tg mt" title="Material">${esc(MAT[m])} · ${mc[m]}</span>`).join("")}</p>` : "") +
-      comisionDe(state.person) + dedu(l) + enPrensa(DATA.prensa.filter((m, k) => m.pk === state.person || l.some((r) => (r.pr || []).includes(k)))) +
+      comisionDe(state.person) + parientes(state.person) + dedu(l) + enPrensa(DATA.prensa.filter((m, k) => m.pk === state.person || l.some((r) => (r.pr || []).includes(k)))) +
       years.map((y) => `<h3>${y}</h3><ul>` + l.filter((r) => r.y === y).sort((a, b) => (parseInt(a.ord) || 0) - (parseInt(b.ord) || 0)).map((r) => {
         const ord = r.ord && r.ord.length < 12 ? "N.º " + esc(r.ord) : "";
         return `<li><span class="yr">${ord}</span><span title="${esc(what(r))}">${esc(clip(what(r), 160))}${marks(r)} ${prizeBadges(r, true)}${r.sv ? ' <span class="dim">' + (r.pz[0].lk === "pen" ? "Premio todavía sin vincular con una obra del catálogo" : "Premio sin obra en el listado de expositoras") + '</span>' : ""}<span class="cit">${esc(r.cit)}</span></span></li>`;
@@ -1230,6 +1313,293 @@ const DATA = __DATA__;
       fila("Premios", (c, y) => (y === 1915 ? `<span class="num">${fmt(new Set(de(y).flatMap((r) => (r.pz || []).map((z) => z.k))).size)}</span>` : "no hay")) +
       `</tbody></table>`;
   })();
+
+  (function redes() {
+    const gs = DATA.redes, quien = (k) => (byPk.has(k) ? personBtn(k, byPk.get(k)[0].n) : "");
+    const fila = (g) => `<tr><td><b>${esc(g.ap)}</b></td><td>${esc(g.l)}</td><td>${g.pk.map(quien).filter(Boolean).join(", ")}</td><td>${g.c === "baja" ? '<span class="dim">débil: apellido frecuente</span>' : "apellido poco frecuente"}</td></tr>`;
+    const tabla = (l) => `<table class="tb"><thead><tr><th>Apellido</th><th>Lugar</th><th>Expositoras</th><th>Pista</th></tr></thead><tbody>${l.map(fila).join("")}</tbody></table>`;
+    const n = gs.reduce((s, g) => s + g.pk.length, 0);
+    $("c-redes").innerHTML = gs.length ? `<p class="mxnote">${plural(gs.length, "grupo", "grupos")} con ${plural(n, "expositora", "expositoras")}.</p>` + tabla(gs.slice(0, 12)) +
+      (gs.length > 12 ? `<details class="vt"><summary>Ver los ${gs.length} grupos</summary>${tabla(gs.slice(12))}</details>` : "") : '<p class="empty">Sin grupos.</p>';
+  })();
+
+  /* ---------------------------------------------------------------- red */
+  // Se arma la primera vez que se abre la pestaña (el contenedor tiene que estar visible).
+  // Disposición ForceAtlas2 con semilla fija: el mismo dibujo en cada apertura, como para
+  // citarlo. La semilla sólo cambia dónde cae cada nodo, no quién se une con quién.
+  let RED = null;
+  function renderRed() {
+    if (RED) { const a = RED.modo === "lt" ? RED.lt : RED; if (a && a.s) { a.s.resize(); a.s.refresh(); } return; }
+    RED = {};
+    const el = $("r-graph");
+    if (!window.graphology || !window.Sigma || !window.graphologyLibrary || !DATA.red.n.length) {
+      el.innerHTML = '<p class="empty" style="padding:1rem">No se pudo cargar la red: necesita conexión a internet para las bibliotecas sigma.js y graphology.</p>'; return;
+    }
+    const css = getComputedStyle(document.documentElement), cv = (k) => css.getPropertyValue(k).trim();
+    const C = { y15: cv("--y15"), y16: cv("--y16"), both: cv("--ink"), lug: "#8b97c9", con: cv("--ink2"), com: cv("--gold"), fade: "#e8eaf1",
+      ap: cv("--madder"), base: "#dfe3ed", org: "#dcc796" };
+    const PAL = ["#2a3b91", "#e07a2e", "#7a5cc9", "#2e8b6e", "#b0372b", "#a97b24", "#3a8fb7", "#c25b9b", "#6b8e23", "#8c6d4f"];
+    const TIPO = { "expositora": "exp", "institución": "exp", "lugar": "lug", "concurso": "con", "comisión": "com" };
+    const QC = { tec: "#0f766e", mat: "#9d174d", cat: "#475569" }, QE = { tecnica: "#a7d8cf", material: "#e9b6cc", categoria: "#cbd2dc" };
+    const G = new graphology.Graph({ type: "undirected" });
+    let sd = 11; const rnd = () => ((sd = (sd * 16807) % 2147483647) / 2147483647);
+    DATA.red.n.forEach(([id, t, n, pk, conc, prov, ob, pr]) => G.addNode(id, { label: n, t, g: TIPO[t], pk, conc, prov: prov.split("; ")[0], ob, pr, x: rnd() * 100, y: rnd() * 100 }));
+    DATA.red.e.forEach(([a, b, t, d, c, p]) => {
+      if (!G.hasNode(a) || !G.hasNode(b) || a === b) return;
+      if (G.hasEdge(a, b)) { const e = G.edge(a, b); if (d) G.setEdgeAttribute(e, "d", [G.getEdgeAttribute(e, "d"), d].filter(Boolean).join("; ")); return; }
+      G.addEdge(a, b, { t, d, c, p });
+      // localidad de cada expositora: la de más obras, si mandó desde más de una
+      if (t === "procede" && p > (G.getNodeAttribute(a, "locp") || 0)) { G.setNodeAttribute(a, "loc", b); G.setNodeAttribute(a, "locp", p); }
+    });
+    const L = graphologyLibrary;
+    // en la disposición, los concursos casi no tiran: unidos a todas, aplastarían la red en un disco
+    const PESO = { participa: 0.03, procede: 1, mismo_apellido: 2, apellido_comision: 0.5, organiza: 0.3, es_expositora: 1 };
+    G.forEachEdge((e, a) => G.setEdgeAttribute(e, "weight", PESO[a.t] || 1));
+    L.layoutForceAtlas2.assign(G, { iterations: 900, getEdgeWeight: "weight", weighted: true,
+      settings: { ...L.layoutForceAtlas2.inferSettings(G), barnesHutOptimize: true, scalingRatio: 10, gravity: 1, edgeWeightInfluence: 1 } });
+    // técnicas, materiales y categorías: se agregan después de la disposición, para no
+    // moverla, y cada uno va al centro (ponderado por obras) de las expositoras que lo usaron
+    const QUEN = {};
+    R.forEach((r) => {
+      const e = "e" + r.pk; if (!G.hasNode(e)) return;
+      const add = (g, k, label) => { const id = g + ":" + k, q = (QUEN[id] = QUEN[id] || { g, label, by: new Map(), ob: 0 }); q.ob++; q.by.set(e, (q.by.get(e) || 0) + 1); };
+      [...new Set(hojas(r).map((t) => TECG[t] || t))].forEach((t) => add("tec", t, TEC[t]));
+      mats(r).forEach((m) => add("mat", m, MAT[m]));
+      if (r.c) add("cat", r.c, r.c);
+    });
+    Object.entries(QUEN).forEach(([id, q]) => {
+      let x = 0, y = 0, w = 0;
+      q.by.forEach((k, e) => { const a = G.getNodeAttributes(e); x += a.x * k; y += a.y * k; w += k; });
+      G.addNode(id, { label: q.label, t: q.g, g: q.g, ob: q.ob, x: x / w, y: y / w });
+      const et = { tec: "tecnica", mat: "material", cat: "categoria" }[q.g];
+      q.by.forEach((k, e) => G.addEdge(e, id, { t: et, p: k, d: plural(k, "obra", "obras") }));
+    });
+    G.forEachNode((n) => G.setNodeAttribute(n, "deg", G.degree(n)));
+    // color por localidad: las 10 con más expositoras tienen color propio; el resto, gris
+    const locs = new Map(); G.forEachNode((n, a) => { if (a.loc) locs.set(a.loc, (locs.get(a.loc) || 0) + 1); });
+    const LOCS = [...locs.entries()].sort((a, b) => b[1] - a[1]), lcCol = new Map(LOCS.slice(0, PAL.length).map(([l], i) => [l, PAL[i]]));
+    const provs = new Map(); G.forEachNode((n, a) => { if (a.prov) provs.set(a.prov, (provs.get(a.prov) || 0) + 1); });
+    const PRVS = [...provs.entries()].sort((a, b) => b[1] - a[1]), pvCol = new Map(PRVS.slice(0, PAL.length).map(([p], i) => [p, PAL[i]]));
+
+    const S = { sel: null, hov: null };
+    const on = (id) => $(id).checked;
+    const visible = (n, a) => {
+      if (!on("r-t-" + a.g)) return false;
+      if (on("r-rep") && a.g === "exp" && a.conc !== "1915, 1916") return false;
+      return true;
+    };
+    const color = (n, a) => {
+      const m = $("r-color").value;
+      if (QC[a.g]) return QC[a.g];
+      if (m === "tipo") return a.g === "exp" ? C.both : a.g === "lug" ? C.lug : a.g === "con" ? C.con : C.com;
+      if (m === "loc") return a.g === "con" ? C.con : a.g === "com" ? C.com : a.g === "lug" ? lcCol.get(n) || "#b9bfcf" : a.loc ? lcCol.get(a.loc) || "#b9bfcf" : C.fade;
+      if (m === "prov") return a.g === "con" ? C.con : a.g === "com" ? C.com : pvCol.get(a.prov) || "#b9bfcf";
+      if (a.g === "exp") return a.conc === "1915, 1916" ? C.both : a.conc === "1915" ? C.y15 : C.y16;
+      return a.g === "lug" ? C.lug : a.g === "com" ? C.com : n === "k1915" ? C.y15 : C.y16;
+    };
+    const size = (n, a) => {
+      if (a.g === "con") return 16;
+      if (QC[a.g]) return 4 + 1.1 * Math.sqrt(a.ob);
+      if ($("r-size").value === "grado") return 2.5 + 1.1 * Math.sqrt(a.deg);
+      return a.g === "exp" ? 2.5 + 1.4 * Math.sqrt(a.ob || 1) : a.g === "lug" ? 3 + 1.1 * Math.sqrt(a.ob || 1) : 4;
+    };
+    const foco = () => S.hov || S.sel;
+    const edgeOn = (e, a, s, t) => {
+      const ap = a.t === "mismo_apellido" || a.t === "apellido_comision";
+      if (ap && !on("r-ap")) return false;
+      return visible(s, G.getNodeAttributes(s)) && visible(t, G.getNodeAttributes(t));
+    };
+    const Sg = new (Sigma.Sigma || Sigma)(G, el, {
+      labelFont: css.getPropertyValue("--sans"), labelSize: 12, labelWeight: "500", labelColor: { color: cv("--ink") },
+      labelRenderedSizeThreshold: 8, minCameraRatio: 0.04, maxCameraRatio: 3, zIndex: true,
+      nodeReducer: (n, a) => {
+        if (!visible(n, a)) return { ...a, hidden: true };
+        const r = { ...a, color: color(n, a), size: size(n, a), zIndex: 1 };
+        const f = foco();
+        if (f) {
+          if (n === f || G.areNeighbors(n, f)) { r.zIndex = 2; r.forceLabel = true; r.highlighted = n === f; }
+          else { r.color = C.fade; r.label = ""; r.zIndex = 0; }
+        }
+        return r;
+      },
+      edgeReducer: (e, a) => {
+        const [s, t] = G.extremities(e);
+        if (!edgeOn(e, a, s, t)) return { ...a, hidden: true };
+        const f = foco();
+        if (f && s !== f && t !== f) return { ...a, hidden: true };
+        const ap = a.t === "mismo_apellido" || a.t === "apellido_comision";
+        return { ...a, color: ap ? C.ap : QE[a.t] || (a.t === "organiza" || a.t === "es_expositora" ? C.org : C.base), size: ap ? 1.6 : f ? 1 : 0.5, zIndex: ap ? 1 : 0 };
+      },
+    });
+    RED.s = Sg;
+    Sg.on("enterNode", ({ node }) => { S.hov = node; Sg.refresh(); el.style.cursor = "pointer"; });
+    Sg.on("leaveNode", () => { S.hov = null; Sg.refresh(); el.style.cursor = ""; });
+    Sg.on("clickNode", ({ node }) => select(node, false));
+    Sg.on("clickStage", () => { S.sel = null; info(); Sg.refresh(); });
+
+    const QUE = { tecnica: "Técnicas", material: "Materiales", categoria: "Categorías del catálogo", participa: "Concursos", procede: "Lugar de procedencia", mismo_apellido: "Mismo apellido y misma localidad", apellido_comision: "Apellido en común con la comisión (pista)", organiza: "Comisión de", es_expositora: "Su registro como expositora" };
+    const nodoBtn = (m) => `<button type="button" class="plink" data-act="rnode" data-n="${esc(m)}">${esc(G.getNodeAttribute(m, "label"))}</button>`;
+    function info() {
+      const n = S.sel, box = $("r-sel");
+      if (!n) { box.innerHTML = '<p class="mxnote">Seleccione un nodo para ver sus conexiones.</p>'; return; }
+      const a = G.getNodeAttributes(n), por = {};
+      G.forEachEdge(n, (e, ea, s, t) => { const m = s === n ? t : s; (por[ea.t] = por[ea.t] || []).push([m, ea.d]); });
+      const tipo = { exp: a.t === "institución" ? "Institución" : "Expositora", lug: "Lugar", con: "Concurso", com: "Comisión organizadora", tec: "Técnica", mat: "Material", cat: "Categoría del catálogo" }[a.g];
+      if (QC[a.g]) {
+        // técnica, material o categoría: por localidad y quiénes
+        const loc = new Map(), ps = [];
+        G.forEachEdge(n, (e, ea, s, t) => { const m = s === n ? t : s, l = G.getNodeAttribute(m, "loc"); ps.push([m, ea.p]); loc.set(l || "", (loc.get(l || "") || 0) + ea.p); });
+        ps.sort((x, y) => y[1] - x[1]);
+        const ls = [...loc.entries()].sort((x, y) => y[1] - x[1]);
+        box.innerHTML = `<span class="eyebrow">${tipo}</span><h3>${esc(a.label)}</h3><p class="mxnote" style="margin:0">${plural(a.ob, "obra", "obras")} de ${plural(ps.length, "expositora", "expositoras")}</p>` +
+          `<h4>Por localidad</h4><ul>${ls.slice(0, 12).map(([l, k]) => `<li>${l ? nodoBtn(l) : '<span class="dim">Sin dato de procedencia</span>'} <span class="dim">${plural(k, "obra", "obras")}</span></li>`).join("")}</ul>` +
+          `<h4>Expositoras · ${ps.length}</h4><ul>${ps.slice(0, 40).map(([m, k]) => `<li>${nodoBtn(m)} <span class="dim">${plural(k, "obra", "obras")}</span></li>`).join("")}${ps.length > 40 ? `<li class="dim">y ${ps.length - 40} más</li>` : ""}</ul>`;
+        return;
+      }
+      const det = a.g === "exp" ? `${esc(a.conc)} · ${plural(a.ob, "obra", "obras")}${a.pr ? " · " + plural(a.pr, "premio", "premios") : ""}${a.prov ? " · " + esc(a.prov) : ""}` :
+        a.g === "lug" ? `${esc(a.prov)} · ${plural(a.ob, "obra", "obras")}` : a.g === "com" ? esc(a.conc) : "";
+      const grupos = Object.keys(QUE).filter((k) => por[k]).map((k) => `<h4>${QUE[k]} · ${por[k].length}</h4><ul>` +
+        por[k].slice(0, 40).map(([m, d]) => `<li>${nodoBtn(m)}${d && k !== "procede" && k !== "participa" ? ` <span class="dim">${esc(d)}</span>` : ""}</li>`).join("") +
+        (por[k].length > 40 ? `<li class="dim">y ${por[k].length - 40} más</li>` : "") + `</ul>`).join("");
+      box.innerHTML = `<span class="eyebrow">${tipo}</span><h3>${esc(a.label)}</h3><p class="mxnote" style="margin:0">${det}</p>${grupos}` +
+        (a.pk && byPk.has(a.pk) ? `<button type="button" class="btn" data-act="person" data-pk="${esc(a.pk)}">Abrir la ficha</button>` : "");
+    }
+    function select(n, mover) {
+      if (!G.hasNode(n)) return;
+      S.sel = n; info(); Sg.refresh();
+      if (mover) { const p = Sg.getNodeDisplayData(n); if (p) Sg.getCamera().animate({ x: p.x, y: p.y, ratio: 0.35 }, { duration: 500 }); }
+    }
+    RED.select = select;
+
+    function leyenda() {
+      const m = $("r-color").value, it = (c, t, l) => `<span><i${l ? ' class="l"' : ""} style="${l ? "border-color" : "background"}:${c}"></i>${esc(t)}</span>`;
+      let h = "";
+      if (m === "conc") h = it(C.y15, "Solo 1915") + it(C.y16, "Solo 1916") + it(C.both, "Los dos concursos") + it(C.lug, "Lugar") + it(C.com, "Comisión");
+      else if (m === "prov") h = PRVS.slice(0, PAL.length).map(([p, k]) => it(pvCol.get(p), `${p} (${k})`)).join("") + it(C.com, "Comisión");
+      else if (m === "loc") h = LOCS.slice(0, PAL.length).map(([l, k]) => it(lcCol.get(l), `${G.getNodeAttribute(l, "label")} (${k})`)).join("") +
+        it("#b9bfcf", `Otras ${LOCS.length - PAL.length} localidades`) + it(C.fade, "Sin dato de procedencia");
+      else h = it(C.both, "Expositora o institución") + it(C.lug, "Lugar") + it(C.con, "Concurso") + it(C.com, "Comisión");
+      $("r-leg").innerHTML = h + ["tec", "mat", "cat"].filter((g) => on("r-t-" + g)).map((g) => it(QC[g], { tec: "Técnica", mat: "Material", cat: "Categoría del catálogo" }[g])).join("") +
+        it(C.ap, "Mismo apellido y misma localidad", true);
+      let nv = 0, ne = 0;
+      G.forEachNode((n, a) => { if (visible(n, a)) nv++; });
+      G.forEachEdge((e, a, s, t) => { if (edgeOn(e, a, s, t)) ne++; });
+      $("r-stats").innerHTML = `${plural(nv, "nodo", "nodos")} y ${plural(ne, "conexión", "conexiones")} a la vista.`;
+    }
+    RED.leyenda = leyenda; RED.info = info;
+    ["r-t-exp", "r-t-lug", "r-t-con", "r-t-com", "r-t-tec", "r-t-mat", "r-t-cat", "r-ap", "r-rep", "r-color", "r-size"].forEach((id) => { $(id).onchange = () => { leyenda(); Sg.refresh(); }; });
+    $("r-names").innerHTML = G.mapNodes((n, a) => `<option value="${esc(a.label)}">`).join("");
+    $("r-q").onchange = () => {
+      const q = strip($("r-q").value); const n = G.findNode((m, a) => strip(a.label) === q) || G.findNode((m, a) => strip(a.label).includes(q));
+      if (q && n) select(n, true);
+    };
+    el.insertAdjacentHTML("beforeend", '<div class="rzoom"><button type="button" aria-label="Acercar">+</button><button type="button" aria-label="Alejar">−</button><button type="button" aria-label="Ver toda la red">⤢</button></div><p class="rhint">Arrastre para mover · rueda para acercar · seleccione un nodo</p>');
+    const zb = el.querySelectorAll(".rzoom button"), cam = Sg.getCamera();
+    zb[0].onclick = () => cam.animatedZoom({ duration: 300 }); zb[1].onclick = () => cam.animatedUnzoom({ duration: 300 }); zb[2].onclick = () => cam.animatedReset({ duration: 300 });
+    leyenda();
+  }
+
+  // dos redes en la pestaña: expositoras (la de arriba) y lugares y técnicas
+  function redMode(v) {
+    if (!RED || !RED.s) return;
+    RED.modo = v;
+    document.querySelectorAll('[data-act="redmode"]').forEach((b) => b.setAttribute("aria-pressed", b.dataset.v === v));
+    $("r-ctl1").hidden = v !== "exp"; $("r-ctl2").hidden = v !== "lt";
+    $("r-graph").hidden = v !== "exp"; $("r-graph2").hidden = v !== "lt";
+    if (v === "lt") { if (!RED.lt) RED.lt = redLT(); else { RED.lt.s.resize(); RED.lt.s.refresh(); } RED.lt.leyenda(); RED.lt.info(); }
+    else { RED.s.resize(); RED.s.refresh(); RED.leyenda(); RED.info(); }
+  }
+
+  // Red bipartita lugar ↔ técnica (o material, o categoría), con peso = obras. Sin personas:
+  // ~80 nodos. Misma disposición ForceAtlas2 con semilla fija.
+  function redLT() {
+    const el = $("r-graph2"), L = graphologyLibrary, G = new graphology.Graph({ type: "undirected" });
+    const css = getComputedStyle(document.documentElement), cv = (k) => css.getPropertyValue(k).trim();
+    const PAL = ["#2a3b91", "#e07a2e", "#7a5cc9", "#2e8b6e", "#b0372b", "#a97b24", "#3a8fb7", "#c25b9b", "#6b8e23", "#8c6d4f"];
+    const QC = { tec: "#0f766e", mat: "#9d174d", cat: "#475569" }, NOM = { tec: "Técnica", mat: "Material", cat: "Categoría del catálogo" };
+    const S = { sel: null, hov: null }, fuera = { loc: 0, q: 0 };
+    let pvCol = new Map(), PRVS = [];
+    function armar() {
+      S.sel = null; G.clear();
+      const por = $("r2-por").value, min = +$("r2-min").value, w = new Map(), ob = new Map();
+      fuera.loc = 0; fuera.q = 0;
+      R.forEach((r) => {
+        const p = P[r.pl];
+        const qs = por === "tec" ? [...new Set(hojas(r).map((t) => TECG[t] || t))].map((t) => [t, TEC[t]]) :
+          por === "mat" ? mats(r).map((m) => [m, MAT[m]]) : r.c ? [[r.c, r.c]] : [];
+        if (!p || strip(p.n) === "sin dato") { fuera.loc++; return; }  // con o sin coordenadas, y los de solo provincia
+        if (!qs.length) { fuera.q++; return; }
+        qs.forEach(([k, lab]) => {
+          const key = r.pl + "|" + k; w.set(key, (w.get(key) || 0) + 1);
+          ob.set("q:" + k, { label: lab, n: ((ob.get("q:" + k) || {}).n || 0) + 1 });
+        });
+      });
+      let sd = 5; const rnd = () => ((sd = (sd * 16807) % 2147483647) / 2147483647);
+      [...w.entries()].sort().forEach(([key, k]) => {
+        if (k < min) return;
+        const [pl, q] = key.split("|"), a = "l:" + pl, b = "q:" + q;
+        if (!G.hasNode(a)) G.addNode(a, { label: P[pl].n, g: "lug", prov: P[pl].p, pl, ob: 0, x: rnd() * 100, y: rnd() * 100 });
+        if (!G.hasNode(b)) G.addNode(b, { label: ob.get(b).label, g: por, ob: ob.get(b).n, x: rnd() * 100, y: rnd() * 100 });
+        G.setNodeAttribute(a, "ob", G.getNodeAttribute(a, "ob") + k);
+        G.addEdge(a, b, { p: k, weight: Math.sqrt(k) });
+      });
+      L.layoutForceAtlas2.assign(G, { iterations: 600, getEdgeWeight: "weight", weighted: true,
+        settings: { ...L.layoutForceAtlas2.inferSettings(G), barnesHutOptimize: false, scalingRatio: 12, gravity: 1, edgeWeightInfluence: 1 } });
+      const pv = new Map(); G.forEachNode((n, a) => { if (a.g === "lug") pv.set(a.prov, (pv.get(a.prov) || 0) + 1); });
+      PRVS = [...pv.entries()].sort((a, b) => b[1] - a[1]); pvCol = new Map(PRVS.slice(0, PAL.length).map(([p], i) => [p, PAL[i]]));
+    }
+    armar();
+    const foco = () => S.hov || S.sel;
+    const Sg = new (Sigma.Sigma || Sigma)(G, el, {
+      labelFont: css.getPropertyValue("--sans"), labelSize: 12, labelWeight: "500", labelColor: { color: cv("--ink") },
+      labelRenderedSizeThreshold: 6, minCameraRatio: 0.05, maxCameraRatio: 3, zIndex: true,
+      nodeReducer: (n, a) => {
+        const r = { ...a, color: a.g === "lug" ? pvCol.get(a.prov) || "#b9bfcf" : QC[a.g], size: a.g === "lug" ? 3 + 1.1 * Math.sqrt(a.ob) : 5 + 1.2 * Math.sqrt(a.ob), zIndex: 1 };
+        const f = foco();
+        if (f) { if (n === f || G.areNeighbors(n, f)) { r.zIndex = 2; r.forceLabel = true; r.highlighted = n === f; } else { r.color = "#e8eaf1"; r.label = ""; r.zIndex = 0; } }
+        return r;
+      },
+      edgeReducer: (e, a) => {
+        const [s, t] = G.extremities(e), f = foco();
+        if (f && s !== f && t !== f) return { ...a, hidden: true };
+        return { ...a, color: f ? "#9aa3bd" : "#d5dae6", size: 0.4 + 0.6 * Math.sqrt(a.p) };
+      },
+    });
+    Sg.on("enterNode", ({ node }) => { S.hov = node; Sg.refresh(); el.style.cursor = "pointer"; });
+    Sg.on("leaveNode", () => { S.hov = null; Sg.refresh(); el.style.cursor = ""; });
+    Sg.on("clickNode", ({ node }) => select(node, false));
+    Sg.on("clickStage", () => { S.sel = null; info(); Sg.refresh(); });
+    const btn = (m) => `<button type="button" class="plink" data-act="rnode2" data-n="${esc(m)}">${esc(G.getNodeAttribute(m, "label"))}</button>`;
+    function info() {
+      const n = S.sel, box = $("r-sel");
+      if (!n || !G.hasNode(n)) { box.innerHTML = '<p class="mxnote">Seleccione un lugar o una técnica para ver con qué se une.</p>'; return; }
+      const a = G.getNodeAttributes(n), vs = [];
+      G.forEachEdge(n, (e, ea, s, t) => vs.push([s === n ? t : s, ea.p]));
+      vs.sort((x, y) => y[1] - x[1]);
+      const tot = vs.reduce((x, v) => x + v[1], 0);
+      box.innerHTML = `<span class="eyebrow">${a.g === "lug" ? "Lugar" : NOM[a.g]}</span><h3>${esc(a.label)}</h3>` +
+        `<p class="mxnote" style="margin:0">${a.g === "lug" ? esc(a.prov) + " · " : ""}${plural(tot, "obra", "obras")} en esta vista</p>` +
+        `<h4>${a.g === "lug" ? { tec: "Técnicas", mat: "Materiales", cat: "Categorías" }[$("r2-por").value] : "Lugares"} · ${vs.length}</h4><ul>` +
+        vs.map(([m, k]) => `<li>${btn(m)} <span class="dim">${plural(k, "obra", "obras")} (${Math.round(100 * k / tot)} %)</span></li>`).join("") + `</ul>`;
+    }
+    function select(n, mover) {
+      if (!G.hasNode(n)) return;
+      S.sel = n; info(); Sg.refresh();
+      if (mover) { const p = Sg.getNodeDisplayData(n); if (p) Sg.getCamera().animate({ x: p.x, y: p.y, ratio: 0.5 }, { duration: 500 }); }
+    }
+    function leyenda() {
+      const it = (c, t) => `<span><i style="background:${c}"></i>${esc(t)}</span>`, por = $("r2-por").value;
+      $("r-leg").innerHTML = PRVS.slice(0, PAL.length).map(([p, k]) => it(pvCol.get(p), `${p} (${plural(k, "lugar", "lugares")})`)).join("") + it(QC[por], NOM[por]);
+      let nl = 0, nq = 0; G.forEachNode((n, a) => (a.g === "lug" ? nl++ : nq++));
+      $("r-stats").innerHTML = `${plural(nl, "lugar", "lugares")}, ${plural(nq, NOM[por].toLowerCase(), NOM[por].toLowerCase() + (por === "mat" ? "es" : "s"))} y ${plural(G.size, "conexión", "conexiones")}. ` +
+        `Los lugares «(solo provincia)» juntan las obras de las que el catálogo da solo la provincia. Quedan afuera ${plural(fuera.loc, "obra", "obras")} sin dato de procedencia` + (fuera.q ? ` y ${fuera.q} sin ${por === "tec" ? "técnica" : por === "mat" ? "material" : "categoría"} indicada` : "") + ".";
+    }
+    ["r2-por", "r2-min"].forEach((id) => { $(id).onchange = () => { armar(); Sg.getCamera().setState({ x: 0.5, y: 0.5, ratio: 1 }); Sg.refresh(); leyenda(); info(); }; });
+    el.insertAdjacentHTML("beforeend", '<div class="rzoom"><button type="button" aria-label="Acercar">+</button><button type="button" aria-label="Alejar">−</button><button type="button" aria-label="Ver toda la red">⤢</button></div><p class="rhint">Arrastre para mover · rueda para acercar · seleccione un nodo</p>');
+    const zb = el.querySelectorAll(".rzoom button"), cam = Sg.getCamera();
+    zb[0].onclick = () => cam.animatedZoom({ duration: 300 }); zb[1].onclick = () => cam.animatedUnzoom({ duration: 300 }); zb[2].onclick = () => cam.animatedReset({ duration: 300 });
+    return { s: Sg, select, info, leyenda };
+  }
 
   (function comisiones() {
     const por = new Map();

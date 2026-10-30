@@ -655,6 +655,125 @@ detectara errores. Los controles que sí sirven siguen en `06b_controles`
 En el mismo día: la columna `Imagen` de la vista plana y de la hoja Premios pasa a
 llamarse `Imagen del catálogo`, para no confundirla con `Foto del álbum`.
 
+## 2026-10-30 — Categorías normalizadas, como propuesta (`04g_categorias`)
+
+`decisiones/categorias.csv` agrega dos niveles a cada sección sin tocar el nombre que
+imprimió cada catálogo: `categoria_norm` (dentro de su catálogo) y
+`categoria_comparable` (para comparar 1915 con 1916), con el `criterio` y un `estado`.
+La evidencia sale del propio catálogo:
+
+- **Numeración continua.** En 1916, Chales de vicuña numera 1-22 y Chales y echarpes
+  sigue en 23-41 (págs. 27-29); Jergones numera 26-36 y se imprime antes que Jergones
+  y sobrepelos (1-25, págs. 29-31). Son una serie cada una: 24 secciones → 22.
+- **Contenido.** Encajes y randas (1916) no tiene ninguna obra que diga "randa" (50 de
+  148 dicen encaje); las randas de 1916 van en Randas (79 de 82). Por eso no se unen, y
+  para comparar con 1915 Encajes y randas va con Encajes varios.
+- **Equivalencias entre concursos:** Tejidos varios / Tejidos en general; Pellones y
+  jergones (1915) / Pellones + Jergones (1916); Deshilado + Bordado en blanco y seda
+  (1915) / Bordados en blanco y deshilados (1916). 16 grupos comparables.
+
+Todo queda en `propuesta` hasta que lo revise LM; el explorador no lo usa todavía. Las
+dos columnas también van a la vista plana.
+
+## 2026-10-30 — Redes de participación (`05a_redes`)
+
+Objetivo del formulario: "reconstruir redes de participación de artesanas e
+instituciones". Las fuentes no registran vínculos entre personas, así que la primera
+versión usa sólo lo que la base sí dice: quién expuso, desde dónde, en qué concurso y
+quiénes organizaron. Sale un grafo (`data/processed/redes.xlsx`, hojas Nodos y Aristas,
+para Gephi o networkx) y un informe (`outputs/redes.md`).
+
+- **Datos:** participa (expositora → concurso), procede (→ lugar), organiza (comisión →
+  concurso) y es_expositora (Isabel Bascary de Acuña Zavalía, organizadora y
+  expositora). 32 expositoras expusieron en los dos concursos, 22 de San Miguel de
+  Tucumán.
+- **Hipótesis, con `confianza`:** mismo apellido en el mismo lugar (183 pares, 58
+  grupos) y apellido en común con la comisión (5). Se marca el tipo de coincidencia;
+  "propio = de casada" (62 pares) es el caso que podría ser madre e hija o suegra y
+  nuera. La confianza es "baja" si 5 o más registros llevan el apellido (González,
+  Pérez, López) y nunca "alta": confirmar un parentesco pide otra fuente. Con la
+  comisión sólo se listan los apellidos poco frecuentes; con López o Pérez la
+  coincidencia no dice nada.
+- **Apellidos** sacados del nombre normalizado: sin corchetes ni tratamientos; en "X de
+  Y", Y es el de casada. Las instituciones no entran.
+
+No es un análisis de redes sociales en sentido estricto (no hay relaciones
+documentadas entre personas); es la estructura para empezar a buscarlas.
+
+En el explorador (pedido de Julián, mismo día): `05a` corre antes de `05c` y escribe la
+hoja `Grupos`; el explorador la muestra en Análisis › Expositoras ("Mismo apellido, mismo
+lugar", con la pista marcada débil si el apellido es frecuente) y en cada ficha ("Comparte
+el apellido Aguilar en Niogasta con…"). El texto dice siempre que es una pista y que las
+fuentes no registran parentescos. En "Fuentes y método", las redes pasan de "Pendiente" a
+"En esta versión".
+
+## 2026-10-30 — Pestaña Red en el explorador (sigma.js y graphology)
+
+Julián quiere ver la red en el explorador, no en Gephi. Gephi es un programa de
+escritorio y no se puede incrustar, pero lo que hace sí: la pestaña **Red** dibuja el
+grafo completo de `redes.xlsx` (528 nodos, 1.098 conexiones) con sigma.js 2.4.0 y
+graphology 0.25.4 (+ graphology-library 0.8.0), las bibliotecas que usa Gephi para
+publicar redes en la web. Se cargan del CDN con versión fija, como Leaflet.
+
+- **Disposición ForceAtlas2**, el algoritmo de Gephi, 900 iteraciones desde posiciones
+  con semilla fija: el dibujo es el mismo en cada apertura. Las aristas a los dos
+  concursos pesan 0,03: unidas a todas, aplastaban la red en un disco. Se probaron
+  cuatro configuraciones midiendo la distancia media expositora–lugar contra la de dos
+  nodos al azar; quedó la de menor proporción (0,27; con linLog daba 0,45).
+- **Sin comunidades de Louvain** (Julián, 30/10). Se probaron (33 con 3 nodos o más,
+  modularidad 0,85), pero coincidían casi siempre con las localidades: colorear por
+  localidad muestra lo mismo sin un algoritmo que explicar ni una semilla de la que
+  dependan los grupos. El color "Localidad" usa la de más obras de cada expositora; las
+  10 con más expositoras tienen color propio.
+- **Controles:** buscador, tipos de nodo, líneas de mismo apellido y misma localidad
+  (un solo casillero: separar las de apellidos frecuentes confundía, Julián 30/10; la
+  `confianza` sigue en `redes.xlsx`), sólo quienes repitieron, color (concurso, localidad, provincia,
+  tipo) y tamaño (obras o conexiones). Al seleccionar un nodo se resaltan sus vecinos y
+  el panel lista sus conexiones por tipo, con botón a la ficha.
+- El grafo SVG que había en Análisis se sacó: lo reemplaza la pestaña; la tabla de
+  grupos queda, con un enlace a la red.
+
+Mismo día, técnicas, materiales y categorías en la pestaña (pedido de Julián):
+
+- **En la red de expositoras**, tres tipos de nodo opcionales (apagados de entrada):
+  Técnicas (agrupadas en la técnica general: Encaje, Bordado, Randa…), Materiales y
+  Categorías del catálogo, unidos a cada expositora con el número de obras. No entran a
+  la disposición, para no mover el dibujo: cada uno va al centro, ponderado por obras, de
+  quienes lo usaron. Al seleccionarlo, el panel da las obras por localidad y quiénes. Un
+  nodo por obra se descartó: cada obra cuelga de una sola expositora y no agrega
+  conexiones. Con muchas técnicas prendidas el centro se llena de líneas; sirven sobre
+  todo para seleccionar una y ver quiénes la usaron.
+- **Red de lugares y técnicas** (selector arriba del panel): bipartita localidad ↔
+  técnica (o material, o categoría), peso = obras, sin personas: 45 lugares, 17 técnicas
+  y 125 conexiones. Responde al objetivo del formulario sobre la distribución regional de
+  técnicas. Se puede pedir un mínimo de obras por conexión. Quedan afuera las obras sin
+  localidad (167: sólo la provincia o sin dato) y sin técnica indicada (260).
+- Dato que aparece: de las 112 randas, 37 no tienen localidad: 24 de Orán, 12 de
+  Santiago del Estero (sólo provincia), 2 de Santa Rosa y 1 de Catamarca. Orán no tiene
+  coordenadas mientras esté pendiente; cuando se ubique (en Tucumán o en Salta) entra
+  como nodo, unido a Randa con 24 obras, el segundo después de Monteros (36). La
+  provincia elegida sólo cambia su color en la red; sí pesa en el mapa, en la matriz por
+  provincia y en el argumento histórico.
+
+**Corrección, mismo día: la red no exige coordenadas.** `05a` y la red de lugares y
+técnicas contaban como localidad sólo lo que tenía coordenadas, para dejar afuera "sólo
+la provincia" y "S/d". Pero la red no usa coordenadas, y la regla sacaba también lugares
+con nombre todavía sin ubicar: Orán (24 obras), Rosario (5), La Banda (3), Santa Rosa,
+Villa Nueva, Concordia, Pocitos y Tres Pozos. Ahora es localidad todo lugar con nombre,
+salvo "sólo la provincia" y "S/d". Cambian los números de arriba: 535 nodos, 1.133
+aristas, 198 pares y 61 grupos por apellido (entran Paz, Alincastro y Quinteros de Orán,
+y los Robles unen Monteros con Orán); la red de lugares y técnicas pasa a 52 lugares y
+133 conexiones, con 128 obras sin localidad. Orán ya es nodo aunque falte decidir su
+provincia; esa decisión sólo cambiará su color y su punto en el mapa.
+
+**También "solo provincia" (Julián, mismo día).** Lo que el catálogo da sólo con la
+provincia entra como un lugar propio, "Catamarca (solo provincia)" (59 obras, 27
+expositoras), "Santiago del Estero (solo provincia)" (47), etc.: 8 lugares más. No
+generan líneas de apellido: dos expositoras de "Catamarca" a secas no son de la misma
+localidad, y unirlas sería inventar. Sólo "S/d" queda afuera (2 obras). Quedan 543
+nodos y 1.190 aristas; los 198 pares y 61 grupos por apellido no cambian. La red de
+lugares y técnicas pasa a 59 lugares y 162 conexiones.
+
 ## Fuentes del crudo que NO entran a la base
 
 Hojas `no PRENSA-EL ORDEN`, `no ARCHIVO PADILLA`, `no Prensa-Rakow lib`: material de

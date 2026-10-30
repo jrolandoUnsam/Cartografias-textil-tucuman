@@ -27,7 +27,7 @@ data/
   processed/    tabla_normalizada.xlsx, vista_plana_tabla_consolidada.xlsx
 src/pipeline/   etapas del pipeline (01_ingesta … 06b_controles)
 notebooks/      exploración y análisis
-outputs/        mapa_procedencias.html, explorador.html y controles_calidad.md
+outputs/        mapa_procedencias.html, explorador.html, controles_calidad.md y redes.md
 docs/           bitácora de decisiones, diccionario de datos, evaluación de riesgos
 ```
 
@@ -64,6 +64,8 @@ scripts.
   `src/pipeline/audit_comentarios.py`, fuera de la corrida; no se edita a mano.
 - [`outputs/controles_calidad.md`](outputs/controles_calidad.md) — informe generado en
   cada corrida (`06b_controles`): errores típicos de los catálogos para revisar.
+- [`outputs/redes.md`](outputs/redes.md) — informe generado en cada corrida
+  (`05a_redes`): redes de participación; el grafo está en `data/processed/redes.xlsx`.
 - [`docs/referencias/README.md`](docs/referencias/README.md) — los PDF del marco
   institucional y del proyecto, que quedan fuera del repositorio.
 

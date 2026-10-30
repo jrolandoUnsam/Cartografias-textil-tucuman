@@ -146,14 +146,19 @@ Hoy son **441 F, 9 M y 8 I** (institución) sobre 458 filas.
 
 ## Categorías
 
-- [ ] Decidir criterio de unificación (sin pisar el nombre original de cada
-  concurso; agregar `categoria_norm`):
-  - 1916: `RANDAS` vs `ENCAJES Y RANDAS`; `JERGONES` vs `JERGONES Y SOBREPELOS`;
-    `CHALES DE VICUÑA` vs `CHALES Y ECHARPES`.
-  - entre concursos: `TEJIDOS VARIOS` (1915) / `TEJIDOS EN GENERAL` (1916);
-    `PELLONES Y JERGONES` (1915) / `PELLONES` + `JERGONES` (1916);
-    `BORDADO EN BLANCO Y SEDA` / `BORDADOS EN BLANCO Y DESHILADOS`.
-  - La decisión va a `data/interim/decisiones/categorias.csv`, que todavía no existe.
+- [ ] **Para LM: la propuesta de `decisiones/categorias.csv` (2026-10-30).** La aplica
+  `04g`; `nombre_categoria` no se toca. Todo queda en `estado = propuesta`.
+  - *Dentro de 1916* (`categoria_norm`), dos uniones por numeración continua: Chales de
+    vicuña (1-22) sigue en Chales y echarpes (23-41), y Jergones (26-36) completa
+    Jergones y sobrepelos (1-25). ¿Son una sola sección?
+  - `RANDAS` y `ENCAJES Y RANDAS` (1916) **no** se unen: las dos numeran desde 1 y
+    ninguna de las 148 obras de Encajes y randas dice "randa" (50 dicen encaje), mientras
+    que 79 de las 82 de Randas sí.
+  - *Entre concursos* (`categoria_comparable`): Tejidos varios = Tejidos en general;
+    Encajes varios = Encajes y randas → "Encajes"; Pellones y jergones = Pellones +
+    Jergones + Jergones y sobrepelos; Deshilado + Bordado en blanco y seda = Bordados en
+    blanco y deshilados → "Bordados y deshilados". ¿Sirve para comparar 1915 con 1916?
+  - Mientras tanto, el explorador sigue usando la categoría del catálogo.
 
 ## Revisión completa del 28/10 (ver `outputs/controles_calidad.md`)
 
@@ -211,6 +216,33 @@ Hoy son **441 F, 9 M y 8 I** (institución) sobre 458 filas.
   https://coleccionesciap.ar/s/ciapoteca/page/buenos-aires-de-plata. LM ofrece una
   reunión con el personal técnico del instituto. El modelo que quería (la base de
   tejedores del Renatra) ya no está en línea ni en la Wayback Machine.
+
+## Redes (`05a_redes`, 2026-10-30)
+
+- [ ] **Para LM: qué redes le sirven.** Primera versión con lo que ya está en la base
+  (`outputs/redes.md`, `data/processed/redes.xlsx`): 32 expositoras repitieron en 1915
+  y 1916; 61 grupos con el mismo apellido en el mismo lugar (los González de
+  Chicligasta, los Gramajo de Monteagudo y Niogasta, los Aguilar de Niogasta, los
+  Alderete de Monteros); 5 apellidos en común entre la comisión y las expositoras
+  (Haurigot, Frías, Colombres, Molina). Las aristas de apellido son hipótesis. Preguntas:
+  ¿hay fuentes para confirmar parentescos (prensa, registros)? ¿Interesa la relación
+  institución ↔ alumnas (Colegio de la Sagrada Familia, Escuela Sarmiento), que hoy no
+  está en los datos?
+- [x] *(2026-10-30)* Redes en el explorador: tabla "Mismo apellido, mismo lugar" en
+  Análisis › Expositoras y una nota en cada ficha con las otras expositoras del grupo,
+  presentadas como pista de parentesco, y la pestaña **Red** con el grafo completo
+  (sigma.js, ForceAtlas2), con técnicas, materiales y categorías como nodos opcionales y
+  una segunda red de lugares y técnicas. Quienes repitieron y la comisión ya estaban.
+
+## IA sobre fotos (objetivo 6 del formulario)
+
+- [ ] **Faltan las imágenes en esta máquina.** `data/raw/images/` sólo tiene el README;
+  para empezar hay que copiar los álbumes de 1915 (`albumes/1915-album-version-2/`,
+  DSCN5149–5170) desde el resguardo.
+- [ ] Prueba acotada: con un modelo abierto de detección/segmentación, contar las piezas
+  de cada foto del álbum y comparar contra `decisiones/album_1915.csv` (piezas
+  transcriptas por LM). Registrar modelo, versión y parámetros (Lineamientos, art. 19) y
+  reevaluar el riesgo en `evaluacion_riesgos.md`.
 
 ## Explorador
 

@@ -31,7 +31,11 @@ de qué página salió cada registro.
 | campo | tipo | descripción |
 |---|---|---|
 | `categoria_id` | int | identificador |
-| `nombre_categoria` | texto | sección del concurso (PAÑUELOS, RANDAS, ALFOMBRAS, …) |
+| `nombre_categoria` | texto | sección del concurso (PAÑUELOS, RANDAS, ALFOMBRAS, …) tal como la imprimió el catálogo |
+| `categoria_norm` | texto | sección normalizada dentro de su catálogo: une las secciones que son una misma serie numerada (`04g`, `decisiones/categorias.csv`) |
+| `categoria_comparable` | texto | sección equivalente para comparar 1915 con 1916 (Tejidos varios / Tejidos en general → Tejidos varios) |
+| `criterio` | texto | por qué se normalizó así, con la evidencia del catálogo |
+| `estado` | texto | `propuesta` (sin revisar por la dirección) o `validada` |
 
 ### Hoja `Ciudades` (77 filas)
 | campo | tipo | descripción |
@@ -141,6 +145,8 @@ mayúsculas)**. Dentro de un mismo grupo se conserva el orden del catálogo
 | `lat` / `lon` | coordenadas de esa ciudad (vacías si no están cargadas) |
 | `lat_provincia` / `lon_provincia` | coordenadas de la capital de su provincia |
 | `Categoría` | nombre de categoría |
+| `Categoría normalizada` | `Categorías.categoria_norm` |
+| `Categoría comparable` | `Categorías.categoria_comparable` |
 | `N.º de orden` | `ORDEN` |
 | `Descripción del objeto` | `OBJETO` |
 | `Fuera de concurso` | `Objetos.fuera_de_concurso` |
