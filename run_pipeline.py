@@ -20,6 +20,7 @@ ETAPAS = [
     "04e_premios",
     "04f_marcas_objetos",
     "04g_categorias",
+    "04h_tecnicas_materiales",
     "05_vista_plana",
     "05a_redes",
     "05b_mapa",

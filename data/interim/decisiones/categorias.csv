@@ -1,25 +1,25 @@
-categoria_id,nombre_categoria,categoria_norm,categoria_comparable,criterio,estado
-1,PAÑUELOS,Pañuelos,Pañuelos,sólo en 1915,propuesta
-2,RANDAS,Randas,Randas,mismo nombre en 1915 y 1916 (ya es un solo id); en 1916 79 de 82 obras dicen randa,propuesta
-3,ENCAJES VARIOS,Encajes varios,Encajes,su par de 1916 es Encajes y randas,propuesta
-4,DESHILADO,Deshilado,Bordados y deshilados,1916 junta bordados y deshilados en una sola sección (Bordados en blanco y deshilados),propuesta
-5,PONCHOS,Ponchos,Ponchos,mismo nombre en 1915 y 1916,propuesta
-6,COLCHAS Y FRAZADAS,Colchas y frazadas,Colchas y frazadas,mismo nombre en 1915 y 1916,propuesta
-7,PELLONES Y JERGONES,Pellones y jergones,Pellones y jergones,1916 los separa en Pellones; Jergones y Jergones y sobrepelos,propuesta
-8,ALFOMBRAS,Alfombras,Alfombras,mismo nombre en 1915 y 1916,propuesta
-9,BORDADO EN BLANCO Y SEDA,Bordado en blanco y seda,Bordados y deshilados,1916 junta bordados y deshilados en una sola sección (Bordados en blanco y deshilados),propuesta
-10,CROCHET,Crochet,Crochet,sólo en 1915; en 1916 el crochet aparece dentro de otras secciones,propuesta
-11,TEJIDOS VARIOS,Tejidos varios,Tejidos varios,su par de 1916 es Tejidos en general,propuesta
-12,RAFFIA IMITACIÓN CON HOJAS DE CAÑA,Raffia imitación con hojas de caña,Raffia imitación con hojas de caña,sólo en 1915,propuesta
-13,VARIOS,Varios,Varios,sólo en 1915,propuesta
-14,TAPICES,Tapices,Tapices,sólo en 1916 (la secretaría de sección es Tapices y alfombras),propuesta
-15,CHALES DE VICUÑA,Chales y echarpes,Chales y echarpes,"misma serie que Chales y echarpes: el catálogo de 1916 numera 1-22 acá y sigue 23-41 allá (págs. 27-29)",propuesta
-16,CHALES Y ECHARPES,Chales y echarpes,Chales y echarpes,"su numeración (23-41) sigue la de Chales de vicuña (1-22)",propuesta
-17,TEJIDOS EN GENERAL,Tejidos en general,Tejidos varios,su par de 1915 es Tejidos varios,propuesta
-18,JERGONES,Jergones y sobrepelos,Pellones y jergones,"misma serie que Jergones y sobrepelos: numera 26-36 y la otra 1-25, aunque se imprime antes (págs. 29-31)",propuesta
-19,JERGONES Y SOBREPELOS,Jergones y sobrepelos,Pellones y jergones,su numeración (1-25) sigue en Jergones (26-36),propuesta
-20,ALFORJAS,Alforjas,Alforjas,sólo en 1916,propuesta
-21,PELLONES,Pellones,Pellones y jergones,su par de 1915 es Pellones y jergones,propuesta
-22,MANTELES DE TÉ,Manteles de té,Manteles de té,sólo en 1916,propuesta
-23,ENCAJES Y RANDAS,Encajes y randas,Encajes,"pese al nombre, ninguna de sus 148 obras dice randa y 50 dicen encaje: las randas de 1916 van en Randas. Su par de 1915 es Encajes varios",propuesta
-24,BORDADOS EN BLANCO Y DESHILADOS,Bordados en blanco y deshilados,Bordados y deshilados,junta lo que en 1915 eran Deshilado y Bordado en blanco y seda,propuesta
+categoria_id,nombre_categoria,categoria_norm,criterio,estado
+1,PAÑUELOS,Pañuelos,sin cambios: sección propia de su catálogo,propuesta
+2,RANDAS,Randas,"sin cambios. No se une con Encajes y randas (1916): en 1916, 79 de las 82 obras de Randas dicen randa y ninguna de Encajes y randas",propuesta
+3,ENCAJES VARIOS,Encajes varios,sin cambios: sección propia de su catálogo,propuesta
+4,DESHILADO,Deshilado,sin cambios: sección propia de su catálogo,propuesta
+5,PONCHOS,Ponchos,sin cambios: sección propia de su catálogo,propuesta
+6,COLCHAS Y FRAZADAS,Colchas y frazadas,sin cambios: sección propia de su catálogo,propuesta
+7,PELLONES Y JERGONES,Pellones y jergones,sin cambios: sección propia de su catálogo,propuesta
+8,ALFOMBRAS,Alfombras,sin cambios: sección propia de su catálogo,propuesta
+9,BORDADO EN BLANCO Y SEDA,Bordado en blanco y seda,sin cambios: sección propia de su catálogo,propuesta
+10,CROCHET,Crochet,sin cambios: sección propia de su catálogo,propuesta
+11,TEJIDOS VARIOS,Tejidos varios,sin cambios: sección propia de su catálogo,propuesta
+12,RAFFIA IMITACIÓN CON HOJAS DE CAÑA,Raffia imitación con hojas de caña,sin cambios: sección propia de su catálogo,propuesta
+13,VARIOS,Varios,sin cambios: sección propia de su catálogo,propuesta
+14,TAPICES,Tapices,sin cambios: sección propia de su catálogo,propuesta
+15,CHALES DE VICUÑA,Chales y echarpes,misma serie que Chales y echarpes: el catálogo de 1916 numera 1-22 acá y sigue 23-41 allá (págs. 27-29),propuesta
+16,CHALES Y ECHARPES,Chales y echarpes,su numeración (23-41) sigue la de Chales de vicuña (1-22),propuesta
+17,TEJIDOS EN GENERAL,Tejidos en general,sin cambios: sección propia de su catálogo,propuesta
+18,JERGONES,Jergones y sobrepelos,"misma serie que Jergones y sobrepelos: numera 26-36 y la otra 1-25, aunque se imprime antes (págs. 29-31)",propuesta
+19,JERGONES Y SOBREPELOS,Jergones y sobrepelos,su numeración (1-25) sigue en Jergones (26-36),propuesta
+20,ALFORJAS,Alforjas,sin cambios: sección propia de su catálogo,propuesta
+21,PELLONES,Pellones,sin cambios: sección propia de su catálogo,propuesta
+22,MANTELES DE TÉ,Manteles de té,sin cambios: sección propia de su catálogo,propuesta
+23,ENCAJES Y RANDAS,Encajes y randas,"sin cambios. No se une con Randas: pese al nombre, ninguna de sus 148 obras dice randa y 50 dicen encaje; las dos secciones numeran desde 1",propuesta
+24,BORDADOS EN BLANCO Y DESHILADOS,Bordados en blanco y deshilados,sin cambios: sección propia de su catálogo,propuesta

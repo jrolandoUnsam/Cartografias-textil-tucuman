@@ -33,7 +33,6 @@ de qué página salió cada registro.
 | `categoria_id` | int | identificador |
 | `nombre_categoria` | texto | sección del concurso (PAÑUELOS, RANDAS, ALFOMBRAS, …) tal como la imprimió el catálogo |
 | `categoria_norm` | texto | sección normalizada dentro de su catálogo: une las secciones que son una misma serie numerada (`04g`, `decisiones/categorias.csv`) |
-| `categoria_comparable` | texto | sección equivalente para comparar 1915 con 1916 (Tejidos varios / Tejidos en general → Tejidos varios) |
 | `criterio` | texto | por qué se normalizó así, con la evidencia del catálogo |
 | `estado` | texto | `propuesta` (sin revisar por la dirección) o `validada` |
 
@@ -65,6 +64,9 @@ de qué página salió cada registro.
 | `fuera_de_concurso` | texto | `sí` si el catálogo dice "(fuera de concurso)": se exhibió pero no compitió. Lo agrega `04f_marcas_objetos` leyendo `OBJETO`, que no se toca |
 | `creacion_autora` | texto | `sí` si el catálogo dice "creación de la autora" (diseño propio). Ídem |
 | `foto_album` | texto | foto del álbum de 1915 donde aparece la obra (`data/raw/images/albumes/1915-album-version-2/`). La agrega `04c` desde `decisiones/album_1915.csv` |
+| `tecnicas` | texto | técnicas de la obra, separadas por `; ` (un subtipo lleva también su técnica general: "Encaje; Encaje de bolillos"). Lectura del proyecto con los términos revisados por LM (`decisiones/tecnicas_materiales.csv`); vacío = sin técnica indicada. La agrega `04h` |
+| `tecnica_origen` | texto | de dónde sale la técnica: `texto de la obra`, `categoría del catálogo` (el texto no nombra ninguna y se usa la de la sección, `familias_categorias.csv`) o `sin dato`. Ídem |
+| `materiales` | texto | materiales que nombra el texto de la obra o la sección del catálogo (Chales de vicuña → Vicuña), separados por `; `. Ídem |
 
 ### Hoja `Premios` (102 filas)
 
@@ -138,6 +140,7 @@ mayúsculas)**. Dentro de un mismo grupo se conserva el orden del catálogo
 |---|---|
 | `Concurso` / `Año` | del concurso |
 | `Expositora/Expositor` | nombre normalizado |
+| `Género` | `Expositoras.Género` (F, M o I = institución) |
 | `Ciudad` | `nombre_ciudad` histórico; si la ciudad es desconocida se muestra la provincia |
 | `Provincia` | `nombre_provincia` de esa ciudad |
 | `Lugar en el documento` | la procedencia tal como la escribió el catálogo ("SANTIAGO", "SANTIAGO DEL ESTERO"), de `objetos_crudos.csv`. Para cotejar contra la fuente |
@@ -146,13 +149,47 @@ mayúsculas)**. Dentro de un mismo grupo se conserva el orden del catálogo
 | `lat_provincia` / `lon_provincia` | coordenadas de la capital de su provincia |
 | `Categoría` | nombre de categoría |
 | `Categoría normalizada` | `Categorías.categoria_norm` |
-| `Categoría comparable` | `Categorías.categoria_comparable` |
 | `N.º de orden` | `ORDEN` |
 | `Descripción del objeto` | `OBJETO` |
+| `Técnicas` | `Objetos.tecnicas` |
+| `Técnica según` | `Objetos.tecnica_origen` |
+| `Materiales` | `Objetos.materiales` |
 | `Fuera de concurso` | `Objetos.fuera_de_concurso` |
 | `Creación de la autora` | `Objetos.creacion_autora` |
 | `Foto del álbum` | `Objetos.foto_album` |
 | `Imagen del catálogo` | escaneo de la página del catálogo donde figura el objeto (`Objetos.imagen`); la foto de la pieza va en `Foto del álbum` |
+
+## `data/processed/redes.xlsx`
+
+La arma `05a_redes`: la red de participación (expositoras, instituciones, lugares,
+concursos y comisión). Se abre en Gephi o con networkx; el explorador la dibuja en la
+pestaña Red.
+
+### Hoja `Nodos` (543 filas)
+| campo | descripción |
+|---|---|
+| `id` | identificador del nodo: `e` + `persona_id` (expositora o institución), `l:…` (lugar), `k1915` / `k1916` (concurso), `m:…` (integrante de la comisión) |
+| `tipo` | `expositora`, `institución`, `lugar`, `concurso` o `comisión` |
+| `nombre` | nombre normalizado |
+| `persona_id` | → `Expositoras.persona_id` (expositoras e instituciones) |
+| `concursos` | años en que expuso, separados por `, ` |
+| `obras` / `premios` | cantidad de obras y de premios de la expositora; en los lugares, obras que proceden de ahí |
+| `lugar` / `provincia` | procedencia de la expositora (la de más obras); en los lugares, sólo la provincia |
+| `expositoras` | en los lugares, cuántas expositoras proceden de ahí |
+
+### Hoja `Aristas` (1.190 filas)
+| campo | descripción |
+|---|---|
+| `origen` / `destino` | `id` de los dos nodos |
+| `tipo` | `participa` (→ concurso), `procede` (→ lugar), `organiza` (comisión → concurso), `es_expositora` (comisión → su registro de expositora), `mismo_apellido` (expositoras de la misma localidad con un apellido en común), `apellido_comision` (expositora ↔ comisión con un apellido poco frecuente en común) |
+| `peso` | obras (en `participa` y `procede`) |
+| `detalle` | rol en la comisión, o qué apellido comparten y de qué tipo ("propio = de casada"…) |
+| `confianza` | `dato` (lo dicen las fuentes), `media` o `baja` (hipótesis de parentesco por apellido; baja si 5 o más registros llevan ese apellido) |
+
+### Hoja `Grupos` (61 filas)
+Componentes conexas de las aristas `mismo_apellido`: `grupo`, `personas`, `apellidos`,
+`lugar`, `confianza`, `persona_ids` (separados por `;`) e `integrantes`. Es una pista de
+parentesco, no un dato.
 
 ## `data/interim/duplicados_expositoras_candidatos.xlsx`
 
@@ -214,7 +251,7 @@ La lee `05c_explorador`: cada mención aparece en la ficha de la persona, en sus
 
 Integrantes de la comisión organizadora y jurado de cada concurso (25 filas, cargadas a
 mano del catálogo y el fallo de 1915, del catálogo de 1916 y de El Orden). Una fila por
-persona, año y rol. La lee `05c_explorador`.
+persona, año y rol. La leen `05a_redes` y `05c_explorador`.
 
 | campo | descripción |
 |---|---|

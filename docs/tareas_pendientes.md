@@ -34,11 +34,10 @@
 - [ ] **Orán (73): ¿Tucumán o Salta?** Hoy queda sin punto ni provincia (LM 9-10). Evidencia para la reunión: El Orden, 10/10/1916, "La randa tucumana" (hoja "no PRENSA-EL ORDEN" del crudo): Padilla, de gira por la provincia, visita Orán, "antiguo centro de la randera tucumana"; quien transcribió anotó "no queda claro si se refiere a Salta". En el catálogo hay 24 randas de Orán. No se decide nada sin LM. *LM 2026-10-28: se inclina por Tucumán, pero no hay información suficiente; escribió al archivo de Tucumán que le pasó la nota y espera respuesta.*
 - [ ] **Una pieza del álbum de 1915 sin obra en el catálogo** (`album_1915.csv`).
   El "Poncho" (DSCN5158) queda sin identificar (LM 2026-10-28: "es super difícil de
-  identificar"). Sigue sin respuesta: "17 encaje ñanduty"
-  (DSCN5168): la n.º 17 de Encajes varios es una colcha de filet, y las de ñandutí son
-  Encajes varios n.º 18 y Pañuelos n.º 19. ¿El número de la foto es 18 o 19? (no lo
-  contestó el 28/10). Cotejo con el escaneo (DSCN5179): la n.º 17 es "Colcha, punto filet"
-  de Ignacia Puparelli y la 18 "Tapete, encaje ñanduty" de María R. Coletti.
+  identificar"). Candidato posible, sin confirmar: el "poncho de hilo blanco" de Mercedes
+  Pacheco (Ponchos n.º 5); la foto muestra un poncho claro con un emblema bordado en el
+  centro. *(2026-10-30: el "17 encaje ñanduty" (DSCN5168) quedó resuelto: es Pañuelos
+  n.º 19 de Lastenia Barrero, objeto 17; ver bitácora.)*
 - [ ] **Prensa y Archivo Padilla (`docs/relevamiento_prensa_archivo.md`):** ¿de qué
   documento salen las fotos del "álbum de 1915"? El Archivo Padilla tiene un boletín del
   concurso interprovincial de julio de 1916 que "tiene las fotos del álbum", y su
@@ -125,9 +124,11 @@
 
 - [x] *(2026-10-25)* **30 pares candidatos que nunca se revisaron ni se mandaron a LM.**
   Julián: no son la misma persona (mismo apellido y otro nombre de pila, del umbral 80);
-  no se mandan y quedan sin anotar a propósito. `03_candidatos` marca 50 pares "sin
-  fusionar y sin revisar": esos 30, 12 con un id que ya se fusionó por otro camino y 8
-  de `pares_sin_revisar.xlsx` sin respuesta. Las respuestas "no se unen" de LM para
+  no se mandan y quedan sin anotar a propósito. `03_candidatos` marca 48 pares "sin
+  fusionar y sin revisar" (eran 50 hasta las respuestas de LM del 28/10). Contados el
+  30/10: 12 tienen un id que ya se fusionó por otro camino (entre ellos 366/485), 7 se le
+  preguntaron a LM y no respondió (los del punto de arriba, sin 366/485) y 29 nunca se le
+  mandaron. Las respuestas "no se unen" de LM para
   227/315 y 93/360 se cargaron como `Hecho = False`, y los pares de Delina 161/255 y
   209/264 pasaron de `True` a `False` (el comentario decía "separadas").
 - [ ] **Nombres de la auditoría 2026-10-25 para confirmar con LM:** "Sta. Sandés"
@@ -154,10 +155,6 @@ Hoy son **441 F, 9 M y 8 I** (institución) sobre 458 filas.
   - `RANDAS` y `ENCAJES Y RANDAS` (1916) **no** se unen: las dos numeran desde 1 y
     ninguna de las 148 obras de Encajes y randas dice "randa" (50 dicen encaje), mientras
     que 79 de las 82 de Randas sí.
-  - *Entre concursos* (`categoria_comparable`): Tejidos varios = Tejidos en general;
-    Encajes varios = Encajes y randas → "Encajes"; Pellones y jergones = Pellones +
-    Jergones + Jergones y sobrepelos; Deshilado + Bordado en blanco y seda = Bordados en
-    blanco y deshilados → "Bordados y deshilados". ¿Sirve para comparar 1915 con 1916?
   - Mientras tanto, el explorador sigue usando la categoría del catálogo.
 
 ## Revisión completa del 28/10 (ver `outputs/controles_calidad.md`)
@@ -177,8 +174,9 @@ Hoy son **441 F, 9 M y 8 I** (institución) sobre 458 filas.
 - [ ] **Varones:** el decreto del 1/3/1916 abre el concurso a "toda mujer radicada";
   hay 9 expositores varones, 7 de ellos en 1916 (casi todos con pellones) y 2 en 1915
   (Jesús Rueda, colchas; Eleuterio Gramajo, pellones). Confirmar con LM que el
-  género está bien y, si es así, es un dato para comentar.
-- [x] *(2026-10-28, cotejo DSCN5185)* **Mercedes Pereyra (premio 62)** vinculada a María
+  género está bien y, si es así, es un dato para comentar. Para 1915, la Separata de LM
+  (2024, p. 6) dice, siguiendo el discurso de Prebisch, que "todas las expositoras eran
+  mujeres".- [x] *(2026-10-28, cotejo DSCN5185)* **Mercedes Pereyra (premio 62)** vinculada a María
   Mercedes Pereira: el catálogo de 1915 dice "María M. Pereira (Ciudad)", Crochet n.º 17,
   y el fallo premia la "No. 17 de Mercedes Pereyra (Ciudad)" en crochet. Confirmado.
 - [x] *(2026-10-28, escaneo DSCN5256-5257)* **Accésits de 1915:** el fallo impreso dice
@@ -234,11 +232,18 @@ Hoy son **441 F, 9 M y 8 I** (institución) sobre 458 filas.
   (sigma.js, ForceAtlas2), con técnicas, materiales y categorías como nodos opcionales y
   una segunda red de lugares y técnicas. Quienes repitieron y la comisión ya estaban.
 
-## IA sobre fotos (objetivo 6 del formulario)
+## IA sobre fotos (objetivo específico 3 del formulario)
 
-- [ ] **Faltan las imágenes en esta máquina.** `data/raw/images/` sólo tiene el README;
-  para empezar hay que copiar los álbumes de 1915 (`albumes/1915-album-version-2/`,
-  DSCN5149–5170) desde el resguardo.
+El formulario pide "explorar estrategias de vinculación entre registros textuales e
+imágenes históricas para la identificación de los textiles presentes en imágenes" (y, en
+el plan de trabajo, una "vinculación preliminar entre imágenes y registros escritos").
+Hecho hasta ahora: cada obra está vinculada con la página escaneada del catálogo donde
+figura (981/981, `04c`) y 13 de las 14 piezas del álbum de 1915 están identificadas a mano
+en el catálogo (`album_1915.csv`). La identificación automática en las fotos no se hizo.
+
+- [x] *(2026-10-30: están en `data/raw/images/`: 22 fotos del álbum en
+  `albumes/1915-album-version-2/` y 80 escaneos de catálogos)* Copiar las imágenes a esta
+  máquina.
 - [ ] Prueba acotada: con un modelo abierto de detección/segmentación, contar las piezas
   de cada foto del álbum y comparar contra `decisiones/album_1915.csv` (piezas
   transcriptas por LM). Registrar modelo, versión y parámetros (Lineamientos, art. 19) y
@@ -317,10 +322,18 @@ Hoy son **441 F, 9 M y 8 I** (institución) sobre 458 filas.
   `vendor/leaflet/` (Leaflet copiado, sin CDN) y `datos/` (CSV, xlsx normalizado y
   GeoJSON de lugares para descargar). El mapa de Folium no se publica: el explorador
   ya lo cubre.
-- [ ] **`outputs/` tiene una sola salida.** Los objetivos específicos 2 y 3 del
-  formulario son visualizaciones/mapas interactivos y vinculación registros↔imágenes.
-  El 3 está resuelto (`04c`: 981/981 objetos con imagen). Del 2 hoy sale
-  `outputs/mapa_procedencias.html`, que genera la etapa `05b_mapa` del pipeline; las demás
-  figuras del EDA (categorías, comparación entre concursos, provincias, expositoras)
-  viven sólo dentro del notebook y no se exportan. Falta decidir si se exportan desde
-  el notebook o si se agrega una etapa `07_figuras` al pipeline.
+- [ ] **Figuras del EDA.** El objetivo específico 2 del formulario (visualizaciones y
+  mapas interactivos) lo cubren `outputs/explorador.html` y `outputs/mapa_procedencias.html`.
+  Las figuras del EDA (categorías, comparación entre concursos, provincias, expositoras)
+  viven sólo dentro del notebook. Falta decidir si se exportan (por ejemplo, para el
+  informe). El objetivo 3 está en *IA sobre fotos*.
+- [x] *(2026-10-30)* **RENATRA (tarea 4 del formulario):** no se cruza con RENATRA
+  (Julián). La base de tejedores ya no está en línea ni en la Wayback Machine (LM, 28/10).
+  Dejarlo explicado en el informe final.
+- [x] *(2026-10-30)* **Género en el explorador** (el formulario pide explorar "por
+  género"): filtro Género (Mujeres, Varones, Instituciones) y gráfico "Mujeres, varones e
+  instituciones" en Análisis › Expositoras, desde la columna `Género` de `Expositoras`.
+  El CSV descargable suma la columna.
+- [x] *(2026-10-30)* **Técnicas y materiales en la base:** la etapa `04h` los deja en
+  `Objetos` (`tecnicas`, `tecnica_origen`, `materiales`) y en la vista plana, con las
+  mismas reglas que el explorador (`_tecnicas.py`). Antes sólo existían en el explorador.

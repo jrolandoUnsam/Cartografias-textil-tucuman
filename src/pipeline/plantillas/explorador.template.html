@@ -10,7 +10,7 @@
 __LEAFLET_CSS__
 </style>
 <style>
-/* Layout: cabecera editorial con epígrafe del discurso de 1915; barra de pestañas fija; explorador a pantalla completa; sección de fuentes y método; pie. Motivo: la guarda (franja de rombos de los tejidos andinos). Índigo y grana, los tintes del oficio. */
+/* Layout: cabecera editorial con epígrafe del discurso de 1915; barra de pestañas fija; explorador a pantalla completa. Motivo: la guarda (franja de rombos de los tejidos andinos). Índigo y grana, los tintes del oficio. */
 :root {
   --paper: #f4f5f9;
   --card: #ffffff;
@@ -240,7 +240,7 @@ details.vt[open] > summary { margin-bottom: 0.6rem; }
 .ded { border-bottom: 1px dotted currentColor; cursor: help; }
 .cit { display: block; font-size: 0.74rem; color: var(--ink2); margin-top: 0.1rem; }
 
-/* comparación de concursos, prensa, fuentes, citas */
+/* comparación de concursos, prensa */
 .cmp { width: 100%; border-collapse: collapse; font-size: 0.86rem; }
 .cmp th, .cmp td { text-align: left; vertical-align: top; padding: 0.5rem 0.8rem 0.5rem 0; border-top: 1px solid var(--rule); }
 .cmp thead th { border-top: 0; font-family: var(--serif); font-size: 1.05rem; font-weight: 600; }
@@ -254,7 +254,6 @@ details.vt[open] > summary { margin-bottom: 0.6rem; }
 .cfmt { display: inline-flex; gap: 2px; padding: 3px; background: var(--chip); border-radius: 999px; margin-bottom: 0.6rem; }
 .cfmt button { border: 0; background: transparent; border-radius: 999px; padding: 0.25rem 0.8rem; font-size: 0.8rem; color: var(--ink2); }
 .cfmt button[aria-pressed="true"] { background: var(--card); color: var(--ink); box-shadow: 0 1px 2px rgba(20, 28, 60, 0.14); }
-.cita .quote.bib { font-family: ui-monospace, "Cascadia Mono", Consolas, monospace; font-size: 0.8rem; white-space: pre-wrap; }
 
 /* panorama */
 .v-pan { overflow-y: auto; padding: clamp(1rem, 2vw, 1.7rem); display: flex; flex-direction: column; gap: 1.6rem; }
@@ -335,28 +334,9 @@ button.prow:hover { background: var(--chip); }
 .hb i { display: block; height: 0.55rem; border-radius: 0 4px 4px 0; background: var(--indigo); min-width: 2px; }
 .hb b { font-weight: 500; min-width: 2ch; text-align: right; }
 
-/* fuentes y método */
-.metodo { border-top: 1px solid var(--rule); background: color-mix(in srgb, var(--chip) 45%, var(--paper)); padding: clamp(2.2rem, 5vw, 4rem) var(--gut); }
-.m-in { max-width: var(--wrap); margin: 0 auto; }
-.metodo h2 { font-size: clamp(1.8rem, 3vw, 2.6rem); margin-bottom: 0.4rem; }
-.m-lede { max-width: 62ch; color: var(--ink2); margin: 0 0 2rem; font-size: 1rem; }
-.mgrid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2.2rem clamp(2rem, 6vw, 6rem); }
-.mgrid h3, .cita h3 { font-family: var(--serif); font-size: 1.3rem; font-weight: 600; margin: 0 0 0.6rem; }
-.mgrid ul, .mgrid ol { margin: 0; padding-left: 1.1rem; display: flex; flex-direction: column; gap: 0.55rem; font-size: 0.9rem; }
-.mgrid dl { margin: 0; display: flex; flex-direction: column; gap: 0.7rem; font-size: 0.9rem; }
-.mgrid dt { font-weight: 600; }
-.mgrid dd { margin: 0.1rem 0 0; color: var(--ink2); }
-.st { display: inline-block; margin-right: 0.4rem; padding: 0 0.5rem; border-radius: 999px; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.04em; background: var(--chip); color: var(--ink2); }
-.st.ok { background: color-mix(in srgb, var(--indigo) 14%, var(--card)); color: var(--indigo); }
-.st.wip { background: color-mix(in srgb, var(--gold) 20%, var(--card)); color: var(--ink); }
-.cita { margin-top: 2.4rem; padding-top: 1.6rem; border-top: 1px solid var(--rule); display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: 1.6rem clamp(2rem, 6vw, 6rem); }
-.cita p { margin: 0 0 0.8rem; font-size: 0.9rem; }
-.cita .quote { font-family: var(--serif); font-size: 1.02rem; padding: 0.9rem 1.1rem; background: var(--card); border: 1px solid var(--rule); border-radius: 0.7rem; }
-.foot { padding: 1.4rem var(--gut) 2rem; border-top: 1px solid var(--rule); font-size: 0.8rem; color: var(--ink2); }
-.foot-in { max-width: var(--wrap); margin: 0 auto; display: flex; flex-wrap: wrap; gap: 0.4rem 2rem; justify-content: space-between; }
 
 @media (max-width: 980px) {
-  .mast-in, .cita, .mgrid { grid-template-columns: 1fr; }
+  .mast-in { grid-template-columns: 1fr; }
   .cred { grid-template-columns: 1fr; }
   .epi { padding-top: 3.2rem; }
   .nav-in { padding-block: 0.4rem; }
@@ -433,7 +413,6 @@ button.prow:hover { background: var(--chip); }
       <button type="button" role="tab" id="tab-art" data-view="art" aria-selected="false" aria-controls="view-art">Expositoras</button>
       <button type="button" role="tab" id="tab-red" data-view="red" aria-selected="false" aria-controls="view-red">Red</button>
     </div>
-    <a class="navlink" href="#metodo" data-scroll="metodo">Fuentes y método</a>
   </div>
 </nav>
 
@@ -444,6 +423,7 @@ button.prow:hover { background: var(--chip); }
       <label class="sel" id="s-prize"><span>Premio</span><div class="box"><select id="f-prize"><option value="all">Todas las obras</option><option value="yes">Solo premiadas</option></select></div></label>
       <label class="sel" id="s-tec"><span>Técnica</span><div class="box"><select id="f-tec"></select></div></label>
       <label class="sel" id="s-mat"><span>Material</span><div class="box"><select id="f-mat"></select></div></label>
+      <label class="sel" id="s-gen"><span>Género</span><div class="box"><select id="f-gen"></select></div></label>
       <label class="sel" id="s-provincia"><span>Provincia</span><div class="box"><select id="f-provincia"></select></div></label>
       <label class="sel" id="s-year"><span>Año</span><div class="box"><select id="f-year"><option value="both">1915 y 1916</option><option value="1915">Solo 1915</option><option value="1916">Solo 1916</option></select></div></label>
       <div class="search"><label class="lb" for="q">Buscar</label><input id="q" type="search" placeholder="Nombre u objeto: vicuña, Cuello" autocomplete="off"></div>
@@ -497,7 +477,7 @@ button.prow:hover { background: var(--chip); }
 
       <section class="asec" id="a-tec" aria-labelledby="h-tec">
         <h2 id="h-tec">Técnicas<span class="nof">No usa los filtros de técnica y provincia</span></h2>
-        <p class="mxnote">Qué técnicas hay entre las obras enviadas desde cada provincia. La provincia es la procedencia de la expositora, no el origen de la técnica. La técnica la infiere el proyecto del texto de cada obra (ver Fuentes y método); no es la categoría del catálogo, que es la que usan las tablas de lugares y las fichas. Una obra puede combinar técnicas, por eso las filas no suman el total; los subtipos van debajo de su técnica general y también cuentan en ella. En rojo, las obras premiadas. Seleccione una celda, una fila o una columna para ver las obras.</p>
+        <p class="mxnote">Qué técnicas hay entre las obras enviadas desde cada provincia. La provincia es la procedencia de la expositora, no el origen de la técnica. La técnica la infiere el proyecto del texto de cada obra; no es la categoría del catálogo, que es la que usan las tablas de lugares y las fichas. Una obra puede combinar técnicas, por eso las filas no suman el total; los subtipos van debajo de su técnica general y también cuentan en ella. En rojo, las obras premiadas. Seleccione una celda, una fila o una columna para ver las obras.</p>
         <div class="tec-head">
           <div class="mxv"><div class="cfmt" role="group" aria-label="Qué muestra cada celda"><button type="button" data-act="mxv" data-v="n" aria-pressed="true">Obras</button><button type="button" data-act="mxv" data-v="pct" aria-pressed="false">% de la provincia</button><button type="button" data-act="mxv" data-v="exp" aria-pressed="false">Expositoras</button></div><span class="mxhint" id="mxhint"></span></div>
           <div class="scale" aria-hidden="true"><span id="scalemin"></span> <i></i> <span id="scalemax"></span><span class="d"><s></s> premiadas</span></div>
@@ -511,7 +491,7 @@ button.prow:hover { background: var(--chip); }
         <h2 id="h-exp">Expositoras</h2>
         <div class="pgrid">
           <div class="pc"><h3>Cuántas obras presentó cada expositora</h3><p class="mxnote" id="p-dist-n"></p><div id="p-dist"></div><details class="vt"><summary>Ver tabla</summary><div id="t-dist"></div></details></div>
-          <div class="pc"><h3>Personas e instituciones</h3><p class="mxnote">Obras de cada grupo y cuántas fueron premiadas (solo hay premios de 1915). Al lado de cada grupo, cuántos nombres lo forman.</p><div id="p-inst"></div><details class="vt"><summary>Ver tabla</summary><div id="t-inst"></div></details></div>
+          <div class="pc"><h3>Mujeres, varones e instituciones</h3><p class="mxnote">Obras de cada grupo y cuántas fueron premiadas (solo hay premios de 1915). Al lado de cada grupo, cuántos nombres lo forman. El género se infiere del nombre: los registros no lo dicen.</p><div id="p-inst"></div><details class="vt"><summary>Ver tabla</summary><div id="t-inst"></div></details></div>
         </div>
         <div class="pc"><h3>Mismo apellido, mismo lugar<span class="nof">No usa los filtros</span></h3><p class="mxnote">Grupos de expositoras que comparten un apellido y un lugar de procedencia. Es una pista para investigar parentescos (madres e hijas, hermanas, familias de tejedoras), no un dato: las fuentes no dicen quién era pariente de quién. Con un apellido muy común en la base (González, Pérez, López) la pista es más débil. Seleccione un nombre para ver su ficha. <button type="button" class="linkbtn" data-act="gored">Ver la red completa</button></p><div id="c-redes"></div></div>
         <div class="pc"><h3>Quiénes expusieron más</h3><p class="mxnote">Expositoras según la cantidad de obras. Seleccione un nombre para ver su ficha, o un encabezado para ordenar.</p><div id="c-people"></div></div>
@@ -573,87 +553,6 @@ button.prow:hover { background: var(--chip); }
 
 </section>
 
-<section class="metodo" id="metodo" aria-labelledby="m-t">
-  <div class="m-in">
-    <h2 id="m-t">Fuentes y método</h2>
-    <p class="m-lede">Qué documentos alimentan el explorador, cómo se construyó la base y qué límites tiene esta versión de trabajo.</p>
-    <div class="mgrid">
-      <article>
-        <h3>Fuentes</h3>
-        <ul>
-          <li><b>Primer Concurso Provincial de Tejidos y Bordados</b>, Tucumán, 1915, en el edificio del Museo y Archivos: listado de expositoras y fallo del jurado. El catálogo anuncia la muestra del 24 de septiembre al 3 de octubre; según El Orden, la inauguración se postergó al 29 de septiembre, y los premios se entregaron el 3 de octubre.</li>
-          <li><b>Concurso Interprovincial de Tejidos y Bordados</b>, Tucumán, julio de 1916, en la Escuela Pedagógica Sarmiento: catálogo de expositoras (Imp. Prebisch y Violetto).</li>
-          <li>Decretos del Poder Ejecutivo provincial del 21 de julio de 1915 y del 1.º de marzo de 1916, y discurso de Amalia Prebisch del 3 de octubre de 1915.</li>
-          <li>Marco: Larisa Mantovani, «Entre el tejido de vicuña y el encaje de Burano», <i>Separata</i> n.º 34, CIAAL, UNR, 2024.</li>
-        </ul>
-      </article>
-      <article>
-        <h3>Cómo se construye la base</h3>
-        <ul>
-          <li><span class="st ok">Hecho</span>Transcripción de los catálogos, el fallo y los decretos a una planilla.</li>
-          <li><span class="st ok">Hecho</span>Normalización manual de nombres de expositoras y de ciudades, con identificadores, y vinculación de los premios de 1915 con su obra (los casos abiertos se indican en los límites de esta versión).</li>
-          <li><span class="st ok">Hecho</span>Separación de las filas del catálogo de 1916 que agrupaban varias piezas, y vinculación de cada obra con la página escaneada del catálogo.</li>
-          <li><span class="st wip">En esta versión</span>El explorador se genera desde la tabla normalizada con el pipeline del proyecto. Las técnicas y los materiales siguen una lista de términos revisada por la dirección del proyecto; parte de las coordenadas son provisorias. Los límites se explican más abajo.</li>
-          <li><span class="st wip">En esta versión</span>Redes de participación: quiénes expusieron en los dos concursos, la comisión organizadora y los grupos con el mismo apellido en el mismo lugar, que son pistas de parentesco y no datos. La pestaña Red dibuja la red completa con sigma.js y graphology; la disposición es ForceAtlas2, el algoritmo de Gephi, con semilla fija para que el dibujo sea el mismo en cada apertura.</li>
-          <li><span class="st">Pendiente</span>Georreferenciación completa de las localidades y confirmación, con otras fuentes, de los parentescos que sugieren los apellidos.</li>
-        </ul>
-      </article>
-      <article>
-        <h3>Definiciones</h3>
-        <dl>
-          <div><dt>Obra</dt><dd>Cada pieza del catálogo. Las filas de 1916 que agrupaban varias piezas de una misma expositora se separaron, una obra por número de orden.</dd></div>
-          <div><dt>Expositora</dt><dd>Persona o institución que figura en el catálogo. No siempre es posible afirmar que sea la autora de la pieza.</dd></div>
-          <div><dt>Fuera de concurso</dt><dd>Obra que el catálogo marca "(fuera de concurso)": se exhibió pero no compitió por premios.</dd></div>
-          <div><dt>Creación de la autora</dt><dd>Obra que el catálogo presenta como "creación de la autora", es decir, de diseño propio.</dd></div>
-          <div><dt>Técnica</dt><dd>Procedimiento mencionado en el catálogo, como randa, deshilado, crochet o telar. Una obra puede tener más de una. Los subtipos (Encaje de bolillos, Bordado Richelieu) cuentan también en su técnica general. Las fuentes no dicen de dónde proviene cada técnica: el mapa y los cruces por provincia muestran desde dónde se envió la obra, no el origen del saber.</dd></div>
-          <div><dt>Material</dt><dd>Fibra nombrada en el texto de la obra (lana, vicuña, seda, hilo, hoja de caña) o en la sección del catálogo (Chales de vicuña). La mayoría de las obras no lo dice; "Lana" no distingue oveja, llama o alpaca, e "Hilo" no distingue lino de algodón.</dd></div>
-          <div><dt>Procedencia</dt><dd>Lugar desde donde se presentó la obra, tal como figura en el catálogo ("procedencia según el catálogo"), y su forma normalizada con el nombre actual ("lugar"). Puede no ser donde vivía o aprendió la tejedora.</dd></div>
-          <div><dt>Provincia</dt><dd>La de la localidad de procedencia, la misma que muestra el mapa. Las agrupaciones de localidades en zonas y de secciones del catálogo en tipos de obra quedaron fuera de esta versión hasta revisarlas con la dirección del proyecto.</dd></div>
-          <div><dt>Dato deducido</dt><dd>Lo que no figura tal cual en la fuente va <span class="ded">subrayado con puntos</span>, con la explicación al pasar el mouse: la ubicación deducida de las otras obras de la expositora y el vínculo de un premio con su obra cuando falta confirmarlo (≈). Las técnicas son siempre una lectura del proyecto, no un dato del catálogo.</dd></div>
-          <div><dt>Obra premiada</dt><dd>Obra con premio, accésit o premio de estímulo en el fallo del jurado. Los montos se transcriben tal como figuran en el fallo.</dd></div>
-        </dl>
-      </article>
-      <article>
-        <h3>Dónde están los documentos</h3>
-        <ul id="repos"></ul>
-      </article>
-      <article>
-        <h3>Lo que el archivo no dice</h3>
-        <p class="dim" style="margin-top:0">Los catálogos y el fallo registran lo que a la organización le interesaba registrar. Estos silencios condicionan cualquier lectura de la base:</p>
-        <ul id="sesgo"></ul>
-      </article>
-      <article>
-        <h3>Límites de esta versión</h3>
-        <ul id="limits"></ul>
-      </article>
-    </div>
-    <div class="cita">
-      <div>
-        <h3>Cómo citar</h3>
-        <div class="cfmt" role="group" aria-label="Formato de la cita"><button type="button" data-act="citefmt" data-f="apa" aria-pressed="true">APA</button><button type="button" data-act="citefmt" data-f="chicago" aria-pressed="false">Chicago</button><button type="button" data-act="citefmt" data-f="bib" aria-pressed="false">BibTeX</button></div>
-        <p class="quote" id="citetxt">Rolando, J. (2026). <i>Cartografías del textil argentino: explorador de los concursos de tejidos y bordados de Tucumán, 1915-1916</i> [versión de trabajo del <span class="ver"></span>]. Dirección: Larisa Mantovani; tutoría: Agustín Moro. Proyecto Interdisciplinario CIAI-LCD, Universidad Nacional de San Martín.</p>
-        <button type="button" class="btn" data-act="cite">Copiar cita</button>
-        <h3 style="margin-top:1.6rem">Datos</h3>
-        <p>La base completa, una fila por obra (incluye los premios sin obra en el catálogo), con la fuente de cada una. CSV separado por punto y coma, UTF-8, listo para abrir en Excel.</p>
-        <button type="button" class="btn pri" data-act="csv">Descargar la base (CSV)</button>
-        <button type="button" class="btn" data-act="dic">Descargar el diccionario (CSV)</button>
-      </div>
-      <div>
-        <h3>Gobernanza de datos</h3>
-        <p>El corpus es histórico y de dominio público. La evaluación de riesgos propone el Nivel 1 (riesgo mínimo) según los Lineamientos de Gobernanza de Datos e IA de la UNSAM; se cierra en conjunto con la dirección del proyecto.</p>
-        <p class="dim">Mapa base: Esri World Street Map (© Esri y proveedores). Los límites que muestra son los actuales.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<footer class="foot">
-  <div class="foot-in">
-    <span>Cartografías del textil argentino · versión de trabajo del <span class="ver"></span></span>
-    <a href="#top" data-scroll="top">Volver al inicio ↑</a>
-  </div>
-</footer>
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/graphology/0.25.4/graphology.umd.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/graphology-library@0.8.0/dist/graphology-library.min.js"></script>
@@ -678,13 +577,13 @@ const DATA = __DATA__;
   R.forEach((r) => { if (!byPk.has(r.pk)) byPk.set(r.pk, []); byPk.get(r.pk).push(r); });
 
   const state = {
-    view: "map", year: "both", prize: false, tec: "", mat: "", provincia: "", q: "", flows: false, prov: true, mxv: "n", procv: "n",
+    view: "map", year: "both", prize: false, tec: "", mat: "", gen: "", provincia: "", q: "", flows: false, prov: true, mxv: "n", procv: "n",
     place: null, person: byPk.has(DATA.person0) ? DATA.person0 : null,
     cell: null, more: false, moreRes: false, morePeople: false,
     cuaAll: {},
   };
   // lo que va en la URL (#clave=valor&...) para poder compartir un enlace a una consulta
-  const HASHED = ["view", "year", "prize", "tec", "mat", "provincia", "q", "person"];
+  const HASHED = ["view", "year", "prize", "tec", "mat", "gen", "provincia", "q", "person"];
   const DEFAULTS = Object.fromEntries(HASHED.map((k) => [k, state[k]]));
   let toks = [], lastList = [];
 
@@ -692,6 +591,7 @@ const DATA = __DATA__;
     if (!noYear && state.year !== "both" && r.y !== +state.year) return false;
     if (state.prize && !r.pz) return false;
     if (state.mat && !mats(r).includes(state.mat)) return false;
+    if (state.gen && gen(r) !== state.gen) return false;
     if (!noTZ) {
       if (state.tec && !r.tec.includes(state.tec)) return false;
       if (state.provincia && r.pv !== state.provincia) return false;
@@ -712,6 +612,10 @@ const DATA = __DATA__;
   // la técnica más precisa de la obra: "Encaje de bolillos", sin repetir "Encaje"
   const hojas = (r) => r.tec.filter((t) => t !== "sin" && !r.tec.some((u) => TECG[u] === t));
   const mats = (r) => r.mat || [];
+  // género de la expositora (hoja Expositoras): F, M o I (institución); "sd" si la obra
+  // figura sólo en el fallo y su expositora no está en la base
+  const GEN = { F: "Mujeres", M: "Varones", I: "Instituciones", sd: "Sin dato" };
+  const gen = (r) => r.g || "sd";
   // técnicas generales por cantidad, cada una seguida de sus subtipos; las imprecisas al final
   function ordTec(ks, n) {
     const por = (a, b) => (SOFT.includes(a) - SOFT.includes(b)) || (n[b] - n[a]);
@@ -729,9 +633,9 @@ const DATA = __DATA__;
 
   const LK = { ord: "por número de orden", nom: "por nombre", man: "decisión manual", "nom?": "a confirmar", sv: "sin obra en el listado", pen: "pendiente de vincular" };
   function tsv(rows) {
-    const head = ["Año", "Expositora", "Nombre en la fuente", "Procedencia según el catálogo", "Lugar", "Provincia", "Categoría", "Objeto", "Técnicas", "Materiales", "N.º de orden", "Fuera de concurso", "Creación de la autora", "Foto del álbum", "Premio", "Monto ($)", "Vínculo premio-obra", "Ubicación", "Fuente"];
+    const head = ["Año", "Expositora", "Género", "Nombre en la fuente", "Procedencia según el catálogo", "Lugar", "Provincia", "Categoría", "Objeto", "Técnicas", "Materiales", "N.º de orden", "Fuera de concurso", "Creación de la autora", "Foto del álbum", "Premio", "Monto ($)", "Vínculo premio-obra", "Ubicación", "Fuente"];
     const clean = (s) => String(s == null ? "" : s).replace(/[\t\r\n]+/g, " ").trim();
-    return [head].concat(rows.map((r) => [r.y, r.n, r.nv, r.po, P[r.pl].n, PRV[r.pv], r.c, r.o, hojas(r).map((t) => TEC[t]).join("; "), mats(r).map((m) => MAT[m]).join("; "), r.ord, r.fc ? "sí" : "", r.ca ? "sí" : "", r.fa || "",
+    return [head].concat(rows.map((r) => [r.y, r.n, GEN[gen(r)], r.nv, r.po, P[r.pl].n, PRV[r.pv], r.c, r.o, hojas(r).map((t) => TEC[t]).join("; "), mats(r).map((m) => MAT[m]).join("; "), r.ord, r.fc ? "sí" : "", r.ca ? "sí" : "", r.fa || "",
       (r.pz || []).map((z) => z.t).join("; "), (r.pz || []).map((z) => z.m).join("; "), (r.pz || []).map((z) => LK[z.lk]).join("; "), r.li ? "deducida de sus otras obras" : "", r.cit].map(clean))).map((l) => l.join("\t")).join("\n");
   }
   function copyText(txt, btn) {
@@ -766,18 +670,21 @@ const DATA = __DATA__;
     const tk = ordTec(Object.keys(TEC).filter((t) => tc[t]), tc);
     $("f-tec").innerHTML = '<option value="">Todas</option>' + tk.map((t) => `<option value="${t}">${TECG[t] ? "   " : ""}${esc(TEC[t])} (${tc[t]})</option>`).join("");
     $("f-mat").innerHTML = '<option value="">Todos</option>' + Object.keys(MAT).filter((m) => mc[m]).sort((a, b) => mc[b] - mc[a]).map((m) => `<option value="${m}">${esc(MAT[m])} (${mc[m]})</option>`).join("");
+    const gc = {};
+    R.forEach((r) => (gc[gen(r)] = (gc[gen(r)] || 0) + 1));
+    $("f-gen").innerHTML = '<option value="">Todos</option>' + Object.keys(GEN).filter((g) => gc[g]).map((g) => `<option value="${g}">${GEN[g]} (${gc[g]})</option>`).join("");
     $("f-provincia").innerHTML = '<option value="">Todas</option>' + PORD.filter((k) => pc[k]).map((k) => `<option value="${k}">${esc(PRV[k])} (${pc[k]})</option>`).join("");
   }
   function syncControls() {
-    $("f-prize").value = state.prize ? "yes" : "all"; $("f-tec").value = state.tec; $("f-mat").value = state.mat; $("f-provincia").value = state.provincia; $("f-year").value = state.year;
-    const dflt = { prize: !state.prize, tec: !state.tec, mat: !state.mat, provincia: !state.provincia, year: state.year === "both" };
+    $("f-prize").value = state.prize ? "yes" : "all"; $("f-tec").value = state.tec; $("f-mat").value = state.mat; $("f-gen").value = state.gen; $("f-provincia").value = state.provincia; $("f-year").value = state.year;
+    const dflt = { prize: !state.prize, tec: !state.tec, mat: !state.mat, gen: !state.gen, provincia: !state.provincia, year: state.year === "both" };
     Object.keys(dflt).forEach((k) => $("s-" + k).classList.toggle("on", !dflt[k]));
     $("reset").hidden = Object.values(dflt).every(Boolean) && !state.q;
   }
   $("f-prize").onchange = (e) => { state.prize = e.target.value === "yes"; resetPaging(); render(); };
-  ["tec", "mat", "provincia", "year"].forEach((k) => { $("f-" + k).onchange = (e) => { state[k] = e.target.value; resetPaging(); render(); }; });
+  ["tec", "mat", "gen", "provincia", "year"].forEach((k) => { $("f-" + k).onchange = (e) => { state[k] = e.target.value; resetPaging(); render(); }; });
   $("q").oninput = () => { state.q = $("q").value; resetPaging(); render(); };
-  $("reset").onclick = () => { state.prize = false; state.tec = ""; state.mat = ""; state.provincia = ""; state.year = "both"; state.q = ""; $("q").value = ""; resetPaging(); render(); };
+  $("reset").onclick = () => { state.prize = false; state.tec = ""; state.mat = ""; state.gen = ""; state.provincia = ""; state.year = "both"; state.q = ""; $("q").value = ""; resetPaging(); render(); };
   $("flows").onchange = () => { state.flows = $("flows").checked; render(); };
   $("prov").onchange = () => { state.prov = $("prov").checked; render(); };
   function resetPaging() { state.more = false; state.moreRes = false; state.morePeople = false; state.cuaAll = {}; }
@@ -810,10 +717,6 @@ const DATA = __DATA__;
       const l = byPk.get(state.person) || [], cod = /^\d+$/.test(state.person) ? `, n.º ${state.person}` : "";
       copyText(`«${l[0].n}» [ficha de ${l[0].inst ? "institución" : "expositora"}${cod}]. En Rolando, J. (2026). Cartografías del textil argentino: explorador de los concursos de tejidos y bordados de Tucumán, 1915-1916 [versión de trabajo del ${DATA.version}]. Proyecto Interdisciplinario CIAI-LCD, Universidad Nacional de San Martín. ${location.href}`, a);
     }
-    else if (act === "cite") copyText($("citetxt").textContent, a);
-    else if (act === "citefmt") citar(a.dataset.f);
-    else if (act === "csv") bajar("cartografias_textil_obras.csv", deTsv(tsv(R)));
-    else if (act === "dic") bajar("cartografias_textil_diccionario.csv", [["Columna", "Descripción"]].concat(DIC));
     else if (act === "place") { state.place = a.dataset.id; state.more = false; render(); }
     else if (act === "sort") { const [k, d] = SORT[a.dataset.t]; SORT[a.dataset.t] = [a.dataset.k, k === a.dataset.k ? -d : a.dataset.n ? -1 : 1]; render(); }
     else if (act === "mxv") { state.mxv = a.dataset.v; render(); }
@@ -845,7 +748,7 @@ const DATA = __DATA__;
     if (["pan", "tec", "cua"].includes(h)) { state.view = "ana"; return; }
     if (["pan", "tec", "cua"].includes(p.get("view"))) p.set("view", "ana");
     const ok = { view: (v) => VIEWS.includes(v), year: (v) => ["both", "1915", "1916"].includes(v),
-      tec: (v) => v in TEC, mat: (v) => v in MAT, provincia: (v) => v in PRV, person: (v) => byPk.has(v) };
+      tec: (v) => v in TEC, mat: (v) => v in MAT, gen: (v) => v in GEN, provincia: (v) => v in PRV, person: (v) => byPk.has(v) };
     HASHED.forEach((k) => {
       if (!p.has(k)) return;
       const v = p.get(k);
@@ -1082,6 +985,7 @@ const DATA = __DATA__;
     if (state.prize && !r.pz) return false;
     if (state.tec && !r.tec.includes(state.tec)) return false;
     if (state.mat && !mats(r).includes(state.mat)) return false;
+    if (!skip.includes("gen") && state.gen && gen(r) !== state.gen) return false;
     if (!skip.includes("provincia") && state.provincia && r.pv !== state.provincia) return false;
     for (const t of toks) if (!r._s.includes(t)) return false;
     return true;
@@ -1144,8 +1048,8 @@ const DATA = __DATA__;
     $("p-prz").innerHTML = fkE.length ? fkE.map((f) => `<div class="prow"${tip(`${f}: ${plural(pf[f].n, "premio", "premios")}, $ ${fmt(pf[f].m)}`)}><span>${esc(f)}</span><span class="pbars">${pbar(pf[f].n, mxE, "var(--madder)", `${fmt(pf[f].n)} · $ ${fmt(pf[f].m)}`)}</span></div>`).join("") :
       '<p class="empty">Ningún premio con estos filtros.</p>';
 
-    // 4) personas e instituciones
-    const grp = [["Personas", rs.filter((r) => !r.inst)], ["Instituciones", rs.filter((r) => r.inst)]].filter(([, l]) => l.length), mxF = Math.max(1, ...grp.map(([, l]) => l.length));
+    // 4) mujeres, varones e instituciones (género de la hoja Expositoras)
+    const grp = Object.keys(GEN).map((g) => [GEN[g], rs.filter((r) => gen(r) === g)]).filter(([, l]) => l.length), mxF = Math.max(1, ...grp.map(([, l]) => l.length));
     $("p-inst").innerHTML = grp.length ? `<div class="plg">${sw("var(--madder)", "Premiadas")}${sw("var(--indigo)", "Sin premio")}</div>` + grp.map(([g, l]) => {
       const m = nPrized(l), k = new Set(l.map((r) => r.pk)).size;
       return `<div class="prow"><span>${g} <span class="dim">· ${fmt(k)}</span></span>` + pstack([[m, "var(--madder)", `${g}: ${plural(m, "obra premiada", "obras premiadas")}`], [l.length - m, "var(--indigo)", `${g}: ${plural(l.length - m, "obra sin premio", "obras sin premio")}`]],
@@ -1177,7 +1081,7 @@ const DATA = __DATA__;
 
   /* ---------------------------------------------------------------- análisis: todo junto */
   function renderAnalisis(rs) {
-    const act = [state.prize && "Solo premiadas", state.tec && "Técnica: " + TEC[state.tec], state.mat && "Material: " + MAT[state.mat], state.provincia && "Provincia: " + PRV[state.provincia],
+    const act = [state.prize && "Solo premiadas", state.tec && "Técnica: " + TEC[state.tec], state.mat && "Material: " + MAT[state.mat], state.gen && "Género: " + GEN[state.gen], state.provincia && "Provincia: " + PRV[state.provincia],
       state.year !== "both" && "Año: " + state.year, state.q.trim() && `Búsqueda: «${state.q.trim()}»`].filter(Boolean);
     $("afil").innerHTML = `<b>Filtros activos</b>` + (act.length ? act.map((t) => `<span>${esc(t)}</span>`).join("") + '<button type="button" class="linkbtn" data-act="resetf">Limpiar filtros</button>' :
       `<span>Ninguno: ${plural(R.length, "obra", "obras")}</span>`) + `<small>Todos los gráficos los usan, salvo donde se indica.</small>`;
@@ -1194,38 +1098,6 @@ const DATA = __DATA__;
     document.querySelectorAll(".asec").forEach((sec) => io.observe(sec));
   }
 
-  /* ---------------------------------------------------------------- descarga de datos */
-  const DIC = [
-    ["Año", "Año del concurso (1915 o 1916)"],
-    ["Expositora", "Nombre normalizado de la expositora (persona o institución)"],
-    ["Nombre en la fuente", "Cómo la escribió el catálogo o, si la obra no figura en él, el fallo"],
-    ["Procedencia según el catálogo", "Lugar tal como figura en la fuente"],
-    ["Lugar", "Localidad normalizada (o \"provincia (solo provincia)\" si no se conoce la localidad)"],
-    ["Provincia", "Provincia de la localidad de procedencia"],
-    ["Categoría", "Sección del catálogo (o del fallo)"],
-    ["Objeto", "Descripción de la obra en el catálogo"],
-    ["Técnicas", "Técnicas que nombra el texto del objeto, con los términos revisados por la dirección del proyecto (lectura del proyecto, no del catálogo)"],
-    ["Materiales", "Materiales que nombra el texto del objeto o la sección del catálogo (lectura del proyecto)"],
-    ["N.º de orden", "Número de la obra en su sección del catálogo"],
-    ["Fuera de concurso", "\"sí\" si el catálogo la marca fuera de concurso"],
-    ["Creación de la autora", "\"sí\" si el catálogo la presenta como creación de la autora"],
-    ["Foto del álbum", "Foto del álbum de 1915 donde aparece la obra"],
-    ["Premio", "Premio del fallo del jurado de 1915"],
-    ["Monto ($)", "Monto del premio, en pesos de la época"],
-    ["Vínculo premio-obra", "Cómo se vinculó el premio con la obra del catálogo"],
-    ["Ubicación", "\"deducida de sus otras obras\" si el lugar no figura así en la fuente"],
-    ["Fuente", "Documento, página impresa y escaneo de donde sale la obra"],
-  ];
-  function bajar(nombre, filas) {
-    const cel = (v) => { const t = String(v == null ? "" : v); return /[;"\n]/.test(t) ? '"' + t.replace(/"/g, '""') + '"' : t; };
-    const txt = "\ufeff" + filas.map((l) => l.map(cel).join(";")).join("\r\n");
-    const a = document.createElement("a");
-    a.href = URL.createObjectURL(new Blob([txt], { type: "text/csv;charset=utf-8" }));
-    a.download = nombre; document.body.appendChild(a); a.click(); a.remove();
-    setTimeout(() => URL.revokeObjectURL(a.href), 1000);
-  }
-  const deTsv = (t) => t.split("\n").map((l) => l.split("\t"));
-  document.querySelectorAll(".ver").forEach((el) => { el.textContent = DATA.version; });
 
   /* ---------------------------------------------------------------- expositoras */
   // una línea por cada lugar que 04d dedujo: "El catálogo dice «Catamarca» en 33 obras; …"
@@ -1279,20 +1151,6 @@ const DATA = __DATA__;
       `<div class="acts"><button type="button" class="btn" data-act="copyficha">Copiar obras</button><button type="button" class="btn" data-act="copylink">Copiar enlace a esta ficha</button><button type="button" class="btn" data-act="citeficha">Copiar cita de esta ficha</button></div>` +
       `<p class="foot">${nm.length ? "También figura como: " + esc(nm.join("; ")) + ". " : ""}La ficha muestra todas las obras de este nombre, sin aplicar los filtros.</p>`;
   }
-
-  /* ---------------------------------------------------------------- límites (dependen de los datos) */
-  (function limits() {
-    const S = DATA.stats, fuera = S.fuera, pen = S.pendientes, amb = S.dudosos;
-    const sin = R.filter((r) => r.tec[0] === "sin").length, cat = R.filter((r) => r.ts === "c" && r.tec[0] !== "sin").length;
-    const unp = R.filter((r) => P[r.pl].lat == null).length, prv = R.filter((r) => P[r.pl].t === "prov").length;
-    $("limits").innerHTML = [
-      `Los nombres de expositoras están unificados con las fusiones revisadas por la dirección; quedan algunos pares por confirmar, así que una misma persona todavía puede figurar dos veces.`,
-      `Premios de 1915: ${S.premios - fuera - pen} de ${S.premios} están vinculados con su obra, en su mayoría por categoría y número de orden, confirmados con el nombre${amb ? `; ${amb} ${amb === 1 ? "está marcado" : "están marcados"} con ≈ porque el vínculo falta confirmar` : ""}. ${fuera} figuran en el fallo pero no en el listado de expositoras (fuera de catálogo) y se muestran como obras aparte${pen ? `; ${pen} ${pen === 1 ? "está pendiente" : "están pendientes"} de vincular y también se muestran aparte` : ""}. Los premios de 1916 no están cargados.`,
-      `Técnicas y materiales: se leen del texto de cada obra con una lista de términos revisada por la dirección del proyecto (octubre de 2026); el texto del catálogo se muestra tal cual. ${sin} de ${fmt(R.length)} obras quedan sin técnica indicada, y en ${cat} la técnica sale solo de la categoría. Algunos términos siguen en revisión (Esmirna, «a bastones», teñido e hilado).`,
-      `Ubicación: ${fmt(unp)} obras proceden de lugares todavía sin coordenadas ni provincia, y ${fmt(prv)} se ubican solo por la provincia (de localidad desconocida o todavía sin ubicar). Las coordenadas se cargaron a mano y algunas son tentativas.`,
-      `Los límites provinciales son los actuales, no los de 1915-1916.`,
-    ].map((t) => `<li>${esc(t)}</li>`).join("");
-  })();
 
   /* ---------------------------------------------------------------- 1915 y 1916 lado a lado */
   (function comparar() {
@@ -1613,40 +1471,6 @@ const DATA = __DATA__;
         return `<tr><td><b>${esc(n)}</b></td><td>${rol(cs, 1915)}</td><td>${rol(cs, 1916)}</td><td>${v}</td></tr>`;
       }).join("") + `</tbody></table>`;
   })();
-
-  /* ---------------------------------------------------------------- fuentes y método */
-  (function fuentes() {
-    const repo = (v) => (!v || /^s\/d/.test(v) ? "Repositorio a confirmar" : v);
-    $("repos").innerHTML = DATA.fuentes.map((f) => `<li><b>${esc(f.descripcion.replace(/: \d.*$/, ""))}</b>. ${esc(repo(f.repositorio))}${/\d/.test(f.signatura) ? `; signatura ${esc(f.signatura)}` : ""}.</li>`).join("");
-    const nombres = new Map(R.map((r) => [r.pk, r]));
-    const ps = [...nombres.values()];
-    const inst = ps.filter((r) => r.inst).length, sra = ps.filter((r) => /^(Sra|Sta|Srta)\.?\s/.test(r.n)).length;
-    const omit = ps.filter((r) => /…|\.\.\./.test(r.nv)).length, sd0 = R.filter((r) => r.po === "s/d").length, prov = R.filter((r) => P[r.pl].t === "prov").length;
-    $("sesgo").innerHTML = [
-      `Expone quien figura en el catálogo, que no siempre es quien tejió. ${inst} expositoras son instituciones (asilos, escuelas, congregaciones) y la prensa cuenta que una alfombra del Colegio de la Sagrada Familia fue "tejida por las alumnas", aunque figura a nombre de su directora.`,
-      `Algunas mujeres aparecen sin nombre propio: ${sra} solo como "Sra." o "Sta." más un apellido, y ${omit === 1 ? "una con el nombre de pila omitido en el impreso" : omit + " con el nombre de pila omitido en el impreso"}. Muchas figuran con el apellido del marido, lo que dificulta reconocerlas en otros documentos.`,
-      `El género de cada expositora se infiere del nombre: los registros no lo dicen.`,
-      `${fmt(sd0)} ${sd0 === 1 ? "obra no indica" : "obras no indican"} procedencia, y ${fmt(prov)} solo la provincia.`,
-      `El fallo de 1915 premia ${DATA.stats.sin_obra} obras que no figuran en el catálogo de expositoras, y, según la transcripción, anuncia nueve accésits pero lista ocho.`,
-    ].map((t) => `<li>${esc(t)}</li>`).join("");
-  })();
-  const CITAS = {
-    apa: () => `Rolando, J. (2026). <i>Cartografías del textil argentino: explorador de los concursos de tejidos y bordados de Tucumán, 1915-1916</i> [versión de trabajo del ${esc(DATA.version)}]. Dirección: Larisa Mantovani; tutoría: Agustín Moro. Proyecto Interdisciplinario CIAI-LCD, Universidad Nacional de San Martín.`,
-    chicago: () => `Rolando, Julián. 2026. <i>Cartografías del textil argentino: explorador de los concursos de tejidos y bordados de Tucumán, 1915-1916</i>. Versión de trabajo del ${esc(DATA.version)}. Dirigido por Larisa Mantovani, con tutoría de Agustín Moro. Proyecto Interdisciplinario CIAI-LCD, Universidad Nacional de San Martín.`,
-    bib: () => esc(`@misc{rolando2026cartografias,
-  author       = {Rolando, Julián},
-  title        = {Cartografías del textil argentino: explorador de los concursos de tejidos y bordados de {Tucumán}, 1915-1916},
-  year         = {2026},
-  howpublished = {Proyecto Interdisciplinario CIAI-LCD, Universidad Nacional de San Martín},
-  note         = {Versión de trabajo del ${DATA.version}. Dirección: Larisa Mantovani; tutoría: Agustín Moro}
-}`),
-  };
-  function citar(f) {
-    $("citetxt").innerHTML = CITAS[f]();
-    $("citetxt").classList.toggle("bib", f === "bib");
-    document.querySelectorAll('[data-act="citefmt"]').forEach((b) => b.setAttribute("aria-pressed", b.dataset.f === f));
-  }
-  citar("apa");
 
   /* ---------------------------------------------------------------- arranque */
   buildSelects();

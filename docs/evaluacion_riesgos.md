@@ -14,6 +14,8 @@ estudiante.
   visibilizarlas: la difusión es un objetivo, no un riesgo de privacidad.
 - Sin modelos predictivos ni perfilamiento. Si se incorpora vinculación de imágenes
   con IA, se reevalúa.
+- No se cruza con RENATRA (tarea 4 del formulario; decisión del 30/10/2026). Ese cruce
+  habría sumado datos de artesanas vivas y obligaría a reevaluar el nivel.
 
 ## Sesgos a tener presentes (no algorítmicos, de las fuentes y del recorte)
 
@@ -21,14 +23,17 @@ estudiante.
   invisibiliza la producción que no llegó a la exposición.
 - **Sesgo de transcripción:** nombres y localidades con grafías inciertas
   (`J`/`I`, `Panci`/`Panei`). Las decisiones de fusión quedan documentadas y son
-  reversibles (`revision_duplicados.xlsx`, `docs/bitacora.md`).
+  reversibles (`data/interim/decisiones/fusiones_expositoras.csv`, con el comentario de
+  la revisión que las originó, y `docs/bitacora.md`).
 - **Sesgo de georreferenciación:** asignar un topónimo actual a una localidad de 1915
   puede forzar equivalencias. `nombre_ciudad` (histórico) se conserva siempre aparte
   de `nombre_ciudad_hoy`.
-- **Atribución de género:** se infiere del nombre de pila. Las instituciones llevan `F`
-  por convención y todavía no tienen una marca propia en los datos (decisión pendiente
-  con la dirección); el explorador y el EDA las reconocen por el comienzo del nombre
-  (`INSTITUCION` en `src/pipeline/_util.py`).
+- **Atribución de género:** se infiere del nombre de pila; los registros no lo dicen. Las
+  instituciones llevan `I`, una marca propia en lugar de género (pedido de LM, 28/10),
+  asignada a las que reconoce la regla `INSTITUCION` (`src/pipeline/_util.py`). El
+  explorador permite filtrar por género y lo aclara en "Lo que el archivo no dice".
+- **Parentescos:** las coincidencias de apellido (`05a_redes`) se muestran como pistas,
+  nunca como datos, porque las fuentes no registran parentescos.
 
 ## Resguardo
 

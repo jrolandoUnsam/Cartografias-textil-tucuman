@@ -17,11 +17,12 @@ Correr todo: `python run_pipeline.py` (desde la raíz). Desde una etapa en adela
 | `04d_coordenadas` | tabla_normalizada + `decisiones/coordenadas_ciudades.csv` | tabla_normalizada con la ubicación de cada ciudad tomada del CSV: `nombre_ciudad_hoy`, `nombre_provincia`, `lat`/`lon`, `lat_provincia`/`lon_provincia`, `precision`, `nota` — 61/77 ciudades con coordenada, 70/77 con punto de provincia. En `Objetos`, las obras con sólo la provincia pasan a la localidad de la misma expositora en esa provincia (`ciudad_id_catalogo` guarda la original) | funciona |
 | `04e_premios` | `tabla_normalizada_dedup.xlsx` (Premios de la tabla manual) + tabla_normalizada (Expositoras, Objetos) + `decisiones/premios_manual.csv` | tabla_normalizada con la hoja `Premios` curada: un premio por fila, con su obra del catálogo, `Estado` (vinculado / fuera de catálogo / pendiente), `Vínculo` y `Nota` — 102 premios: 89 vinculados y 13 fuera de catálogo | funciona |
 | `04f_marcas_objetos` | tabla_normalizada (Objetos) | tabla_normalizada con `Objetos.fuera_de_concurso` (2) y `Objetos.creacion_autora` (12), leídas del texto del catálogo, que no se toca | funciona |
-| `04g_categorias` | tabla_normalizada (Categorías) + `decisiones/categorias.csv` | tabla_normalizada con `Categorías.categoria_norm` (24 secciones → 22: une Chales de vicuña con Chales y echarpes y Jergones con Jergones y sobrepelos, que son una misma serie numerada), `categoria_comparable` (16, para comparar 1915 con 1916), `criterio` y `estado`. `nombre_categoria` no se toca. Todo en *propuesta* hasta que lo revise LM | funciona |
-| `05_vista_plana` | tabla_normalizada | `data/processed/vista_plana_tabla_consolidada.xlsx` (981 filas, incluye `lat`/`lon` e `Imagen del catálogo`) | funciona |
+| `04g_categorias` | tabla_normalizada (Categorías) + `decisiones/categorias.csv` | tabla_normalizada con `Categorías.categoria_norm` (24 secciones → 22: une Chales de vicuña con Chales y echarpes y Jergones con Jergones y sobrepelos, que son una misma serie numerada), `criterio` y `estado`. `nombre_categoria` no se toca. Todo en *propuesta* hasta que lo revise LM | funciona |
+| `04h_tecnicas_materiales` | tabla_normalizada (Objetos) + `decisiones/tecnicas_materiales.csv` y `familias_categorias.csv` | tabla_normalizada con `Objetos.tecnicas`, `tecnica_origen` (texto de la obra / categoría del catálogo / sin dato) y `materiales`: 559 obras con técnica en el texto, 127 por la categoría y 295 sin dato; 252 con material. Las reglas están en `_tecnicas.py`, que usa también `05c`, así la base y el explorador dicen lo mismo | funciona |
+| `05_vista_plana` | tabla_normalizada | `data/processed/vista_plana_tabla_consolidada.xlsx` (981 filas, incluye `Género`, `lat`/`lon`, `Técnicas`, `Técnica según`, `Materiales` e `Imagen del catálogo`) | funciona |
 | `05a_redes` | tabla_normalizada + `decisiones/comisiones.csv` | `data/processed/redes.xlsx` (hojas Nodos, Aristas y Grupos, que lee `05c`: expositoras, instituciones, lugares, concursos y comisión; 543 nodos) y `outputs/redes.md`: quiénes repitieron en 1915 y 1916 (32), expositoras por lugar, grupos con el mismo apellido en el mismo lugar y apellidos en común con la comisión. Las aristas de apellido son hipótesis de parentesco, con `confianza` media o baja | funciona |
 | `05b_mapa` | tabla_normalizada | `outputs/mapa_procedencias.html` (folium): capa de ciudades (un círculo por localidad actual: 53 puntos, 817 objetos; el popup avisa si la ubicación es tentativa) y capa "sólo provincia" en la capital, con borde punteado como en el explorador (8 puntos, 126 objetos); 38 objetos sin ubicar. Los ids de folium se reemplazan por correlativos, así dos corridas dan el mismo archivo. Antes lo exportaba `notebooks/04_eda.ipynb`, que ahora sólo lo muestra | funciona |
-| `05c_explorador` | tabla_normalizada (incluida la hoja Premios) + `objetos_crudos.csv` + `decisiones/familias_categorias.csv` | `outputs/explorador.html`: explorador web autocontenido en tres pestañas: mapa, análisis (cifras, los dos concursos, procedencia, técnicas, expositoras y premios, cada gráfico con su tabla) y fichas de expositoras con la fuente de cada obra (catálogo, página impresa y escaneo, de `Paginas_Catalogo`); descarga de la base y del diccionario en CSV; prensa de época (`decisiones/menciones_prensa.csv`) en fichas, obras y lugares; comparación 1915/1916 (hoja `Concursos`) y comisión organizadora y jurado (`decisiones/comisiones.csv`), dónde están los documentos (hoja `Fuentes`) grupos con el mismo apellido en el mismo lugar (hoja `Grupos` de `redes.xlsx`, `05a`) en Análisis y en las fichas, la pestaña Red con el grafo completo (hojas Nodos y Aristas; sigma.js y graphology desde CDN), y lo que el archivo no dice a partir de la plantilla `plantillas/explorador.template.html`. 994 obras = 981 objetos + 13 premios de 1915 sin obra en el catálogo (fuera de catálogo). Técnicas inferidas por reglas sobre el texto del objeto (si no, la de la categoría). La procedencia se agrupa por provincia; zonas y tipos de obra quedaron fuera el 28/10 hasta que los revise LM | funciona |
+| `05c_explorador` | tabla_normalizada (incluida la hoja Premios) + `objetos_crudos.csv` + `decisiones/familias_categorias.csv`, `tecnicas_materiales.csv`, `menciones_prensa.csv` y `comisiones.csv` + `redes.xlsx` | `outputs/explorador.html`: explorador web autocontenido en cuatro pestañas: mapa, análisis (cifras, los dos concursos, procedencia, técnicas, expositoras y premios, cada gráfico con su tabla) y fichas de expositoras con la fuente de cada obra (catálogo, página impresa y escaneo, de `Paginas_Catalogo`); descarga de la base y del diccionario en CSV; prensa de época (`decisiones/menciones_prensa.csv`) en fichas, obras y lugares; comparación 1915/1916 (hoja `Concursos`) y comisión organizadora y jurado (`decisiones/comisiones.csv`), dónde están los documentos (hoja `Fuentes`), grupos con el mismo apellido en el mismo lugar (hoja `Grupos` de `redes.xlsx`, `05a`) en Análisis y en las fichas, la pestaña Red con el grafo completo (hojas Nodos y Aristas; sigma.js y graphology desde CDN), y lo que el archivo no dice. Filtros por premio, técnica, material, género (`Expositoras.Género`), provincia, año y texto. Todo sale de la plantilla `plantillas/explorador.template.html`. 994 obras = 981 objetos + 13 premios de 1915 sin obra en el catálogo (fuera de catálogo). Técnicas y materiales con las mismas reglas que `04h` (`_tecnicas.py`). La procedencia se agrupa por provincia; zonas y tipos de obra quedaron fuera el 28/10 hasta que los revise LM | funciona |
 | `06b_controles` | tabla_normalizada + `objetos_crudos.csv` + candidatos | `outputs/controles_calidad.md`: errores típicos de los catálogos (personas, lugares, números de orden y páginas, premios, transcripción), con id y página escaneada. No corrige nada; lo ya decidido no vuelve a aparecer | funciona |
 | `audit_comentarios` | tabla_normalizada + `tabla_normalizada_manual.xlsx` | `docs/auditoria_comentarios.md` | funciona, fuera de la corrida |
 
@@ -86,7 +87,7 @@ decisión. Está en `git log` (commit `975476e`).
   Franciscana de Nueva Pompeya (82).
 - `album_1915.csv` — transcripción de LM de las fotos del álbum de 1915 (foto, n.º,
   descripción, posición en la foto) y el `objeto_id` de cada pieza, que encontramos
-  cruzando n.º y descripción con el catálogo (12 de 14). Lo lee `04c`, que agrega
+  cruzando n.º y descripción con el catálogo (13 de 14). Lo lee `04c`, que agrega
   `Objetos.foto_album`.
 - `objetos_texto_override.csv` — celdas de texto que la investigadora corrigió a mano
   respecto del catálogo (erratas, singular/plural, mayúsculas) y números de orden
@@ -99,33 +100,36 @@ decisión. Está en `git log` (commit `975476e`).
   por la investigadora, Google Maps), `lat_provincia`/`lon_provincia` (capital),
   `precision` y `nota`. `04d` pisa con esto la copia de la tabla manual. 61/77 con
   punto de ciudad; el resto queda vacío (nombre ambiguo o desconocido).
-- `categorias.csv` — dos niveles de normalización por sección (`categoria_norm` dentro de
-  cada catálogo, `categoria_comparable` entre concursos), con el `criterio` y su
-  evidencia (numeración continua, contenido de las obras) y un `estado` (hoy todo
-  `propuesta`). Lo aplica `04g`.
+- `categorias.csv` — nombre normalizado de cada sección dentro de su catálogo
+  (`categoria_norm`), con el `criterio` y su evidencia (numeración continua, contenido de
+  las obras) y un `estado` (hoy todo `propuesta`). Lo aplica `04g`.
 - `familias_categorias.csv` — por categoría, la técnica que se asume cuando el texto del
   objeto no nombra ninguna (`tecnica_por_categoria`), el material que nombra la sección
   (`material_por_categoria`: Chales de vicuña, Raffia imitación con hojas de caña), que
-  usa `05c_explorador`, y un tipo
+  usan `04h` y `05c` (vía `_tecnicas.py`), y un tipo
   de obra (`familia`) que propuso el proyecto sin respaldo en las fuentes. Desde el 28/10
   el explorador no usa la `familia`: queda para revisar con LM.
 - `zonas_ciudades.csv` — zona de cada `ciudad_id`, propuesta por el proyecto a partir de
   la provincia y la distancia a la capital (columna `criterio`). Desde el 28/10 el
   explorador no la usa: queda para revisar con LM.
 - `tecnicas_materiales.csv` — términos de técnica, proceso y material que aparecen en
-  los textos de las obras, con la revisión de LM del 28/10 (`validacion_LM`). La lee
-  `05c_explorador`: `clave` (vacía = no se usa), `etiqueta`, `grupo` (técnica general de
+  los textos de las obras, con la revisión de LM del 28/10 (`validacion_LM`). La leen
+  `04h` y `05c` (vía `_tecnicas.py`): `clave` (vacía = no se usa), `etiqueta`, `grupo` (técnica general de
   un subtipo), `patron` y `excepto` (expresiones regulares sobre el texto sin tildes y en
   minúsculas). `n_obras` cuenta las obras que cumplen la regla.
 - `menciones_prensa.csv` — qué obras, expositoras y lugares comenta la prensa de época,
-  con la cita textual (ver `docs/relevamiento_prensa_archivo.md`). Todavía no la lee
-  ninguna etapa.
-- `categorias.csv` *(pendiente)* — unificaciones de categorías entre 1915 y 1916.
+  con la cita textual (ver `docs/relevamiento_prensa_archivo.md`). La lee `05c`: la cita
+  aparece en la ficha de la persona, en sus obras y en el panel del lugar.
+- `comisiones.csv` — integrantes de la comisión organizadora y jurado de cada concurso.
+  La leen `05a` (nodos y aristas de comisión) y `05c`.
 
 ## Parámetros
 
-Todos son umbrales de parecido de nombres (0–100, `rapidfuzz`). No hay modelos
-entrenados ni semillas de aleatoriedad. Cada cambio queda en `docs/bitacora.md`.
+Los del pipeline son umbrales de parecido de nombres (0–100, `rapidfuzz`). No hay modelos
+entrenados. La única aleatoriedad es la posición inicial de los nodos en la pestaña Red
+del explorador: ForceAtlas2 (900 iteraciones; 600 en la red de lugares y técnicas) parte
+de posiciones con semilla fija (11; 5 en la red de lugares y técnicas), así el dibujo es el mismo en cada apertura. Cada
+cambio queda en `docs/bitacora.md`.
 
 | parámetro | dónde | valor | para qué |
 |---|---|---|---|

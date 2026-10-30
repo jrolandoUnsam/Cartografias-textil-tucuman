@@ -4,7 +4,7 @@ _Generado por `src/pipeline/audit_comentarios.py` — no editar a mano._
 
 Compara cada decisión anotada a mano contra el estado actual de `data/processed/tabla_normalizada.xlsx`, tomando como línea de base `data/interim/tabla_normalizada_manual.xlsx` (la tabla antes del pipeline).
 
-**Hallazgo global:** respecto de la tabla de partida (`tabla_normalizada_manual.xlsx`) se reasignaron **84 objetos** y desaparecieron **61 filas** de `Expositoras`: las fusiones **sí** están aplicadas. Nombres normalizados: 27.
+**Hallazgo global:** respecto de la tabla de partida (`tabla_normalizada_manual.xlsx`) se reasignaron **84 objetos** y desaparecieron **61 filas** de `Expositoras`: las fusiones **sí** están aplicadas. Nombres normalizados: 31.
 
 **Veredictos:**
 - `SIN HACER` — la fila sigue igual que en la línea de base.
@@ -125,7 +125,7 @@ _Conteo:_ DUDA ABIERTA: 3 · FUSIÓN OK: 51 · FUSIÓN OK (en un tercer id): 8 �
 | 24 | Elvira Araoz | 98 | Eloisa [Elvira] Aráoz | **Coment LM:** Dejamos Eloisa [Elvira] Aráoz | respondida por LM — el nombre que quedó está en 'Nombre real' |
 | 25 | Delia Ruiz | 97 | Delicia [Delia] Ruiz | **Coment LM:** Dejamos Delicia [Delia] Ruiz | respondida por LM — el nombre que quedó está en 'Nombre real' |
 | 28 | Escuela y hogar de obreras de la sociedad de beneficencia | 192 | Escuela y Hogar de Obreras de la Sociedad de Beneficencia | **Mis comentarios:** Misma / **Coment LM:** ok | respondida por LM — el nombre que quedó está en 'Nombre real' |
-| 31 | Clemencia Zelarayan | 193 | Clemencia de Zelarayán | **Mis comentarios:** DE + apellido / **Coment LM:** ok | respondida por LM — el nombre que quedó está en 'Nombre real' |
+| 31 | Clemencia Zelarayan | 193 | Clemencia Zelarayán | **Mis comentarios:** DE + apellido / **Coment LM:** ok | respondida por LM — el nombre que quedó está en 'Nombre real' |
 | 35 | Rosa Valenzuela | 135 | Rosa V. de Valenzuela | **Mis comentarios:** V. Aparentemente apellido o segundo nombre / **Coment LM:** ok | respondida por LM — el nombre que quedó está en 'Nombre real' |
 | 36 | Arsenia Medina | 134 | Arsenia F. Medina | **Mis comentarios:** F. Aparentemente apellido o segundo nombre / **Coment LM:** ok | respondida por LM — el nombre que quedó está en 'Nombre real' |
 | 39 | Lujarda J. de González | — | — (el premio no tiene objeto en el catálogo) | **Mis comentarios:** Lugarda vs Lujarda / **Coment LM:** Lugarda [Lujarda] J. de González | decisión: sin objeto en el catálogo (queda como nota, sin lugar formal aún) |

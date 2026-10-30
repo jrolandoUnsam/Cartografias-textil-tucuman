@@ -5,10 +5,13 @@ hoja `Objetos` a nombres y escribe
 `data/processed/vista_plana_tabla_consolidada.xlsx`
 (hoja 'Objetos - Concursos Tucumán').
 
-Columnas: Concurso, Año, Expositora/Expositor, Ciudad, Provincia, Lugar en el
+Columnas: Concurso, Año, Expositora/Expositor, Género, Ciudad, Provincia, Lugar en el
 documento, ciudad_id, lat, lon, lat_provincia, lon_provincia, Categoría, Categoría
-normalizada, Categoría comparable (las pone `04g`), N.º de orden, Descripción del
-objeto, Fuera de concurso, Creación de la autora, Imagen, Foto del álbum.
+normalizada (la pone `04g`), N.º de orden, Descripción del
+objeto, Técnicas, Técnica según, Materiales (las pone `04h`), Fuera de concurso,
+Creación de la autora, Imagen del catálogo, Foto del álbum.
+
+`Género` es el de la hoja `Expositoras` (F, M o I = institución).
 
 `Foto del álbum` es la foto del álbum de 1915 donde aparece la obra (la pone `04c`).
 
@@ -45,10 +48,10 @@ CRUDOS = INTERIM / "objetos_crudos.csv"  # salida de 01_ingesta: texto original
 SALIDA = PROCESSED / "vista_plana_tabla_consolidada.xlsx"
 HOJA = "Objetos - Concursos Tucumán"
 
-COLS = ["Concurso", "Año", "Expositora/Expositor", "Ciudad", "Provincia",
+COLS = ["Concurso", "Año", "Expositora/Expositor", "Género", "Ciudad", "Provincia",
         "Lugar en el documento", "ciudad_id", "lat", "lon", "lat_provincia", "lon_provincia",
-        "Categoría", "Categoría normalizada", "Categoría comparable", "N.º de orden",
-        "Descripción del objeto", "Fuera de concurso",
+        "Categoría", "Categoría normalizada", "N.º de orden",
+        "Descripción del objeto", "Técnicas", "Técnica según", "Materiales", "Fuera de concurso",
         "Creación de la autora", "Imagen del catálogo", "Foto del álbum"]
 
 
@@ -81,7 +84,8 @@ def construir(fuente=FUENTE) -> pd.DataFrame:
     exp_col = "Nombre" if "Nombre" in exp.columns else exp.columns[1]
 
     df = obj.merge(con[["concurso_id", "anio", "nombre"]], on="concurso_id", how="left")
-    df = df.merge(exp[["persona_id", exp_col]].rename(columns={"persona_id": "expositora_id"}),
+    cols_exp = ["persona_id", exp_col] + (["Género"] if "Género" in exp.columns else [])
+    df = df.merge(exp[cols_exp].rename(columns={"persona_id": "expositora_id"}),
                   on="expositora_id", how="left")
     df = df.merge(cat, on="categoria_id", how="left")
     cols_ciu = ["ciudad_id", "nombre_ciudad", "nombre_provincia"]
@@ -96,6 +100,7 @@ def construir(fuente=FUENTE) -> pd.DataFrame:
         "Concurso": df["nombre"],
         "Año": df["anio"],
         "Expositora/Expositor": df[exp_col],
+        "Género": df["Género"] if "Género" in df.columns else pd.NA,
         "Ciudad": ciudad,
         "Provincia": df["nombre_provincia"],
         "Lugar en el documento": lugar_original(df),
@@ -106,9 +111,11 @@ def construir(fuente=FUENTE) -> pd.DataFrame:
         "lon_provincia": df["lon_provincia"] if "lon_provincia" in df.columns else pd.NA,
         "Categoría": df["nombre_categoria"],
         "Categoría normalizada": df["categoria_norm"] if "categoria_norm" in df.columns else pd.NA,
-        "Categoría comparable": df["categoria_comparable"] if "categoria_comparable" in df.columns else pd.NA,
         "N.º de orden": df["ORDEN"],
         "Descripción del objeto": df["OBJETO"],
+        "Técnicas": df["tecnicas"] if "tecnicas" in df.columns else pd.NA,
+        "Técnica según": df["tecnica_origen"] if "tecnica_origen" in df.columns else pd.NA,
+        "Materiales": df["materiales"] if "materiales" in df.columns else pd.NA,
         "Fuera de concurso": df["fuera_de_concurso"] if "fuera_de_concurso" in df.columns else pd.NA,
         "Creación de la autora": df["creacion_autora"] if "creacion_autora" in df.columns else pd.NA,
         "Imagen del catálogo": df["imagen"] if "imagen" in df.columns else pd.NA,

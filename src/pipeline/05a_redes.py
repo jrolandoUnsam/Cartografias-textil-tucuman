@@ -1,7 +1,7 @@
 """Etapa 05a — Redes de participación: expositoras, instituciones, lugares y comisiones.
 
-Objetivo específico del formulario: "reconstruir redes de participación de artesanas
-e instituciones". Las fuentes no registran vínculos entre personas; lo que sí dicen es
+Objetivo de la versión anterior del formulario: "reconstruir redes de participación de
+artesanas e instituciones". Las fuentes no registran vínculos entre personas; lo que sí dicen es
 quién expuso, desde dónde, en qué concurso y quiénes organizaron. Con eso se arma un
 grafo de cinco tipos de nodo (expositora, institución, lugar, concurso, comisión) y
 estas aristas:

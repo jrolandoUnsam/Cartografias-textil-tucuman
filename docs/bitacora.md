@@ -675,10 +675,16 @@ La evidencia sale del propio catálogo:
 Todo queda en `propuesta` hasta que lo revise LM; el explorador no lo usa todavía. Las
 dos columnas también van a la vista plana.
 
+*Mismo día, más tarde:* Julián decide sacar `categoria_comparable` ("no me gusta esa
+columna"). Se quita del CSV, de la tabla normalizada y de la vista plana; el `criterio`
+pasa a explicar sólo `categoria_norm`. Queda `categoria_norm`.
+
 ## 2026-10-30 — Redes de participación (`05a_redes`)
 
-Objetivo del formulario: "reconstruir redes de participación de artesanas e
-instituciones". Las fuentes no registran vínculos entre personas, así que la primera
+Objetivo de la versión anterior del formulario: "reconstruir redes de participación de
+artesanas e instituciones" (la versión con ajustes no lo dice así; lo más cercano es la
+fila del plan de trabajo "Construcción de relaciones entre expositoras, materiales,
+técnicas, lugares de procedencia y exposiciones"). Las fuentes no registran vínculos entre personas, así que la primera
 versión usa sólo lo que la base sí dice: quién expuso, desde dónde, en qué concurso y
 quiénes organizaron. Sale un grafo (`data/processed/redes.xlsx`, hojas Nodos y Aristas,
 para Gephi o networkx) y un informe (`outputs/redes.md`).
@@ -774,8 +780,53 @@ localidad, y unirlas sería inventar. Sólo "S/d" queda afuera (2 obras). Quedan
 nodos y 1.190 aristas; los 198 pares y 61 grupos por apellido no cambian. La red de
 lugares y técnicas pasa a 59 lugares y 162 conexiones.
 
-## Fuentes del crudo que NO entran a la base
+## 2026-10-30 — Revisión contra el formulario, las Recomendaciones y los Lineamientos
+
+Se releyeron los cuatro PDF del proyecto y se cruzaron con el repositorio. El pipeline
+corre entero en un clon limpio y las salidas se reproducen celda por celda; los dos
+notebooks corren sin errores. Cambios:
+
+- **RENATRA (tarea 4 del formulario):** no se cruza (Julián). La base de tejedores ya no
+  está en línea (LM, 28/10). Va explicado en el informe final y en
+  `evaluacion_riesgos.md` (ese cruce habría sumado datos de personas vivas).
+- **Género en el explorador.** El formulario pide explorar "por género" y el explorador
+  no lo usaba. Ahora tiene el filtro Género (Mujeres, Varones, Instituciones; "Sin dato"
+  para las 5 obras de quien figura sólo en el fallo), el gráfico "Mujeres, varones e
+  instituciones" en Análisis › Expositoras y la columna en el CSV. Sale de
+  `Expositoras.Género`; la marca de institución coincide con la regla `INSTITUCION` en
+  las 57 obras de instituciones.
+- **Técnicas y materiales en la base (`04h_tecnicas_materiales`).** Sólo existían dentro
+  del explorador. Las reglas pasan de `05c` a `_tecnicas.py`, que usan `04h` (columnas
+  `tecnicas`, `tecnica_origen` y `materiales` en `Objetos` y en la vista plana) y `05c`,
+  así la base y el explorador dicen lo mismo. Los datos del explorador no cambian. La
+  vista plana suma también `Género`.
+- **Objetivo 3 (imágenes):** las tareas lo daban por resuelto con el vínculo
+  obra–página escaneada. Lo hecho es eso más 13 de 14 piezas del álbum identificadas a
+  mano; la identificación en las fotos queda pendiente.
+- **Documentación desactualizada, corregida:** pares sin revisar (48, no 50), las
+  imágenes sí están en esta máquina, `outputs/` tiene cuatro salidas, instituciones con
+  `I` en la evaluación de riesgos, `menciones_prensa.csv` sí la lee `05c`, semillas de
+  la pestaña Red en los parámetros, `redes.xlsx` en el diccionario y la cita de las
+  redes de arriba.
+
+## 2026-10-30 — Álbum de 1915: el "17 encaje ñanduty" es Pañuelos n.º 19
+
+La pieza "17 encaje ñanduty" de DSCN5168 queda vinculada al objeto 17, Pañuelos n.º 19
+de Lastenia Barrero, "Encaje ñanduty" (confirmado por Julián). La leyenda del álbum copia
+ese texto (Encajes varios n.º 18 dice "tapete, encaje ñanduty"); la otra pieza cuadrada
+de la foto es Pañuelos n.º 4; y el catálogo imprime los pañuelos 1…16, 19, 18, así que el
+n.º 19 es el 17.º de la lista (nuestra transcripción también lo numeraba 17 hasta el
+12/10). Quedan 13 de 14 piezas vinculadas; falta el poncho de DSCN5158.
+
+Al revisar las 22 fotos del álbum: las 15 que LM no anotó no esconden piezas sin
+identificar. Seis son otras tomas de páginas ya anotadas (5153 y 5154 = 5152; 5155 y
+5157 = 5156; 5160 = 5159; 5169 = 5168); 5149 es el sobre, 5150 el Palacio de Gobierno y
+5151 un grupo de personas; el resto son vistas generales del salón (5163-5167, 5170),
+con piezas sin leyenda.
+
+## Fuentes del crudo que no entran al pipeline
 
 Hojas `no PRENSA-EL ORDEN`, `no ARCHIVO PADILLA`, `no Prensa-Rakow lib`: material de
-contexto (prensa de época, archivo Padilla). Se conservan en el crudo pero no se
-procesan.
+contexto (prensa de época, archivo Padilla). Se conservan en el crudo y ninguna etapa
+las lee. Lo que se tomó de ellas se cargó a mano en `Fuentes`, `Concursos` y
+`decisiones/menciones_prensa.csv` (ver `docs/relevamiento_prensa_archivo.md`).
