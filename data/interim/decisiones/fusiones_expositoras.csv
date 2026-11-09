@@ -1,32 +1,32 @@
 mantener,descartar,origen,nota
-3,442,decidida,Isaura S. de Risso Patrón — 'dejamos A'
-120,12,decidida,"Lastenia Barrero — 'dejamos barrero, fue una figura importante'"
-426,16,decidida,Palmira Contreras — 'dejamos b'
-110,28,decidida,Rosario B. d'Empaire — 'vamos con B'
-52,139 261,decidida,Edelmira C. de Roldán — 'dejamos el A'
-284,54,decidida,Irene C. de Aybar — 'dejamos b'
-82,514,decidida,Ángeles Cuadrados — 'dejamos a'
-323,152,decidida,Mercedes Ruiz de Arzuaga — 'dejamos el b'
-302,191,decidida,María A. de Argañaraz — regla DE (aporta más info)
-219,285,decidida,Amelia N. de Plaza — 'dejamos a'
-283,260,decidida,María Rueda — 'dejamos con tilde'
-281,271,decidida,Escuela Profesional de Mujeres — 'dejamos b'
-492,286,decidida,Superiora del Colegio Santa Rosa de Viterbo — 'dejamos b'
-466,348,decidida,Julia M. Chirou — 'dejamos b'
-400,385,decidida,M. Luisa Roberti — 'dejamos b'
-409,460,decidida,María Abigail Gómez — 'Dejar A'
-333,354,decidida,Margarita García de Esparré — 'dejamos a'
-297,165,decidida,Lorenza de Díaz — 'dejamos con tilde'
-102,450 117,decidida,Escuela y Hogar de Obreras de la Sociedad de Beneficencia — 'Dejar completo: Escuela y Hogar de Obreras de la Sociedad de Beneficencia'
-76,67,decidida,Arsenia F. Medina — 'Vamos con Arsenia F. Medina' (se conserva B)
-121,381 389,decidida,Tránsito Soaje de Ree — 'Dejar el que aporta más info A' (incluye devolver el objeto 689 que había quedado en 381)
-196,313 319,decidida,Concepción de Pérez — 'dejamos con tilde' (completa el movimiento parcial que ya habías hecho a mano)
-4,404,sin_lado,"Dalmira González Sorol — conservamos 4 (6 obj: 4,5,65,66,67,206), se le suma el objeto 710 que tenía la 404"
+3,442,decidida,Isaura S. de Risso Patrón: 'dejamos A'
+120,12,decidida,"Lastenia Barrero: 'dejamos barrero, fue una figura importante'"
+426,16,decidida,Palmira Contreras: 'dejamos b'
+110,28,decidida,Rosario B. d'Empaire: 'vamos con B'
+52,139 261,decidida,Edelmira C. de Roldán: 'dejamos el A'
+284,54,decidida,Irene C. de Aybar: 'dejamos b'
+82,514,decidida,Ángeles Cuadrados: 'dejamos a'
+323,152,decidida,Mercedes Ruiz de Arzuaga: 'dejamos el b'
+302,191,decidida,María A. de Argañaraz: regla DE (aporta más info)
+219,285,decidida,Amelia N. de Plaza: 'dejamos a'
+283,260,decidida,María Rueda: 'dejamos con tilde'
+281,271,decidida,Escuela Profesional de Mujeres: 'dejamos b'
+492,286,decidida,Superiora del Colegio Santa Rosa de Viterbo: 'dejamos b'
+466,348,decidida,Julia M. Chirou: 'dejamos b'
+400,385,decidida,M. Luisa Roberti: 'dejamos b'
+409,460,decidida,María Abigail Gómez: 'Dejar A'
+333,354,decidida,Margarita García de Esparré: 'dejamos a'
+297,165,decidida,Lorenza de Díaz: 'dejamos con tilde'
+102,450 117,decidida,Escuela y Hogar de Obreras de la Sociedad de Beneficencia: 'Dejar completo: Escuela y Hogar de Obreras de la Sociedad de Beneficencia'
+76,67,decidida,Arsenia F. Medina: 'Vamos con Arsenia F. Medina' (se conserva B)
+121,381 389,decidida,Tránsito Soaje de Ree: 'Dejar el que aporta más info A' (incluye devolver el objeto 689 que había quedado en 381)
+196,313 319,decidida,Concepción de Pérez: 'dejamos con tilde' (completa el movimiento parcial que ya habías hecho a mano)
+4,404,sin_lado,"Dalmira González Sorol: conservamos 4 (6 obj: 4,5,65,66,67,206), se le suma el objeto 710 que tenía la 404"
 25,282,sin_lado,Concepción y Rosa Cuello
-55,31,sin_lado,"Ana de Tactagi — regla DE, pero acá la tienen los dos lados"
+55,31,sin_lado,"Ana de Tactagi: regla DE, pero acá la tienen los dos lados"
 461,40,sin_lado,Enriqueta Fronzuti
-70,213,sin_lado,"María Cleofé de Bustamante — regla DE, la tienen los dos lados"
-78,101,sin_lado,"Antonia de Soria — regla DE, la tienen los dos lados"
+70,213,sin_lado,"María Cleofé de Bustamante: regla DE, la tienen los dos lados"
+78,101,sin_lado,"Antonia de Soria: regla DE, la tienen los dos lados"
 86,465,sin_lado,Juana Pérez
 115,222,sin_lado,María Ávila
 126,269,sin_lado,Gregoria Luna
@@ -39,18 +39,18 @@ mantener,descartar,origen,nota
 364,521,sin_lado,Asilo del Buen Pastor
 35,373 407,cluster,María J. de Aguirre
 220,159 308,cluster,Dorotea C. de Lazarte
-234,289 470,cluster,"Sofía C. (de) González — ojo, el nombre difiere en 'de'"
+234,289 470,cluster,"Sofía C. (de) González: ojo, el nombre difiere en 'de'"
 252,59 316,cluster,Lorenza V. (de) Panei
 256,148,decidida,María Salinas con tilde
 301,187,decidida,Lugarda Juárez con tilde
-345,329,decidida,María Slopart de Llaví — 'dejamos con tilde'
-43,479,decidida,"Sara M. Sal — revisión LM 2026-10: ok unir; se conserva la versión más completa"
-344,338,decidida,"María Llaví de Puig — revisión LM 2026-10: ok unir; Ll. = Llaví, se conserva el apellido completo"
-114,56,decidida,"Rosa V. [de] Lescano — revisión LM 2026-10: ok unir, 'vamos con Lescano'; el 'de' viene del catálogo 1915 y del fallo"
-162,296,decidida,"Carmen de Moya — comentario de revision_duplicados: regla DE (mismo nombre, Colalao del Valle 1916, misma página DSCN5214); decisión de unificar que nunca se había cargado"
-83,499,decidida,Hermanas dominicas [asilo] — revisión LM 2026-10-25 (pares sin revisar): 'Ok lo unificamos como Hermanas dominicas [asilo]'
-214,266,decidida,Simona Palacios de Castro — revisión LM 2026-10-25: 'Sí unificamos Simona Palacios de Castro'
-472,346,decidida,Manuela Bartolomé de Graña — revisión LM 2026-10-25: 'ok unificamos Manuela Bartolomé de Graña'
-473,106,decidida,Alfonsa [Cuadrado] de Barceló — revisión LM 2026-10-25: 'ok puede ser Alfonsa [Cuadrado] de Barceló'
-108,485,decidida,"Mamerta Monteros [Escuela Sarmiento 1915] — revisión LM 2026-10-25: 'Sí, deben ser la misma'; sólo en 1915 aparece con la Escuela Sarmiento"
-47,476,decidida,Facunda Cerone [Coronel] — revisión LM 2026-10-25 (premios): en los originales las dos dicen Escuela La Cocha y coincide el deshilado 23
+345,329,decidida,María Slopart de Llaví: 'dejamos con tilde'
+43,479,decidida,"Sara M. Sal: revisión LM 2026-10: ok unir; se conserva la versión más completa"
+344,338,decidida,"María Llaví de Puig: revisión LM 2026-10: ok unir; Ll. = Llaví, se conserva el apellido completo"
+114,56,decidida,"Rosa V. [de] Lescano: revisión LM 2026-10: ok unir, 'vamos con Lescano'; el 'de' viene del catálogo 1915 y del fallo"
+162,296,decidida,"Carmen de Moya: comentario de revision_duplicados: regla DE (mismo nombre, Colalao del Valle 1916, misma página DSCN5214); decisión de unificar que nunca se había cargado"
+83,499,decidida,Hermanas dominicas [asilo]: revisión LM 2026-10-25 (pares sin revisar): 'Ok lo unificamos como Hermanas dominicas [asilo]'
+214,266,decidida,Simona Palacios de Castro: revisión LM 2026-10-25: 'Sí unificamos Simona Palacios de Castro'
+472,346,decidida,Manuela Bartolomé de Graña: revisión LM 2026-10-25: 'ok unificamos Manuela Bartolomé de Graña'
+473,106,decidida,Alfonsa [Cuadrado] de Barceló: revisión LM 2026-10-25: 'ok puede ser Alfonsa [Cuadrado] de Barceló'
+108,485,decidida,"Mamerta Monteros [Escuela Sarmiento 1915]: revisión LM 2026-10-25: 'Sí, deben ser la misma'; sólo en 1915 aparece con la Escuela Sarmiento"
+47,476,decidida,Facunda Cerone [Coronel]: revisión LM 2026-10-25 (premios): en los originales las dos dicen Escuela La Cocha y coincide el deshilado 23

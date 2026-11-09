@@ -3,10 +3,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Cartografías del textil argentino</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&display=swap">
 <style>
+__FUENTES_CSS__
 __LEAFLET_CSS__
 </style>
 <style>
@@ -811,10 +809,10 @@ button.prow:hover { background: var(--chip); }
 </footer>
 <div class="guarda" aria-hidden="true"></div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/graphology/0.25.4/graphology.umd.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/graphology-library@0.8.0/dist/graphology-library.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sigma.js/2.4.0/sigma.min.js"></script>
+<script>__JS_LEAFLET__</script>
+<script>__JS_GRAPHOLOGY__</script>
+<script>__JS_GRAPHOLOGY_LIB__</script>
+<script>__JS_SIGMA__</script>
 <script>
 const DATA = __DATA__;
 // fotos del álbum de 1915 (versiones livianas), por nombre de archivo
@@ -963,7 +961,7 @@ function zReset() { Z.s = 1; Z.x = 0; Z.y = 0; gid("fdlg-img").style.transform =
   // cada mapa base agrega su crédito a este control
   L.control.attribution({ prefix: false, position: "bottomright" }).addAttribution("© Esri y proveedores").addTo(map);
   L.control.scale({ imperial: false, position: "bottomright", maxWidth: 110 }).addTo(map);
-  // Mapa base Esri World Street Map, el mismo de `05b_mapa`. Carga aun con la página abierta
+  // Mapa base Esri World Street Map, el mismo de `13_mapa`. Carga aun con la página abierta
   // como archivo local (tile.openstreetmap.org la bloquea por falta de Referer).
   L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}", { maxZoom: 19, className: "osm" }).addTo(map);
   const dotLayer = L.layerGroup().addTo(map);
@@ -1054,7 +1052,7 @@ function zReset() { Z.s = 1; Z.x = 0; Z.y = 0; gid("fdlg-img").style.transform =
     else if (act === "copylink") copyText(location.href, a);
     else if (act === "citeficha") {
       const l = byPk.get(state.person) || [], cod = /^\d+$/.test(state.person) ? `, n.º ${state.person}` : "";
-      copyText(`«${l[0].n}» [ficha de ${l[0].inst ? "institución" : "expositora"}${cod}]. En Rolando, J. (2026). Cartografías del textil argentino: explorador de los concursos de tejidos y bordados de Tucumán, 1915-1916 [versión de trabajo del ${DATA.version}]. Proyecto Interdisciplinario CIAI-LCD, Universidad Nacional de San Martín. ${location.href}`, a);
+      copyText(`«${l[0].n}» [ficha de ${l[0].inst ? "institución" : "expositora"}${cod}]. En Mantovani, Larisa; Rolando, Julián y Moro, Agustín. (2026). Cartografías del textil argentino: Producción y exhibición a partir de datos históricos e imágenes de archivo [Conjunto de datos de investigación]. CIAP-CONICET / UNSAM. ${location.href}`, a);
     }
     else if (act === "place") { state.place = a.dataset.id; state.more = false; render(); }
     else if (act === "sort") { const [k, d] = SORT[a.dataset.t]; SORT[a.dataset.t] = [a.dataset.k, k === a.dataset.k ? -d : a.dataset.n ? -1 : 1]; render(); }
@@ -1457,7 +1455,7 @@ function zReset() { Z.s = 1; Z.x = 0; Z.y = 0; gid("fdlg-img").style.transform =
 
 
   /* ---------------------------------------------------------------- expositoras */
-  // una línea por cada lugar que 04d dedujo: "El catálogo dice «Catamarca» en 33 obras; …"
+  // una línea por cada lugar que 06 dedujo: "El catálogo dice «Catamarca» en 33 obras; …"
   function comisionDe(pk) {
     const cs = DATA.comision.filter((c) => c.pk && c.pk === pk);
     return cs.length ? `<p class="pnote">También integró la comisión de los concursos: ${cs.map((c) => `${esc(c.r)} en ${c.a} (${esc(c.f)})`).join("; ")}.</p>` : "";
@@ -1467,7 +1465,7 @@ function zReset() { Z.s = 1; Z.x = 0; Z.y = 0; gid("fdlg-img").style.transform =
     if (!ms.length) return "";
     return `<div class="prensa"><h4>En la prensa de época</h4>` + ms.map((m) => `<blockquote>${esc(m.c).replace(/&quot;([^&]*?)&quot;/g, "«$1»").replace(/"([^"]*)"/g, "«$1»")}</blockquote><cite>${esc(m.d)}, ${esc(m.f)}, «${esc(m.t)}»</cite>`).join("") + `</div>`;
   }
-  // otras expositoras con su mismo apellido en el mismo lugar (05a_redes)
+  // otras expositoras con su mismo apellido en el mismo lugar (12_redes)
   function parientes(pk) {
     const gs = DATA.redes.filter((g) => g.pk.includes(pk));
     return gs.map((g) => `<p class="pnote">Comparte el apellido ${esc(g.ap)} en ${esc(g.l)} con ${g.pk.filter((k) => k !== pk && byPk.has(k)).map((k) => personBtn(k, byPk.get(k)[0].n)).join(", ")}. Puede indicar un parentesco, pero las fuentes no lo dicen${g.c === "baja" ? ", y es un apellido frecuente en la base" : ""}.</p>`).join("");
@@ -1598,7 +1596,7 @@ function zReset() { Z.s = 1; Z.x = 0; Z.y = 0; gid("fdlg-img").style.transform =
     RED = {};
     const el = $("r-graph");
     if (!window.graphology || !window.Sigma || !window.graphologyLibrary || !DATA.red.n.length) {
-      el.innerHTML = '<p class="empty" style="padding:1rem">No se pudo cargar la red: necesita conexión a internet para las bibliotecas sigma.js y graphology.</p>'; return;
+      el.innerHTML = '<p class="empty" style="padding:1rem">No se pudo dibujar la red en este navegador.</p>'; return;
     }
     const css = getComputedStyle(document.documentElement), cv = (k) => css.getPropertyValue(k).trim();
     const C = { ins: "#8c6d4f", y15: cv("--y15"), y16: cv("--y16"), both: cv("--ink"), lug: "#b8bcc8", con: cv("--ink2"), com: "#2e8b6e", fade: "#e8eaf1",

@@ -14,7 +14,7 @@ Optativa interdisciplinaria LCD – CIAI – STD – UNSAM (2026).
 ## Estado
 
 En construcción. El corpus fue relevado y organizado por la investigadora en un Excel;
-este repositorio reconstruye —en código, de forma reproducible— el camino desde ese
+este repositorio reconstruye (en código, de forma reproducible) el camino desde ese
 Excel crudo hasta las tablas normalizadas y la vista consolidada.
 
 ## Estructura
@@ -25,7 +25,7 @@ data/
   interim/      resultados intermedios del pipeline y tablas de decisión manuales
     decisiones/ lo que no se deriva del crudo: fusiones, coordenadas, overrides
   processed/    tabla_normalizada.xlsx, vista_plana_tabla_consolidada.xlsx
-src/pipeline/   etapas del pipeline (01_ingesta … 06b_controles)
+src/pipeline/   etapas del pipeline (01_ingesta … 15_controles)
 notebooks/      exploración y análisis
 outputs/        mapa_procedencias.html, explorador.html, controles_calidad.md y redes.md
 docs/           bitácora de decisiones, diccionario de datos, evaluación de riesgos
@@ -55,23 +55,23 @@ decisiones que no se derivan del crudo (fusiones de expositoras, correcciones de
 cruces de premios) viven como tablas en `data/interim/decisiones/`, no dentro de los
 scripts.
 
-- [`docs/bitacora.md`](docs/bitacora.md) — registro cronológico de decisiones.
-- [`docs/diccionario_datos.md`](docs/diccionario_datos.md) — descripción de cada campo.
-- [`docs/tareas_pendientes.md`](docs/tareas_pendientes.md) — qué falta.
-- [`docs/evaluacion_riesgos.md`](docs/evaluacion_riesgos.md) — sesgo y privacidad.
-- [`docs/auditoria_comentarios.md`](docs/auditoria_comentarios.md) — informe generado:
+- [`docs/bitacora.md`](docs/bitacora.md): registro cronológico de decisiones.
+- [`docs/diccionario_datos.md`](docs/diccionario_datos.md): descripción de cada campo.
+- [`docs/tareas_pendientes.md`](docs/tareas_pendientes.md): qué falta.
+- [`docs/evaluacion_riesgos.md`](docs/evaluacion_riesgos.md): sesgo y privacidad.
+- [`docs/auditoria_comentarios.md`](docs/auditoria_comentarios.md): informe generado:
   decisión anotada a mano vs. estado real de la tabla. Lo escribe
   `src/pipeline/audit_comentarios.py`, fuera de la corrida; no se edita a mano.
-- [`outputs/controles_calidad.md`](outputs/controles_calidad.md) — informe generado en
-  cada corrida (`06b_controles`): errores típicos de los catálogos para revisar.
-- [`outputs/redes.md`](outputs/redes.md) — informe generado en cada corrida
-  (`05a_redes`): redes de participación; el grafo está en `data/processed/redes.xlsx`.
-- [`docs/referencias/README.md`](docs/referencias/README.md) — los PDF del marco
+- [`outputs/controles_calidad.md`](outputs/controles_calidad.md): informe generado en
+  cada corrida (`15_controles`): errores típicos de los catálogos para revisar.
+- [`outputs/redes.md`](outputs/redes.md): informe generado en cada corrida
+  (`12_redes`): redes de participación; el grafo está en `data/processed/redes.xlsx`.
+- [`docs/referencias/README.md`](docs/referencias/README.md): los PDF del marco
   institucional y del proyecto, que quedan fuera del repositorio.
 
 ## Datos personales y ética
 
 El corpus proviene de fuentes históricas públicas (catálogos y fallos de jurado de
-1915–1916). Incluye nombres de personas —en su mayoría mujeres artesanas— fallecidas
+1915–1916). Incluye nombres de personas (en su mayoría mujeres artesanas) fallecidas
 hace más de un siglo; no hay datos personales sensibles en el sentido de la Ley 25.326.
 Ver [`docs/evaluacion_riesgos.md`](docs/evaluacion_riesgos.md).

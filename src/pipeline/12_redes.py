@@ -1,4 +1,4 @@
-"""Etapa 05a — Redes de participación: expositoras, instituciones, lugares y comisiones.
+"""Etapa 12: Redes de participación: expositoras, instituciones, lugares y comisiones.
 
 Objetivo de la versión anterior del formulario: "reconstruir redes de participación de
 artesanas e instituciones". Las fuentes no registran vínculos entre personas; lo que sí dicen es
@@ -36,7 +36,7 @@ Entrada : data/processed/tabla_normalizada.xlsx (Expositoras, Objetos, Ciudades,
           data/interim/decisiones/comisiones.csv
 Salida  : data/processed/redes.xlsx (hojas Nodos y Aristas, que se abren en Gephi o
           con networkx, y Grupos: las componentes conexas de `mismo_apellido`, que
-          usa el explorador de `05c`)
+          usa el explorador de `14`)
           outputs/redes.md (resumen: repetidoras, lugares, grupos por apellido,
           comisión)
 """
@@ -251,7 +251,7 @@ def informe(N: pd.DataFrame, A: pd.DataFrame, G: pd.DataFrame) -> None:
     com = A[A["tipo"] == "apellido_comision"]
 
     t = ["# Redes de participación", "",
-         "Generado por `src/pipeline/05a_redes.py` en cada corrida. Las aristas de apellido "
+         "Generado por `src/pipeline/12_redes.py` en cada corrida. Las aristas de apellido "
          "son **hipótesis de parentesco**, no datos: sirven para orientar la búsqueda en "
          "otras fuentes. El grafo completo está en `data/processed/redes.xlsx`.", "",
          "## Resumen", "",

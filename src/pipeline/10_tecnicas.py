@@ -1,8 +1,8 @@
-"""Etapa 04h — Técnicas y materiales de cada obra, como dato de la base.
+"""Etapa 10: Técnicas y materiales de cada obra, como dato de la base.
 
 Hasta el 30/10 las técnicas y los materiales sólo existían dentro del explorador. Ahora
 quedan en la hoja `Objetos` (y de ahí en la vista plana), con las mismas reglas que usa
-`05c` (`_tecnicas.py`, sobre `decisiones/tecnicas_materiales.csv`, revisada por LM):
+`14` (`_tecnicas.py`, sobre `decisiones/tecnicas_materiales.csv`, revisada por LM):
 
     tecnicas         etiquetas separadas por "; " (Encaje; Encaje de bolillos). Un
                      subtipo lleva también su técnica general. Vacío = sin técnica indicada

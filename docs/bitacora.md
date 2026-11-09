@@ -3,7 +3,7 @@
 Registro cronológico de decisiones de diseño, criterios de normalización y fuentes
 descartadas. Cada entrada: fecha, decisión, motivo.
 
-## 2026-09 — Reconstrucción del pipeline
+## 2026-09: Reconstrucción del pipeline
 
 - **El Excel crudo (`data/raw/…`) no se toca.** Todo el procesamiento pasa a código
   reproducible. El estado actual de `data/processed/` y `data/interim/` se toma como
@@ -26,12 +26,12 @@ descartadas. Cada entrada: fecha, decisión, motivo.
 - Dudas de transcripción (`J` vs `I`, `Panci` vs `Panei`, `Barrera` vs `Barrero`):
   se dejan sin fusionar (`Hecho = False`) y se anota el motivo.
 
-## 2026-09-14 — Bug en el vínculo Premios ↔ Objetos (`03b_premios.py`)
+## 2026-09-14: Bug en el vínculo Premios ↔ Objetos (`03b_premios.py`)
 
 - **Etiqueta `objeto_match` engañosa.** Cuando el cruce por `NÚM` + categoría
   encontraba un único objeto candidato, la etiqueta `"num+categoria+persona"` se
   ponía con solo chequear que *alguna* persona con ese nombre existiera en el
-  catálogo (`per_id is not None`) — sin verificar que esa persona fuera la dueña
+  catálogo (`per_id is not None`): sin verificar que esa persona fuera la dueña
   del objeto elegido. Resultado: quedaban premios vinculados al objeto de otra
   persona, con una etiqueta que decía "confirmado por persona" sin haberlo estado.
   Encontrados así: filas 60 (Argenia R. de Lautafy → objeto de Rosalía Gutiérrez),
@@ -41,7 +41,7 @@ descartadas. Cada entrada: fecha, decisión, motivo.
   realmente se aplicó a algún número del premio.
 - **Casos parecidos pero no necesariamente errores:** filas 58 (Mamerta Monteros
   / "Mamerta Monteros -Escuela Sarmiento") y 79 (hermanas dominicas / "Hermanas
-  dominicas- asilo") — probablemente la misma persona/institución con el nombre
+  dominicas- asilo"): probablemente la misma persona/institución con el nombre
   completado en el catálogo; no fusionadas, no confirmado.
   Fila 62 (Mercedes Pereyra / María M. Pereira) ya la había revisado Larisa en
   su comentario ("Coment LM"): confirma que es la misma persona, falta unificar
@@ -50,9 +50,9 @@ descartadas. Cada entrada: fecha, decisión, motivo.
   un premio quede sin objeto (sin correr el cruce automático), en vez de solo
   poder forzar un `objeto_id` puntual.
 
-## 2026-09-15 — Limpieza del repositorio y parámetros del pipeline
+## 2026-09-15: Limpieza del repositorio y parámetros del pipeline
 
-- **Parámetro único del pipeline: `UMBRAL = 87`** en `03_candidatos.py` — el ratio
+- **Parámetro único del pipeline: `UMBRAL = 87`** en `03_candidatos.py`: el ratio
   mínimo (0–100) de `rapidfuzz` por debajo del cual un par de nombres no se propone
   como candidato a duplicado. Con 87 salen 75 pares detectados. Bajarlo aumenta el trabajo de
   revisión manual y los falsos positivos; subirlo deja pasar variantes con partícula
@@ -77,7 +77,7 @@ descartadas. Cada entrada: fecha, decisión, motivo.
   mano dentro de un repo git deja al que clona viendo la salida vieja.
 
 
-## 2026-09-15 — El pipeline vuelve a ser acíclico (y reproducible)
+## 2026-09-15: El pipeline vuelve a ser acíclico (y reproducible)
 
 - **`03_candidatos.py` leía la salida de dos etapas posteriores.** Leía
   `data/processed/tabla_normalizada.xlsx`, que escriben `04b` y `04c`, así que en cada
@@ -99,7 +99,7 @@ descartadas. Cada entrada: fecha, decisión, motivo.
   como `NaN` y se escribían como el texto literal `"nan"`; y `main()` resolvía las rutas
   al importar el módulo en vez de al correrlo.
 
-## 2026-09-18 — Auditoría de la documentación contra los datos
+## 2026-09-18: Auditoría de la documentación contra los datos
 
 Se corrió el pipeline entero y se verificó, dato por dato, lo que afirmaban el README,
 `src/pipeline/README.md`, el diccionario y `docs/tareas_pendientes.md`. Resultados:
@@ -125,13 +125,13 @@ Se corrió el pipeline entero y se verificó, dato por dato, lo que afirmaban el
   agregara `Imagen`. Mientras tanto la etapa 06 no verifica nada. Re-congelarlo va en
   un commit propio, según la regla de `tests/golden/README.md`.
 - **Dos fusiones del CSV contradicen el comentario anotado a mano**, las dos con
-  `origen = sin_lado`: `4,404` (Dalmira González Sorol — el comentario pedía dejarlas
-  separadas) y `222,115` (María Ávila — pedía conservar 115 y quedó 222). El criterio
+  `origen = sin_lado`: `4,404` (Dalmira González Sorol: el comentario pedía dejarlas
+  separadas) y `222,115` (María Ávila: pedía conservar 115 y quedó 222). El criterio
   automático "conservar el lado con más objetos" pisó una decisión humana; hay que
   revisarlas a mano. *María Ávila quedó resuelta el mismo día: la fila pasó a
   `115,222` y la auditoría da `FUSIÓN OK`. Queda pendiente Dalmira.*
 
-## 2026-10-12 — Números de orden corregidos contra el escaneo
+## 2026-10-12: Números de orden corregidos contra el escaneo
 
 El premio de Lastenia Barrero cita "pañuelo n.º 19" y los pañuelos de 1915 llegaban
 sólo hasta el 18. Mirando la foto (DSCN5177) el catálogo imprime **16, 19, 18**: no hay
@@ -155,7 +155,7 @@ Quedan dos huecos que **no son errores de la tabla**:
   a 15. Puede ser un error al cargar el índice o una página del catálogo que nunca se
   fotografió: si aparece el original, revisar.
 
-## 2026-10-12 — `UMBRAL` de `03_candidatos` baja de 87 a 80
+## 2026-10-12: `UMBRAL` de `03_candidatos` baja de 87 a 80
 
 Con 87 el detector no veía pares como "Argenia R. de Lautafy" / "Arsenia R. de Lontayf"
 (80) ni "Hermanas dominicas- asilo" / "Hermanas Dominicas" (85,7). Se midió sobre la
@@ -173,7 +173,7 @@ Pabla González, Asunción / Visitación Díaz). Se eligió 80 (decisión de Jul
 pares ya anotados se conservan con sus comentarios, como siempre. Los demás umbrales
 del pipeline están en la tabla de parámetros de `src/pipeline/README.md`.
 
-## 2026-10-12 — Ciudades: revisión LM 9-10 y punto de provincia
+## 2026-10-12: Ciudades: revisión LM 9-10 y punto de provincia
 
 - **`coordenadas_ciudades.csv` pasa a ser la única fuente de la ubicación de cada
   ciudad.** `04d_coordenadas` toma de ahí también `nombre_ciudad_hoy` y
@@ -197,7 +197,7 @@ del pipeline están en la tabla de parámetros de `src/pipeline/README.md`.
   catálogo), `ciudad_id` y el punto de provincia, para que LM pueda ver de dónde sale
   cada ubicación.
 
-## 2026-10-13 — El mapa pasa al pipeline (`05b_mapa`)
+## 2026-10-13: El mapa pasa al pipeline (`05b_mapa`)
 
 `outputs/mapa_procedencias.html` lo exportaba a mano `notebooks/04_eda.ipynb`, y como
 nadie lo volvió a correr quedó con datos viejos ("Villa Vitulumba", Orán con punto, sin
@@ -208,7 +208,7 @@ LM). Las ubicaciones tentativas van con borde punteado. El notebook muestra el m
 mapa (importa la etapa) y ya no escribe el archivo, para que no pise la versión del
 pipeline.
 
-## 2026-10-18 a 22 — Explorador web (`05c_explorador`)
+## 2026-10-18 a 22: Explorador web (`05c_explorador`)
 
 - **El explorador es una etapa del pipeline.** `outputs/explorador.html` se genera desde
   la tabla normalizada con la plantilla de `src/pipeline/plantillas/`: un único archivo,
@@ -226,7 +226,7 @@ pipeline.
   (`REGLAS_TECNICA`). No están validadas; el 25/10 se armó
   `decisiones/tecnicas_materiales.csv` para que LM las revise y reemplacen a esas reglas.
 
-## 2026-10-25 — Revisión de LM: pares, premios y Santiago
+## 2026-10-25: Revisión de LM: pares, premios y Santiago
 
 - **Todo entra por tablas de decisión** (pedido de Julián): nada se corrigió a mano en
   la tabla manual. Dos tablas nuevas que lee `04_aplicar_dedup`:
@@ -243,7 +243,7 @@ pipeline.
 - **Álbum de 1915:** la transcripción de LM queda en `decisiones/album_1915.csv`. Ya
   sirvió para la blusa (n.º 4 "traje bordado Richelieu", DSCN5159).
 
-## 2026-10-25 — Premios: una sola hoja, ya cruzada con el catálogo (`04e_premios`)
+## 2026-10-25: Premios: una sola hoja, ya cruzada con el catálogo (`04e_premios`)
 
 Los vínculos premio–obra estaban en dos lugares que no coincidían: la hoja `Premios` de
 la tabla procesada (la de la tabla manual, con 43 filas marcadas "revisar" y vínculos
@@ -264,7 +264,7 @@ auditoría y el EDA leían la hoja vieja.
   Palmira Contreras, 4 y 5) se contaba una vez por obra y la ficha decía "5 premios".
   Ahora cada premio lleva su `premio_id` y se cuenta una vez.
 
-## 2026-10-25 — Arreglos chicos y tabla de técnicas y materiales
+## 2026-10-25: Arreglos chicos y tabla de técnicas y materiales
 
 - Nombres actuales de ciudades con tilde o errata corregidos en
   `coordenadas_ciudades.csv`: Famaillá (era "Faimalla"), Concepción (35 y 59), Río
@@ -279,7 +279,7 @@ auditoría y el EDA leían la hoja vieja.
   La columna `validacion_LM` queda para que la complete LM. Todavía no la lee ninguna
   etapa: cuando esté validada reemplaza a `REGLAS_TECNICA` de `05c`.
 
-## 2026-10-25 — Chaco en dos localidades, Antofagasta y limpieza
+## 2026-10-25: Chaco en dos localidades, Antofagasta y limpieza
 
 - **Chaco (53) se separa** (`separaciones_ciudades.csv`, mecanismo nuevo en
   `04_aplicar_dedup`): las 2 frazadas de la India de la Misión Franciscana de Nueva
@@ -296,7 +296,7 @@ auditoría y el EDA leían la hoja vieja.
   como se había decidido, aunque la numeración del catálogo continúe de una a otra.
 - **Orán:** no se decide nada; la nota de El Orden queda como pregunta para LM.
 
-## 2026-10-25 — "Fuera de concurso" y "creación de la autora" como dato aparte
+## 2026-10-25: "Fuera de concurso" y "creación de la autora" como dato aparte
 
 El catálogo de 1916 marca 2 obras "(fuera de concurso)": se exhibieron pero no
 compitieron. Y 12 obras dicen "creación de la autora" (diseño propio). Hasta ahora sólo
@@ -306,7 +306,7 @@ plana; el texto del catálogo queda igual (decisión de Julián: no perder infor
 "India de la Misión Franciscana de Nueva Pompeya" queda tal como la nombra el catálogo,
 sin nota.
 
-## 2026-10-25 — Fotos del álbum de 1915 vinculadas a sus obras
+## 2026-10-25: Fotos del álbum de 1915 vinculadas a sus obras
 
 LM transcribió qué pieza se ve en cada foto del álbum de 1915 (n.º, descripción,
 posición). Nos tocaba encontrar cada pieza en el catálogo: se cruzó por n.º y
@@ -317,7 +317,7 @@ y el "22 Pañuelo" (Encajes varios n.º 22, "dos pañuelos guipure al bolillo").
 para LM el poncho sin número y el "17 encaje ñanduty". `04c` agrega
 `Objetos.foto_album`, que sale en la vista plana y en la ficha del explorador.
 
-## 2026-10-25 — Auditoría completa del repositorio y correcciones
+## 2026-10-25: Auditoría completa del repositorio y correcciones
 
 Se leyó cada archivo versionado (docs, código, tablas de decisión, cada hoja de cada
 Excel) y se corrió el pipeline en una copia limpia: las salidas se reproducen celda por
@@ -383,7 +383,7 @@ celda. Correcciones aplicadas (decisión de Julián, punto por punto):
 - **Docs:** números al día (61/77 ciudades con punto, 449 F y 9 M, 141 pares candidatos,
   estado real del golden) y lo que quedó abierto, en `tareas_pendientes.md`.
 
-## 2026-10-28 — Respuestas de LM del 28/10
+## 2026-10-28: Respuestas de LM del 28/10
 
 - **Blusa de las Hermanas Dominicas (`premio_id` 67):** queda fuera de catálogo ("no
   tiene número de catálogo, s/d significa sin datos"). Quedan 89 premios vinculados, 13
@@ -405,7 +405,7 @@ celda. Correcciones aplicadas (decisión de Julián, punto por punto):
 - `06_verificar` marca 8 celdas de `Expositoras` y 2 de `Premios` contra el golden, todas
   de estas decisiones: hay que volver a congelarlo.
 
-## 2026-10-28 — Obras con sólo la provincia pasan a la localidad de la expositora
+## 2026-10-28: Obras con sólo la provincia pasan a la localidad de la expositora
 
 Criterio de Julián: si una expositora tiene obras donde el catálogo escribió sólo la
 provincia y otras con una localidad de esa misma provincia, las primeras pasan a esa
@@ -425,7 +425,7 @@ Todos los "TUCUMÁN" a secas están en Alfombras, Tapices, Ponchos y Chales de 1
 (DSCN5201, 5202, 5212, 5213), secciones que escriben "LOCALIDAD, PROVINCIA". Cambia el
 criterio del 25/8 (con sólo la provincia, la ciudad queda vacía) para estos casos.
 
-## 2026-10-28 — Controles de calidad (`06b_controles`)
+## 2026-10-28: Controles de calidad (`06b_controles`)
 
 Nueva etapa al final del pipeline: busca en toda la base los errores típicos de
 transcribir los catálogos y escribe `outputs/controles_calidad.md`, con id y página de
@@ -436,7 +436,7 @@ sin página. Casos nuevos: Carmen Pérez (199) en Cerrillos (Salta) y en Atahona
 premios cuyo lugar en el fallo no coincide con el catálogo (17, 35, 73, 93); huecos en
 la numeración de 1915 (Bordado en blanco y seda n.º 9, Pañuelos n.º 17).
 
-## 2026-10-28 — Revisión completa antes de presentar
+## 2026-10-28: Revisión completa antes de presentar
 
 Se cruzó todo contra el crudo y los escaneos transcriptos: integridad entre hojas (sin ids
 huérfanos ni duplicados), las 981 obras contra `objetos_crudos.csv` (N.º, sección y
@@ -455,7 +455,7 @@ contra su provincia y la documentación (links, rutas, números). Correcciones:
   puntos del mapa) y la etapa `06b`; `requirements.txt`: folium no es opcional.
 - `notebooks/04_eda.ipynb` vuelto a correr (441 F, 9 M, 8 I).
 
-## 2026-10-28 — Explorador: una sola pestaña de análisis, fuentes y datos descargables
+## 2026-10-28: Explorador: una sola pestaña de análisis, fuentes y datos descargables
 
 - Panorama, Técnicas por zona y Cuadros pasan a ser una pestaña, **Análisis**, con un
   índice fijo: cifras generales, los dos concursos, procedencia, técnicas, expositoras y
@@ -474,7 +474,7 @@ contra su provincia y la documentación (links, rutas, números). Correcciones:
   la transcripción (Pañuelos 1915; Encajes y randas 125/126 y Bordados 54/55 de 1916): van
   a `06b_controles` y a las tareas.
 
-## 2026-10-28 — Explorador: comparación de concursos, prensa, fuentes, sesgo y citas
+## 2026-10-28: Explorador: comparación de concursos, prensa, fuentes, sesgo y citas
 
 - Análisis, "Los dos concursos": tabla 1915 / 1916 lado a lado (nombre, decreto,
   inauguración, fallo, sede, presidenta de la comisión, expositoras, obras, lugares,
@@ -488,7 +488,7 @@ contra su provincia y la documentación (links, rutas, números). Correcciones:
   listados, fallo de 1916 sin relevar. Los números salen de la base.
 - "Cómo citar" en APA, Chicago y BibTeX.
 
-## 2026-10-28 — Comisiones, enlace por ficha y procedencia no es origen de la técnica
+## 2026-10-28: Comisiones, enlace por ficha y procedencia no es origen de la técnica
 
 - Nueva `decisiones/comisiones.csv`: las integrantes de la comisión organizadora y jurado
   de 1915 (catálogo y fallo, más Isabel Bascary de Acuña Zavalía según El Orden) y de 1916
@@ -501,7 +501,7 @@ contra su provincia y la documentación (links, rutas, números). Correcciones:
 - La matriz de técnicas y las Definiciones aclaran que la zona es la procedencia de la
   expositora, no el origen de la técnica; se define "Procedencia".
 
-## 2026-10-28 — Mapa: correcciones de una revisión externa
+## 2026-10-28: Mapa: correcciones de una revisión externa
 
 - El filtro "Obras: Todas" pasa a "Premio: Todas las obras / Solo premiadas".
 - "Líneas hacia la sede": al activarlas, la leyenda aclara que unen la procedencia
@@ -515,7 +515,7 @@ contra su provincia y la documentación (links, rutas, números). Correcciones:
 - `05b_mapa` (Folium): plurales ("1 objeto · 1 expositora"), el mapa base se llama
   "Mapa base (Esri)" en el control de capas y se puede hacer zoom con los dedos.
 
-## 2026-10-28 — Explorador sin zonas ni tipos de obra
+## 2026-10-28: Explorador sin zonas ni tipos de obra
 
 - Las zonas (`zonas_ciudades.csv`) y los tipos de obra (`familia` en
   `familias_categorias.csv`) eran agrupaciones del proyecto, sin respaldo en las fuentes
@@ -528,14 +528,14 @@ contra su provincia y la documentación (links, rutas, números). Correcciones:
 - Se quitan el filtro "Tipo de obra" y los gráficos "Tipos de obra en 1915 y 1916" y
   "Qué tipo de obra hubo en cada zona". Los CSV quedan en `decisiones/` para la revisión.
 
-## 2026-10-28 — No hay premios de 1916
+## 2026-10-28: No hay premios de 1916
 
 - El explorador decía que los premios de 1916 "todavía no están cargados" y que el fallo
   de 1916 estaba "sin relevar". No hay premios de 1916: se corrigen esos textos (avisos
   de Premios y del filtro, comparación de concursos, pendientes y "Lo que el archivo no
   dice"). Las cifras de premiadas no cambian.
 
-## 2026-10-28 — Análisis: matriz en tres vistas, filtros visibles y cifras que cierran
+## 2026-10-28: Análisis: matriz en tres vistas, filtros visibles y cifras que cierran
 
 A partir de una revisión externa:
 - La matriz técnica × provincia se ve en obras, en % de las obras de la provincia o en
@@ -552,7 +552,7 @@ A partir de una revisión externa:
 - La nota de la matriz distingue la técnica (inferida por el proyecto) de la categoría
   del catálogo.
 
-## 2026-10-28 — Índice de páginas contra los escaneos
+## 2026-10-28: Índice de páginas contra los escaneos
 
 El control "El índice de páginas no coincide con las obras" (`06b`) marcaba tres páginas.
 Mirando las fotos, la transcripción estaba bien en las tres:
@@ -570,7 +570,7 @@ Mirando las fotos, la transcripción estaba bien en las tres:
 Se corrigieron esas cuatro celdas en la hoja `Paginas_Catalogo` de la tabla manual. Los
 rangos de N.º estaban bien. El control da 0.
 
-## 2026-10-28 — Cotejo de la transcripción contra los escaneos
+## 2026-10-28: Cotejo de la transcripción contra los escaneos
 
 Se compararon las 981 obras con el papel: las 11 páginas del catálogo de 1915
 (DSCN5177-5187) y las 21 del de 1916 (DSCN5201-5228), obra por obra (número, expositora,
@@ -612,7 +612,7 @@ López Rivero) tampoco tiene provincia. La n.º 17 de Crochet 1915 es de "María
 Pereira", lo que confirma el premio 62. Elvira Rodríguez They no tiene lugar impreso.
 Jergones 1916 empieza en el n.º 26 en el propio catálogo; no falta ninguna página.
 
-## 2026-10-28 — Técnicas y materiales con la revisión de LM
+## 2026-10-28: Técnicas y materiales con la revisión de LM
 
 LM devolvió `tecnicas_materiales.csv` con un comentario por término (columna
 `validacion_LM`). El explorador ya no usa las reglas fijas de `05c` (`REGLAS_TECNICA`):
@@ -644,7 +644,7 @@ Esmirna en alfombras (¿punto de alfombra?), "a bastones" (en "bordada a bastone
 aguja" (634, 724: no se toma como encaje de aguja), si Punto de Irlanda va dentro de
 Crochet, Bruselas (3 obras, no estaba en la lista), y qué hacer con teñido e hilado.
 
-## 2026-10-28 — Se elimina el golden
+## 2026-10-28: Se elimina el golden
 
 Julián decide sacar `tests/golden/` y la etapa `06_verificar`. La base se corrige todo
 el tiempo (cotejo, revisiones de LM, nombres de columnas), así que la foto congelada
@@ -655,7 +655,7 @@ detectara errores. Los controles que sí sirven siguen en `06b_controles`
 En el mismo día: la columna `Imagen` de la vista plana y de la hoja Premios pasa a
 llamarse `Imagen del catálogo`, para no confundirla con `Foto del álbum`.
 
-## 2026-10-30 — Categorías normalizadas, como propuesta (`04g_categorias`)
+## 2026-10-30: Categorías normalizadas, como propuesta (`04g_categorias`)
 
 `decisiones/categorias.csv` agrega dos niveles a cada sección sin tocar el nombre que
 imprimió cada catálogo: `categoria_norm` (dentro de su catálogo) y
@@ -679,7 +679,7 @@ dos columnas también van a la vista plana.
 columna"). Se quita del CSV, de la tabla normalizada y de la vista plana; el `criterio`
 pasa a explicar sólo `categoria_norm`. Queda `categoria_norm`.
 
-## 2026-10-30 — Redes de participación (`05a_redes`)
+## 2026-10-30: Redes de participación (`05a_redes`)
 
 Objetivo de la versión anterior del formulario: "reconstruir redes de participación de
 artesanas e instituciones" (la versión con ajustes no lo dice así; lo más cercano es la
@@ -713,7 +713,7 @@ el apellido Aguilar en Niogasta con…"). El texto dice siempre que es una pista
 fuentes no registran parentescos. En "Fuentes y método", las redes pasan de "Pendiente" a
 "En esta versión".
 
-## 2026-10-30 — Pestaña Red en el explorador (sigma.js y graphology)
+## 2026-10-30: Pestaña Red en el explorador (sigma.js y graphology)
 
 Julián quiere ver la red en el explorador, no en Gephi. Gephi es un programa de
 escritorio y no se puede incrustar, pero lo que hace sí: la pestaña **Red** dibuja el
@@ -780,7 +780,7 @@ localidad, y unirlas sería inventar. Sólo "S/d" queda afuera (2 obras). Quedan
 nodos y 1.190 aristas; los 198 pares y 61 grupos por apellido no cambian. La red de
 lugares y técnicas pasa a 59 lugares y 162 conexiones.
 
-## 2026-10-30 — Revisión contra el formulario, las Recomendaciones y los Lineamientos
+## 2026-10-30: Revisión contra el formulario, las Recomendaciones y los Lineamientos
 
 Se releyeron los cuatro PDF del proyecto y se cruzaron con el repositorio. El pipeline
 corre entero en un clon limpio y las salidas se reproducen celda por celda; los dos
@@ -809,7 +809,7 @@ notebooks corren sin errores. Cambios:
   la pestaña Red en los parámetros, `redes.xlsx` en el diccionario y la cita de las
   redes de arriba.
 
-## 2026-10-30 — Álbum de 1915: el "17 encaje ñanduty" es Pañuelos n.º 19
+## 2026-10-30: Álbum de 1915: el "17 encaje ñanduty" es Pañuelos n.º 19
 
 La pieza "17 encaje ñanduty" de DSCN5168 queda vinculada al objeto 17, Pañuelos n.º 19
 de Lastenia Barrero, "Encaje ñanduty" (confirmado por Julián). La leyenda del álbum copia
@@ -823,6 +823,75 @@ identificar. Seis son otras tomas de páginas ya anotadas (5153 y 5154 = 5152; 5
 5157 = 5156; 5160 = 5159; 5169 = 5168); 5149 es el sobre, 5150 el Palacio de Gobierno y
 5151 un grupo de personas; el resto son vistas generales del salón (5163-5167, 5170),
 con piezas sin leyenda.
+
+## 2026-11-09: Bibliotecas y tipografías dentro del explorador
+
+Para alojarlo de forma permanente (CIAI) con la menor dependencia externa posible, las
+bibliotecas (Leaflet 1.9.4, graphology 0.25.4, graphology-library 0.8.0, sigma.js 2.4.0)
+y las tipografías (IBM Plex Sans y Newsreader, subconjunto latino) se copiaron a
+`src/pipeline/plantillas/vendor/` y `05c` las pega dentro del HTML (2,4 → 3,3 MB aprox.).
+Lo único que se sigue cargando de internet es el mapa base de Esri. Se probó un mapa
+base propio con los límites de Natural Earth, pero Julián prefirió el de Esri y se
+descartó.
+
+## 2026-11-09: Cita de las fichas con los tres autores
+
+La cita que se copia desde cada ficha del explorador decía "En Rolando, J. (2026) …
+[versión de trabajo del …]. Proyecto Interdisciplinario CIAI-LCD". Ahora usa la misma
+forma que "Cómo citar", con el orden de autores y el título que pidió LM: "En Mantovani,
+Larisa; Rolando, Julián y Moro, Agustín. (2026). Cartografías del textil argentino:
+Producción y exhibición a partir de datos históricos e imágenes de archivo [Conjunto de
+datos de investigación]. CIAP-CONICET / UNSAM." seguida del enlace a la ficha.
+
+## 2026-11-09: Etapas numeradas del 01 al 15
+
+La numeración había quedado de cambios sucesivos: no había 02 ni 06 (se borraron
+`02_entidades` y `06_verificar`) y las etapas nuevas se habían agregado con letra (04b a
+04h, 05a a 05c, 06b) para no renombrar las demás. Ahora van del 01 al 15 en el orden en
+que corren (decisión de Julián). Los archivos se renombraron con `git mv`, así conservan
+su historial. Esta bitácora no se reescribe: las entradas anteriores usan los nombres de
+entonces.
+
+| antes | ahora | antes | ahora |
+|---|---|---|---|
+| `01_ingesta` | `01_ingesta` | `04g_categorias` | `09_categorias` |
+| `03_candidatos` | `02_candidatos` | `04h_tecnicas_materiales` | `10_tecnicas` |
+| `04_aplicar_dedup` | `03_fusiones` | `05_vista_plana` | `11_vista_plana` |
+| `04b_titulo_nombres` | `04_nombres` | `05a_redes` | `12_redes` |
+| `04c_vincular_imagenes` | `05_imagenes` | `05b_mapa` | `13_mapa` |
+| `04d_coordenadas` | `06_coordenadas` | `05c_explorador` | `14_explorador` |
+| `04e_premios` | `07_premios` | `06b_controles` | `15_controles` |
+| `04f_marcas_objetos` | `08_marcas` | | |
+
+Verificado: corriendo el pipeline entero, las tablas (`data/processed/`, `data/interim/`)
+quedan idénticas celda por celda a las de antes del cambio; en `outputs/` y en
+`auditoria_comentarios.md` sólo cambian los nombres de las etapas.
+
+Los notebooks pierden el número, que no era de ninguna etapa y ahora confundía:
+`03_revision_duplicados.ipynb` pasa a `revision_duplicados.ipynb` y `04_eda.ipynb` a
+`eda.ipynb` (decisión de Julián).
+
+## 2026-11-09: Técnicas: Nudo esmirna y Tejido (sin precisar)
+
+LM agregó comentarios a cuatro términos que el 28/10 habían quedado sin comentario
+(`validacion_LM` de `tecnicas_materiales.csv`). Aplicado (decisión de Julián):
+
+- **Esmirna** pasa a llamarse **"Nudo esmirna"** (las alfombras 145, 215 y 216). En
+  "tapete, encaje esmirna y randa" (57) no es un nudo sino un encaje: la regla lo excluye
+  (`excepto`) y la obra queda con Encaje y Randa.
+- **Hilado:** en "colcha de algodón hilado y tejido" la técnica es Tejido. Se agrega la
+  técnica **"Tejido (sin precisar)"** para las obras que dicen tejido o tejida sin nombrar
+  un tejido más preciso (telar, a pala, crochet, Irlanda, gobelino). Si es lo único que
+  dice el texto y la sección del catálogo da una técnica, gana la sección: "traje tejido"
+  (158) sigue en Crochet, como su sección, y "cofia tejida" y "tapado tejido" (685, 686)
+  siguen como Encaje o randa (sin precisar). Esa preferencia es de Julián, para no
+  perder información; está en `_tecnicas.py`.
+- **Macramé:** "deshilado y macramé, ambas". Ya era así; sólo se anota.
+- **A bastones:** comentó el material del ejemplo (vicuña, que ya estaba). La duda de si
+  es técnica o dibujo sigue abierta.
+
+Cambian 32 obras: 28 suman Tejido (sin precisar) y las 3 alfombras pasan a Nudo esmirna.
+Técnica según el texto de la obra: 559 → 583; sin dato: 295 → 271.
 
 ## Fuentes del crudo que no entran al pipeline
 

@@ -42,11 +42,11 @@
   documento salen las fotos del "álbum de 1915"? El Archivo Padilla tiene un boletín del
   concurso interprovincial de julio de 1916 que "tiene las fotos del álbum", y su
   transcripción no está en el crudo. (La presidenta de la comisión de 1915 ya no es duda: el
-  fallo firma "Presidenta — Guillermina Leston de Guzmán" (DSCN5258), igual que el
+  fallo firma "Presidenta: Guillermina Leston de Guzmán" (DSCN5258), igual que el
   catálogo y El Orden; el rótulo de la foto del Archivo Padilla, que nombra a Lucila López
   Islas, es el que se equivoca.) ¿Dónde
-  está la entrevista a Ana Toledo que cita la hoja de El Orden? ¿Qué es "AHT", en qué
-  repositorio está el Archivo Padilla y en qué medio salió la nota de Páez de la Torre?
+  está la entrevista a Ana Toledo que cita la hoja de El Orden? ¿En qué
+  repositorio está el Archivo Padilla?
 - [ ] **Pares que no respondió en `pares_sin_revisar.xlsx` (25/10):** *(LM 2026-10-28: no se unen `120` / `340` Barrero / Barquet ni `33` / `410`
   Argenia / Arsenia, "podrían ser hermanas"; cargados como `Hecho = False`. Del resto no
   dijo nada.)* `2` Marina /
@@ -66,11 +66,11 @@
   - Premios fuera de catálogo: Marina Belmonte n.º 22 y el mantel de altar de Dalmira.
   - Ciudades: "Santiago" (50) se une a Santiago del Estero (5)
     (`fusiones_ciudades.csv`).
-  - Transcripción de fotos del álbum de 1915: `decisiones/album_1915.csv`. La lee `04c`
+  - Transcripción de fotos del álbum de 1915: `decisiones/album_1915.csv`. La lee `05`
     (`Objetos.foto_album`).
 
 ## Errores puntuales en `tabla_normalizada.xlsx` (hoja `Objetos`)
-- [x] *(2026-10-25: ya ningún objeto termina en punto, ni el 241 ni el 243)* **objeto 241**: `Almohadón tela hecha a pala` — se le quitó el punto final,
+- [x] *(2026-10-25: ya ningún objeto termina en punto, ni el 241 ni el 243)* **objeto 241**: `Almohadón tela hecha a pala`: se le quitó el punto final,
   pero el 243 (misma expositora, mismo bloque) sí conserva el punto
   (`Colección lanas teñidas para fabricar alfombras y tapices.`). Uniformar criterio
   de puntuación.
@@ -78,7 +78,7 @@
 ## Personas (`Expositoras`)
 
 - [x] **Las 3 filas muertas de `Expositoras`.** *(2026-09-18, cerrado)* Se agregaron
-  al CSV y se corrió `python run_pipeline.py 04`: las tres desaparecieron y sus
+  al CSV y se corrió `python run_pipeline.py 03`: las tres desaparecieron y sus
   objetos quedaron en el id que sobrevive. Auditoría regenerada: las 3 pasaron de
   `SIN HACER` a `FUSIÓN OK`.
 
@@ -99,7 +99,7 @@
   de la persona. La fusión ya respeta eso: la ciudad va en cada objeto, y los 6 de
   1915 siguen en Tafí Viejo y el de 1916 en San Miguel de Tucumán. Se mantiene la
   fusión; el veredicto del informe es un falso positivo del parser.
-- [x] `Nombre` sin espacios al final. *(2026-10-11)* `04b` hace `strip()` a los
+- [x] `Nombre` sin espacios al final. *(2026-10-11)* `04` hace `strip()` a los
   nombres; los 7 casos (Cipriana González, Carmen V. de Roncedo, Margarita Díaz,
   Ernestina Silvetti, Sra. de Serrano, Carmen Rodríguez, Candelaria Alincastro)
   quedaron limpios.
@@ -109,11 +109,11 @@
     `114 ← 56` Rosa V. [de] Lescano.
   - `Hecho=False` en el archivo de candidatos: 198/303 (Pérez), 170/241 (Zelaya),
     124/171 (Gramajo), 155/334 (Arsenia Fernández).
-  - Quedan 3 sin revisar (los cuenta `03_candidatos`): 47/476 Facunda (ver
+  - Quedan 3 sin revisar (los cuenta `02_candidatos`): 47/476 Facunda (ver
     *Preguntas para Larisa*), 325/334 María / Arsenia Fernández y 209/264 Delina
     J./I. de Román, que no respondió.
 
-- [x] *(2026-10-25: revisados; hoy son 18 y todos están resueltos — decididos "no unificar" o ya unificados por otro camino, como Ana e Isabel del Río y la Escuela Profesional de Mujeres)* **Los 17 pares sin fusionar que sí tienen comentario.** Repasar que el comentario
+- [x] *(2026-10-25: revisados; hoy son 18 y todos están resueltos: decididos "no unificar" o ya unificados por otro camino, como Ana e Isabel del Río y la Escuela Profesional de Mujeres)* **Los 17 pares sin fusionar que sí tienen comentario.** Repasar que el comentario
   siga valiendo y, donde corresponda, bajarlo al CSV de fusiones. El grupo más cargado
   es Delina J./I. de Román (161, 209, 255, 264) y le siguen Carmen de Moya (162 / 296,
   con 7 y 3 objetos) y Segunda Giménez / Jiménez (221 / 268).
@@ -124,7 +124,7 @@
 
 - [x] *(2026-10-25)* **30 pares candidatos que nunca se revisaron ni se mandaron a LM.**
   Julián: no son la misma persona (mismo apellido y otro nombre de pila, del umbral 80);
-  no se mandan y quedan sin anotar a propósito. `03_candidatos` marca 48 pares "sin
+  no se mandan y quedan sin anotar a propósito. `02_candidatos` marca 48 pares "sin
   fusionar y sin revisar" (eran 50 hasta las respuestas de LM del 28/10). Contados el
   30/10: 12 tienen un id que ya se fusionó por otro camino (entre ellos 366/485), 7 se le
   preguntaron a LM y no respondió (los del punto de arriba, sin 366/485) y 29 nunca se le
@@ -148,7 +148,7 @@ Hoy son **441 F, 9 M y 8 I** (institución) sobre 458 filas.
 ## Categorías
 
 - [ ] **Para LM: la propuesta de `decisiones/categorias.csv` (2026-10-30).** La aplica
-  `04g`; `nombre_categoria` no se toca. Todo queda en `estado = propuesta`.
+  `09`; `nombre_categoria` no se toca. Todo queda en `estado = propuesta`.
   - *Dentro de 1916* (`categoria_norm`), dos uniones por numeración continua: Chales de
     vicuña (1-22) sigue en Chales y echarpes (23-41), y Jergones (26-36) completa
     Jergones y sobrepelos (1-25). ¿Son una sola sección?
@@ -186,7 +186,7 @@ Hoy son **441 F, 9 M y 8 I** (institución) sobre 458 filas.
 - [x] *(2026-10-28, mirando los escaneos)* **El índice de páginas no coincide con las
   obras.** La transcripción estaba bien en los tres casos:
   - Pañuelos 1915 (DSCN5177): el catálogo imprime 16, 19, 18; Puparelli (18) es la
-    última de la página. El control `06b` ahora ordena por el orden impreso
+    última de la página. El control `15` ahora ordena por el orden impreso
     (`objeto_id`), no por N.º.
   - Encajes y randas 1916 (DSCN5221): la pág. 42 termina con María de Aguirre (125) y la
     43 empieza con Elena R. de Lemière (126). Se corrigió el índice.
@@ -205,8 +205,10 @@ Hoy son **441 F, 9 M y 8 I** (institución) sobre 458 filas.
   de donde trabajamos": le cuesta encontrar dónde está cada cosa (p. ej. las obras con foto
   del álbum). El explorador puede servir de respuesta.
 - [x] **Técnicas y materiales:** revisión devuelta y aplicada al explorador (28/10, ver
-  bitácora). Quedan para preguntarle: Esmirna en alfombras, "a bastones", "pintada a la
-  aguja", si Punto de Irlanda va dentro de Crochet, Bruselas, y teñido e hilado. También
+  bitácora). *(2026-11-09: LM respondió Esmirna, "Nudo esmirna"; hilado, la técnica es
+  "Tejido", y macramé; aplicado, ver bitácora.)* Quedan para preguntarle: "a bastones"
+  (respondió sólo el material del ejemplo), "pintada a la aguja", si Punto de Irlanda va
+  dentro de Crochet, Bruselas, y teñido. También
   si se puede asumir una técnica general "(sin precisar)" para las categorías de tejidos
   (Jergones, Pellones, Ponchos, Alforjas, Colchas y frazadas): 138 obras no tienen ni
   técnica ni material en el texto.
@@ -215,7 +217,7 @@ Hoy son **441 F, 9 M y 8 I** (institución) sobre 458 filas.
   reunión con el personal técnico del instituto. El modelo que quería (la base de
   tejedores del Renatra) ya no está en línea ni en la Wayback Machine.
 
-## Redes (`05a_redes`, 2026-10-30)
+## Redes (`12_redes`, 2026-10-30)
 
 - [ ] **Para LM: qué redes le sirven.** Primera versión con lo que ya está en la base
   (`outputs/redes.md`, `data/processed/redes.xlsx`): 32 expositoras repitieron en 1915
@@ -238,7 +240,7 @@ El formulario pide "explorar estrategias de vinculación entre registros textual
 imágenes históricas para la identificación de los textiles presentes en imágenes" (y, en
 el plan de trabajo, una "vinculación preliminar entre imágenes y registros escritos").
 Hecho hasta ahora: cada obra está vinculada con la página escaneada del catálogo donde
-figura (981/981, `04c`) y 13 de las 14 piezas del álbum de 1915 están identificadas a mano
+figura (981/981, `05`) y 13 de las 14 piezas del álbum de 1915 están identificadas a mano
 en el catálogo (`album_1915.csv`). La identificación automática en las fotos no se hizo.
 
 - [x] *(2026-10-30: están en `data/raw/images/`: 22 fotos del álbum en
@@ -258,7 +260,7 @@ en el catálogo (`album_1915.csv`). La identificación automática en las fotos 
 
 ## Pipeline
 
-- [ ] *(2026-10-28: hechos 1 a 4 en `05c`; falta 5)* **Prensa en el explorador y en la vista plana (semana del 26/10/2026).** Una etapa
+- [ ] *(2026-10-28: hechos 1 a 4 en `14`; falta 5)* **Prensa en el explorador y en la vista plana (semana del 26/10/2026).** Una etapa
   lee `decisiones/menciones_prensa.csv` y: (1) en la ficha de cada expositora, un
   recuadro "En la prensa" con la cita, el diario y la fecha; (2) en la lista de obras, la
   marca "· En la prensa"; (3) en los lugares (Orán, Monteros, La Cocha), sus citas; (4) en
@@ -274,7 +276,7 @@ en el catálogo (`album_1915.csv`). La identificación automática en las fotos 
   n.º 4), aunque el fallo impreso dice "No. 9" (DSCN5258), que es de Jesús Rueda.
 
 - [x] **`03b_premios.py` leía la salida de una etapa posterior.** *(2026-10-25)* Ahora
-  es `04e_premios`, corre después de `04d` y escribe la hoja `Premios` curada en la
+  es `07_premios`, corre después de `06` y escribe la hoja `Premios` curada en la
   tabla procesada; `premios_vinculados.xlsx` ya no existe.
 - [x] **`02_entidades` era un esqueleto y nadie consumía su salida.** *(2026-10-25)*
   Se borró, con `personas_prov.csv` y `ciudades_prov.csv` (criterio de Julián: lo
@@ -296,7 +298,7 @@ en el catálogo (`album_1915.csv`). La identificación automática en las fotos 
   `decisiones/coordenadas_ciudades.csv` (61 cargadas). Completar las que se puedan y
   fijar un criterio para las ambiguas o desconocidas.
 - [x] *(2026-10-12)* `nombre_ciudad_hoy` y `nombre_provincia` vivían en dos lugares (tabla
-  manual y `coordenadas_ciudades.csv`). Ahora el CSV es la única fuente: `04d` los toma
+  manual y `coordenadas_ciudades.csv`). Ahora el CSV es la única fuente: `06` los toma
   de ahí. La única diferencia era Tulumba ("Villa Vitulumba" en la tabla).
 
 ## Imágenes
@@ -305,21 +307,22 @@ en el catálogo (`album_1915.csv`). La identificación automática en las fotos 
 
 ## Entregables de la optativa
 
-- [ ] **`docs/uso_de_ia.md`** — qué asistentes de IA se usaron, en qué etapas y cómo se
+- [ ] **`docs/uso_de_ia.md`**: qué asistentes de IA se usaron, en qué etapas y cómo se
   verificó su aporte. Lo piden las *Recomendaciones LCD‑CIAI* §6 y el art. 14 de los
   *Lineamientos UNSAM*. Se escribe al cierre, con el proyecto terminado.
 - [ ] **Cerrar `docs/evaluacion_riesgos.md` en conjunto con la dirección** y sacarle la
   leyenda "a completar": §10 pide que la evaluación se haga con investigadora y
   estudiante juntos. El contenido y el Nivel 1 ya están.
 - [ ] **Acordar con la dirección hasta dónde se publican datos y código** (§7). Es una
-  conversación que se registra en el **Anexo V — Autorización de Divulgación** del
+  conversación que se registra en el **Anexo V: Autorización de Divulgación** del
   informe final. No requiere ningún archivo en el repositorio.
 - [ ] **Publicar el explorador en GitHub Pages** (idea de Julián, 28/10; todavía no).
   Antes: el OK de LM y la licencia (punto anterior), y decidir si el repo pasa a ser
   público o si el sitio va en un repo aparte (en el plan gratuito, Pages exige repo
   público). No usar `docs/` como raíz, porque ahí están la bitácora y la hoja de horas.
   Plan: una carpeta `sitio/` que llene el pipeline, con `index.html` (el explorador),
-  `vendor/leaflet/` (Leaflet copiado, sin CDN) y `datos/` (CSV, xlsx normalizado y
+  (desde el 9/11 las bibliotecas y las tipografías van dentro del HTML; solo el mapa
+  base de Esri se carga de internet) y `datos/` (CSV, xlsx normalizado y
   GeoJSON de lugares para descargar). El mapa de Folium no se publica: el explorador
   ya lo cubre.
 - [ ] **Figuras del EDA.** El objetivo específico 2 del formulario (visualizaciones y
@@ -334,6 +337,6 @@ en el catálogo (`album_1915.csv`). La identificación automática en las fotos 
   género"): filtro Género (Mujeres, Varones, Instituciones) y gráfico "Mujeres, varones e
   instituciones" en Análisis › Expositoras, desde la columna `Género` de `Expositoras`.
   El CSV descargable suma la columna.
-- [x] *(2026-10-30)* **Técnicas y materiales en la base:** la etapa `04h` los deja en
+- [x] *(2026-10-30)* **Técnicas y materiales en la base:** la etapa `10` los deja en
   `Objetos` (`tecnicas`, `tecnica_origen`, `materiales`) y en la vista plana, con las
   mismas reglas que el explorador (`_tecnicas.py`). Antes sólo existían en el explorador.

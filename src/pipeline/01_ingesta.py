@@ -1,4 +1,4 @@
-"""Etapa 01 — Ingesta.
+"""Etapa 01: Ingesta.
 
 Lee las hojas de catálogo del Excel crudo y las convierte en una tabla larga
 (un registro por objeto), separando las filas 'explotadas' de 1916.

@@ -1,4 +1,4 @@
-"""Etapa 04d — Ubicación de las ciudades.
+"""Etapa 06: Ubicación de las ciudades.
 
 `data/interim/decisiones/coordenadas_ciudades.csv` es la tabla de decisión de las
 ciudades (cargada a mano, ver `src/pipeline/README.md`) y es la ÚNICA fuente de todo lo
@@ -61,7 +61,7 @@ def localidad_de_la_expositora(O: pd.DataFrame, C: pd.DataFrame) -> pd.DataFrame
     `ciudad_id_catalogo` guarda la ciudad que escribió el catálogo; vacío = sin cambio.
     Si hay dos localidades posibles no se elige ninguna y se avisa."""
     O = O.copy()
-    if "ciudad_id_catalogo" in O.columns:  # corrida repetida de 04d: se parte de lo del catálogo
+    if "ciudad_id_catalogo" in O.columns:  # corrida repetida de 06: se parte de lo del catálogo
         previo = O["ciudad_id_catalogo"].notna()
         O.loc[previo, "ciudad_id"] = O.loc[previo, "ciudad_id_catalogo"].astype(int)
     O["ciudad_id_catalogo"] = pd.Series(pd.NA, index=O.index, dtype="Int64")
@@ -73,7 +73,7 @@ def localidad_de_la_expositora(O: pd.DataFrame, C: pd.DataFrame) -> pd.DataFrame
         for cid in sorted(set(g["ciudad_id"]) & solo):
             destino = sorted({c for c in g["ciudad_id"] if c not in solo and prov.get(c) == prov[cid]})
             if len(destino) > 1:
-                print(f"  AVISO — expositora {pid}: '{prov[cid]}' a secas y varias localidades "
+                print(f"  AVISO: expositora {pid}: '{prov[cid]}' a secas y varias localidades "
                       f"{[nombre[c] for c in destino]}; no se mueve")
                 continue
             if destino:
@@ -100,7 +100,7 @@ def main() -> None:
 
     sin_decision = sorted(set(C["ciudad_id"]) - set(dec["ciudad_id"]))
     if sin_decision:
-        print(f"AVISO — ciudades sin fila en {DECISION.name}: {sin_decision}")
+        print(f"AVISO: ciudades sin fila en {DECISION.name}: {sin_decision}")
 
     C = C.drop(columns=[c for c in COLS_DECISION if c in C.columns])
     C = C.merge(dec, on="ciudad_id", how="left")

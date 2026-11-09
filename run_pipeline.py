@@ -1,6 +1,6 @@
-"""Corre el pipeline completo: 01 -> 06b.
+"""Corre el pipeline completo: 01 -> 15.
 
-Uso:  python run_pipeline.py [desde]     (ej. `python run_pipeline.py 04` o `04d`)
+Uso:  python run_pipeline.py [desde]     (ej. `python run_pipeline.py 06`)
 
 El detalle de qué hace cada etapa está en `src/pipeline/README.md`.
 """
@@ -12,20 +12,20 @@ from pathlib import Path
 
 ETAPAS = [
     "01_ingesta",
-    "03_candidatos",
-    "04_aplicar_dedup",
-    "04b_titulo_nombres",
-    "04c_vincular_imagenes",
-    "04d_coordenadas",
-    "04e_premios",
-    "04f_marcas_objetos",
-    "04g_categorias",
-    "04h_tecnicas_materiales",
-    "05_vista_plana",
-    "05a_redes",
-    "05b_mapa",
-    "05c_explorador",
-    "06b_controles",
+    "02_candidatos",
+    "03_fusiones",
+    "04_nombres",
+    "05_imagenes",
+    "06_coordenadas",
+    "07_premios",
+    "08_marcas",
+    "09_categorias",
+    "10_tecnicas",
+    "11_vista_plana",
+    "12_redes",
+    "13_mapa",
+    "14_explorador",
+    "15_controles",
 ]
 
 PIPE = Path(__file__).resolve().parent / "src" / "pipeline"
@@ -36,8 +36,7 @@ def main() -> None:
     desde = sys.argv[1] if len(sys.argv) > 1 else "01"
     codigo = 0
     for etapa in ETAPAS:
-        # se compara con tantos caracteres como tenga `desde`: "04" corre 04, 04b, …;
-        # "04d" arranca en 04d
+        # se compara con tantos caracteres como tenga `desde`: "06" arranca en 06_coordenadas
         if etapa[:len(desde)] < desde:
             continue
         print(f"\n=== {etapa} ===")

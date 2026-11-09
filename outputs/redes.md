@@ -1,6 +1,6 @@
 # Redes de participación
 
-Generado por `src/pipeline/05a_redes.py` en cada corrida. Las aristas de apellido son **hipótesis de parentesco**, no datos: sirven para orientar la búsqueda en otras fuentes. El grafo completo está en `data/processed/redes.xlsx`.
+Generado por `src/pipeline/12_redes.py` en cada corrida. Las aristas de apellido son **hipótesis de parentesco**, no datos: sirven para orientar la búsqueda en otras fuentes. El grafo completo está en `data/processed/redes.xlsx`.
 
 ## Resumen
 

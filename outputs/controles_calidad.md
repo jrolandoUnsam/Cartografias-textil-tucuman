@@ -1,6 +1,6 @@
 # Controles de calidad de la base
 
-Generado por `src/pipeline/06b_controles.py` en cada corrida del pipeline. Lista casos para revisar; no corrige nada. Las páginas (DSCN…) son los escaneos del catálogo o del fallo.
+Generado por `src/pipeline/15_controles.py` en cada corrida del pipeline. Lista casos para revisar; no corrige nada. Las páginas (DSCN…) son los escaneos del catálogo o del fallo.
 
 ## Resumen
 
@@ -41,7 +41,7 @@ Generado por `src/pipeline/06b_controles.py` en cada corrida del pipeline. Lista
 
 ### Nombres parecidos que esperan respuesta de LM
 
-Pares del detector de duplicados (`03_candidatos`) que se le mandaron a LM y no contestó. Los otros 29 pares sin anotar son los que Julián dio por personas distintas el 25/10 (mismo apellido, otro nombre de pila) y no se listan.
+Pares del detector de duplicados (`02_candidatos`) que se le mandaron a LM y no contestó. Los otros 29 pares sin anotar son los que Julián dio por personas distintas el 25/10 (mismo apellido, otro nombre de pila) y no se listan.
 
 | id A | Nombre A | id B | Nombre B | Parecido |
 |---|---|---|---|---|
@@ -108,7 +108,7 @@ Ningún caso.
 
 ### Sólo provincia con una localidad de la misma expositora
 
-Obras con sólo la provincia cuando la misma expositora tiene una localidad en esa provincia. `04d` ya pasó 53 obras a su localidad; acá quedan las que no pudo resolver (dos localidades posibles).
+Obras con sólo la provincia cuando la misma expositora tiene una localidad en esa provincia. `06` ya pasó 53 obras a su localidad; acá quedan las que no pudo resolver (dos localidades posibles).
 
 Ningún caso.
 

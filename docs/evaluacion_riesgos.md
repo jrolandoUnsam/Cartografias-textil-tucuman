@@ -32,7 +32,7 @@ estudiante.
   instituciones llevan `I`, una marca propia en lugar de género (pedido de LM, 28/10),
   asignada a las que reconoce la regla `INSTITUCION` (`src/pipeline/_util.py`). El
   explorador permite filtrar por género y lo aclara en "Lo que el archivo no dice".
-- **Parentescos:** las coincidencias de apellido (`05a_redes`) se muestran como pistas,
+- **Parentescos:** las coincidencias de apellido (`12_redes`) se muestran como pistas,
   nunca como datos, porque las fuentes no registran parentescos.
 
 ## Resguardo

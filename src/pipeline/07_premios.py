@@ -1,4 +1,4 @@
-"""Etapa 04e — Hoja `Premios`: cada premio del fallo cruzado con el catálogo.
+"""Etapa 07: Hoja `Premios`: cada premio del fallo cruzado con el catálogo.
 
 Toma los premios del fallo del jurado de 1915 tal como están en la tabla manual (vía
 `tabla_normalizada_dedup.xlsx`, con los `persona_id` ya reapuntados por las fusiones)
@@ -12,10 +12,10 @@ El resultado reemplaza la hoja `Premios` de `data/processed/tabla_normalizada.xl
 una fila por premio, ya curada (ver `hoja_curada`). Hasta 2026-10-25 esto era la etapa
 `03b`, que corría ANTES de las fusiones, leía la tabla procesada de la corrida anterior
 y dejaba su resultado aparte, en `premios_vinculados.xlsx`; la hoja Premios de la
-tabla procesada seguía siendo la vieja. Ahora corre después de `04d`, sobre las
+tabla procesada seguía siendo la vieja. Ahora corre después de `06`, sobre las
 expositoras, objetos e imágenes de la misma corrida, y no hay segunda copia.
 
-Entrada : data/interim/tabla_normalizada_dedup.xlsx (hoja Premios, salida de 04)
+Entrada : data/interim/tabla_normalizada_dedup.xlsx (hoja Premios, salida de 03)
           data/processed/tabla_normalizada.xlsx (Expositoras, Objetos, Categorías)
           data/interim/decisiones/premios_manual.csv
 Salida  : data/processed/tabla_normalizada.xlsx, hoja Premios
@@ -23,15 +23,15 @@ Salida  : data/processed/tabla_normalizada.xlsx, hoja Premios
 Diferencia con la versión anterior (`git log` / `docs/bitacora.md` 2026-09-14): cruzaba por
 categoría + N.º de orden y, si quedaba un único objeto candidato, lo tomaba sin
 chequear si el nombre del dueño real tenía algo que ver con el nombre del premio
-—la comparación de persona solo se usaba, antes, para desempatar cuando había MÁS
-de un candidato, y ni así se verificaba el resultado final—. Eso dejaba premios
+(la comparación de persona solo se usaba, antes, para desempatar cuando había MÁS
+de un candidato, y ni así se verificaba el resultado final). Eso dejaba premios
 vinculados al objeto de otra persona (ver bitácora: filas 60, 61, 99).
 
 Esta versión agrega un paso más al final: una vez resuelto el/los `objeto_id`
 candidato(s) por categoría + orden, compara el nombre del premio contra el nombre
 de quien realmente figura como dueño de ese objeto en `Objetos` (matching
 aproximado, igual criterio que para personas). Si no se parecen lo suficiente
-(`UMBRAL_NOMBRE`), el vínculo se descarta y la fila queda para revisar a mano —el
+(`UMBRAL_NOMBRE`), el vínculo se descarta y la fila queda para revisar a mano; el
 candidato descartado se deja anotado en `candidato_rechazado` para no perder el
 dato.
 
@@ -495,7 +495,7 @@ def main() -> None:
     print(f"{len(hoja)} premios: " + ", ".join(
         f"{n} {e}" for e, n in hoja["Estado"].value_counts().items()))
     for _, r in hoja[hoja["Estado"] == "pendiente"].iterrows():
-        print(f"  pendiente — premio_id {r['premio_id']} {r['Nombre en el fallo']}")
+        print(f"  pendiente: premio_id {r['premio_id']} {r['Nombre en el fallo']}")
     print(f"-> {FUENTE} (hoja Premios)")
 
 

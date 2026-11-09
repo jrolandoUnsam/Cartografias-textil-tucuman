@@ -1,10 +1,10 @@
-"""Auditoría de comentarios — ¿se aplicó cada decisión anotada a mano?
+"""Auditoría de comentarios: ¿se aplicó cada decisión anotada a mano?
 
 Recorre, fila por fila:
   1. `data/interim/revision_duplicados.xlsx`  (hojas Personas y Ciudades)
   2. la hoja `Premios` original (tabla manual, vía `tabla_normalizada_dedup.xlsx`),
      columnas de comentario "Mis comentarios" / "Coment LM", contra el vínculo
-     vigente de la hoja `Premios` curada (`04e_premios`)
+     vigente de la hoja `Premios` curada (`07_premios`)
 
 y compara la decisión que dice el comentario contra el estado actual de
 `tabla_normalizada.xlsx`, tomando como línea de base `tabla_normalizada_manual.xlsx`
@@ -114,7 +114,7 @@ def audita_personas(md: list[str]) -> None:
 
     filas: list[str] = []
     tally: dict[str, int] = {}
-    md.append("## 1. `revision_duplicados.xlsx` — hoja *Personas - candidatos*\n")
+    md.append("## 1. `revision_duplicados.xlsx`: hoja *Personas - candidatos*\n")
     cab = (
         "| # | id A / nombre | id B / nombre | Hecho | Comentario | Decisión leída | "
         "Estado actual | Veredicto |\n"
@@ -125,7 +125,7 @@ def audita_personas(md: list[str]) -> None:
         a, b = int(r["id_A"]), int(r["id_B"])
         com = "" if pd.isna(r["Comentarios"]) else str(r["Comentarios"]).replace("\n", " ").strip()
         hecho = str(r["Hecho"])
-        na_now, nb_now = nom.get(a, "—"), nom.get(b, "—")
+        na_now, nb_now = nom.get(a, "-"), nom.get(b, "-")
         ea, eb = a in ids, b in ids
         oa, ob = n_obj.get(a, 0), n_obj.get(b, 0)
         cl = com.lower()
@@ -190,7 +190,7 @@ def audita_personas(md: list[str]) -> None:
         clave = v.split(" · ")[0].replace("⚠ ", "")
         tally[clave] = tally.get(clave, 0) + 1
         filas.append(
-            f"| {i + 1} | `{a}` {na_now} | `{b}` {nb_now} | {hecho} | {com or '—'} | "
+            f"| {i + 1} | `{a}` {na_now} | `{b}` {nb_now} | {hecho} | {com or '-'} | "
             f"{decision} | {estado} | **{v}** |"
         )
 
@@ -210,7 +210,7 @@ def audita_ciudades(md: list[str]) -> None:
     rev = pd.read_excel(REVISION, sheet_name="Ciudades - candidatos")
     col_com = "Comentarios" if "Comentarios" in rev.columns else "Comendatios"
 
-    md.append("\n## 2. `revision_duplicados.xlsx` — hoja *Ciudades - candidatos*\n")
+    md.append("\n## 2. `revision_duplicados.xlsx`: hoja *Ciudades - candidatos*\n")
     md.append(
         "| # | id A / nombre | id B / nombre | Hecho | Comentario | "
         "Estado actual | Veredicto |\n"
@@ -238,14 +238,14 @@ def audita_ciudades(md: list[str]) -> None:
             v = "revisar"
         md.append(
             f"| {i + 1} | `{a}` {r['nombre_A']} | `{b}` {r['nombre_B']} | {hecho} | "
-            f"{com or '—'} | {estado} | **{v}** |"
+            f"{com or '-'} | {estado} | **{v}** |"
         )
 
 
 def audita_premios(md: list[str]) -> None:
     xl = pd.ExcelFile(FUENTE)
-    # Los comentarios viven en la hoja Premios original (tabla manual, vía 04); el
-    # vínculo vigente, en la hoja curada que arma 04e. Se cruzan por premio_id (fila).
+    # Los comentarios viven en la hoja Premios original (tabla manual, vía 03); el
+    # vínculo vigente, en la hoja curada que arma 07. Se cruzan por premio_id (fila).
     P = pd.read_excel(INTERIM / "tabla_normalizada_dedup.xlsx", sheet_name="Premios")
     vigente = xl.parse("Premios").set_index("premio_id")["objeto_id"]
     P["objeto_id"] = P.index.map(vigente)
@@ -258,15 +258,15 @@ def audita_premios(md: list[str]) -> None:
     cols_com = [c for c in P.columns if "coment" in c.lower()]
 
     cols_orig = list(Pg.columns[:8])  # PREMIOS … NÚM: lo que transcribe el fallo
-    # 04 limpia espacios de más en todas las celdas: eso no cuenta como modificación
+    # 03 limpia espacios de más en todas las celdas: eso no cuenta como modificación
     txt = lambda s: s.map(limpiar_texto).fillna("").astype(str)
     intactas = all((txt(P[c]) == txt(Pg[c])).all() for c in cols_orig)
 
-    md.append("\n## 3. `tabla_normalizada.xlsx` — hoja *Premios* (filas con comentario)\n")
+    md.append("\n## 3. `tabla_normalizada.xlsx`: hoja *Premios* (filas con comentario)\n")
     md.append(
         f"> Las 8 columnas originales de la hoja Premios están **{'intactas' if intactas else 'MODIFICADAS'}** "
         "respecto de la tabla de partida (sin contar espacios de más). El vínculo que se muestra "
-        "es el de la hoja curada de `04e_premios.py`.\n"
+        "es el de la hoja curada de `07_premios.py`.\n"
         ">\n"
         "> Los comentarios de esta hoja son **observaciones sobre nombres**, no órdenes de "
         "fusión. La columna *Nombre real de la expositora* muestra a quién apunta hoy el "
@@ -288,7 +288,7 @@ def audita_premios(md: list[str]) -> None:
             pid = exp_de_obj.get(int(tok))
             if pid is not None:
                 reales.append(nom_exp.get(pid, f"id {pid}"))
-        real = " ; ".join(dict.fromkeys(reales)) if reales else "— (el premio no tiene objeto en el catálogo)"
+        real = " ; ".join(dict.fromkeys(reales)) if reales else "- (el premio no tiene objeto en el catálogo)"
 
         c = " ".join(coms).lower()
         if not obj:
@@ -298,11 +298,11 @@ def audita_premios(md: list[str]) -> None:
                       if "ezequiela" in real.lower() else
                       "PENDIENTE: LM pide 'Ezequiela'; la expositora sigue como 'Esequiela'")
         elif "Coment LM" in cols_com and pd.notna(r["Coment LM"]):
-            estado = "respondida por LM — el nombre que quedó está en 'Nombre real'"
+            estado = "respondida por LM: el nombre que quedó está en 'Nombre real'"
         else:
             estado = "observación sin respuesta de LM"
         md.append(
-            f"| {i} | {r['NOMBRE']} | {obj or '—'} | {real} | {' / '.join(coms)} | {estado} |"
+            f"| {i} | {r['NOMBRE']} | {obj or '-'} | {real} | {' / '.join(coms)} | {estado} |"
         )
 
 
@@ -346,25 +346,25 @@ def hallazgo_global() -> str:
 
 def main() -> None:
     md: list[str] = [
-        "# Auditoría de comentarios — estado de aplicación\n",
-        f"_Generado por `src/pipeline/audit_comentarios.py` — no editar a mano._\n",
+        "# Auditoría de comentarios: estado de aplicación\n",
+        f"_Generado por `src/pipeline/audit_comentarios.py`: no editar a mano._\n",
         "Compara cada decisión anotada a mano contra el estado actual de "
         "`data/processed/tabla_normalizada.xlsx`, tomando como línea de base "
         "`data/interim/tabla_normalizada_manual.xlsx` (la tabla antes del pipeline).\n",
         hallazgo_global(),
         "**Veredictos:**\n"
-        "- `SIN HACER` — la fila sigue igual que en la línea de base.\n"
-        "- `SOLO NOMBRE` — se corrigió/normalizó el nombre, pero las dos filas **siguen "
+        "- `SIN HACER`: la fila sigue igual que en la línea de base.\n"
+        "- `SOLO NOMBRE`: se corrigió/normalizó el nombre, pero las dos filas **siguen "
         "sin fusionar** (los objetos no se movieron).\n"
-        "- `SOLO NOMBRE · OBJETOS PARTIDOS` — ídem, y además hay objetos en la fila que "
+        "- `SOLO NOMBRE · OBJETOS PARTIDOS`: ídem, y además hay objetos en la fila que "
         "el comentario manda descartar → fusionar no es solo borrar.\n"
-        "- `FUSIÓN OK` — una fila desapareció y quedó la que pide el comentario.\n"
-        "- `FUSIÓN REVISAR` — una fila desapareció pero quedó la otra.\n"
-        "- `OK SEPARAR` — se pidió **no** unificar y siguen las dos filas (correcto).\n"
-        "- `CONTRA LO PEDIDO` — se pidió separar y se fusionó, o al revés.\n"
-        "- `FUSIÓN OK (en un tercer id)` — las dos filas desaparecieron porque entraron "
+        "- `FUSIÓN OK`: una fila desapareció y quedó la que pide el comentario.\n"
+        "- `FUSIÓN REVISAR`: una fila desapareció pero quedó la otra.\n"
+        "- `OK SEPARAR`: se pidió **no** unificar y siguen las dos filas (correcto).\n"
+        "- `CONTRA LO PEDIDO`: se pidió separar y se fusionó, o al revés.\n"
+        "- `FUSIÓN OK (en un tercer id)`: las dos filas desaparecieron porque entraron "
         "en un grupo de 3 o más; sus objetos están juntos en otro id.\n"
-        "- `DUDA ABIERTA` — el comentario sólo pregunta; no hay decisión que verificar.\n",
+        "- `DUDA ABIERTA`: el comentario sólo pregunta; no hay decisión que verificar.\n",
     ]
     audita_personas(md)
     audita_ciudades(md)

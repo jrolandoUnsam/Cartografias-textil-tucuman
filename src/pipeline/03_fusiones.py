@@ -1,10 +1,10 @@
-"""Etapa 04 — Aplicar las fusiones de expositoras duplicadas.
+"""Etapa 03: Aplicar las fusiones de expositoras duplicadas.
 
 PASO 3 del flujo de deduplicación:
 
-    03_candidatos.py    detecta pares candidatos
+    02_candidatos.py    detecta pares candidatos
     (a mano)            se anota Hecho / Comentarios en duplicados_expositoras_candidatos.xlsx
-    04_aplicar_dedup.py ejecuta las decisiones anotadas          (este script)
+    03_fusiones.py ejecuta las decisiones anotadas          (este script)
 
 Cada decisión es una fila de `data/interim/decisiones/fusiones_expositoras.csv`:
 para cada id de `descartar`, mueve sus objetos (`Objetos.expositora_id`) al id
@@ -52,7 +52,7 @@ Entrada : data/interim/tabla_normalizada_manual.xlsx   (export manual más recie
           data/interim/decisiones/nombres_expositoras.csv
           data/interim/decisiones/fusiones_ciudades.csv
           data/interim/decisiones/separaciones_ciudades.csv
-Salida  : data/interim/tabla_normalizada_dedup.xlsx   (insumo de 04b)
+Salida  : data/interim/tabla_normalizada_dedup.xlsx   (insumo de 04)
 """
 from __future__ import annotations
 
@@ -181,12 +181,12 @@ def main() -> None:
     validas = []
     for f in leer_fusiones():
         if f.mantener not in ids:
-            print(f"AVISO — se omite entera (el id a conservar {f.mantener} ya no "
+            print(f"AVISO: se omite entera (el id a conservar {f.mantener} ya no "
                   f"existe en {FUENTE.name}): {f.nota}")
             continue
         for d in f.descartar:
             if d not in ids:
-                print(f"AVISO — {f.nota}: el id {d} ya no existe en "
+                print(f"AVISO: {f.nota}: el id {d} ya no existe en "
                       f"{FUENTE.name}, se ignora")
         vivos = [d for d in f.descartar if d in ids]
         if vivos:

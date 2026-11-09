@@ -1,4 +1,4 @@
-"""Etapa 04c — Vincular cada objeto con la imagen escaneada de donde salió.
+"""Etapa 05: Vincular cada objeto con la imagen escaneada de donde salió.
 
 `data/interim/tabla_normalizada_manual.xlsx` tiene una hoja `Paginas_Catalogo`
 (completada a mano) con, por cada imagen escaneada del catálogo, qué categoría y
@@ -8,11 +8,11 @@ rango) y le agrega una columna `imagen`.
 
 Solo cubre `fuente_id` 1 y 3 (los dos catálogos → Objetos). `fuente_id` 2 es el
 fallo del jurado, que se corresponde con la hoja `Premios`, no con `Objetos`
-(ver `04e_premios.py`) — queda fuera de este script.
+(ver `07_premios.py`): queda fuera de este script.
 
 La correspondencia por nombre no importa acá: usa `ORDEN` + `categoria_id` +
-`concurso_id`, que no cambian con las fusiones de expositoras (`04_aplicar_dedup`)
-ni con el paso a título de nombres (`04b_titulo_nombres`).
+`concurso_id`, que no cambian con las fusiones de expositoras (`03_fusiones`)
+ni con el paso a título de nombres (`04_nombres`).
 
 Además agrega `foto_album`: la foto del álbum de 1915 donde aparece el objeto, según
 `decisiones/album_1915.csv` (transcripción de LM de cada foto; el `objeto_id` de cada

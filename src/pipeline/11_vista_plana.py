@@ -1,4 +1,4 @@
-"""Etapa 05 — Vista plana consolidada.
+"""Etapa 11: Vista plana consolidada.
 
 Lee `data/processed/tabla_normalizada.xlsx`, resuelve los identificadores de la
 hoja `Objetos` a nombres y escribe
@@ -7,19 +7,19 @@ hoja `Objetos` a nombres y escribe
 
 Columnas: Concurso, Año, Expositora/Expositor, Género, Ciudad, Provincia, Lugar en el
 documento, ciudad_id, lat, lon, lat_provincia, lon_provincia, Categoría, Categoría
-normalizada (la pone `04g`), N.º de orden, Descripción del
-objeto, Técnicas, Técnica según, Materiales (las pone `04h`), Fuera de concurso,
+normalizada (la pone `09`), N.º de orden, Descripción del
+objeto, Técnicas, Técnica según, Materiales (las pone `10`), Fuera de concurso,
 Creación de la autora, Imagen del catálogo, Foto del álbum.
 
 `Género` es el de la hoja `Expositoras` (F, M o I = institución).
 
-`Foto del álbum` es la foto del álbum de 1915 donde aparece la obra (la pone `04c`).
+`Foto del álbum` es la foto del álbum de 1915 donde aparece la obra (la pone `05`).
 
-`Fuera de concurso` y `Creación de la autora` (`sí` / vacío) las pone `04f` leyendo el
+`Fuera de concurso` y `Creación de la autora` (`sí` / vacío) las pone `08` leyendo el
 texto del catálogo, que sigue entero en `Descripción del objeto`.
 
 `lat`/`lon` es el punto de la ciudad y `lat_provincia`/`lon_provincia` el de la
-capital de su provincia (los pone `04d`): lo que sólo tiene provincia, o una ciudad
+capital de su provincia (los pone `06`): lo que sólo tiene provincia, o una ciudad
 sin punto seguro, igual se puede ubicar a nivel provincia.
 
 `Lugar en el documento` es la procedencia tal como la escribió el catálogo

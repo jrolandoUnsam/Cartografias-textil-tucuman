@@ -1,4 +1,4 @@
-"""Etapa 06b — Controles de calidad de la base.
+"""Etapa 15: Controles de calidad de la base.
 
 Busca, en toda la tabla normalizada, los errores típicos de transcribir catálogos de
 1915-1916 (`docs/bitacora.md`, 2026-10-28): personas escritas distinto, lugares
@@ -65,7 +65,7 @@ class Informe:
 
     def escribir(self):
         out = ["# Controles de calidad de la base", "",
-               "Generado por `src/pipeline/06b_controles.py` en cada corrida del pipeline. "
+               "Generado por `src/pipeline/15_controles.py` en cada corrida del pipeline. "
                "Lista casos para revisar; no corrige nada. Las páginas (DSCN…) son los escaneos "
                "del catálogo o del fallo.", "",
                "## Resumen", "", "| Grupo | Control | Casos | Qué hacer |", "|---|---|--:|---|"]
@@ -107,7 +107,7 @@ def main() -> None:
     par = lambda r: frozenset((int(r.id_A), int(r.id_B)))  # noqa: E731
     abiertos = [r for r in sin_anotar.itertuples() if par(r) in ENVIADOS_LM]
     inf.control(G, "Nombres parecidos que esperan respuesta de LM",
-                "Pares del detector de duplicados (`03_candidatos`) que se le mandaron a LM y no contestó. Los otros "
+                "Pares del detector de duplicados (`02_candidatos`) que se le mandaron a LM y no contestó. Los otros "
                 f"{len(sin_anotar) - len(abiertos)} pares sin anotar son los que Julián dio por personas distintas el "
                 "25/10 (mismo apellido, otro nombre de pila) y no se listan.",
                 [(int(r.id_A), nombre[r.id_A], int(r.id_B), nombre[r.id_B], f"{r.score:.0f}") for r in abiertos],
@@ -167,7 +167,7 @@ def main() -> None:
     movidas = O["ciudad_id_catalogo"].notna().sum() if "ciudad_id_catalogo" in O.columns else 0
     inf.control(G, "Sólo provincia con una localidad de la misma expositora",
                 f"Obras con sólo la provincia cuando la misma expositora tiene una localidad en esa provincia. "
-                f"`04d` ya pasó {movidas} obras a su localidad; acá quedan las que no pudo resolver (dos localidades posibles).",
+                f"`06` ya pasó {movidas} obras a su localidad; acá quedan las que no pudo resolver (dos localidades posibles).",
                 filas, ["id", "Expositora", "Provincia", "Localidades"], "Elegir la localidad a mano")
 
     sin_coord = C[C["lat"].isna() & ~solo]

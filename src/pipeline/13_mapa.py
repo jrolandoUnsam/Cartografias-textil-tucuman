@@ -1,8 +1,8 @@
-"""Etapa 05b — Mapa de procedencias.
+"""Etapa 13: Mapa de procedencias.
 
 Genera `outputs/mapa_procedencias.html` (folium) a partir de la tabla normalizada, así
 el mapa se regenera con cada corrida y no queda desfasado de los datos. Hasta
-2026-10-13 lo hacía a mano `notebooks/04_eda.ipynb` y quedó con nombres y coordenadas
+2026-10-13 lo hacía a mano `notebooks/eda.ipynb` y quedó con nombres y coordenadas
 viejas ("Villa Vitulumba", Orán con punto).
 
 Dos capas:
@@ -114,7 +114,7 @@ def mapa(ciudades: pd.DataFrame, provincias: pd.DataFrame) -> folium.Map:
     capa_p = folium.FeatureGroup(name="Sólo provincia (en la capital)", show=True)
     for _, r in provincias.iterrows():
         cat = f"<br>en el catálogo: {html.escape(r.en_catalogo)}" if r.en_catalogo else ""
-        popup = (f"<b>{html.escape(r.nombre_provincia)}</b> — sin ciudad ubicada<br>"
+        popup = (f"<b>{html.escape(r.nombre_provincia)}</b>: sin ciudad ubicada<br>"
                  f"{_cuantos(r.objetos, 'objeto', 'objetos')} · "
                  f"{_cuantos(r.expositoras, 'expositora', 'expositoras')}{cat}<br>"
                  f"<i>punto de referencia: capital de la provincia</i>")

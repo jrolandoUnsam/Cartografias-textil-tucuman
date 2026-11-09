@@ -1,14 +1,15 @@
-"""Etapa 05c: explorador web (mapa, técnicas por provincia, expositoras).
+"""Etapa 14: explorador web (mapa, técnicas por provincia, expositoras).
 
 Llena la plantilla `plantillas/explorador.template.html` con los datos de la tabla
 normalizada y escribe `outputs/explorador.html`: un único archivo, sin servidor, que
 se abre en el navegador. La plantilla es el diseño del explorador; acá sólo se arma el
-JSON que consume (`DATA`) y se pega el CSS de Leaflet (también en `plantillas/`). El mapa base es Esri
-World Street Map, como en `05b_mapa`, y se carga de internet al abrir la página
-(tile.openstreetmap.org se bloquea si la página se abre como archivo local).
+JSON que consume (`DATA`) y se pegan, desde `plantillas/` y `plantillas/vendor/`, el CSS de
+Leaflet, las bibliotecas JS y las tipografías. Lo único que se carga de internet es el mapa
+base, Esri World Street Map, como en `13_mapa` (tile.openstreetmap.org se bloquea si la
+página se abre como archivo local); sin conexión, los puntos se ven igual sobre fondo liso.
 
 Una obra = una fila de `Objetos` (981). A eso se suman, como obras aparte, los premios
-de 1915 que no tienen objeto en el catálogo (hoja `Premios`, que arma `04e`, sin
+de 1915 que no tienen objeto en el catálogo (hoja `Premios`, que arma `07`, sin
 `objeto_id`): el fallo los premia pero no figuran en el listado de expositoras.
 
 Lo que no sale de la tabla y es decisión del proyecto vive en `decisiones/`:
@@ -26,24 +27,24 @@ las fuentes; desde el 28/10 el explorador no las usa hasta que LM las revise. La
 procedencia se agrupa por provincia, la misma que muestra el mapa.
 
 Las técnicas y los materiales se leen del texto del objeto con las reglas de
-`tecnicas_materiales.csv` (`_tecnicas.py`, las mismas que dejan las columnas de `04h` en
+`tecnicas_materiales.csv` (`_tecnicas.py`, las mismas que dejan las columnas de `10` en
 la base); el texto del catálogo no se toca. Si no hay técnica, se usa la de la categoría
 (`ts = "c"`); si tampoco, queda "sin técnica indicada" (`ts = "n"`).
 
 El género de cada obra (`g`: F, M o I) es el de su expositora en la hoja `Expositoras`.
 
 Lugares: un círculo por localidad actual (`nombre_ciudad_hoy` + provincia), como en
-`05b_mapa`: "La Cocha" y "Escuela de la Cocha", o "Asilo Ciudad" y San Miguel, van
+`13_mapa`: "La Cocha" y "Escuela de la Cocha", o "Asilo Ciudad" y San Miguel, van
 juntos; el punto es el de la fila con más obras. Lo que no tiene punto
 de ciudad pero sí provincia se agrupa en un lugar "sólo provincia" en la capital, como
-en `05b_mapa`. Lo que no tiene ninguno de los dos queda sin coordenadas: se lista en
+en `13_mapa`. Lo que no tiene ninguno de los dos queda sin coordenadas: se lista en
 la matriz y en las fichas, no en el mapa.
 
 Los grupos de expositoras con el mismo apellido en el mismo lugar salen de la hoja
-`Grupos` de `redes.xlsx` (`05a_redes`, que corre antes): se muestran en Análisis y en
+`Grupos` de `redes.xlsx` (`12_redes`, que corre antes): se muestran en Análisis y en
 cada ficha como pista de parentesco, no como dato.
 La pestaña Red dibuja el grafo completo (hojas Nodos y Aristas) con sigma.js y graphology,
-que la página carga de un CDN con versión fija, como Leaflet.
+copiadas en `plantillas/vendor/` con versión fija, como Leaflet.
 
 Entrada : data/processed/tabla_normalizada.xlsx (Objetos, Expositoras, Categorías,
           Ciudades, Premios), data/interim/objetos_crudos.csv (nombre tal como figura
@@ -72,10 +73,12 @@ COMISIONES = DECISIONES / "comisiones.csv"
 GENERO_FALLO = DECISIONES / "genero_solo_fallo.csv"
 ALBUM = DECISIONES / "album_1915.csv"
 ACCESIT = DECISIONES / "accesit_fallo.csv"  # accésits fuera de la sección Accésit del fallo
-REDES = PROCESSED / "redes.xlsx"  # hoja Grupos, de 05a_redes
+REDES = PROCESSED / "redes.xlsx"  # hoja Grupos, de 12_redes
 PLANTILLAS = RAIZ / "src" / "pipeline" / "plantillas"
 # fotos del álbum de 1915: versiones livianas (en el repo) de las tomas de `data/raw/images/albumes/`
 FOTOS_DIR = PLANTILLAS / "album"
+# bibliotecas JS y tipografías, copiadas al repo (ver vendor/README.md)
+VENDOR = PLANTILLAS / "vendor"
 FOTOS_RAW = RAIZ / "data" / "raw" / "images" / "albumes" / "1915-album-version-2"
 SALIDA = RAIZ / "outputs" / "explorador.html"
 
@@ -156,7 +159,7 @@ def nota_publica(v) -> str:
 
 # ------------------------------------------------------------------------- premios
 def premios(P: pd.DataFrame) -> list[dict]:
-    """Una entrada por premio de la hoja Premios curada (etapa 04e).
+    """Una entrada por premio de la hoja Premios curada (etapa 07).
 
     Cada premio lleva su `premio_id` (`pz.k`): un premio que abarca varias obras
     (Rosa Alderete, randas n.º 17 a 21) se cuelga de cada una, pero cuenta una vez.
@@ -244,7 +247,7 @@ def datos() -> dict:
         cat = texto(categoria.get(o.categoria_id))
         tec, ts = tecnicas(texto(o.OBJETO), fam["tecnica_por_categoria"] if fam is not None else "")
         mat = materiales(texto(o.OBJETO), fam["material_por_categoria"] if fam is not None else "")
-        # procedencia como la escribió el catálogo, aunque 04d haya pasado la obra a la
+        # procedencia como la escribió el catálogo, aunque 06 haya pasado la obra a la
         # localidad de la expositora
         cat_id = getattr(o, "ciudad_id_catalogo", None)
         cr = ciudad.loc[int(cat_id) if pd.notna(cat_id) else o.ciudad_id]
@@ -260,15 +263,15 @@ def datos() -> dict:
             r["g"] = texto(genero.get(o.expositora_id))  # F, M o I (institución)
         if re.search(INSTITUCION, clave(n)):
             r["inst"] = 1
-        # marcas que pone 04f leyendo el texto del catálogo
+        # marcas que pone 08 leyendo el texto del catálogo
         if texto(getattr(o, "fuera_de_concurso", "")) == "sí":
             r["fc"] = 1
         if texto(getattr(o, "creacion_autora", "")) == "sí":
             r["ca"] = 1
         if pd.notna(cat_id):
-            r["li"] = 1  # localidad deducida de las otras obras de la expositora (04d)
+            r["li"] = 1  # localidad deducida de las otras obras de la expositora (06)
         if texto(getattr(o, "foto_album", "")):
-            r["fa"] = texto(o.foto_album)  # foto del álbum de 1915 (04c)
+            r["fa"] = texto(o.foto_album)  # foto del álbum de 1915 (05)
             if posicion.get(o.objeto_id):
                 r["fp"] = posicion[o.objeto_id]  # dónde está la obra en la foto
         recs.append(r)
@@ -325,7 +328,7 @@ def datos() -> dict:
         comision.append({"a": int(c.anio), "n": c.nombre, "nf": c.nombre_en_fuente, "r": c.rol, "s": c.seccion,
                          "f": c.fuente, "pk": c.persona_id, "mismo": mismo})
 
-    # grupos con el mismo apellido en el mismo lugar (05a_redes): una pista de parentesco
+    # grupos con el mismo apellido en el mismo lugar (12_redes): una pista de parentesco
     redes = [{"ap": g.apellidos, "l": g.lugar, "c": g.confianza, "pk": str(g.persona_ids).split(";")}
              for g in pd.read_excel(REDES, sheet_name="Grupos").itertuples()] if REDES.exists() else []
     # la red completa, para la pestaña Red: nodos [id, tipo, nombre, persona_id, concursos,
@@ -461,11 +464,34 @@ def logo(archivo: str, ancho: int = 900) -> str:
     return "data:image/png;base64," + base64.b64encode(buf.getvalue()).decode("ascii")
 
 
+def biblioteca(archivo: str) -> str:
+    """JS de `plantillas/vendor/`, sin el comentario del source map (el .map no se copia)."""
+    t = (VENDOR / archivo).read_text(encoding="utf-8")
+    assert "</script" not in t.lower(), archivo
+    return re.sub(r"//# sourceMappingURL=\S+\s*$", "", t).strip()
+
+
+def fuentes() -> str:
+    """@font-face con los woff2 (subconjunto latino, fuentes variables) como data URI."""
+    caras = [("IBM Plex Sans", "normal", "400 600", "ibmplexsans-latin.woff2"),
+             ("Newsreader", "normal", "400 600", "newsreader-latin.woff2"),
+             ("Newsreader", "italic", "400 500", "newsreader-italic-latin.woff2")]
+    return "\n".join(
+        f"@font-face {{ font-family: '{f}'; font-style: {s}; font-weight: {w}; font-display: swap; "
+        f"src: url(data:font/woff2;base64,{base64.b64encode((VENDOR / a).read_bytes()).decode('ascii')}) format('woff2'); }}"
+        for f, s, w, a in caras)
+
+
 def main() -> None:
     D = datos()
     plantilla = (PLANTILLAS / "explorador.template.html").read_text(encoding="utf-8")
     piezas = {
+        "__FUENTES_CSS__": fuentes(),
         "__LEAFLET_CSS__": (PLANTILLAS / "leaflet-1.9.4.css").read_text(encoding="utf-8").strip(),
+        "__JS_LEAFLET__": biblioteca("leaflet.min.js"),
+        "__JS_GRAPHOLOGY__": biblioteca("graphology.umd.min.js"),
+        "__JS_GRAPHOLOGY_LIB__": biblioteca("graphology-library.min.js"),
+        "__JS_SIGMA__": biblioteca("sigma.min.js"),
         "__LOGO_CIAP__": logo("CIAP_COMPLETO_UNSAM_CONICET_color.png"),
         "__LOGO_ECYT__": logo("logo_ecyt.png"),
         "__FOTOS__": js(fotos_album({r["fa"] for r in D["recs"] if "fa" in r})),

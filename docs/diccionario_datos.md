@@ -32,7 +32,7 @@ de qué página salió cada registro.
 |---|---|---|
 | `categoria_id` | int | identificador |
 | `nombre_categoria` | texto | sección del concurso (PAÑUELOS, RANDAS, ALFOMBRAS, …) tal como la imprimió el catálogo |
-| `categoria_norm` | texto | sección normalizada dentro de su catálogo: une las secciones que son una misma serie numerada (`04g`, `decisiones/categorias.csv`) |
+| `categoria_norm` | texto | sección normalizada dentro de su catálogo: une las secciones que son una misma serie numerada (`09`, `decisiones/categorias.csv`) |
 | `criterio` | texto | por qué se normalizó así, con la evidencia del catálogo |
 | `estado` | texto | `propuesta` (sin revisar por la dirección) o `validada` |
 
@@ -41,7 +41,7 @@ de qué página salió cada registro.
 |---|---|---|
 | `ciudad_id` | int | identificador |
 | `nombre_ciudad` | texto | localidad tal como figura en la fuente histórica |
-| `nombre_ciudad_hoy` | texto | topónimo actual equivalente. Sale de `decisiones/coordenadas_ciudades.csv` (lo pone `04d`) |
+| `nombre_ciudad_hoy` | texto | topónimo actual equivalente. Sale de `decisiones/coordenadas_ciudades.csv` (lo pone `06`) |
 | `nombre_provincia` | texto | provincia actual. Ídem |
 | `lat` / `lon` | float | punto de la ciudad. Ídem. 61 de 77 cargadas; el resto queda vacío (nombre ambiguo o desconocido) |
 | `lat_provincia` / `lon_provincia` | float | punto de la capital de la provincia, para ubicar a nivel provincia lo que no tiene ciudad o no tiene punto seguro (pedido de Larisa, 2026-10). Ídem |
@@ -55,22 +55,22 @@ de qué página salió cada registro.
 | `expositora_id` | int | → `Expositoras.persona_id` |
 | `concurso_id` | int | → `Concursos.concurso_id` |
 | `ciudad_id` | int | → `Ciudades.ciudad_id` |
-| `ciudad_id_catalogo` | int | ciudad que escribió el catálogo cuando `04d` pasó la obra a otra: el catálogo dice sólo la provincia ("TUCUMÁN") y la misma expositora tiene obras en una localidad de esa provincia, que pasa a ser `ciudad_id`. Vacío = sin cambio (Julián, 2026-10-28; hoy 53 obras de 7 expositoras) |
+| `ciudad_id_catalogo` | int | ciudad que escribió el catálogo cuando `06` pasó la obra a otra: el catálogo dice sólo la provincia ("TUCUMÁN") y la misma expositora tiene obras en una localidad de esa provincia, que pasa a ser `ciudad_id`. Vacío = sin cambio (Julián, 2026-10-28; hoy 53 obras de 7 expositoras) |
 | `categoria_id` | int | → `Categorías.categoria_id` |
 | `ORDEN` | int | número de orden dentro de la categoría en el catálogo |
 | `OBJETO` | texto | descripción del objeto, textual de la fuente |
 | `fuente` | texto | hoja del Excel crudo de origen |
-| `imagen` | texto | escaneo del catálogo donde figura este objeto. Lo agrega `04c_vincular_imagenes` cruzando `Paginas_Catalogo` por concurso + categoría + rango de `ORDEN` |
-| `fuera_de_concurso` | texto | `sí` si el catálogo dice "(fuera de concurso)": se exhibió pero no compitió. Lo agrega `04f_marcas_objetos` leyendo `OBJETO`, que no se toca |
+| `imagen` | texto | escaneo del catálogo donde figura este objeto. Lo agrega `05_imagenes` cruzando `Paginas_Catalogo` por concurso + categoría + rango de `ORDEN` |
+| `fuera_de_concurso` | texto | `sí` si el catálogo dice "(fuera de concurso)": se exhibió pero no compitió. Lo agrega `08_marcas` leyendo `OBJETO`, que no se toca |
 | `creacion_autora` | texto | `sí` si el catálogo dice "creación de la autora" (diseño propio). Ídem |
-| `foto_album` | texto | foto del álbum de 1915 donde aparece la obra (`data/raw/images/albumes/1915-album-version-2/`). La agrega `04c` desde `decisiones/album_1915.csv` |
-| `tecnicas` | texto | técnicas de la obra, separadas por `; ` (un subtipo lleva también su técnica general: "Encaje; Encaje de bolillos"). Lectura del proyecto con los términos revisados por LM (`decisiones/tecnicas_materiales.csv`); vacío = sin técnica indicada. La agrega `04h` |
+| `foto_album` | texto | foto del álbum de 1915 donde aparece la obra (`data/raw/images/albumes/1915-album-version-2/`). La agrega `05` desde `decisiones/album_1915.csv` |
+| `tecnicas` | texto | técnicas de la obra, separadas por `; ` (un subtipo lleva también su técnica general: "Encaje; Encaje de bolillos"). Lectura del proyecto con los términos revisados por LM (`decisiones/tecnicas_materiales.csv`); vacío = sin técnica indicada. La agrega `10` |
 | `tecnica_origen` | texto | de dónde sale la técnica: `texto de la obra`, `categoría del catálogo` (el texto no nombra ninguna y se usa la de la sección, `familias_categorias.csv`) o `sin dato`. Ídem |
 | `materiales` | texto | materiales que nombra el texto de la obra o la sección del catálogo (Chales de vicuña → Vicuña), separados por `; `. Ídem |
 
 ### Hoja `Premios` (102 filas)
 
-La arma `04e_premios`: un premio del fallo del jurado de 1915 por fila, cruzado con el
+La arma `07_premios`: un premio del fallo del jurado de 1915 por fila, cruzado con el
 catálogo y curado. Las decisiones a mano están en `decisiones/premios_manual.csv`. Las
 columnas de trabajo de la revisión (`persona_score`, `revisar`, "Mis comentarios",
 "Coment LM", …) quedan en la tabla manual y en las revisiones de LM de `data/raw`; acá
@@ -115,7 +115,7 @@ son filas.
 ### Hoja `Paginas_Catalogo` (118 filas)
 
 Completada a mano. Dice qué cubre cada imagen escaneada; es el insumo de
-`04c_vincular_imagenes`.
+`05_imagenes`.
 
 | campo | tipo | descripción |
 |---|---|---|
@@ -161,7 +161,7 @@ mayúsculas)**. Dentro de un mismo grupo se conserva el orden del catálogo
 
 ## `data/processed/redes.xlsx`
 
-La arma `05a_redes`: la red de participación (expositoras, instituciones, lugares,
+La arma `12_redes`: la red de participación (expositoras, instituciones, lugares,
 concursos y comisión). Se abre en Gephi o con networkx; el explorador la dibuja en la
 pestaña Red.
 
@@ -193,7 +193,7 @@ parentesco, no un dato.
 
 ## `data/interim/duplicados_expositoras_candidatos.xlsx`
 
-Pares candidatos a fusión que genera `03_candidatos.py` (fuzzy matching, `UMBRAL = 80`),
+Pares candidatos a fusión que genera `02_candidatos.py` (fuzzy matching, `UMBRAL = 80`),
 para revisar a mano.
 
 | campo | descripción |
@@ -219,7 +219,7 @@ se conserva porque es la fuente de las decisiones que hoy están en
 
 ## `data/interim/decisiones/fusiones_expositoras.csv`
 
-Las fusiones de expositoras que aplica `04_aplicar_dedup.py` (55 filas).
+Las fusiones de expositoras que aplica `03_fusiones.py` (55 filas).
 
 | campo | descripción |
 |---|---|
@@ -232,7 +232,7 @@ Las fusiones de expositoras que aplica `04_aplicar_dedup.py` (55 filas).
 
 Qué obras, expositoras y lugares de la base comenta la prensa de época (14 filas, armada
 a mano a partir de las hojas "no …" del crudo; ver `docs/relevamiento_prensa_archivo.md`).
-La lee `05c_explorador`: cada mención aparece en la ficha de la persona, en sus obras
+La lee `14_explorador`: cada mención aparece en la ficha de la persona, en sus obras
 ("· En la prensa") y en el panel del lugar en el mapa.
 
 | campo | descripción |
@@ -252,7 +252,7 @@ La lee `05c_explorador`: cada mención aparece en la ficha de la persona, en sus
 
 Género de quienes figuran solo en el fallo del jurado de 1915 (premio sin obra en el
 catálogo) y por eso no tienen fila en la hoja `Expositoras` (5 filas). Se infiere del
-nombre, como el resto de la base. La lee `05c_explorador` para el filtro Expositores.
+nombre, como el resto de la base. La lee `14_explorador` para el filtro Expositores.
 
 | campo | descripción |
 |---|---|
@@ -264,7 +264,7 @@ nombre, como el resto de la base. La lee `05c_explorador` para el filtro Exposit
 
 Premios que el fallo de 1915 llama accésit fuera de la sección Accésit (4 filas: los de
 $ 25 de Crochet e Irlanda, p. 20, DSCN5256). Con los 8 de esa sección suman 12. La lee
-`05c_explorador`, que los muestra como «Accésit» sin cambiar su sección del fallo; si el
+`14_explorador`, que los muestra como «Accésit» sin cambiar su sección del fallo; si el
 nombre no coincide con el del `premio_id`, avisa y no lo marca.
 
 | campo | descripción |
@@ -277,7 +277,7 @@ nombre no coincide con el del `premio_id`, avisa y no lo marca.
 
 Integrantes de la comisión organizadora y jurado de cada concurso (25 filas, cargadas a
 mano del catálogo y el fallo de 1915, del catálogo de 1916 y de El Orden). Una fila por
-persona, año y rol. La leen `05a_redes` y `05c_explorador`.
+persona, año y rol. La leen `12_redes` y `14_explorador`.
 
 | campo | descripción |
 |---|---|

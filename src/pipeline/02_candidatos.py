@@ -1,22 +1,22 @@
-"""Etapa 03 — Candidatos a duplicado de expositoras.
+"""Etapa 02: Candidatos a duplicado de expositoras.
 
 PASO 1 del flujo de deduplicación:
 
-    03_candidatos.py   detecta pares candidatos            (este script)
+    02_candidatos.py   detecta pares candidatos            (este script)
     (a mano)           se anotan `Hecho` / `Comentarios`
-    04_aplicar_dedup   ejecuta las decisiones, vía decisiones/fusiones_expositoras.csv
+    03_fusiones   ejecuta las decisiones, vía decisiones/fusiones_expositoras.csv
 
-REPRODUCIBILIDAD — por qué lee la tabla *manual* y no la procesada
+REPRODUCIBILIDAD: por qué lee la tabla *manual* y no la procesada
 ------------------------------------------------------------------
 Este script leía `data/processed/tabla_normalizada.xlsx`, que es lo que escriben
-`04b` y `04c`: dos etapas POSTERIORES. Eso cerraba un ciclo — la etapa 03 leía la
-salida de la corrida anterior — y el resultado encogía en cada pasada: 519
+`04` y `05`: dos etapas POSTERIORES. Eso cerraba un ciclo: la etapa 02 leía la
+salida de la corrida anterior, y el resultado encogía en cada pasada: 519
 expositoras daban 75 pares; una vez aplicadas las fusiones quedaban 471 expositoras
 y 22 pares, y el archivo anotable se reescribía con menos filas que antes.
 
 La línea de base correcta es `tabla_normalizada_manual.xlsx`: la tabla tal como la
 mantiene la investigadora, ANTES de que el pipeline aplique ninguna decisión. Es la
-misma base que usan `04_aplicar_dedup` y `audit_comentarios`. Como es fija, la
+misma base que usan `03_fusiones` y `audit_comentarios`. Como es fija, la
 detección da siempre el mismo resultado, corras el pipeline las veces que corras.
 
 El archivo de salida NUNCA pierde información:
@@ -208,7 +208,7 @@ def previas(ruta) -> dict[tuple[int, int], dict]:
         df = pd.read_excel(ruta)
     except Exception as e:  # archivo abierto en Excel, corrupto, etc.
         raise SystemExit(
-            f"03_candidatos: no puedo leer {ruta.name} ({e.__class__.__name__}). "
+            f"02_candidatos: no puedo leer {ruta.name} ({e.__class__.__name__}). "
             "Si lo tenés abierto en Excel, cerralo: el script conserva sus "
             "anotaciones y necesita leerlas antes de reescribirlo."
         )

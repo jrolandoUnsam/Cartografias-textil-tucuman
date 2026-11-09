@@ -1,5 +1,5 @@
-"""Técnicas y materiales de una obra, leídos de su texto. Lo usan `04h` (columnas de la
-base) y `05c` (explorador), así las dos salidas dicen lo mismo.
+"""Técnicas y materiales de una obra, leídos de su texto. Lo usan `10` (columnas de la
+base) y `14` (explorador), así las dos salidas dicen lo mismo.
 
 Las reglas están en `decisiones/tecnicas_materiales.csv`, revisada por LM (28/10/2026):
 etiqueta, técnica general (`grupo`), `patron` y `excepto` sobre el texto sin tildes y en
@@ -63,6 +63,10 @@ def tecnicas(txt: str, de_categoria: str) -> tuple[list[str], str]:
     """Una obra puede tener varias. Si tiene un subtipo, lleva también la técnica general,
     así el filtro "Encaje" incluye las de bolillos."""
     hallo = hallar("técnica", txt)
+    # "tejido" a secas es lo menos preciso: si es lo único que dice el texto y la
+    # sección del catálogo da una técnica (p. ej. Crochet), gana la sección
+    if hallo == ["tejido"] and de_categoria:
+        return [de_categoria], "c"
     if hallo:
         hallo += [GRUPO[k] for k in hallo if k in GRUPO]
         return [k for k in TEC if k in hallo], "o"

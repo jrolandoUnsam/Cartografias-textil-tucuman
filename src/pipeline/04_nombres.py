@@ -1,4 +1,4 @@
-"""Etapa 04b — Pasar a Título los nombres que están TODO EN MAYÚSCULA.
+"""Etapa 04: Pasar a Título los nombres que están TODO EN MAYÚSCULA.
 
 Ejemplo: "EDELMIRA C. DE ROLDÁN" -> "Edelmira C. de Roldán".
 
@@ -11,9 +11,9 @@ Reglas:
     primera palabra del nombre.
   - Las iniciales con punto quedan igual ("C." -> "C.").
   - No agrega ni saca tildes: si la mayúscula no tenía tilde, el resultado tampoco.
-  - Los espacios de más ya los sacó `04_aplicar_dedup` (`limpiar_texto`).
+  - Los espacios de más ya los sacó `03_fusiones` (`limpiar_texto`).
 
-Entrada : data/interim/tabla_normalizada_dedup.xlsx   (salida de 04_aplicar_dedup)
+Entrada : data/interim/tabla_normalizada_dedup.xlsx   (salida de 03_fusiones)
 Salida  : data/processed/tabla_normalizada.xlsx
 """
 from __future__ import annotations

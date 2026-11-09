@@ -49,3 +49,4 @@ outputs/**/tiles/
 #      suben a GitHub (decisión de Julián, 2026-10-25). Lo que se decidió con
 #      ellas está en data/interim/decisiones/ y en docs/bitacora.md ----
 data/raw/revisiones_LM_10_2026/
+data/interim/revision_textos_y_prensa.xlsx

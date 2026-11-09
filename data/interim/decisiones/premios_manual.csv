@@ -1,10 +1,10 @@
 premio_id,objeto_id,persona_id,nota
-# Correcciones manuales para 04e_premios.py. Una fila por premio a corregir.
+# Correcciones manuales para 07_premios.py. Una fila por premio a corregir.
 # - premio_id: número de fila (0-based) en la hoja Premios (col 'premio_id' de la salida).
 # - objeto_id: fuerza el vínculo a ese objeto (dejar vacío si no aplica).
 # - objeto_id = "ninguno": fuerza a que quede SIN objeto, sin correr el cruce
 #   automático (usar cuando el cruce por número+categoría había asignado el
-#   objeto de otra persona — ver docs/bitacora.md).
+#   objeto de otra persona: ver docs/bitacora.md).
 # - objeto_id = "pendiente": no cambia el cruce, pero el premio queda en estado
 #   "pendiente" con la nota como motivo (duda abierta).
 # - persona_id: fuerza la expositora (dejar vacío si no aplica).

@@ -1,4 +1,4 @@
-"""Etapa 04f — Marcas de cada objeto que el catálogo dice en el texto.
+"""Etapa 08: Marcas de cada objeto que el catálogo dice en el texto.
 
 Agrega a la hoja `Objetos` dos columnas (`sí` / vacío), leídas de `OBJETO`, que es el
 texto del catálogo y no se toca:

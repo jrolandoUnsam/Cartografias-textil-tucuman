@@ -1,4 +1,4 @@
-"""Etapa 04g — Categorías normalizadas.
+"""Etapa 09: Categorías normalizadas.
 
 `data/interim/decisiones/categorias.csv` agrega a cada sección del catálogo su nombre
 normalizado, sin tocar `nombre_categoria` (el nombre tal como lo imprimió cada concurso):
@@ -38,11 +38,11 @@ def main() -> None:
 
     faltan = sorted(set(C["categoria_id"]) - set(D["categoria_id"]))
     if faltan:
-        sys.exit(f"ERROR — categorías sin fila en {DECISION.name}: {faltan}")
+        sys.exit(f"ERROR: categorías sin fila en {DECISION.name}: {faltan}")
     distinto = C.merge(D, on="categoria_id", suffixes=("", "_csv"))
     distinto = distinto[distinto["nombre_categoria"] != distinto["nombre_categoria_csv"]]
     for _, r in distinto.iterrows():
-        print(f"  AVISO — categoría {r.categoria_id}: la tabla dice '{r.nombre_categoria}' "
+        print(f"  AVISO: categoría {r.categoria_id}: la tabla dice '{r.nombre_categoria}' "
               f"y el CSV '{r.nombre_categoria_csv}'")
 
     hojas["Categorías"] = C.merge(D[["categoria_id", *COLS]], on="categoria_id", how="left")

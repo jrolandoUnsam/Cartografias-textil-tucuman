@@ -8,7 +8,7 @@ Venecia,técnica,venecia,Encaje de Venecia,encaje,venecia,,13,"cuello, encaje de
 ñanduty,técnica,nanduti,Ñandutí,encaje,nanduti|nanduty,,6,"tapete, encaje ñanduty",Ñandutí,LM 2026-10-28: ok,encaje de aguja
 frivolité,técnica,frivolite,Frivolité,encaje,frivolit,,4,cuello de frivolité,Frivolité,LM 2026-10-28: ok,encaje de lanzadera
 filet,técnica,filet,Encaje de filet,encaje,filet,,19,carpeta encaje de filet de hilo,Filet,"LM 2026-10-28: ok. LM 2026-11-06: va dentro de Encaje (subtipo, como bolillos o Venecia)",
-macramé,técnica,macrame,Macramé,,macram,,3,"toalla, deshilado y macramé",Macramé,LM 2026-10-28: sin comentario,anudado
+macramé,técnica,macrame,Macramé,,macram,,3,"toalla, deshilado y macramé",Macramé,"LM 2026-10-28: sin comentario. LM (recibido 2026-11-09): ""deshilado y macramé"", ambas",anudado
 malla,técnica,malla,Malla / red,,\bmalla,,10,sobrecama de malla,Malla / red,LM 2026-10-28: ok. La malla es la base del filet y también de la randa,¿base del filet?
 crochet,técnica,crochet,Crochet,,crochet|croche|ganchillo,,25,cubreteclado con flores crochet,Crochet,LM 2026-10-28: ok,
 Irlanda,técnica,irlanda,Tejido punto de Irlanda,,irlanda,,36,traje de punto de irlanda,Crochet de Irlanda,"LM 2026-10-28: cambiar: ""Tejido punto de Irlanda""",
@@ -18,12 +18,13 @@ Richelieu,técnica,richelieu,Bordado Richelieu,bordado,richelieu,,12,tapete rich
 en relieve,técnica,relieve,Bordado en relieve,bordado,bordad\w* en relieve,,6,alfombra 3x4 tejida en telar con dibujos en relieve,Bordado en relieve,"LM 2026-10-28: cambiar: ""dibujos en relieve"" en alfombras no es bordado; la técnica es Tejido en telar (no se sabe si los dibujos son bordados)",también aparece en alfombras (dibujo en relieve)
 telar,técnica,telar,Tejido en telar,,telar,,82,alfombra 3x4 tejida en telar con dibujos en relieve,Tejido en telar,LM 2026-10-28: ok,
 a pala,técnica,pala,Tejido a pala,,\ba pala\b,,24,frazada a pala con dibujo en el tejido,Tejido a pala,LM 2026-10-28: ok,
-bastones,técnica,bastones,A bastones,,baston,,4,colcha de vicuña bordada a bastones,Tejido a bastones,LM 2026-10-28: sin comentario,
+tejido,técnica,tejido,Tejido (sin precisar),,tejid,telar|\ba pala\b|crochet|irlanda|gobelino|punto|baston,28,colcha de algodón hilado y tejido,Tejido,"LM (recibido 2026-11-09): en ""colcha de algodón hilado y tejido"" la técnica es Tejido","dice tejido/tejida sin nombrar un tejido más preciso (telar, a pala, crochet, Irlanda, gobelino)"
+bastones,técnica,bastones,A bastones,,baston,,4,colcha de vicuña bordada a bastones,Tejido a bastones,"LM 2026-10-28: sin comentario. LM (recibido 2026-11-09): en el ejemplo, material Vicuña. Sigue abierto si ""a bastones"" es técnica o dibujo",
 atada,técnica,atada,Guarda atada,,\batad,,9,par alforjas atadas,Alfombra atada (nudo),"LM 2026-10-28: cambiar: no es nudo, es ""Guarda atada"", técnica de teñido por reserva (se atan los hilos de la urdimbre, se tiñe y se teje: dibujo pixelado). No asumir que la alforja es tejida si no lo dice",¿técnica de anudado?
-Esmirna,técnica,esmirna,Esmirna,,esmirna|smyrna,,4,"Alfombra esmirna, guarda y flores",Punto Esmirna,LM 2026-10-28: sin comentario,nudo de alfombra
+Esmirna,técnica,esmirna,Nudo esmirna,,esmirna|smyrna,encaje esmirna,3,"Alfombra esmirna, guarda y flores",Punto Esmirna,"LM 2026-10-28: sin comentario. LM (recibido 2026-11-09): ""Nudo esmirna""","nudo de alfombra; ""encaje esmirna"" es un encaje, no un nudo (no se marca)"
 gobelino,técnica,gobelino,Gobelino (tapiz),,gobelin,,4,"Stor tejido Gobelino, de hilo y seda",Gobelino,"LM 2026-10-28: cambiar: ""Gobelino [tapiz]""",tapiz
 tejido a mano,técnica,,,,tejid[oa]s? a mano|a mano,,8,colcha de hilo tejida en telar y bordada a mano,Tejido a mano,"LM 2026-10-28: cambiar: no es una técnica aparte; ""tejida en telar y bordada a mano"" es Tejido en telar + Bordado (varias técnicas por obra)",muy genérico
-hilado,proceso,,,,hilad|hilo propio|hilado por,,99,colcha de algodón hilado y tejido,Hilado a mano,LM 2026-10-28: sin comentario,"proceso, no técnica de la pieza"
+hilado,proceso,,,,hilad|hilo propio|hilado por,,99,colcha de algodón hilado y tejido,Hilado a mano,"LM 2026-10-28: sin comentario. LM (recibido 2026-11-09): en ""hilado y tejido"" la técnica es Tejido (ver fila tejido)","proceso, no técnica de la pieza"
 teñido,proceso,,,,tenid|tintura|tenida,,8,"colcha tejida a pala, bordada, teñida con los procedimientos criollos",Teñido,"LM 2026-10-28: en el ejemplo pondría ""Tejido a pala"" como técnica (a confirmar qué hacer con teñido)",proceso
 lana,material,lana,Lana,,\blana,lana de llama,121,colcha de lana,Lana,"LM 2026-10-28: ok, dejar sólo ""Lana"": puede ser oveja, llama o alpaca, no se sabe",¿de oveja? a veces sin especificar
 vicuña,material,vicuna,Vicuña,,vicun,,78,colcha de vicuña bordada,Vicuña,LM 2026-10-28: ok,
