@@ -4,7 +4,7 @@ _Generado por `src/pipeline/audit_comentarios.py`: no editar a mano._
 
 Compara cada decisión anotada a mano contra el estado actual de `data/processed/tabla_normalizada.xlsx`, tomando como línea de base `data/interim/tabla_normalizada_manual.xlsx` (la tabla antes del pipeline).
 
-**Hallazgo global:** respecto de la tabla de partida (`tabla_normalizada_manual.xlsx`) se reasignaron **84 objetos** y desaparecieron **61 filas** de `Expositoras`: las fusiones **sí** están aplicadas. Nombres normalizados: 31.
+**Hallazgo global:** respecto de la tabla de partida (`tabla_normalizada_manual.xlsx`) se reasignaron **84 objetos** y desaparecieron **61 filas** de `Expositoras`: las fusiones **sí** están aplicadas. Nombres normalizados: 32.
 
 **Veredictos:**
 - `SIN HACER`: la fila sigue igual que en la línea de base.
@@ -141,7 +141,7 @@ _Conteo:_ DUDA ABIERTA: 3 · FUSIÓN OK: 51 · FUSIÓN OK (en un tercer id): 8 �
 | 71 | Argentina Sal | 83 | Argentina J. Sal | **Coment LM:** ok el más completo | respondida por LM: el nombre que quedó está en 'Nombre real' |
 | 73 | Elvira Rodríguez | 90 | Elvira Rodríguez They | **Mis comentarios:** Segundo apellido / **Coment LM:** perfect | respondida por LM: el nombre que quedó está en 'Nombre real' |
 | 80 | Alejandrina Peiró | - | - (el premio no tiene objeto en el catálogo) | **Mis comentarios:** No está Alejandrina en el catálogo / **Coment LM:** está bien, debe haber sido fuera de catálogo. La dejamos suelta | decisión: sin objeto en el catálogo (queda como nota, sin lugar formal aún) |
-| 82 | Sta Santés | 94 | Sta. Sandés | **Mis comentarios:** solo llega a 13 (la observación dice "sección deshilados" — ahí sí llega hasta 25, quizás haya que buscarlo ahí en vez de en Bordado) / **Coment LM:** Excelente. Además se identifica Santiago con Santiago del Estero del Catálogo. Nos viene re bien. | respondida por LM: el nombre que quedó está en 'Nombre real' |
+| 82 | Sta Santés | 94 | Sta. Sandés | **Mis comentarios:** solo llega a 13 (la observación dice "sección deshilados": ahí sí llega hasta 25, quizás haya que buscarlo ahí en vez de en Bordado) / **Coment LM:** Excelente. Además se identifica Santiago con Santiago del Estero del Catálogo. Nos viene re bien. | respondida por LM: el nombre que quedó está en 'Nombre real' |
 | 86 | Lucrecia Carrazan | - | - (el premio no tiene objeto en el catálogo) | **Mis comentarios:** No hay una Lucrecia Carrazan en el catalogo / **Coment LM:** la dejamos suelta como alejandrina | decisión: sin objeto en el catálogo (queda como nota, sin lugar formal aún) |
 | 87 | Ezequiela P. de Gutiérrez | 195 | Ezequiela P. de Gutiérrez | **Mis comentarios:** Esequiela vs Ezequiela / **Coment LM:** dejaría Ezequiela | resuelto: la expositora ya figura como 'Ezequiela' |
 | 89 | Amicia Diaz | - | - (el premio no tiene objeto en el catálogo) | **Mis comentarios:** No hay una Amicia Díaz en el catalogo / **Coment LM:** la dejamos suelta como alejandrina | decisión: sin objeto en el catálogo (queda como nota, sin lugar formal aún) |
