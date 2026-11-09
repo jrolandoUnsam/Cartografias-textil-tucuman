@@ -2,7 +2,7 @@
 
 ## Preguntas para Larisa
 
-- [ ] **Isabel B. de Acuña Zavalía (`persona_id` 58): ¿"B." o "Bascary"?** El catálogo
+- [x] *(2026-11-09: "Isabel [Bascary] de Acuña Zavalía", ver bitácora)* **Isabel B. de Acuña Zavalía (`persona_id` 58): ¿"B." o "Bascary"?** El catálogo
   (6 veces) y el fallo (2) escriben "Isabel B. de Acuña Zavalía"; El Orden (28/7 y
   30/9/1915) la nombra "Isabel Bascary de Acuña Zavalía", y así figura en
   `decisiones/comisiones.csv`. Opciones: usar el nombre completo de la prensa, marcando
@@ -131,8 +131,9 @@
   mandaron. Las respuestas "no se unen" de LM para
   227/315 y 93/360 se cargaron como `Hecho = False`, y los pares de Delina 161/255 y
   209/264 pasaron de `True` a `False` (el comentario decía "separadas").
-- [ ] **Nombres de la auditoría 2026-10-25 para confirmar con LM:** "Sta. Sandés"
-  (el "Sta" viene del fallo, probablemente "señorita") y las dos Delina J. / I. de Román con nombres idénticos (161/209, 255/264).
+- [ ] **Nombres de la auditoría 2026-10-25 para confirmar con LM:** ~~"Sta. Sandés"
+  (el "Sta" viene del fallo, probablemente "señorita")~~ *(2026-11-09: queda "Sta.
+  Sandés", literal del fallo; decisión de Julián)* y las dos Delina J. / I. de Román con nombres idénticos (161/209, 255/264).
 
 ## Género (`Expositoras`)
 
@@ -166,7 +167,7 @@ Hoy son **440 F, 9 M y 9 I** (institución) sobre 458 filas.
   lo decidió el proyecto al cargar coordenadas, no el catálogo. Pregunta para LM: ¿qué
   Cerrillos es? Si es un paraje de Tucumán cerca de Atahona, probablemente es la misma
   mujer. (El informe del 28/10 tenía los dos lugares invertidos.)
-- [ ] **Premios cuyo lugar en el fallo no coincide con el catálogo:** Ana Tactagi (93:
+- [ ] *(2026-11-09: Elvira Rodríguez ubicada en San Rafael según el fallo; quedan 3)* **Premios cuyo lugar en el fallo no coincide con el catálogo:** Ana Tactagi (93:
   fallo Simoca, catálogo San Miguel), Melchora y Rosa Valenzuela (17 y 35: fallo "Ciudad",
   catálogo Simoca), Elvira Rodríguez (73: fallo San Rafael, catálogo S/D; el fallo
   completaría su procedencia).
@@ -296,8 +297,8 @@ en el catálogo (`album_1915.csv`). La identificación automática en las fotos 
   siguen sin ubicar. Chicligasta
   queda con la coordenada nuestra, no la de LM (Julián, 2026-10-25).
 
-- [ ] **16 de 77 ciudades siguen sin coordenadas** en
-  `decisiones/coordenadas_ciudades.csv` (61 cargadas). Completar las que se puedan y
+- [ ] **16 de 78 ciudades siguen sin coordenadas** en
+  `decisiones/coordenadas_ciudades.csv` (62 cargadas). Completar las que se puedan y
   fijar un criterio para las ambiguas o desconocidas.
 - [x] *(2026-10-12)* `nombre_ciudad_hoy` y `nombre_provincia` vivían en dos lugares (tabla
   manual y `coordenadas_ciudades.csv`). Ahora el CSV es la única fuente: `06` los toma

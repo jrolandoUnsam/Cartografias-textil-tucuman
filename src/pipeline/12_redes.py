@@ -78,6 +78,10 @@ def apellidos(nombre: str) -> dict[str, tuple[str, str]]:
         casada = re.sub(r"^(?:la|los|las)\s+", "", casada.strip(), flags=re.I)
         if casada:
             out[clave(casada)] = ("de casada", casada)
+            # compuesto ("Acuña Zavalía"): también la última palabra, como en el apellido propio
+            ult = casada.split()[-1]
+            if ult != casada and not re.fullmatch(r"[A-ZÁÉÍÓÚÑa-z]\.?", ult):
+                out.setdefault(clave(ult), ("de casada", ult))
         s = antes
     palabras = [p for p in s.split() if not re.fullmatch(r"[A-ZÁÉÍÓÚÑa-z]\.?", p)]
     if len(palabras) >= 2:

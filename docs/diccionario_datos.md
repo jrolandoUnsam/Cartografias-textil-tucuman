@@ -43,7 +43,7 @@ de qué página salió cada registro.
 | `nombre_ciudad` | texto | localidad tal como figura en la fuente histórica |
 | `nombre_ciudad_hoy` | texto | topónimo actual equivalente. Sale de `decisiones/coordenadas_ciudades.csv` (lo pone `06`) |
 | `nombre_provincia` | texto | provincia actual. Ídem |
-| `lat` / `lon` | float | punto de la ciudad. Ídem. 61 de 77 cargadas; el resto queda vacío (nombre ambiguo o desconocido) |
+| `lat` / `lon` | float | punto de la ciudad. Ídem. 62 de 78 cargadas; el resto queda vacío (nombre ambiguo o desconocido) |
 | `lat_provincia` / `lon_provincia` | float | punto de la capital de la provincia, para ubicar a nivel provincia lo que no tiene ciudad o no tiene punto seguro (pedido de Larisa, 2026-10). Ídem |
 | `precision` | texto | vacío = ubicación segura; `tentativa` si no lo es. Ídem |
 | `nota` | texto | por qué se decidió así (p. ej. `LM 9-10: …`). Ídem |

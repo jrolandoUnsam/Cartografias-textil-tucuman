@@ -15,7 +15,7 @@ Generado por `src/pipeline/15_controles.py` en cada corrida del pipeline. Lista 
 | Personas | Signos de duda en el nombre | 0 | Revisar contra el escaneo |
 | Lugares | Sólo provincia con una localidad de la misma expositora | 0 | Elegir la localidad a mano |
 | Lugares | Localidades sin coordenadas | 8 | Ubicar o dejar como desconocida |
-| Lugares | Ubicaciones tentativas o ambiguas | 1 | Confirmar con LM o con fuentes |
+| Lugares | Ubicaciones tentativas o ambiguas | 2 | Confirmar con LM o con fuentes |
 | Lugares | Varios lugares del catálogo, una misma localidad actual | 14 | Confirmar que la separación es a propósito |
 | Lugares | Expositora en dos provincias | 1 | Revisar la fusión |
 | Lugares | Expositora en varias localidades de una provincia | 16 | Revisar si es el mismo lugar escrito distinto |
@@ -29,7 +29,7 @@ Generado por `src/pipeline/15_controles.py` en cada corrida del pipeline. Lista 
 | Premios | Premio a una obra fuera de concurso | 0 | Revisar vínculo o marca |
 | Premios | N.º del fallo distinto del N.º del catálogo | 1 | Revisar |
 | Premios | Nombre del fallo muy distinto del catálogo | 1 | Confirmar la identidad |
-| Premios | Lugar del fallo distinto del catálogo | 4 | Revisar |
+| Premios | Lugar del fallo distinto del catálogo | 3 | Revisar |
 | Premios | Premio repetido en el fallo | 0 | Revisar contra el fallo |
 | Premios | Premios sin obra en el catálogo | 13 | Nada, salvo los pendientes |
 | Transcripción | Descripción vacía o muy corta | 0 | Completar desde el escaneo |
@@ -118,7 +118,7 @@ Lugares que el mapa no puede ubicar en su punto (van al de la provincia, o a nin
 
 | id | Lugar | Provincia | Obras | Nota |
 |---|---|---|---|---|
-| 14 | S/d | s/d | 1 | el catálogo no indica procedencia |
+| 14 | S/d | s/d | 0 | el catálogo no indica procedencia |
 | 19 | Los Mendoza | Tucumán | 1 | Los Mendoza: quizás en Simoca (sin confirmar); sin punto de ciudad |
 | 60 | Rosario | s/d | 5 |  |
 | 72 | Santa Rosa | s/d | 2 |  |
@@ -134,6 +134,7 @@ Coordenadas marcadas `tentativa` o nombre actual con "?" u "o" (dos candidatas).
 | id | En el catálogo | Hoy | Provincia | Nota |
 |---|---|---|---|---|
 | 24 | Leales | Villa de Leales | Tucumán | LM 9-10: Villa de Leales (la ciudad más antigua), tentativo |
+| 83 | San Rafael | San Rafael | Tucumán | Lugar según el fallo de 1915, que duda de la provincia ("TUCUMÁN?"); el catálogo no indica procedencia |
 
 ### Varios lugares del catálogo, una misma localidad actual
 
@@ -289,7 +290,6 @@ El fallo ubica a la premiada en otro lugar que el catálogo: o la obra vinculada
 |---|---|---|---|---|
 | 17 | Melchora Valenzuela | Ciudad | 111 | Simoca |
 | 35 | Rosa Valenzuela | CIUDAD | 135 | Simoca |
-| 73 | Elvira Rodríguez | SAN RAFAEL | 90 | S/d |
 | 93 | Ana tactagi | Simoca | 57 | San Miguel de Tucumán |
 
 ### Premio repetido en el fallo
@@ -339,7 +339,7 @@ El lugar transcripto tiene "?", paréntesis o "s/d".
 
 | objeto_id | Año | Expositora | Lugar en el documento | Lugar en la base | Página |
 |---|---|---|---|---|---|
-| 90 | 1915 | Elvira Rodríguez They | S/D | S/d | DSCN5180.JPG |
+| 90 | 1915 | Elvira Rodríguez They | S/D | San Rafael | DSCN5180.JPG |
 | 503 | 1916 | Edelmira A. de Moreno | CATAMARCA (tiene certificado) | Catamarca | DSCN5213.JPG |
 | 504 | 1916 | Edelmira A. de Moreno | CATAMARCA (tiene certificado) | Catamarca | DSCN5213.JPG |
 

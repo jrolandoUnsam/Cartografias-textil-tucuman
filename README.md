@@ -18,7 +18,7 @@ en un Excel; este repositorio reconstruye en código, de forma reproducible, el 
 desde ese Excel hasta la base normalizada, la vista consolidada y el explorador web.
 
 La base reúne 2 concursos, 458 expositoras (440 mujeres, 9 varones y 9 instituciones),
-981 objetos, 102 premios y 77 localidades. Las preguntas que quedan abiertas sobre los
+981 objetos, 102 premios y 78 localidades. Las preguntas que quedan abiertas sobre los
 datos están en [`docs/tareas_pendientes.md`](docs/tareas_pendientes.md).
 
 ## Explorador

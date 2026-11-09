@@ -946,6 +946,36 @@ en dos lugares del mapa. La vista plana suma `Dirección de la sede`, `lat_sede`
 `lon_sede`. La Superiora del Colegio Santa Rosa de Viterbo (Salta) tenía solo provincia:
 ahora tiene el punto de su colegio.
 
+## 2026-11-09: Isabel [Bascary] de Acuña Zavalía
+
+Decisión de Julián. El catálogo (6 veces) y el fallo (2) escriben "Isabel B. de Acuña
+Zavalía"; El Orden (28/7 y 30/9/1915) la nombra "Isabel Bascary de Acuña Zavalía". El
+nombre normalizado (persona 58, en `nombres_expositoras.csv`) pasa a "Isabel [Bascary] de
+Acuña Zavalía": entre corchetes porque sale de la prensa y no de los registros, como
+"Alfonsa [Cuadrado] de Barceló". También se corrige "Acuña de Zavalía", que venía de una
+sola fila del fallo (premio 20), a "Acuña Zavalía", como en las otras siete menciones y en
+El Orden.
+
+Premios y controles no cambian. Con el nombre corregido, su apellido de casada pasó a ser
+"Acuña Zavalía" y la red (`12_redes`) perdía el grupo "Zavalía" con Tomasa Olmos de
+Zavalía (519). Julián pidió mantenerlo: desde ahora, un apellido de casada compuesto
+también cuenta por su última palabra, como ya pasaba con el apellido propio. Es el único
+grupo que cambia; además aparece la arista de comisión entre ella (como integrante de la
+comisión, según El Orden) y Tomasa Olmos de Zavalía.
+
+"Sta. Sandés" (48) queda como está, literal del fallo (decisión de Julián).
+
+## 2026-11-09: Elvira Rodríguez They en San Rafael, según el fallo
+
+El catálogo no indica la procedencia de Elvira Rodríguez They (44, toalla de deshilado,
+objeto 90); el fallo (premio 73) dice "SAN RAFAEL", provincia "TUCUMÁN?". Decisión de
+Julián: completar con el fallo. `separaciones_ciudades.csv` crea San Rafael (ciudad 83)
+desde S/D (14) solo para el objeto 90, y `coordenadas_ciudades.csv` le da el punto que
+cargó Julián, con `precision = tentativa` porque el mismo fallo duda de la provincia (el
+mapa la muestra como ubicación aproximada). "Lugar en el documento" sigue diciendo S/D.
+Ciudades pasa a 78 (62 con punto). Los otros tres premios con lugar distinto entre fallo
+y catálogo (Tactagi y las dos Valenzuela) se dejan con el catálogo.
+
 ## Fuentes del crudo que no entran al pipeline
 
 Hojas `no PRENSA-EL ORDEN`, `no ARCHIVO PADILLA`, `no Prensa-Rakow lib`: material de

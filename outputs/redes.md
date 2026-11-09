@@ -4,10 +4,10 @@ Generado por `src/pipeline/12_redes.py` en cada corrida. Las aristas de apellido
 
 ## Resumen
 
-- 458 registros de expositoras (9 instituciones), 68 lugares, 15 integrantes de comisión.
+- 458 registros de expositoras (9 instituciones), 69 lugares, 15 integrantes de comisión.
 - **32 expositoras expusieron en los dos concursos** (7 % de los registros).
 - 198 pares con apellido en común en el mismo lugar, que forman 61 grupos (41 con algún apellido poco frecuente). De esos pares, 68 combinan apellido propio con apellido de casada (¿madre e hija, suegra y nuera?).
-- 5 coincidencias de apellido entre la comisión y las expositoras.
+- 6 coincidencias de apellido entre la comisión y las expositoras.
 
 ## Expositoras que repitieron (1915 y 1916)
 
@@ -19,7 +19,7 @@ Generado por `src/pipeline/12_redes.py` en cada corrida. Las aristas de apellido
 | Dalmira González Sorol | San Miguel de Tucumán; Tafí Viejo | 7 | 2 |
 | Enriqueta Fronzuti | San Miguel de Tucumán | 7 | 1 |
 | Rosa Alderete | Monteros | 7 | 1 |
-| Isabel B. de Acuña de Zavalía | San Miguel de Tucumán | 6 | 2 |
+| Isabel [Bascary] de Acuña Zavalía | San Miguel de Tucumán | 6 | 2 |
 | María J. de Aguirre | San Miguel de Tucumán | 5 | 0 |
 | Rosario Gramajo | Monteagudo | 5 | 1 |
 | Alfonsa [Cuadrado] de Barceló | San Miguel de Tucumán | 4 | 1 |
@@ -118,4 +118,5 @@ Componentes conexas de la arista `mismo_apellido`. Confianza baja = todos los ap
 | Sofía Colombres de Colombres | Arminda de Colombres | Colombres |
 | Sofía Colombres de Colombres | Juana Rosa Lanza Colombres | Colombres |
 | Victoria Haurigot | Hortensia Haurigot | Haurigot |
+| Isabel Bascary de Acuña Zavalía | Tomasa Olmos de Zavalía | Zavalía |
 | Salomé Cordero de Molina | Ercilia Gallo Molina | Molina |
