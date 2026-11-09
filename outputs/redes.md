@@ -4,7 +4,7 @@ Generado por `src/pipeline/12_redes.py` en cada corrida. Las aristas de apellido
 
 ## Resumen
 
-- 458 registros de expositoras (8 instituciones), 68 lugares, 15 integrantes de comisión.
+- 458 registros de expositoras (9 instituciones), 68 lugares, 15 integrantes de comisión.
 - **32 expositoras expusieron en los dos concursos** (7 % de los registros).
 - 198 pares con apellido en común en el mismo lugar, que forman 61 grupos (41 con algún apellido poco frecuente). De esos pares, 68 combinan apellido propio con apellido de casada (¿madre e hija, suegra y nuera?).
 - 5 coincidencias de apellido entre la comisión y las expositoras.

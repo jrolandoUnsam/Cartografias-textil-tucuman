@@ -173,7 +173,7 @@ Puede ser real (vivía en un lugar y envió desde otro, o el catálogo nombra el
 | 4 | Dalmira González Sorol | San Miguel de Tucumán, Tafí Viejo | 1915, 1916 |
 | 19 | Mercedes del Moral | Monteros, San Miguel de Tucumán | 1915, 1916 |
 | 47 | Facunda Cerone [Coronel] | Escuela de la Cocha, La Cocha | 1915, 1916 |
-| 53 | Mercedes Pacheco | Asilo Ciudad, San Miguel de Tucumán | 1915 |
+| 53 | Colegio de la Sagrada Familia [Mercedes Pacheco] | Asilo Ciudad, San Miguel de Tucumán | 1915 |
 | 70 | María Cleofé de Bustamante | Simoca, Yacuchiri | 1915, 1916 |
 | 83 | Hermanas dominicas [asilo] | Asilo, Ciudad, San Miguel de Tucumán | 1915, 1916 |
 | 107 | Dominga Villoldo | San Miguel de Tucumán, San Pablo | 1915, 1916 |

@@ -136,10 +136,12 @@
 
 ## Género (`Expositoras`)
 
-Hoy son **441 F, 9 M y 8 I** (institución) sobre 458 filas.
+Hoy son **440 F, 9 M y 9 I** (institución) sobre 458 filas.
 - [x] *(2026-10-28)* Criterio para instituciones: LM prefiere una marca propia en lugar de
   género. Las 8 que reconoce la regla `INSTITUCION` llevan `Género = I`
   (`nombres_expositoras.csv`): 37, 50, 83, 102, 281, 364, 398 y 492.
+- [x] *(2026-11-09)* **Mercedes Pacheco (53)** pasa a institución, como pidió LM: "Colegio
+  de la Sagrada Familia [Mercedes Pacheco]", `Género = I`. Ver bitácora.
 - [x] *(2026-10-28)* **Las 6 filas que son dos personas** (Concepción y Rosa Cuello,
   María Díaz y Victoria Bazán, María Luisa y Angélica Gramajo, Audelina y Abigail Gómez,
   Cristina e Isabel Blay, Virginia Vivolo y Antonia Cerrasuolo): LM, se dejan como registro

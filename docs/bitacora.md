@@ -893,6 +893,23 @@ LM agregó comentarios a cuatro términos que el 28/10 habían quedado sin comen
 Cambian 32 obras: 28 suman Tejido (sin precisar) y las 3 alfombras pasan a Nudo esmirna.
 Técnica según el texto de la obra: 559 → 583; sin dato: 295 → 271.
 
+## 2026-11-09: Mercedes Pacheco pasa a institución
+
+LM pidió tratar a Mercedes Pacheco (53) como institución. El catálogo y el fallo de 1915 la
+nombran a ella, pero El Orden (27/9 y 30/9/1915) dice que los trabajos son del Colegio (o
+asilo) de la Sagrada Familia, que ella dirigía, y que los hicieron las alumnas. Hasta ahora
+seguía como persona (decisión del 28/10). En `nombres_expositoras.csv` queda como
+"Colegio de la Sagrada Familia [Mercedes Pacheco]", con `Género = I`: 440 F, 9 M y 9 I.
+
+El nombre empieza con "Colegio", así que la regla `INSTITUCION` también la reconoce y el
+explorador la muestra como institución; la red (`12_redes`) usa `Género`. Sus 7 obras, sus
+5 premios y las citas de prensa no cambian.
+
+Para que el fallo ("Mercedes Pacheco") siga coincidiendo con el nombre nuevo, `07_premios`
+y `15_controles` leen también lo que va entre corchetes como nombre completo, cuando tiene
+dos palabras o más. Sin eso, sus 5 premios bajaban a "n.º y categoría" y los controles
+los marcaban como nombres muy distintos. Verificado: ningún otro premio cambia.
+
 ## Fuentes del crudo que no entran al pipeline
 
 Hojas `no PRENSA-EL ORDEN`, `no ARCHIVO PADILLA`, `no Prensa-Rakow lib`: material de

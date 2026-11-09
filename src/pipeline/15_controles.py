@@ -313,9 +313,13 @@ def main() -> None:
                 filas, ["premio_id", "Nombre en el fallo", "Sección del fallo", "N.º fallo", "objeto_id", "N.º catálogo", "Vínculo"], "Revisar")
 
     def variantes(n):
-        """'Lugarda [Lujarda] J. de González' -> sin corchetes, y con la variante en lugar de la palabra anterior."""
+        """'Lugarda [Lujarda] J. de González' -> sin corchetes, y con la variante en lugar de la
+        palabra anterior. Si el corchete tiene dos palabras o más, también sólo lo de adentro:
+        'Colegio de la Sagrada Familia [Mercedes Pacheco]' -> 'Mercedes Pacheco' (como 07_premios)."""
         n = str(n)
-        return {re.sub(r"\s*\[[^]]*\]", "", n), re.sub(r"\S+\s*\[([^]]*)\]", r"\1", n)}
+        lecturas = {re.sub(r"\s*\[[^]]*\]", "", n), re.sub(r"\S+\s*\[([^]]*)\]", r"\1", n)}
+        lecturas |= {d for d in re.findall(r"\[([^]]*)\]", n) if len(d.split()) >= 2}
+        return lecturas
 
     filas = []
     for r in Pr.itertuples():

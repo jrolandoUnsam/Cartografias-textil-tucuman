@@ -135,6 +135,11 @@ def variantes(nombre) -> list[str]:
     lecturas = {antes + despues,                 # sin la variante
                 antes + dentro + despues,        # la variante como palabra agregada
                 reemplazo + despues}             # la variante en lugar de la palabra anterior
+    # una institución con el nombre de la persona entre corchetes: 'Colegio de la
+    # Sagrada Familia [Mercedes Pacheco]' es también 'Mercedes Pacheco', como la nombra
+    # el fallo. Sólo con dos palabras o más, para que '[de]' o '[asilo]' no matcheen solos
+    if len(dentro.split()) >= 2:
+        lecturas.add(dentro)
     return [v for v in {norm(x) for x in lecturas} if v]
 
 
