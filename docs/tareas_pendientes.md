@@ -255,14 +255,14 @@ en el catálogo (`album_1915.csv`). La identificación automática en las fotos 
 
 ## Explorador
 
-- [ ] **Parte premiada en el cúmulo de Tucumán.** El punto rojo (área proporcional a las
+- [x] *(2026-11-09: anillo parcial en `14`; ver bitácora)* **Parte premiada en el cúmulo de Tucumán.** El punto rojo (área proporcional a las
   premiadas) se lee bien en los lugares aislados, pero alrededor de San Miguel de Tucumán
   los puntos se superponen y hacen ruido. Probar un anillo parcial en el borde del
   círculo (premiadas sobre total). Sugerencia de una revisión externa, 28/10.
 
 ## Pipeline
 
-- [ ] *(2026-10-28: hechos 1 a 4 en `14`; falta 5)* **Prensa en el explorador y en la vista plana (semana del 26/10/2026).** Una etapa
+- [x] *(2026-10-28: hechos 1 a 4 en `14`; 2026-11-09: 5 en `11`, 23 obras de 1915)* **Prensa en el explorador y en la vista plana (semana del 26/10/2026).** Una etapa
   lee `decisiones/menciones_prensa.csv` y: (1) en la ficha de cada expositora, un
   recuadro "En la prensa" con la cita, el diario y la fecha; (2) en la lista de obras, la
   marca "· En la prensa"; (3) en los lugares (Orán, Monteros, La Cocha), sus citas; (4) en

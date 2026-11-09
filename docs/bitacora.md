@@ -910,6 +910,42 @@ y `15_controles` leen también lo que va entre corchetes como nombre completo, c
 dos palabras o más. Sin eso, sus 5 premios bajaban a "n.º y categoría" y los controles
 los marcaban como nombres muy distintos. Verificado: ningún otro premio cambia.
 
+## 2026-11-09: Columna "En la prensa" en la vista plana
+
+Lo último que faltaba de la prensa (ver tarea del 26/10): `11_vista_plana` agrega la
+columna `En la prensa`, leyendo `decisiones/menciones_prensa.csv` con el mismo criterio que
+el explorador. Cada obra lista las notas que la nombran y las que hablan de su expositora
+(marcadas "sobre la expositora"), con diario, fecha y título. Las notas sobre una persona
+van solo a sus obras del concurso del año de la nota (una nota de 1915 no se pega a sus
+obras de 1916). Las de un lugar (Orán, Monteros, La Cocha) no se copian a sus obras, y las
+descartadas (`mostrar` = no) no van. Quedan 23 obras con la columna llena, todas de 1915.
+
+## 2026-11-09: Parte premiada como anillo en el mapa
+
+El punto rojo del centro de cada círculo (área proporcional a las premiadas) se pisaba
+en el cúmulo de San Miguel de Tucumán (sugerencia de una revisión externa, 28/10). Ahora
+la parte premiada es un arco rojo sobre el borde del círculo, desde las 12 en el sentido
+del reloj: premiadas sobre total del lugar (3 de 10 = 30 % del borde). La leyenda muestra
+un círculo con un cuarto del borde en rojo. Solo cambia el dibujo; los datos no.
+
+## 2026-11-09: Sedes de las instituciones en el mapa
+
+LM sugirió ubicar a las instituciones en su dirección y no en el punto de la ciudad.
+Julián cargó las coordenadas de las 9 en `decisiones/sedes_instituciones.csv` (tabla
+nueva, por `persona_id`; columnas `direccion` y `fuente` para completar). Hermanas de la
+Inmaculada Concepción va en el Asilo Maternal; Hermanas dominicas, en el Asilo de
+Huérfanos de las Hermanas Dominicas.
+
+Criterio (opción A de las dos que se discutieron): en el mapa, las obras de cada
+institución forman su propio círculo en la sede y salen del círculo de la ciudad (San
+Miguel de Tucumán pasa de 363 a 301 obras en el mapa; el panel de la ciudad avisa que
+hay 62 obras de 8 instituciones en su dirección y enlaza a cada una). La localidad no
+cambia: filtros, tablas, conteos por provincia y la vista plana siguen usando la ciudad.
+La otra opción (dejar la ciudad entera y sumar marcadores aparte) ponía las mismas obras
+en dos lugares del mapa. La vista plana suma `Dirección de la sede`, `lat_sede` y
+`lon_sede`. La Superiora del Colegio Santa Rosa de Viterbo (Salta) tenía solo provincia:
+ahora tiene el punto de su colegio.
+
 ## Fuentes del crudo que no entran al pipeline
 
 Hojas `no PRENSA-EL ORDEN`, `no ARCHIVO PADILLA`, `no Prensa-Rakow lib`: material de

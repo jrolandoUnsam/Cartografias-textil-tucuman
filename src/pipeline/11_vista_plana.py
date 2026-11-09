@@ -6,21 +6,27 @@ hoja `Objetos` a nombres y escribe
 (hoja 'Objetos - Concursos Tucumán').
 
 Columnas: Concurso, Año, Expositora/Expositor, Género, Ciudad, Provincia, Lugar en el
-documento, ciudad_id, lat, lon, lat_provincia, lon_provincia, Categoría, Categoría
+documento, ciudad_id, lat, lon, lat_provincia, lon_provincia, Dirección de la sede,
+lat_sede, lon_sede, Categoría, Categoría
 normalizada (la pone `09`), N.º de orden, Descripción del
 objeto, Técnicas, Técnica según, Materiales (las pone `10`), Fuera de concurso,
-Creación de la autora, Imagen del catálogo, Foto del álbum.
+Creación de la autora, Imagen del catálogo, Foto del álbum, En la prensa.
 
 `Género` es el de la hoja `Expositoras` (F, M o I = institución).
 
 `Foto del álbum` es la foto del álbum de 1915 donde aparece la obra (la pone `05`).
+
+`En la prensa` lista las notas de época (`decisiones/menciones_prensa.csv`) que nombran
+la obra o hablan de su expositora: diario, fecha y título, separadas por " | ".
 
 `Fuera de concurso` y `Creación de la autora` (`sí` / vacío) las pone `08` leyendo el
 texto del catálogo, que sigue entero en `Descripción del objeto`.
 
 `lat`/`lon` es el punto de la ciudad y `lat_provincia`/`lon_provincia` el de la
 capital de su provincia (los pone `06`): lo que sólo tiene provincia, o una ciudad
-sin punto seguro, igual se puede ubicar a nivel provincia.
+sin punto seguro, igual se puede ubicar a nivel provincia. `Dirección de la sede`,
+`lat_sede` y `lon_sede` son el punto de la sede de las instituciones que lo tienen
+(`decisiones/sedes_instituciones.csv`); la ciudad no cambia.
 
 `Lugar en el documento` es la procedencia tal como la escribió el catálogo
 ("SANTIAGO", "SANTIAGO DEL ESTERO", "ASILO, CIUDAD"), tomada de
@@ -41,18 +47,20 @@ from __future__ import annotations
 
 import pandas as pd
 
-from _util import INTERIM, PROCESSED
+from _util import DECISIONES, INTERIM, PROCESSED
 
 FUENTE = PROCESSED / "tabla_normalizada.xlsx"
+PRENSA = DECISIONES / "menciones_prensa.csv"
+SEDES = DECISIONES / "sedes_instituciones.csv"
 CRUDOS = INTERIM / "objetos_crudos.csv"  # salida de 01_ingesta: texto original
 SALIDA = PROCESSED / "vista_plana_tabla_consolidada.xlsx"
 HOJA = "Objetos - Concursos Tucumán"
 
 COLS = ["Concurso", "Año", "Expositora/Expositor", "Género", "Ciudad", "Provincia",
         "Lugar en el documento", "ciudad_id", "lat", "lon", "lat_provincia", "lon_provincia",
-        "Categoría", "Categoría normalizada", "N.º de orden",
+        "Dirección de la sede", "lat_sede", "lon_sede", "Categoría", "Categoría normalizada", "N.º de orden",
         "Descripción del objeto", "Técnicas", "Técnica según", "Materiales", "Fuera de concurso",
-        "Creación de la autora", "Imagen del catálogo", "Foto del álbum"]
+        "Creación de la autora", "Imagen del catálogo", "Foto del álbum", "En la prensa"]
 
 
 def _hoja(xl: pd.ExcelFile, prefijo: str) -> pd.DataFrame:
@@ -71,6 +79,29 @@ def lugar_original(obj: pd.DataFrame, crudos=CRUDOS) -> pd.Series:
     if set(c["objeto_id"]) != set(obj["objeto_id"]):
         raise ValueError(f"{crudos.name} y la hoja Objetos no tienen los mismos objeto_id")
     return obj["objeto_id"].map(c.set_index("objeto_id")["ciudad_raw"])
+
+
+def en_la_prensa(df: pd.DataFrame, xl: pd.ExcelFile, prensa=PRENSA) -> pd.Series:
+    """Menciones de prensa de cada obra: las que nombran la obra y las que hablan de su
+    expositora ("sobre la expositora", solo en sus obras del concurso del año de la
+    nota). Las de un lugar no se copian a sus obras; las
+    descartadas en la revisión (`mostrar` = no) no van. Mismo criterio que el explorador."""
+    fuentes = xl.parse("Fuentes")
+    diario = {int(f): str(d).split(",")[0].strip() for f, d in zip(fuentes.fuente_id, fuentes.descripcion)}
+    de_obra, de_persona = {}, {}
+    for m in pd.read_csv(prensa, encoding="utf-8-sig", dtype=str, keep_default_na=False).itertuples():
+        if m.mostrar.strip().lower() == "no":
+            continue
+        y, mes, d = m.fecha.split("-")
+        ref = f"{diario.get(int(m.fuente_id), '')}, {int(d)}/{int(mes)}/{y}, «{m.titulo}»"
+        oids = [int(x) for x in m.objeto_id.split(";") if x.strip()]
+        for oid in oids:
+            de_obra.setdefault(oid, []).append(ref)
+        if m.persona_id and not oids:  # solo en sus obras del concurso de ese año
+            de_persona.setdefault((int(float(m.persona_id)), int(y)), []).append(f"{ref} (sobre la expositora)")
+    textos = [de_obra.get(o, []) + de_persona.get((p, a), [])
+              for o, p, a in zip(df["objeto_id"], df["expositora_id"], df["anio"])]
+    return pd.Series([" | ".join(t) or pd.NA for t in textos], index=df.index)
 
 
 def construir(fuente=FUENTE) -> pd.DataFrame:
@@ -120,7 +151,17 @@ def construir(fuente=FUENTE) -> pd.DataFrame:
         "Creación de la autora": df["creacion_autora"] if "creacion_autora" in df.columns else pd.NA,
         "Imagen del catálogo": df["imagen"] if "imagen" in df.columns else pd.NA,
         "Foto del álbum": df["foto_album"] if "foto_album" in df.columns else pd.NA,
+        "En la prensa": en_la_prensa(df, xl),
     })
+    # sede de la institución (`decisiones/sedes_instituciones.csv`): el punto exacto,
+    # aparte de lat/lon, que siguen siendo los de la ciudad
+    sd = pd.read_csv(SEDES, encoding="utf-8-sig", dtype=str, keep_default_na=False)
+    sd = sd[(sd["lat"].str.strip() != "") & (sd["lon"].str.strip() != "")]
+    sd = sd.assign(persona_id=sd["persona_id"].astype(int)).set_index("persona_id")
+    tiene = df["expositora_id"].isin(sd.index)
+    out["Dirección de la sede"] = df["expositora_id"].map(sd["direccion"]).where(tiene).replace("", pd.NA)
+    out["lat_sede"] = df["expositora_id"].map(sd["lat"].astype(float)).where(tiene)
+    out["lon_sede"] = df["expositora_id"].map(sd["lon"].astype(float)).where(tiene)
 
     # Concurso, Categoría y Expositora (alfabético, sensible a mayúsculas).
     # Dentro de un mismo grupo se conserva el orden del catálogo (objeto_id),

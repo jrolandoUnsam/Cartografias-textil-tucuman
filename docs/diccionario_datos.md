@@ -147,6 +147,7 @@ mayúsculas)**. Dentro de un mismo grupo se conserva el orden del catálogo
 | `ciudad_id` | → `Ciudades.ciudad_id`. Dos lugares escritos distinto con el mismo id son la misma fila de `Ciudades` |
 | `lat` / `lon` | coordenadas de esa ciudad (vacías si no están cargadas) |
 | `lat_provincia` / `lon_provincia` | coordenadas de la capital de su provincia |
+| `Dirección de la sede` / `lat_sede` / `lon_sede` | solo para instituciones con sede cargada en `decisiones/sedes_instituciones.csv`: dirección (si la hay) y punto de la sede. `Ciudad`, `lat` y `lon` siguen siendo los de la localidad |
 | `Categoría` | nombre de categoría |
 | `Categoría normalizada` | `Categorías.categoria_norm` |
 | `N.º de orden` | `ORDEN` |
@@ -158,6 +159,7 @@ mayúsculas)**. Dentro de un mismo grupo se conserva el orden del catálogo
 | `Creación de la autora` | `Objetos.creacion_autora` |
 | `Foto del álbum` | `Objetos.foto_album` |
 | `Imagen del catálogo` | escaneo de la página del catálogo donde figura el objeto (`Objetos.imagen`); la foto de la pieza va en `Foto del álbum` |
+| `En la prensa` | notas de época de `decisiones/menciones_prensa.csv` que nombran la obra o hablan de su expositora ("sobre la expositora", solo en las obras del concurso del año de la nota): diario, fecha y título, separadas por " \| ". Vacío si no hay |
 
 ## `data/processed/redes.xlsx`
 

@@ -34,8 +34,8 @@ fuente (catálogo, página y escaneo) y trae su cita lista para copiar.
 data/
   raw/          Excel original (nunca se edita) + imágenes de archivo (fuera del repo)
   interim/      resultados intermedios del pipeline y tabla manual de partida
-    decisiones/ 16 tablas con lo que no se deriva del crudo: fusiones, nombres,
-                coordenadas, premios, técnicas, prensa, etc.
+    decisiones/ 17 tablas con lo que no se deriva del crudo: fusiones, nombres,
+                coordenadas, sedes, premios, técnicas, prensa, etc.
   processed/    tabla_normalizada.xlsx, vista_plana_tabla_consolidada.xlsx, redes.xlsx
 src/pipeline/   15 etapas (01_ingesta … 15_controles) y audit_comentarios.py
 notebooks/      eda.ipynb (análisis exploratorio) y revision_duplicados.ipynb

@@ -195,7 +195,7 @@ h1 { font-family: var(--serif); font-optical-sizing: auto; font-weight: 600; fon
 .legend .li { display: flex; align-items: center; gap: 0.5rem; }
 .sw { width: 0.8rem; height: 0.8rem; border-radius: 50%; border: 2px solid var(--indigo); flex: none; }
 .sw.h { border-style: dashed; }
-.sw.r { background: var(--madder); border-color: var(--madder); }
+.sw.r { border-width: 3px; border-color: var(--madder) var(--indigo) var(--indigo) var(--indigo); transform: rotate(45deg); } /* un cuarto del borde, de las 12 a las 3 */
 .legend .lnote { margin: 0.1rem 0 0; max-width: 15rem; font-size: 0.72rem; line-height: 1.35; color: var(--ink2); }
 .maptools { position: absolute; top: 0.8rem; left: 4rem; z-index: 900; display: flex; gap: 0.4rem; flex-wrap: wrap; }
 .tool { display: flex; gap: 0.45rem; align-items: center; background: color-mix(in srgb, var(--card) 94%, transparent); border: 1px solid var(--rule); border-radius: 999px; padding: 0.3rem 0.8rem; font-size: 0.84rem; }
@@ -217,6 +217,9 @@ h2 { font-family: var(--serif); font-weight: 600; font-size: 1.5rem; line-height
 .who { padding: 0.65rem 0; border-top: 1px solid var(--rule); }
 .plink { border: 0; background: transparent; padding: 0; font-weight: 600; text-align: left; text-decoration: underline; text-decoration-color: var(--rule); text-underline-offset: 3px; }
 .plink:hover { text-decoration-color: var(--indigo); }
+.sedes { margin: -0.2rem 0 0.8rem; padding-left: 1.1rem; font-size: 0.84rem; line-height: 1.45; }
+.sedes li { margin: 0.15rem 0; }
+.sedes .plink { vertical-align: top; }
 .who ul, .ficha ul { margin: 0.25rem 0 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 0.25rem; }
 .who li, .ficha li { display: grid; grid-template-columns: 2.8rem minmax(0, 1fr); gap: 0.4rem; font-size: 0.84rem; }
 .yr { color: var(--ink2); font-variant-numeric: tabular-nums; }
@@ -1155,9 +1158,17 @@ function zReset() { Z.s = 1; Z.x = 0; Z.y = 0; gid("fdlg-img").style.transform =
     });
     $("legend").innerHTML = `<b>Obras por lugar</b>${svg}</svg><div class="li"><span class="sw r"></span><span>Parte premiada</span></div><div class="li"><span class="sw h"></span><span>Se conoce solo la provincia</span></div>`;
   }
+  // parte premiada como arco sobre el borde, desde las 12 en el sentido del reloj.
+  // Leaflet (SVG) traza el círculo desde las 9 en sentido antihorario: las 12 quedan a 3/4
+  // del recorrido, y el arco va hacia atrás desde ahí.
+  function arco(rad, frac) {
+    const C = 2 * Math.PI * Math.max(1, Math.round(rad)), L = Math.min(1, frac) * C, q = 0.75 * C;
+    return L <= q ? `0 ${q - L} ${L} ${C}` : `${q} ${C - L} ${L - q} ${C}`;
+  }
   function groupsOf(rs) {
     const m = new Map();
-    rs.forEach((r) => { let g = m.get(r.pl); if (!g) { g = { id: r.pl, recs: [] }; m.set(r.pl, g); } g.recs.push(r); });
+    // en el mapa, las obras de una institución con sede conocida van en la sede (r.sd)
+    rs.forEach((r) => { const k = r.sd || r.pl; let g = m.get(k); if (!g) { g = { id: k, recs: [] }; m.set(k, g); } g.recs.push(r); });
     return m;
   }
   function renderMap(rs) {
@@ -1171,7 +1182,7 @@ function zReset() { Z.s = 1; Z.x = 0; Z.y = 0; gid("fdlg-img").style.transform =
       // sin rótulos fijos: el mapa base ya nombra los lugares
       o.bindTooltip(`<b>${esc(p.n)}</b><br>${plural(n, "obra", "obras")} · ${m} premiadas`, { direction: "top", offset: [0, -4] });
       o.on("click", () => { state.place = state.place === g.id ? null : g.id; state.more = false; render(); });
-      if (m) L.circleMarker([p.lat, p.lon], { pane: "dots", radius: Math.max(3, rad * Math.sqrt(m / n)), color: mad, weight: 1, fillColor: mad, fillOpacity: 0.88, interactive: false }).addTo(dotLayer);
+      if (m) L.circleMarker([p.lat, p.lon], { pane: "dots", radius: rad, color: mad, weight: 4, opacity: 0.95, fill: false, lineCap: "butt", dashArray: arco(rad, m / n), interactive: false }).addTo(dotLayer);
     });
     legend(maxN, radius);
     $("maphint").hidden = !!state.place;
@@ -1184,9 +1195,12 @@ function zReset() { Z.s = 1; Z.x = 0; Z.y = 0; gid("fdlg-img").style.transform =
     const p = P[g.id], by = new Map();
     g.recs.forEach((r) => { if (!by.has(r.pk)) by.set(r.pk, []); by.get(r.pk).push(r); });
     const people = [...by.values()].sort((a, b) => a[0].n.localeCompare(b[0].n, "es")), shown = state.more ? people : people.slice(0, 25);
-    const sub = [p.p, p.lat == null ? "sin coordenadas" : p.t === "prov" ? "solo se indica la provincia" : p.c === "aprox" ? "ubicación aproximada" : ""].filter(Boolean).join(" · ");
+    const sub = p.t === "sede" ? "" : [p.p, p.lat == null ? "sin coordenadas" : p.t === "prov" ? "solo se indica la provincia" : p.c === "aprox" ? "ubicación aproximada" : ""].filter(Boolean).join(" · ");
+    // en la localidad, aviso de las instituciones que el mapa muestra en su sede
+    const aparte = [...groupBy(rs.filter((r) => r.pl === g.id && r.sd), (r) => r.sd).entries()];
+    const nSedes = aparte.length ? `<p class="pnote">Además, ${plural(aparte.reduce((s, [, l]) => s + l.length, 0), "obra", "obras")} de ${aparte.length === 1 ? "una institución" : aparte.length + " instituciones"} con sede conocida, que el mapa muestra en su dirección:</p><ul class="sedes">${aparte.sort((a, b) => b[1].length - a[1].length).map(([k, l]) => `<li><button type="button" class="plink" data-act="place" data-id="${esc(k)}">${esc(P[k].n)} <span class="dim">· ${fmt(l.length)}</span></button></li>`).join("")}</ul>` : "";
     el.innerHTML = x + `<h2>${esc(p.n)}</h2><p class="meta">${plural(g.recs.length, "obra", "obras")}, ${nPrized(g.recs)} premiadas · ${plural(people.length, "nombre", "nombres")}${sub ? "<br>" + esc(sub) : ""}</p>` +
-      (p.note ? `<p class="pnote">${esc(p.note)}</p>` : "") + enPrensa(DATA.prensa.filter((m) => m.pl.includes(g.id))) +
+      (p.note ? `<p class="pnote">${esc(p.note)}</p>` : "") + nSedes + enPrensa(DATA.prensa.filter((m) => m.pl.includes(g.id))) +
       shown.map((l) => `<div class="who">${personBtn(l[0].pk, l[0].n)}<ul>${l.sort((a, b) => a.y - b.y).map((r) => `<li><span class="yr">${r.y}</span><span title="${esc(what(r))}">${esc(clip(what(r), 90))} ${prizeBadges(r)}</span></li>`).join("")}</ul></div>`).join("") +
       (people.length > shown.length ? `<button type="button" class="more" data-act="more">Mostrar los ${people.length} nombres</button>` : "");
   }

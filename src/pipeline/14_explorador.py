@@ -72,6 +72,7 @@ COMISIONES = DECISIONES / "comisiones.csv"
 # género de quienes figuran solo en el fallo (sin ficha en la hoja Expositoras), inferido del nombre
 GENERO_FALLO = DECISIONES / "genero_solo_fallo.csv"
 ALBUM = DECISIONES / "album_1915.csv"
+SEDES = DECISIONES / "sedes_instituciones.csv"  # dirección de las instituciones, para el mapa
 ACCESIT = DECISIONES / "accesit_fallo.csv"  # accésits fuera de la sección Accésit del fallo
 REDES = PROCESSED / "redes.xlsx"  # hoja Grupos, de 12_redes
 PLANTILLAS = RAIZ / "src" / "pipeline" / "plantillas"
@@ -291,6 +292,8 @@ def datos() -> dict:
         sin_obra += 1
         recs.append(obra_sin_catalogo(z, recs, nombre, genero, places, de_ciudad, C))
 
+    sedes(recs, places, nombre)
+
     # provincia de cada obra: la del lugar en que la muestra el mapa
     n_prov = Counter(places[r["pl"]]["p"] for r in recs)
     prv = {slug(p) or "sd": p or "Sin dato" for p, _ in sorted(n_prov.items(), key=lambda x: (not x[0], -x[1]))}
@@ -383,6 +386,32 @@ def cita(anio: int, pagina, imagen) -> str:
     """'Catálogo de 1916, p. 13 (DSCN5201)': de dónde sale la obra, para ir a la fuente."""
     esc = re.sub(r"\.jpe?g$", "", texto(imagen), flags=re.I)
     return f"Catálogo de {anio}" + (f", p. {pagina}" if pagina else "") + (f" ({esc})" if esc else "")
+
+
+def sedes(recs: list[dict], places: dict, nombre: pd.Series) -> None:
+    """Instituciones con sede conocida (`decisiones/sedes_instituciones.csv`): en el mapa
+    sus obras van en la dirección de la sede (`sd`, un lugar más de tipo "sede"). La
+    localidad (`pl`) no cambia: filtros, tablas y conteos siguen usando la ciudad."""
+    for s in leer_csv(SEDES).itertuples():
+        if not (s.lat.strip() and s.lon.strip()):
+            continue
+        pk = s.persona_id.strip()
+        suyas = [r for r in recs if r["pk"] == pk]
+        if not suyas:
+            print(f"  ⚠ {SEDES.name}: persona_id {pk} no tiene obras")
+            continue
+        loc = Counter(r["pl"] for r in suyas).most_common(1)[0][0]
+        if any(r["pl"] != loc for r in suyas):
+            print(f"  ⚠ {SEDES.name}: {s.nombre} tiene obras en más de una localidad; la sede va solo a las de {places[loc]['n']}")
+        k = "s" + pk
+        places[k] = {"n": texto(nombre.get(int(pk))) or s.nombre, "p": places[loc]["p"],
+                     "lat": round(float(s.lat), 5), "lon": round(float(s.lon), 5),
+                     "t": "sede", "c": "ok", "loc": loc,
+                     "note": " ".join(x for x in (f"Dirección: {s.direccion.strip()}." if s.direccion.strip() else "",
+                                                  s.nota.strip()[:1].upper() + s.nota.strip()[1:] + "." if s.nota.strip() else "") if x)}
+        for r in suyas:
+            if r["pl"] == loc:
+                r["sd"] = k
 
 
 def obra_sin_catalogo(z, recs, nombre, genero, places, de_ciudad, C) -> dict:
