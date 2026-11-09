@@ -24,10 +24,11 @@ __LEAFLET_CSS__
   --landline: #c3c9d8;
   --home: #efe7cf;
   --indigo: #2a3b91;
+  --band: #e6eaf4;
   --madder: #b0372b;
   --gold: #a97b24;
-  --y15: #7a5cc9;
-  --y16: #e07a2e;
+  --y15: #2a3b91;
+  --y16: #c98b2b;
   --shadow: 0 10px 30px rgba(20, 28, 60, 0.16);
   --serif: "Newsreader", Georgia, "Times New Roman", serif;
   --sans: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
@@ -39,7 +40,7 @@ __LEAFLET_CSS__
 * { box-sizing: border-box; }
 [hidden] { display: none !important; }
 html { font-size: clamp(14px, 0.25vw + 12.4px, 18px); scroll-behavior: smooth; scroll-padding-top: calc(var(--navh) + 0.5rem); }
-body { background: var(--paper); color: var(--ink); font-family: var(--sans); font-size: 0.95rem; line-height: 1.5; -webkit-font-smoothing: antialiased; }
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--sans); font-size: 0.95rem; line-height: 1.5; -webkit-font-smoothing: antialiased; }
 ::selection { background: color-mix(in srgb, var(--indigo) 28%, transparent); }
 button, input, select { font: inherit; color: inherit; }
 button { cursor: pointer; }
@@ -52,50 +53,65 @@ a { color: var(--indigo); text-underline-offset: 3px; }
 .guarda { height: 0.55rem; background: var(--indigo); opacity: 0.55; -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='8'%3E%3Cpath d='M8 0.5 L14.5 4 L8 7.5 L1.5 4Z'/%3E%3C/svg%3E") repeat-x; mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='8'%3E%3Cpath d='M8 0.5 L14.5 4 L8 7.5 L1.5 4Z'/%3E%3C/svg%3E") repeat-x; }
 
 /* cabecera */
-.mast { padding: clamp(1.8rem, 5vw, 4rem) var(--gut) clamp(1.8rem, 4vw, 3rem); }
-.mast-in { max-width: var(--wrap); margin: 0 auto; display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 2.2rem clamp(2rem, 6vw, 6rem); align-items: end; }
-.kicker { margin: 0; font-size: 0.74rem; font-weight: 600; letter-spacing: 0.13em; text-transform: uppercase; color: var(--indigo); }
-h1 { font-family: var(--serif); font-optical-sizing: auto; font-weight: 600; font-size: clamp(2.4rem, 4.6vw, 4.4rem); line-height: 1.02; letter-spacing: -0.015em; margin: 0.7rem 0 0.8rem; text-wrap: balance; }
+.mast { padding: clamp(1.4rem, 3vw, 2.6rem) var(--gut) clamp(2.2rem, 4.5vw, 3.6rem); background: var(--band); border-bottom: 1px solid var(--rule); }
+/* franja de título: índigo muy claro, apenas más oscuro que el fondo */
+.mast .cifras { border-top-color: color-mix(in srgb, var(--ink) 14%, transparent); }
+.mast-in { max-width: calc(var(--wrap) - 2 * var(--gut)); margin: 0 auto; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2.1fr); gap: 2.2rem clamp(2rem, 5vw, 5rem); align-items: center; }
+.cifras { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0.6rem 1.2rem; margin: 1.8rem 0 0; padding: 1rem 0 0; border-top: 1px solid var(--rule); list-style: none; max-width: 36rem; }
+.cifras li { display: flex; flex-direction: column; }
+.cifras b { font-family: var(--serif); font-weight: 600; font-size: clamp(1.5rem, 2.2vw, 1.9rem); line-height: 1.05; font-variant-numeric: tabular-nums lining-nums; }
+.cifras span { font-size: 0.84rem; color: var(--ink2); }
+h1 { font-family: var(--serif); font-optical-sizing: auto; font-weight: 600; font-size: clamp(2.4rem, 3.9vw, 3.4rem); line-height: 1.02; letter-spacing: -0.015em; margin: 0.7rem 0 0.8rem; text-wrap: balance; }
 .lede { font-family: var(--serif); font-style: italic; font-size: clamp(1.2rem, 1.7vw, 1.6rem); line-height: 1.3; color: var(--ink2); margin: 0; max-width: 34ch; text-wrap: balance; }
-.abs { max-width: 60ch; margin: 1.4rem 0 0; font-size: 1.02rem; }
-.cta { display: inline-flex; align-items: center; gap: 0.5rem; margin-top: 1.5rem; background: var(--indigo); color: var(--card); border: 0; border-radius: 999px; padding: 0.7rem 1.3rem; font-weight: 500; text-decoration: none; }
-.cta:hover { filter: brightness(1.08); }
-.epi { margin: 0; position: relative; padding-top: 3.6rem; }
+.epi { margin: 0; position: relative; padding-top: 3.6rem; max-width: 42rem; }
 .epi::before { content: "«"; position: absolute; top: -0.4rem; left: -0.4rem; font-family: var(--serif); font-size: 5rem; line-height: 1; color: var(--madder); opacity: 0.85; }
 .epi blockquote { margin: 0; font-family: var(--serif); font-style: italic; font-size: clamp(1.2rem, 1.65vw, 1.55rem); line-height: 1.38; text-wrap: pretty; }
-.epi figcaption { margin-top: 1rem; font-size: 0.8rem; color: var(--ink2); }
-.cred { max-width: var(--wrap); margin: 2.4rem auto 0; padding-top: 1.1rem; border-top: 1px solid var(--rule); display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem 2rem; }
+.epi figcaption { margin-top: 1rem; font-size: 0.84rem; color: var(--ink2); }
+/* pie: créditos */
+.pie { margin-top: clamp(1rem, 3vw, 2.4rem); border-top: 1px solid var(--rule); background: var(--card); padding: clamp(2rem, 4vw, 3.2rem) var(--gut) clamp(2.2rem, 4vw, 3.4rem); }
+.pie-in { max-width: calc(var(--wrap) - 2 * var(--gut)); margin: 0 auto; display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: 2.4rem clamp(2rem, 6vw, 6rem); }
+/* logos debajo, cada uno alineado con su columna (mismas columnas y separación que .pie-in) */
+.pie-logos { grid-column: 1 / -1; display: grid; grid-template-columns: subgrid; align-items: center; gap: 1.2rem clamp(2rem, 6vw, 6rem); padding-top: 2rem; border-top: 1px solid var(--rule); }
+.pie-logos img { display: block; height: clamp(2.6rem, 3.6vw, 3.4rem); width: auto; max-width: 100%; }
+.pie-inst .eyebrow, .pie-eq .eyebrow { display: block; margin-bottom: 1rem; }
+.cred { margin: 0; display: flex; flex-direction: column; gap: 1rem; }
 .cred div { min-width: 0; }
-.cred dt { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink2); margin-bottom: 0.15rem; }
-.cred dd { margin: 0; font-size: 0.9rem; }
+.cred dt { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink2); margin-bottom: 0.15rem; }
+.cred dd { margin: 0; font-size: 0.92rem; max-width: 52ch; }
+.pie-eq .cred dd { font-family: var(--serif); font-size: 1.08rem; }
 
 /* barra de pestañas */
 .nav { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 2000; background: color-mix(in srgb, var(--paper) 88%, transparent); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); border-bottom: 1px solid var(--rule); }
 .leaflet-container { isolation: isolate; }
 .nav-in { max-width: var(--wrap); margin: 0 auto; padding: 0.55rem var(--gut); min-height: var(--navh); display: flex; align-items: center; gap: 1rem; }
 .brand { display: flex; align-items: center; gap: 0.6rem; text-decoration: none; color: var(--ink); font-family: var(--serif); font-weight: 600; font-size: 1.1rem; white-space: nowrap; opacity: 0; pointer-events: none; transform: translateY(4px); transition: opacity 0.2s, transform 0.2s; }
+.nav:not(.scrolled) { background: var(--band); border-bottom-color: transparent; -webkit-backdrop-filter: none; backdrop-filter: none; }
+.nav:not(.scrolled) .tabs { background: color-mix(in srgb, var(--ink) 7%, transparent); }
 .nav.scrolled .brand { opacity: 1; pointer-events: auto; transform: none; }
 .brand .dm { width: 0.8rem; height: 0.8rem; background: var(--indigo); transform: rotate(45deg) scale(0.85); }
 .tabs { display: flex; gap: 2px; padding: 3px; background: var(--chip); border-radius: 999px; margin-left: auto; }
 .tabs button { border: 0; background: transparent; border-radius: 999px; padding: 0.5rem 1.05rem; font-weight: 500; color: var(--ink2); white-space: nowrap; }
 .tabs button:hover { color: var(--ink); }
 .tabs button[aria-selected="true"] { background: var(--card); color: var(--ink); box-shadow: 0 1px 2px rgba(20, 28, 60, 0.14); }
-.navlink { color: var(--ink2); font-size: 0.86rem; white-space: nowrap; }
+.navlink { color: var(--ink2); font-size: 0.84rem; white-space: nowrap; }
 
 /* explorador */
 .explorer { max-width: var(--wrap); margin: 0 auto; padding: 1.1rem var(--gut) 2.4rem; display: flex; flex-direction: column; gap: 0.9rem; min-height: calc(100vh - var(--navh)); }
 .ask > summary { display: none; }
 .askrow { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 0.7rem 0.8rem; }
-.sel { display: flex; flex-direction: column; gap: 0.2rem; }
-.sel > span, .search .lb { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.09em; text-transform: uppercase; color: var(--ink2); padding-left: 0.8rem; }
+.sel { display: flex; flex-direction: column; gap: 0.2rem; flex: 1 1 8.5rem; min-width: 0; }
+.sel > span, .search .lb { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.09em; text-transform: uppercase; color: var(--ink2); padding-left: 0.8rem; }
 .sel .box { position: relative; }
 .sel .box::after { content: ""; position: absolute; right: 0.9rem; top: 50%; width: 0.4rem; height: 0.4rem; border-right: 1.5px solid var(--ink2); border-bottom: 1.5px solid var(--ink2); transform: translateY(-70%) rotate(45deg); pointer-events: none; }
-.sel select { appearance: none; -webkit-appearance: none; min-width: 9.5rem; max-width: 12.5rem; border: 1px solid var(--rule); background: var(--card); border-radius: 999px; padding: 0.5rem 2.1rem 0.5rem 0.95rem; }
+.sel select { appearance: none; -webkit-appearance: none; width: 100%; text-overflow: ellipsis; border: 1px solid var(--rule); background: var(--card); border-radius: 999px; padding: 0.5rem 2.1rem 0.5rem 0.95rem; }
 .sel select:hover { border-color: var(--ink2); }
 .sel.on select { border-color: var(--indigo); background: color-mix(in srgb, var(--indigo) 9%, var(--card)); }
 .sel.off select { opacity: 0.5; }
-.search { flex: 1 1 12rem; max-width: 21rem; margin-left: auto; }
-.search .lb { display: block; margin-bottom: 0.2rem; }
+.toolbar { background: var(--card); border: 1px solid var(--rule); border-radius: 0.9rem; padding: 1rem 1.2rem 0.9rem; box-shadow: 0 1px 2px rgba(20, 28, 60, 0.04), 0 6px 18px rgba(20, 28, 60, 0.05); display: flex; flex-direction: column; gap: 0.9rem; scroll-margin-top: calc(var(--navh) + 0.8rem); }
+.toolbar[hidden] { display: none; }
+.tb2 { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.7rem 1.6rem; padding-top: 0.85rem; border-top: 1px solid var(--rule); }
+.search { flex: 0 1 22rem; margin-left: auto; }
+.search .lb { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 .search input { width: 100%; border: 1px solid var(--rule); background: var(--card); border-radius: 999px; padding: 0.5rem 0.95rem; }
 .linkbtn { border: 0; background: transparent; color: var(--ink2); text-decoration: underline; text-decoration-color: var(--rule); text-underline-offset: 4px; padding: 0.3rem; }
 .linkbtn:hover { color: var(--ink); }
@@ -104,28 +120,89 @@ h1 { font-family: var(--serif); font-optical-sizing: auto; font-weight: 600; fon
 .strip .n { font-family: var(--serif); font-weight: 600; font-size: 1.75rem; line-height: 1; font-variant-numeric: tabular-nums lining-nums; }
 .strip .n.p { color: var(--madder); }
 .strip .u { color: var(--ink2); }
-.strip .warn { margin: 0; color: var(--ink2); font-size: 0.82rem; }
+.strip .warn { margin: 0; color: var(--ink2); font-size: 0.84rem; }
 
 .view { flex: 1; min-height: 34rem; min-width: 0; }
 .card { background: var(--card); border: 1px solid var(--rule); border-radius: 0.9rem; }
 
+/* premios uno por uno, por sección del fallo */
+.pzs + .pzs { margin-top: 1.3rem; }
+.pzs h4 { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; margin: 0 0 0.2rem; padding-bottom: 0.45rem; border-bottom: 1px solid var(--rule); font-size: 0.84rem; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; color: var(--ink); }
+.pzs h4 span { font-size: 0.84rem; font-weight: 400; letter-spacing: 0; text-transform: none; color: var(--ink2); }
+.pzs ul { list-style: none; margin: 0; padding: 0; }
+.pzs li { display: grid; grid-template-columns: 9.5rem minmax(9rem, 15rem) minmax(0, 1fr); gap: 0.2rem 1.2rem; align-items: baseline; padding: 0.5rem 0; font-size: 0.84rem; }
+.pzs li + li { border-top: 1px solid color-mix(in srgb, var(--rule) 55%, transparent); }
+.pzs .prize { margin: 0; }
+.pzo { color: var(--ink2); }
+.pzo small { display: block; font-size: 0.72rem; color: var(--ink2); font-style: italic; }
+@media (max-width: 720px) { .pzs li { grid-template-columns: minmax(0, 1fr); } }
+
+/* galería: las fotos del álbum de 1915 */
+.v-gal { padding: clamp(0.4rem, 1.5vw, 1rem) 0 1rem; }
+.gal-head { max-width: 46rem; margin-bottom: 1.6rem; }
+.gal-head h2 { font-size: clamp(1.6rem, 2.4vw, 2.2rem); line-height: 1.1; margin: 0.45rem 0 0.5rem; }
+.gal-head p { margin: 0; color: var(--ink2); }
+.gal { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 21rem), 1fr)); gap: 1.6rem 1.4rem; }
+.gcard { margin: 0; display: flex; flex-direction: column; background: var(--card); border: 1px solid var(--rule); border-radius: 0.9rem; overflow: hidden; }
+.gimg { display: block; padding: 0; border: 0; background: #2a2a2a; cursor: zoom-in; }
+.gimg img { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; transition: opacity 0.15s; }
+.gimg:hover img { opacity: 0.9; }
+.gcard figcaption { padding: 0.9rem 1.1rem 1.1rem; }
+.gnum { display: block; font-size: 0.68rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink2); }
+.gcard ul { list-style: none; margin: 0.5rem 0 0; padding: 0; display: flex; flex-direction: column; gap: 0.75rem; }
+.gpos { display: block; font-size: 0.72rem; color: var(--ink2); }
+.gtit { display: block; font-family: var(--serif); font-size: 1.04rem; line-height: 1.3; color: var(--ink); }
+.gmeta { display: block; font-size: 0.84rem; color: var(--ink2); margin-top: 0.1rem; }
+.gpz { display: block; margin-top: 0.3rem; }
+.gpz .prize { margin: 0; }
+
+/* presentación: una sola columna de lectura centrada para todo lo que se lee; una franja a todo el ancho con las tarjetas */
+.v-pre { padding: clamp(0.4rem, 1.5vw, 1rem) 0 1rem; }
+.pre-sec + .pre-sec, .pre-band + .pre-sec { margin-top: clamp(2.4rem, 4vw, 3.4rem); padding-top: clamp(2.2rem, 4vw, 3rem); border-top: 1px solid var(--rule); }
+.pre-sec { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2.1fr); gap: 1.4rem clamp(2rem, 5vw, 5rem); align-items: start; }
+.pre-head { position: sticky; top: calc(var(--navh) + 1.4rem); }
+.pre-head h2 { font-size: clamp(1.6rem, 2.4vw, 2.2rem); line-height: 1.1; margin: 0.45rem 0 0; text-wrap: balance; }
+.pre-main { min-width: 0; max-width: 50rem; }
+.pre-band { margin-top: clamp(2.2rem, 4vw, 3rem); display: flex; flex-direction: column; gap: 0.9rem; }
+/* texto de lectura en serif (como un libro); la sans queda para rótulos y epígrafes */
+.pre-main { font-family: var(--serif); }
+.pre-main p { margin: 0 0 0.95rem; font-size: 1.2rem; line-height: 1.6; text-wrap: pretty; }
+.pre-main .eyebrow, .pre-main h3, .pre-main figcaption { font-family: var(--sans); }
+.pre-firma { margin-top: 1.4rem !important; font-family: var(--serif); font-style: italic; color: var(--ink2); }
+.guia { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 0.8rem; }
+.guia button { width: 100%; height: 100%; text-align: left; background: var(--card); border: 1px solid var(--rule); border-radius: 0.8rem; padding: 0.85rem 1rem; display: grid; grid-template-columns: 1fr auto; gap: 0.35rem 0.8rem; align-items: start; align-content: start; }
+.guia button::after { content: "→"; grid-column: 2; grid-row: 1 / span 2; color: var(--ink2); transition: transform 0.15s; }
+.guia button:hover { border-color: var(--indigo); }
+.guia button:hover::after { transform: translateX(3px); color: var(--indigo); }
+.guia b { font-family: var(--serif); font-size: 1.1rem; font-weight: 600; }
+.guia span { color: var(--ink2); font-size: 0.84rem; line-height: 1.45; }
+/* citas: un solo tratamiento para todas (serif itálica, sangrada, comilla roja, pie con raya) */
+.cita { margin: 0; position: relative; padding: 2.6rem 0 0 clamp(1rem, 2.5vw, 2rem); }
+.cita::before { content: "«"; position: absolute; top: -0.45rem; left: clamp(0.65rem, 2.2vw, 1.65rem); font-family: var(--serif); font-size: 3.8rem; line-height: 1; color: var(--madder); opacity: 0.85; }
+.cita blockquote { margin: 0; font-family: var(--serif); font-style: italic; font-size: 1.14rem; line-height: 1.55; text-wrap: pretty; }
+.cita blockquote > p { margin: 0 0 0.6rem; }
+.cita ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.55rem; }
+.cita figcaption { margin-top: 0.9rem; font-size: 0.84rem; color: var(--ink2); line-height: 1.45; }
+.pre-main .cita { margin-top: 2.4rem; }
+.fuentes h3 { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink2); margin: 1.4rem 0 0.5rem; }
+.fuentes ul { margin: 0; padding-left: 1.1rem; display: flex; flex-direction: column; gap: 0.3rem; font-size: 1.12rem; line-height: 1.5; }
+.fuentes .ref { font-family: var(--serif); font-size: 1.02rem; line-height: 1.6; margin: 0; padding: 0 0 0 1.6rem; text-indent: -1.6rem; }
+
 /* mapa */
 .v-map { position: relative; border-radius: 0.9rem; overflow: hidden; border: 1px solid var(--rule); background: var(--sea); }
 #map { position: absolute; inset: 0; background: var(--sea); }
-.legend { position: absolute; left: 0.8rem; bottom: 0.8rem; z-index: 900; background: color-mix(in srgb, var(--card) 94%, transparent); border: 1px solid var(--rule); border-radius: 0.7rem; padding: 0.65rem 0.85rem; font-size: 0.76rem; display: flex; flex-direction: column; gap: 0.35rem; }
-.legend b { font-weight: 600; font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink2); }
+.legend { position: absolute; left: 0.8rem; bottom: 0.8rem; z-index: 900; background: color-mix(in srgb, var(--card) 94%, transparent); border: 1px solid var(--rule); border-radius: 0.7rem; padding: 0.65rem 0.85rem; font-size: 0.72rem; display: flex; flex-direction: column; gap: 0.35rem; }
+.legend b { font-weight: 600; font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink2); }
 .legend svg { display: block; overflow: visible; }
 .legend .li { display: flex; align-items: center; gap: 0.5rem; }
 .sw { width: 0.8rem; height: 0.8rem; border-radius: 50%; border: 2px solid var(--indigo); flex: none; }
 .sw.h { border-style: dashed; }
 .sw.r { background: var(--madder); border-color: var(--madder); }
-.sw.l { width: 1.2rem; height: 0; border: 0; border-top: 3px solid color-mix(in srgb, var(--gold) 70%, transparent); border-radius: 0; }
-.sw.l.d { border-top-style: dashed; }
 .legend .lnote { margin: 0.1rem 0 0; max-width: 15rem; font-size: 0.72rem; line-height: 1.35; color: var(--ink2); }
 .maptools { position: absolute; top: 0.8rem; left: 4rem; z-index: 900; display: flex; gap: 0.4rem; flex-wrap: wrap; }
-.tool { display: flex; gap: 0.45rem; align-items: center; background: color-mix(in srgb, var(--card) 94%, transparent); border: 1px solid var(--rule); border-radius: 999px; padding: 0.3rem 0.8rem; font-size: 0.78rem; }
+.tool { display: flex; gap: 0.45rem; align-items: center; background: color-mix(in srgb, var(--card) 94%, transparent); border: 1px solid var(--rule); border-radius: 999px; padding: 0.3rem 0.8rem; font-size: 0.84rem; }
 .tool input { accent-color: var(--indigo); width: 0.9rem; height: 0.9rem; margin: 0; }
-.hint { position: absolute; top: 0.8rem; right: 0.8rem; z-index: 800; background: color-mix(in srgb, var(--card) 94%, transparent); border: 1px solid var(--rule); border-radius: 999px; padding: 0.3rem 0.85rem; font-size: 0.78rem; color: var(--ink2); }
+.hint { position: absolute; top: 0.8rem; right: 0.8rem; z-index: 800; background: color-mix(in srgb, var(--card) 94%, transparent); border: 1px solid var(--rule); border-radius: 999px; padding: 0.3rem 0.85rem; font-size: 0.84rem; color: var(--ink2); }
 .leaflet-container { font-family: var(--sans); background: var(--sea); }
 .leaflet-tooltip { background: var(--card); color: var(--ink); border: 1px solid var(--rule); border-radius: 8px; box-shadow: none; font-size: 12px; padding: 4px 9px; }
 .leaflet-tooltip-top:before { border-top-color: var(--rule); }
@@ -138,15 +215,15 @@ h1 { font-family: var(--serif); font-optical-sizing: auto; font-weight: 600; fon
 .x { position: absolute; top: 0.7rem; right: 0.8rem; border: 0; background: var(--chip); border-radius: 50%; width: 1.8rem; height: 1.8rem; line-height: 1; font-size: 1.15rem; color: var(--ink2); }
 h2 { font-family: var(--serif); font-weight: 600; font-size: 1.5rem; line-height: 1.15; margin: 0 0 0.25rem; letter-spacing: -0.005em; }
 .meta { color: var(--ink2); font-size: 0.84rem; margin: 0 0 0.8rem; }
-.pnote { font-size: 0.8rem; padding: 0.5rem 0.7rem; border-radius: 0.6rem; background: var(--chip); margin: 0 0 0.8rem; }
+.pnote { font-size: 0.84rem; padding: 0.5rem 0.7rem; border-radius: 0.6rem; background: var(--chip); margin: 0 0 0.8rem; }
 .who { padding: 0.65rem 0; border-top: 1px solid var(--rule); }
 .plink { border: 0; background: transparent; padding: 0; font-weight: 600; text-align: left; text-decoration: underline; text-decoration-color: var(--rule); text-underline-offset: 3px; }
 .plink:hover { text-decoration-color: var(--indigo); }
 .who ul, .ficha ul { margin: 0.25rem 0 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 0.25rem; }
-.who li, .ficha li { display: grid; grid-template-columns: 2.8rem minmax(0, 1fr); gap: 0.4rem; font-size: 0.85rem; }
+.who li, .ficha li { display: grid; grid-template-columns: 2.8rem minmax(0, 1fr); gap: 0.4rem; font-size: 0.84rem; }
 .yr { color: var(--ink2); font-variant-numeric: tabular-nums; }
-.prize { display: inline-block; margin: 0 2px; padding: 0 0.55rem; border-radius: 999px; background: var(--madder); color: var(--card); font-size: 0.74rem; white-space: nowrap; }
-.tg { display: inline-block; margin: 2px 4px 2px 0; padding: 1px 0.6rem; border-radius: 999px; background: var(--chip); color: var(--ink2); font-size: 0.76rem; white-space: nowrap; }
+.prize { display: inline-block; margin: 0 2px; padding: 0 0.55rem; border-radius: 999px; background: var(--madder); color: var(--card); font-size: 0.72rem; white-space: nowrap; }
+.tg { display: inline-block; margin: 2px 4px 2px 0; padding: 1px 0.6rem; border-radius: 999px; background: var(--chip); color: var(--ink2); font-size: 0.72rem; white-space: nowrap; }
 .tg.mt { background: transparent; box-shadow: inset 0 0 0 1px var(--rule); }
 .more { margin-top: 0.7rem; border: 1px solid var(--rule); background: transparent; border-radius: 999px; padding: 0.4rem 1rem; }
 .empty { color: var(--ink2); margin: 0; }
@@ -155,12 +232,12 @@ h2 { font-family: var(--serif); font-weight: 600; font-size: 1.5rem; line-height
 .v-tec { overflow-y: auto; padding: clamp(1rem, 2vw, 1.7rem); display: flex; flex-direction: column; gap: 1.2rem; }
 .v-tec > * { flex: none; }
 .tec-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 0.8rem 2rem; }
-.mxnote { margin: 0; font-size: 0.86rem; color: var(--ink2); max-width: 70ch; }
-.scale { display: flex; align-items: center; gap: 0.5rem; font-size: 0.75rem; color: var(--ink2); }
+.mxnote { margin: 0; font-size: 0.84rem; color: var(--ink2); max-width: 70ch; }
+.scale { display: flex; align-items: center; gap: 0.5rem; font-size: 0.72rem; color: var(--ink2); }
 .scale i { display: block; width: 7rem; height: 0.6rem; border-radius: 3px; background: linear-gradient(90deg, color-mix(in srgb, var(--indigo) 10%, var(--card)), color-mix(in srgb, var(--indigo) 82%, var(--card))); }
 .mxv { display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem 1rem; }
 .mxv .cfmt { margin: 0; }
-.mxv .mxhint { font-size: 0.75rem; color: var(--ink2); max-width: 46ch; }
+.mxv .mxhint { font-size: 0.72rem; color: var(--ink2); max-width: 46ch; }
 .scale .d { display: inline-flex; align-items: center; gap: 0.3rem; margin-left: 0.8rem; }
 .scale .d s { text-decoration: none; display: inline-block; width: 0.9rem; height: 0.9rem; border-radius: 50%; background: var(--madder); }
 .mxwrap { overflow-x: auto; padding-top: 0.4rem; }
@@ -168,19 +245,19 @@ h2 { font-family: var(--serif); font-weight: 600; font-size: 1.5rem; line-height
 .mx th { font-weight: 500; padding: 0; vertical-align: bottom; }
 .mx tbody th { vertical-align: middle; }
 .mx th button, .mx td button { width: 100%; border: 1px solid transparent; border-radius: 0.65rem; background: transparent; }
-.mx thead th button { padding: 0.25rem 0.25rem 0.4rem; font-size: 0.78rem; line-height: 1.2; color: var(--ink); }
-.mx thead th button small, .mx .rh i { display: block; font-style: normal; font-size: 0.7rem; color: var(--ink2); font-variant-numeric: tabular-nums; }
-.mx .rh { text-align: left; padding: 0.4rem 0.7rem; font-size: 0.88rem; height: 3rem; display: flex; align-items: center; justify-content: space-between; gap: 0.6rem; }
+.mx thead th button { padding: 0.25rem 0.25rem 0.4rem; font-size: 0.84rem; line-height: 1.2; color: var(--ink); }
+.mx thead th button small, .mx .rh i { display: block; font-style: normal; font-size: 0.72rem; color: var(--ink2); font-variant-numeric: tabular-nums; }
+.mx .rh { text-align: left; padding: 0.4rem 0.7rem; font-size: 0.84rem; height: 3rem; display: flex; align-items: center; justify-content: space-between; gap: 0.6rem; }
 .mx .rh i { display: inline; }
 .mx .rh.soft { color: var(--ink2); font-style: italic; }
-.mx .rh.sub { padding-left: 1.7rem; font-size: 0.82rem; color: var(--ink2); }
+.mx .rh.sub { padding-left: 1.7rem; font-size: 0.84rem; color: var(--ink2); }
 .mx button.hl { background: var(--chip); }
 .mx button[aria-pressed="true"]:not(.cell) { border-color: var(--ink); }
 .cell { position: relative; height: 3rem; font-variant-numeric: tabular-nums; font-weight: 600; font-size: 1rem; transition: transform 0.12s; }
 .cell:not(.zero):hover { transform: scale(1.04); }
 .cell.out { background: transparent; border: 1px dashed var(--rule); color: var(--ink2); font-weight: 500; }
 .cell.zero { background: color-mix(in srgb, var(--chip) 55%, transparent); }
-.cell .dot { position: absolute; top: -5px; right: -4px; min-width: 1.15rem; height: 1.15rem; padding: 0 0.25rem; border-radius: 0.6rem; background: var(--madder); color: var(--card); font-size: 0.68rem; font-weight: 600; line-height: 1.15rem; text-align: center; border: 2px solid var(--card); box-sizing: content-box; }
+.cell .dot { position: absolute; top: -5px; right: -4px; min-width: 1.15rem; height: 1.15rem; padding: 0 0.25rem; border-radius: 0.6rem; background: var(--madder); color: var(--card); font-size: 0.72rem; font-weight: 600; line-height: 1.15rem; text-align: center; border: 2px solid var(--card); box-sizing: content-box; }
 .mx td button[aria-pressed="true"] { border-color: var(--ink); box-shadow: 0 0 0 2px var(--ink); }
 .res { border-top: 1px solid var(--rule); padding-top: 1.1rem; }
 .res h3 { margin: 0 0 0.5rem; font-family: var(--serif); font-size: 1.2rem; font-weight: 600; }
@@ -189,96 +266,141 @@ h2 { font-family: var(--serif); font-weight: 600; font-size: 1.5rem; line-height
 .btn:hover { border-color: var(--ink2); }
 .btn.pri { background: var(--indigo); border-color: var(--indigo); color: var(--card); }
 .rows { margin: 0; padding: 0; list-style: none; }
-.rows li { display: grid; grid-template-columns: minmax(9rem, 15rem) minmax(0, 1fr); gap: 0.25rem 1.1rem; padding: 0.6rem 0; border-top: 1px solid var(--rule); font-size: 0.87rem; }
+.rows li { display: grid; grid-template-columns: minmax(9rem, 15rem) minmax(0, 1fr); gap: 0.25rem 1.1rem; padding: 0.6rem 0; border-top: 1px solid var(--rule); font-size: 0.84rem; }
 
 /* expositoras */
 .v-art { display: grid; grid-template-columns: minmax(16rem, 21rem) minmax(0, 1fr); gap: 0.9rem; align-items: start; }
 /* la lista y la ficha quedan a la vista y cada una se desliza por su cuenta */
 .v-art > .card { position: sticky; top: calc(var(--navh) + 0.8rem); max-height: calc(100vh - var(--navh) - 1.6rem); }
 .plist { min-height: 0; overflow-y: auto; padding: 0.6rem; }
-.plist .cap { display: block; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink2); padding: 0.4rem 0.5rem 0.5rem; }
+.plist .cap { display: block; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink2); padding: 0.4rem 0.5rem 0.5rem; }
 .plist button.row { width: 100%; display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 1px 0.5rem; text-align: left; background: transparent; border: 0; border-radius: 0.65rem; padding: 0.5rem 0.65rem; }
 .plist button.row:hover { background: var(--chip); }
 .plist button.row[aria-current="true"] { background: color-mix(in srgb, var(--indigo) 11%, var(--card)); }
 .plist .nm { font-weight: 500; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .plist .st { color: var(--madder); font-weight: 600; font-variant-numeric: tabular-nums; }
-.plist .sm { grid-column: 1 / -1; font-size: 0.76rem; color: var(--ink2); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.plist .sm { grid-column: 1 / -1; font-size: 0.72rem; color: var(--ink2); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .ficha { min-height: 0; overflow-y: auto; padding: clamp(1.1rem, 2vw, 1.7rem); }
-.eyebrow { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink2); }
+.eyebrow { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink2); }
 .ficha h2 { font-size: clamp(1.7rem, 2.6vw, 2.3rem); margin: 0.25rem 0 0.15rem; }
 .stats { display: flex; flex-wrap: wrap; gap: 0.6rem 2.4rem; margin: 1.1rem 0 0.5rem; }
 .stats div { display: flex; flex-direction: column; }
 .stats b { font-family: var(--serif); font-size: 2rem; font-weight: 600; line-height: 1; font-variant-numeric: tabular-nums lining-nums; }
 .stats b.p { color: var(--madder); }
-.stats span { font-size: 0.78rem; color: var(--ink2); }
-.ficha h3 { font-size: 0.72rem; letter-spacing: 0.09em; text-transform: uppercase; color: var(--ink2); margin: 1.5rem 0 0.4rem; font-weight: 600; padding-bottom: 0.4rem; border-bottom: 1px solid var(--rule); }
+.stats span { font-size: 0.84rem; color: var(--ink2); }
+.ficha h3 { font-family: var(--serif); font-size: 1.5rem; font-weight: 600; line-height: 1.2; color: var(--ink); margin: 2rem 0 0.3rem; padding-bottom: 0.45rem; border-bottom: 1px solid var(--ink); }
 .ficha .ln { margin: 0.6rem 0 0; }
-.ficha .foot { margin: 1.4rem 0 0; font-size: 0.8rem; color: var(--ink2); }
+.ficha .foot { margin: 1.4rem 0 0; font-size: 0.84rem; color: var(--ink2); }
 .ficha .acts { margin-top: 1rem; }
 
 /* análisis: una página con índice */
 .v-ana { padding: clamp(1rem, 2vw, 1.7rem); display: grid; grid-template-columns: 11.5rem minmax(0, 1fr); gap: 0 clamp(1.2rem, 3vw, 2.6rem); }
-.aidx { position: sticky; top: calc(var(--navh) + 1rem); align-self: start; display: flex; flex-direction: column; gap: 0.15rem; font-size: 0.86rem; }
+.aidx { position: sticky; top: calc(var(--navh) + 1rem); align-self: start; display: flex; flex-direction: column; gap: 0.15rem; font-size: 0.84rem; }
 .aidx .eyebrow { margin-bottom: 0.4rem; }
 .aidx a { color: var(--ink2); text-decoration: none; padding: 0.3rem 0.6rem; border-left: 2px solid var(--rule); }
 .aidx a:hover { color: var(--ink); }
-.afil { margin-top: 1rem; padding: 0.7rem 0.8rem; border: 1px solid var(--rule); border-radius: 0.7rem; font-size: 0.78rem; color: var(--ink2); display: flex; flex-direction: column; gap: 0.3rem; }
-.afil b { font-size: 0.66rem; font-weight: 600; letter-spacing: 0.09em; text-transform: uppercase; }
+.afil { margin-top: 1rem; padding: 0.7rem 0.8rem; background: var(--card); border: 1px solid var(--rule); border-radius: 0.7rem; font-size: 0.84rem; color: var(--ink2); display: flex; flex-direction: column; gap: 0.3rem; }
+.afil b { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.09em; text-transform: uppercase; }
 .afil span { color: var(--ink); }
-.afil .linkbtn { align-self: flex-start; padding: 0; font-size: 0.78rem; }
-.nof { display: inline-block; margin-left: 0.5rem; vertical-align: 0.2em; font-family: var(--sans); font-size: 0.66rem; font-weight: 600; letter-spacing: 0.04em; padding: 0.12rem 0.55rem; border-radius: 999px; background: color-mix(in srgb, var(--gold) 16%, var(--card)); color: var(--ink); white-space: nowrap; }
+.afil .linkbtn { align-self: flex-start; padding: 0; font-size: 0.84rem; }
+.nof { display: inline-block; margin-left: 0.5rem; vertical-align: 0.2em; font-family: var(--sans); font-size: 0.72rem; font-weight: 600; letter-spacing: 0.04em; padding: 0.12rem 0.55rem; border-radius: 999px; background: color-mix(in srgb, var(--gold) 16%, var(--card)); color: var(--ink); white-space: nowrap; }
 .aidx a[aria-current="true"] { color: var(--ink); border-left-color: var(--indigo); font-weight: 600; }
 .abody { min-width: 0; display: flex; flex-direction: column; }
-.asec { scroll-margin-top: calc(var(--navh) + 1rem); padding: 0 0 2.2rem; display: flex; flex-direction: column; gap: 1.4rem; }
-.asec + .asec { border-top: 1px solid var(--rule); padding-top: 1.6rem; }
+.asec { scroll-margin-top: calc(var(--navh) + 1rem); padding: 0 0 2.2rem; display: flex; flex-direction: column; gap: 1.2rem; }
+.anext { display: flex; justify-content: space-between; gap: 1rem; padding-top: 1.4rem; border-top: 1px solid var(--rule); }
+.anext button { border: 0; background: none; padding: 0.3rem 0; color: var(--indigo); font-size: 0.84rem; font-weight: 600; cursor: pointer; }
+.anext button:hover { text-decoration: underline; }
+.afil .fbtn2 { align-self: stretch; margin-top: 0.4rem; text-align: center; }
+
 .asec > h2 { margin: 0; }
 .asec > .mxnote { margin-top: -1rem; }
-.asec > h2 + .pc, .asec > .mxnote + .pc, .asec .pgrid > .pc { border-top: 0; padding-top: 0; }
 details.vt { margin-top: 0.6rem; }
-details.vt > summary { cursor: pointer; font-size: 0.8rem; color: var(--indigo); width: max-content; }
+details.vt > summary { cursor: pointer; font-size: 0.84rem; color: var(--indigo); width: max-content; }
 details.vt[open] > summary { margin-bottom: 0.6rem; }
 .ded { border-bottom: 1px dotted currentColor; cursor: help; }
-.cit { display: block; font-size: 0.74rem; color: var(--ink2); margin-top: 0.1rem; }
+.cit { display: block; font-size: 0.72rem; color: var(--ink2); margin-top: 0.1rem; }
+/* obras en la ficha: número, categoría, título, premios y notas, fuente; la foto a la derecha */
+.ficha ul.obras { gap: 0; }
+.ficha li.ob-grp { display: block; margin-top: 0.7rem; padding: 1rem 0 0.1rem 3.6rem; border-top: 1px solid var(--rule); font-size: 0.84rem; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; color: var(--ink); }
+.ficha li.ob-grp:first-child { margin-top: 0; padding-top: 0.8rem; border-top: 0; }
+.ficha li.ob-grp + li.obra { padding-top: 0.35rem; }
+.ficha .prensa { margin-top: 1.3rem; }
+.ficha li.obra { grid-template-columns: 2.6rem minmax(0, 1fr) auto; gap: 0 1rem; align-items: start; padding: 0.6rem 0; font-size: inherit; }
+.obra .num { text-align: right; font-family: var(--serif); font-size: 1.15rem; line-height: 1.25; color: var(--ink); font-variant-numeric: tabular-nums lining-nums; }
+.obra .num small { display: block; font-family: var(--sans); font-size: 0.62rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink2); line-height: 1.4; }
+.ob-cat { display: block; font-size: 0.68rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink2); }
+.ob-tit { display: block; margin-top: 0.1rem; font-family: var(--serif); font-size: 1.04rem; line-height: 1.35; color: var(--ink); }
+.ob-tags { display: flex; flex-wrap: wrap; align-items: center; gap: 0.3rem 1rem; margin-top: 0.35rem; font-size: 0.72rem; color: var(--ink2); }
+.ob-tags .prize { margin: 0; }
+.obra .cit { margin-top: 0.3rem; }
+.ofoto { display: grid; justify-items: center; gap: 0.25rem; padding: 0; border: 0; background: none; font-size: 0.68rem; color: var(--ink2); cursor: zoom-in; }
+.ofoto img { display: block; width: 4.8rem; height: 3.6rem; object-fit: cover; border-radius: 0.3rem; box-shadow: 0 0 0 1px var(--rule); transition: box-shadow 0.15s; }
+.ofoto:hover img, .ofoto:focus-visible img { box-shadow: 0 0 0 2px var(--indigo); }
+.ofoto:hover { color: var(--ink); }
 
 /* comparación de concursos, prensa */
-.cmp { width: 100%; border-collapse: collapse; font-size: 0.86rem; }
+.cmp { width: 100%; border-collapse: collapse; font-size: 0.84rem; }
 .cmp th, .cmp td { text-align: left; vertical-align: top; padding: 0.5rem 0.8rem 0.5rem 0; border-top: 1px solid var(--rule); }
 .cmp thead th { border-top: 0; font-family: var(--serif); font-size: 1.05rem; font-weight: 600; }
 .cmp tbody th { font-weight: 500; color: var(--ink2); width: 11rem; }
 .cmp .num { font-variant-numeric: tabular-nums; }
-.prensa { margin: 0 0 1rem; padding: 0.8rem 1rem; border-left: 3px solid var(--gold); background: color-mix(in srgb, var(--gold) 7%, var(--card)); border-radius: 0 0.6rem 0.6rem 0; font-size: 0.86rem; }
-.prensa h4 { margin: 0 0 0.5rem; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink2); }
-.prensa blockquote { margin: 0 0 0.25rem; font-family: var(--serif); font-size: 0.98rem; }
-.prensa cite { display: block; font-style: normal; font-size: 0.76rem; color: var(--ink2); margin-bottom: 0.7rem; }
+/* fotos del álbum: miniatura en la obra y la foto grande en una ventana */
+.fth { display: inline-flex; align-items: center; gap: 0.4rem; vertical-align: middle; margin-left: 0.3rem; padding: 0.15rem 0.55rem 0.15rem 0.15rem; border: 1px solid var(--rule); border-radius: 0.45rem; background: var(--card); font-size: 0.72rem; color: var(--ink2); }
+.fth:hover { border-color: var(--indigo); color: var(--ink); }
+.fth img { display: block; height: 2.2rem; width: auto; border-radius: 0.3rem; }
+.fdlg { border: 0; padding: 0; max-width: 96vw; max-height: 96vh; background: transparent; overflow: visible; }
+.fdlg::backdrop { background: rgba(12, 14, 22, 0.94); backdrop-filter: blur(4px); }
+.fdlg figure { margin: 0; display: grid; justify-items: center; gap: 0.9rem; }
+.fwrap { position: relative; }
+.fz { position: relative; overflow: hidden; border-radius: 0.35rem; box-shadow: 0 1.2rem 3rem rgba(0, 0, 0, 0.45); cursor: zoom-in; touch-action: none; user-select: none; }
+.fz.on { cursor: grab; }
+.fz.drag { cursor: grabbing; }
+.fz img { display: block; max-width: 92vw; max-height: calc(96vh - 6.5rem); width: auto; height: auto; transform-origin: 0 0; }
+.fbtn { position: absolute; z-index: 1; display: flex; border-radius: 999px; background: rgba(14, 17, 28, 0.62); backdrop-filter: blur(6px); }
+.fbtn button { width: 2.1rem; height: 2.1rem; border: 0; border-radius: 50%; background: transparent; color: #fff; font-size: 1.1rem; line-height: 1; cursor: pointer; }
+.fbtn button:hover { background: rgba(255, 255, 255, 0.16); }
+.fbtn button:focus { outline: none; }
+.fbtn button:focus-visible { outline: 2px solid rgba(255, 255, 255, 0.85); outline-offset: -2px; }
+.fbtn.zoom { right: 0.7rem; bottom: 0.7rem; }
+.fbtn.cerrar { right: 0.7rem; top: 0.7rem; }
+.fdlg figcaption { max-width: 46rem; padding: 0 1rem; text-align: center; color: rgba(255, 255, 255, 0.9); }
+.fdlg figcaption i { display: block; font-family: var(--serif); font-size: 1.02rem; }
+.fdlg figcaption small { display: block; margin-top: 0.25rem; font-size: 0.72rem; color: rgba(255, 255, 255, 0.6); }
+.prensa { margin: 0 0 1.2rem; padding-top: 0.2rem; }
+.prensa h4 { margin: 0 0 0.5rem; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink2); }
+.prensa blockquote { margin: 0 0 0.3rem; padding-left: 1rem; border-left: 1px solid var(--rule); font-family: var(--serif); font-style: italic; font-size: 1.04rem; line-height: 1.5; }
+.prensa cite { display: block; padding-left: 1rem; font-style: normal; font-size: 0.84rem; color: var(--ink2); margin-bottom: 0.8rem; }
 .prensa cite:last-child { margin-bottom: 0; }
 .cfmt { display: inline-flex; gap: 2px; padding: 3px; background: var(--chip); border-radius: 999px; margin-bottom: 0.6rem; }
-.cfmt button { border: 0; background: transparent; border-radius: 999px; padding: 0.25rem 0.8rem; font-size: 0.8rem; color: var(--ink2); }
+.cfmt button { border: 0; background: transparent; border-radius: 999px; padding: 0.25rem 0.8rem; font-size: 0.84rem; color: var(--ink2); }
 .cfmt button[aria-pressed="true"] { background: var(--card); color: var(--ink); box-shadow: 0 1px 2px rgba(20, 28, 60, 0.14); }
 
 /* panorama */
 .v-pan { overflow-y: auto; padding: clamp(1rem, 2vw, 1.7rem); display: flex; flex-direction: column; gap: 1.6rem; }
 .v-pan > * { flex: none; }
 .kpis { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 0.8rem; }
-.kpi { border: 1px solid var(--rule); border-radius: 0.8rem; padding: 0.75rem 1rem; }
+.kpi { background: var(--card); border: 1px solid var(--rule); border-radius: 0.9rem; padding: 0.85rem 1.1rem; box-shadow: 0 1px 2px rgba(20, 28, 60, 0.04), 0 6px 18px rgba(20, 28, 60, 0.05); }
 .kpi b { display: block; font-family: var(--serif); font-size: clamp(1.5rem, 2.4vw, 2.1rem); font-weight: 600; line-height: 1.1; font-variant-numeric: tabular-nums; }
-.kpi span { font-size: 0.8rem; color: var(--ink2); }
-.pgrid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.8rem 2.4rem; }
-.pc { border-top: 1px solid var(--rule); padding-top: 1rem; min-width: 0; }
+.kpi span { font-size: 0.84rem; color: var(--ink2); }
+.pgrid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.2rem; }
+/* análisis como tablero: cada gráfico o tabla en su tarjeta, sobre el fondo de la página */
+.v-ana.card { background: transparent; border: 0; padding-left: 0; padding-right: 0; }
+.pc { min-width: 0; background: var(--card); border: 1px solid var(--rule); border-radius: 0.9rem; padding: 1.15rem 1.35rem 1.25rem; box-shadow: 0 1px 2px rgba(20, 28, 60, 0.04), 0 6px 18px rgba(20, 28, 60, 0.05); }
 .pc h3 { font-family: var(--serif); font-size: 1.2rem; font-weight: 600; margin: 0 0 0.2rem; }
-.pc .mxnote { margin: 0 0 0.7rem; font-size: 0.8rem; }
+.pc .mxnote { margin: 0 0 0.7rem; font-size: 0.84rem; }
 /* pestaña Red */
 .v-red { display: grid; grid-template-columns: minmax(16rem, 20rem) minmax(0, 1fr); gap: 0.9rem; align-items: start; }
-.v-red > .card { position: sticky; top: calc(var(--navh) + 0.8rem); max-height: calc(100vh - var(--navh) - 1.6rem); overflow: auto; padding: 1rem 1.1rem; font-size: 0.86rem; }
-.v-red .mxnote { font-size: 0.8rem; margin: 0 0 0.8rem; }
+.v-red > .card { position: sticky; top: calc(var(--navh) + 0.8rem); max-height: calc(100vh - var(--navh) - 1.6rem); overflow: auto; padding: 1rem 1.1rem; font-size: 0.84rem; }
+.v-red .mxnote { font-size: 0.84rem; margin: 0 0 0.8rem; }
 .v-red fieldset { border: 0; padding: 0; margin: 0 0 0.8rem; }
-.v-red legend, .v-red .rlb { display: block; font-size: 0.68rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink2); margin-bottom: 0.3rem; }
+.v-red legend, .v-red .rlb { display: block; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink2); margin-bottom: 0.3rem; }
 .v-red fieldset label { display: flex; gap: 0.45rem; align-items: baseline; margin: 0.2rem 0; }
 .v-red select, .v-red input[type="search"] { width: 100%; font: inherit; padding: 0.4rem 0.55rem; border: 1px solid var(--rule); border-radius: 0.5rem; background: var(--card); color: var(--ink); margin-bottom: 0.8rem; }
 .rgraph { position: relative; height: calc(100vh - var(--navh) - 3rem); min-height: 32rem; max-height: 56rem; border: 1px solid var(--rule); border-radius: 0.9rem; background: var(--card); overflow: hidden; }
-.rgraph .rhint { position: absolute; left: 0.8rem; bottom: 0.6rem; font-size: 0.75rem; color: var(--ink2); background: var(--card); padding: 0.2rem 0.5rem; border-radius: 0.4rem; pointer-events: none; }
+.rgraph .rhint { position: absolute; left: 0.8rem; bottom: 0.6rem; font-size: 0.72rem; color: var(--ink2); background: var(--card); padding: 0.2rem 0.5rem; border-radius: 0.4rem; pointer-events: none; }
 .rgraph .rzoom { position: absolute; right: 0.6rem; top: 0.6rem; display: flex; flex-direction: column; gap: 4px; }
 .rgraph .rzoom button { width: 2rem; height: 2rem; border: 1px solid var(--rule); border-radius: 0.4rem; background: var(--card); font-size: 1rem; line-height: 1; color: var(--ink); }
-.rleg { display: flex; flex-direction: column; gap: 0.25rem; margin: 0 0 0.8rem; font-size: 0.8rem; }
+.rleg { display: flex; flex-direction: column; gap: 0.25rem; margin: 0 0 0.8rem; font-size: 0.84rem; }
 .rleg i { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 0.45rem; vertical-align: -1px; }
 .rleg i.l { width: 16px; height: 0; border-radius: 0; border-top: 2px solid; vertical-align: 3px; }
 .rsel { border-top: 1px solid var(--rule); padding-top: 0.8rem; }
@@ -290,24 +412,24 @@ details.vt[open] > summary { margin-bottom: 0.6rem; }
 .rwrap { min-width: 0; }
 .v-red .cfmt { margin-bottom: 0.9rem; }
 .v-red fieldset .sub { font-size: 0.72rem; color: var(--ink2); margin: 0.5rem 0 0.1rem; }
-.plg { display: flex; flex-wrap: wrap; gap: 0.3rem 1rem; font-size: 0.76rem; color: var(--ink2); margin-bottom: 0.5rem; }
+.plg { display: flex; flex-wrap: wrap; gap: 0.3rem 1rem; font-size: 0.72rem; color: var(--ink2); margin-bottom: 0.5rem; }
 .plg i { display: inline-block; width: 0.75rem; height: 0.75rem; border-radius: 3px; margin-right: 0.35rem; vertical-align: -0.1rem; }
 .prow { display: grid; grid-template-columns: minmax(7rem, 11.5rem) minmax(0, 1fr); gap: 0.7rem; align-items: center; width: 100%; padding: 0.35rem 0.3rem; border: 0; background: none; text-align: left; border-radius: 0.4rem; font-size: 0.84rem; color: var(--ink); line-height: 1.2; }
 button.prow:hover { background: var(--chip); }
 .prow[aria-pressed="true"] { background: var(--chip); font-weight: 600; }
 .pdim .prow:not([aria-pressed="true"]) { opacity: 0.4; }
 .pbars { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
-.pb { display: flex; align-items: center; gap: 0.4rem; min-width: 0; font-size: 0.74rem; font-weight: 400; color: var(--ink2); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.pb { display: flex; align-items: center; gap: 0.4rem; min-width: 0; font-size: 0.72rem; font-weight: 400; color: var(--ink2); font-variant-numeric: tabular-nums; white-space: nowrap; }
 .pb > i { display: block; flex: 0 0 auto; height: 0.6rem; border-radius: 0 4px 4px 0; min-width: 2px; }
 .pstack { display: flex; flex: 0 0 auto; height: 0.95rem; gap: 2px; min-width: 2px; }
 .pstack i { display: block; height: 100%; min-width: 2px; }
 .pstack i:last-child { border-radius: 0 4px 4px 0; }
 .hist { display: flex; align-items: flex-end; gap: 0.7rem; height: 11.5rem; }
-.hist > div { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; gap: 0.25rem; height: 100%; font-size: 0.76rem; color: var(--ink2); }
+.hist > div { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; gap: 0.25rem; height: 100%; font-size: 0.72rem; color: var(--ink2); }
 .hist i { display: block; width: 100%; max-width: 3.6rem; background: var(--indigo); border-radius: 4px 4px 0 0; min-height: 2px; }
 .hist b { font-weight: 500; color: var(--ink); font-variant-numeric: tabular-nums; }
-.axl { margin: 0.35rem 0 0; text-align: center; font-size: 0.74rem; color: var(--ink2); }
-.tip { position: fixed; z-index: 2000; pointer-events: none; background: var(--ink); color: var(--card); font-size: 0.78rem; padding: 0.35rem 0.6rem; border-radius: 0.4rem; max-width: 20rem; box-shadow: var(--shadow); }
+.axl { margin: 0.35rem 0 0; text-align: center; font-size: 0.72rem; color: var(--ink2); }
+.tip { position: fixed; z-index: 2000; pointer-events: none; background: var(--ink); color: var(--card); font-size: 0.84rem; padding: 0.35rem 0.6rem; border-radius: 0.4rem; max-width: 20rem; box-shadow: var(--shadow); }
 
 /* cuadros */
 .v-cua { overflow-y: auto; padding: clamp(1rem, 2vw, 1.7rem); display: flex; flex-direction: column; gap: 2.2rem; }
@@ -317,7 +439,7 @@ button.prow:hover { background: var(--chip); }
 .cua-sec .mxnote { margin: 0 0 0.9rem; }
 .cua-sec .acts { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 0.8rem; }
 .tw { overflow-x: auto; }
-.tb { width: 100%; border-collapse: collapse; font-size: 0.86rem; }
+.tb { width: 100%; border-collapse: collapse; font-size: 0.84rem; }
 .tb th, .tb td { text-align: left; padding: 0.45rem 0.6rem; border-top: 1px solid var(--rule); vertical-align: top; }
 .tb th:first-child, .tb td:first-child { padding-left: 0; }
 .tb thead th { border-top: 0; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink2); white-space: nowrap; vertical-align: bottom; }
@@ -328,7 +450,7 @@ button.prow:hover { background: var(--chip); }
 .tb th[aria-sort="ascending"] button::after { content: " ↑"; }
 .tb .num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
 .tb .bc { width: 24%; min-width: 8rem; }
-.tb .sm { color: var(--ink2); font-size: 0.82rem; }
+.tb .sm { color: var(--ink2); font-size: 0.84rem; }
 .hb { display: flex; align-items: center; gap: 0.45rem; font-variant-numeric: tabular-nums; }
 .hb span { flex: 1; }
 .hb i { display: block; height: 0.55rem; border-radius: 0 4px 4px 0; background: var(--indigo); min-width: 2px; }
@@ -337,12 +459,12 @@ button.prow:hover { background: var(--chip); }
 
 @media (max-width: 980px) {
   .mast-in { grid-template-columns: 1fr; }
-  .cred { grid-template-columns: 1fr; }
+  .pie-in { grid-template-columns: minmax(0, 1fr); }
   .epi { padding-top: 3.2rem; }
   .nav-in { padding-block: 0.4rem; }
   .brand, .navlink { display: none; }
   .tabs { margin: 0 auto; width: 100%; }
-  .tabs button { flex: 1; padding: 0.5rem 0.4rem; font-size: 0.82rem; }
+  .tabs button { flex: 1; padding: 0.5rem 0.4rem; font-size: 0.84rem; }
   .explorer { min-height: 0; }
   .ask { display: block; }
   .ask > summary { display: block; cursor: pointer; font-weight: 600; padding: 0.2rem 0 0.7rem; }
@@ -351,6 +473,9 @@ button.prow:hover { background: var(--chip); }
   .search { flex-basis: 100%; max-width: none; margin-left: 0; }
   .view { flex: none; min-height: 0; }
   .v-map { height: 70vh; min-height: 22rem; }
+  .guia { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .pre-sec { grid-template-columns: minmax(0, 1fr); }
+  .pre-head { position: static; }
   .drawer { left: 0.5rem; right: 0.5rem; top: auto; bottom: 0.5rem; width: auto; max-width: none; max-height: 62%; }
   .v-tec { overflow: visible; }
   .v-art { display: flex; flex-direction: column; }
@@ -372,8 +497,9 @@ button.prow:hover { background: var(--chip); }
   .prow { grid-template-columns: 7.5rem minmax(0, 1fr); }
   .tb { min-width: 40rem; }
   .hint { display: none; }
-  .legend { font-size: 0.7rem; padding: 0.45rem 0.6rem; }
+  .legend { font-size: 0.72rem; padding: 0.45rem 0.6rem; }
 }
+@media (max-width: 560px) { .guia { grid-template-columns: minmax(0, 1fr); } }
 @media (min-width: 981px) { .ask > summary { pointer-events: none; } }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { animation: none !important; transition: none !important; } }
 </style>
@@ -381,62 +507,146 @@ button.prow:hover { background: var(--chip); }
 <a class="skip" href="#explorador">Ir al explorador</a>
 <div class="guarda" aria-hidden="true"></div>
 
+<nav class="nav" id="nav" aria-label="Vistas del explorador">
+  <div class="nav-in">
+    <a class="brand" href="#top" data-scroll="top"><span class="dm" aria-hidden="true"></span><span>Cartografías del textil argentino</span></a>
+    <div class="tabs" id="tabs" role="tablist" aria-label="Vistas">
+      <button type="button" role="tab" id="tab-pre" data-view="pre" aria-selected="true" aria-controls="view-pre">Presentación</button>
+      <button type="button" role="tab" id="tab-map" data-view="map" aria-selected="false" aria-controls="view-map">Mapa</button>
+      <button type="button" role="tab" id="tab-ana" data-view="ana" aria-selected="false" aria-controls="view-ana">Análisis</button>
+      <button type="button" role="tab" id="tab-art" data-view="art" aria-selected="false" aria-controls="view-art">Expositoras</button>
+      <button type="button" role="tab" id="tab-gal" data-view="gal" aria-selected="false" aria-controls="view-gal">Galería</button>
+      <button type="button" role="tab" id="tab-red" data-view="red" aria-selected="false" aria-controls="view-red">Red</button>
+    </div>
+  </div>
+</nav>
+
 <header class="mast" id="top">
   <div class="mast-in">
     <div>
-      <p class="kicker">Proyecto Interdisciplinario CIAI-LCD · Universidad Nacional de San Martín</p>
       <h1>Cartografías del textil argentino</h1>
       <p class="lede">Producción y exhibición a partir de datos históricos e imágenes de archivo</p>
-      <p class="abs">Base de datos histórica de los concursos de tejidos y bordados celebrados en Tucumán en 1915 y 1916. Reúne expositoras, obras, técnicas, procedencias y premios, y permite consultar de dónde venían las obras, qué técnicas se practicaban en cada provincia y quiénes fueron premiadas.</p>
-      <a class="cta" href="#explorador" data-scroll="explorador">Explorar los datos <span aria-hidden="true">↓</span></a>
+      <ul class="cifras" id="cifras" aria-label="La base en cifras"></ul>
     </div>
     <figure class="epi">
       <blockquote>¡Qué felicidad, señores, si alguna vez, lejos del terruño, oyéramos decir: los tapices de Tucumán, las colchas de Catamarca, los tejidos de Chicligasta, las randas de Monteros y Santiago, los ponchos de Tafí y las randeras tucumanas!»</blockquote>
       <figcaption>Amalia Prebisch, discurso en el acto de distribución de los premios, Tucumán, 3 de octubre de 1915</figcaption>
     </figure>
   </div>
-  <dl class="cred">
-    <div><dt>Estudiante</dt><dd>Julián Rolando</dd></div>
-    <div><dt>Dirección</dt><dd>Larisa Mantovani</dd></div>
-    <div><dt>Tutoría</dt><dd>Agustín Moro</dd></div>
-    <div><dt>Centro</dt><dd>Centro de Investigaciones en Arte y Patrimonio (CIAP, CONICET-UNSAM)</dd></div>
-    <div><dt>Programa</dt><dd>Optativa del Proyecto Interdisciplinario CIAI-LCD, Licenciatura en Ciencia de Datos, UNSAM</dd></div>
-  </dl>
 </header>
 
-<nav class="nav" id="nav" aria-label="Vistas del explorador">
-  <div class="nav-in">
-    <a class="brand" href="#top" data-scroll="top"><span class="dm" aria-hidden="true"></span><span>Cartografías del textil argentino</span></a>
-    <div class="tabs" id="tabs" role="tablist" aria-label="Vistas">
-      <button type="button" role="tab" id="tab-map" data-view="map" aria-selected="true" aria-controls="view-map">Mapa</button>
-      <button type="button" role="tab" id="tab-ana" data-view="ana" aria-selected="false" aria-controls="view-ana">Análisis</button>
-      <button type="button" role="tab" id="tab-art" data-view="art" aria-selected="false" aria-controls="view-art">Expositoras</button>
-      <button type="button" role="tab" id="tab-red" data-view="red" aria-selected="false" aria-controls="view-red">Red</button>
-    </div>
-  </div>
-</nav>
-
 <section class="explorer" id="explorador" aria-label="Explorador de datos">
+  <div class="toolbar" id="toolbar">
   <details class="ask" id="ask" open>
     <summary>Filtros</summary>
     <div class="askrow">
       <label class="sel" id="s-prize"><span>Premio</span><div class="box"><select id="f-prize"><option value="all">Todas las obras</option><option value="yes">Solo premiadas</option></select></div></label>
       <label class="sel" id="s-tec"><span>Técnica</span><div class="box"><select id="f-tec"></select></div></label>
       <label class="sel" id="s-mat"><span>Material</span><div class="box"><select id="f-mat"></select></div></label>
-      <label class="sel" id="s-gen"><span>Género</span><div class="box"><select id="f-gen"></select></div></label>
+      <label class="sel" id="s-gen"><span>Expositoras</span><div class="box"><select id="f-gen"></select></div></label>
       <label class="sel" id="s-provincia"><span>Provincia</span><div class="box"><select id="f-provincia"></select></div></label>
+      <label class="sel" id="s-ciudad"><span>Ciudad</span><div class="box"><select id="f-ciudad"></select></div></label>
       <label class="sel" id="s-year"><span>Año</span><div class="box"><select id="f-year"><option value="both">1915 y 1916</option><option value="1915">Solo 1915</option><option value="1916">Solo 1916</option></select></div></label>
-      <div class="search"><label class="lb" for="q">Buscar</label><input id="q" type="search" placeholder="Nombre u objeto: vicuña, Cuello" autocomplete="off"></div>
       <button type="button" class="linkbtn" id="reset" hidden>Limpiar filtros</button>
     </div>
   </details>
 
-  <div class="strip" id="strip" aria-live="polite"></div>
+  <div class="tb2">
+    <div class="strip" id="strip" aria-live="polite"></div>
+    <div class="search"><label class="lb" for="q">Buscar</label><input id="q" type="search" placeholder="Buscar nombre u objeto: vicuña, Cuello" autocomplete="off"></div>
+  </div>
+  </div>
 
-  <section class="view v-map" id="view-map" role="tabpanel" aria-labelledby="tab-map">
+  <section class="view v-pre" id="view-pre" role="tabpanel" aria-labelledby="tab-pre">
+    <div class="pre-in">
+      <section class="pre-sec" aria-labelledby="h-pre">
+       <header class="pre-head">
+        <span class="eyebrow">Presentación</span>
+        <h2 id="h-pre">Una base de datos de los concursos de tejidos y bordados de Tucumán</h2>
+       </header>
+       <div class="pre-main">
+        <p><i>Cartografías del textil argentino</i> es una base de datos histórica dedicada al <i>Primer Concurso Provincial De Tejidos y Bordados</i> (1915) y al <i>Concurso Interprovincial de Tejidos y Bordados</i> (1916) realizados en Tucumán en el marco de las conmemoraciones del Centenario de la Independencia argentina. Aquí se reúne y sistematiza información sobre expositores, obras, técnicas, materiales, lugares de procedencia y premios, a partir de catálogos, registros de premiación, fotografías históricas y documentación institucional. Se trata de una base abierta que se proyecta ampliar a futuro mediante la incorporación de nuevas fuentes, entre ellas la prensa periódica de la época.</p>
+        <p>Ante la ausencia de gran parte del patrimonio textil de este período en colecciones públicas, debido a las ventas, su uso y su fragilidad, estos registros constituyen un material fundamental para recuperar la historia de esta producción. La base permite sistematizar uno de los primeros registros de exhibiciones textiles en Argentina y recuperar los nombres y las producciones de teleras que trabajaron hace más de cien años. Asimismo, abre la posibilidad de establecer comparaciones con las prácticas textiles actuales y explorar las transformaciones de las técnicas, los territorios de producción y, eventualmente, las genealogías de las familias productoras.</p>
+        <p>A través del cruce de datos e imágenes de archivo, esta herramienta permite explorar las relaciones entre productoras, obras y territorios, así como visualizar la distribución geográfica de las prácticas textiles en distintas provincias y localidades argentinas, con especial atención al Noroeste. De este modo, contribuye al estudio de los saberes, las técnicas y las tradiciones textiles en Argentina a comienzos del siglo XX.</p>
+        <p>La base se construyó a partir de la transcripción de los catálogos de 1915 y 1916 y del fallo del jurado de 1915. Cada obra quedó vinculada a su expositora, a su lugar de procedencia y, cuando corresponde, al premio que recibió y a su fotografía en el álbum de 1915. Los nombres que las fuentes escriben de distintas maneras se unificaron tras una revisión caso por caso; los lugares se ubicaron en el mapa con su nombre actual. Las técnicas y los materiales se identificaron a partir de la descripción de cada obra, por lo que una pieza puede combinar varias técnicas o no tener ninguna identificada. El género de las expositoras se infiere del nombre, ya que las fuentes no lo consignan. Cada registro indica la fuente de la que proviene.</p>
+       </div>
+      </section>
+
+      <nav class="pre-band" aria-labelledby="h-guia">
+        <span class="eyebrow" id="h-guia">Cómo recorrer la base</span>
+        <ul class="guia" aria-label="Cómo recorrer la base">
+          <li><button type="button" data-act="goview" data-v="map"><b>Mapa</b><span>De dónde venían las obras. Cada círculo es un lugar de procedencia; al seleccionarlo se ven sus expositoras y obras.</span></button></li>
+          <li><button type="button" data-act="goview" data-v="ana"><b>Análisis</b><span>Cifras, comparación entre 1915 y 1916, técnicas por provincia y premios, con sus tablas.</span></button></li>
+          <li><button type="button" data-act="goview" data-v="art"><b>Expositoras</b><span>Una ficha por persona o institución, con sus obras, premios y fotografías del álbum de 1915.</span></button></li>
+          <li><button type="button" data-act="goview" data-v="gal"><b>Galería</b><span>Las fotografías del álbum de 1915, con las obras que se reconocen en cada una.</span></button></li>
+          <li><button type="button" data-act="goview" data-v="red"><b>Red</b><span>Expositoras unidas a los concursos en que participaron y a su lugar de procedencia, con pistas de parentesco por apellido; y qué técnicas se hacían en cada lugar.</span></button></li>
+        </ul>
+      </nav>
+
+      <section class="pre-sec" aria-labelledby="h-hist">
+       <header class="pre-head">
+        <span class="eyebrow">Los concursos</span>
+        <h2 id="h-hist">Tejer para el Centenario</h2>
+       </header>
+       <div class="pre-main">
+        <p>El 21 de julio de 1915 el gobernador de Tucumán Ernesto Padilla fundamentó la realización de una exposición de tejidos y bordados con motivo de la celebración del Centenario de la independencia argentina en 1916. Esta justificación da cuenta de un interés político por fomentar la práctica textil y se presenta también como un “deber” de los poderes públicos, para propiciar vías que permitieran resolver las dificultades de la provincia.</p>
+        <p>Este plan fue pensado con antelación: el proyecto para el <i>Primer Concurso Provincial De Tejidos y Bordados</i> (1915) se inició más de un año antes del evento y posteriormente el <i>Concurso Interprovincial de Tejidos y Bordados</i> (1916) se desarrolló durante los festejos de julio. Se esperaba que estas exposiciones funcionaran como un diagnóstico que permitiera conocer el estado de esta industria doméstica, cuyo productor principal -estimaba el gobierno- se encontraba en las áreas rurales. El mapa que surge como resultado de la ubicación de las y los expositores reafirma, al menos en parte, la gran participación rural al momento de los envíos.</p>
+        <p>La continuidad de las prácticas tradicionales se presentaba como una instancia clave para proporcionar trabajo, pero la ausencia de un mercado estable presentaba una necesidad: reforzar y adaptar estas prácticas a un comercio moderno de consumo constante. Esta iniciativa se inscribe en Argentina en un contexto de creciente interés por las artes aplicadas y las industrias artísticas, en el que la producción artesanal comenzó a ser considerada una vía posible para el desarrollo económico y la construcción de una identidad nacional. Asimismo, la presencia de visitantes a los festejos era entendida como una posibilidad para dar a conocer a un nuevo público la producción regional, a la vez que una vía para efectuar transformaciones en estas creaciones, si fuera necesario.</p>
+        <p>Finalmente, la dimensión de género resulta central en este proceso, dado que todo el texto de la convocatoria está redactado y pensado considerando expositoras mujeres, dando cuenta de una identificación por parte del gobierno en torno a una desprotección de los hogares rurales y de la necesidad de visibilizar sus prácticas. La presencia mayoritaria de mujeres en la participación de ambas exhibiciones en conjunto (más de 400 expositoras frente a 9 varones y 8 instituciones) permite pensar que estas tejedoras respondieron con dedicación a la invitación, aunque, como señaló Amalia Prebisch, ya estaban preparadas.</p>
+        <p class="pre-firma">Larisa Mantovani y Julián Rolando</p>
+        <figure class="cita">
+          <blockquote>
+            <p>Considerando:</p>
+            <ul>
+              <li>Que conviene estimular la industria doméstica de tejidos y bordados, que ha tenido mucha difusión en la provincia y que es susceptible de proporcionar medios de vida honesta con el trabajo de las mujeres sobre todo a la familia campesina;</li>
+              <li>Que, a pesar de tener un arraigo tradicional, esta industria se ha detenido en su desenvolvimiento por la falta de un mercado ordenado y accesible a la producción y al consumo, así como por los cambios impuestos por el comercio y la vida industrial en las poblaciones que se dedican a ella;</li>
+              <li>Que es de interés social propender a la mejor aplicación de las aptitudes femeninas en un trabajo adecuado y remunerado, con todas las ventajas que este significa para la vida del hogar rural, tan desprovista de protección y amparo entre nosotros;</li>
+              <li>Que para llenar esos fines debe procurarse que sus productos se adapten a las exigencias del comercio actual, de modo que haya la seguridad de colocarlos regularmente para lo que se necesita el estudio e iniciación de los modelos tipos, que puedan interesar la demanda y asegurar mercados de venta;</li>
+              <li>Que para llegar a ese resultado debe conocerse el estado a que alcanza la referida industria entre nosotros, con la presentación de los ejemplares característicos de cada comarca, cuyos habitantes diferencian sus tejidos y bordados por las condiciones en que se encuentran con relación a la materia prima, a los tintes, a las costumbres y a las circunstancias económicas propias;</li>
+              <li>Que las dificultades por que atraviesa la provincia en el orden industrial repercuten con intensidad en los hogares rurales y obligan a los poderes públicos a propiciar medios que puedan atenuarlas y proporcionarles una ayuda inmediata, con la labor doméstica, a la que puede ofrecerse perspectivas permanentes para la aplicación ordenada de sus energías que hoy se disipan por falta de ambiente;</li>
+              <li>Que la institución de un concurso con premios para las labores femeninas domésticas de tejido y bordado, es de mayor oportunidad por las ventajas que reportan a los que las produzcan, en vísperas de las fiestas del centenario de 1916, en que los visitantes que atraiga la celebración nacional en esta ciudad, podrán interesarse en conocer y adquirir los productos de las industrias regionales, y servirá al mismo tiempo para dar a ésta la orientación más adaptable al gusto de la época, mediante el conocimiento de los estilos actuales en los tejidos y bordados que puedan servir de base para las modificaciones que convenga introducir en la manera de prepararlos».</li>
+            </ul>
+          </blockquote>
+          <figcaption><i>Catálogo del primer concurso de tejidos y bordados</i>. 29 de septiembre de 1915.</figcaption>
+        </figure>
+        <figure class="cita">
+          <blockquote>Esto que veis aquí no se hace en un mes. Ha estado hecho en parte y muy poco será lo que para la exposición únicamente se ha preparado. Quiere decir que las mujeres saben trabajar; y lo han hecho ¡cuántos años! Silenciosamente; hilando noche y día; tiñendo la lana y el algodón, pasando fatigosas horas junto al pesado telar primitivo, para vender, por un precio exiguo, el fruto de muchos sacrificios; teniendo, una que otra vez, la dicha de encontrarse con un coleccionador artista, o un europeo, ávidos de arte ingenuo e incontaminado».</blockquote>
+          <figcaption>Amalia Prebisch, secretaria y miembro del jurado.<br><i>Primer concurso provincial de tejidos y bordados. Fallo del jurado</i>. 1915.</figcaption>
+        </figure>
+       </div>
+      </section>
+
+      <section class="pre-sec fuentes" aria-labelledby="h-fue">
+       <header class="pre-head">
+        <span class="eyebrow">Fuentes</span>
+        <h2 id="h-fue">Con qué fuentes trabajamos</h2>
+       </header>
+       <div class="pre-main">
+        <p>Conjunto de datos de investigación elaborados a partir de:</p>
+        <ul>
+          <li>Archivo Padilla, Archivo Provincial de Tucumán.</li>
+          <li>Álbum del primer concurso provincial de Tejidos y Bordados, septiembre de 1915.</li>
+          <li>Catálogo del primer concurso de tejidos y bordados, 29 de septiembre de 1915.</li>
+          <li>Catálogo del concurso interprovincial de tejidos y bordados. Julio de 1916.</li>
+          <li>Primer concurso provincial de tejidos y bordados. Fallo del jurado. 1915.</li>
+          <li><i>El Orden</i>.</li>
+        </ul>
+        <h3>Repositorios consultados</h3>
+        <ul>
+          <li>Biblioteca del Centro Cultural Rougés, Fundación Miguel Lillo (Tucumán, Argentina).</li>
+          <li>Archivo Histórico de la Provincia de Tucumán (Argentina).</li>
+          <li>Rakow Research Library, Corning Museum of Glass (Corning, Estados Unidos).</li>
+        </ul>
+        <h3>Cómo citar</h3>
+        <p class="ref">Mantovani, Larisa; Rolando, Julián y Moro, Agustín. (2026). <i>Cartografías del textil argentino: Producción y exhibición a partir de datos históricos e imágenes de archivo</i> [Conjunto de datos de investigación]. CIAP-CONICET / UNSAM.</p>
+       </div>
+      </section>
+    </div>
+  </section>
+
+  <section class="view v-map" id="view-map" role="tabpanel" aria-labelledby="tab-map" hidden>
     <div id="map" role="application" aria-label="Mapa de procedencia de las obras"></div>
     <div class="maptools">
-      <label class="tool"><input type="checkbox" id="flows"> Líneas hacia la sede</label>
       <label class="tool"><input type="checkbox" id="prov" checked> Lugares solo con provincia</label>    </div>
     <div class="hint" id="maphint">Seleccione un círculo para ver quiénes son</div>
     <div class="legend" id="legend"></div>
@@ -446,12 +656,12 @@ button.prow:hover { background: var(--chip); }
   <section class="view card v-ana" id="view-ana" role="tabpanel" aria-labelledby="tab-ana" hidden>
     <nav class="aidx" id="aidx" aria-label="Secciones del análisis">
       <span class="eyebrow">En esta página</span>
-      <a href="#a-cifras" data-scroll="a-cifras">Cifras generales</a>
-      <a href="#a-conc" data-scroll="a-conc">Los dos concursos</a>
-      <a href="#a-proc" data-scroll="a-proc">Procedencia</a>
-      <a href="#a-tec" data-scroll="a-tec">Técnicas</a>
-      <a href="#a-exp" data-scroll="a-exp">Expositoras</a>
-      <a href="#a-prem" data-scroll="a-prem">Premios</a>
+      <a href="#a-cifras" data-act="asec" data-s="a-cifras">Cifras generales</a>
+      <a href="#a-conc" data-act="asec" data-s="a-conc">Los dos concursos</a>
+      <a href="#a-proc" data-act="asec" data-s="a-proc">Procedencia</a>
+      <a href="#a-tec" data-act="asec" data-s="a-tec">Técnicas</a>
+      <a href="#a-exp" data-act="asec" data-s="a-exp">Expositoras</a>
+      <a href="#a-prem" data-act="asec" data-s="a-prem">Premios</a>
       <div class="afil" id="afil" aria-live="polite"></div>
     </nav>
     <div class="abody">
@@ -460,11 +670,11 @@ button.prow:hover { background: var(--chip); }
         <p class="mxnote">Con los filtros aplicados. Los gráficos también filtran: seleccione una provincia para aplicarla a todo el explorador, y otra vez para quitarlo.</p>
         <div class="kpis" id="p-kpi"></div>
         <p class="mxnote" id="p-kpi-n"></p>
+        <div class="pc"><h3>1915 y 1916, lado a lado<span class="nof">No usa los filtros</span></h3><p class="mxnote">Datos de los catálogos, el fallo y la prensa (hoja Concursos). Las expositoras y las obras son las del catálogo de cada año.</p><div class="tw" id="p-cmp"></div></div>
       </section>
 
       <section class="asec" id="a-conc" aria-labelledby="h-conc">
         <h2 id="h-conc">Los dos concursos</h2>
-        <div class="pc"><h3>1915 y 1916, lado a lado<span class="nof">No usa los filtros</span></h3><p class="mxnote">Datos de los catálogos, el fallo y la prensa (hoja Concursos). Las expositoras y las obras son las del catálogo de cada año.</p><div class="tw" id="p-cmp"></div></div>
         <div class="pc"><h3>Comisión organizadora y jurado<span class="nof">No usa los filtros</span></h3><p class="mxnote">Las mujeres que organizaron los concursos y juzgaron las obras, según el catálogo y el fallo de 1915 y el catálogo de 1916. Que compartan apellido con alguna expositora no prueba parentesco: se indica como pista para investigar.</p><div class="tw" id="p-com"></div></div>
         <div class="pc"><h3>Las que expusieron en los dos concursos<span class="nof">No usa el filtro de año</span></h3><p class="mxnote">Expositoras con obras en 1915 y en 1916, y las categorías del catálogo en que participaron cada año. Incluye a quien en 1915 figura solo en el fallo.</p><div id="c-both"></div></div>
       </section>
@@ -478,6 +688,7 @@ button.prow:hover { background: var(--chip); }
       <section class="asec" id="a-tec" aria-labelledby="h-tec">
         <h2 id="h-tec">Técnicas<span class="nof">No usa los filtros de técnica y provincia</span></h2>
         <p class="mxnote">Qué técnicas hay entre las obras enviadas desde cada provincia. La provincia es la procedencia de la expositora, no el origen de la técnica. La técnica la infiere el proyecto del texto de cada obra; no es la categoría del catálogo, que es la que usan las tablas de lugares y las fichas. Una obra puede combinar técnicas, por eso las filas no suman el total; los subtipos van debajo de su técnica general y también cuentan en ella. En rojo, las obras premiadas. Seleccione una celda, una fila o una columna para ver las obras.</p>
+        <div class="pc">
         <div class="tec-head">
           <div class="mxv"><div class="cfmt" role="group" aria-label="Qué muestra cada celda"><button type="button" data-act="mxv" data-v="n" aria-pressed="true">Obras</button><button type="button" data-act="mxv" data-v="pct" aria-pressed="false">% de la provincia</button><button type="button" data-act="mxv" data-v="exp" aria-pressed="false">Expositoras</button></div><span class="mxhint" id="mxhint"></span></div>
           <div class="scale" aria-hidden="true"><span id="scalemin"></span> <i></i> <span id="scalemax"></span><span class="d"><s></s> premiadas</span></div>
@@ -485,6 +696,7 @@ button.prow:hover { background: var(--chip); }
         <div class="mxwrap" id="mx"></div>
         <p class="mxnote" id="mx-sin"></p>
         <div class="res" id="res"></div>
+        </div>
       </section>
 
       <section class="asec" id="a-exp" aria-labelledby="h-exp">
@@ -509,11 +721,12 @@ button.prow:hover { background: var(--chip); }
     <div class="card">
       <div class="cfmt" role="group" aria-label="Qué red mostrar"><button type="button" data-act="redmode" data-v="exp" aria-pressed="true">Expositoras</button><button type="button" data-act="redmode" data-v="lt" aria-pressed="false">Lugares y técnicas</button></div>
       <div id="r-ctl1">
-      <p class="mxnote">Red de participación: expositoras e instituciones unidas a los concursos en que expusieron, a su lugar de procedencia y, en rojo, a las del mismo lugar con quienes comparten apellido. Esas líneas rojas son pistas de parentesco, no datos. Esta vista no usa los filtros de arriba.</p>
+      <p class="mxnote">Red de participación: expositoras unidas a los concursos en que expusieron, a su lugar de procedencia y, en rojo, a las del mismo lugar con quienes comparten apellido. Esas líneas rojas son pistas de parentesco, no datos. Las instituciones (escuelas, asilos, sociedades) van aparte: no se construyen como redes de personas, así que no se muestran salvo que se pidan y no pesan en la disposición.</p>
       <label class="rlb" for="r-q">Buscar en la red</label>
-      <input id="r-q" type="search" list="r-names" placeholder="Nombre o lugar" autocomplete="off"><datalist id="r-names"></datalist>
+      <input id="r-q" type="search" placeholder="Nombre, apellido o lugar" autocomplete="off">
       <fieldset><legend>Mostrar</legend>
-        <label><input type="checkbox" id="r-t-exp" checked> Expositoras e instituciones</label>
+        <label><input type="checkbox" id="r-t-exp" checked> Expositoras</label>
+        <label><input type="checkbox" id="r-t-ins"> Instituciones</label>
         <label><input type="checkbox" id="r-t-lug" checked> Lugares</label>
         <label><input type="checkbox" id="r-t-con" checked> Concursos</label>
         <label><input type="checkbox" id="r-t-com" checked> Comisión organizadora</label>
@@ -530,7 +743,7 @@ button.prow:hover { background: var(--chip); }
       <select id="r-size"><option value="obras">Obras</option><option value="grado">Conexiones</option></select>
       </div>
       <div id="r-ctl2" hidden>
-        <p class="mxnote">Localidades unidas a las técnicas de las obras que llegaron de ellas; el grosor de la línea es la cantidad de obras. Lugares que producían lo mismo quedan cerca. La procedencia es desde dónde se envió la obra, no el origen de la técnica, y la técnica la lee el proyecto del texto del catálogo. Esta vista no usa los filtros de arriba.</p>
+        <p class="mxnote">Localidades unidas a las técnicas de las obras que llegaron de ellas; el grosor de la línea es la cantidad de obras. Lugares que producían lo mismo quedan cerca. La procedencia es desde dónde se envió la obra, no el origen de la técnica, y la técnica la lee el proyecto del texto del catálogo.</p>
         <label class="rlb" for="r2-por">Unir los lugares con</label>
         <select id="r2-por"><option value="tec">Técnicas</option><option value="mat">Materiales</option><option value="cat">Categorías del catálogo</option></select>
         <label class="rlb" for="r2-min">Mostrar conexiones de al menos</label>
@@ -546,6 +759,15 @@ button.prow:hover { background: var(--chip); }
     </div>
   </section>
 
+  <section class="view v-gal" id="view-gal" role="tabpanel" aria-labelledby="tab-gal" hidden>
+    <header class="gal-head">
+      <span class="eyebrow">Álbum de 1915</span>
+      <h2>Galería</h2>
+      <p>Fotografías del álbum del primer concurso provincial de Tejidos y Bordados (septiembre de 1915) en las que se identificaron obras del catálogo. Seleccione una foto para verla grande.</p>
+    </header>
+    <div class="gal" id="gal"></div>
+  </section>
+
   <section class="view v-art" id="view-art" role="tabpanel" aria-labelledby="tab-art" hidden>
     <div class="card plist" id="plist"></div>
     <div class="card ficha" id="ficha" aria-live="polite"></div>
@@ -553,16 +775,91 @@ button.prow:hover { background: var(--chip); }
 
 </section>
 
+<dialog class="fdlg" id="fdlg" aria-label="Foto del álbum de 1915">
+  <figure>
+    <div class="fwrap">
+      <div class="fz" id="fz" title="Clic o rueda del mouse para acercar; arrastrá para moverte"><img id="fdlg-img" alt="Página del álbum de 1915 con la obra" draggable="false"></div>
+      <div class="fbtn cerrar"><button type="button" data-act="fclose" aria-label="Cerrar">×</button></div>
+      <div class="fbtn zoom"><button type="button" data-act="zout" aria-label="Alejar">−</button><button type="button" data-act="zin" aria-label="Acercar">+</button></div>
+    </div>
+    <figcaption id="fdlg-cap"></figcaption>
+  </figure>
+</dialog>
+
+<footer class="pie" aria-label="Créditos">
+  <div class="pie-in">
+    <div class="pie-inst">
+      <span class="eyebrow">Instituciones</span>
+      <dl class="cred">
+        <div><dt>Centro</dt><dd>Centro de Investigaciones en Arte y Patrimonio (CIAP-EAyP, UNSAM-CONICET)</dd></div>
+        <div><dt>Programa</dt><dd>Optativa del Proyecto Interdisciplinario del Centro de Inteligencia Artificial Interdisciplinario (CIAI) y la Licenciatura en Ciencia de Datos (LCD), Escuela de Ciencia y Tecnología, UNSAM</dd></div>
+      </dl>
+    </div>
+    <div class="pie-eq">
+      <span class="eyebrow">Equipo</span>
+      <dl class="cred">
+        <div><dt>Investigación</dt><dd>Larisa Mantovani</dd></div>
+        <div><dt>Procesamiento y visualización de datos</dt><dd>Julián Rolando, estudiante de la Licenciatura en Ciencia de Datos (UNSAM)</dd></div>
+        <div><dt>Tutoría</dt><dd>Agustín Moro</dd></div>
+      </dl>
+    </div>
+    <div class="pie-logos">
+      <img src="__LOGO_CIAP__" alt="Centro de Investigaciones en Arte y Patrimonio (CIAP-EAyP, UNSAM-CONICET)">
+      <img src="__LOGO_ECYT__" alt="Escuela de Ciencia y Tecnología (ECyT, UNSAM)">
+    </div>
+  </div>
+</footer>
+<div class="guarda" aria-hidden="true"></div>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/graphology/0.25.4/graphology.umd.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/graphology-library@0.8.0/dist/graphology-library.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sigma.js/2.4.0/sigma.min.js"></script>
 <script>
 const DATA = __DATA__;
+// fotos del álbum de 1915 (versiones livianas), por nombre de archivo
+const FOTOS = __FOTOS__;
+document.addEventListener("click", (e) => { if (e.target.id === "fdlg") e.target.close(); });
+
+// Zoom de la foto del álbum: rueda o clic acercan donde apunta el mouse; arrastrar mueve; otro clic vuelve.
+const gid = (id) => document.getElementById(id);
+const Z = { s: 1, x: 0, y: 0 };
+function zApply() {
+  const fz = gid("fz"), w = fz.clientWidth, h = fz.clientHeight;
+  Z.x = Math.min(0, Math.max(w - w * Z.s, Z.x));
+  Z.y = Math.min(0, Math.max(h - h * Z.s, Z.y));
+  gid("fdlg-img").style.transform = `translate(${Z.x}px, ${Z.y}px) scale(${Z.s})`;
+  fz.classList.toggle("on", Z.s > 1);
+}
+function zTo(s, cx, cy) {
+  s = Math.min(6, Math.max(1, s));
+  const k = s / Z.s;
+  Z.x = cx - (cx - Z.x) * k; Z.y = cy - (cy - Z.y) * k; Z.s = s;
+  zApply();
+}
+function zReset() { Z.s = 1; Z.x = 0; Z.y = 0; gid("fdlg-img").style.transform = ""; gid("fz").classList.remove("on"); }
+(() => {
+  const fz = gid("fz");
+  const pt = (e) => { const b = fz.getBoundingClientRect(); return [e.clientX - b.left, e.clientY - b.top]; };
+  let drag = null;
+  fz.addEventListener("wheel", (e) => { e.preventDefault(); zTo(Z.s * (e.deltaY < 0 ? 1.25 : 0.8), ...pt(e)); }, { passive: false });
+  fz.addEventListener("pointerdown", (e) => { drag = { x: e.clientX, y: e.clientY, ox: Z.x, oy: Z.y, moved: false }; fz.setPointerCapture(e.pointerId); });
+  fz.addEventListener("pointermove", (e) => {
+    if (!drag) return;
+    const dx = e.clientX - drag.x, dy = e.clientY - drag.y;
+    if (Math.abs(dx) + Math.abs(dy) > 4) drag.moved = true;
+    if (drag.moved && Z.s > 1) { fz.classList.add("drag"); Z.x = drag.ox + dx; Z.y = drag.oy + dy; zApply(); }
+  });
+  fz.addEventListener("pointerup", (e) => {
+    if (drag && !drag.moved) { if (Z.s > 1) zReset(); else zTo(2.5, ...pt(e)); }
+    drag = null; fz.classList.remove("drag");
+  });
+  fz.addEventListener("pointercancel", () => { drag = null; fz.classList.remove("drag"); });
+})();
 
 (function () {
   document.documentElement.lang = "es";
-  const P = DATA.places, TEC = DATA.tec, TECG = DATA.tecg, MAT = DATA.mat, PRV = DATA.prv, R = DATA.recs, SEDE = DATA.sede;
+  const P = DATA.places, TEC = DATA.tec, TECG = DATA.tecg, MAT = DATA.mat, PRV = DATA.prv, R = DATA.recs;
   const $ = (id) => document.getElementById(id);
   const strip = (s) => String(s || "").normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
   const esc = (s) => String(s == null ? "" : s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
@@ -570,31 +867,33 @@ const DATA = __DATA__;
   const fmt = (n) => n.toLocaleString("es-AR");
   const plural = (n, s, p) => fmt(n) + " " + (n === 1 ? s : p);
   const clip = (s, n) => (s.length > n ? s.slice(0, n - 1).trimEnd() + "…" : s);
-  const PORD = Object.keys(PRV), SOFT = ["encrand", "bordesh", "sin"], VIEWS = ["map", "ana", "art", "red"];
+  const PORD = Object.keys(PRV), SOFT = ["encrand", "bordesh", "sin"], VIEWS = ["pre", "map", "ana", "art", "gal", "red"];
+  const ASECS = ["a-cifras", "a-conc", "a-proc", "a-tec", "a-exp", "a-prem"];
 
   R.forEach((r) => { r._s = strip([r.n, r.nv, r.c, r.o, r.po].join(" ")); });
   const byPk = new Map();
   R.forEach((r) => { if (!byPk.has(r.pk)) byPk.set(r.pk, []); byPk.get(r.pk).push(r); });
 
   const state = {
-    view: "map", year: "both", prize: false, tec: "", mat: "", gen: "", provincia: "", q: "", flows: false, prov: true, mxv: "n", procv: "n",
+    view: "pre", year: "both", prize: false, tec: "", mat: "", gen: "", provincia: "", ciudad: "", q: "", prov: true, mxv: "n", procv: "n", asec: "a-cifras",
     place: null, person: byPk.has(DATA.person0) ? DATA.person0 : null,
     cell: null, more: false, moreRes: false, morePeople: false,
     cuaAll: {},
   };
   // lo que va en la URL (#clave=valor&...) para poder compartir un enlace a una consulta
-  const HASHED = ["view", "year", "prize", "tec", "mat", "gen", "provincia", "q", "person"];
+  const HASHED = ["view", "asec", "year", "prize", "tec", "mat", "gen", "provincia", "ciudad", "q", "person"];
   const DEFAULTS = Object.fromEntries(HASHED.map((k) => [k, state[k]]));
   let toks = [], lastList = [];
 
   function match(r, noTZ, noYear) {
     if (!noYear && state.year !== "both" && r.y !== +state.year) return false;
     if (state.prize && !r.pz) return false;
-    if (state.mat && !mats(r).includes(state.mat)) return false;
+    if (state.mat && !conMat(r, state.mat)) return false;
     if (state.gen && gen(r) !== state.gen) return false;
     if (!noTZ) {
       if (state.tec && !r.tec.includes(state.tec)) return false;
       if (state.provincia && r.pv !== state.provincia) return false;
+      if (state.ciudad && r.pl !== state.ciudad) return false;
     }
     for (const t of toks) if (!r._s.includes(t)) return false;
     return true;
@@ -612,10 +911,15 @@ const DATA = __DATA__;
   // la técnica más precisa de la obra: "Encaje de bolillos", sin repetir "Encaje"
   const hojas = (r) => r.tec.filter((t) => t !== "sin" && !r.tec.some((u) => TECG[u] === t));
   const mats = (r) => r.mat || [];
+  // obras cuyo texto no nombra ningún material: se pueden filtrar como "Sin identificar"
+  MAT.sin = "Sin identificar";
+  const conMat = (r, m) => (m === "sin" ? !mats(r).length : mats(r).includes(m));
   // género de la expositora (hoja Expositoras): F, M o I (institución); "sd" si la obra
   // figura sólo en el fallo y su expositora no está en la base
   const GEN = { F: "Mujeres", M: "Varones", I: "Instituciones", sd: "Sin dato" };
   const gen = (r) => r.g || "sd";
+  // cómo nombrar a quienes exponen según el grupo filtrado (sin filtro, como en el resto del explorador)
+  const EXP = () => ({ M: ["expositor", "expositores"], I: ["institución", "instituciones"] }[state.gen] || ["expositora", "expositoras"]);
   // técnicas generales por cantidad, cada una seguida de sus subtipos; las imprecisas al final
   function ordTec(ks, n) {
     const por = (a, b) => (SOFT.includes(a) - SOFT.includes(b)) || (n[b] - n[a]);
@@ -625,7 +929,8 @@ const DATA = __DATA__;
   function marks(r) {
     return (r.fc ? ' <span class="dim">· Fuera de concurso</span>' : "") + (r.ca ? ' <span class="dim">· Creación de la autora</span>' : "") +
       (r.li ? ` <span class="dim ded" title="${esc(`El catálogo dice «${r.po}»; ubicada en ${P[r.pl].n} por las otras obras de la expositora`)}">· Ubicación deducida</span>` : "") +
-      (r.fa ? ` <span class="dim">· Foto del álbum de 1915: ${esc(r.fa)}</span>` : "") +
+      (r.fa && FOTOS[r.fa] ? ` <button type="button" class="fth" data-act="foto" data-f="${esc(r.fa)}" data-p="${esc(r.fp || "")}" aria-label="Ver la foto del álbum de 1915"><img src="${FOTOS[r.fa]}" alt=""><span>Foto del álbum</span></button>` :
+        r.fa ? ` <span class="dim">· Foto del álbum de 1915: ${esc(r.fa)}</span>` : "") +
       (r.pr ? ' <span class="dim">· En la prensa</span>' : "");
   }
   function what(r) { return [r.c, r.o && strip(r.o) !== strip(r.c) ? r.o : ""].filter(Boolean).join(": "); }
@@ -633,7 +938,7 @@ const DATA = __DATA__;
 
   const LK = { ord: "por número de orden", nom: "por nombre", man: "decisión manual", "nom?": "a confirmar", sv: "sin obra en el listado", pen: "pendiente de vincular" };
   function tsv(rows) {
-    const head = ["Año", "Expositora", "Género", "Nombre en la fuente", "Procedencia según el catálogo", "Lugar", "Provincia", "Categoría", "Objeto", "Técnicas", "Materiales", "N.º de orden", "Fuera de concurso", "Creación de la autora", "Foto del álbum", "Premio", "Monto ($)", "Vínculo premio-obra", "Ubicación", "Fuente"];
+    const head = ["Año", "Expositora", "Grupo (mujer, varón o institución)", "Nombre en la fuente", "Procedencia según el catálogo", "Ciudad", "Provincia", "Categoría", "Objeto", "Técnicas", "Materiales", "N.º de orden", "Fuera de concurso", "Creación de la autora", "Foto del álbum", "Premio", "Monto ($)", "Vínculo premio-obra", "Ubicación", "Fuente"];
     const clean = (s) => String(s == null ? "" : s).replace(/[\t\r\n]+/g, " ").trim();
     return [head].concat(rows.map((r) => [r.y, r.n, GEN[gen(r)], r.nv, r.po, P[r.pl].n, PRV[r.pv], r.c, r.o, hojas(r).map((t) => TEC[t]).join("; "), mats(r).map((m) => MAT[m]).join("; "), r.ord, r.fc ? "sí" : "", r.ca ? "sí" : "", r.fa || "",
       (r.pz || []).map((z) => z.t).join("; "), (r.pz || []).map((z) => z.m).join("; "), (r.pz || []).map((z) => LK[z.lk]).join("; "), r.li ? "deducida de sus otras obras" : "", r.cit].map(clean))).map((l) => l.join("\t")).join("\n");
@@ -650,9 +955,10 @@ const DATA = __DATA__;
 
   /* ---------------------------------------------------------------- mapa base */
   const map = L.map("map", { zoomSnap: 0.25, zoomDelta: 0.5, attributionControl: false, minZoom: 4.5, maxZoom: 14, maxBounds: [[-41, -77], [-16, -50]], maxBoundsViscosity: 0.7 });
-  map.createPane("flows").style.zIndex = 410;
   map.createPane("dots").style.zIndex = 430;
-  map.fitBounds([[-29.6, -68.0], [-25.0, -63.0]]);
+  const HOME = [[-29.6, -68.0], [-25.0, -63.0]];
+  let mapShown = false;
+  map.fitBounds(HOME);
   new ResizeObserver(() => map.invalidateSize()).observe($("map"));
   // cada mapa base agrega su crédito a este control
   L.control.attribution({ prefix: false, position: "bottomright" }).addAttribution("© Esri y proveedores").addTo(map);
@@ -660,32 +966,50 @@ const DATA = __DATA__;
   // Mapa base Esri World Street Map, el mismo de `05b_mapa`. Carga aun con la página abierta
   // como archivo local (tile.openstreetmap.org la bloquea por falta de Referer).
   L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}", { maxZoom: 19, className: "osm" }).addTo(map);
-  const flowLayer = L.layerGroup().addTo(map), dotLayer = L.layerGroup().addTo(map);
+  const dotLayer = L.layerGroup().addTo(map);
   map.on("click", () => { if (state.place) { state.place = null; render(); } });
 
   /* ---------------------------------------------------------------- controles */
   function buildSelects() {
     const tc = {}, pc = {}, mc = {};
-    R.forEach((r) => { pc[r.pv] = (pc[r.pv] || 0) + 1; r.tec.forEach((t) => (tc[t] = (tc[t] || 0) + 1)); mats(r).forEach((m) => (mc[m] = (mc[m] || 0) + 1)); });
+    R.forEach((r) => { pc[r.pv] = (pc[r.pv] || 0) + 1; r.tec.forEach((t) => (tc[t] = (tc[t] || 0) + 1)); (mats(r).length ? mats(r) : ["sin"]).forEach((m) => (mc[m] = (mc[m] || 0) + 1)); });
     const tk = ordTec(Object.keys(TEC).filter((t) => tc[t]), tc);
-    $("f-tec").innerHTML = '<option value="">Todas</option>' + tk.map((t) => `<option value="${t}">${TECG[t] ? "   " : ""}${esc(TEC[t])} (${tc[t]})</option>`).join("");
-    $("f-mat").innerHTML = '<option value="">Todos</option>' + Object.keys(MAT).filter((m) => mc[m]).sort((a, b) => mc[b] - mc[a]).map((m) => `<option value="${m}">${esc(MAT[m])} (${mc[m]})</option>`).join("");
-    const gc = {};
-    R.forEach((r) => (gc[gen(r)] = (gc[gen(r)] || 0) + 1));
+    $("f-tec").innerHTML = '<option value="">Todas</option>' + tk.map((t) => `<option value="${t}">${TECG[t] ? "   " : ""}${esc(TEC[t])} (${plural(tc[t], "obra", "obras")})</option>`).join("") +
+      '<option disabled>(una obra puede tener varias técnicas, y los subtipos cuentan también en la general)</option>';
+    $("f-mat").innerHTML = '<option value="">Todos</option>' + Object.keys(MAT).filter((m) => mc[m] && m !== "sin").sort((a, b) => mc[b] - mc[a]).concat(["sin"]).map((m) => `<option value="${m}">${esc(MAT[m])} (${plural(mc[m], "obra", "obras")})</option>`).join("") +
+      '<option disabled>(una obra puede tener varios materiales)</option>';
+    // entre paréntesis, cuántos expositores forman cada grupo (no cuántas obras)
+    const gs = {};
+    R.forEach((r) => (gs[gen(r)] = gs[gen(r)] || new Set()).add(r.pk));
+    const gc = Object.fromEntries(Object.entries(gs).map(([g, v]) => [g, v.size]));
     $("f-gen").innerHTML = '<option value="">Todos</option>' + Object.keys(GEN).filter((g) => gc[g]).map((g) => `<option value="${g}">${GEN[g]} (${gc[g]})</option>`).join("");
-    $("f-provincia").innerHTML = '<option value="">Todas</option>' + PORD.filter((k) => pc[k]).map((k) => `<option value="${k}">${esc(PRV[k])} (${pc[k]})</option>`).join("");
+    $("f-provincia").innerHTML = '<option value="">Todas</option>' + PORD.filter((k) => pc[k]).map((k) => `<option value="${k}">${esc(PRV[k])} (${plural(pc[k], "obra", "obras")})</option>`).join("");
+  }
+  // ciudades (localidades con obras; no los lugares de los que solo se conoce la provincia),
+  // agrupadas por provincia; si hay una provincia elegida, solo las suyas
+  const CIU = {};
+  R.forEach((r) => { const q = P[r.pl]; if (!q || q.t !== "loc" || strip(q.n) === "sin dato") return; ((CIU[r.pv] = CIU[r.pv] || {})[r.pl] = (CIU[r.pv][r.pl] || 0) + 1); });
+  const provDeCiudad = (id) => Object.keys(CIU).find((z) => CIU[z][id]);
+  function fillCiudad() {
+    const zs = PORD.filter((z) => CIU[z] && (!state.provincia || z === state.provincia));
+    const opts = (z) => Object.keys(CIU[z]).sort((a, b) => P[a].n.localeCompare(P[b].n, "es")).map((id) => `<option value="${id}">${esc(P[id].n)} (${plural(CIU[z][id], "obra", "obras")})</option>`).join("");
+    $("f-ciudad").innerHTML = '<option value="">Todas</option>' + (zs.length === 1 ? opts(zs[0]) : zs.map((z) => `<optgroup label="${esc(PRV[z])}">${opts(z)}</optgroup>`).join(""));
   }
   function syncControls() {
+    if (state.ciudad && state.provincia && provDeCiudad(state.ciudad) !== state.provincia) state.ciudad = "";
+    fillCiudad();
+    $("f-ciudad").value = state.ciudad;
     $("f-prize").value = state.prize ? "yes" : "all"; $("f-tec").value = state.tec; $("f-mat").value = state.mat; $("f-gen").value = state.gen; $("f-provincia").value = state.provincia; $("f-year").value = state.year;
-    const dflt = { prize: !state.prize, tec: !state.tec, mat: !state.mat, gen: !state.gen, provincia: !state.provincia, year: state.year === "both" };
+    const dflt = { prize: !state.prize, tec: !state.tec, mat: !state.mat, gen: !state.gen, provincia: !state.provincia, ciudad: !state.ciudad, year: state.year === "both" };
     Object.keys(dflt).forEach((k) => $("s-" + k).classList.toggle("on", !dflt[k]));
     $("reset").hidden = Object.values(dflt).every(Boolean) && !state.q;
   }
   $("f-prize").onchange = (e) => { state.prize = e.target.value === "yes"; resetPaging(); render(); };
-  ["tec", "mat", "gen", "provincia", "year"].forEach((k) => { $("f-" + k).onchange = (e) => { state[k] = e.target.value; resetPaging(); render(); }; });
+  ["tec", "mat", "gen", "provincia", "ciudad", "year"].forEach((k) => { $("f-" + k).onchange = (e) => { state[k] = e.target.value; resetPaging(); render(); }; });
+  // en el mapa, elegir una ciudad abre también su lista de obras
+  $("f-ciudad").addEventListener("change", () => { state.place = state.ciudad && P[state.ciudad].lat != null ? state.ciudad : null; resetPaging(); render(); });
   $("q").oninput = () => { state.q = $("q").value; resetPaging(); render(); };
-  $("reset").onclick = () => { state.prize = false; state.tec = ""; state.mat = ""; state.gen = ""; state.provincia = ""; state.year = "both"; state.q = ""; $("q").value = ""; resetPaging(); render(); };
-  $("flows").onchange = () => { state.flows = $("flows").checked; render(); };
+  $("reset").onclick = () => { state.prize = false; state.tec = ""; state.mat = ""; state.gen = ""; state.provincia = ""; state.ciudad = ""; state.year = "both"; state.q = ""; $("q").value = ""; resetPaging(); render(); };
   $("prov").onchange = () => { state.prov = $("prov").checked; render(); };
   function resetPaging() { state.more = false; state.moreRes = false; state.morePeople = false; state.cuaAll = {}; }
 
@@ -697,6 +1021,21 @@ const DATA = __DATA__;
     const act = a.dataset.act;
     if (act === "person") { state.person = a.dataset.pk; $("ficha").scrollTop = 0; setView("art"); }
     else if (act === "close") { state.place = null; render(); }
+    else if (act === "asec") {
+      e.preventDefault(); state.asec = a.dataset.s; render();
+      const v = $("view-ana"); if (v.getBoundingClientRect().top < $("nav").offsetHeight) v.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+    else if (act === "gofil") $("toolbar").scrollIntoView({ behavior: "smooth", block: "start" });
+    else if (act === "goview") { setView(a.dataset.v); $("explorador").scrollIntoView({ behavior: "smooth", block: "start" }); }
+    else if (act === "foto") {
+      const d = $("fdlg");
+      $("fdlg-img").src = FOTOS[a.dataset.f];
+      $("fdlg-cap").innerHTML = "<i>Álbum del primer concurso provincial de Tejidos y Bordados, septiembre de 1915</i><small>" + esc(a.dataset.f) + (a.dataset.p ? " · la obra está en la página: " + esc(a.dataset.p) : "") + " · clic o rueda del mouse para acercar</small>";
+      zReset();
+      d.showModal();
+    }
+    else if (act === "fclose") $("fdlg").close();
+    else if (act === "zin" || act === "zout") { const b = $("fz").getBoundingClientRect(); zTo(Z.s * (act === "zin" ? 1.6 : 1 / 1.6), b.width / 2, b.height / 2); }
     else if (act === "gored") { setView("red"); $("explorador").scrollIntoView({ behavior: "smooth", block: "start" }); }
     else if (act === "rnode") { if (RED && RED.select) RED.select(a.dataset.n, true); }
     else if (act === "rnode2") { if (RED && RED.lt) RED.lt.select(a.dataset.n, true); }
@@ -727,7 +1066,11 @@ const DATA = __DATA__;
     else if (act === "copycua") copyText(CUA[a.dataset.t].map((l) => l.join("\t")).join("\n"), a);
     else if (act === "gomap") { state.place = a.dataset.id; state.more = false; setView("map"); $("explorador").scrollIntoView({ behavior: "smooth", block: "start" }); }
   });
-  document.querySelectorAll(".tabs button").forEach((b) => (b.onclick = () => setView(b.dataset.view)));
+  // con las pestañas arriba de todo: si el contenido está más abajo, llevar hasta él
+  document.querySelectorAll(".tabs button").forEach((b) => (b.onclick = () => {
+    setView(b.dataset.view);
+    if ($("explorador").getBoundingClientRect().top > $("nav").offsetHeight + 8) $("explorador").scrollIntoView({ behavior: "smooth", block: "start" });
+  }));
   $("tabs").addEventListener("keydown", (e) => {
     const t = [...document.querySelectorAll(".tabs button")], i = t.indexOf(document.activeElement);
     if (i < 0) return;
@@ -747,8 +1090,10 @@ const DATA = __DATA__;
     // Panorama, Técnicas por zona y Cuadros se unieron en Análisis
     if (["pan", "tec", "cua"].includes(h)) { state.view = "ana"; return; }
     if (["pan", "tec", "cua"].includes(p.get("view"))) p.set("view", "ana");
+    // enlaces de antes de Presentación: sin "view" abrían el mapa
+    if (h && !p.has("view")) p.set("view", "map");
     const ok = { view: (v) => VIEWS.includes(v), year: (v) => ["both", "1915", "1916"].includes(v),
-      tec: (v) => v in TEC, mat: (v) => v in MAT, gen: (v) => v in GEN, provincia: (v) => v in PRV, person: (v) => byPk.has(v) };
+      tec: (v) => v in TEC, mat: (v) => v in MAT, gen: (v) => v in GEN, asec: (v) => ASECS.includes(v), provincia: (v) => v in PRV, ciudad: (v) => v in P, person: (v) => byPk.has(v) };
     HASHED.forEach((k) => {
       if (!p.has(k)) return;
       const v = p.get(k);
@@ -770,10 +1115,17 @@ const DATA = __DATA__;
       $("view-" + v).hidden = state.view !== v;
       const t = $("tab-" + v); t.setAttribute("aria-selected", state.view === v); t.tabIndex = state.view === v ? 0 : -1;
     });
+    // la presentación es solo texto: sin filtros ni contadores
+    // la red no usa los filtros: tiene su propio buscador
+    $("toolbar").hidden = state.view === "pre" || state.view === "gal" || state.view === "red";
+    if (state.view === "pre") return;
+    if (state.view === "gal") { renderGal(); return; }
+    // el mapa se creó oculto: la primera vez que se ve, recalcular tamaño y encuadre
+    if (state.view === "map" && !mapShown) { mapShown = true; map.invalidateSize(); map.fitBounds(HOME); }
     const rs = R.filter((r) => match(r));
     $("strip").innerHTML = `<span><span class="n">${fmt(rs.length)}</span> <span class="u">obras</span></span>` +
       `<span><span class="n p">${fmt(nPrized(rs))}</span> <span class="u">premiadas</span></span>` +
-      `<span><span class="n">${fmt(new Set(rs.map((r) => r.pk)).size)}</span> <span class="u">nombres de expositoras</span></span>` +
+      `<span><span class="n">${fmt(new Set(rs.map((r) => r.pk)).size)}</span> <span class="u">nombres de ${EXP()[1]}</span></span>` +
       detalle(rs) +
       (state.prize && state.year !== "1915" ? '<p class="warn">No hay premios de 1916.</p>' : "");
     if (state.view === "map") renderMap(rs); else if (state.view === "ana") renderAnalisis(rs); else if (state.view === "red") renderRed(); else renderPeople(rs);
@@ -794,7 +1146,7 @@ const DATA = __DATA__;
 
   /* ---------------------------------------------------------------- mapa */
   const NICE = [1000, 500, 200, 100, 50, 20, 10, 5, 2, 1];
-  function legend(maxN, rad, flows, aprox) {
+  function legend(maxN, rad) {
     const top = NICE.find((v) => v <= maxN) || 1;
     const vals = [top, NICE.find((v) => v <= top / 4), NICE.find((v) => v <= top / 16)].filter((v, i, a) => v && a.indexOf(v) === i);
     const R0 = rad(top), W = 2 * R0 + 52, H = 2 * R0 + 4;
@@ -803,10 +1155,7 @@ const DATA = __DATA__;
       const r = rad(v), cy = H - r - 2;
       svg += `<circle cx="${R0 + 2}" cy="${cy}" r="${r}" fill="none" stroke="var(--indigo)" stroke-width="1.5"/><line x1="${R0 + 2}" y1="${cy - r}" x2="${2 * R0 + 8}" y2="${cy - r}" stroke="var(--ink2)" stroke-width="0.8"/><text x="${2 * R0 + 11}" y="${cy - r + 3.5}" font-size="10.5" fill="var(--ink)">${v}</text>`;
     });
-    $("legend").innerHTML = `<b>Obras por lugar</b>${svg}</svg><div class="li"><span class="sw r"></span><span>Parte premiada</span></div><div class="li"><span class="sw h"></span><span>Se conoce solo la provincia</span></div>` +
-      (flows ? '<div class="li"><span class="sw l"></span><span>Hacia San Miguel de Tucumán, sede</span></div>' +
-        (aprox ? '<div class="li"><span class="sw l d"></span><span>Desde una ubicación aproximada</span></div>' : "") +
-        '<p class="lnote">Cada línea une el lugar de procedencia declarado en el catálogo con la sede del concurso. No indica un traslado documentado de la obra ni de la expositora. Los lugares de los que solo se conoce la provincia no tienen línea.</p>' : "");
+    $("legend").innerHTML = `<b>Obras por lugar</b>${svg}</svg><div class="li"><span class="sw r"></span><span>Parte premiada</span></div><div class="li"><span class="sw h"></span><span>Se conoce solo la provincia</span></div>`;
   }
   function groupsOf(rs) {
     const m = new Map();
@@ -814,17 +1163,10 @@ const DATA = __DATA__;
     return m;
   }
   function renderMap(rs) {
-    const gs = groupsOf(rs), indigo = css("--indigo"), flow = css("--gold"), ink = css("--ink"), mad = css("--madder");
-    flowLayer.clearLayers(); dotLayer.clearLayers();
+    const gs = groupsOf(rs), indigo = css("--indigo"), ink = css("--ink"), mad = css("--madder");
+    dotLayer.clearLayers();
     const placed = [...gs.values()].filter((g) => P[g.id].lat != null && (state.prov || P[g.id].t !== "prov")).sort((a, b) => b.recs.length - a.recs.length);
-    const maxN = Math.max(1, ...placed.map((g) => g.recs.length)), sede = P[SEDE], radius = (n) => 5 + 30 * Math.sqrt(n / maxN);
-    let aprox = false;
-    if (state.flows) placed.forEach((g) => {
-      const p = P[g.id];
-      if (p.t === "prov" || g.id === SEDE) return;
-      if (p.c === "aprox") aprox = true;
-      L.polyline([[p.lat, p.lon], [sede.lat, sede.lon]], { pane: "flows", color: flow, weight: 0.8 + 3.4 * Math.sqrt(g.recs.length / maxN), opacity: 0.6, dashArray: p.c === "aprox" ? "4 5" : null, interactive: false }).addTo(flowLayer);
-    });
+    const maxN = Math.max(1, ...placed.map((g) => g.recs.length)), radius = (n) => 5 + 30 * Math.sqrt(n / maxN);
     placed.forEach((g) => {
       const p = P[g.id], n = g.recs.length, m = nPrized(g.recs), hollow = p.t === "prov", sel = state.place === g.id, rad = radius(n);
       const o = L.circleMarker([p.lat, p.lon], { pane: "dots", radius: rad, color: sel ? ink : indigo, weight: sel ? 3 : 2, fillColor: indigo, fillOpacity: hollow ? 0.04 : 0.38, dashArray: hollow ? "5 5" : null, bubblingMouseEvents: false }).addTo(dotLayer);
@@ -833,7 +1175,7 @@ const DATA = __DATA__;
       o.on("click", () => { state.place = state.place === g.id ? null : g.id; state.more = false; render(); });
       if (m) L.circleMarker([p.lat, p.lon], { pane: "dots", radius: Math.max(3, rad * Math.sqrt(m / n)), color: mad, weight: 1, fillColor: mad, fillOpacity: 0.88, interactive: false }).addTo(dotLayer);
     });
-    legend(maxN, radius, state.flows, aprox);
+    legend(maxN, radius);
     $("maphint").hidden = !!state.place;
 
     const el = $("drawer"), g = state.place && gs.get(state.place);
@@ -873,7 +1215,7 @@ const DATA = __DATA__;
     $("mxhint").textContent = v === "pct" ? "Qué parte de las obras de cada provincia tiene la técnica. En provincias con pocas obras, un porcentaje alto puede ser una sola obra." :
       v === "exp" ? "Cuántas expositoras distintas presentaron la técnica: una sola expositora con muchas obras puede parecer un rasgo de su provincia." : "";
     document.querySelectorAll('[data-act="mxv"]').forEach((b) => b.setAttribute("aria-pressed", b.dataset.v === v));
-    let h = `<table class="mx"><thead><tr><th></th>` + zks.map((z) => `<th scope="col"><button type="button" data-act="cell" data-z="${z}" data-c="${z}" aria-pressed="${!!cur && !cur.t && cur.z === z}">${esc(PRV[z])}<small>${v === "exp" ? plural(colE[z].size, "expositora", "expositoras") : plural(colT[z], "obra", "obras")}</small></button></th>`).join("") + `</tr></thead><tbody>`;
+    let h = `<table class="mx"><thead><tr><th></th>` + zks.map((z) => `<th scope="col"><button type="button" data-act="cell" data-z="${z}" data-c="${z}" aria-pressed="${!!cur && !cur.t && cur.z === z}">${esc(PRV[z])}<small>${v === "exp" ? plural(colE[z].size, ...EXP()) : plural(colT[z], "obra", "obras")}</small></button></th>`).join("") + `</tr></thead><tbody>`;
     tks.forEach((t) => {
       h += `<tr><th scope="row"><button type="button" class="rh${SOFT.includes(t) ? " soft" : ""}${TECG[t] ? " sub" : ""}" data-act="cell" data-t="${t}" data-r="${t}" aria-pressed="${!!cur && cur.t === t && !cur.z}"><span>${esc(TEC[t])}</span><i>${v === "exp" ? rowE[t].size : rowT[t]}</i></button></th>`;
       zks.forEach((z) => {
@@ -891,7 +1233,7 @@ const DATA = __DATA__;
     sinT.forEach((r) => { cs[r.c] = (cs[r.c] || 0) + 1; });
     const topS = Object.keys(cs).sort((a, b) => cs[b] - cs[a]).slice(0, 5).map((c) => `${c} (${cs[c]})`).join(", ");
     const pv3 = PORD.filter((z) => z !== "sd").slice(0, 2).map((z) => { const l = R.filter((r) => r.pv === z); return `${PRV[z]} ${Math.round(100 * l.filter((r) => sinT.includes(r)).length / l.length)} %`; }).join(", ");
-    $("mx-sin").textContent = `"Sin técnica indicada" va en gris, fuera de la escala de color: son ${fmt(sinT.length)} obras (${Math.round(100 * sinT.length / R.length)} % de la base) cuyo texto no nombra ninguna técnica. Las secciones del catálogo que más aportan son ${topS}. Pesan distinto según la provincia (${pv3}), así que la clasificación por técnica describe mejor las labores de aguja que los tejidos de abrigo y las alfombras.`;
+    $("mx-sin").textContent = `"${TEC.sin}" va en gris, fuera de la escala de color: son ${fmt(sinT.length)} obras (${Math.round(100 * sinT.length / R.length)} % de la base) cuyo texto no nombra ninguna técnica. Las secciones del catálogo que más aportan son ${topS}. Pesan distinto según la provincia (${pv3}), así que la clasificación por técnica describe mejor las labores de aguja que los tejidos de abrigo y las alfombras.`;
     const mxEl = $("mx");
     mxEl.innerHTML = h + `</tbody></table>`;
     const hl = (on, e) => { const b = e.target.closest(".cell[data-r]"); if (!b) return; mxEl.querySelectorAll(`.rh[data-r="${CSS.escape(b.dataset.r)}"], thead button[data-c="${CSS.escape(b.dataset.c)}"]`).forEach((x) => x.classList.toggle("hl", on)); };
@@ -945,7 +1287,7 @@ const DATA = __DATA__;
     const mx1 = Math.max(1, ...ppl.map((p) => p.n));
     $("c-people").innerHTML = table("people", [nameCol, { k: "lugar", label: "Procedencia", cls: "sm" },
       { k: "n", label: "Obras", cls: "bc", html: (r) => hbar(r.n, mx1) }, { k: "y1", label: "1915", num: true }, { k: "y2", label: "1916", num: true },
-      { k: "m", label: "Premios", num: true, html: (r) => (r.m ? fmt(r.m) : "") }], ppl, 25);
+      { k: "m", label: "Premios", num: true, html: (r) => (r.m ? fmt(r.m) : "") }], ppl, 10);
 
     // 2) en los dos concursos (sin filtro de año)
     const both = [...groupBy(R.filter((r) => match(r, false, true)), (r) => r.pk).entries()].filter(([, l]) => inYear(l, 1915) && inYear(l, 1916)).map(([pk, l]) => {
@@ -955,18 +1297,30 @@ const DATA = __DATA__;
     $("c-both").innerHTML = table("both", [nameCol, { k: "lugar", label: "Procedencia", cls: "sm" },
       { k: "na", label: "En 1915", html: (r) => `<b>${r.na}</b> <span class="sm">· ${esc(r.ca)}</span>`, txt: (r) => `${r.na}: ${r.ca}` },
       { k: "nb", label: "En 1916", html: (r) => `<b>${r.nb}</b> <span class="sm">· ${esc(r.cb)}</span>`, txt: (r) => `${r.nb}: ${r.cb}` },
-      { k: "n", label: "Total", num: true }], both, 25);
+      { k: "n", label: "Total", num: true }], both, 10);
 
     // 3) premios: uno por fila aunque abarque varias obras
     const pz = new Map();
     rs.forEach((r) => (r.pz || []).forEach((z) => { if (!pz.has(z.k)) pz.set(z.k, { z, recs: [] }); pz.get(z.k).recs.push(r); }));
     const prem = [...pz.values()].map(({ z, recs }) => ({ _t: String(1000 - (z.m || 0)).padStart(4, "0") + recs[0].n, sec: z.c, tipo: z.t, m: z.m || 0, pk: recs[0].pk, name: recs[0].n, inst: recs[0].inst,
-      obra: recs.map((r) => (r.sv ? r.o : what(r)) + (r.ord && r.ord.length < 12 && !r.sv ? ` (n.º ${r.ord})` : "")).join("; "), vin: LK[z.lk] }));
+      obra: recs.map((r) => (r.sv ? (strip(r.o) !== strip(z.c) ? r.o : "") : what(r)) + (r.ord && r.ord.length < 12 && !r.sv ? ` (n.º ${r.ord})` : "")).filter(Boolean).join("; "), vin: LK[z.lk], lk: z.lk }));
     const total = prem.reduce((s, p) => s + p.m, 0);
     $("c-prem-n").textContent = state.year === "1916" ? "No hay premios de 1916." :
       `${plural(prem.length, "premio", "premios")} del fallo del jurado${total ? ", $ " + fmt(total) + " en total" : ""}. Un premio que abarca varias obras ocupa una sola fila. No hay premios de 1916.`;
-    $("c-prem").innerHTML = table("prem", [{ k: "sec", label: "Sección del fallo" }, { k: "tipo", label: "Premio" }, { k: "m", label: "Monto ($)", num: true, html: (r) => (r.m ? fmt(r.m) : "") },
-      nameCol, { k: "obra", label: "Obra", html: (r) => `<span title="${esc(r.obra)}">${esc(clip(r.obra, 110))}</span>` }, { k: "vin", label: "Vínculo con la obra", cls: "sm" }], prem, 30);
+    // agrupados por sección del fallo, como el gráfico de arriba
+    CUA.prem = [["Sección del fallo", "Premio", "Monto ($)", "Expositora", "Obra", "Vínculo con la obra"]].concat(prem.map((p) => [p.sec, p.tipo, p.m || "", p.name, p.obra, p.vin]));
+    const NOTA = { sv: "Sin obra en el catálogo", pen: "Pendiente de vincular con una obra del catálogo", "nom?": "Vínculo con la obra a confirmar" };
+    const secs = [...groupBy(prem, (p) => p.sec || "Sin sección").entries()].sort((a, b) => (b[1].length - a[1].length) || a[0].localeCompare(b[0], "es"));
+    const verSec = state.cuaAll.prem ? secs : secs.slice(0, 5);
+    $("c-prem").innerHTML = !prem.length ? '<p class="empty">Nada con estos filtros.</p>' : verSec.map(([sec, l]) => {
+      const tot = l.reduce((t, p) => t + p.m, 0);
+      return `<section class="pzs"><h4>${esc(sec)}<span>${plural(l.length, "premio", "premios")}${tot ? " · $ " + fmt(tot) : ""}</span></h4><ul>` +
+        l.sort((a, b) => (b.m - a.m) || a.name.localeCompare(b.name, "es")).map((p) =>
+          `<li><span class="pzp"><span class="prize">${["Premio", "Premio de estímulo"].includes(p.tipo) ? (p.m ? "$ " + fmt(p.m) : esc(p.tipo)) : esc(p.tipo) + (p.m ? " · $ " + fmt(p.m) : "")}</span></span>` +
+          `<span class="pzn">${personBtn(p.pk, p.name)}${p.inst ? ' <span class="dim">· institución</span>' : ""}</span>` +
+          `<span class="pzo">${p.obra ? esc(p.obra) : ""}${NOTA[p.lk] ? `<small>${NOTA[p.lk]}</small>` : ""}</span></li>`).join("") + `</ul></section>`;
+    }).join("") +
+      `<div class="acts">${secs.length > verSec.length ? `<button type="button" class="btn" data-act="cuaall" data-t="prem">Mostrar las ${secs.length} secciones</button>` : ""}<button type="button" class="btn" data-act="copycua" data-t="prem">Copiar tabla</button></div>`;
 
     // 4) qué se mostró de cada lugar
     const plc = [...groupBy(rs, (r) => r.pl).entries()].map(([id, l]) => ({ _t: P[id].n, id, lugar: P[id].n, prov: P[id].p || "", n: l.length, y1: inYear(l, 1915), y2: inYear(l, 1916), m: nPrized(l), cat: topCats(l, 3) }));
@@ -974,7 +1328,7 @@ const DATA = __DATA__;
     $("c-place").innerHTML = table("place", [
       { k: "lugar", label: "Lugar", html: (r) => (P[r.id].lat != null ? `<button type="button" class="plink" data-act="gomap" data-id="${esc(r.id)}">${esc(r.lugar)}</button>` : `${esc(r.lugar)} <span class="dim">· sin ubicar</span>`) },
       { k: "prov", label: "Provincia", cls: "sm" }, { k: "n", label: "Obras", cls: "bc", html: (r) => hbar(r.n, mx4) }, { k: "y1", label: "1915", num: true }, { k: "y2", label: "1916", num: true },
-      { k: "m", label: "Premiadas", num: true, html: (r) => (r.m ? fmt(r.m) : "") }, { k: "cat", label: "Categorías más frecuentes", cls: "sm" }], plc, 25);
+      { k: "m", label: "Premiadas", num: true, html: (r) => (r.m ? fmt(r.m) : "") }, { k: "cat", label: "Categorías más frecuentes", cls: "sm" }], plc, 10);
   }
 
   /* ---------------------------------------------------------------- panorama */
@@ -984,9 +1338,10 @@ const DATA = __DATA__;
     if (!skip.includes("year") && state.year !== "both" && r.y !== +state.year) return false;
     if (state.prize && !r.pz) return false;
     if (state.tec && !r.tec.includes(state.tec)) return false;
-    if (state.mat && !mats(r).includes(state.mat)) return false;
+    if (state.mat && !conMat(r, state.mat)) return false;
     if (!skip.includes("gen") && state.gen && gen(r) !== state.gen) return false;
     if (!skip.includes("provincia") && state.provincia && r.pv !== state.provincia) return false;
+    if (!skip.includes("provincia") && state.ciudad && r.pl !== state.ciudad) return false;
     for (const t of toks) if (!r._s.includes(t)) return false;
     return true;
   }
@@ -1004,11 +1359,11 @@ const DATA = __DATA__;
     const pzs = new Map();
     rs.forEach((r) => (r.pz || []).forEach((z) => pzs.set(z.k, z)));
     const monto = [...pzs.values()].reduce((s, z) => s + (z.m || 0), 0);
-    $("p-kpi").innerHTML = [[fmt(rs.length), "obras"], [fmt(new Set(rs.map((r) => r.pk)).size), "expositoras"], [fmt(new Set(rs.map((r) => r.pl)).size), "lugares de procedencia"],
+    $("p-kpi").innerHTML = [[fmt(rs.length), "obras"], [fmt(new Set(rs.map((r) => r.pk)).size), EXP()[1]], [fmt(new Set(rs.map((r) => r.pl)).size), "lugares de procedencia"],
       [fmt(pzs.size), "premios (1915)"], ["$ " + fmt(monto), "en premios"]].map(([b, s]) => `<div class="kpi"><b>${b}</b><span>${s}</span></div>`).join("");
     // de dónde salen las cifras, para que cierren con las de otras secciones
     const sv = rs.filter((r) => r.sv).length, soloFallo = [...groupBy(rs, (r) => r.pk).values()].filter((l) => l.every((r) => r.sv)).length, np = nPrized(rs), notas = [];
-    if (sv) notas.push(`Las ${fmt(rs.length)} obras incluyen ${plural(sv, "premiada en el fallo que no figura", "premiadas en el fallo que no figuran")} en el catálogo${soloFallo ? `, y ${plural(soloFallo, "expositora aparece", "expositoras aparecen")} solo en el fallo` : ""}.`);
+    if (sv) notas.push(`Las ${fmt(rs.length)} obras incluyen ${plural(sv, "premiada en el fallo que no figura", "premiadas en el fallo que no figuran")} en el catálogo${soloFallo ? `, y ${plural(soloFallo, EXP()[0] + " aparece", EXP()[1] + " aparecen")} solo en el fallo` : ""}.`);
     if (pzs.size !== np) notas.push(`Los ${fmt(pzs.size)} premios recaen en ${plural(np, "obra", "obras")}: algunos premios abarcan varias obras.`);
     $("p-kpi-n").textContent = notas.join(" ");
 
@@ -1016,8 +1371,8 @@ const DATA = __DATA__;
     const per = [...groupBy(rs, (r) => r.pk).values()].map((l) => l.length);
     const bins = [["1", (n) => n === 1], ["2", (n) => n === 2], ["3 a 5", (n) => n >= 3 && n <= 5], ["6 a 10", (n) => n >= 6 && n <= 10], ["11 o más", (n) => n > 10]].map(([l, f]) => [l, per.filter(f).length]);
     const mxB = Math.max(1, ...bins.map((b) => b[1]));
-    $("p-dist-n").textContent = per.length ? `${plural(per.length, "expositora", "expositoras")}: ${pct(bins[0][1], per.length)} presentó una sola obra.` : "";
-    $("p-dist").innerHTML = per.length ? `<div class="hist">` + bins.map(([l, n]) => `<div${tip(`${plural(n, "expositora", "expositoras")} con ${l} ${l === "1" ? "obra" : "obras"} (${pct(n, per.length)})`)}><b>${fmt(n)}</b><i style="height:${Math.round(130 * n / mxB)}px"></i><span>${l}</span></div>`).join("") +
+    $("p-dist-n").textContent = per.length ? `${plural(per.length, ...EXP())}: ${pct(bins[0][1], per.length)} presentó una sola obra.` : "";
+    $("p-dist").innerHTML = per.length ? `<div class="hist">` + bins.map(([l, n]) => `<div${tip(`${plural(n, ...EXP())} con ${l} ${l === "1" ? "obra" : "obras"} (${pct(n, per.length)})`)}><b>${fmt(n)}</b><i style="height:${Math.round(130 * n / mxB)}px"></i><span>${l}</span></div>`).join("") +
       `</div><p class="axl">obras por expositora</p>` : '<p class="empty">Sin obras con estos filtros.</p>';
 
     // 2) de dónde venían, por concurso
@@ -1053,7 +1408,7 @@ const DATA = __DATA__;
     $("p-inst").innerHTML = grp.length ? `<div class="plg">${sw("var(--madder)", "Premiadas")}${sw("var(--indigo)", "Sin premio")}</div>` + grp.map(([g, l]) => {
       const m = nPrized(l), k = new Set(l.map((r) => r.pk)).size;
       return `<div class="prow"><span>${g} <span class="dim">· ${fmt(k)}</span></span>` + pstack([[m, "var(--madder)", `${g}: ${plural(m, "obra premiada", "obras premiadas")}`], [l.length - m, "var(--indigo)", `${g}: ${plural(l.length - m, "obra sin premio", "obras sin premio")}`]],
-        62 * l.length / mxF, `${plural(l.length, "obra", "obras")} · ${fmt(m)} premiadas`) + `</div>`;
+        46 * l.length / mxF, `${plural(l.length, "obra", "obras")} · ${fmt(m)} premiadas`) + `</div>`;
     }).join("") : '<p class="empty">Sin obras con estos filtros.</p>';
 
     // la tabla de cada gráfico, plegada debajo
@@ -1081,22 +1436,24 @@ const DATA = __DATA__;
 
   /* ---------------------------------------------------------------- análisis: todo junto */
   function renderAnalisis(rs) {
-    const act = [state.prize && "Solo premiadas", state.tec && "Técnica: " + TEC[state.tec], state.mat && "Material: " + MAT[state.mat], state.gen && "Género: " + GEN[state.gen], state.provincia && "Provincia: " + PRV[state.provincia],
+    const act = [state.prize && "Solo premiadas", state.tec && "Técnica: " + TEC[state.tec], state.mat && "Material: " + MAT[state.mat], state.gen && "Expositoras: " + GEN[state.gen], state.provincia && "Provincia: " + PRV[state.provincia], state.ciudad && "Ciudad: " + P[state.ciudad].n,
       state.year !== "both" && "Año: " + state.year, state.q.trim() && `Búsqueda: «${state.q.trim()}»`].filter(Boolean);
     $("afil").innerHTML = `<b>Filtros activos</b>` + (act.length ? act.map((t) => `<span>${esc(t)}</span>`).join("") + '<button type="button" class="linkbtn" data-act="resetf">Limpiar filtros</button>' :
-      `<span>Ninguno: ${plural(R.length, "obra", "obras")}</span>`) + `<small>Todos los gráficos los usan, salvo donde se indica.</small>`;
+      `<span>Ninguno: ${plural(R.length, "obra", "obras")}</span>`) + `<small>Todos los gráficos los usan, salvo donde se indica.</small>` +
+      '<button type="button" class="btn fbtn2" data-act="gofil">Cambiar filtros ↑</button>';
+    ASECS.forEach((id) => { $(id).hidden = id !== state.asec; });
+    document.querySelectorAll("#aidx a").forEach((a) => a.setAttribute("aria-current", a.dataset.s === state.asec));
     renderPanorama(rs);
     renderMatrix(R.filter((r) => match(r, true)));  // la matriz cruza técnica y provincia: no se filtra por ellas
     renderCuadros(rs);
   }
-  // el índice marca la sección que se está leyendo
-  if ("IntersectionObserver" in window) {
-    const links = [...document.querySelectorAll("#aidx a")];
-    const io = new IntersectionObserver((ents) => ents.forEach((en) => {
-      if (en.isIntersecting) links.forEach((a) => a.setAttribute("aria-current", a.dataset.scroll === en.target.id));
-    }), { rootMargin: "-30% 0px -60% 0px" });
-    document.querySelectorAll(".asec").forEach((sec) => io.observe(sec));
-  }
+  // al pie de cada sección, la anterior y la siguiente
+  ASECS.forEach((id, i) => {
+    const nom = (j) => document.querySelector(`#aidx a[data-s="${ASECS[j]}"]`).textContent;
+    $(id).insertAdjacentHTML("beforeend", `<nav class="anext" aria-label="Otras secciones">` +
+      (i > 0 ? `<button type="button" data-act="asec" data-s="${ASECS[i - 1]}">← ${esc(nom(i - 1))}</button>` : "<span></span>") +
+      (i < ASECS.length - 1 ? `<button type="button" data-act="asec" data-s="${ASECS[i + 1]}">${esc(nom(i + 1))} →</button>` : "") + `</nav>`);
+  });
 
 
   /* ---------------------------------------------------------------- expositoras */
@@ -1108,7 +1465,7 @@ const DATA = __DATA__;
   // menciones de El Orden: la cita, el diario, la fecha y el título de la nota
   function enPrensa(ms) {
     if (!ms.length) return "";
-    return `<div class="prensa"><h4>En la prensa de época</h4>` + ms.map((m) => `<blockquote>${esc(m.c)}</blockquote><cite>${esc(m.d)}, ${esc(m.f)}, «${esc(m.t)}»</cite>`).join("") + `</div>`;
+    return `<div class="prensa"><h4>En la prensa de época</h4>` + ms.map((m) => `<blockquote>${esc(m.c).replace(/&quot;([^&]*?)&quot;/g, "«$1»").replace(/"([^"]*)"/g, "«$1»")}</blockquote><cite>${esc(m.d)}, ${esc(m.f)}, «${esc(m.t)}»</cite>`).join("") + `</div>`;
   }
   // otras expositoras con su mismo apellido en el mismo lugar (05a_redes)
   function parientes(pk) {
@@ -1119,6 +1476,59 @@ const DATA = __DATA__;
     const g = new Map();
     l.filter((r) => r.li).forEach((r) => { const k = r.po + "|" + r.pl; g.set(k, (g.get(k) || []).concat(r)); });
     return [...g.values()].map((rs) => `<p class="pnote">El catálogo dice «${esc(rs[0].po)}» en ${plural(rs.length, "obra", "obras")}: se ubican en ${esc(P[rs[0].pl].n)}, la localidad de sus otras obras en esa provincia. Están marcadas «Ubicación deducida».</p>`).join("");
+  }
+
+  // una obra en la ficha de la expositora
+  function obraFicha(r, sinCat) {
+    const num = r.ord && r.ord.length < 12 && r.ord !== "s/d" ? `<small>N.º</small>${esc(r.ord)}` : "";
+    const conObj = r.o && strip(r.o) !== strip(r.c), tit = conObj ? r.o : r.c;
+    const notas = [
+      r.ca && !strip(tit).includes("creacion de la autora") ? "Creación de la autora" : "",
+      r.fc ? "Fuera de concurso" : "",
+      r.li ? `<span title="${esc(`El catálogo dice «${r.po}»; ubicada en ${P[r.pl].n} por las otras obras de la expositora`)}">Ubicación deducida</span>` : "",
+      (r.pz || []).some((z) => z.foto) ? "Foto en el catálogo" : "",
+      r.sv ? (r.pz[0].lk === "pen" ? "Premio todavía sin vincular con una obra del catálogo" : "Premio sin obra en el listado de expositoras") : "",
+      r.pr ? "Mencionada en la prensa" : "",
+      r.fa && !FOTOS[r.fa] ? "Foto del álbum de 1915: " + esc(r.fa) : "",
+    ].filter(Boolean).map((t) => `<span class="ob-nota">${t}</span>`).join("");
+    const prem = prizeBadges(r);
+    const foto = r.fa && FOTOS[r.fa] ? `<button type="button" class="ofoto" data-act="foto" data-f="${esc(r.fa)}" data-p="${esc(r.fp || "")}" aria-label="Ver la foto del álbum de 1915"><img src="${FOTOS[r.fa]}" alt=""><span>Ver foto</span></button>` : "<span></span>";
+    return `<li class="obra"><span class="num">${num}</span><div>` +
+      (conObj && !sinCat ? `<span class="ob-cat">${esc(r.c)}</span>` : "") +
+      `<span class="ob-tit">${esc(clip(tit.charAt(0).toUpperCase() + tit.slice(1), 160))}</span>` +
+      (prem || notas ? `<span class="ob-tags">${prem}${notas}</span>` : "") +
+      `<span class="cit">${esc(r.cit)}</span></div>${foto}</li>`;
+  }
+
+  // las obras de un año agrupadas por categoría, en el orden del catálogo (por página);
+  // el número de orden se reinicia en cada categoría, así que se ordena dentro de ella
+  function porCategoria(rs) {
+    const pag = (r) => { const m = /p\. (\d+)/.exec(r.cit || ""); return m ? +m[1] : Infinity; };
+    const g = new Map();
+    rs.forEach((r) => { if (!g.has(r.c)) g.set(r.c, []); g.get(r.c).push(r); });
+    return [...g.entries()].sort((a, b) => Math.min(...a[1].map(pag)) - Math.min(...b[1].map(pag)) || a[0].localeCompare(b[0], "es"))
+      .map(([c, l]) => `<li class="ob-grp">${esc(c)}</li>` + l.sort((a, b) => (parseInt(a.ord) || 1e9) - (parseInt(b.ord) || 1e9)).map((r) => obraFicha(r, true)).join("")).join("");
+  }
+
+  /* ---------------------------------------------------------------- galería */
+  // las fotos del álbum de 1915 con las obras del catálogo que se reconocen en cada una
+  let galHecha = false;
+  function renderGal() {
+    if (galHecha) return;
+    galHecha = true;
+    const por = new Map();
+    R.filter((r) => r.fa && FOTOS[r.fa]).forEach((r) => { if (!por.has(r.fa)) por.set(r.fa, []); por.get(r.fa).push(r); });
+    $("gal").innerHTML = [...por.keys()].sort().map((f) => {
+      const obras = por.get(f).map((r) => {
+        const conObj = r.o && strip(r.o) !== strip(r.c), tit = conObj ? r.o : r.c;
+        return `<li>${r.fp ? `<span class="gpos">${esc(r.fp.charAt(0).toUpperCase() + r.fp.slice(1))}</span>` : ""}` +
+          `<span class="gtit">${esc(tit.charAt(0).toUpperCase() + tit.slice(1))}</span>` +
+          `<span class="gmeta">${esc(r.c)}${r.ord && r.ord !== "s/d" ? ", n.º " + esc(r.ord) : ""} · ${personBtn(r.pk, r.n)}</span>` +
+          (r.pz ? `<span class="gpz">${prizeBadges(r)}</span>` : "") + `</li>`;
+      }).join("");
+      return `<figure class="gcard"><button type="button" class="gimg" data-act="foto" data-f="${esc(f)}" data-p="" aria-label="Ver la foto ${esc(f)} grande"><img src="${FOTOS[f]}" alt="Página del álbum de 1915 (${esc(f)})" loading="lazy"></button>` +
+        `<figcaption><span class="gnum">${esc(f)} · ${plural(por.get(f).length, "obra identificada", "obras identificadas")}</span><ul>${obras}</ul></figcaption></figure>`;
+    }).join("");
   }
 
   function renderPeople(rs) {
@@ -1144,10 +1554,7 @@ const DATA = __DATA__;
       (Object.keys(tc).length + Object.keys(mc).length ? `<p class="ln">${Object.keys(tc).sort((a, b) => tc[b] - tc[a]).map((t) => `<span class="tg">${esc(TEC[t])} · ${tc[t]}</span>`).join("")}` +
         `${Object.keys(mc).sort((a, b) => mc[b] - mc[a]).map((m) => `<span class="tg mt" title="Material">${esc(MAT[m])} · ${mc[m]}</span>`).join("")}</p>` : "") +
       comisionDe(state.person) + parientes(state.person) + dedu(l) + enPrensa(DATA.prensa.filter((m, k) => m.pk === state.person || l.some((r) => (r.pr || []).includes(k)))) +
-      years.map((y) => `<h3>${y}</h3><ul>` + l.filter((r) => r.y === y).sort((a, b) => (parseInt(a.ord) || 0) - (parseInt(b.ord) || 0)).map((r) => {
-        const ord = r.ord && r.ord.length < 12 ? "N.º " + esc(r.ord) : "";
-        return `<li><span class="yr">${ord}</span><span title="${esc(what(r))}">${esc(clip(what(r), 160))}${marks(r)} ${prizeBadges(r, true)}${r.sv ? ' <span class="dim">' + (r.pz[0].lk === "pen" ? "Premio todavía sin vincular con una obra del catálogo" : "Premio sin obra en el listado de expositoras") + '</span>' : ""}<span class="cit">${esc(r.cit)}</span></span></li>`;
-      }).join("") + "</ul>").join("") +
+      years.map((y) => `<h3>${y}</h3><ul class="obras">` + porCategoria(l.filter((r) => r.y === y)) + "</ul>").join("") +
       `<div class="acts"><button type="button" class="btn" data-act="copyficha">Copiar obras</button><button type="button" class="btn" data-act="copylink">Copiar enlace a esta ficha</button><button type="button" class="btn" data-act="citeficha">Copiar cita de esta ficha</button></div>` +
       `<p class="foot">${nm.length ? "También figura como: " + esc(nm.join("; ")) + ". " : ""}La ficha muestra todas las obras de este nombre, sin aplicar los filtros.</p>`;
   }
@@ -1194,10 +1601,10 @@ const DATA = __DATA__;
       el.innerHTML = '<p class="empty" style="padding:1rem">No se pudo cargar la red: necesita conexión a internet para las bibliotecas sigma.js y graphology.</p>'; return;
     }
     const css = getComputedStyle(document.documentElement), cv = (k) => css.getPropertyValue(k).trim();
-    const C = { y15: cv("--y15"), y16: cv("--y16"), both: cv("--ink"), lug: "#8b97c9", con: cv("--ink2"), com: cv("--gold"), fade: "#e8eaf1",
+    const C = { ins: "#8c6d4f", y15: cv("--y15"), y16: cv("--y16"), both: cv("--ink"), lug: "#b8bcc8", con: cv("--ink2"), com: "#2e8b6e", fade: "#e8eaf1",
       ap: cv("--madder"), base: "#dfe3ed", org: "#dcc796" };
     const PAL = ["#2a3b91", "#e07a2e", "#7a5cc9", "#2e8b6e", "#b0372b", "#a97b24", "#3a8fb7", "#c25b9b", "#6b8e23", "#8c6d4f"];
-    const TIPO = { "expositora": "exp", "institución": "exp", "lugar": "lug", "concurso": "con", "comisión": "com" };
+    const TIPO = { "expositora": "exp", "institución": "ins", "lugar": "lug", "concurso": "con", "comisión": "com" };
     const QC = { tec: "#0f766e", mat: "#9d174d", cat: "#475569" }, QE = { tecnica: "#a7d8cf", material: "#e9b6cc", categoria: "#cbd2dc" };
     const G = new graphology.Graph({ type: "undirected" });
     let sd = 11; const rnd = () => ((sd = (sd * 16807) % 2147483647) / 2147483647);
@@ -1212,7 +1619,9 @@ const DATA = __DATA__;
     const L = graphologyLibrary;
     // en la disposición, los concursos casi no tiran: unidos a todas, aplastarían la red en un disco
     const PESO = { participa: 0.03, procede: 1, mismo_apellido: 2, apellido_comision: 0.5, organiza: 0.3, es_expositora: 1 };
-    G.forEachEdge((e, a) => G.setEdgeAttribute(e, "weight", PESO[a.t] || 1));
+    // las instituciones no pesan como una persona: sus conexiones casi no tiran en la disposición
+    const esIns = (n) => G.getNodeAttribute(n, "g") === "ins";
+    G.forEachEdge((e, a, s, t) => G.setEdgeAttribute(e, "weight", esIns(s) || esIns(t) ? 0.02 : PESO[a.t] || 1));
     L.layoutForceAtlas2.assign(G, { iterations: 900, getEdgeWeight: "weight", weighted: true,
       settings: { ...L.layoutForceAtlas2.inferSettings(G), barnesHutOptimize: true, scalingRatio: 10, gravity: 1, edgeWeightInfluence: 1 } });
     // técnicas, materiales y categorías: se agregan después de la disposición, para no
@@ -1239,16 +1648,17 @@ const DATA = __DATA__;
     const provs = new Map(); G.forEachNode((n, a) => { if (a.prov) provs.set(a.prov, (provs.get(a.prov) || 0) + 1); });
     const PRVS = [...provs.entries()].sort((a, b) => b[1] - a[1]), pvCol = new Map(PRVS.slice(0, PAL.length).map(([p], i) => [p, PAL[i]]));
 
-    const S = { sel: null, hov: null };
+    const S = { sel: null, hov: null, grp: null, q: "" };
     const on = (id) => $(id).checked;
     const visible = (n, a) => {
       if (!on("r-t-" + a.g)) return false;
-      if (on("r-rep") && a.g === "exp" && a.conc !== "1915, 1916") return false;
+      if (on("r-rep") && (a.g === "exp" || a.g === "ins") && a.conc !== "1915, 1916") return false;
       return true;
     };
     const color = (n, a) => {
       const m = $("r-color").value;
       if (QC[a.g]) return QC[a.g];
+      if (a.g === "ins") return C.ins;
       if (m === "tipo") return a.g === "exp" ? C.both : a.g === "lug" ? C.lug : a.g === "con" ? C.con : C.com;
       if (m === "loc") return a.g === "con" ? C.con : a.g === "com" ? C.com : a.g === "lug" ? lcCol.get(n) || "#b9bfcf" : a.loc ? lcCol.get(a.loc) || "#b9bfcf" : C.fade;
       if (m === "prov") return a.g === "con" ? C.con : a.g === "com" ? C.com : pvCol.get(a.prov) || "#b9bfcf";
@@ -1259,7 +1669,7 @@ const DATA = __DATA__;
       if (a.g === "con") return 16;
       if (QC[a.g]) return 4 + 1.1 * Math.sqrt(a.ob);
       if ($("r-size").value === "grado") return 2.5 + 1.1 * Math.sqrt(a.deg);
-      return a.g === "exp" ? 2.5 + 1.4 * Math.sqrt(a.ob || 1) : a.g === "lug" ? 3 + 1.1 * Math.sqrt(a.ob || 1) : 4;
+      return a.g === "exp" || a.g === "ins" ? 2.5 + 1.4 * Math.sqrt(a.ob || 1) : a.g === "lug" ? 3 + 1.1 * Math.sqrt(a.ob || 1) : 4;
     };
     const foco = () => S.hov || S.sel;
     const edgeOn = (e, a, s, t) => {
@@ -1274,8 +1684,16 @@ const DATA = __DATA__;
         if (!visible(n, a)) return { ...a, hidden: true };
         const r = { ...a, color: color(n, a), size: size(n, a), zIndex: 1 };
         const f = foco();
+        // con una búsqueda activa, el foco muestra solo sus vecinos dentro de lo buscado
+        const vecino = (m) => G.areNeighbors(m, f) && (!S.grp || S.grp.has(m) || S.grp.has(f));
         if (f) {
-          if (n === f || G.areNeighbors(n, f)) { r.zIndex = 2; r.forceLabel = true; r.highlighted = n === f; }
+          if (n === f || vecino(n)) { r.zIndex = 2; r.forceLabel = true; r.highlighted = n === f; }
+          else if (S.grp && S.grp.has(n)) { r.label = ""; r.zIndex = 1; }
+          else { r.color = C.fade; r.label = ""; r.zIndex = 0; }
+        } else if (S.grp) {
+          // búsqueda por palabra (un apellido): todas las coincidencias, con sus vecinos sin rótulo
+          if (S.grp.has(n)) { r.zIndex = 3; r.forceLabel = true; r.highlighted = true; }
+          else if ([...S.grp].some((g) => G.areNeighbors(n, g))) r.zIndex = 2;
           else { r.color = C.fade; r.label = ""; r.zIndex = 0; }
         }
         return r;
@@ -1285,6 +1703,8 @@ const DATA = __DATA__;
         if (!edgeOn(e, a, s, t)) return { ...a, hidden: true };
         const f = foco();
         if (f && s !== f && t !== f) return { ...a, hidden: true };
+        if (f && S.grp && !S.grp.has(s) && !S.grp.has(t)) return { ...a, hidden: true };
+        if (!f && S.grp && !S.grp.has(s) && !S.grp.has(t)) return { ...a, hidden: true };
         const ap = a.t === "mismo_apellido" || a.t === "apellido_comision";
         return { ...a, color: ap ? C.ap : QE[a.t] || (a.t === "organiza" || a.t === "es_expositora" ? C.org : C.base), size: ap ? 1.6 : f ? 1 : 0.5, zIndex: ap ? 1 : 0 };
       },
@@ -1299,10 +1719,17 @@ const DATA = __DATA__;
     const nodoBtn = (m) => `<button type="button" class="plink" data-act="rnode" data-n="${esc(m)}">${esc(G.getNodeAttribute(m, "label"))}</button>`;
     function info() {
       const n = S.sel, box = $("r-sel");
+      if (!n && S.grp) {
+        const l = [...S.grp].sort((x, y) => G.getNodeAttribute(x, "label").localeCompare(G.getNodeAttribute(y, "label"), "es"));
+        box.innerHTML = `<span class="eyebrow">Búsqueda</span><h3>«${esc(S.q)}»</h3><p class="mxnote" style="margin:0">${plural(l.length, "coincidencia", "coincidencias")}. Seleccione una para ver sus conexiones.</p>` +
+          `<ul>${l.map((m) => `<li>${nodoBtn(m)}</li>`).join("")}</ul>`;
+        return;
+      }
       if (!n) { box.innerHTML = '<p class="mxnote">Seleccione un nodo para ver sus conexiones.</p>'; return; }
       const a = G.getNodeAttributes(n), por = {};
-      G.forEachEdge(n, (e, ea, s, t) => { const m = s === n ? t : s; (por[ea.t] = por[ea.t] || []).push([m, ea.d]); });
-      const tipo = { exp: a.t === "institución" ? "Institución" : "Expositora", lug: "Lugar", con: "Concurso", com: "Comisión organizadora", tec: "Técnica", mat: "Material", cat: "Categoría del catálogo" }[a.g];
+      // con una búsqueda activa, solo las conexiones dentro de lo buscado
+      G.forEachEdge(n, (e, ea, s, t) => { const m = s === n ? t : s; if (S.grp && !S.grp.has(n) && !S.grp.has(m)) return; (por[ea.t] = por[ea.t] || []).push([m, ea.d]); });
+      const tipo = { exp: "Expositora", ins: "Institución", lug: "Lugar", con: "Concurso", com: "Comisión organizadora", tec: "Técnica", mat: "Material", cat: "Categoría del catálogo" }[a.g];
       if (QC[a.g]) {
         // técnica, material o categoría: por localidad y quiénes
         const loc = new Map(), ps = [];
@@ -1314,12 +1741,13 @@ const DATA = __DATA__;
           `<h4>Expositoras · ${ps.length}</h4><ul>${ps.slice(0, 40).map(([m, k]) => `<li>${nodoBtn(m)} <span class="dim">${plural(k, "obra", "obras")}</span></li>`).join("")}${ps.length > 40 ? `<li class="dim">y ${ps.length - 40} más</li>` : ""}</ul>`;
         return;
       }
-      const det = a.g === "exp" ? `${esc(a.conc)} · ${plural(a.ob, "obra", "obras")}${a.pr ? " · " + plural(a.pr, "premio", "premios") : ""}${a.prov ? " · " + esc(a.prov) : ""}` :
+      const det = a.g === "exp" || a.g === "ins" ? `${esc(a.conc)} · ${plural(a.ob, "obra", "obras")}${a.pr ? " · " + plural(a.pr, "premio", "premios") : ""}${a.prov ? " · " + esc(a.prov) : ""}` :
         a.g === "lug" ? `${esc(a.prov)} · ${plural(a.ob, "obra", "obras")}` : a.g === "com" ? esc(a.conc) : "";
       const grupos = Object.keys(QUE).filter((k) => por[k]).map((k) => `<h4>${QUE[k]} · ${por[k].length}</h4><ul>` +
         por[k].slice(0, 40).map(([m, d]) => `<li>${nodoBtn(m)}${d && k !== "procede" && k !== "participa" ? ` <span class="dim">${esc(d)}</span>` : ""}</li>`).join("") +
         (por[k].length > 40 ? `<li class="dim">y ${por[k].length - 40} más</li>` : "") + `</ul>`).join("");
-      box.innerHTML = `<span class="eyebrow">${tipo}</span><h3>${esc(a.label)}</h3><p class="mxnote" style="margin:0">${det}</p>${grupos}` +
+      box.innerHTML = `<span class="eyebrow">${tipo}</span><h3>${esc(a.label)}</h3><p class="mxnote" style="margin:0">${det}</p>` +
+        (S.grp && !S.grp.has(n) ? `<p class="mxnote" style="margin:0.4rem 0 0">Solo las conexiones con «${esc(S.q)}». Borre la búsqueda para ver todas.</p>` : "") + grupos +
         (a.pk && byPk.has(a.pk) ? `<button type="button" class="btn" data-act="person" data-pk="${esc(a.pk)}">Abrir la ficha</button>` : "");
     }
     function select(n, mover) {
@@ -1336,8 +1764,8 @@ const DATA = __DATA__;
       else if (m === "prov") h = PRVS.slice(0, PAL.length).map(([p, k]) => it(pvCol.get(p), `${p} (${k})`)).join("") + it(C.com, "Comisión");
       else if (m === "loc") h = LOCS.slice(0, PAL.length).map(([l, k]) => it(lcCol.get(l), `${G.getNodeAttribute(l, "label")} (${k})`)).join("") +
         it("#b9bfcf", `Otras ${LOCS.length - PAL.length} localidades`) + it(C.fade, "Sin dato de procedencia");
-      else h = it(C.both, "Expositora o institución") + it(C.lug, "Lugar") + it(C.con, "Concurso") + it(C.com, "Comisión");
-      $("r-leg").innerHTML = h + ["tec", "mat", "cat"].filter((g) => on("r-t-" + g)).map((g) => it(QC[g], { tec: "Técnica", mat: "Material", cat: "Categoría del catálogo" }[g])).join("") +
+      else h = it(C.both, "Expositora") + it(C.lug, "Lugar") + it(C.con, "Concurso") + it(C.com, "Comisión");
+      $("r-leg").innerHTML = h + (on("r-t-ins") ? it(C.ins, "Institución") : "") + ["tec", "mat", "cat"].filter((g) => on("r-t-" + g)).map((g) => it(QC[g], { tec: "Técnica", mat: "Material", cat: "Categoría del catálogo" }[g])).join("") +
         it(C.ap, "Mismo apellido y misma localidad", true);
       let nv = 0, ne = 0;
       G.forEachNode((n, a) => { if (visible(n, a)) nv++; });
@@ -1345,12 +1773,29 @@ const DATA = __DATA__;
       $("r-stats").innerHTML = `${plural(nv, "nodo", "nodos")} y ${plural(ne, "conexión", "conexiones")} a la vista.`;
     }
     RED.leyenda = leyenda; RED.info = info;
-    ["r-t-exp", "r-t-lug", "r-t-con", "r-t-com", "r-t-tec", "r-t-mat", "r-t-cat", "r-ap", "r-rep", "r-color", "r-size"].forEach((id) => { $(id).onchange = () => { leyenda(); Sg.refresh(); }; });
-    $("r-names").innerHTML = G.mapNodes((n, a) => `<option value="${esc(a.label)}">`).join("");
-    $("r-q").onchange = () => {
-      const q = strip($("r-q").value); const n = G.findNode((m, a) => strip(a.label) === q) || G.findNode((m, a) => strip(a.label).includes(q));
-      if (q && n) select(n, true);
-    };
+    ["r-t-exp", "r-t-ins", "r-t-lug", "r-t-con", "r-t-com", "r-t-tec", "r-t-mat", "r-t-cat", "r-ap", "r-rep", "r-color", "r-size"].forEach((id) => { $(id).onchange = () => { leyenda(); Sg.refresh(); }; });
+    // un nombre exacto selecciona ese nodo; una palabra suelta (p. ej. un apellido) resalta todas las coincidencias
+    function buscar() {
+      const raw = $("r-q").value.trim(), q = strip(raw);
+      S.grp = null; S.q = raw;
+      if (!q) { info(); Sg.refresh(); return; }
+      const exacto = G.findNode((m, a) => visible(m, a) && strip(a.label) === q);
+      if (exacto) { select(exacto, true); return; }
+      const pal = new RegExp("(^|[^a-z0-9])" + q.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"));
+      const ms = G.filterNodes((m, a) => visible(m, a) && pal.test(strip(a.label)));
+      if (!ms.length) { $("r-sel").innerHTML = `<p class="mxnote">Nada coincide con «${esc(raw)}» entre los nodos a la vista.</p>`; Sg.refresh(); return; }
+      if (ms.length === 1) { select(ms[0], true); return; }
+      S.sel = null; S.grp = new Set(ms); info(); Sg.refresh();
+      const ps = ms.map((m) => Sg.getNodeDisplayData(m)).filter(Boolean);
+      if (ps.length) {
+        const xs = ps.map((d) => d.x), ys = ps.map((d) => d.y), cx = (Math.min(...xs) + Math.max(...xs)) / 2, cy = (Math.min(...ys) + Math.max(...ys)) / 2;
+        const span = Math.max(Math.max(...xs) - Math.min(...xs), Math.max(...ys) - Math.min(...ys));
+        Sg.getCamera().animate({ x: cx, y: cy, ratio: Math.min(1, Math.max(0.2, span * 1.4)) }, { duration: 500 });
+      }
+    }
+    let tq;
+    $("r-q").oninput = () => { clearTimeout(tq); tq = setTimeout(buscar, 350); };
+    $("r-q").onchange = buscar;
     el.insertAdjacentHTML("beforeend", '<div class="rzoom"><button type="button" aria-label="Acercar">+</button><button type="button" aria-label="Alejar">−</button><button type="button" aria-label="Ver toda la red">⤢</button></div><p class="rhint">Arrastre para mover · rueda para acercar · seleccione un nodo</p>');
     const zb = el.querySelectorAll(".rzoom button"), cam = Sg.getCamera();
     zb[0].onclick = () => cam.animatedZoom({ duration: 300 }); zb[1].onclick = () => cam.animatedUnzoom({ duration: 300 }); zb[2].onclick = () => cam.animatedReset({ duration: 300 });
@@ -1462,7 +1907,7 @@ const DATA = __DATA__;
   (function comisiones() {
     const por = new Map();
     DATA.comision.forEach((c) => { if (!por.has(c.n)) por.set(c.n, []); por.get(c.n).push(c); });
-    const rol = (cs, a) => cs.filter((c) => c.a === a).map((c) => esc(c.r) + (c.s ? ` (${esc(c.s)})` : "") + (c.f.startsWith("El Orden") ? ` <span class="dim">· según ${esc(c.f)}</span>` : "")).join("; ") || "—";
+    const rol = (cs, a) => cs.filter((c) => c.a === a).map((c) => esc(c.r) + (c.s ? ` (${esc(c.s)})` : "") + (c.f.startsWith("El Orden") ? ` <span class="dim">· según ${esc(c.f)}</span>` : "")).join("; ") || "s/d";
     const filas = [...por.entries()].sort((a, b) => (b[1].length - a[1].length) || a[0].localeCompare(b[0], "es"));
     $("p-com").innerHTML = `<table class="tb"><thead><tr><th>Nombre</th><th>1915</th><th>1916</th><th>Vínculo con las expositoras</th></tr></thead><tbody>` +
       filas.map(([n, cs]) => {
@@ -1474,6 +1919,9 @@ const DATA = __DATA__;
 
   /* ---------------------------------------------------------------- arranque */
   buildSelects();
+  // cifras de la cabecera: salen de los datos, se actualizan solas
+  $("cifras").innerHTML = [["2", "concursos"], [fmt(R.length), "obras"], [fmt(byPk.size), "expositoras"],
+    [fmt(new Set(R.map((r) => r.pv).filter((v) => v !== "sd")).size), "provincias"]].map(([n, t]) => `<li><b>${n}</b><span>${t}</span></li>`).join("");
   readHash();
   render();
 })();

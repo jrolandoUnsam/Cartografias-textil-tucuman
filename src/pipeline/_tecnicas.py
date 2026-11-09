@@ -5,8 +5,8 @@ Las reglas están en `decisiones/tecnicas_materiales.csv`, revisada por LM (28/1
 etiqueta, técnica general (`grupo`), `patron` y `excepto` sobre el texto sin tildes y en
 minúsculas. Los términos sin `clave` (puntilla, tejido a mano, hilado, teñido) no se usan.
 Si el texto no nombra ninguna técnica se usa la de la categoría
-(`familias_categorias.csv`, `tecnica_por_categoria`); si tampoco hay, "sin técnica
-indicada". El texto del catálogo no se toca.
+(`familias_categorias.csv`, `tecnica_por_categoria`); si tampoco hay, "Sin
+identificar". El texto del catálogo no se toca.
 """
 from __future__ import annotations
 
@@ -23,7 +23,7 @@ FAMILIAS = DECISIONES / "familias_categorias.csv"
 # Técnicas que no salen de las reglas: la de la categoría cuando no se puede precisar,
 # y la falta de dato.
 TEC_SIN_REGLA = {"encrand": "Encaje o randa (sin precisar)",
-                 "bordesh": "Bordado o deshilado (sin precisar)", "sin": "Sin técnica indicada"}
+                 "bordesh": "Bordado o deshilado (sin precisar)", "sin": "Sin identificar"}
 
 # de dónde sale la técnica de una obra
 ORIGEN = {"o": "texto de la obra", "c": "categoría del catálogo", "n": "sin dato"}

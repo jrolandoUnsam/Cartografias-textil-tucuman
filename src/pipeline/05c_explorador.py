@@ -1,4 +1,4 @@
-"""Etapa 05c — Explorador web (mapa, técnicas por provincia, expositoras).
+"""Etapa 05c: explorador web (mapa, técnicas por provincia, expositoras).
 
 Llena la plantilla `plantillas/explorador.template.html` con los datos de la tabla
 normalizada y escribe `outputs/explorador.html`: un único archivo, sin servidor, que
@@ -52,6 +52,8 @@ Salida  : outputs/explorador.html
 """
 from __future__ import annotations
 
+import base64
+import io
 import json
 import re
 from collections import Counter
@@ -66,8 +68,15 @@ FUENTE = PROCESSED / "tabla_normalizada.xlsx"
 CRUDOS = INTERIM / "objetos_crudos.csv"
 PRENSA = DECISIONES / "menciones_prensa.csv"
 COMISIONES = DECISIONES / "comisiones.csv"
+# género de quienes figuran solo en el fallo (sin ficha en la hoja Expositoras), inferido del nombre
+GENERO_FALLO = DECISIONES / "genero_solo_fallo.csv"
+ALBUM = DECISIONES / "album_1915.csv"
+ACCESIT = DECISIONES / "accesit_fallo.csv"  # accésits fuera de la sección Accésit del fallo
 REDES = PROCESSED / "redes.xlsx"  # hoja Grupos, de 05a_redes
 PLANTILLAS = RAIZ / "src" / "pipeline" / "plantillas"
+# fotos del álbum de 1915: versiones livianas (en el repo) de las tomas de `data/raw/images/albumes/`
+FOTOS_DIR = PLANTILLAS / "album"
+FOTOS_RAW = RAIZ / "data" / "raw" / "images" / "albumes" / "1915-album-version-2"
 SALIDA = RAIZ / "outputs" / "explorador.html"
 
 SEDE_CIUDAD = 2  # San Miguel de Tucumán: sede de los dos concursos
@@ -153,12 +162,18 @@ def premios(P: pd.DataFrame) -> list[dict]:
     (Rosa Alderete, randas n.º 17 a 21) se cuelga de cada una, pero cuenta una vez.
     """
     out = []
+    # el fallo también llama accesits a premios de otras secciones (Crochet e Irlanda)
+    acc = {int(a.premio_id): a.nombre_en_fallo for a in leer_csv(ACCESIT).itertuples()} if ACCESIT.exists() else {}
     for _, r in P.iterrows():
         nombre = texto(r["Nombre en el fallo"])
+        pid_ = int(r["premio_id"])
+        if pid_ in acc and clave(acc[pid_]) != clave(nombre):
+            print(f"  ⚠ accesit_fallo.csv: premio_id {pid_} es {nombre!r}, no {acc[pid_]!r}; no se marca")
+            acc.pop(pid_)
         seccion, obj = texto(r["Sección del fallo"]), texto(r["Objeto en el fallo"])
         sec = clave(seccion)
         pr = clave(r["Premio"])
-        if sec == "accesit":
+        if sec == "accesit" or pid_ in acc:
             tipo = "Accésit"
         elif sec == "estimulo":
             tipo = "Premio de estímulo"
@@ -219,6 +234,8 @@ def datos() -> dict:
         print(f"  ⚠ categorías sin fila en {FAMILIAS.name}: {sorted(falta)}")
 
     recs = []
+    alb = leer_csv(ALBUM)
+    posicion = {int(a): p for a, p in zip(alb["objeto_id"], alb["posicion"]) if a.strip() and p.strip()}
     for o in O.sort_values("objeto_id").itertuples():
         n = texto(nombre.get(o.expositora_id)) or "Sin nombre"
         crudo = texto(crudos.get(o.objeto_id))
@@ -252,6 +269,8 @@ def datos() -> dict:
             r["li"] = 1  # localidad deducida de las otras obras de la expositora (04d)
         if texto(getattr(o, "foto_album", "")):
             r["fa"] = texto(o.foto_album)  # foto del álbum de 1915 (04c)
+            if posicion.get(o.objeto_id):
+                r["fp"] = posicion[o.objeto_id]  # dónde está la obra en la foto
         recs.append(r)
     por_obj = {r["oid"]: r for r in recs}
 
@@ -280,6 +299,8 @@ def datos() -> dict:
     diario = {int(f): texto(d).split(",")[0] for f, d in zip(fuentes.fuente_id, fuentes.descripcion)}
     prensa = []
     for m in leer_csv(PRENSA).itertuples():
+        if m.mostrar.strip().lower() == "no":  # descartada en la revisión (ver `nota`)
+            continue
         oids = [int(x) for x in m.objeto_id.split(";") if x.strip()]
         lugares_m = [de_ciudad[int(c)] for c in m.ciudad_id.split(";") if c.strip() and int(c) in de_ciudad]
         k = len(prensa)
@@ -376,6 +397,9 @@ def obra_sin_catalogo(z, recs, nombre, genero, places, de_ciudad, C) -> dict:
     # el material sólo del objeto: la sección "Bordado en blanco y seda" no dice que la obra sea de seda
     mat = materiales(z["objeto"], "")
     g = texto(genero.get(pid)) if pid is not None else ""
+    if not g:
+        gf = leer_csv(GENERO_FALLO)
+        g = dict(zip(gf["nombre_en_fallo"].map(clave), gf["genero"])).get(clave(z["nombre"]), "")
     return {"i": len(recs), "y": 1915, "n": n, "nv": z["nombre"],
             **({"mat": mat} if mat else {}), **({"g": g} if g else {}),
             "pk": str(pid) if pid is not None else "x:" + slug(z["nombre"]),
@@ -406,11 +430,45 @@ def js(obj) -> str:
     return json.dumps(obj, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
 
 
+def fotos_album(nombres) -> dict:
+    """Foto del álbum -> data URI. Usa la versión liviana de `plantillas/album/`; si falta y está el
+    original (fuera del repo), la crea: 1800 px de lado (para que el zoom se lea), JPEG."""
+    from PIL import Image, ImageOps
+    FOTOS_DIR.mkdir(exist_ok=True)
+    out = {}
+    for n in sorted(nombres):
+        liv = FOTOS_DIR / f"{n}.jpg"
+        if not liv.exists():
+            orig = next(iter(FOTOS_RAW.glob(n + ".*")), None)
+            if orig is None:
+                print(f"  ⚠ foto del álbum {n}: no está ni la versión liviana ni el original")
+                continue
+            im = ImageOps.exif_transpose(Image.open(orig)).convert("RGB")
+            im.thumbnail((1800, 1800), Image.LANCZOS)
+            im.save(liv, quality=72, optimize=True, progressive=True)
+        out[n] = "data:image/jpeg;base64," + base64.b64encode(liv.read_bytes()).decode("ascii")
+    return out
+
+
+def logo(archivo: str, ancho: int = 900) -> str:
+    """PNG de `plantillas/` achicado a `ancho` px y pegado como data URI: el HTML sigue siendo un solo archivo."""
+    from PIL import Image
+    im = Image.open(PLANTILLAS / archivo)
+    if im.width > ancho:
+        im = im.resize((ancho, round(im.height * ancho / im.width)), Image.LANCZOS)
+    buf = io.BytesIO()
+    im.save(buf, format="PNG", optimize=True)
+    return "data:image/png;base64," + base64.b64encode(buf.getvalue()).decode("ascii")
+
+
 def main() -> None:
     D = datos()
     plantilla = (PLANTILLAS / "explorador.template.html").read_text(encoding="utf-8")
     piezas = {
         "__LEAFLET_CSS__": (PLANTILLAS / "leaflet-1.9.4.css").read_text(encoding="utf-8").strip(),
+        "__LOGO_CIAP__": logo("CIAP_COMPLETO_UNSAM_CONICET_color.png"),
+        "__LOGO_ECYT__": logo("logo_ecyt.png"),
+        "__FOTOS__": js(fotos_album({r["fa"] for r in D["recs"] if "fa" in r})),
         "__DATA__": js(D),
     }
     for k in piezas:

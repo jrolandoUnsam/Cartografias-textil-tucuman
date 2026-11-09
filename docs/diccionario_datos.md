@@ -246,6 +246,32 @@ La lee `05c_explorador`: cada mención aparece en la ficha de la persona, en sus
 | `nivel` | `obra`, `persona` o `lugar`: a qué se puede atar la mención con seguridad |
 | `cita` | el pasaje, textual de la transcripción |
 | `nota` | cómo se identificó la obra o la persona, y dudas |
+| `mostrar` | `no` para una mención descartada en la revisión (queda registrada, pero el explorador no la muestra); vacío = se muestra |
+
+## `data/interim/decisiones/genero_solo_fallo.csv`
+
+Género de quienes figuran solo en el fallo del jurado de 1915 (premio sin obra en el
+catálogo) y por eso no tienen fila en la hoja `Expositoras` (5 filas). Se infiere del
+nombre, como el resto de la base. La lee `05c_explorador` para el filtro Expositores.
+
+| campo | descripción |
+|---|---|
+| `nombre_en_fallo` | nombre tal como figura en el fallo |
+| `genero` | `F`, `M` o `I` (institución) |
+| `nota` | de dónde sale |
+
+## `data/interim/decisiones/accesit_fallo.csv`
+
+Premios que el fallo de 1915 llama accésit fuera de la sección Accésit (4 filas: los de
+$ 25 de Crochet e Irlanda, p. 20, DSCN5256). Con los 8 de esa sección suman 12. La lee
+`05c_explorador`, que los muestra como «Accésit» sin cambiar su sección del fallo; si el
+nombre no coincide con el del `premio_id`, avisa y no lo marca.
+
+| campo | descripción |
+|---|---|
+| `premio_id` | `premio_id` de la hoja `Premios` |
+| `nombre_en_fallo` | nombre tal como figura en el fallo, para controlar que el id sea el correcto |
+| `nota` | de dónde sale |
 
 ## `data/interim/decisiones/comisiones.csv`
 
