@@ -996,6 +996,16 @@ en el repo para cotejarlo.
 Controles: "Varios lugares del catálogo, una misma localidad actual" 14 → 10, "Expositora
 en varias localidades de una provincia" 16 → 13 y "Lecturas dudosas en el lugar" 3 → 1.
 
+## 2026-11-10: Elvira Rodríguez They vuelve a S/D
+
+Se deshace lo del 9/11: el fallo dice "SAN RAFAEL" pero duda de la provincia
+("TUCUMÁN?"), y no se sabe si es San Rafael de Mendoza o un paraje de Tucumán. Decisión
+de Julián: no marcarla. Salen las filas de San Rafael (ciudad 83) de
+`separaciones_ciudades.csv` y `coordenadas_ciudades.csv`; el objeto 90 vuelve a S/D (14),
+como dice el catálogo, y el lugar del fallo queda en `Premios`. Ciudades: 75 → 74 (58 con
+punto, 67 con punto de provincia). Controles: "Ubicaciones tentativas o ambiguas" 2 → 1 y
+"Lugar del fallo distinto del catálogo" 3 → 4.
+
 ## Fuentes del crudo que no entran al pipeline
 
 Hojas `no PRENSA-EL ORDEN`, `no ARCHIVO PADILLA`, `no Prensa-Rakow lib`: material de
