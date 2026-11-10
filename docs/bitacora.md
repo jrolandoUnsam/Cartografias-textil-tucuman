@@ -6,8 +6,7 @@ descartadas. Cada entrada: fecha, decisión, motivo.
 ## 2026-09: Reconstrucción del pipeline
 
 - **El Excel crudo (`data/raw/…`) no se toca.** Todo el procesamiento pasa a código
-  reproducible. El estado actual de `data/processed/` y `data/interim/` se toma como
-  objetivo a reproducir ("golden", copiado en `tests/golden/`).
+  reproducible.
 - **`revision_duplicados.xlsx` es una salida anotada a mano.** El pipeline genera los
   pares candidatos (fuzzy matching); las columnas `Hecho` y `Comentarios` son insumo
   humano. Al regenerar, solo se agregan pares nuevos: nunca se pisan anotaciones.
@@ -64,12 +63,10 @@ descartadas. Cada entrada: fecha, decisión, motivo.
   listas Python dentro de `04_aplicar_dedup.py`; ahora el script solo ejecuta y la
   decisión es un dato revisable sin abrir código, igual que el resto de
   `data/interim/decisiones/`. La columna `origen` conserva de dónde salió cada una.
-- **La línea de base de `audit_comentarios.py` pasó de `tests/golden/` a
-  `tabla_normalizada_manual.xlsx`.** El golden se re-congela junto con las salidas, así
-  que la auditoría se comparaba contra una foto de sí misma y daba siempre "idéntica".
-  La base correcta es la tabla tal como la dejó la investigadora, antes de que el
-  pipeline aplicara nada. Con el cambio, el informe reporta 83 objetos reasignados y
-  48 filas de `Expositoras` eliminadas.
+- **La línea de base de `audit_comentarios.py` es `tabla_normalizada_manual.xlsx`**:
+  la tabla tal como la dejó la investigadora, antes de que el pipeline aplicara nada.
+  Contra esa base, el informe reporta 83 objetos reasignados y 48 filas de
+  `Expositoras` eliminadas.
 - **El encabezado del informe de auditoría ahora se calcula.** Estaba escrito a mano
   dentro del generador y afirmaba que ninguna fusión se había aplicado, mientras las
   filas del mismo informe listaban 45 `FUSIÓN OK`.
@@ -120,10 +117,6 @@ Se corrió el pipeline entero y se verificó, dato por dato, lo que afirmaban el
   mismo ciclo que se cerró en `03_candidatos` el 2026-09-15 y que quedó sin cerrar
   acá. `src/pipeline/README.md` afirmaba que ninguna etapa leía la salida de una
   posterior: era falso y se corrigió.
-- **`tests/golden/` quedó desactualizado y `06_verificar` falla siempre**, porque el
-  snapshot no se re-congeló después de que `04d` agregara `lat`/`lon` y `04c`
-  agregara `Imagen`. Mientras tanto la etapa 06 no verifica nada. Re-congelarlo va en
-  un commit propio, según la regla de `tests/golden/README.md`.
 - **Dos fusiones del CSV contradicen el comentario anotado a mano**, las dos con
   `origen = sin_lado`: `4,404` (Dalmira González Sorol: el comentario pedía dejarlas
   separadas) y `222,115` (María Ávila: pedía conservar 115 y quedó 222). El criterio
@@ -228,7 +221,7 @@ pipeline.
 
 ## 2026-10-25: Revisión de LM: pares, premios y Santiago
 
-- **Todo entra por tablas de decisión** (pedido de Julián): nada se corrigió a mano en
+- **Todo entra por tablas de decisión** (decisión de Julián): nada se corrigió a mano en
   la tabla manual. Dos tablas nuevas que lee `04_aplicar_dedup`:
   `nombres_expositoras.csv` (nombre final después de fusionar; hasta ahora los nombres
   con corchetes se escribían a mano en la tabla) y `fusiones_ciudades.csv`.
@@ -253,8 +246,8 @@ auditoría y el EDA leían la hoja vieja.
 - `03b_premios` pasa a ser `04e_premios` y corre después de `04d`, sobre las
   expositoras, objetos e imágenes de la misma corrida: se cierra el último ciclo del
   pipeline.
-- Escribe la hoja `Premios` curada en `tabla_normalizada.xlsx` (pedido de Julián: "la
-  hoja premios debería darme todos los premios con el catálogo ya cruzado y curado").
+- Escribe la hoja `Premios` curada en `tabla_normalizada.xlsx` (decisión de Julián:
+  todos los premios, con su obra del catálogo ya cruzada y curada).
   Una fila por premio, con lo que dice el fallo, la obra del catálogo, `Estado`,
   `Vínculo` y `Nota`. Las columnas de trabajo de la revisión no van.
 - `premios_vinculados.xlsx` se elimina. El explorador, la auditoría y el EDA leen la
@@ -309,7 +302,7 @@ sin nota.
 ## 2026-10-25: Fotos del álbum de 1915 vinculadas a sus obras
 
 LM transcribió qué pieza se ve en cada foto del álbum de 1915 (n.º, descripción,
-posición). Nos tocaba encontrar cada pieza en el catálogo: se cruzó por n.º y
+posición). Cada pieza se buscó en el catálogo: se cruzó por n.º y
 descripción, y se revisó a mano. 12 de las 14 quedan vinculadas (`objeto_id` en
 `decisiones/album_1915.csv`). Una primera prueba automática daba sólo 10: comparaba
 palabras sueltas y elegía mal la sobrecama de filet (es Encajes varios n.º 8, D'Empaire)
@@ -377,11 +370,10 @@ celda. Correcciones aplicadas (decisión de Julián, punto por punto):
   textil argentino"); "Proyecto Interdisciplinario"; ya no afirma que el Nivel 1 esté
   cerrado.
   Sin modo oscuro: se ve siempre claro, aunque el sistema esté en oscuro (Julián).
-- **Pipeline:** `run_pipeline.py 04d` arranca en 04d; `06` deja de comparar
-  `revision_duplicados.xlsx` (insumo, no salida); una sola regla de institución
+- **Pipeline:** `run_pipeline.py 04d` arranca en 04d; una sola regla de institución
   (`INSTITUCION`, `_util.py`) para el explorador y el EDA.
-- **Docs:** números al día (61/77 ciudades con punto, 449 F y 9 M, 141 pares candidatos,
-  estado real del golden) y lo que quedó abierto, en `tareas_pendientes.md`.
+- **Docs:** números al día (61/77 ciudades con punto, 449 F y 9 M, 141 pares candidatos)
+  y lo que quedó abierto, en `tareas_pendientes.md`.
 
 ## 2026-10-28: Respuestas de LM del 28/10
 
@@ -402,8 +394,6 @@ celda. Correcciones aplicadas (decisión de Julián, punto por punto):
   19?) no lo contestó.
 - **Orán:** LM se inclina por Tucumán, pero no hay información suficiente; espera la
   respuesta del archivo. No cambia nada en la base.
-- `06_verificar` marca 8 celdas de `Expositoras` y 2 de `Premios` contra el golden, todas
-  de estas decisiones: hay que volver a congelarlo.
 
 ## 2026-10-28: Obras con sólo la provincia pasan a la localidad de la expositora
 
@@ -449,8 +439,8 @@ contra su provincia y la documentación (links, rutas, números). Correcciones:
   y comisión, que estaban en el catálogo y figuraban s/d.
 - Explorador: las fechas de 1915 citan las dos fuentes (el catálogo anuncia 24/9–3/10; El
   Orden, inauguración el 29/9) y 1916 nombra la sede.
-- `run_pipeline.py`: `06_verificar` termina con `sys.exit()` y cortaba la corrida; ahora
-  se ejecutan todas las etapas y el código de salida se devuelve al final.
+- `run_pipeline.py`: una etapa que termina con `sys.exit()` ya no corta la corrida; se
+  ejecutan todas las etapas y el código de salida se devuelve al final.
 - README del pipeline y raíz: números al día (13 fuera de catálogo, 48 pares sin revisar,
   puntos del mapa) y la etapa `06b`; `requirements.txt`: folium no es opcional.
 - `notebooks/04_eda.ipynb` vuelto a correr (441 F, 9 M, 8 I).
@@ -644,15 +634,9 @@ Esmirna en alfombras (¿punto de alfombra?), "a bastones" (en "bordada a bastone
 aguja" (634, 724: no se toma como encaje de aguja), si Punto de Irlanda va dentro de
 Crochet, Bruselas (3 obras, no estaba en la lista), y qué hacer con teñido e hilado.
 
-## 2026-10-28: Se elimina el golden
+## 2026-10-28: `Imagen del catálogo`
 
-Julián decide sacar `tests/golden/` y la etapa `06_verificar`. La base se corrige todo
-el tiempo (cotejo, revisiones de LM, nombres de columnas), así que la foto congelada
-siempre daba diferencias y había que re-congelarla en cada commit, sin que eso
-detectara errores. Los controles que sí sirven siguen en `06b_controles`
-(`outputs/controles_calidad.md`) y en `audit_comentarios`. Queda en el historial de git.
-
-En el mismo día: la columna `Imagen` de la vista plana y de la hoja Premios pasa a
+La columna `Imagen` de la vista plana y de la hoja Premios pasa a
 llamarse `Imagen del catálogo`, para no confundirla con `Foto del álbum`.
 
 ## 2026-10-30: Categorías normalizadas, como propuesta (`04g_categorias`)
@@ -675,8 +659,8 @@ La evidencia sale del propio catálogo:
 Todo queda en `propuesta` hasta que lo revise LM; el explorador no lo usa todavía. Las
 dos columnas también van a la vista plana.
 
-*Mismo día, más tarde:* Julián decide sacar `categoria_comparable` ("no me gusta esa
-columna"). Se quita del CSV, de la tabla normalizada y de la vista plana; el `criterio`
+*Mismo día, más tarde:* Julián decide sacar `categoria_comparable`.
+Se quita del CSV, de la tabla normalizada y de la vista plana; el `criterio`
 pasa a explicar sólo `categoria_norm`. Queda `categoria_norm`.
 
 ## 2026-10-30: Redes de participación (`05a_redes`)
@@ -706,7 +690,7 @@ para Gephi o networkx) y un informe (`outputs/redes.md`).
 No es un análisis de redes sociales en sentido estricto (no hay relaciones
 documentadas entre personas); es la estructura para empezar a buscarlas.
 
-En el explorador (pedido de Julián, mismo día): `05a` corre antes de `05c` y escribe la
+En el explorador (decisión de Julián, mismo día): `05a` corre antes de `05c` y escribe la
 hoja `Grupos`; el explorador la muestra en Análisis › Expositoras ("Mismo apellido, mismo
 lugar", con la pista marcada débil si el apellido es frecuente) y en cada ficha ("Comparte
 el apellido Aguilar en Niogasta con…"). El texto dice siempre que es una pista y que las
@@ -715,7 +699,7 @@ fuentes no registran parentescos. En "Fuentes y método", las redes pasan de "Pe
 
 ## 2026-10-30: Pestaña Red en el explorador (sigma.js y graphology)
 
-Julián quiere ver la red en el explorador, no en Gephi. Gephi es un programa de
+La red se muestra en el explorador y no en Gephi (decisión de Julián). Gephi es un programa de
 escritorio y no se puede incrustar, pero lo que hace sí: la pestaña **Red** dibuja el
 grafo completo de `redes.xlsx` (528 nodos, 1.098 conexiones) con sigma.js 2.4.0 y
 graphology 0.25.4 (+ graphology-library 0.8.0), las bibliotecas que usa Gephi para
@@ -739,7 +723,7 @@ publicar redes en la web. Se cargan del CDN con versión fija, como Leaflet.
 - El grafo SVG que había en Análisis se sacó: lo reemplaza la pestaña; la tabla de
   grupos queda, con un enlace a la red.
 
-Mismo día, técnicas, materiales y categorías en la pestaña (pedido de Julián):
+Mismo día, técnicas, materiales y categorías en la pestaña (decisión de Julián):
 
 - **En la red de expositoras**, tres tipos de nodo opcionales (apagados de entrada):
   Técnicas (agrupadas en la técnica general: Encaje, Bordado, Randa…), Materiales y
@@ -845,8 +829,8 @@ datos de investigación]. CIAP-CONICET / UNSAM." seguida del enlace a la ficha.
 
 ## 2026-11-09: Etapas numeradas del 01 al 15
 
-La numeración había quedado de cambios sucesivos: no había 02 ni 06 (se borraron
-`02_entidades` y `06_verificar`) y las etapas nuevas se habían agregado con letra (04b a
+La numeración había quedado de cambios sucesivos: no había 02 ni 06 (etapas que se
+habían borrado) y las etapas nuevas se habían agregado con letra (04b a
 04h, 05a a 05c, 06b) para no renombrar las demás. Ahora van del 01 al 15 en el orden en
 que corren (decisión de Julián). Los archivos se renombraron con `git mv`, así conservan
 su historial. Esta bitácora no se reescribe: las entradas anteriores usan los nombres de
@@ -936,7 +920,7 @@ nueva, por `persona_id`; columnas `direccion` y `fuente` para completar). Herman
 Inmaculada Concepción va en el Asilo Maternal; Hermanas dominicas, en el Asilo de
 Huérfanos de las Hermanas Dominicas.
 
-Criterio (opción A de las dos que se discutieron): en el mapa, las obras de cada
+Criterio: en el mapa, las obras de cada
 institución forman su propio círculo en la sede y salen del círculo de la ciudad (San
 Miguel de Tucumán pasa de 363 a 301 obras en el mapa; el panel de la ciudad avisa que
 hay 62 obras de 8 instituciones en su dirección y enlaza a cada una). La localidad no
@@ -958,7 +942,7 @@ El Orden.
 
 Premios y controles no cambian. Con el nombre corregido, su apellido de casada pasó a ser
 "Acuña Zavalía" y la red (`12_redes`) perdía el grupo "Zavalía" con Tomasa Olmos de
-Zavalía (519). Julián pidió mantenerlo: desde ahora, un apellido de casada compuesto
+Zavalía (519). Se mantiene (decisión de Julián): desde ahora, un apellido de casada compuesto
 también cuenta por su última palabra, como ya pasaba con el apellido propio. Es el único
 grupo que cambia; además aparece la arista de comisión entre ella (como integrante de la
 comisión, según El Orden) y Tomasa Olmos de Zavalía.
@@ -980,7 +964,7 @@ y catálogo (Tactagi y las dos Valenzuela) se dejan con el catálogo.
 
 LM devolvió la planilla de expositoras con varios lugares
 (`data/raw/revisiones_LM_10_2026/expositoras_con_varios_lugares (1)9-11.xlsx`, fuera del
-repo). Julián: hacer lo que ella pide.
+repo). Se aplica lo que pide (decisión de Julián).
 
 - **Distintas ciudades según la fuente (las marcadas en naranja):** LM pide conservar el
   lugar de cada registro, sin unificar. Ya era así: cada obra guarda el lugar de su
