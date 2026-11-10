@@ -28,6 +28,19 @@ archivo que se abre en el navegador, sin servidor ni conexión. Tiene seis pesta
 Presentación, Mapa, Análisis, Expositoras, Galería y Red. Cada ficha de obra indica su
 fuente (catálogo, página y escaneo) y trae su cita lista para copiar.
 
+### Despliegue con Docker
+
+El repositorio trae un `Dockerfile` y un `docker-compose.yml` que sirven el explorador
+con nginx (no hace falta Python en el servidor):
+
+```bash
+docker compose up -d --build        # queda en http://localhost:8080
+```
+
+Para publicar una versión nueva: se regenera el explorador con el pipeline, se hace
+commit y push de `outputs/explorador.html`, y en el servidor
+`git pull && docker compose up -d --build`. El puerto se cambia en `docker-compose.yml`.
+
 ## Estructura
 
 ```

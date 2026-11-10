@@ -1,0 +1,7 @@
+services:
+  explorador:
+    build: .
+    image: cartografias-textil-explorador
+    ports:
+      - "8080:80"
+    restart: unless-stopped
