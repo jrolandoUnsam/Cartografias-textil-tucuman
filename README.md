@@ -17,8 +17,8 @@ Terminado (noviembre de 2026). El corpus fue relevado y organizado por la invest
 en un Excel; este repositorio reconstruye en código, de forma reproducible, el camino
 desde ese Excel hasta la base normalizada, la vista consolidada y el explorador web.
 
-La base reúne 2 concursos, 458 expositoras (440 mujeres, 9 varones y 9 instituciones),
-981 objetos, 102 premios y 78 localidades. Las preguntas que quedan abiertas sobre los
+La base reúne 2 concursos, 458 expositoras (439 mujeres, 9 varones y 10 instituciones),
+981 objetos, 102 premios y 75 localidades. Las preguntas que quedan abiertas sobre los
 datos están en [`docs/tareas_pendientes.md`](docs/tareas_pendientes.md).
 
 ## Explorador

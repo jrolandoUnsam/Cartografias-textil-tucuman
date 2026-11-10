@@ -16,9 +16,9 @@ Generado por `src/pipeline/15_controles.py` en cada corrida del pipeline. Lista 
 | Lugares | Sólo provincia con una localidad de la misma expositora | 0 | Elegir la localidad a mano |
 | Lugares | Localidades sin coordenadas | 8 | Ubicar o dejar como desconocida |
 | Lugares | Ubicaciones tentativas o ambiguas | 2 | Confirmar con LM o con fuentes |
-| Lugares | Varios lugares del catálogo, una misma localidad actual | 14 | Confirmar que la separación es a propósito |
+| Lugares | Varios lugares del catálogo, una misma localidad actual | 10 | Confirmar que la separación es a propósito |
 | Lugares | Expositora en dos provincias | 1 | Revisar la fusión |
-| Lugares | Expositora en varias localidades de una provincia | 16 | Revisar si es el mismo lugar escrito distinto |
+| Lugares | Expositora en varias localidades de una provincia | 13 | Revisar si es el mismo lugar escrito distinto |
 | Números de orden y páginas | N.º de orden repetido en la misma sección | 0 | Corregir contra el escaneo |
 | Números de orden y páginas | Huecos en la numeración de una sección | 2 | Mirar el escaneo de esa sección |
 | Números de orden y páginas | N.º fuera del rango de su página | 0 | Corregir página o número |
@@ -34,7 +34,7 @@ Generado por `src/pipeline/15_controles.py` en cada corrida del pipeline. Lista 
 | Premios | Premios sin obra en el catálogo | 13 | Nada, salvo los pendientes |
 | Transcripción | Descripción vacía o muy corta | 0 | Completar desde el escaneo |
 | Transcripción | Lecturas dudosas en la descripción | 0 | Revisar contra el escaneo |
-| Transcripción | Lecturas dudosas en el lugar | 3 | Revisar |
+| Transcripción | Lecturas dudosas en el lugar | 1 | Revisar |
 | Transcripción | Obras sin página escaneada | 0 | Asignar página |
 
 ## Personas
@@ -148,14 +148,10 @@ Ids distintos que hoy son el mismo lugar (p. ej. dos ingenios en Banda del Río 
 | 51 | Cafayate | Cafayate | 3 |
 | 35 | Escuela Ernesto E. Padilla, Concepcion | Concepción | 1 |
 | 59 | Concepcion | Concepción | 14 |
-| 15 | Escuela de la Cocha | La Cocha | 5 |
-| 17 | La Cocha | La Cocha | 16 |
 | 67 | Medinas | Medinas | 2 |
 | 74 | Medinas, Gucheas | Medinas | 7 |
-| 2 | San Miguel de Tucumán | San Miguel de Tucumán | 349 |
+| 2 | San Miguel de Tucumán | San Miguel de Tucumán | 356 |
 | 11 | Asilo Maternal Ciudad | San Miguel de Tucumán | 3 |
-| 26 | Asilo Ciudad | San Miguel de Tucumán | 6 |
-| 79 | Asilo, Ciudad | San Miguel de Tucumán | 1 |
 
 ### Expositora en dos provincias
 
@@ -173,10 +169,7 @@ Puede ser real (vivía en un lugar y envió desde otro, o el catálogo nombra el
 |---|---|---|---|
 | 4 | Dalmira González Sorol | San Miguel de Tucumán, Tafí Viejo | 1915, 1916 |
 | 19 | Mercedes del Moral | Monteros, San Miguel de Tucumán | 1915, 1916 |
-| 47 | Facunda Cerone [Coronel] | Escuela de la Cocha, La Cocha | 1915, 1916 |
-| 53 | Colegio de la Sagrada Familia [Mercedes Pacheco] | Asilo Ciudad, San Miguel de Tucumán | 1915 |
 | 70 | María Cleofé de Bustamante | Simoca, Yacuchiri | 1915, 1916 |
-| 83 | Hermanas dominicas [asilo] | Asilo, Ciudad, San Miguel de Tucumán | 1915, 1916 |
 | 107 | Dominga Villoldo | San Miguel de Tucumán, San Pablo | 1915, 1916 |
 | 123 | Manuela Gramajo | Monteagudo, Niogasta | 1916 |
 | 127 | Vitalina Zelaya | Monteagudo, San Miguel de Tucumán | 1916 |
@@ -340,8 +333,6 @@ El lugar transcripto tiene "?", paréntesis o "s/d".
 | objeto_id | Año | Expositora | Lugar en el documento | Lugar en la base | Página |
 |---|---|---|---|---|---|
 | 90 | 1915 | Elvira Rodríguez They | S/D | San Rafael | DSCN5180.JPG |
-| 503 | 1916 | Edelmira A. de Moreno | CATAMARCA (tiene certificado) | Catamarca | DSCN5213.JPG |
-| 504 | 1916 | Edelmira A. de Moreno | CATAMARCA (tiene certificado) | Catamarca | DSCN5213.JPG |
 
 ### Obras sin página escaneada
 

@@ -137,7 +137,7 @@
 
 ## Género (`Expositoras`)
 
-Hoy son **440 F, 9 M y 9 I** (institución) sobre 458 filas.
+Hoy son **439 F, 9 M y 10 I** (institución) sobre 458 filas.
 - [x] *(2026-10-28)* Criterio para instituciones: LM prefiere una marca propia en lugar de
   género. Las 8 que reconoce la regla `INSTITUCION` llevan `Género = I`
   (`nombres_expositoras.csv`): 37, 50, 83, 102, 281, 364, 398 y 492.
@@ -213,8 +213,8 @@ Hoy son **440 F, 9 M y 9 I** (institución) sobre 458 filas.
   (respondió sólo el material del ejemplo), "pintada a la aguja", si Punto de Irlanda va
   dentro de Crochet, Bruselas, y teñido. También
   si se puede asumir una técnica general "(sin precisar)" para las categorías de tejidos
-  (Jergones, Pellones, Ponchos, Alforjas, Colchas y frazadas): 138 obras no tienen ni
-  técnica ni material en el texto.
+  (Jergones, Pellones, Ponchos, Alforjas, Colchas y frazadas): 185 obras no tienen
+  técnica (87 de ellas, ni técnica ni material). Cuenta del 2026-11-09.
 - Referencia para el explorador: la Ciapoteca del CIAP (CONICET-UNSAM), hecha en Omeka,
   https://coleccionesciap.ar/s/ciapoteca/page/buenos-aires-de-plata. LM ofrece una
   reunión con el personal técnico del instituto. El modelo que quería (la base de
@@ -297,8 +297,8 @@ en el catálogo (`album_1915.csv`). La identificación automática en las fotos 
   siguen sin ubicar. Chicligasta
   queda con la coordenada nuestra, no la de LM (Julián, 2026-10-25).
 
-- [ ] **16 de 78 ciudades siguen sin coordenadas** en
-  `decisiones/coordenadas_ciudades.csv` (62 cargadas). Completar las que se puedan y
+- [ ] **16 de 75 ciudades siguen sin coordenadas** en
+  `decisiones/coordenadas_ciudades.csv` (59 cargadas). Completar las que se puedan y
   fijar un criterio para las ambiguas o desconocidas.
 - [x] *(2026-10-12)* `nombre_ciudad_hoy` y `nombre_provincia` vivían en dos lugares (tabla
   manual y `coordenadas_ciudades.csv`). Ahora el CSV es la única fuente: `06` los toma

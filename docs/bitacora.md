@@ -976,6 +976,42 @@ mapa la muestra como ubicación aproximada). "Lugar en el documento" sigue dicie
 Ciudades pasa a 78 (62 con punto). Los otros tres premios con lugar distinto entre fallo
 y catálogo (Tactagi y las dos Valenzuela) se dejan con el catálogo.
 
+## 2026-11-09: Revisión de LM de expositoras con varios lugares y cita de Sorroza
+
+LM devolvió la planilla de expositoras con varios lugares
+(`data/raw/revisiones_LM_10_2026/expositoras_con_varios_lugares (1)9-11.xlsx`, fuera del
+repo). Julián: hacer lo que ella pide.
+
+- **Distintas ciudades según la fuente (las marcadas en naranja):** LM pide conservar el
+  lugar de cada registro, sin unificar. Ya era así: cada obra guarda el lugar de su
+  catálogo, el fallo conserva el suyo en `Premios` y "Lugar en el documento" muestra el
+  texto original. No cambia nada.
+- **Mismo lugar escrito distinto:** "Dejamos San Miguel de Tucumán". Ya lo estaba salvo
+  "Asilo Ciudad" (26, 6 obras del Colegio de la Sagrada Familia) y "Asilo, Ciudad" (79, 1
+  obra de las Hermanas dominicas), que pasan a San Miguel de Tucumán (2) por
+  `fusiones_ciudades.csv`. "Escuela de la Cocha" (15, 5 obras) pasa a La Cocha (17): "en
+  definitiva la ubicación es la misma". Ciudades: 78 → 75 (59 con punto).
+- **Edelmira A. de Moreno:** "eliminemos el 'tiene certificado' y que quede solo
+  Catamarca". La ciudad ya era Catamarca; la anotación sólo estaba en "Lugar en el
+  documento" de los objetos 503 y 504. `objetos_texto_override.csv` suma una columna
+  `ciudad` que pisa el lugar transcripto en `01_ingesta`.
+- **Facunda Cerone [Coronel] (47):** LM propone cargarla como institución. Queda
+  "Escuela de La Cocha [Facunda Cerone]", `Género = I` (439 F, 9 M y 10 I), como el
+  Colegio de la Sagrada Familia [Mercedes Pacheco]. Sin el "[Coronel]" porque los
+  corchetes anidados con paréntesis disparaban dos controles (signos de duda y nombre del
+  fallo distinto); "Facunda Coronel" sigue en "Nombre en el fallo" y en la nota. El premio
+  75 sigue vinculado a mano.
+- **Mercedes Pacheco:** la planilla sugiere "[asilo]"; ya es institución desde hoy
+  (pedido posterior de LM), así que queda como está.
+
+Cita de Leticia Sorroza (El Orden, 30/9/1915): LM pide la cita completa, con el pasaje de
+las "viejecitas" que se encerraban a trabajar para no revelar el secreto. La transcripción
+dice "a bordar o dejer"; se cita "[tejer]" y la nota lo aclara. No hay escaneo de la nota
+en el repo para cotejarlo.
+
+Controles: "Varios lugares del catálogo, una misma localidad actual" 14 → 10, "Expositora
+en varias localidades de una provincia" 16 → 13 y "Lecturas dudosas en el lugar" 3 → 1.
+
 ## Fuentes del crudo que no entran al pipeline
 
 Hojas `no PRENSA-EL ORDEN`, `no ARCHIVO PADILLA`, `no Prensa-Rakow lib`: material de

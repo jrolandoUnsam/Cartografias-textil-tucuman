@@ -1,21 +1,23 @@
-objeto_id,objeto,orden,motivo
-17,,19,"el crudo decía 17; el catálogo impreso salta del 16 al 19 (DSCN5177, bitácora 2026-10-12)"
-241,Almohadón tela hecha a pala,,catalogo decia 'Almohadón tela hecha a pala.'
-242,"Almohadón ""Lagartos"" tela hecha a pala",,"catalogo decia 'almohadón ""Lagartos"" tela hecha a pala'"
-243,Colección lanas teñidas para fabricar alfombras y tapices,,catalogo decia 'Colección lanas teñidas para fabricar alfombras y tapices.'
-283,Sobrecama bordada de vicuña,,catalogo decia 'sobrecama bordada de vicuña'
-468,poncho de lana oveja gris,,catalogo decia 'poncho de lana oveja gris.'
-763,escote de randa,,catalogo decia ''
-42,juego de puntilla y entredós,,"cotejo con el escaneo (DSCN5178, 2026-10-28): el catálogo dice 'Juego de puntilla y entredós'"
-88,carpeta,,"cotejo con el escaneo (DSCN5180, 2026-10-28): el catálogo dice sólo 'Carpeta'; la transcripción decía 'carpeta encaje de filet de hilo'"
-167,adorno macramé,,"cotejo con el escaneo (DSCN5185, 2026-10-28): el catálogo dice 'Adorno macramé'; la transcripción decía 'madramé'"
-227,Alfombra cuadrada,,"cotejo con el escaneo (DSCN5202, 2026-10-28): el catálogo dice 'Alfombra cuadrada'"
-407,colcha tejida en telar bordada con hilo merino,,"cotejo con el escaneo (DSCN5211, 2026-10-28): el catálogo dice 'colcha tejida en telar bordada con hilo merino'"
-432,cubrecama de algodón bordada con seda,,"cotejo con el escaneo (DSCN5211, 2026-10-28): el catálogo dice 'cubrecama de algodón bordada con seda'"
-478,chalón de vicuña,,"cotejo con el escaneo (DSCN5212, 2026-10-28): el catálogo dice 'chalón de vicuña'"
-761,caminos de mesa,,"cotejo con el escaneo (DSCN5222, 2026-10-28): el catálogo dice 'caminos de mesa'"
-762,carpeta randa,,"cotejo con el escaneo (DSCN5222, 2026-10-28): el catálogo dice 'carpeta randa'"
-773,carpetas de randa,,"cotejo con el escaneo (DSCN5222, 2026-10-28): el catálogo dice 'carpetas de randa'"
-774,carpetas de randa,,"cotejo con el escaneo (DSCN5222, 2026-10-28): el catálogo dice 'carpetas de randa'"
-775,carpetas de randa,,"cotejo con el escaneo (DSCN5222, 2026-10-28): el catálogo dice 'carpetas de randa'"
-915,babero,,"cotejo con el escaneo (DSCN5227, 2026-10-28): el catálogo dice 'babero'"
+objeto_id,objeto,orden,ciudad,motivo
+17,,19,,"el crudo decía 17; el catálogo impreso salta del 16 al 19 (DSCN5177, bitácora 2026-10-12)"
+241,Almohadón tela hecha a pala,,,catalogo decia 'Almohadón tela hecha a pala.'
+242,"Almohadón ""Lagartos"" tela hecha a pala",,,"catalogo decia 'almohadón ""Lagartos"" tela hecha a pala'"
+243,Colección lanas teñidas para fabricar alfombras y tapices,,,catalogo decia 'Colección lanas teñidas para fabricar alfombras y tapices.'
+283,Sobrecama bordada de vicuña,,,catalogo decia 'sobrecama bordada de vicuña'
+468,poncho de lana oveja gris,,,catalogo decia 'poncho de lana oveja gris.'
+763,escote de randa,,,catalogo decia ''
+42,juego de puntilla y entredós,,,"cotejo con el escaneo (DSCN5178, 2026-10-28): el catálogo dice 'Juego de puntilla y entredós'"
+88,carpeta,,,"cotejo con el escaneo (DSCN5180, 2026-10-28): el catálogo dice sólo 'Carpeta'; la transcripción decía 'carpeta encaje de filet de hilo'"
+167,adorno macramé,,,"cotejo con el escaneo (DSCN5185, 2026-10-28): el catálogo dice 'Adorno macramé'; la transcripción decía 'madramé'"
+227,Alfombra cuadrada,,,"cotejo con el escaneo (DSCN5202, 2026-10-28): el catálogo dice 'Alfombra cuadrada'"
+407,colcha tejida en telar bordada con hilo merino,,,"cotejo con el escaneo (DSCN5211, 2026-10-28): el catálogo dice 'colcha tejida en telar bordada con hilo merino'"
+432,cubrecama de algodón bordada con seda,,,"cotejo con el escaneo (DSCN5211, 2026-10-28): el catálogo dice 'cubrecama de algodón bordada con seda'"
+478,chalón de vicuña,,,"cotejo con el escaneo (DSCN5212, 2026-10-28): el catálogo dice 'chalón de vicuña'"
+761,caminos de mesa,,,"cotejo con el escaneo (DSCN5222, 2026-10-28): el catálogo dice 'caminos de mesa'"
+762,carpeta randa,,,"cotejo con el escaneo (DSCN5222, 2026-10-28): el catálogo dice 'carpeta randa'"
+773,carpetas de randa,,,"cotejo con el escaneo (DSCN5222, 2026-10-28): el catálogo dice 'carpetas de randa'"
+774,carpetas de randa,,,"cotejo con el escaneo (DSCN5222, 2026-10-28): el catálogo dice 'carpetas de randa'"
+775,carpetas de randa,,,"cotejo con el escaneo (DSCN5222, 2026-10-28): el catálogo dice 'carpetas de randa'"
+915,babero,,,"cotejo con el escaneo (DSCN5227, 2026-10-28): el catálogo dice 'babero'"
+503,,,CATAMARCA,"el crudo decía 'CATAMARCA (tiene certificado)'; revisión LM 2026-11-09: ""eliminemos el 'tiene certificado' y que quede solo Catamarca"""
+504,,,CATAMARCA,"el crudo decía 'CATAMARCA (tiene certificado)'; revisión LM 2026-11-09: ""eliminemos el 'tiene certificado' y que quede solo Catamarca"""

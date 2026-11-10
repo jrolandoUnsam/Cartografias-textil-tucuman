@@ -76,12 +76,13 @@ def main() -> None:
     out.insert(0, "objeto_id", range(1, len(out) + 1))
 
     # Correcciones manuales de texto: celdas que la investigadora editó a mano
-    # respecto del catálogo (erratas de orden, singular/plural, mayúsculas).
+    # respecto del catálogo (erratas de orden, singular/plural, mayúsculas) y
+    # anotaciones que no son parte del lugar (la columna `ciudad` pisa `ciudad_raw`).
     if OVERRIDE.exists():
         ov = pd.read_csv(OVERRIDE, dtype=str).set_index("objeto_id")
-        for col in ("objeto", "orden"):
-            if col in ov.columns:
-                mapa = ov[col].dropna().to_dict()
+        for col_ov, col in (("objeto", "objeto"), ("orden", "orden"), ("ciudad", "ciudad_raw")):
+            if col_ov in ov.columns:
+                mapa = ov[col_ov].dropna().to_dict()
                 out[col] = out.apply(
                     lambda r: mapa.get(str(r["objeto_id"]), r[col]), axis=1
                 )

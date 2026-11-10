@@ -11,10 +11,10 @@ Correr todo: `python run_pipeline.py` (desde la raíz). Desde una etapa en adela
 |---|---|---|---|
 | `01_ingesta` | `data/raw/TUCUMÁN text 1915-16 DATOS.xlsx` | `data/interim/objetos_crudos.csv` (981 objetos; separa las filas explotadas de 1916). Aplica `decisiones/objetos_texto_override.csv` y deja los textos sin espacios de más (`limpiar_texto`, `_util.py`) | funciona |
 | `02_candidatos` | `data/interim/tabla_normalizada_manual.xlsx` (Expositoras, Ciudades, Objetos) | `data/interim/duplicados_expositoras_candidatos.xlsx`: 141 filas (135 detectadas hoy + 6 conservadas de corridas anteriores), con `Hecho`/`Comentarios` para anotar. Conserva las anotaciones y los pares que ya figuraban. Al final imprime cuántos quedan **sin fusionar y sin revisar**: hoy 48, contando pares con un id que ya se fusionó por otro camino (ver `docs/tareas_pendientes.md`) | funciona |
-| `03_fusiones` | `data/interim/tabla_normalizada_manual.xlsx` + `decisiones/fusiones_expositoras.csv`, `nombres_expositoras.csv`, `fusiones_ciudades.csv`, `separaciones_ciudades.csv` | `data/interim/tabla_normalizada_dedup.xlsx`. Antes de aplicar nada, limpia los espacios de más en todas las hojas (hoy: 8 nombres, 21 objetos, 7 celdas de Premios, 1 de Paginas_Catalogo). 55 decisiones en el CSV, **54 aplicadas**, 519 → 458 expositoras; 1 fusión de ciudades (50 → 5). Dos ids a descartar ya no existen en la tabla manual (67 y 117) y el script los avisa; la fila `76,67` queda sin efecto por eso | funciona |
+| `03_fusiones` | `data/interim/tabla_normalizada_manual.xlsx` + `decisiones/fusiones_expositoras.csv`, `nombres_expositoras.csv`, `fusiones_ciudades.csv`, `separaciones_ciudades.csv` | `data/interim/tabla_normalizada_dedup.xlsx`. Antes de aplicar nada, limpia los espacios de más en todas las hojas (hoy: 8 nombres, 21 objetos, 7 celdas de Premios, 1 de Paginas_Catalogo). 55 decisiones en el CSV, **54 aplicadas**, 519 → 458 expositoras; 4 fusiones de ciudades (50 → 5, 26 y 79 → 2, 15 → 17). Dos ids a descartar ya no existen en la tabla manual (67 y 117) y el script los avisa; la fila `76,67` queda sin efecto por eso | funciona |
 | `04_nombres` | tabla_normalizada_dedup | `data/processed/tabla_normalizada.xlsx` (nombres ALLCAPS → Título) | funciona |
 | `05_imagenes` | tabla_normalizada + hoja `Paginas_Catalogo` | tabla_normalizada con la columna `Objetos.imagen`: 981/981 objetos con imagen | funciona |
-| `06_coordenadas` | tabla_normalizada + `decisiones/coordenadas_ciudades.csv` | tabla_normalizada con la ubicación de cada ciudad tomada del CSV: `nombre_ciudad_hoy`, `nombre_provincia`, `lat`/`lon`, `lat_provincia`/`lon_provincia`, `precision`, `nota`: 62/78 ciudades con coordenada, 71/78 con punto de provincia. En `Objetos`, las obras con sólo la provincia pasan a la localidad de la misma expositora en esa provincia (`ciudad_id_catalogo` guarda la original) | funciona |
+| `06_coordenadas` | tabla_normalizada + `decisiones/coordenadas_ciudades.csv` | tabla_normalizada con la ubicación de cada ciudad tomada del CSV: `nombre_ciudad_hoy`, `nombre_provincia`, `lat`/`lon`, `lat_provincia`/`lon_provincia`, `precision`, `nota`: 59/75 ciudades con coordenada, 68/75 con punto de provincia. En `Objetos`, las obras con sólo la provincia pasan a la localidad de la misma expositora en esa provincia (`ciudad_id_catalogo` guarda la original) | funciona |
 | `07_premios` | `tabla_normalizada_dedup.xlsx` (Premios de la tabla manual) + tabla_normalizada (Expositoras, Objetos) + `decisiones/premios_manual.csv` | tabla_normalizada con la hoja `Premios` curada: un premio por fila, con su obra del catálogo, `Estado` (vinculado / fuera de catálogo / pendiente), `Vínculo` y `Nota`: 102 premios: 89 vinculados y 13 fuera de catálogo | funciona |
 | `08_marcas` | tabla_normalizada (Objetos) | tabla_normalizada con `Objetos.fuera_de_concurso` (2) y `Objetos.creacion_autora` (12), leídas del texto del catálogo, que no se toca | funciona |
 | `09_categorias` | tabla_normalizada (Categorías) + `decisiones/categorias.csv` | tabla_normalizada con `Categorías.categoria_norm` (24 secciones → 22: une Chales de vicuña con Chales y echarpes y Jergones con Jergones y sobrepelos, que son una misma serie numerada), `criterio` y `estado`. `nombre_categoria` no se toca. Todo en *propuesta* hasta que lo revise LM | funciona |
@@ -76,7 +76,7 @@ decisión. Está en `git log` (commit `975476e`).
   grupo de 3+ ids resuelto en conjunto (`cluster`).
 - `nombres_expositoras.csv`: nombre con que queda una expositora después de fusionar
   (`persona_id`, `nombre`, `nota`, `genero`), p. ej. la variante entre corchetes acordada
-  con Larisa ("Facunda Cerone [Coronel]"). `genero` (F / M) corrige el de la tabla
+  con Larisa ("Delicia [Delia] Ruiz"). `genero` (F / M) corrige el de la tabla
   manual; un `nombre` vacío deja el nombre como está. Lo aplica `03_fusiones`.
 - `fusiones_ciudades.csv`: mismo lugar cargado con dos `ciudad_id` (mismo formato que
   las fusiones de expositoras). Lo aplica `03_fusiones`; el texto del catálogo
@@ -91,14 +91,16 @@ decisión. Está en `git log` (commit `975476e`).
   `Objetos.foto_album`.
 - `objetos_texto_override.csv`: celdas de texto que la investigadora corrigió a mano
   respecto del catálogo (erratas, singular/plural, mayúsculas) y números de orden
-  corregidos contra el escaneo (objeto 17: 17 → 19). Lo aplica `01_ingesta`.
+  corregidos contra el escaneo (objeto 17: 17 → 19). La columna `ciudad` pisa el lugar
+  transcripto cuando trae una anotación que no es lugar (objetos 503 y 504:
+  "CATAMARCA (tiene certificado)" → "CATAMARCA"). Lo aplica `01_ingesta`.
 - `premios_manual.csv`: correcciones al cruce Premios ↔ Objetos. Acepta
   `objeto_id = "ninguno"` para forzar que un premio quede sin objeto y
   `objeto_id = "pendiente"` para dejarlo marcado como duda abierta.
 - `coordenadas_ciudades.csv`: la única fuente de la ubicación de cada ciudad
   (`ciudad_id`): `nombre_ciudad_hoy`, `nombre_provincia`, `lat`/`lon` (cargadas a mano
   por la investigadora, Google Maps), `lat_provincia`/`lon_provincia` (capital),
-  `precision` y `nota`. `06` pisa con esto la copia de la tabla manual. 62/78 con
+  `precision` y `nota`. `06` pisa con esto la copia de la tabla manual. 59/75 con
   punto de ciudad; el resto queda vacío (nombre ambiguo o desconocido).
 - `sedes_instituciones.csv`: punto de la sede de cada institución (`persona_id`,
   `direccion`, `lat`/`lon`, `fuente`, `nota`), cargado por Julián el 2026-11-09 (9 de 9).
