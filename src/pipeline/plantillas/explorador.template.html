@@ -185,6 +185,7 @@ h1 { font-family: var(--serif); font-optical-sizing: auto; font-weight: 600; fon
 .fuentes h3 { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink2); margin: 1.4rem 0 0.5rem; }
 .fuentes ul { margin: 0; padding-left: 1.1rem; display: flex; flex-direction: column; gap: 0.3rem; font-size: 1.12rem; line-height: 1.5; }
 .fuentes .ref { font-family: var(--serif); font-size: 1.02rem; line-height: 1.6; margin: 0; padding: 0 0 0 1.6rem; text-indent: -1.6rem; }
+.fuentes .ref a { overflow-wrap: anywhere; }
 
 /* mapa */
 .v-map { position: relative; border-radius: 0.9rem; overflow: hidden; border: 1px solid var(--rule); background: var(--sea); }
@@ -217,9 +218,6 @@ h2 { font-family: var(--serif); font-weight: 600; font-size: 1.5rem; line-height
 .who { padding: 0.65rem 0; border-top: 1px solid var(--rule); }
 .plink { border: 0; background: transparent; padding: 0; font-weight: 600; text-align: left; text-decoration: underline; text-decoration-color: var(--rule); text-underline-offset: 3px; }
 .plink:hover { text-decoration-color: var(--indigo); }
-.sedes { margin: -0.2rem 0 0.8rem; padding-left: 1.1rem; font-size: 0.84rem; line-height: 1.45; }
-.sedes li { margin: 0.15rem 0; }
-.sedes .plink { vertical-align: top; }
 .who ul, .ficha ul { margin: 0.25rem 0 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 0.25rem; }
 .who li, .ficha li { display: grid; grid-template-columns: 2.8rem minmax(0, 1fr); gap: 0.4rem; font-size: 0.84rem; }
 .yr { color: var(--ink2); font-variant-numeric: tabular-nums; }
@@ -639,7 +637,23 @@ button.prow:hover { background: var(--chip); }
           <li>Rakow Research Library, Corning Museum of Glass (Corning, Estados Unidos).</li>
         </ul>
         <h3>Cómo citar</h3>
-        <p class="ref">Mantovani, Larisa; Rolando, Julián y Moro, Agustín. (2026). <i>Cartografías del textil argentino: Producción y exhibición a partir de datos históricos e imágenes de archivo</i> [Conjunto de datos de investigación]. CIAP-CONICET / UNSAM.</p>
+        <p class="ref">Mantovani, Larisa; Rolando, Julián y Moro, Agustín. (2026). <i>Cartografías del textil argentino: Producción y exhibición a partir de datos históricos e imágenes de archivo</i> [Conjunto de datos de investigación]. CIAP-CONICET / UNSAM. <a href="https://servicios-ciai.unsam.edu.ar/centenariotextiltucuman">https://servicios-ciai.unsam.edu.ar/centenariotextiltucuman</a></p>
+       </div>
+      </section>
+
+      <section class="pre-sec fuentes" aria-labelledby="h-lim">
+       <header class="pre-head">
+        <span class="eyebrow">Límites</span>
+        <h2 id="h-lim">Lo que hay que tener en cuenta al leer la base</h2>
+       </header>
+       <div class="pre-main">
+        <ul>
+          <li><b>Autoría que se diluye en las instituciones.</b> Las obras de escuelas, asilos y colegios religiosos (10 registros) figuran a nombre de la institución. Las fuentes no dicen quiénes las hicieron (probablemente alumnas, asiladas o religiosas), así que ese trabajo queda sin nombre propio. Se cuentan aparte, como instituciones, y no como mujeres ni como varones.</li>
+          <li><b>Sesgo de transcripción.</b> Algunos nombres y localidades tienen grafías inciertas (<i>J</i> o <i>I</i>, <i>Panci</i> o <i>Panei</i>). Los nombres que se unificaron quedan registrados, con el motivo de cada decisión, y pueden revisarse o deshacerse.</li>
+          <li><b>Sesgo de georreferenciación.</b> Asignar un topónimo actual a una localidad de 1915 puede forzar equivalencias. Por eso el nombre histórico se conserva siempre aparte del actual, y las ubicaciones deducidas o tentativas se marcan como tales.</li>
+          <li><b>Atribución de género.</b> Se infiere del nombre de pila, porque los registros no lo dicen. Se aclara junto al filtro de género y en el análisis por género.</li>
+          <li><b>Parentescos.</b> Las coincidencias de apellido se muestran como pistas, nunca como datos, porque las fuentes no registran parentescos.</li>
+        </ul>
        </div>
       </section>
     </div>
@@ -1167,8 +1181,7 @@ function zReset() { Z.s = 1; Z.x = 0; Z.y = 0; gid("fdlg-img").style.transform =
   }
   function groupsOf(rs) {
     const m = new Map();
-    // en el mapa, las obras de una institución con sede conocida van en la sede (r.sd)
-    rs.forEach((r) => { const k = r.sd || r.pl; let g = m.get(k); if (!g) { g = { id: k, recs: [] }; m.set(k, g); } g.recs.push(r); });
+    rs.forEach((r) => { let g = m.get(r.pl); if (!g) { g = { id: r.pl, recs: [] }; m.set(r.pl, g); } g.recs.push(r); });
     return m;
   }
   function renderMap(rs) {
@@ -1195,12 +1208,9 @@ function zReset() { Z.s = 1; Z.x = 0; Z.y = 0; gid("fdlg-img").style.transform =
     const p = P[g.id], by = new Map();
     g.recs.forEach((r) => { if (!by.has(r.pk)) by.set(r.pk, []); by.get(r.pk).push(r); });
     const people = [...by.values()].sort((a, b) => a[0].n.localeCompare(b[0].n, "es")), shown = state.more ? people : people.slice(0, 25);
-    const sub = p.t === "sede" ? "" : [p.p, p.lat == null ? "sin coordenadas" : p.t === "prov" ? "solo se indica la provincia" : p.c === "aprox" ? "ubicación aproximada" : ""].filter(Boolean).join(" · ");
-    // en la localidad, aviso de las instituciones que el mapa muestra en su sede
-    const aparte = [...groupBy(rs.filter((r) => r.pl === g.id && r.sd), (r) => r.sd).entries()];
-    const nSedes = aparte.length ? `<p class="pnote">Además, ${plural(aparte.reduce((s, [, l]) => s + l.length, 0), "obra", "obras")} de ${aparte.length === 1 ? "una institución" : aparte.length + " instituciones"} con sede conocida, que el mapa muestra en su dirección:</p><ul class="sedes">${aparte.sort((a, b) => b[1].length - a[1].length).map(([k, l]) => `<li><button type="button" class="plink" data-act="place" data-id="${esc(k)}">${esc(P[k].n)} <span class="dim">· ${fmt(l.length)}</span></button></li>`).join("")}</ul>` : "";
+    const sub = [p.p, p.lat == null ? "sin coordenadas" : p.t === "prov" ? "solo se indica la provincia" : p.c === "aprox" ? "ubicación aproximada" : ""].filter(Boolean).join(" · ");
     el.innerHTML = x + `<h2>${esc(p.n)}</h2><p class="meta">${plural(g.recs.length, "obra", "obras")}, ${nPrized(g.recs)} premiadas · ${plural(people.length, "nombre", "nombres")}${sub ? "<br>" + esc(sub) : ""}</p>` +
-      (p.note ? `<p class="pnote">${esc(p.note)}</p>` : "") + nSedes + enPrensa(DATA.prensa.filter((m) => m.pl.includes(g.id))) +
+      (p.note ? `<p class="pnote">${esc(p.note)}</p>` : "") + enPrensa(DATA.prensa.filter((m) => m.pl.includes(g.id))) +
       shown.map((l) => `<div class="who">${personBtn(l[0].pk, l[0].n)}<ul>${l.sort((a, b) => a.y - b.y).map((r) => `<li><span class="yr">${r.y}</span><span title="${esc(what(r))}">${esc(clip(what(r), 90))} ${prizeBadges(r)}</span></li>`).join("")}</ul></div>`).join("") +
       (people.length > shown.length ? `<button type="button" class="more" data-act="more">Mostrar los ${people.length} nombres</button>` : "");
   }

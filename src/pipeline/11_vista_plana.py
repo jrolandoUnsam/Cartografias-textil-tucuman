@@ -6,8 +6,7 @@ hoja `Objetos` a nombres y escribe
 (hoja 'Objetos - Concursos Tucumán').
 
 Columnas: Concurso, Año, Expositora/Expositor, Género, Ciudad, Provincia, Lugar en el
-documento, ciudad_id, lat, lon, lat_provincia, lon_provincia, Dirección de la sede,
-lat_sede, lon_sede, Categoría, Categoría
+documento, ciudad_id, lat, lon, lat_provincia, lon_provincia, Categoría, Categoría
 normalizada (la pone `09`), N.º de orden, Descripción del
 objeto, Técnicas, Técnica según, Materiales (las pone `10`), Fuera de concurso,
 Creación de la autora, Imagen del catálogo, Foto del álbum, En la prensa.
@@ -24,9 +23,7 @@ texto del catálogo, que sigue entero en `Descripción del objeto`.
 
 `lat`/`lon` es el punto de la ciudad y `lat_provincia`/`lon_provincia` el de la
 capital de su provincia (los pone `06`): lo que sólo tiene provincia, o una ciudad
-sin punto seguro, igual se puede ubicar a nivel provincia. `Dirección de la sede`,
-`lat_sede` y `lon_sede` son el punto de la sede de las instituciones que lo tienen
-(`decisiones/sedes_instituciones.csv`); la ciudad no cambia.
+sin punto seguro, igual se puede ubicar a nivel provincia.
 
 `Lugar en el documento` es la procedencia tal como la escribió el catálogo
 ("SANTIAGO", "SANTIAGO DEL ESTERO", "ASILO, CIUDAD"), tomada de
@@ -51,14 +48,13 @@ from _util import DECISIONES, INTERIM, PROCESSED
 
 FUENTE = PROCESSED / "tabla_normalizada.xlsx"
 PRENSA = DECISIONES / "menciones_prensa.csv"
-SEDES = DECISIONES / "sedes_instituciones.csv"
 CRUDOS = INTERIM / "objetos_crudos.csv"  # salida de 01_ingesta: texto original
 SALIDA = PROCESSED / "vista_plana_tabla_consolidada.xlsx"
 HOJA = "Objetos - Concursos Tucumán"
 
 COLS = ["Concurso", "Año", "Expositora/Expositor", "Género", "Ciudad", "Provincia",
         "Lugar en el documento", "ciudad_id", "lat", "lon", "lat_provincia", "lon_provincia",
-        "Dirección de la sede", "lat_sede", "lon_sede", "Categoría", "Categoría normalizada", "N.º de orden",
+        "Categoría", "Categoría normalizada", "N.º de orden",
         "Descripción del objeto", "Técnicas", "Técnica según", "Materiales", "Fuera de concurso",
         "Creación de la autora", "Imagen del catálogo", "Foto del álbum", "En la prensa"]
 
@@ -153,15 +149,6 @@ def construir(fuente=FUENTE) -> pd.DataFrame:
         "Foto del álbum": df["foto_album"] if "foto_album" in df.columns else pd.NA,
         "En la prensa": en_la_prensa(df, xl),
     })
-    # sede de la institución (`decisiones/sedes_instituciones.csv`): el punto exacto,
-    # aparte de lat/lon, que siguen siendo los de la ciudad
-    sd = pd.read_csv(SEDES, encoding="utf-8-sig", dtype=str, keep_default_na=False)
-    sd = sd[(sd["lat"].str.strip() != "") & (sd["lon"].str.strip() != "")]
-    sd = sd.assign(persona_id=sd["persona_id"].astype(int)).set_index("persona_id")
-    tiene = df["expositora_id"].isin(sd.index)
-    out["Dirección de la sede"] = df["expositora_id"].map(sd["direccion"]).where(tiene).replace("", pd.NA)
-    out["lat_sede"] = df["expositora_id"].map(sd["lat"].astype(float)).where(tiene)
-    out["lon_sede"] = df["expositora_id"].map(sd["lon"].astype(float)).where(tiene)
 
     # Concurso, Categoría y Expositora (alfabético, sensible a mayúsculas).
     # Dentro de un mismo grupo se conserva el orden del catálogo (objeto_id),

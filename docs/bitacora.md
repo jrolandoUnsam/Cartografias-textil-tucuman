@@ -1006,6 +1006,32 @@ como dice el catálogo, y el lugar del fallo queda en `Premios`. Ciudades: 75 �
 punto, 67 con punto de provincia). Controles: "Ubicaciones tentativas o ambiguas" 2 → 1 y
 "Lugar del fallo distinto del catálogo" 3 → 4.
 
+## 2026-11-11: Las instituciones vuelven a su ciudad en el mapa
+
+Se deshace lo del 9/11 ("Sedes de las instituciones en el mapa"). Decisión de Julián:
+las obras de las instituciones se muestran en el punto de su localidad, como las de
+cualquier expositora, y no en la dirección de su sede. Sale
+`decisiones/sedes_instituciones.csv` (queda en el historial de git), la función
+`sedes()` de `14`, el aviso de "obras de instituciones con sede conocida" en el panel
+del lugar y las columnas `Dirección de la sede`, `lat_sede` y `lon_sede` de la vista
+plana (`11`). San Miguel de Tucumán vuelve a reunir en el mapa todas sus obras, y la
+Superiora del Colegio Santa Rosa de Viterbo, que sólo tiene provincia, vuelve al punto
+de Salta.
+
+## 2026-11-11: Presentación: "Lo que hay que tener en cuenta al leer la base"
+
+Pedido de LM: los límites de la base (autoría de las instituciones, transcripción,
+georreferenciación, género inferido y parentescos, los de `docs/evaluacion_riesgos.md`)
+pasan al explorador, como última sección de la pestaña Presentación. Se redactan para el
+público, sin nombres de archivos ni de código.
+
+## 2026-11-11: Cita con la dirección pública
+
+El CIAI aloja el explorador en https://servicios-ciai.unsam.edu.ar/centenariotextiltucuman.
+"Cómo citar" (pestaña Presentación y README) suma esa dirección al final, en APA, como se
+había acordado el 8/11. La cita que se copia desde cada ficha usa la dirección de la página
+abierta, así que en el sitio del CIAI ya lleva el enlace a esa ficha.
+
 ## Fuentes del crudo que no entran al pipeline
 
 Hojas `no PRENSA-EL ORDEN`, `no ARCHIVO PADILLA`, `no Prensa-Rakow lib`: material de

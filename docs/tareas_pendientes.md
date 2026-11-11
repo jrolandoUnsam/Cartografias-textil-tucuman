@@ -18,8 +18,8 @@ en el catálogo (`album_1915.csv`). La identificación automática en las fotos 
 
 ## Geografía
 
-- [ ] **16 de 75 ciudades siguen sin coordenadas** en
-  `decisiones/coordenadas_ciudades.csv` (59 cargadas). Completar las que se puedan y
+- [ ] **16 de 74 ciudades siguen sin coordenadas** en
+  `decisiones/coordenadas_ciudades.csv` (58 cargadas). Completar las que se puedan y
   fijar un criterio para las ambiguas o desconocidas.
 
 ## Imágenes

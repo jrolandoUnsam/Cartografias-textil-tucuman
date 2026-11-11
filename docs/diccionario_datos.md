@@ -147,7 +147,6 @@ mayúsculas)**. Dentro de un mismo grupo se conserva el orden del catálogo
 | `ciudad_id` | → `Ciudades.ciudad_id`. Dos lugares escritos distinto con el mismo id son la misma fila de `Ciudades` |
 | `lat` / `lon` | coordenadas de esa ciudad (vacías si no están cargadas) |
 | `lat_provincia` / `lon_provincia` | coordenadas de la capital de su provincia |
-| `Dirección de la sede` / `lat_sede` / `lon_sede` | solo para instituciones con sede cargada en `decisiones/sedes_instituciones.csv`: dirección (si la hay) y punto de la sede. `Ciudad`, `lat` y `lon` siguen siendo los de la localidad |
 | `Categoría` | nombre de categoría |
 | `Categoría normalizada` | `Categorías.categoria_norm` |
 | `N.º de orden` | `ORDEN` |

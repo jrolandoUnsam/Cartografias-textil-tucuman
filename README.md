@@ -47,8 +47,8 @@ commit y push de `outputs/explorador.html`, y en el servidor
 data/
   raw/          Excel original (nunca se edita) + imágenes de archivo (fuera del repo)
   interim/      resultados intermedios del pipeline y tabla manual de partida
-    decisiones/ 17 tablas con lo que no se deriva del crudo: fusiones, nombres,
-                coordenadas, sedes, premios, técnicas, prensa, etc.
+    decisiones/ 16 tablas con lo que no se deriva del crudo: fusiones, nombres,
+                coordenadas, premios, técnicas, prensa, etc.
   processed/    tabla_normalizada.xlsx, vista_plana_tabla_consolidada.xlsx, redes.xlsx
 src/pipeline/   15 etapas (01_ingesta … 15_controles) y audit_comentarios.py
 notebooks/      eda.ipynb (análisis exploratorio) y revision_duplicados.ipynb
@@ -105,6 +105,7 @@ de los scripts.
 Mantovani, Larisa; Rolando, Julián y Moro, Agustín. (2026). *Cartografías del textil
 argentino: Producción y exhibición a partir de datos históricos e imágenes de archivo*
 [Conjunto de datos de investigación]. CIAP-CONICET / UNSAM.
+https://servicios-ciai.unsam.edu.ar/centenariotextiltucuman
 
 ## Datos personales y ética
 
