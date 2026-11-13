@@ -13,9 +13,12 @@ Optativa interdisciplinaria LCD – CIAI – STD – UNSAM (2026).
 
 ## Estado
 
-Terminado (noviembre de 2026). El corpus fue relevado y organizado por la investigadora
-en un Excel; este repositorio reconstruye en código, de forma reproducible, el camino
-desde ese Excel hasta la base normalizada, la vista consolidada y el explorador web.
+Terminado (noviembre de 2026). La investigadora volcó las fuentes a un Excel, con una
+hoja por documento (`data/raw`). A partir de él, Julián armó a mano una primera tabla
+normalizada (`data/interim/tabla_normalizada_manual.xlsx`); este repositorio parte de esa
+tabla y genera en código, de forma reproducible, la base normalizada, la vista
+consolidada y el explorador web. El Excel crudo se lee para conservar el texto original
+de cada obra y cotejar la base contra él.
 
 La base reúne 2 concursos, 458 expositoras (439 mujeres, 9 varones y 10 instituciones),
 981 objetos, 102 premios y 74 localidades. Las preguntas que quedan abiertas sobre los
@@ -24,7 +27,7 @@ datos están en [`docs/tareas_pendientes.md`](docs/tareas_pendientes.md).
 ## Explorador
 
 [`outputs/explorador.html`](outputs/explorador.html) es el producto principal: un único
-archivo que se abre en el navegador, sin servidor ni conexión. Tiene seis pestañas:
+archivo que se abre en el navegador, sin servidor (sólo el mapa base se carga de internet). Tiene seis pestañas:
 Presentación, Mapa, Análisis, Expositoras, Galería y Red. Cada ficha de obra indica su
 fuente (catálogo, página y escaneo) y trae su cita lista para copiar.
 
@@ -47,7 +50,7 @@ commit y push de `outputs/explorador.html`, y en el servidor
 data/
   raw/          Excel original (nunca se edita) + imágenes de archivo (fuera del repo)
   interim/      resultados intermedios del pipeline y tabla manual de partida
-    decisiones/ 16 tablas con lo que no se deriva del crudo: fusiones, nombres,
+    decisiones/ 15 tablas con lo que no se deriva del crudo: fusiones, nombres,
                 coordenadas, premios, técnicas, prensa, etc.
   processed/    tabla_normalizada.xlsx, vista_plana_tabla_consolidada.xlsx, redes.xlsx
 src/pipeline/   14 etapas (01_ingesta … 14_controles) y audit_comentarios.py

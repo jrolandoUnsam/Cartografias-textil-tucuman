@@ -55,8 +55,9 @@ las *Recomendaciones LCD‑CIAI* (sección 10 y anexo, sección 6).
 ## Resguardo y publicación
 
 - **Código y datos:** repositorio de GitHub del proyecto, en una cuenta personal del
-  estudiante (no es infraestructura institucional). El destino previsto para la
-  publicación permanente es el entorno del CIAI (Recomendaciones, anexo 10, art. 9).
+  estudiante (no es infraestructura institucional). La publicación permanente está en el
+  entorno del CIAI (Recomendaciones, anexo 10, art. 9):
+  https://servicios-ciai.unsam.edu.ar/centenariotextiltucuman.
 - **Escaneos de los catálogos y del fallo:** fuera del repositorio (`.gitignore`), en el
   resguardo acordado con la dirección.
 - **Fotografías del álbum de 1915:** **seis sí están en el repositorio**

@@ -33,7 +33,7 @@ de qué página salió cada registro.
 | `categoria_id` | int | identificador |
 | `nombre_categoria` | texto | sección del concurso (PAÑUELOS, RANDAS, ALFOMBRAS, …) tal como la imprimió el catálogo. Las secciones quedan como están, sin unificar (decisión de agosto de 2026) |
 
-### Hoja `Ciudades` (77 filas)
+### Hoja `Ciudades` (74 filas)
 | campo | tipo | descripción |
 |---|---|---|
 | `ciudad_id` | int | identificador |
@@ -174,7 +174,7 @@ pestaña Red.
 | `lugar` / `provincia` | procedencia de la expositora (la de más obras); en los lugares, sólo la provincia |
 | `expositoras` | en los lugares, cuántas expositoras proceden de ahí |
 
-### Hoja `Aristas` (1.190 filas)
+### Hoja `Aristas` (1.191 filas)
 | campo | descripción |
 |---|---|
 | `origen` / `destino` | `id` de los dos nodos |

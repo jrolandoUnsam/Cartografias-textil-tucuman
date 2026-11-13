@@ -31,5 +31,5 @@ en el catálogo (`album_1915.csv`). La identificación automática en las fotos 
 - [ ] **Figuras del EDA.** El objetivo específico 2 del formulario (visualizaciones y
   mapas interactivos) lo cubren `outputs/explorador.html` y `outputs/mapa_procedencias.html`.
   Las figuras del EDA (categorías, comparación entre concursos, provincias, expositoras)
-  viven sólo dentro del notebook. Falta decidir si se exportan (por ejemplo, para el
-  informe). El objetivo 3 está en *IA sobre fotos*.
+  viven sólo dentro del notebook; el informe final no las usa. Falta decidir si se
+  exportan. El objetivo 3 está en *IA sobre fotos*.
