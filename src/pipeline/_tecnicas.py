@@ -1,5 +1,5 @@
-"""Técnicas y materiales de una obra, leídos de su texto. Lo usan `10` (columnas de la
-base) y `14` (explorador), así las dos salidas dicen lo mismo.
+"""Técnicas y materiales de una obra, leídos de su texto. Lo usan `09` (columnas de la
+base) y `13` (explorador), así las dos salidas dicen lo mismo.
 
 Las reglas están en `decisiones/tecnicas_materiales.csv`, revisada por LM (28/10/2026):
 etiqueta, técnica general (`grupo`), `patron` y `excepto` sobre el texto sin tildes y en

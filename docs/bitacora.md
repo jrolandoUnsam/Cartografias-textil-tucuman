@@ -1032,6 +1032,32 @@ El CIAI aloja el explorador en https://servicios-ciai.unsam.edu.ar/centenariotex
 había acordado el 8/11. La cita que se copia desde cada ficha usa la dirección de la página
 abierta, así que en el sitio del CIAI ya lleva el enlace a esa ficha.
 
+## 2026-11-12: Las categorías quedan como están; se quita `09_categorias`
+
+En agosto se acordó con LM que las secciones de los catálogos **quedan como están**: tal
+como las imprimió cada catálogo (24), sin unificar. Ya lo registraba la entrada del 25/10
+(Chales de vicuña / Chales y echarpes y los Jergones siguen separados). La etapa
+`09_categorias` (entrada del 30/10) contradecía esa decisión: volvía a unir esos dos pares
+en `categoria_norm` (24 → 22) y los dejaba "en propuesta hasta que lo revise LM", cuando no
+había nada pendiente de revisión.
+
+Se quitan la etapa, `decisiones/categorias.csv`, las columnas `categoria_norm`, `criterio`
+y `estado` de la hoja `Categorías`, la columna "Categoría normalizada" de la vista plana y el
+control "Secciones que existen en un solo concurso" de los controles de calidad. El resto de
+la base queda idéntico celda por celda. El pipeline pasa a tener 14 etapas:
+
+| antes | ahora |
+|---|---|
+| `09_categorias` | (se quita) |
+| `10_tecnicas` | `09_tecnicas` |
+| `11_vista_plana` | `10_vista_plana` |
+| `12_redes` | `11_redes` |
+| `13_mapa` | `12_mapa` |
+| `14_explorador` | `13_explorador` |
+| `15_controles` | `14_controles` |
+
+Las entradas anteriores de esta bitácora conservan los nombres de su momento.
+
 ## Fuentes del crudo que no entran al pipeline
 
 Hojas `no PRENSA-EL ORDEN`, `no ARCHIVO PADILLA`, `no Prensa-Rakow lib`: material de

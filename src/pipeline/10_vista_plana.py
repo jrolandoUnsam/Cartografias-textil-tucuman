@@ -1,4 +1,4 @@
-"""Etapa 11: Vista plana consolidada.
+"""Etapa 10: Vista plana consolidada.
 
 Lee `data/processed/tabla_normalizada.xlsx`, resuelve los identificadores de la
 hoja `Objetos` a nombres y escribe
@@ -6,9 +6,8 @@ hoja `Objetos` a nombres y escribe
 (hoja 'Objetos - Concursos Tucumán').
 
 Columnas: Concurso, Año, Expositora/Expositor, Género, Ciudad, Provincia, Lugar en el
-documento, ciudad_id, lat, lon, lat_provincia, lon_provincia, Categoría, Categoría
-normalizada (la pone `09`), N.º de orden, Descripción del
-objeto, Técnicas, Técnica según, Materiales (las pone `10`), Fuera de concurso,
+documento, ciudad_id, lat, lon, lat_provincia, lon_provincia, Categoría (tal como la
+imprimió el catálogo), N.º de orden, Descripción del objeto, Técnicas, Técnica según, Materiales (las pone `09`), Fuera de concurso,
 Creación de la autora, Imagen del catálogo, Foto del álbum, En la prensa.
 
 `Género` es el de la hoja `Expositoras` (F, M o I = institución).
@@ -54,7 +53,7 @@ HOJA = "Objetos - Concursos Tucumán"
 
 COLS = ["Concurso", "Año", "Expositora/Expositor", "Género", "Ciudad", "Provincia",
         "Lugar en el documento", "ciudad_id", "lat", "lon", "lat_provincia", "lon_provincia",
-        "Categoría", "Categoría normalizada", "N.º de orden",
+        "Categoría", "N.º de orden",
         "Descripción del objeto", "Técnicas", "Técnica según", "Materiales", "Fuera de concurso",
         "Creación de la autora", "Imagen del catálogo", "Foto del álbum", "En la prensa"]
 
@@ -137,7 +136,6 @@ def construir(fuente=FUENTE) -> pd.DataFrame:
         "lat_provincia": df["lat_provincia"] if "lat_provincia" in df.columns else pd.NA,
         "lon_provincia": df["lon_provincia"] if "lon_provincia" in df.columns else pd.NA,
         "Categoría": df["nombre_categoria"],
-        "Categoría normalizada": df["categoria_norm"] if "categoria_norm" in df.columns else pd.NA,
         "N.º de orden": df["ORDEN"],
         "Descripción del objeto": df["OBJETO"],
         "Técnicas": df["tecnicas"] if "tecnicas" in df.columns else pd.NA,

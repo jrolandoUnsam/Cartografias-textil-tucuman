@@ -47,7 +47,7 @@ las *Recomendaciones LCD‑CIAI* (sección 10 y anexo, sección 6).
   instituciones llevan `I`, por la regla `INSTITUCION` (`src/pipeline/_util.py`) o por
   decisión registrada en `nombres_expositoras.csv`. El explorador lo aclara junto al
   filtro y en el análisis por género.
-- **Parentescos:** las coincidencias de apellido (`12_redes`) se muestran como pistas,
+- **Parentescos:** las coincidencias de apellido (`11_redes`) se muestran como pistas,
   nunca como datos, porque las fuentes no registran parentescos.
 
 

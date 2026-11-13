@@ -50,7 +50,7 @@ data/
     decisiones/ 16 tablas con lo que no se deriva del crudo: fusiones, nombres,
                 coordenadas, premios, técnicas, prensa, etc.
   processed/    tabla_normalizada.xlsx, vista_plana_tabla_consolidada.xlsx, redes.xlsx
-src/pipeline/   15 etapas (01_ingesta … 15_controles) y audit_comentarios.py
+src/pipeline/   14 etapas (01_ingesta … 14_controles) y audit_comentarios.py
 notebooks/      eda.ipynb (análisis exploratorio) y revision_duplicados.ipynb
 outputs/        explorador.html, mapa_procedencias.html, controles_calidad.md y redes.md
 docs/           bitácora, diccionario de datos, evaluación de riesgos y pendientes
@@ -94,9 +94,9 @@ de los scripts.
   decisión anotada a mano vs. estado real de la tabla. Lo escribe
   `src/pipeline/audit_comentarios.py`, fuera de la corrida; no se edita a mano.
 - [`outputs/controles_calidad.md`](outputs/controles_calidad.md): informe generado en
-  cada corrida (`15_controles`): errores típicos de los catálogos para revisar.
+  cada corrida (`14_controles`): errores típicos de los catálogos para revisar.
 - [`outputs/redes.md`](outputs/redes.md): informe generado en cada corrida
-  (`12_redes`): redes de participación; el grafo está en `data/processed/redes.xlsx`.
+  (`11_redes`): redes de participación; el grafo está en `data/processed/redes.xlsx`.
 - [`docs/referencias/README.md`](docs/referencias/README.md): los PDF del marco
   institucional y del proyecto, que quedan fuera del repositorio.
 

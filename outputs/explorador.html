@@ -1641,7 +1641,7 @@ function zReset() { Z.s = 1; Z.x = 0; Z.y = 0; gid("fdlg-img").style.transform =
   // cada mapa base agrega su crédito a este control
   L.control.attribution({ prefix: false, position: "bottomright" }).addAttribution("© Esri y proveedores").addTo(map);
   L.control.scale({ imperial: false, position: "bottomright", maxWidth: 110 }).addTo(map);
-  // Mapa base Esri World Street Map, el mismo de `13_mapa`. Carga aun con la página abierta
+  // Mapa base Esri World Street Map, el mismo de `12_mapa`. Carga aun con la página abierta
   // como archivo local (tile.openstreetmap.org la bloquea por falta de Referer).
   L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}", { maxZoom: 19, className: "osm" }).addTo(map);
   const dotLayer = L.layerGroup().addTo(map);
@@ -2152,7 +2152,7 @@ function zReset() { Z.s = 1; Z.x = 0; Z.y = 0; gid("fdlg-img").style.transform =
     if (!ms.length) return "";
     return `<div class="prensa"><h4>En la prensa de época</h4>` + ms.map((m) => `<blockquote>${esc(m.c).replace(/&quot;([^&]*?)&quot;/g, "«$1»").replace(/"([^"]*)"/g, "«$1»")}</blockquote><cite>${esc(m.d)}, ${esc(m.f)}, «${esc(m.t)}»</cite>`).join("") + `</div>`;
   }
-  // otras expositoras con su mismo apellido en el mismo lugar (12_redes)
+  // otras expositoras con su mismo apellido en el mismo lugar (11_redes)
   function parientes(pk) {
     const gs = DATA.redes.filter((g) => g.pk.includes(pk));
     return gs.map((g) => `<p class="pnote">Comparte el apellido ${esc(g.ap)} en ${esc(g.l)} con ${g.pk.filter((k) => k !== pk && byPk.has(k)).map((k) => personBtn(k, byPk.get(k)[0].n)).join(", ")}. Puede indicar un parentesco, pero las fuentes no lo dicen${g.c === "baja" ? ", y es un apellido frecuente en la base" : ""}.</p>`).join("");

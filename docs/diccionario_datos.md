@@ -31,10 +31,7 @@ de qué página salió cada registro.
 | campo | tipo | descripción |
 |---|---|---|
 | `categoria_id` | int | identificador |
-| `nombre_categoria` | texto | sección del concurso (PAÑUELOS, RANDAS, ALFOMBRAS, …) tal como la imprimió el catálogo |
-| `categoria_norm` | texto | sección normalizada dentro de su catálogo: une las secciones que son una misma serie numerada (`09`, `decisiones/categorias.csv`) |
-| `criterio` | texto | por qué se normalizó así, con la evidencia del catálogo |
-| `estado` | texto | `propuesta` (sin revisar por la dirección) o `validada` |
+| `nombre_categoria` | texto | sección del concurso (PAÑUELOS, RANDAS, ALFOMBRAS, …) tal como la imprimió el catálogo. Las secciones quedan como están, sin unificar (decisión de agosto de 2026) |
 
 ### Hoja `Ciudades` (77 filas)
 | campo | tipo | descripción |
@@ -64,7 +61,7 @@ de qué página salió cada registro.
 | `fuera_de_concurso` | texto | `sí` si el catálogo dice "(fuera de concurso)": se exhibió pero no compitió. Lo agrega `08_marcas` leyendo `OBJETO`, que no se toca |
 | `creacion_autora` | texto | `sí` si el catálogo dice "creación de la autora" (diseño propio). Ídem |
 | `foto_album` | texto | foto del álbum de 1915 donde aparece la obra (`data/raw/images/albumes/1915-album-version-2/`). La agrega `05` desde `decisiones/album_1915.csv` |
-| `tecnicas` | texto | técnicas de la obra, separadas por `; ` (un subtipo lleva también su técnica general: "Encaje; Encaje de bolillos"). Lectura del proyecto con los términos revisados por LM (`decisiones/tecnicas_materiales.csv`); vacío = sin técnica indicada. La agrega `10` |
+| `tecnicas` | texto | técnicas de la obra, separadas por `; ` (un subtipo lleva también su técnica general: "Encaje; Encaje de bolillos"). Lectura del proyecto con los términos revisados por LM (`decisiones/tecnicas_materiales.csv`); vacío = sin técnica indicada. La agrega `09` |
 | `tecnica_origen` | texto | de dónde sale la técnica: `texto de la obra`, `categoría del catálogo` (el texto no nombra ninguna y se usa la de la sección, `familias_categorias.csv`) o `sin dato`. Ídem |
 | `materiales` | texto | materiales que nombra el texto de la obra o la sección del catálogo (Chales de vicuña → Vicuña), separados por `; `. Ídem |
 
@@ -148,7 +145,6 @@ mayúsculas)**. Dentro de un mismo grupo se conserva el orden del catálogo
 | `lat` / `lon` | coordenadas de esa ciudad (vacías si no están cargadas) |
 | `lat_provincia` / `lon_provincia` | coordenadas de la capital de su provincia |
 | `Categoría` | nombre de categoría |
-| `Categoría normalizada` | `Categorías.categoria_norm` |
 | `N.º de orden` | `ORDEN` |
 | `Descripción del objeto` | `OBJETO` |
 | `Técnicas` | `Objetos.tecnicas` |
@@ -162,7 +158,7 @@ mayúsculas)**. Dentro de un mismo grupo se conserva el orden del catálogo
 
 ## `data/processed/redes.xlsx`
 
-La arma `12_redes`: la red de participación (expositoras, instituciones, lugares,
+La arma `11_redes`: la red de participación (expositoras, instituciones, lugares,
 concursos y comisión). Se abre en Gephi o con networkx; el explorador la dibuja en la
 pestaña Red.
 
@@ -233,7 +229,7 @@ Las fusiones de expositoras que aplica `03_fusiones.py` (55 filas).
 
 Qué obras, expositoras y lugares de la base comenta la prensa de época (14 filas, armada
 a mano a partir de las hojas "no …" del crudo; ver `docs/relevamiento_prensa_archivo.md`).
-La lee `14_explorador`: cada mención aparece en la ficha de la persona, en sus obras
+La lee `13_explorador`: cada mención aparece en la ficha de la persona, en sus obras
 ("· En la prensa") y en el panel del lugar en el mapa.
 
 | campo | descripción |
@@ -253,7 +249,7 @@ La lee `14_explorador`: cada mención aparece en la ficha de la persona, en sus 
 
 Género de quienes figuran solo en el fallo del jurado de 1915 (premio sin obra en el
 catálogo) y por eso no tienen fila en la hoja `Expositoras` (5 filas). Se infiere del
-nombre, como el resto de la base. La lee `14_explorador` para el filtro Expositores.
+nombre, como el resto de la base. La lee `13_explorador` para el filtro Expositores.
 
 | campo | descripción |
 |---|---|
@@ -265,7 +261,7 @@ nombre, como el resto de la base. La lee `14_explorador` para el filtro Exposito
 
 Premios que el fallo de 1915 llama accésit fuera de la sección Accésit (4 filas: los de
 $ 25 de Crochet e Irlanda, p. 20, DSCN5256). Con los 8 de esa sección suman 12. La lee
-`14_explorador`, que los muestra como «Accésit» sin cambiar su sección del fallo; si el
+`13_explorador`, que los muestra como «Accésit» sin cambiar su sección del fallo; si el
 nombre no coincide con el del `premio_id`, avisa y no lo marca.
 
 | campo | descripción |
@@ -278,7 +274,7 @@ nombre no coincide con el del `premio_id`, avisa y no lo marca.
 
 Integrantes de la comisión organizadora y jurado de cada concurso (25 filas, cargadas a
 mano del catálogo y el fallo de 1915, del catálogo de 1916 y de El Orden). Una fila por
-persona, año y rol. La leen `12_redes` y `14_explorador`.
+persona, año y rol. La leen `11_redes` y `13_explorador`.
 
 | campo | descripción |
 |---|---|

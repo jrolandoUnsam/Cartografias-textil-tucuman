@@ -1,6 +1,6 @@
 # vendor/
 
-Copias locales de lo que el explorador antes cargaba de internet. `14_explorador` las
+Copias locales de lo que el explorador antes cargaba de internet. `13_explorador` las
 pega dentro de `outputs/explorador.html`, así la página no depende de CDN ni de Google
 Fonts. Lo único externo que queda es el mapa base (teselas de Esri). Bajadas el 2026-11-09.
 

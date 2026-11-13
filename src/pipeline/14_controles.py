@@ -1,4 +1,4 @@
-"""Etapa 15: Controles de calidad de la base.
+"""Etapa 14: Controles de calidad de la base.
 
 Busca, en toda la tabla normalizada, los errores típicos de transcribir catálogos de
 1915-1916 (`docs/bitacora.md`, 2026-10-28): personas escritas distinto, lugares
@@ -65,7 +65,7 @@ class Informe:
 
     def escribir(self):
         out = ["# Controles de calidad de la base", "",
-               "Generado por `src/pipeline/15_controles.py` en cada corrida del pipeline. "
+               "Generado por `src/pipeline/14_controles.py` en cada corrida del pipeline. "
                "Lista casos para revisar; no corrige nada. Las páginas (DSCN…) son los escaneos "
                "del catálogo o del fallo.", "",
                "## Resumen", "", "| Grupo | Control | Casos | Qué hacer |", "|---|---|--:|---|"]
@@ -265,12 +265,8 @@ def main() -> None:
                 filas, ["Página", "Pág. impresa", "Sección", "Lugar", "Según el índice", "N.º", "Según la transcripción"],
                 "Mirar el escaneo y corregir el número o el índice")
 
-    por_anio = O.groupby("cat")["anio"].agg(lambda s: sorted(set(s)))
-    solo_un = [(c, a[0], int((O["cat"] == c).sum())) for c, a in por_anio.items() if len(a) == 1]
-    inf.control(G, "Secciones que existen en un solo concurso",
-                "Nombres de sección que no se repiten entre 1915 y 1916 (\"Tejidos varios\" / \"Tejidos en general\"): "
-                "falta decidir cómo se comparan (`categoria_norm`).",
-                sorted(solo_un, key=lambda f: (f[1], f[0])), ["Sección", "Año", "Obras"], "Decidir la unificación de categorías")
+    # Las secciones quedan como las imprimió cada catálogo (decisión de agosto de 2026):
+    # no se controla si coinciden entre 1915 y 1916.
 
     # ------------------------------------------------------------------ premios
     G = "Premios"

@@ -1,4 +1,4 @@
-"""Corre el pipeline completo: 01 -> 15.
+"""Corre el pipeline completo: 01 -> 14.
 
 Uso:  python run_pipeline.py [desde]     (ej. `python run_pipeline.py 06`)
 
@@ -19,13 +19,12 @@ ETAPAS = [
     "06_coordenadas",
     "07_premios",
     "08_marcas",
-    "09_categorias",
-    "10_tecnicas",
-    "11_vista_plana",
-    "12_redes",
-    "13_mapa",
-    "14_explorador",
-    "15_controles",
+    "09_tecnicas",
+    "10_vista_plana",
+    "11_redes",
+    "12_mapa",
+    "13_explorador",
+    "14_controles",
 ]
 
 PIPE = Path(__file__).resolve().parent / "src" / "pipeline"

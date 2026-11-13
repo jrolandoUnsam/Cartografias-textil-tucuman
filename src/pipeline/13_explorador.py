@@ -1,11 +1,11 @@
-"""Etapa 14: explorador web (mapa, técnicas por provincia, expositoras).
+"""Etapa 13: explorador web (mapa, técnicas por provincia, expositoras).
 
 Llena la plantilla `plantillas/explorador.template.html` con los datos de la tabla
 normalizada y escribe `outputs/explorador.html`: un único archivo, sin servidor, que
 se abre en el navegador. La plantilla es el diseño del explorador; acá sólo se arma el
 JSON que consume (`DATA`) y se pegan, desde `plantillas/` y `plantillas/vendor/`, el CSS de
 Leaflet, las bibliotecas JS y las tipografías. Lo único que se carga de internet es el mapa
-base, Esri World Street Map, como en `13_mapa` (tile.openstreetmap.org se bloquea si la
+base, Esri World Street Map, como en `12_mapa` (tile.openstreetmap.org se bloquea si la
 página se abre como archivo local); sin conexión, los puntos se ven igual sobre fondo liso.
 
 Una obra = una fila de `Objetos` (981). A eso se suman, como obras aparte, los premios
@@ -27,21 +27,21 @@ las fuentes; desde el 28/10 el explorador no las usa hasta que LM las revise. La
 procedencia se agrupa por provincia, la misma que muestra el mapa.
 
 Las técnicas y los materiales se leen del texto del objeto con las reglas de
-`tecnicas_materiales.csv` (`_tecnicas.py`, las mismas que dejan las columnas de `10` en
+`tecnicas_materiales.csv` (`_tecnicas.py`, las mismas que dejan las columnas de `09` en
 la base); el texto del catálogo no se toca. Si no hay técnica, se usa la de la categoría
 (`ts = "c"`); si tampoco, queda "sin técnica indicada" (`ts = "n"`).
 
 El género de cada obra (`g`: F, M o I) es el de su expositora en la hoja `Expositoras`.
 
 Lugares: un círculo por localidad actual (`nombre_ciudad_hoy` + provincia), como en
-`13_mapa`: "La Cocha" y "Escuela de la Cocha", o "Asilo Ciudad" y San Miguel, van
+`12_mapa`: "La Cocha" y "Escuela de la Cocha", o "Asilo Ciudad" y San Miguel, van
 juntos; el punto es el de la fila con más obras. Lo que no tiene punto
 de ciudad pero sí provincia se agrupa en un lugar "sólo provincia" en la capital, como
-en `13_mapa`. Lo que no tiene ninguno de los dos queda sin coordenadas: se lista en
+en `12_mapa`. Lo que no tiene ninguno de los dos queda sin coordenadas: se lista en
 la matriz y en las fichas, no en el mapa.
 
 Los grupos de expositoras con el mismo apellido en el mismo lugar salen de la hoja
-`Grupos` de `redes.xlsx` (`12_redes`, que corre antes): se muestran en Análisis y en
+`Grupos` de `redes.xlsx` (`11_redes`, que corre antes): se muestran en Análisis y en
 cada ficha como pista de parentesco, no como dato.
 La pestaña Red dibuja el grafo completo (hojas Nodos y Aristas) con sigma.js y graphology,
 copiadas en `plantillas/vendor/` con versión fija, como Leaflet.
@@ -73,7 +73,7 @@ COMISIONES = DECISIONES / "comisiones.csv"
 GENERO_FALLO = DECISIONES / "genero_solo_fallo.csv"
 ALBUM = DECISIONES / "album_1915.csv"
 ACCESIT = DECISIONES / "accesit_fallo.csv"  # accésits fuera de la sección Accésit del fallo
-REDES = PROCESSED / "redes.xlsx"  # hoja Grupos, de 12_redes
+REDES = PROCESSED / "redes.xlsx"  # hoja Grupos, de 11_redes
 PLANTILLAS = RAIZ / "src" / "pipeline" / "plantillas"
 # fotos del álbum de 1915: versiones livianas (en el repo) de las tomas de `data/raw/images/albumes/`
 FOTOS_DIR = PLANTILLAS / "album"
@@ -328,7 +328,7 @@ def datos() -> dict:
         comision.append({"a": int(c.anio), "n": c.nombre, "nf": c.nombre_en_fuente, "r": c.rol, "s": c.seccion,
                          "f": c.fuente, "pk": c.persona_id, "mismo": mismo})
 
-    # grupos con el mismo apellido en el mismo lugar (12_redes): una pista de parentesco
+    # grupos con el mismo apellido en el mismo lugar (11_redes): una pista de parentesco
     redes = [{"ap": g.apellidos, "l": g.lugar, "c": g.confianza, "pk": str(g.persona_ids).split(";")}
              for g in pd.read_excel(REDES, sheet_name="Grupos").itertuples()] if REDES.exists() else []
     # la red completa, para la pestaña Red: nodos [id, tipo, nombre, persona_id, concursos,

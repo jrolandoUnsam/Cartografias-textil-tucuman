@@ -1,4 +1,4 @@
-"""Etapa 13: Mapa de procedencias.
+"""Etapa 12: Mapa de procedencias.
 
 Genera `outputs/mapa_procedencias.html` (folium) a partir de la tabla normalizada, así
 el mapa se regenera con cada corrida y no queda desfasado de los datos. Hasta

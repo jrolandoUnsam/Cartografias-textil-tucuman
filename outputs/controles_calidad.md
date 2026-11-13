@@ -1,6 +1,6 @@
 # Controles de calidad de la base
 
-Generado por `src/pipeline/15_controles.py` en cada corrida del pipeline. Lista casos para revisar; no corrige nada. Las páginas (DSCN…) son los escaneos del catálogo o del fallo.
+Generado por `src/pipeline/14_controles.py` en cada corrida del pipeline. Lista casos para revisar; no corrige nada. Las páginas (DSCN…) son los escaneos del catálogo o del fallo.
 
 ## Resumen
 
@@ -23,7 +23,6 @@ Generado por `src/pipeline/15_controles.py` en cada corrida del pipeline. Lista 
 | Números de orden y páginas | Huecos en la numeración de una sección | 2 | Mirar el escaneo de esa sección |
 | Números de orden y páginas | N.º fuera del rango de su página | 0 | Corregir página o número |
 | Números de orden y páginas | El índice de páginas no coincide con las obras | 0 | Mirar el escaneo y corregir el número o el índice |
-| Números de orden y páginas | Secciones que existen en un solo concurso | 20 | Decidir la unificación de categorías |
 | Premios | La expositora del premio no es la de la obra | 0 | Corregir el vínculo |
 | Premios | Obra con más de un premio | 0 | Confirmar |
 | Premios | Premio a una obra fuera de concurso | 0 | Revisar vínculo o marca |
@@ -209,33 +208,6 @@ Ningún caso.
 `Paginas_Catalogo` dice quién abre y quién cierra cada sección en cada página; acá no coincide con la obra de ese número. Suele ser un número de orden mal transcripto o dos obras invertidas.
 
 Ningún caso.
-
-### Secciones que existen en un solo concurso
-
-Nombres de sección que no se repiten entre 1915 y 1916 ("Tejidos varios" / "Tejidos en general"): falta decidir cómo se comparan (`categoria_norm`).
-
-| Sección | Año | Obras |
-|---|---|---|
-| BORDADO EN BLANCO Y SEDA | 1915 | 12 |
-| CROCHET | 1915 | 24 |
-| DESHILADO | 1915 | 25 |
-| ENCAJES VARIOS | 1915 | 24 |
-| PAÑUELOS | 1915 | 18 |
-| PELLONES Y JERGONES | 1915 | 9 |
-| RAFFIA IMITACIÓN CON HOJAS DE CAÑA | 1915 | 6 |
-| TEJIDOS VARIOS | 1915 | 14 |
-| VARIOS | 1915 | 5 |
-| ALFORJAS | 1916 | 21 |
-| BORDADOS EN BLANCO Y DESHILADOS | 1916 | 158 |
-| CHALES DE VICUÑA | 1916 | 22 |
-| CHALES Y ECHARPES | 1916 | 19 |
-| ENCAJES Y RANDAS | 1916 | 148 |
-| JERGONES | 1916 | 11 |
-| JERGONES Y SOBREPELOS | 1916 | 25 |
-| MANTELES DE TÉ | 1916 | 4 |
-| PELLONES | 1916 | 8 |
-| TAPICES | 1916 | 15 |
-| TEJIDOS EN GENERAL | 1916 | 12 |
 
 
 ## Premios
