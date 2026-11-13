@@ -882,6 +882,7 @@ function zReset() { Z.s = 1; Z.x = 0; Z.y = 0; gid("fdlg-img").style.transform =
   const fmt = (n) => n.toLocaleString("es-AR");
   const plural = (n, s, p) => fmt(n) + " " + (n === 1 ? s : p);
   const clip = (s, n) => (s.length > n ? s.slice(0, n - 1).trimEnd() + "…" : s);
+  const cap = (s) => (s ? s.charAt(0).toUpperCase() + s.slice(1) : s);
   const PORD = Object.keys(PRV), SOFT = ["encrand", "bordesh", "sin"], VIEWS = ["pre", "map", "ana", "art", "gal", "red"];
   const ASECS = ["a-cifras", "a-conc", "a-proc", "a-tec", "a-exp", "a-prem"];
 
@@ -1325,7 +1326,7 @@ function zReset() { Z.s = 1; Z.x = 0; Z.y = 0; gid("fdlg-img").style.transform =
     const pz = new Map();
     rs.forEach((r) => (r.pz || []).forEach((z) => { if (!pz.has(z.k)) pz.set(z.k, { z, recs: [] }); pz.get(z.k).recs.push(r); }));
     const prem = [...pz.values()].map(({ z, recs }) => ({ _t: String(1000 - (z.m || 0)).padStart(4, "0") + recs[0].n, sec: z.c, tipo: z.t, m: z.m || 0, pk: recs[0].pk, name: recs[0].n, inst: recs[0].inst,
-      obra: recs.map((r) => (r.sv ? (strip(r.o) !== strip(z.c) ? r.o : "") : what(r)) + (r.ord && r.ord.length < 12 && !r.sv ? ` (n.º ${r.ord})` : "")).filter(Boolean).join("; "), vin: LK[z.lk], lk: z.lk }));
+      obra: recs.map((r) => cap(r.sv ? (strip(r.o) !== strip(z.c) ? r.o : "") : what(r)) + (r.ord && r.ord.length < 12 && !r.sv ? ` (n.º ${r.ord})` : "")).filter(Boolean).join("; "), vin: LK[z.lk], lk: z.lk }));
     const total = prem.reduce((s, p) => s + p.m, 0);
     $("c-prem-n").textContent = state.year === "1916" ? "No hay premios de 1916." :
       `${plural(prem.length, "premio", "premios")} del fallo del jurado${total ? ", $ " + fmt(total) + " en total" : ""}. Un premio que abarca varias obras ocupa una sola fila. No hay premios de 1916.`;
@@ -1929,7 +1930,7 @@ function zReset() { Z.s = 1; Z.x = 0; Z.y = 0; gid("fdlg-img").style.transform =
   (function comisiones() {
     const por = new Map();
     DATA.comision.forEach((c) => { if (!por.has(c.n)) por.set(c.n, []); por.get(c.n).push(c); });
-    const rol = (cs, a) => cs.filter((c) => c.a === a).map((c) => esc(c.r) + (c.s ? ` (${esc(c.s)})` : "") + (c.f.startsWith("El Orden") ? ` <span class="dim">· según ${esc(c.f)}</span>` : "")).join("; ") || "s/d";
+    const rol = (cs, a) => cs.filter((c) => c.a === a).map((c) => esc(cap(c.r)) + (c.s ? ` (${esc(c.s)})` : "") + (c.f.startsWith("El Orden") ? ` <span class="dim">· según ${esc(c.f)}</span>` : "")).join("; ") || "s/d";
     const filas = [...por.entries()].sort((a, b) => (b[1].length - a[1].length) || a[0].localeCompare(b[0], "es"));
     $("p-com").innerHTML = `<table class="tb"><thead><tr><th>Nombre</th><th>1915</th><th>1916</th><th>Vínculo con las expositoras</th></tr></thead><tbody>` +
       filas.map(([n, cs]) => {
